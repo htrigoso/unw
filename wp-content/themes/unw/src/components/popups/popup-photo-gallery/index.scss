@@ -1,0 +1,64 @@
+.popup__photo_gallery {
+  .popup {
+    &__container {
+      max-width: 840px;
+      width: 100%;
+
+      &__inner {
+        display: flex;
+        flex-flow: row wrap;
+        width: 100%;
+        padding: 30px;
+        overflow-y: auto;
+        @include media('<=phone-lg') {
+          padding: 40px 15px 15px;
+        }
+      }
+    }
+  }
+
+  .swiper {
+    &__lg,
+    &__sm {
+      width: 100%;
+    }
+
+    &__lg {
+      position: relative;
+    }
+
+    &__sm {
+      margin: 20px 0 0;
+
+      &__slide {
+        transition: opacity var(--def-transition-300ms);
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+
+    &__controls {
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 15px;
+      transform: translateY(-50%);
+      position: absolute;
+      top: 50%;
+      left: 0;
+      z-index: 1;
+
+      button {
+        transition: background-color var(--def-transition-300ms),
+          border-color var(--def-transition-300ms);
+
+        &:hover {
+          background-color: var(--color-white);
+          border-color: var(--color-white);
+        }
+      }
+    }
+  }
+}

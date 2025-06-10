@@ -1,0 +1,38 @@
+{
+  "env": {
+    "node": true,
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jquery": true
+  },
+  "extends": ["eslint:recommended", "prettier"],
+  "plugins": ["prettier"],
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    },
+    "project": "./jsconfig.json",
+    "sourceType": "module",
+    "requireConfigFile": false
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js"]
+      }
+    },
+    "caseSensitive": false
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "no-console": "off",
+    "no-plusplus": "off",
+    "no-restricted-syntax": "off",
+    "prefer-const": "off",
+    "prefer-template": "off",
+    "import/no-unresolved": "off"
+  }
+}

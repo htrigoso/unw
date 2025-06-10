@@ -1,0 +1,312 @@
+@font-face {
+    font-family: 'Anek Kannada Medium';
+    src: url('AnekKannadaMedium-Thin.eot');
+    src: local('Anek Kannada Medium Thin'), local('AnekKannadaMedium-Thin'),
+        url('AnekKannadaMedium-Thin.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-Thin.woff2') format('woff2'),
+        url('AnekKannadaMedium-Thin.woff') format('woff'),
+        url('AnekKannadaMedium-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada';
+    src: url('AnekKannadaMedium-Regular.eot');
+    src: local('Anek Kannada Medium Regular'), local('AnekKannadaMedium-Regular'),
+        url('AnekKannadaMedium-Regular.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-Regular.woff2') format('woff2'),
+        url('AnekKannadaMedium-Regular.woff') format('woff'),
+        url('AnekKannadaMedium-Regular.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada Medium';
+    src: url('AnekKannadaMedium-Light.eot');
+    src: local('Anek Kannada Medium Light'), local('AnekKannadaMedium-Light'),
+        url('AnekKannadaMedium-Light.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-Light.woff2') format('woff2'),
+        url('AnekKannadaMedium-Light.woff') format('woff'),
+        url('AnekKannadaMedium-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada Medium';
+    src: url('AnekKannadaMedium-ExtraLight.eot');
+    src: local('Anek Kannada Medium ExtraLight'), local('AnekKannadaMedium-ExtraLight'),
+        url('AnekKannadaMedium-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-ExtraLight.woff2') format('woff2'),
+        url('AnekKannadaMedium-ExtraLight.woff') format('woff'),
+        url('AnekKannadaMedium-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada';
+    src: url('AnekKannadaMedium-Regular_1.eot');
+    src: local('Anek Kannada Medium Regular'), local('AnekKannadaMedium-Regular'),
+        url('AnekKannadaMedium-Regular_1.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-Regular_1.woff2') format('woff2'),
+        url('AnekKannadaMedium-Regular_1.woff') format('woff'),
+        url('AnekKannadaMedium-Regular_1.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada Medium';
+    src: url('AnekKannadaMedium-Medium.eot');
+    src: local('Anek Kannada Medium Medium'), local('AnekKannadaMedium-Medium'),
+        url('AnekKannadaMedium-Medium.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-Medium.woff2') format('woff2'),
+        url('AnekKannadaMedium-Medium.woff') format('woff'),
+        url('AnekKannadaMedium-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada Medium';
+    src: url('AnekKannadaMedium-SemiBold.eot');
+    src: local('Anek Kannada Medium SemiBold'), local('AnekKannadaMedium-SemiBold'),
+        url('AnekKannadaMedium-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-SemiBold.woff2') format('woff2'),
+        url('AnekKannadaMedium-SemiBold.woff') format('woff'),
+        url('AnekKannadaMedium-SemiBold.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada Medium';
+    src: url('AnekKannadaMedium-Thin_1.eot');
+    src: local('Anek Kannada Medium Thin'), local('AnekKannadaMedium-Thin'),
+        url('AnekKannadaMedium-Thin_1.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-Thin_1.woff2') format('woff2'),
+        url('AnekKannadaMedium-Thin_1.woff') format('woff'),
+        url('AnekKannadaMedium-Thin_1.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada Medium';
+    src: url('AnekKannadaMedium-Medium_1.eot');
+    src: local('Anek Kannada Medium Medium'), local('AnekKannadaMedium-Medium'),
+        url('AnekKannadaMedium-Medium_1.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-Medium_1.woff2') format('woff2'),
+        url('AnekKannadaMedium-Medium_1.woff') format('woff'),
+        url('AnekKannadaMedium-Medium_1.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada';
+    src: url('AnekKannadaMedium-Regular_2.eot');
+    src: local('Anek Kannada Medium Regular'), local('AnekKannadaMedium-Regular'),
+        url('AnekKannadaMedium-Regular_2.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-Regular_2.woff2') format('woff2'),
+        url('AnekKannadaMedium-Regular_2.woff') format('woff'),
+        url('AnekKannadaMedium-Regular_2.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada Medium';
+    src: url('AnekKannadaMedium-Medium_2.eot');
+    src: local('Anek Kannada Medium Medium'), local('AnekKannadaMedium-Medium'),
+        url('AnekKannadaMedium-Medium_2.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-Medium_2.woff2') format('woff2'),
+        url('AnekKannadaMedium-Medium_2.woff') format('woff'),
+        url('AnekKannadaMedium-Medium_2.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada Medium';
+    src: url('AnekKannadaMedium-ExtraBold.eot');
+    src: local('Anek Kannada Medium ExtraBold'), local('AnekKannadaMedium-ExtraBold'),
+        url('AnekKannadaMedium-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-ExtraBold.woff2') format('woff2'),
+        url('AnekKannadaMedium-ExtraBold.woff') format('woff'),
+        url('AnekKannadaMedium-ExtraBold.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada Medium';
+    src: url('AnekKannadaMedium-SemiBold_1.eot');
+    src: local('Anek Kannada Medium SemiBold'), local('AnekKannadaMedium-SemiBold'),
+        url('AnekKannadaMedium-SemiBold_1.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-SemiBold_1.woff2') format('woff2'),
+        url('AnekKannadaMedium-SemiBold_1.woff') format('woff'),
+        url('AnekKannadaMedium-SemiBold_1.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada Medium';
+    src: url('AnekKannadaMedium-ExtraBold_1.eot');
+    src: local('Anek Kannada Medium ExtraBold'), local('AnekKannadaMedium-ExtraBold'),
+        url('AnekKannadaMedium-ExtraBold_1.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-ExtraBold_1.woff2') format('woff2'),
+        url('AnekKannadaMedium-ExtraBold_1.woff') format('woff'),
+        url('AnekKannadaMedium-ExtraBold_1.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada Medium';
+    src: url('AnekKannadaMedium-ExtraLight_1.eot');
+    src: local('Anek Kannada Medium ExtraLight'), local('AnekKannadaMedium-ExtraLight'),
+        url('AnekKannadaMedium-ExtraLight_1.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-ExtraLight_1.woff2') format('woff2'),
+        url('AnekKannadaMedium-ExtraLight_1.woff') format('woff'),
+        url('AnekKannadaMedium-ExtraLight_1.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada Medium';
+    src: url('AnekKannadaMedium-ExtraBold_2.eot');
+    src: local('Anek Kannada Medium ExtraBold'), local('AnekKannadaMedium-ExtraBold'),
+        url('AnekKannadaMedium-ExtraBold_2.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-ExtraBold_2.woff2') format('woff2'),
+        url('AnekKannadaMedium-ExtraBold_2.woff') format('woff'),
+        url('AnekKannadaMedium-ExtraBold_2.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada';
+    src: url('AnekKannadaMedium-Bold.eot');
+    src: local('Anek Kannada Medium Bold'), local('AnekKannadaMedium-Bold'),
+        url('AnekKannadaMedium-Bold.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-Bold.woff2') format('woff2'),
+        url('AnekKannadaMedium-Bold.woff') format('woff'),
+        url('AnekKannadaMedium-Bold.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada Medium';
+    src: url('AnekKannadaMedium-Thin_2.eot');
+    src: local('Anek Kannada Medium Thin'), local('AnekKannadaMedium-Thin'),
+        url('AnekKannadaMedium-Thin_2.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-Thin_2.woff2') format('woff2'),
+        url('AnekKannadaMedium-Thin_2.woff') format('woff'),
+        url('AnekKannadaMedium-Thin_2.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada Medium';
+    src: url('AnekKannadaMedium-ExtraLight_2.eot');
+    src: local('Anek Kannada Medium ExtraLight'), local('AnekKannadaMedium-ExtraLight'),
+        url('AnekKannadaMedium-ExtraLight_2.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-ExtraLight_2.woff2') format('woff2'),
+        url('AnekKannadaMedium-ExtraLight_2.woff') format('woff'),
+        url('AnekKannadaMedium-ExtraLight_2.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada Medium';
+    src: url('AnekKannadaMedium-SemiBold_2.eot');
+    src: local('Anek Kannada Medium SemiBold'), local('AnekKannadaMedium-SemiBold'),
+        url('AnekKannadaMedium-SemiBold_2.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-SemiBold_2.woff2') format('woff2'),
+        url('AnekKannadaMedium-SemiBold_2.woff') format('woff'),
+        url('AnekKannadaMedium-SemiBold_2.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada';
+    src: url('AnekKannadaMedium-Bold_1.eot');
+    src: local('Anek Kannada Medium Bold'), local('AnekKannadaMedium-Bold'),
+        url('AnekKannadaMedium-Bold_1.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-Bold_1.woff2') format('woff2'),
+        url('AnekKannadaMedium-Bold_1.woff') format('woff'),
+        url('AnekKannadaMedium-Bold_1.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada Medium';
+    src: url('AnekKannadaMedium-Light_1.eot');
+    src: local('Anek Kannada Medium Light'), local('AnekKannadaMedium-Light'),
+        url('AnekKannadaMedium-Light_1.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-Light_1.woff2') format('woff2'),
+        url('AnekKannadaMedium-Light_1.woff') format('woff'),
+        url('AnekKannadaMedium-Light_1.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada Medium';
+    src: url('AnekKannadaMedium-Light_2.eot');
+    src: local('Anek Kannada Medium Light'), local('AnekKannadaMedium-Light'),
+        url('AnekKannadaMedium-Light_2.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-Light_2.woff2') format('woff2'),
+        url('AnekKannadaMedium-Light_2.woff') format('woff'),
+        url('AnekKannadaMedium-Light_2.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Anek Kannada';
+    src: url('AnekKannadaMedium-Bold_2.eot');
+    src: local('Anek Kannada Medium Bold'), local('AnekKannadaMedium-Bold'),
+        url('AnekKannadaMedium-Bold_2.eot?#iefix') format('embedded-opentype'),
+        url('AnekKannadaMedium-Bold_2.woff2') format('woff2'),
+        url('AnekKannadaMedium-Bold_2.woff') format('woff'),
+        url('AnekKannadaMedium-Bold_2.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+

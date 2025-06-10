@@ -1,0 +1,11 @@
+@import 'widgets/headline';
+@import 'widgets/title';
+@import 'widgets/button';
+@import 'widgets/link';
+
+@include set-css-vars($font-families);
+@include set-css-vars($colors);
+@include set-css-vars($transitions);
+@include set-css-vars($breakpoints, true);
+@include set-css-vars($sizes, true);
+@include set-css-vars($custom, true);

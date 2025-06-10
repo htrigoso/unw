@@ -1,0 +1,18 @@
+.popup__flipbook {
+  width: 100%;
+
+  .popup {
+    &__container {
+      width: 100%;
+      height: 100%;
+
+      @include screen-size($from: null, $to: tablet-lg) {
+        height: auto;
+      }
+
+      &__inner {
+        height: 100%;
+      }
+    }
+  }
+}

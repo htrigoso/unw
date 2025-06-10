@@ -1,0 +1,61 @@
+.swiper {
+  &__controls {
+    display: flex;
+    align-items: center;
+    margin: 20px 0 0;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background-color: set-color(--color-primary, 1);
+      border: 1px solid var(--color-primary);
+      margin: 0 5px;
+      transition: background-color var(--def-transition-300ms);
+
+      &:hover {
+        background-color: set-color(--color-primary, 0);
+
+        svg {
+          transform: scale(1.4);
+        }
+
+        [stroke^='#'] {
+          stroke: var(--color-primary);
+        }
+      }
+
+      &:first-of-type {
+        background-color: set-color(--color-primary, 0);
+        margin-left: 0;
+
+        &:hover {
+          background-color: set-color(--color-primary, 1);
+
+          [stroke^='#'] {
+            stroke: var(--color-white);
+          }
+        }
+
+        [stroke^='#'] {
+          stroke: var(--color-primary);
+        }
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      svg {
+        transition: transform var(--def-transition-300ms);
+      }
+
+      [stroke^='#'] {
+        stroke: var(--color-white);
+        transition: var(--def-transition-300ms);
+      }
+    }
+  }
+}

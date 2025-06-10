@@ -1,0 +1,120 @@
+.side_nav {
+  width: 100%;
+  padding-right: 30px;
+
+  @include media('<=tablet-lg') {
+    padding-right: unset;
+  }
+
+  &__menu {
+    @include media('<=tablet-lg') {
+      display: none;
+    }
+
+    li {
+      display: block;
+      width: 100%;
+    }
+
+    a {
+      font-size: 16px;
+      color: var(--color-tuna);
+      transition: color var(--def-transition-300ms);
+      padding: 3px 0;
+      position: relative;
+
+      &:hover {
+        color: var(--color-primary);
+
+        svg {
+          opacity: 1;
+          transform: translateX(5px);
+        }
+      }
+
+      &.active {
+        font-weight: var(--semi-bold);
+        color: var(--color-primary);
+
+        svg {
+          pointer-events: all;
+          opacity: 1;
+        }
+      }
+    }
+
+    svg {
+      display: inline-block;
+      margin: 0 0 -3px 2px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity var(--def-transition-300ms), transform var(--def-transition-300ms);
+    }
+  }
+
+  &__dropdown {
+    display: none;
+    margin: 0 0 25px;
+    user-select: none;
+    position: relative;
+    z-index: 1;
+
+    @include media('<=tablet-lg') {
+      display: block;
+    }
+
+    &__label {
+      background-color: var(--color-athens-gray);
+      padding: 10px 15px;
+      cursor: pointer;
+
+      &.active {
+        svg {
+          transform: rotate(-180deg);
+        }
+      }
+
+      span {
+        font-weight: var(--semi-bold);
+        font-size: 14px;
+        color: var(--color-primary);
+      }
+
+      svg {
+        transition: transform var(--def-transition-300ms);
+      }
+    }
+
+    &__list {
+      width: 100%;
+      max-height: 192px;
+      background-color: var(--color-athens-gray);
+      padding: 5px 0;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(-5px) scale(0.98);
+      transition: opacity var(--def-transition-300ms), transform var(--def-transition-300ms);
+      overflow-y: auto;
+      position: absolute;
+      top: 100%;
+      left: 0;
+
+      &.active {
+        pointer-events: all;
+        opacity: 1;
+        transform: translateY(10px) scale(1);
+      }
+
+      li,
+      a {
+        display: block;
+      }
+
+      a {
+        font-size: 14px;
+        color: var(--color-secondary);
+        padding: 5px 15px;
+      }
+    }
+  }
+}

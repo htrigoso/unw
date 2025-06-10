@@ -1,0 +1,51 @@
+@use 'sass:math';
+
+@function rem($size) {
+  @return #{math.div($size, map-get($sizes, 'base-font-size-unit-none'))}rem;
+}
+
+@function calc-rem($size) {
+  @return math.div($size, map-get($sizes, 'base-font-size-unit-none'));
+}
+
+@function vw($width, $target) {
+  $vw-context: ($width * 0.01) * 1px;
+  @return math.div($target, $vw-context) * 1vw;
+}
+
+@function vh($height, $target) {
+  $vh-context: ($height * 0.01) * 1px;
+  @return math.div($target, $vh-context) * 1vh;
+}
+
+@function line-height($size, $height) {
+  @return #{math.div($height, $size)}em;
+}
+
+@function set-color($color-name, $alpha: 1, $mix: false, $percentage: 8) {
+  $color: map-get($colors, $color-name);
+
+  @if $mix == false {
+    @return rgba($color, $alpha);
+  } @else {
+    @if $mix == lighten {
+      @return lighten($color, $percentage);
+    }
+
+    @if $mix == darken {
+      @return darken($color, $percentage);
+    }
+  }
+}
+
+@mixin set-css-vars($vars, $transform: false) {
+  :root {
+    @each $name, $value in $vars {
+      @if $transform == false {
+        #{$name}: #{$value};
+      } @else {
+        --#{$name}: #{$value};
+      }
+    }
+  }
+}

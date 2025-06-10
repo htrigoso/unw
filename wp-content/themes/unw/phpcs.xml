@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<ruleset name="Seek Agency">
+  <description>Seek Wordpress Coding Standards</description>
+  <arg name="extensions" value="php"/>
+  <arg name="encoding" value="utf-8" />
+  <arg value="-colors"/>
+  <arg value="ns"/>
+  <exclude-pattern type="relative">./vendor/*</exclude-pattern>
+  <rule ref="WordPress">
+    <exclude name="Generic.WhiteSpace.DisallowSpaceIndent" />
+  </rule>
+  <rule ref="WordPress-Extra">
+    <exclude name="WordPress.PHP.DisallowShortTernary"/>
+  </rule>
+  <rule ref="WordPress-Docs"/>
+  <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+  <rule ref="Squiz.Commenting.FileComment.Missing">
+    <severity>0</severity>
+  </rule>
+  <rule ref="Squiz.Commenting.FileComment.MissingSubpackageTag">
+    <severity>0</severity>
+  </rule>
+  <rule ref="Squiz.Commenting.FileComment.MissingPackageTag">
+    <severity>0</severity>
+  </rule>
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="indent" value="2"/>
+      <property name="tabIndent" value="false"/>
+    </properties>
+  </rule>
+  <rule ref="Generic.WhiteSpace.DisallowTabIndent" />
+  <config name="minimum_supported_wp_version" value="4.9"/>
+</ruleset>

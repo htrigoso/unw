@@ -1,0 +1,31 @@
+.image {
+  &__relative {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__absolute {
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  &__center {
+    object-position: center;
+  }
+
+  &__cover {
+    object-fit: cover;
+  }
+
+  &__contain {
+    object-fit: contain;
+  }
+
+  &__hidden {
+    visibility: hidden;
+  }
+}

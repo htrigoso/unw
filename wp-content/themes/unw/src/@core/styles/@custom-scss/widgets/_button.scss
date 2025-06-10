@@ -1,0 +1,103 @@
+.btn {
+  display: inline-block;
+  font-weight: var(--bold);
+  font-size: 16px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  padding: 7px 30px 9px;
+
+  span,
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__icon {
+    &:hover {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+
+    svg {
+      margin: 0 0 0 5px;
+      transition: transform var(--def-transition-300ms);
+    }
+  }
+
+  &__primary {
+    &__fill {
+      color: var(--color-white);
+      background-color: var(--color-primary);
+      border-color: var(--color-primary);
+      transition: color var(--def-transition-300ms), background-color var(--def-transition-300ms);
+
+      &:hover {
+        color: var(--color-primary);
+        background-color: set-color(--color-primary, 0);
+
+        [stroke^='#'] {
+          stroke: var(--color-accent);
+        }
+      }
+
+      [stroke^='#'] {
+        stroke: var(--color-viking);
+        transition: var(--def-transition-300ms);
+      }
+    }
+
+    &__stroke {
+      color: var(--color-primary);
+      background-color: transparent;
+      border-color: var(--color-primary);
+      transition: color var(--def-transition-300ms), background-color var(--def-transition-300ms);
+
+      &:hover {
+        color: var(--color-white);
+        background-color: var(--color-primary);
+
+        [stroke^='#'] {
+          stroke: var(--color-viking);
+        }
+      }
+
+      [stroke^='#'] {
+        stroke: var(--color-accent);
+        transition: var(--def-transition-300ms);
+      }
+    }
+  }
+
+  &__gray {
+    &__fill {
+      font-weight: var(--regular);
+      color: var(--color-storm-gray);
+      background-color: var(--color-iron);
+      border-color: var(--color-iron);
+      transition: color var(--def-transition-300ms), background-color var(--def-transition-300ms);
+
+      &:hover {
+        background-color: set-color(--color-iron, 0);
+
+        [stroke^='#'] {
+          stroke: var(--color-iron);
+        }
+      }
+
+      [stroke^='#'] {
+        stroke: var(--color-viking);
+        transition: var(--def-transition-300ms);
+      }
+    }
+  }
+
+  &__hover_v2 {
+    &:hover {
+      svg {
+        transform: rotate(0deg) scale(1.4);
+      }
+    }
+  }
+}

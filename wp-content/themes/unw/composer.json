@@ -1,0 +1,27 @@
+{
+  "name": "seek/wp-starter",
+  "authors": [
+    {
+      "name": "Ronald Fernandez",
+      "email": "ronald@seek.pe"
+    }
+  ],
+  "require": {
+    "rezozero/mixedfeed": "^4.0",
+    "abraham/twitteroauth": "^3.3"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "3.*",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+    "object-calisthenics/phpcs-calisthenics-rules": "*",
+    "phpcompatibility/php-compatibility": "*",
+    "wp-coding-standards/wpcs": "*"
+  },
+  "scripts": {
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}

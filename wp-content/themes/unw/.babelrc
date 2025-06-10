@@ -1,0 +1,16 @@
+{
+  "env": {
+    "development": {
+      "presets": ["@babel/preset-env"],
+      "plugins": []
+    },
+    "production": {
+      "presets": ["@babel/preset-env"],
+      "plugins": []
+    }
+  },
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-transform-runtime"]
+  ]
+}

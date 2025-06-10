@@ -1,0 +1,10 @@
+{
+  "fullname": "El nombre completo es requerido.",
+  "document_number_DNI": "El número de DNI debe ser de 8 dígitos y solo puede contener números.",
+  "document_number": "El número de documento solo puede contener letras y números.",
+  "document_type": "El tipo de documento debe ser uno de: DNI, ID.",
+  "email": "El correo electrónico no es válido.",
+  "message": "El mensaje es requerido.",
+  "terms": "Debe aceptar la política de privacidad.",
+  "policy": "Debe aceptar la política de privacidad."
+}

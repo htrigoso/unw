@@ -1,0 +1,40 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-prettier",
+    "stylelint-config-recommended"
+  ],
+  "customSyntax": "postcss-scss",
+  "rules": {
+    "selector-class-pattern": null,
+    "no-descending-specificity": null,
+    "no-empty-source": null,
+    "property-no-unknown": null,
+    "no-duplicate-selectors": null,
+    "annotation-no-unknown": null,
+    "function-no-unknown": null,
+    "import-notation": null,
+    "selector-pseudo-element-no-unknown": null,
+    "selector-pseudo-class-no-unknown": null,
+    "custom-property-pattern": null,
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "include",
+          "import",
+          "mixin",
+          "extend",
+          "if",
+          "else",
+          "each",
+          "content",
+          "import",
+          "function",
+          "return",
+          "use"
+        ]
+      }
+    ]
+  }
+}

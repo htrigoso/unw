@@ -1,0 +1,9 @@
+@use 'sass:map';
+
+$sizes: map.merge(
+  $default-sizes,
+  (
+    'base-font-size-unit-none': 16,
+    'base-font-size': 16px,
+  )
+);

@@ -1,0 +1,181 @@
+.footer {
+  width: 100%;
+
+  &__top {
+    background-color: var(--color-tuna);
+    padding: 80px 0;
+
+    @include media('<=phone-xl') {
+      padding: 40px 0;
+    }
+
+    @include media('>phone-xl', '<=tablet-sm') {
+      padding: 60px 0;
+    }
+  }
+
+  &__bottom {
+    text-align: center;
+    background-color: var(--color-charade);
+    padding: 15px 10px;
+  }
+
+  &__column {
+    &__x1 {
+      width: 30%;
+
+
+      @include media('>phone-xl', '<=tablet-sm') {
+        display: flex;
+        flex-flow: row wrap;
+      }
+
+      @include media('<=tablet-sm') {
+        width: 100%;
+      }
+
+      & > div {
+        width: 100%;
+
+        @include media('>phone-xl', '<=tablet-sm') {
+          display: flex;
+          flex-flow: row wrap;
+        }
+
+        & > div {
+          @include media('>phone-xl', '<=tablet-sm') {
+            width: 33.33%;
+            padding-right: 30px;
+          }
+
+          &:nth-of-type(1) {
+            margin: 0 0 40px;
+          }
+
+          &:nth-of-type(2) {
+            margin: 0 0 10px;
+          }
+        }
+      }
+    }
+
+    &__x2 {
+      width: 70%;
+
+      @include media('<=phone-xl') {
+        margin: 30px 0 0;
+      }
+
+      @include media('>phone-xl', '<=tablet-sm') {
+        margin: 40px 0 0;
+      }
+
+      @include media('<=tablet-sm') {
+        width: 100%;
+      }
+    }
+
+    &__child {
+      @include media('<=phone-xl') {
+        width: 100%;
+        margin: 0 0 30px;
+      }
+
+      @include media('>phone-xl', '<=tablet-sm') {
+        width: 33.33%;
+        padding-right: 30px;
+      }
+
+      &:last-child {
+        @include media('<=phone-xl') {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  &__logo_brand {
+    display: inline-block;
+    width: 240px;
+    margin: 0 0 20px;
+
+    @include media('<=tablet-lg') {
+      width: 200px;
+    }
+
+    svg {
+      width: 100%;
+    }
+  }
+
+  &__title {
+    h4, h5, h6{
+      font-weight: var(--bold);
+      font-size: 16px;
+      color: var(--color-white);
+      margin: 0 0 10px;
+    }
+  }
+
+  &__link {
+    font-weight: var(--bold);
+    font-size: 16px;
+    color: var(--color-white);
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__caption {
+    p{
+      display: block;
+      max-width: 280px;
+      font-size: 14px;
+      color: var(--color-white);
+    }
+
+    a {
+      color: var(--color-white);
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__menu {
+    li {
+      display: block;
+      width: 100%;
+      margin: 2px 0;
+    }
+
+    a {
+      display: inline-block;
+      font-size: 14px;
+      color: var(--color-white);
+      text-decoration: underline;
+      padding: 2px 0;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  &__copyright {
+    font-size: 14px;
+    color: var(--color-white);
+    margin: 0;
+
+    a {
+      color: var(--color-white);
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

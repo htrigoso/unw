@@ -1,0 +1,16 @@
+{
+  "src/**/*.{js}": [
+    "eslint",
+    "prettier --check --ignore-path .eslintignore",
+    "prettier --write --ignore-path .eslintignore"
+  ],
+  "templates/**/*.php": [
+    "vendor/bin/phpcs --standard=phpcs.xml -n -p"
+  ],
+  "inc/**/*.php": [
+    "vendor/bin/phpcs --standard=phpcs.xml -n -p"
+  ],
+  "content-parts/**/*.php": [
+    "vendor/bin/phpcs --standard=phpcs.xml -n -p"
+  ]
+}

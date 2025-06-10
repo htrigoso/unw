@@ -1,0 +1,34 @@
+@use 'sass:map';
+
+$colors: map.merge(
+  $default-colors,
+  (
+    --color-primary: #283e84,
+    --color-accent: #aa3a51,
+    --color-secondary: #30333e,
+    --color-bay-of-many-approx: #20367a,
+    --color-bay-of-many: #283e84,
+    --color-night-shadz: #aa3a51,
+    --color-viking: #4ddcdc,
+    --color-cinder: #14161d,
+    --color-charade: #21242e,
+    --color-mine-shaft: #313030,
+    --color-tuna: #30333e,
+    --color-mako: #3f424d,
+    --color-tundora: #444,
+    --color-mid-gray: #5c5f6a,
+    --color-storm-gray: #7a7d87,
+    --color-manatee: #989ba3,
+    --color-bombay: #b7b9bf,
+    --color-silver: #c6c6c6,
+    --color-iron: #d6d7db,
+    --color-alto: #d3d3d3,
+    --color-link-water: #f0f3fc,
+    --color-white-lilac: #f2f4fb,
+    --color-athens-gray: #f5f5f7,
+    --color-gallery: #f0f0f0,
+    --color-malibu: #65cdf1,
+    --color-brick-red: #ca2b51,
+    --color-red: #ec0c0c,
+  )
+);
