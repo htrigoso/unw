@@ -11,17 +11,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const appConfig = require('./app.config.json');
 
-/**
- *
- * @param {*} env
- * @param {*} options
- * @returns {config}
- */
-// eslint-disable-next-line consistent-return
 module.exports = (env, options) => {
-  /**
-   * Variables & functions
-   */
   const isDev = options.mode === 'development';
   const isProd = options.mode === 'production';
 
@@ -114,7 +104,6 @@ module.exports = (env, options) => {
     },
     {
       test: [/.js$/],
-      // exclude: /node_modules/, // /node_modules\/(?!(dom7|swiper)\/).*/ – if using swiper slider
       exclude: /node_modules\/(?!(dom7|swiper)\/).*/,
       use: {
         loader: 'babel-loader',
@@ -211,42 +200,9 @@ module.exports = (env, options) => {
       }
     }
 
-    /*
-    if (production) {
-      if (!config.useBundlesModules) {
-        return entryPoints;
-      }
-
-      fs.readdirSync(config.paths.pages)
-        .filter((dir) => fs.statSync(path.resolve(`${config.paths.pages}/${dir}`)).isDirectory())
-        .map((dir) => {
-          entryPoints[dir] = path.resolve(`${config.paths.pages}/${dir}`, 'index.js');
-          return null;
-        });
-    }
-
-    if (!production) {
-      if (!config.useBundlesModules) {
-        return {
-          app: path.resolve(config.paths.source, 'app.js'),
-        };
-      }
-
-      fs.readdirSync(config.paths.pages)
-        .filter((dir) => fs.statSync(path.resolve(`${config.paths.pages}/${dir}`)).isDirectory())
-        .map((dir) => {
-          entryPoints[dir] = path.resolve(`${config.paths.pages}/${dir}`, 'index.js');
-          return null;
-        });
-    }
-    */
-
     return entryPoints;
   };
 
-  /**
-   * DEVELOPMENT Config
-   */
   if (isDev) {
     return {
       entry: () => useEntry(false),
@@ -258,6 +214,9 @@ module.exports = (env, options) => {
       resolve: {
         alias,
         extensions: ['.js'],
+        fallback: {
+          events: require.resolve('events/'),
+        },
       },
       devtool: 'source-map',
       devServer,
@@ -273,9 +232,6 @@ module.exports = (env, options) => {
     };
   }
 
-  /**
-   * PRODUCTION Config
-   */
   if (isProd) {
     if (config.GzCompress) {
       plugins.push(
@@ -298,8 +254,11 @@ module.exports = (env, options) => {
       resolve: {
         alias,
         extensions: ['.js'],
+        fallback: {
+          events: require.resolve('events/'),
+        },
       },
-      devtool: false, // false
+      devtool: false,
       optimization: {
         usedExports: 'global',
         splitChunks: {
@@ -312,7 +271,6 @@ module.exports = (env, options) => {
             parallel: true,
             terserOptions: {
               mangle: {
-                // keep class names
                 keep_classnames: config.mangleClassNames,
               },
               compress: {

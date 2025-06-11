@@ -1,0 +1,18 @@
+#main {
+  padding: 119px 0 0;
+
+  @include media('<=phone-xl') {
+    padding: 59px 0 0;
+  }
+
+  @include media('>phone-xl', '<=tablet-lg') {
+    padding: 65px 0 0;
+  }
+}
+
+/**
+ * Sections
+ */
+.what_is_san_pablo {
+  z-index: 2;
+}
