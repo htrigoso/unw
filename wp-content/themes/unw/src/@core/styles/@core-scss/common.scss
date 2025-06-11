@@ -1,6 +1,6 @@
 @use 'common/normalize' as *;
-@use 'common/defaults' as *;
-@use 'common/helpers' as *;
-@use 'common/scrollbars' as *;
+@use 'common/defaults';
+@use 'common/helpers';
+@use 'common/scrollbars';
 
 @include set-css-vars($default-font-weight);

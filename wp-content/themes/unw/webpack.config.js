@@ -90,14 +90,21 @@ module.exports = (env, options) => {
         {
           loader: 'sass-loader',
           options: {
+            api: 'modern',
             additionalData: `
-              @use './src/@core/styles/@core-scss/includes.scss' as *;
-              @use './src/@core/styles/@custom-scss/includes.scss' as *;
+            @use '${path.resolve(__dirname, './src/@core/styles/@core-scss/includes.scss')}' as *;
+            @use '${path.resolve(__dirname, './src/@core/styles/@custom-scss/includes.scss')}' as *;
             `,
             sassOptions: {
               outputStyle: isDev ? 'expanded' : 'compressed',
+              includePaths: [
+                path.resolve(__dirname, './src/@core/styles'),
+                path.resolve(__dirname, './src/@core/styles/@core-scss'),
+                path.resolve(__dirname, './src/@core/styles/@custom-scss'),
+              ],
             },
             sourceMap: true,
+            implementation: require('sass'),
           },
         },
       ],
@@ -114,6 +121,8 @@ module.exports = (env, options) => {
       },
     },
   ];
+
+  console.log(rules);
 
   const plugins = [
     new StylelintPlugin({

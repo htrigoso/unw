@@ -1,5 +1,7 @@
 @use 'sass:map';
 
+@use '../../@core-scss/variables/colors' as *;
+
 $colors: map.merge(
   $default-colors,
   (

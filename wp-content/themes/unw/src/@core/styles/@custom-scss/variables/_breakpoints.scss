@@ -1,9 +1,1 @@
 @use 'sass:map';
-
-$breakpoints: map.merge(
-  $default-breakpoints,
-  (
-    // scss array elements goes here
-    // dimension: 5000,
-  )
-);
