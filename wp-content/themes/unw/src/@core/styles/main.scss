@@ -1,5 +1,6 @@
-@import '@core-scss/common.scss';
-@import '@custom-scss/common.scss';
+@use '@core-scss/common.scss' as *;
+
+@use '@custom-scss/common.scss' as *;
 
 /**
  * Global styles

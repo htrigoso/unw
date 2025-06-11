@@ -1,3 +1,3 @@
-@import 'func/func';
-@import 'mixins/common';
-@import 'variables/variables';
+@use 'func/func' as *;
+@use 'mixins/common' as *;
+@use 'variables/variables' as *;

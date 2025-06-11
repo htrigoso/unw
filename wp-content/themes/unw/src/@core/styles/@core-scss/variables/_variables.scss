@@ -1,5 +1,5 @@
-@import 'breakpoints';
-@import 'colors';
-@import 'font-weight';
-@import 'sizes';
-@import 'transitions';
+@use 'breakpoints' as *;
+@use 'colors' as *;
+@use 'font-weight' as *;
+@use 'sizes' as *;
+@use 'transitions' as *;

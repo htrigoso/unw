@@ -1,4 +1,4 @@
-@import '~include-media/dist/_include-media';
+@use '~include-media/dist/_include-media' as *;
 
 $default-breakpoints: (
   // phone extra small

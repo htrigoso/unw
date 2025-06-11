@@ -1,7 +1,7 @@
-@import 'widgets/headline';
-@import 'widgets/title';
-@import 'widgets/button';
-@import 'widgets/link';
+@use 'widgets/headline' as *;
+@use 'widgets/title' as *;
+@use 'widgets/button' as *;
+@use 'widgets/link' as *;
 
 @include set-css-vars($font-families);
 @include set-css-vars($colors);

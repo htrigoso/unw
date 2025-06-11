@@ -91,8 +91,8 @@ module.exports = (env, options) => {
           loader: 'sass-loader',
           options: {
             additionalData: `
-              @import './src/@core/styles/@core-scss/includes.scss';
-              @import './src/@core/styles/@custom-scss/includes.scss';
+              @use './src/@core/styles/@core-scss/includes.scss' as *;
+              @use './src/@core/styles/@custom-scss/includes.scss' as *;
             `,
             sassOptions: {
               outputStyle: isDev ? 'expanded' : 'compressed',
