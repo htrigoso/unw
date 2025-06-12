@@ -1,0 +1,15 @@
+.contact {
+  padding-top: rem(128);
+
+  @include media(">=tablet") {
+    padding-top: calc(#{rem(167.5)} * 2);
+  }
+}
+
+.contact .bend {
+  svg {
+    rect {
+      fill: var(--primary);
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "bundles": {
+    "app": [
+      "./app/index.js",
+      "./styles/index.scss"
+    ],
+    "home": [
+      "./app/pages/home/index.js",
+      "./styles/pages/home/index.scss"
+    ],
+    "products": [
+      "./app/pages/products/index.js",
+      "./styles/pages/products/index.scss"
+    ],
+    "product-detail": [
+      "./app/pages/product-detail/index.js",
+      "./styles/pages/product-detail/index.scss"
+    ],
+    "certifications": [
+      "./app/pages/certifications/index.js",
+      "./styles/pages/certifications/index.scss"
+    ],
+    "facilities": [
+      "./app/pages/facilities/index.js",
+      "./styles/pages/facilities/index.scss"
+    ],
+    "contact": [
+      "./app/pages/contact/index.js",
+      "./styles/pages/contact/index.scss"
+    ],
+    "post-detail": [
+      "./app/pages/post-detail/index.js",
+      "./styles/pages/post-detail/index.scss"
+    ],
+    "404": [
+      "./app/pages/errors/404.js",
+      "./styles/pages/errors/404.scss"
+    ]
+  }
+}

@@ -1,303 +1,416 @@
-const path = require('path');
-const fs = require('fs');
-const { ProgressPlugin, ProvidePlugin } = require('webpack');
-const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
-const StylelintPlugin = require('stylelint-webpack-plugin');
-const appConfig = require('./app.config.json');
+require('@babel/register')
+
+const path = require('path')
+const webpack = require('webpack')
+const AssetsPlugin = require('assets-webpack-plugin')
+const compass = require('compass-importer')
+const chalk = require('chalk')
+const CompressionPlugin = require('compression-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const WebpackNotifierPlugin = require('webpack-notifier')
+const entrypoints = require('./entrypoints.json')
+const bundle = require('./bundle.json')
+const log = console.log
+
+const dirApp = path.join(__dirname, 'app')
+const dirStyles = path.join(__dirname, 'styles')
+const dirNode = 'node_modules'
 
 module.exports = (env, options) => {
-  const isDev = options.mode === 'development';
-  const isProd = options.mode === 'production';
-
-  const config = {
+  /**
+   * project settings
+   */
+  const settings = {
     mode: options.mode,
-    ...appConfig,
-    target: 'web',
-    plugins: {
-      jQuery: 'jquery',
-      jquery: 'jquery',
-      $: 'jquery',
-      'window.jQuery': 'jquery',
-      'window.$': 'jquery',
-    },
-    paths: {
-      root: path.resolve(__dirname),
-      source: path.resolve(__dirname, './src/'),
-      core: path.resolve(__dirname, './src/@core'),
-      styles: path.resolve(__dirname, './src/@core/styles'),
-      output: path.resolve(__dirname, './build/'),
-      pages: path.resolve(__dirname, './src/pages'),
-    },
-  };
+    proxy: 'http://unw.loc',
+    isWordpress: true,
+    separateBundles: true,
+    babelPolyfill: true,
+    wordpressThemePath: 'wp-content/themes/unw',
+    themeSlug: 'unw',
+    port: 8035,
+    compressAssets: true,
+    useHash: true,
+    open: Object.hasOwnProperty.call(options, 'open'),
+    entry: () => {
+      this.entries = settings.separateBundles ? entrypoints.bundles : bundle
 
-  const alias = {
-    '@src': path.resolve(__dirname, 'src'),
-    '@styles': path.resolve(__dirname, 'src/@core/styles'),
-    '@classes': path.resolve(__dirname, 'src/@core/classes'),
-    '@shared': path.resolve(__dirname, 'src/@core/shared'),
-    '@libs': path.resolve(__dirname, 'src/@core/libs'),
-    '@utils': path.resolve(__dirname, 'src/@core/libs/utils'),
-    '@components': path.resolve(__dirname, 'src/components'),
-    '@pages': path.resolve(__dirname, 'src/pages'),
-  };
-
-  const devServer = {
-    allowedHosts: 'auto',
-    compress: true,
-    open: config.open,
-    hot: false,
-    host: config.host,
-    port: config.port,
-    proxy: {
-      '*': {
-        target: config.proxy,
-      },
-    },
-    historyApiFallback: true,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'X-Content-Type-Options': 'nosniff',
-      'X-Frame-Options': 'DENY',
-    },
-    client: {
-      progress: true,
-      logging: 'error',
-      overlay: {
-        errors: true,
-        warnings: true,
-      },
-    },
-    devMiddleware: {
-      index: true,
-      publicPath: '/',
-    },
-  };
-
-  const rules = [
-    {
-      test: /\.s[ac]ss$/i,
-      use: [
-        MiniCssExtractPlugin.loader,
-        'css-loader',
-        'postcss-loader',
-        'resolve-url-loader',
-        {
-          loader: 'sass-loader',
-          options: {
-            api: 'modern',
-            additionalData: `
-            @use '${path.resolve(__dirname, './src/@core/styles/@core-scss/includes.scss')}' as *;
-            @use '${path.resolve(__dirname, './src/@core/styles/@custom-scss/includes.scss')}' as *;
-            `,
-            sassOptions: {
-              outputStyle: isDev ? 'expanded' : 'compressed',
-              includePaths: [
-                path.resolve(__dirname, './src/@core/styles'),
-                path.resolve(__dirname, './src/@core/styles/@core-scss'),
-                path.resolve(__dirname, './src/@core/styles/@custom-scss'),
-              ],
-            },
-            sourceMap: true,
-            implementation: require('sass'),
-          },
-        },
-      ],
-    },
-    {
-      test: [/.js$/],
-      exclude: /node_modules\/(?!(dom7|swiper)\/).*/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env'],
-          configFile: path.resolve(__dirname, '.babelrc'),
-        },
-      },
-    },
-  ];
-
-  console.log(rules);
-
-  const plugins = [
-    new StylelintPlugin({
-      configFile: path.resolve(__dirname, '.stylelintrc'),
-      ignoreFile: path.resolve(__dirname, '.stylelintignore'),
-      formatter: 'verbose',
-      fix: true,
-      files: './src/**/*.{scss,css}',
-    }),
-    new ESLintPlugin(),
-    new ProgressPlugin({
-      percentBy: 'entries',
-    }),
-    new ProvidePlugin(config.plugins),
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].[fullhash].css',
-      ignoreOrder: true,
-    }),
-    new CleanWebpackPlugin({
-      verbose: true,
-      cleanOnceBeforeBuildPatterns: ['**/*', '!stats.json'],
-    }),
-    new WebpackManifestPlugin({
-      publicPath: isProd ? 'build/' : '',
-    }),
-  ];
-
-  const useEntry = () => {
-    const entryPoints = {
-      app: path.resolve(config.paths.source, 'app.js'),
-    };
-    const creatures = fs.readdirSync(config.paths.pages);
-
-    for (const unknown1 of creatures) {
-      const isDir = fs.statSync(path.resolve(`${config.paths.pages}/${unknown1}`)).isDirectory();
-      const entry1Exists = fs.existsSync(
-        path.resolve(`${config.paths.pages}/${unknown1}`, 'index.js')
-      );
-
-      if (entry1Exists) {
-        entryPoints[unknown1] = path.resolve(`${config.paths.pages}/${unknown1}`, 'index.js');
+      if (settings.mode === 'development') {
+        this.entries.app.push(`webpack-dev-server/client?http://localhost:${settings.port}/public`)
+        this.entries.app.push('webpack/hot/dev-server')
       }
 
-      if (isDir) {
-        const subCreatures = fs.readdirSync(path.resolve(__dirname, `./src/pages/${unknown1}`));
+      return this.entries
+    },
+    hash: (tpl, hash) => {
+      return tpl.replace(/\.[^.]+$/, `.[${hash}]$&`)
+    }
+  }
 
-        for (const unknown2 of subCreatures) {
-          const isDir = fs
-            .statSync(path.resolve(`${config.paths.pages}/${unknown1}/${unknown2}`))
-            .isDirectory();
-          const entry2Exists = fs.existsSync(
-            path.resolve(`${config.paths.pages}/${unknown1}/${unknown2}`, 'index.js')
-          );
+  /**
+   * logs
+   */
+  log(chalk.blue.bgWhite('Set project mode to ') + chalk.red.bgWhite.bold(options.mode) + chalk.blue.bgWhite(' version'))
 
-          if (entry2Exists) {
-            entryPoints[unknown2] = path.resolve(
-              `${config.paths.pages}/${unknown1}/${unknown2}`,
-              'index.js'
-            );
-          }
-
-          if (isDir) {
-            const subCreatures = fs.readdirSync(
-              path.resolve(__dirname, `./src/pages/${unknown1}/${unknown2}`)
-            );
-
-            for (const unknown3 of subCreatures) {
-              const entry3Exists = fs.existsSync(
-                path.resolve(
-                  `${config.paths.pages}/${unknown1}/${unknown2}/${unknown3}`,
-                  'index.js'
-                )
-              );
-
-              if (entry3Exists) {
-                entryPoints[unknown3] = path.resolve(
-                  `${config.paths.pages}/${unknown1}/${unknown2}/${unknown3}`,
-                  'index.js'
-                );
-              }
+  /**
+   * DEVELOPMENT
+   */
+  const configDev = {
+    entry: settings.entry,
+    output: {
+      path: path.resolve(__dirname, 'public'),
+      publicPath: '/', // path.resolve(__dirname, 'public')
+      filename: 'js/[name].js'
+    },
+    resolve: {
+      modules: [
+        dirApp,
+        dirStyles,
+        dirNode
+      ]
+    },
+    devtool: 'inline-source-map',
+    devServer: {
+      historyApiFallback: true,
+      proxy: {
+        '*': {
+          target: settings.proxy
+        }
+      },
+      contentBase: path.resolve(__dirname, 'public'), // process.cwd() // path.resolve(__dirname, 'public')
+      compress: false,
+      publicPath: `http://localhost:${settings.port}`,
+      disableHostCheck: true,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'X-Content-Type-Options': 'nosniff',
+        'X-Frame-Options': 'DENY'
+      },
+      port: settings.port,
+      progress: true,
+      inline: true,
+      open: settings.open,
+      overlay: {
+        warnings: true,
+        errors: true
+      },
+      hot: true,
+      stats: 'errors-warnings'
+    },
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules\/(?!(dom7|swiper)\/).*/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                '@babel/preset-env'
+              ]
             }
           }
-        }
-      }
-    }
-
-    return entryPoints;
-  };
-
-  if (isDev) {
-    return {
-      entry: () => useEntry(false),
-      output: {
-        filename: 'js/[name].js',
-        path: config.paths.output,
-        chunkFilename: '[id].js',
-      },
-      resolve: {
-        alias,
-        extensions: ['.js'],
-        fallback: {
-          events: require.resolve('events/'),
         },
-      },
-      devtool: 'source-map',
-      devServer,
-      watchOptions: {
-        aggregateTimeout: 300,
-        poll: 300,
-        ignored: ['/node_modules/', '**/node_modules'],
-      },
-      module: {
-        rules,
-      },
-      plugins,
-    };
-  }
-
-  if (isProd) {
-    if (config.GzCompress) {
-      plugins.push(
-        new CompressionPlugin({
-          test: /\.(js|css)$/,
-          filename: '[path][name][ext].gz[query]',
-          algorithm: 'gzip',
-          deleteOriginalAssets: false,
-        })
-      );
-    }
-
-    return {
-      entry: () => useEntry(true),
-      output: {
-        filename: 'js/[name].[fullhash].js',
-        path: config.paths.output,
-        chunkFilename: '[id].chank.js',
-      },
-      resolve: {
-        alias,
-        extensions: ['.js'],
-        fallback: {
-          events: require.resolve('events/'),
-        },
-      },
-      devtool: false,
-      optimization: {
-        usedExports: 'global',
-        splitChunks: {
-          chunks: 'all',
-        },
-        runtimeChunk: false,
-        minimize: config.minimize,
-        minimizer: [
-          new TerserPlugin({
-            parallel: true,
-            terserOptions: {
-              mangle: {
-                keep_classnames: config.mangleClassNames,
-              },
-              compress: {
-                drop_console: true,
-              },
+        {
+          test: /\.scss$/,
+          use: [
+            {
+              loader: 'style-loader'
             },
-          }),
-          new CssMinimizerPlugin(),
-        ],
-      },
-      performance: {
-        maxEntrypointSize: 512000,
-        maxAssetSize: 512000,
-      },
-      module: {
-        rules,
-      },
-      plugins: [...plugins],
-    };
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'resolve-url-loader'
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                data: '@import "compass"; @import "./styles/includes.scss";',
+                outputStyle: 'expanded',
+                sourceMap: true,
+                importer: compass,
+                includePaths: [
+                  path.resolve('./node_modules')
+                ]
+              }
+            }
+          ]
+        },
+        {
+          test: /\.css$/,
+          use: [
+            {
+              loader: 'style-loader'
+            },
+            {
+              loader: 'css-loader',
+              query: {
+                modules: false,
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              query: {
+                sourceMap: true
+              }
+            }
+          ]
+        },
+        {
+          test: /\.svg$/,
+          loader: `url-loader?name=${settings.isWordpress ? settings.wordpressThemePath : settings.themeSlug}/[path][name].[ext]&limit=12`
+        },
+        {
+          test: /\.woff$/,
+          loader: `url-loader?name=${settings.isWordpress ? settings.wordpressThemePath : settings.themeSlug}/[path][name].[ext]&limit=12`
+        },
+        {
+          test: /\.woff2$/,
+          loader: `url-loader?name=${settings.isWordpress ? settings.wordpressThemePath : settings.themeSlug}/[path][name].[ext]&limit=12`
+        },
+        {
+          test: /\.[ot]tf$/,
+          loader: `url-loader?name=${settings.isWordpress ? settings.wordpressThemePath : settings.themeSlug}/[path][name].[ext]&limit=12`
+        },
+        {
+          test: /\.eot$/,
+          loader: `url-loader?name=${settings.isWordpress ? settings.wordpressThemePath : settings.themeSlug}/[path][name].[ext]&limit=12`
+        },
+        {
+          test: /\.(gif|GIF|jpg|png|jpeg)$/,
+          loader: `url-loader?name=${settings.isWordpress ? settings.wordpressThemePath : settings.themeSlug}/[path][name].[ext]&limit=12`
+        }
+      ]
+    },
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+      // new WebpackNotifierPlugin(),
+      new AssetsPlugin({
+        path: path.resolve(__dirname, 'public'),
+        filename: 'assets.json',
+        prettyPrint: true,
+        processOutput: assets => {
+          const path = `http://localhost:${settings.port}`
+          const json = {}
+
+          for (const key in assets) {
+            const type = {}
+            for (const _key in assets[key]) {
+              type[_key] = path + assets[key][_key]
+            }
+            json[key] = type
+          }
+
+          json.env = settings.mode
+
+          return JSON.stringify(json)
+        }
+      })
+    ]
   }
-};
+
+  /**
+   * PRODUCTION
+   */
+  const configProd = {
+    entry: settings.entry,
+    output: {
+      path: path.resolve(__dirname, 'build'),
+      publicPath: '/',
+      filename: `js/[name].${settings.useHash ? '[contenthash:10].' : ''}js` // filename: 'js/[name].[contenthash:10].js'
+    },
+    resolve: {
+      modules: [
+        dirApp,
+        dirStyles,
+        dirNode
+      ]
+    },
+    devtool: 'cheap-module-source-map', // 'source-map',
+    module: {
+      rules: [
+        {
+          test: [/.js$/],
+          exclude: /node_modules\/(?!(dom7|swiper)\/).*/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                '@babel/preset-env'
+              ]
+            }
+          }
+        },
+        {
+          test: /\.scss$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: '../'
+              }
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'resolve-url-loader'
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                data: '@import "compass"; @import "./styles/includes.scss";',
+                outputStyle: 'compressed',
+                sourceMap: true,
+                importer: compass,
+                includePaths: [
+                  path.resolve('./node_modules')
+                ]
+              }
+            }
+          ]
+        },
+        {
+          test: /\.css$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: '../'
+              }
+            },
+            {
+              loader: 'css-loader',
+              query: {
+                modules: false,
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              query: {
+                sourceMap: true
+              }
+            }
+          ]
+        },
+        {
+          test: /\.svg$/,
+          loader: `url-loader?name=${settings.isWordpress ? settings.wordpressThemePath : settings.themePath}/[path][name].[ext]&limit=12`
+        },
+        {
+          test: /\.woff$/,
+          loader: `url-loader?name=${settings.isWordpress ? settings.wordpressThemePath : settings.themePath}/[path][name].[ext]&limit=12`
+        },
+        {
+          test: /\.woff2$/,
+          loader: `url-loader?name=${settings.isWordpress ? settings.wordpressThemePath : settings.themePath}/[path][name].[ext]&limit=12`
+        },
+        {
+          test: /\.[ot]tf$/,
+          loader: `url-loader?name=${settings.isWordpress ? settings.wordpressThemePath : settings.themePath}/[path][name].[ext]&limit=12`
+        },
+        {
+          test: /\.eot$/,
+          loader: `url-loader?name=${settings.isWordpress ? settings.wordpressThemePath : settings.themePath}/[path][name].[ext]&limit=12`
+        },
+        {
+          test: /\.(gif|GIF|jpg|png|jpeg)$/,
+          loader: `url-loader?name=${settings.isWordpress ? settings.wordpressThemePath : settings.themePath}/[path][name].[ext]&limit=12`
+        }
+      ]
+    },
+    performance: {
+      hints: false
+    },
+    optimization: {
+      splitChunks: {
+        chunks: 'async'
+      },
+      minimize: true,
+      minimizer: [
+        new UglifyJsPlugin({
+          uglifyOptions: {
+            cache: true,
+            compress: {
+              drop_console: true
+            },
+            mangle: false,
+            parallel: true,
+            output: {
+              beautify: false
+            },
+            sourceMap: true
+          }
+        }),
+        new OptimizeCSSAssetsPlugin()
+      ]
+    },
+    plugins: [
+      new WebpackNotifierPlugin(),
+      new MiniCssExtractPlugin({
+        filename: `css/[name].${settings.useHash ? '[contenthash:10].' : ''}css`, // filename: 'css/[name].[contenthash:10].css',
+        chunkFilename: '[id].css'
+      }),
+      new AssetsPlugin({
+        path: path.resolve(__dirname, 'build'),
+        filename: 'assets.json',
+        prettyPrint: true,
+        processOutput: function (assets) {
+          const path = 'build'
+          const json = {}
+
+          for (const key in assets) {
+            const type = {}
+            for (const _key in assets[key]) {
+              type[_key] = path + assets[key][_key]
+            }
+            json[key] = type
+          }
+
+          json.env = settings.mode
+
+          return JSON.stringify(json)
+        }
+      })
+    ]
+  }
+
+  if (settings.mode === 'production' && settings.compressAssets) {
+    configProd.plugins.push(
+      new CompressionPlugin({
+        test: /\.(js|css)$/,
+        filename: '[path].gz[query]',
+        algorithm: 'gzip',
+        deleteOriginalAssets: false,
+        compressionOptions: {
+          level: 6
+        }
+      })
+    )
+  }
+
+  return settings.mode === 'production' ? configProd : configDev
+}

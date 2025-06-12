@@ -1,0 +1,182 @@
+.footer {
+  width: 100%;
+  background: var(--white);
+  position: relative;
+}
+
+.footer__wrapper {
+  position: relative;
+}
+
+.footer__logo {
+  @extend %center;
+  padding-top: rem(64);
+  padding-bottom: rem(56);
+
+  @include media(">=tablet") {
+    padding-top: 0;
+    padding-bottom: rem(38.5);
+  }
+}
+
+.footer__menu {
+  @extend %center;
+  padding-bottom: rem(54);
+  @include media(">=tablet") {
+    padding-bottom: rem(46);
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    @include media(">=tablet") {
+      flex-direction: row;
+    }
+  }
+
+  li {
+    display: inline-flex;
+    justify-content: center;
+
+    @include media(">=tablet") {
+      margin: 0 rem(26);
+    }
+
+    a {
+      font-family: var(--font-poppins);
+      font-size: 16px;
+      color: var(--primary);
+      line-height: 20px;
+      font-weight: var(--light);
+
+      @include media(">=tablet") {
+        @include size(14, 24);
+        font-weight: var(--medium);
+      }
+
+      &[aria-current="page"] {
+        font-weight: var(--semi-bold);
+      }
+    }
+
+    &:not(:last-child) {
+      @include media("<tablet") {
+        margin-bottom: rem(24);
+      }
+    }
+  }
+}
+
+.footer__info {
+  display: flex;
+  flex-direction: column;
+  background: var(--secondary);
+  padding: rem(22) rem(24);
+
+  @include media(">=tablet") {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: rem(16) rem(109.2);
+  }
+
+  p {
+    @include size(12, 20);
+    font-family: var(--font-poppins);
+    color: var(--primary);
+
+    @include media(">=phone") {
+      @include size(14, 20);
+    }
+  }
+}
+
+.footer__info-copyright {
+  width: 100%;
+  @include media("<tablet") {
+    order: 3;
+    text-align: center;
+    border-top: 1px solid rgba($color: $color-primary, $alpha: 0.3);
+    padding-top: rem(24);
+  }
+  @include media(">=tablet") {
+    flex: 1 1 100%;
+    max-width: 30%;
+    padding-left: rem(90.8);
+  }
+  p {
+    font-weight: var(--regular);
+  }
+}
+
+.footer__info-phone {
+  @include media("<tablet") {
+    order: 1;
+    text-align: center;
+    margin-bottom: rem(32);
+  }
+
+  p {
+    font-weight: var(--medium);
+
+    &:last-child {
+      @include size(14, 20);
+    }
+
+    @include media(">=tablet") {
+      font-weight: var(--semi-bold);
+
+      &:first-child {
+        display: none;
+      }
+    }
+  }
+}
+
+.footer__info-social {
+  @include media("<tablet") {
+    order: 2;
+    margin-bottom: rem(24);
+    text-align: center;
+  }
+
+  @include media(">=tablet") {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1 1 100%;
+    max-width: 30%;
+  }
+
+  p {
+    font-weight: var(--medium);
+  }
+  svg {
+    width: rem(29.25);
+    height: rem(29.25);
+  }
+  ul {
+    display: flex;
+    align-items: center;
+
+    @include media("<tablet") {
+      justify-content: center;
+      margin-top: rem(8);
+    }
+
+    @include media(">=tablet") {
+      margin-left: rem(19.5);
+    }
+
+    li {
+      margin: 0 rem(12);
+
+      @include media(">=tablet") {
+        margin-left: rem(23.4);
+        margin-right: 0;
+      }
+    }
+  }
+}

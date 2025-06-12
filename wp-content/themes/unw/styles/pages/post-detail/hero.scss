@@ -1,0 +1,44 @@
+.hero {
+  background: var(--gray);
+  min-height: rem(570);
+  @include media("height>720px") {
+    min-height: rem(1070);
+  }
+}
+
+.hero__box__wrapper {
+  padding: rem(64) rem(20) rem(180);
+
+  @include media("<phone-576") {
+    justify-content: flex-end;
+  }
+
+  @include media("<tablet") {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @include media(">=tablet") {
+    padding: rem(405) rem(368) rem(100);
+  }
+}
+
+.hero__box__caption {
+  .title {
+    margin-bottom: rem(48);
+
+    @include media(">=tablet") {
+      margin-bottom: rem(27);
+    }
+  }
+
+  .description {
+    @include media("<phone") {
+      display: none;
+    }
+    p {
+      color: var(--white);
+    }
+  }
+}

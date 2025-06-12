@@ -1,0 +1,268 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-100%);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 3;
+
+  // @include media(">=tablet") {
+  opacity: 1;
+  transform: none;
+  height: 64px;
+  // }
+
+  @include media(">=phone-576") {
+    height: 80px;
+  }
+
+  @include media(">=tablet") {
+    height: rem(231.57);
+  }
+
+  &.active,
+  &.navbar-fixed {
+    pointer-events: all;
+    // height: rem(92);
+
+    @include media(">=tablet") {
+      height: rem(92);
+    }
+
+    .navbar__wrapper {
+      @include media(">=tablet") {
+        padding-top: rem(15);
+        padding-bottom: rem(15);
+      }
+    }
+
+    @extend .navbar-fixed;
+
+    background-color: #fff;
+    box-shadow: 0 4px 74px rgba($color: $color-black, $alpha: 0.05);
+  }
+}
+
+.navbar__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: rem(2) rem(24);
+
+  @include media(">=tablet") {
+    padding: rem(24) rem(92);
+  }
+}
+
+.navbar__logo {
+  display: block;
+  pointer-events: all;
+
+  img {
+    width: rem(131);
+    height: auto;
+    transition: all 0.3s ease;
+
+    &.is-active {
+      display: none;
+    }
+
+    @include media(">=tablet") {
+      width: rem(256);
+    }
+
+    @include media(">desktop-xl") {
+      width: 256px;
+    }
+  }
+}
+
+.navbar__content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  pointer-events: all;
+}
+
+.navbar__menu {
+  @include media("<tablet") {
+    display: none;
+  }
+
+  ul li {
+    padding: 0 rem(20);
+    display: inline-flex;
+    a {
+      @extend %description-16-24;
+
+      color: var(--white);
+      font-weight: var(--light);
+      position: relative;
+      padding: rem(10) 0;
+      transition: all 0.3s ease;
+
+      @include media("<desktop") {
+        font-size: 14px;
+        line-height: 24px;
+      }
+
+      &[aria-current="page"] {
+        color: var(--secondary);
+        font-weight: var(--medium);
+        &:after {
+          content: "";
+          width: rem(36);
+          height: rem(8);
+          background: set-img("navbar-active-dots.svg") no-repeat;
+          background-size: contain;
+          background-position: center;
+          position: absolute;
+          left: calc(50% - #{rem(18)});
+          bottom: -#{rem(5)};
+          z-index: 1;
+        }
+      }
+    }
+  }
+}
+
+.navbar__contact {
+  margin-left: rem(19);
+
+  @include media("<tablet") {
+    display: none;
+  }
+
+  .btn-contact {
+    @extend %description-16-24;
+
+    padding: rem(15) rem(55);
+    text-transform: none;
+    border-radius: rem(3);
+    color: var(--white);
+    font-weight: var(--light);
+    position: relative;
+
+    @include media("<desktop") {
+      font-size: 14px;
+      line-height: 24px;
+    }
+  }
+}
+
+.navbar__lang {
+  position: relative;
+  margin-left: rem(38);
+}
+
+.navbar__lang-item {
+  &:not(:first-child) {
+    .navbar__lang-link::before {
+      content: "";
+      width: rem(1.5);
+      background: var(--white);
+      position: absolute;
+      top: rem(6);
+      bottom: rem(6);
+      left: -#{rem(12)};
+      pointer-events: none;
+    }
+  }
+}
+
+.navbar__lang-link {
+  @extend %description-20;
+
+  display: inline-block;
+  color: var(--white);
+  font-weight: var(--light);
+  padding: rem(4) rem(2);
+  position: relative;
+
+  @include media("<desktop") {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  &.is-active {
+    color: var(--secondary);
+    font-weight: var(--medium);
+  }
+}
+
+.navbar__menu-hamburger {
+  margin-left: rem(24);
+  pointer-events: all;
+
+  @include media(">=tablet") {
+    display: none;
+  }
+
+  .btn-menu-hamburger {
+    svg path {
+      fill: var(--white);
+    }
+  }
+}
+
+.navbar-fixed {
+  .navbar__logo {
+    img {
+      display: none;
+
+      &.is-active {
+        display: block;
+      }
+
+      @include media(">=tablet") {
+        width: rem(154.22);
+      }
+      @include media(">desktop-xl") {
+        width: 154.22px;
+      }
+    }
+  }
+
+  .navbar__menu {
+    a {
+      color: var(--primary);
+      &[aria-current="page"] {
+        color: var(--secondary);
+        &:after {
+          bottom: 0;
+        }
+      }
+    }
+  }
+
+  .navbar__lang-item {
+    &:not(:first-child) {
+      .navbar__lang-link::before {
+        background: var(--primary);
+      }
+    }
+  }
+
+  .navbar__lang-link {
+    color: var(--primary);
+    &.is-active {
+      color: var(--secondary);
+    }
+  }
+
+  .navbar__menu-hamburger {
+    .btn-menu-hamburger {
+      svg path {
+        fill: var(--primary);
+      }
+    }
+  }
+}

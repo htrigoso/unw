@@ -1,0 +1,24 @@
+@import "./base/normalize";
+@import "./base/reset";
+
+/**
+ * Utils
+ */
+@import "./utils/tailwind";
+
+/**
+ * Base
+ */
+@import "./base/root";
+@import "./base/fonts";
+@import "./base/animations";
+
+/**
+ * Components
+ */
+@import "./components/index";
+
+/**
+ * Layout
+ */
+@import "./layout/index";

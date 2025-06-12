@@ -1,0 +1,121 @@
+/**
+ * root
+ */
+
+:root {
+  --font-size: 12.44px;
+
+  /**
+    Small devices (landscape phones, 320px and up)
+
+    screen = media screen
+    base-screen = default board figma (desktop 1440px and mobile 360px)
+    base-font = default font size (14px)
+
+    --font-size = ( ( (screen * 100) / base-screen ) * base-font ) / 100
+
+    @var $breakpoints: ()
+  */
+
+  $sizes: (
+    "320px": 17.07,
+    "360px": 20,
+    // "375px": 20,
+    // "390px": 20.8,
+    // "425px": 22.67,
+    "576px": 20,
+    "768px": 20,
+    "992px": 25.83,
+    "1024px": 10.67,
+    "1200px": 12.5,
+    "1280px": 13.33,
+    "1366px": 14.23,
+    "1440px": 15,
+    "1600px": 16.67,
+    "1920px": 20,
+  );
+
+  @each $name, $size in $sizes {
+    @include media(">=#{$name}") {
+      --font-size: #{$size}px;
+    }
+  }
+}
+
+html,
+body {
+  overflow-x: hidden;
+  font-size: var(--font-size);
+}
+
+body {
+  font-family: var(--font);
+  font-weight: var(--regular);
+  color: var(--primary);
+  counter-reset: section;
+  // line-height: 1.6;
+}
+
+main {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+section {
+  width: 100%;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray);
+  border-radius: 3px;
+  cursor: pointer;
+}
+::-webkit-scrollbar-track {
+  background: black;
+}
+::-webkit-scrollbar {
+  width: 2px;
+  height: 1px;
+}
+
+/**
+ * Site container
+ */
+.x-container {
+  max-width: 1440px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 72px;
+  padding-right: 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.x-container-fluid {
+  max-width: 1920px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 100px;
+  padding-right: 100px;
+  position: relative;
+}
+
+.x-wrapper {
+  width: 100%;
+  padding-left: rem(20);
+  padding-right: rem(20);
+}
+
+.d-none {
+  display: none !important;
+}
+
+[data-hidden] {
+  overflow: hidden;
+}
+
+[data-aos^="fade"][data-aos^="fade"] {
+  transition-property: opacity, transform, background-position !important;
+}

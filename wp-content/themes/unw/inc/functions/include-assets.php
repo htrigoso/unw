@@ -1,88 +1,111 @@
 <?php
-/**
- * Include assets
- *
- * @package Include_Assets
- */
 
-add_action( 'wp_footer', 'include_the_json_settings' );
-function include_the_json_settings() {
-	$settings = array(
-		'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-		'themePath' => THEME_PATH,
-		'siteUrl' => site_url(),
-	);
+add_action('wp_footer', 'include_the_json_settings');
+function include_the_json_settings()
+{
+  $settings = [
+    'ajaxUrl' => admin_url('admin-ajax.php'),
+    'themePath' => THEME_PATH,
+    'siteUrl' => site_url(),
+    'gmapsUrl' => '//maps.googleapis.com/maps/api/js?key=AIzaSyC2dSaHMoRmFncykyFghoLozdWO_MNq1wM&libraries=places&language=es_PE',
+  ];
 
-	echo '<script id="themeSettings" type="application/json">';
-	echo json_encode( $settings );
-	echo '</script>';
+  echo '<script id="themeSettings" type="application/json">';
+  echo json_encode($settings);
+  echo '</script>';
 }
 
-add_action( 'admin_enqueue_scripts', 'admin_script' );
 
-function admin_script() {
-	wp_enqueue_script( 'admin-script', get_stylesheet_directory_uri() . '/assets/js/admin-script.js', array( 'jquery' ) );
-  wp_enqueue_style('admin-style', get_stylesheet_directory_uri().'/assets/css/admin-style.css');
+add_action('wp_enqueue_scripts', 'include_assets');
+function include_assets()
+{
+  global $wp_query;
+
+  $assetsJsonFile = "";
+  if (file_exists(get_template_directory() . '/build/assets.json')) {
+    $assetsJsonFile = file_get_contents(get_template_directory() . '/build/assets.json');
+  } elseif (file_exists(get_template_directory() . '/public/assets.json')) {
+    $assetsJsonFile = file_get_contents(get_template_directory() . '/public/assets.json');
+  }
+
+  if (!empty($assetsJsonFile)) {
+    $assets = json_decode($assetsJsonFile, true);
+    $vars = $wp_query->query_vars;
+    $themePath = get_template_directory_uri();
+    $env = $assets['env'];
+    unset($assets['env']);
+  }
+  if ($env === 'production') {
+    // $plyr_style = $themePath . '/build/plyr/plyr.min.css';
+    if (ALLOW_GZIP) {
+      // $plyr_style = $themePath . '/build/plyr/plyr.min.css.gz';
+    }
+    if (is_page_template('page-about_us.php') || is_front_page() || is_home() || is_singular(['post', 'project'])) {
+      //wp_enqueue_style('plyr', $plyr_style);
+    }
+  }
+  if (!empty($assets)) {
+    foreach ($assets as $key => $val) {
+      switch ($key) {
+        case 'app':
+          {
+            if (array_key_exists('js', $val)) {
+              $style_url = ($env === 'production') ? $themePath . '/' . $val['css'] : null;
+              $script_url = ($env === 'production') ? $themePath . '/' . $val['js'] : $val['js'];
+
+              if (ALLOW_GZIP) {
+                $script_url = $script_url . '.gz';
+              }
+
+              if ($env === 'production') {
+                wp_enqueue_style($key, $style_url);
+              }
+
+              wp_enqueue_script($key, $script_url, [], '', true);
+            }
+          }
+          break;
+        case $vars['ASSETS_CHUNK_NAME']:
+          {
+            if (array_key_exists('js', $val)) {
+              $style_url = ($env === 'production') ? $themePath . '/' . $val['css'] : null;
+              $script_url = ($env === 'production') ? $themePath . '/' . $val['js'] : $val['js'];
+
+              if (ALLOW_GZIP) {
+                $style_url = $style_url . '.gz';
+                $script_url = $script_url . '.gz';
+              }
+
+              if ($env === 'production') {
+                wp_enqueue_style($key, $style_url);
+              }
+
+              wp_enqueue_script($key, $script_url, ['app'], '', true);
+            }
+
+          }
+          break;
+      }
+    }
+  }
 }
 
-add_action( 'wp_enqueue_scripts', 'include_assets' );
-function include_assets() {
-	global $wp_query;
 
-	$vars = $wp_query->query_vars;
-	$theme_path = get_template_directory_uri();
-	$project_config_json = file_get_contents( $theme_path . '/app.config.json' );
-	$project_config = json_decode( $project_config_json, true );
-	$dev_manifest_file = 'http://' . $project_config['host'] . ':' . $project_config['port'] . '/manifest.json';
-	$prod_manifest_file = $theme_path . '/build/manifest.json';
-	$manifestFilePath = STAGE === 'development' ? $dev_manifest_file : $prod_manifest_file;
-	$manifest = json_decode( file_get_contents( $manifestFilePath ), true );
-	$chunk_name = $vars['ASSETS_CHUNK_NAME'];
+add_filter('clean_url', 'addAttrs', 11, 1);
+function addAttrs($url)
+{
+  if (false === strpos($url, '.js')) {
+    return $url;
+  }
 
-  wp_enqueue_script( 'jquery' );
-
-	if ( ! empty( $manifest ) ) {
-		foreach ( $manifest as $key => $value ) {
-			$name = substr( $key, 0, strpos( $key, '.' ) );
-			$ext = substr( strstr( $key, '.' ), strlen( '.' ) );
-			$file_path = STAGE === 'production'
-			? $theme_path . '/' . $value
-			: 'http://' . $project_config['host'] . ':' . $project_config['port'] . '/' . $value;
-
-			if ( ALLOW_GZIP ) {
-				$file_path .= '.gz';
-			}
-
-			if ( ( strpos( $name, 'app' ) !== false ) || $name === $chunk_name ) {
-				$ext === 'css' && wp_enqueue_style( 'preload-' . $name, $file_path, array(), false, 'all' );
-				$ext === 'js' && wp_enqueue_script( $name, $file_path, array(), '', true );
-			}
-
-			$css_file_name = str_replace( 'css/', '', $name );
-			$js_file_name = str_replace( 'js/', '', $name );
-			$is_css_chunk = is_numeric( $css_file_name );
-			$is_js_chunk = is_numeric( $js_file_name );
-
-			( $ext === 'css' && $is_css_chunk ) && wp_enqueue_style( 'preload-' . $name, $file_path, array(), false, 'all' );
-			( $ext === 'js' && $is_js_chunk ) && wp_enqueue_script( $name, $file_path, array(), '', true );
-		}
-	}
-
-  /*New include*/
-  $post_id = get_the_ID();
-  $post_type = get_post_type($post_id);
-  $post_config_json = file_get_contents( $theme_path . '/assets/json/'.$post_type.$post_id.'.json' );
-  $post_config = json_decode( $project_config_json, true );
-  //TO DO Mike
+  return "$url' defer";
 }
 
-add_filter( 'style_loader_tag', 'preload_filter', 10, 3 );
-function preload_filter( $html, $handle, $href ) {
-	if ( strpos( $handle, 'preload-' ) !== false ) {
-		$html = str_replace( "rel='stylesheet'", "rel='preload' href='" . $href . "' as='style' onload='this.onload=null;this.rel=\"stylesheet\"'", $html );
-		$html .= '<noscript><link rel="stylesheet" href="' . $href . '"></noscript>';
-	}
 
-	return $html;
+function placeholder() {
+  echo 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAECAYAAABGM/VAAAAABHNCSVQICAgIfAhkiAAAAF1JREFUCFtjvP/m1n8GIPj64TzD5f+GDJ8+/WBgrDp767+DKAOD1K/zDEpShgxbH/xhYFx+59Z/LW5Ghg9//zMoMd5mePJZiYHxxMsH2w6+BhnAwJAo9pvh5GcmBgCRxSUqb+IRJgAAAABJRU5ErkJggg==';
+}
 
+function get_placeholder() {
+  return 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAECAYAAABGM/VAAAAABHNCSVQICAgIfAhkiAAAAF1JREFUCFtjvP/m1n8GIPj64TzD5f+GDJ8+/WBgrDp767+DKAOD1K/zDEpShgxbH/xhYFx+59Z/LW5Ghg9//zMoMd5mePJZiYHxxMsH2w6+BhnAwJAo9pvh5GcmBgCRxSUqb+IRJgAAAABJRU5ErkJggg==';
 }

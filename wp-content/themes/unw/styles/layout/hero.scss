@@ -1,0 +1,269 @@
+.hero {
+  width: 100%;
+  height: var(--vh);
+  position: relative;
+}
+
+.hero__wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.hero__bend__bottom {
+  z-index: 1;
+}
+
+.hero__box {
+  @include ps-absolute(2);
+  pointer-events: none;
+
+  &.blend-mode {
+    mix-blend-mode: soft-light;
+    .top-title {
+      * {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  }
+}
+
+.hero__box__wrapper {
+  height: 100%;
+}
+
+.hero__box__caption {
+  // pointer-events: all;
+
+  @include media(">=tablet") {
+    // @extend %center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+.hero__box__caption .top-title {
+  margin-bottom: rem(4);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(15);
+  }
+
+  p {
+    @extend %title-16;
+    color: var(--white);
+  }
+}
+
+.hero__box__caption .title {
+  margin-bottom: rem(40);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(23);
+  }
+
+  h1,
+  h2,
+  p {
+    @include size(40, 38);
+    font-weight: var(--bold);
+    mix-blend-mode: soft-light;
+    color: transparent;
+
+    @include media(">=phone") {
+      @include size(60, 64);
+    }
+
+    @include media(">=tablet") {
+      @include size(109, 96);
+      letter-spacing: -#{rem(1.5)};
+    }
+
+    &.c-soft-peach {
+      color: var(--soft-peach);
+    }
+    &.c-riptide {
+      color: rgba($color: $color-secondary, $alpha: 0.84);
+    }
+    &.c-white {
+      color: rgba($color: $color-white, $alpha: 0.84);
+    }
+  }
+}
+
+.hero__box__caption .description {
+  margin-bottom: rem(32);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(52);
+  }
+
+  p {
+    @extend %description-20;
+    color: var(--white);
+    font-weight: var(--light);
+    opacity: 0.7;
+
+    @include media(">=tablet") {
+      color: var(--secondary);
+      opacity: 1;
+    }
+  }
+}
+
+.hero__box__pagination {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include media("<tablet") {
+    &.is-absolute {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: rem(64);
+    }
+  }
+
+  .swiper-pagination-number {
+    @extend %description-20;
+
+    color: var(--secondary);
+    font-weight: var(--light);
+  }
+
+  .swiper-pagination-progressbar {
+    width: rem(182);
+    height: rem(3);
+    background: var(--secondary);
+    border-radius: rem(3);
+    margin-left: rem(24);
+    margin-right: rem(24);
+    position: relative;
+
+    @include media(">=tablet") {
+      width: rem(296);
+      margin-left: rem(51);
+      margin-right: rem(63.6);
+    }
+  }
+
+  .swiper-pagination-progressbar-fill {
+    background: var((--white));
+  }
+}
+
+.hero__image {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: bottom;
+    transition: all 0.8s ease-in-out;
+    transition-timing-function: ease;
+  }
+  &:hover {
+    img {
+      transform: scale(1.1);
+    }
+  }
+}
+
+/**
+ * Swiper hero
+ */
+.swiper-hero {
+  width: 100%;
+  height: 100%;
+  .swiper-slide {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: bottom;
+      transition: all 0.8s ease-in-out;
+      transition-timing-function: ease;
+    }
+    &:hover {
+      img {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: rem(108);
+    height: rem(108);
+
+    @include media("<tablet") {
+      display: none;
+    }
+
+    &::after {
+      content: none;
+    }
+  }
+
+  .swiper-button-prev {
+    left: rem(92);
+  }
+  .swiper-button-next {
+    right: rem(92);
+  }
+}
+
+/**
+ * Scroll to discover
+ */
+.scroll-down {
+  position: absolute;
+  left: 50%;
+  bottom: rem(64);
+  transform: translateX(-50%);
+  z-index: 2;
+
+  @include media("<tablet") {
+    display: none;
+  }
+
+  .btn-basic-icon {
+    flex-direction: column;
+    position: relative;
+
+    &::before {
+      content: "";
+      width: rem(1);
+      background: var(--white);
+      position: absolute;
+      height: rem(64);
+      top: 100%;
+    }
+  }
+
+  p {
+    @extend %description-14-24;
+
+    color: var(--secondary);
+    text-align: center;
+    font-weight: var(--light);
+    margin-bottom: rem(16);
+
+    @include media("<desktop") {
+      font-size: 14px;
+      line-height: 24px;
+    }
+  }
+}

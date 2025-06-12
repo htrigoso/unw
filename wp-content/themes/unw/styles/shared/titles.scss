@@ -1,0 +1,101 @@
+%title-14 {
+  font-family: var(--font-poppins);
+  @include size(14, 24);
+}
+
+%title-16 {
+  font-family: var(--font-poppins);
+  @include size(12, 24);
+  font-weight: var(--regular);
+
+  @include media(">=phone") {
+    @include size(16, 24);
+  }
+}
+
+%title-20 {
+  font-family: var(--font-poppins);
+  @include size(12, 20);
+
+  @include media(">=phone") {
+    @include size(14, 20);
+  }
+
+  @include media(">=tablet") {
+    @include size(20, 24);
+    font-weight: var(--medium);
+  }
+}
+
+%title-77 {
+  @include size(28, 32);
+  font-weight: var(--semi-bold);
+  span {
+    color: var(--danger);
+  }
+
+  @include media(">=tablet") {
+    @include size(77, 92);
+    letter-spacing: -#{rem(1.5)};
+  }
+}
+
+%title-77-64 {
+  @include size(28, 32);
+  font-weight: var(--semi-bold);
+  span {
+    color: var(--danger);
+  }
+
+  @include media(">=tablet") {
+    @include size(77, 64);
+    letter-spacing: -#{rem(0.25)};
+  }
+}
+
+%top-title {
+  --line-margin: #{rem(8)};
+  display: flex;
+  align-items: center;
+  margin-bottom: rem(8);
+
+  @include media(">=phone") {
+    --line-margin: #{rem(12)};
+    margin-bottom: rem(14);
+  }
+
+  p {
+    @extend %title-20;
+    color: var(--primary);
+
+    @include media(">=tablet") {
+      text-transform: uppercase;
+    }
+  }
+
+  i {
+    color: var(--danger);
+    svg {
+      width: 25px;
+      height: auto;
+
+      @include media(">=tablet") {
+        width: 50px;
+      }
+    }
+
+    &.sm-hidden {
+      @include media("<tablet") {
+        display: none;
+      }
+    }
+  }
+
+  .line-left {
+    margin-right: var(--line-margin);
+  }
+
+  .line-right {
+    margin-left: var(--line-margin);
+  }
+}

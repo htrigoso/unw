@@ -1,0 +1,243 @@
+.post {
+  width: 100%;
+  background: var(--gray);
+}
+
+.post__wrapper {
+  position: relative;
+  padding: 0 rem(24);
+
+  @include media(">=tablet") {
+    padding: 0 rem(192);
+  }
+}
+
+.post__top-title {
+  @extend %top-title;
+  margin-bottom: 0;
+}
+
+.post__title {
+  margin-bottom: rem(16);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(23);
+  }
+
+  h1,
+  h2,
+  h3 {
+    @extend %title-77;
+    color: var(--primary);
+    letter-spacing: normal;
+  }
+}
+
+.post__published {
+  strong {
+    font-weight: var(--semi-bold);
+  }
+  time,
+  span {
+    @extend %description-16-24;
+    color: var(--dove-gray);
+    font-weight: var(--regular);
+  }
+}
+
+.post__content {
+  &:not(:last-of-type) {
+    margin-bottom: rem(48);
+
+    @include media(">=tablet") {
+      margin-bottom: rem(88);
+    }
+  }
+
+  p {
+    @extend %description-20-32;
+    color: var(--primary);
+    @include media(">=tablet") {
+      font-weight: var(--regular);
+    }
+  }
+
+  > p {
+    &:not(:last-child) {
+      margin-bottom: rem(20);
+      @include media(">=tablet") {
+        margin-bottom: rem(32);
+      }
+    }
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include offset("top", 32);
+  }
+
+  h1 {
+    @extend %title-77;
+    @include offset("bottom", 16);
+
+    @include media(">=tablet") {
+      @include offset("bottom", 32);
+    }
+  }
+
+  h2 {
+    @include size(26, 30);
+    @include offset("bottom", 20);
+
+    @include media(">=tablet") {
+      @include size(77, 92);
+    }
+  }
+
+  h3 {
+    @include size(24, 28);
+    @include offset("bottom", 20);
+
+    @include media(">=tablet") {
+      @include size(64, 72);
+    }
+  }
+
+  h4 {
+    @include size(22, 26);
+    @include offset("bottom", 20);
+
+    @include media(">=tablet") {
+      @include size(56, 64);
+    }
+  }
+
+  h5 {
+    @include size(20, 24);
+    @include offset("bottom", 20);
+
+    @include media(">=tablet") {
+      @include size(48, 56);
+    }
+  }
+
+  h6 {
+    @include size(18, 20);
+    @include offset("bottom", 20);
+
+    @include media(">=tablet") {
+      @include size(40, 48);
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: var(--semi-bold);
+    color: var(--dark-grey-color);
+  }
+
+  ol {
+    list-style-position: outside;
+    margin: rem(10) 0;
+    padding: 0 0 0 rem(24);
+
+    ul {
+      list-style-position: outside;
+      margin: rem(10) 0;
+      padding: 0 0 0 rem(24);
+    }
+  }
+
+  li {
+    list-style: inherit;
+    margin: 0 0 rem(16);
+
+    > p {
+      &:not(:last-child) {
+        margin-bottom: rem(16);
+      }
+    }
+  }
+
+  a {
+    color: var(--primary);
+
+    @include hover {
+      text-decoration: underline;
+    }
+  }
+
+  strong {
+    font-weight: var(--medium);
+  }
+}
+
+.post__image {
+  width: 100%;
+  margin-bottom: rem(48);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(88);
+  }
+
+  img {
+    display: block;
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    margin: 0 auto;
+  }
+}
+
+.post__image-full-width {
+  img {
+    width: 100%;
+  }
+}
+
+/**
+ * Post card
+ */
+.post__card {
+  width: 100%;
+  height: 100%;
+  background: var(--white);
+  display: block;
+  border-radius: rem(8) rem(8) 0 0;
+  margin: 0 auto;
+  margin-top: rem(-120);
+
+  @include media(">=phone-576") {
+    margin-top: rem(-180);
+  }
+
+  @include media(">=tablet") {
+    max-width: rem(1442);
+    margin-top: rem(-300);
+  }
+}
+
+.post__card__wrapper {
+  padding: rem(32) rem(16) rem(48);
+
+  @include media(">=tablet") {
+    padding: rem(95) rem(148) rem(120);
+  }
+}
+
+.post__card__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: rem(16);
+  @include media(">=tablet") {
+    margin-bottom: rem(48);
+  }
+}

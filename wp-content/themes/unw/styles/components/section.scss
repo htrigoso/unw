@@ -1,0 +1,31 @@
+.bend {
+  position: absolute;
+  left: 0;
+  right: 0;
+  svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.bend-top {
+  top: 0;
+}
+
+.bend__bottom {
+  bottom: 0;
+}
+
+.bend__mobile {
+  display: block;
+  @include media(">=tablet") {
+    display: none;
+  }
+}
+
+.bend__desktop {
+  display: none;
+  @include media(">=tablet") {
+    display: block;
+  }
+}

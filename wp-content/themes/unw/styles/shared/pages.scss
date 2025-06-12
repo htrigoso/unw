@@ -1,0 +1,17 @@
+%section {
+  @extend %cover;
+
+  opacity: 0;
+  visibility: hidden;
+}
+
+%section__wrapper {
+  max-width: 1440px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 72px;
+  padding-right: 80px;
+  position: relative;
+  z-index: 1;
+}

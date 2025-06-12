@@ -1,0 +1,258 @@
+.about-us {
+  width: 100%;
+  position: relative;
+  background: var(--alabaster);
+}
+
+.about-us__wrapper {
+  padding: rem(55) rem(24) rem(40);
+
+  @include media(">=tablet") {
+    padding: rem(157) rem(90) rem(142);
+  }
+}
+
+.about-us__top-title {
+  @extend %top-title;
+}
+
+.about-us__title {
+  margin-bottom: rem(20);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(52);
+  }
+
+  h2 {
+    @extend %title-77;
+    color: var(--primary);
+  }
+}
+
+.about-us__description {
+  p {
+    @extend %description-12-20;
+    color: var(--primary);
+    font-weight: var(--light);
+  }
+}
+
+/**
+ * About us features
+ */
+.features {
+  width: 100%;
+  background: var(--alabaster);
+
+  li {
+    .features__item {
+      border-bottom: 1px solid var(--alto-gray);
+    }
+
+    &:first-child {
+      @include media(">=tablet") {
+        .features__item {
+          border-bottom: 1px solid var(--alto-gray);
+        }
+      }
+    }
+  }
+
+  .plus-icon {
+    position: absolute;
+    right: rem(24);
+    transition: all 0.1s ease 0.2s;
+
+    @include media("<tablet") {
+      top: rem(20);
+    }
+
+    @include media(">=tablet") {
+      top: 50%;
+      right: rem(90);
+      transform: translateY(50%);
+    }
+
+    svg {
+      width: rem(32);
+      height: rem(32);
+
+      @include media(">=tablet") {
+        width: rem(70);
+        height: rem(70);
+      }
+
+      path {
+        fill: var(--danger);
+      }
+    }
+  }
+}
+
+.features__item {
+  position: relative;
+  overflow: hidden;
+  background: var(--alabaster);
+  // border-top: 1px solid var(--alto-gray);
+  transition: all 0.3s ease 0.2s;
+
+  // &:last-of-type {
+  //   border-bottom: 1px solid var(--alto-gray);
+  // }
+
+  @include media(">=tablet") {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &:hover {
+    @extend .features__item-hovered;
+  }
+}
+
+.features__item__content {
+  width: 100%;
+  padding: rem(20) rem(16) rem(28) rem(24);
+  transition: all 0.5s ease-out;
+
+  @include media(">=tablet") {
+    padding: rem(94) rem(51) rem(94) rem(100);
+    width: 50%;
+  }
+}
+
+.features__item__inner {
+  max-height: 0px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease-out;
+}
+
+.features__item__title {
+  h3 {
+    color: var(--primary);
+    @include size(24, 29);
+    font-weight: var(--medium);
+    transition: all 0.5s ease-out;
+
+    @include media(">=tablet") {
+      @include size(70, 84);
+      letter-spacing: rem(5);
+    }
+  }
+}
+
+.features__item__description {
+  padding-bottom: rem(45);
+  p {
+    @include size(14, 20);
+    color: var(--primary);
+    font-weight: var(--light);
+    letter-spacing: -#{rem(1.5)};
+
+    @include media(">=tablet") {
+      @include size(20, 30);
+    }
+  }
+}
+
+.features__item__actions {
+  position: relative;
+  a {
+    color: var(--primary);
+    font-weight: var(--semi-bold);
+  }
+}
+
+.features__item__image {
+  width: 100%;
+  position: relative;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease-out;
+
+  @include media(">=tablet") {
+    width: 20%;
+    max-height: inherit;
+    transition: all 0.5s ease;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    @include media(">=tablet") {
+      position: absolute;
+      top: 0;
+      right: 0;
+      border-top-left-radius: rem(227);
+      border-bottom-left-radius: rem(227);
+    }
+  }
+}
+
+/**
+ * About us features hovered
+ */
+.features__item-hovered {
+  background: var(--secondary);
+
+  .features__item__content {
+    padding: rem(36) rem(24) rem(40);
+
+    @include media(">=tablet") {
+      padding: rem(87) rem(51) rem(113) rem(100);
+    }
+  }
+  .features__item__inner {
+    padding-top: rem(37);
+    opacity: 1;
+    visibility: visible;
+    max-height: inherit;
+
+    @include media(">=tablet") {
+      max-height: 400px;
+    }
+  }
+
+  .features__item__title {
+    h3 {
+      @include size(20, 22);
+
+      @include media(">=tablet") {
+        @include size(41, 49);
+      }
+    }
+  }
+
+  .features__item__image {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.4s ease 0.2s;
+    max-height: inherit;
+
+    @include media("<tablet") {
+      padding: 0 rem(24) rem(40);
+    }
+
+    @include media(">=tablet") {
+      width: 50%;
+    }
+  }
+
+  .plus-icon {
+    transition: all 0.1s ease;
+
+    @include media("<tablet") {
+      top: rem(36);
+    }
+
+    @include media(">=tablet") {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}

@@ -1,0 +1,85 @@
+.about-facilities {
+  width: 100%;
+  background: var(--primary);
+  position: relative;
+  z-index: 1;
+}
+
+.about-facilities__wrapper {
+  padding: rem(55) rem(24) rem(70);
+
+  @include media(">=tablet") {
+    display: flex;
+    justify-content: space-between;
+    padding: rem(140) rem(92) rem(173.8);
+  }
+}
+
+.about-facilities__left {
+  @include media("<tablet") {
+    margin-bottom: rem(20);
+  }
+  @include media(">=tablet") {
+    flex: 1 1 100%;
+    max-width: calc(50% - 10px);
+    padding-right: rem(32);
+  }
+}
+
+.about-facilities__right {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  @include media(">=tablet") {
+    flex: 1 1 100%;
+    max-width: calc(50% - 10px);
+  }
+}
+
+.about-facilities__top-title {
+  @extend %top-title;
+
+  p {
+    color: var(--white);
+  }
+
+  i {
+    color: var(--danger);
+  }
+
+  @include media(">=tablet") {
+    margin-bottom: rem(31);
+  }
+
+  @include media(">=tablet") {
+    p,
+    i {
+      color: var(--secondary);
+    }
+  }
+}
+
+.about-facilities__title {
+  h2 {
+    @extend %title-77-64;
+    color: var(--white);
+  }
+}
+
+.about-facilities__description {
+  @include media(">=tablet") {
+    column-count: 2;
+  }
+
+  p {
+    @extend %description-20-32;
+    color: rgba($color: $color-white, $alpha: 0.69);
+
+    @include media("<tablet") {
+      &:not(:last-child) {
+        margin-bottom: rem(20);
+      }
+    }
+  }
+}

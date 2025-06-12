@@ -1,0 +1,56 @@
+.error-404 {
+  display: flex;
+  flex-direction: column;
+  height: var(--vh);
+  background: var(--primary);
+}
+
+.error-404__logo {
+  display: block;
+  padding: rem(8) rem(24);
+
+  @include media(">=tablet") {
+    padding: rem(24) rem(92);
+  }
+
+  img {
+    width: rem(131);
+    height: auto;
+
+    @include media(">=tablet") {
+      width: rem(256);
+    }
+
+    @include media(">desktop-xl") {
+      width: 256px;
+    }
+  }
+}
+
+.error-404__content {
+  @extend %center;
+  flex: 1 1 0%;
+  flex-direction: column;
+  h1 {
+    @include size(120);
+    color: var(--white);
+    margin-bottom: rem(32);
+
+    @include media(">=tablet") {
+      @include size(280);
+    }
+  }
+
+  p {
+    @include size(20, 24);
+    color: var(--white);
+
+    @include media(">=tablet") {
+      @include size(28, 32);
+    }
+  }
+
+  a {
+    color: var(--white);
+  }
+}
