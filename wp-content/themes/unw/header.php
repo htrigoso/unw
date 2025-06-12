@@ -66,16 +66,17 @@
     </style>
 
     <!-- Load fonts-->
-    <link href="/wp-content/themes/unw/assets/fonts/Nekst-Light.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-    <link href="/wp-content/themes/unw/assets/fonts/Nekst-Medium.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-    <link href="/wp-content/themes/unw/assets/fonts/Nekst-Regular.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-    <link href="/wp-content/themes/unw/assets/fonts/Nekst-SemiBold.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-    <link href="/wp-content/themes/unw/assets/fonts/Nekst-Bold.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-
-    <link href="/wp-content/themes/unw/assets/fonts/Poppins-Light.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-    <link href="/wp-content/themes/unw/assets/fonts/Poppins-Medium.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-    <link href="/wp-content/themes/unw/assets/fonts/Poppins-Regular.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-
+    <!-- Load Founders Grotesk fonts -->
+    <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Bold.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+    <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-BoldItalic.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+    <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Semibold.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+    <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-SemiboldItalic.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+    <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Medium.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+    <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-MediumItalic.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+    <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Regular.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+    <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-RegularItalic.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+    <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Light.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+    <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-LightItalic.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
     <script>
       let doc = document.documentElement;
       function calcVh() { doc.style.setProperty('--vh', window.innerHeight + 'px'); }
