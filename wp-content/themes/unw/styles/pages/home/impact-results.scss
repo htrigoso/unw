@@ -1,0 +1,27 @@
+.impact-results {
+  background-color: var(--color-primary);
+}
+.impact-results__wrapper {
+  padding: rem(52) rem(102);
+}
+.impact-results__title {
+  color: var(--color-white);
+  margin-bottom: rem(24);
+}
+.impact-results__items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: rem(34);
+}
+.impact-results__item {
+  background-color: var(--color-white);
+  padding: rem(20);
+  border-radius: rem(20);
+}
+.impact-results__subtitle {
+  font-size: rem(22);
+  margin-bottom: rem(5);
+}
+.impact-results__paragraph {
+  color: var(--color-black);
+}
