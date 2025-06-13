@@ -14,12 +14,12 @@
 .breadcrumb__item {
   @extend %description-14-24;
 
-  color: var(--primary);
-  font-weight: var(--regular);
+  color: var(--color-primary);
+  font-weight: var(--font-regular);
   margin-right: rem(8);
   a {
     display: block;
-    color: var(--primary);
+    color: var(--color-primary);
   }
   .icon {
     margin-left: rem(8);

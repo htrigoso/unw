@@ -1,12 +1,12 @@
 %title-14 {
-  font-family: var(--font-poppins);
+  font-family: var(--font);
   @include size(14, 24);
 }
 
 %title-16 {
-  font-family: var(--font-poppins);
+  font-family: var(--font);
   @include size(12, 24);
-  font-weight: var(--regular);
+  font-weight: var(--font-regular);
 
   @include media(">=phone") {
     @include size(16, 24);
@@ -14,7 +14,7 @@
 }
 
 %title-20 {
-  font-family: var(--font-poppins);
+  font-family: var(--font);
   @include size(12, 20);
 
   @include media(">=phone") {
@@ -23,15 +23,15 @@
 
   @include media(">=tablet") {
     @include size(20, 24);
-    font-weight: var(--medium);
+    font-weight: var(--font-medium);
   }
 }
 
 %title-77 {
   @include size(28, 32);
-  font-weight: var(--semi-bold);
+  font-weight: var(--font-semi-bold);
   span {
-    color: var(--danger);
+    color: var(--color-danger);
   }
 
   @include media(">=tablet") {
@@ -42,9 +42,9 @@
 
 %title-77-64 {
   @include size(28, 32);
-  font-weight: var(--semi-bold);
+  font-weight: var(--font-semi-bold);
   span {
-    color: var(--danger);
+    color: var(--color-danger);
   }
 
   @include media(">=tablet") {
@@ -66,7 +66,7 @@
 
   p {
     @extend %title-20;
-    color: var(--primary);
+    color: var(--color-primary);
 
     @include media(">=tablet") {
       text-transform: uppercase;
@@ -74,7 +74,7 @@
   }
 
   i {
-    color: var(--danger);
+    color: var(--color-danger);
     svg {
       width: 25px;
       height: auto;

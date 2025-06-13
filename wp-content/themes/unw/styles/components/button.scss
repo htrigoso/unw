@@ -2,9 +2,9 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-family: var(--font-poppins);
+  font-family: var(--font);
   @include size(20, 20);
-  font-weight: var(--semi-bold);
+  font-weight: var(--font-semi-bold);
   text-decoration: none;
   text-transform: uppercase;
   padding: rem(15) rem(32);
@@ -25,14 +25,14 @@
   }
 
   &-primary {
-    background-color: var(--primary);
+    background-color: var(--color-primary);
     color: var(--white);
-    border: 1px solid var(--primary);
+    border: 1px solid var(--color-primary);
   }
   &-outline-primary {
     background-color: transparent;
-    color: var(--primary);
-    border: 1px solid var(--primary);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
     transition: all 0.3s ease-in-out;
     &:hover {
       background-color: var(--blue);
@@ -41,17 +41,17 @@
   }
 
   &-danger {
-    background-color: var(--danger);
+    background-color: var(--color-danger);
     color: var(--white);
-    border: 1px solid var(--danger);
+    border: 1px solid var(--color-danger);
   }
   &-outline-danger {
     background-color: transparent;
-    color: var(--danger);
-    border: 1px solid var(--danger);
+    color: var(--color-danger);
+    border: 1px solid var(--color-danger);
     transition: all 0.3s ease-in-out;
     &:hover {
-      background-color: var(--danger);
+      background-color: var(--color-danger);
       color: var(--white);
     }
   }
@@ -59,25 +59,25 @@
   &-outline {
     background-color: transparent;
     color: var(--black);
-    font-weight: var(--bold);
+    font-weight: var(--font-bold);
   }
   &-outline-black {
     background-color: transparent;
     color: var(--black);
-    font-weight: var(--bold);
+    font-weight: var(--font-bold);
     border: 1px solid var(--black);
   }
 
   &-lg {
     @include size(16, 16);
-    font-weight: var(--regular);
+    font-weight: var(--font-regular);
   }
 
   &:disabled {
-    background: var(--gray);
+    background: var(--color-gray);
     color: #e8e8e8;
     cursor: not-allowed;
-    border: 1px solid var(--gray);
+    border: 1px solid var(--color-gray);
     svg {
       path {
         stroke: #767877;
@@ -101,7 +101,7 @@
   background: transparent;
   padding: 0;
 
-  font-family: var(--font-poppins);
+  font-family: var(--font);
   @include size(12, 18);
   // letter-spacing: -#{rem(1.5)};
 
@@ -172,7 +172,7 @@
   }
 
   &-primary {
-    background-color: var(--primary);
+    background-color: var(--color-primary);
     color: var(--white);
     padding: rem(16) rem(32);
   }

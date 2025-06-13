@@ -9,12 +9,17 @@
 
 <?php get_header(); ?>
 
-<?php get_template_part('content-parts/content', 'navbar'); ?>
+<?php
+  // get_template_part('content-parts/content', 'navbar');
+
+?>
 
 <main>
-  <p>Este es el contenido</p>
+  <?php get_template_part('content-parts/pages/home/content', 'why-wiener'); ?>
 </main>
 
-<?php get_template_part('content-parts/content', 'footer'); ?>
+<?php
+  // get_template_part('content-parts/content', 'footer');
+?>
 
 <?php get_footer(); ?>
