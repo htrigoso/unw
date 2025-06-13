@@ -34,51 +34,22 @@
     <style type="text/css">
       :root {
         --font: "Founders Grotesk", sans-serif;
-        --font-poppins: "Poppins", sans-serif;
-        --font-size: 20px;
-        --base-transition: 0.4s var(--e);
-        --thin: 100;
-        --extra-light: 200;
-        --light: 300;
-        --regular: 400;
-        --medium: 500;
-        --semi-bold: 600;
-        --bold: 700;
-        --extra-bold: 800;
-        --extra-black: 900;
-        --black: #232322;
-        --white: #ffffff;
-        --primary-turquoise: #07C8CC;
-        --secondary-grey: #D2D3D5;
-        --secondary-engineering: #FAC93D;
-        --secondary-cp: #00669E;
-        --turquoise-one: #08E1E6;
-        --turquoise-two: #07C8CC;
-        --turquoise-three: #00877D;
-        --light-turquoise: #DAF7F7;
-        --asu-brown: #8C1D43;
-        --asu-rich-black: #000000;
-        --asu-gold: #FFC627;
-        --asu-grey: #747474;
-        --asu-light-grey: #EEEEEE;
-
-        /** DEPRECATED COLORS
-         * These colors are deprecated and should not be used in new code.
-         */
-        --primary: #03033f;
-        --secondary: #92dce5;
-        --success: #93dce5;
-        --danger: #ee3f28;
-        --dark: #7c7c7c;
-        --gray: #f2f1ed;
-        --alto-gray: #d0d0d0;
-        --dove-gray: #666666;
-        --wild-sand-gray: #f5f5f5;
-        --soft-peach: #eee5e9;
-        --polar: #def5f7;
-        --midnight: #001829;
-        --alabaster: #f9f9f9;
-        --mercury: #e8e8e8
+        --font-size: 16px;
+        --font-thin: 100;
+        --font-extra-light: 200;
+        --font-light: 300;
+        --font-regular: 400;
+        --font-medium: 500;
+        --font-semi-bold: 600;
+        --font-bold: 700;
+        --font-extra-bold: 800;
+        --font-extra-black: 900;
+        --color-primary: #07C8CC;
+        --color-secondary: #07C8CC26;
+        --color-black: #000000;
+        --color-danger: #ee3f28;
+        --color-gray: #f2f1ed;
+        --color-mercury: #e8e8e8
       }
     </style>
 
@@ -103,3 +74,4 @@
 		<?php wp_head(); ?>
 	</head>
 	<body <?php body_class(); ?>>
+    <?php include get_template_directory() . '/upload/icons/sprite.svg'; ?>

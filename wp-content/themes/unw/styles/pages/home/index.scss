@@ -1,11 +1,2 @@
 @import "./hero";
-@import "./about-us";
-@import "./products/index";
-
-[data-animation="paragraph"] {
-  span {
-    display: inline-block;
-    overflow: hidden;
-    vertical-align: top;
-  }
-}
+@import "./why-wiener";

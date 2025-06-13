@@ -11,7 +11,7 @@
 }
 
 %description-14-24 {
-  font-family: var(--font-poppins);
+  font-family: var(--font);
   @include size(12, 20);
 
   @include media(">=phone") {
@@ -20,7 +20,7 @@
 }
 
 %description-16 {
-  font-family: var(--font-poppins);
+  font-family: var(--font);
   @include size(12, 20);
 
   @include media(">=tablet") {
@@ -33,7 +33,7 @@
 }
 
 %description-12-16 {
-  font-family: var(--font-poppins);
+  font-family: var(--font);
   @include size(12, 20);
 
   @include media(">=phone") {
@@ -46,7 +46,7 @@
 }
 
 %description-16-24 {
-  font-family: var(--font-poppins);
+  font-family: var(--font);
   @include size(14, 20);
 
   @include media(">=tablet") {
@@ -55,7 +55,7 @@
 }
 
 %description-16-32 {
-  font-family: var(--font-poppins);
+  font-family: var(--font);
   @include size(12, 20);
 
   @include media(">=phone") {
@@ -68,7 +68,7 @@
 }
 
 %description-20 {
-  font-family: var(--font-poppins);
+  font-family: var(--font);
   @include size(16, 20);
 
   @include media(">=tablet") {
@@ -77,7 +77,7 @@
 }
 
 %description-12-20 {
-  font-family: var(--font-poppins);
+  font-family: var(--font);
   @include size(12, 20);
 
   @include media(">=phone") {
@@ -91,7 +91,7 @@
 
 %description-20-32 {
   @include size(12, 20);
-  font-family: var(--font-poppins);
+  font-family: var(--font);
   font-weight: var(--light);
 
   @include media(">=phone") {

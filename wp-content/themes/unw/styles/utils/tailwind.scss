@@ -17,10 +17,10 @@
   font-weight: var(--light);
 }
 .f-w-m {
-  font-weight: var(--medium);
+  font-weight: var(--font-medium);
 }
 .f-w-sb {
-  font-weight: var(--semi-bold);
+  font-weight: var(--font-semi-bold);
 }
 .f-bold {
   font-weight: bold;
@@ -442,10 +442,10 @@
   background: var(--white);
 }
 .bg-red {
-  background: var(--danger);
+  background: var(--color-danger);
 }
 .bg-gray {
-  background: var(--gray);
+  background: var(--color-gray);
 }
 .c-black {
   color: var(--black);
@@ -454,10 +454,10 @@
   color: var(--white);
 }
 .c-gray {
-  color: var(--gray);
+  color: var(--color-gray);
 }
 .c-red {
-  color: var(--danger);
+  color: var(--color-danger);
 }
 .line-through {
   text-decoration: line-through;

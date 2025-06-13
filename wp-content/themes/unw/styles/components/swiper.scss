@@ -19,13 +19,13 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: var(--mercury);
+    background: var(--color-mercury);
     opacity: 1;
     margin: 0 5px;
 
     &-active {
       opacity: 1;
-      background: var(--secondary);
+      background: var(--color-secondary);
     }
   }
 }

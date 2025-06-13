@@ -2,46 +2,6 @@
  * root
  */
 
-:root {
-  --font-size: 12.44px;
-
-  /**
-    Small devices (landscape phones, 320px and up)
-
-    screen = media screen
-    base-screen = default board figma (desktop 1440px and mobile 360px)
-    base-font = default font size (14px)
-
-    --font-size = ( ( (screen * 100) / base-screen ) * base-font ) / 100
-
-    @var $breakpoints: ()
-  */
-
-  $sizes: (
-    "320px": 17.07,
-    "360px": 20,
-    // "375px": 20,
-    // "390px": 20.8,
-    // "425px": 22.67,
-    "576px": 20,
-    "768px": 20,
-    "992px": 25.83,
-    "1024px": 10.67,
-    "1200px": 12.5,
-    "1280px": 13.33,
-    "1366px": 14.23,
-    "1440px": 15,
-    "1600px": 16.67,
-    "1920px": 20,
-  );
-
-  @each $name, $size in $sizes {
-    @include media(">=#{$name}") {
-      --font-size: #{$size}px;
-    }
-  }
-}
-
 html,
 body {
   overflow-x: hidden;
@@ -50,8 +10,8 @@ body {
 
 body {
   font-family: var(--font);
-  font-weight: var(--regular);
-  color: var(--primary);
+  font-weight: var(--font-regular);
+  color: var(--color-primary);
   counter-reset: section;
   // line-height: 1.6;
 }
@@ -66,7 +26,7 @@ section {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--gray);
+  background: var(--color-gray);
   border-radius: 3px;
   cursor: pointer;
 }
@@ -86,8 +46,8 @@ section {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 72px;
-  padding-right: 80px;
+  padding-left: 24px;
+  padding-right: 24px;
   position: relative;
   z-index: 1;
 }
