@@ -51,6 +51,7 @@
         --color-gray: #f2f1ed;
         --color-mercury: #e8e8e8;
          --color-white: #ffffff;
+         --color-turquesa: #DAF7F7
       }
     </style>
 
