@@ -3,11 +3,10 @@
   justify-content: center;
   align-items: center;
   font-family: var(--font);
-  @include size(20, 20);
+  font-size: rem(18);
   font-weight: var(--font-semi-bold);
   text-decoration: none;
-  text-transform: uppercase;
-  padding: rem(15) rem(32);
+  padding: rem(17) rem(32);
   border-radius: rem(8);
   appearance: none;
   border: none;
@@ -15,18 +14,18 @@
   cursor: pointer;
 
   &-white {
-    background-color: var(--white);
+    background-color: var(--color-black);
     color: var(--black);
   }
   &-outline-white {
     background-color: transparent;
-    color: var(--white);
-    border: 1px solid var(--white);
+    color: var(--color-black);
+    border: 1px solid var(--color-black);
   }
 
   &-primary {
     background-color: var(--color-primary);
-    color: var(--white);
+    color: var(--color-black);
     border: 1px solid var(--color-primary);
   }
   &-outline-primary {
@@ -36,13 +35,13 @@
     transition: all 0.3s ease-in-out;
     &:hover {
       background-color: var(--blue);
-      color: var(--white);
+      color: var(--color-black);
     }
   }
 
   &-danger {
     background-color: var(--color-danger);
-    color: var(--white);
+    color: var(--color-black);
     border: 1px solid var(--color-danger);
   }
   &-outline-danger {
@@ -52,7 +51,7 @@
     transition: all 0.3s ease-in-out;
     &:hover {
       background-color: var(--color-danger);
-      color: var(--white);
+      color: var(--color-black);
     }
   }
 
@@ -173,7 +172,7 @@
 
   &-primary {
     background-color: var(--color-primary);
-    color: var(--white);
+    color: var(--color-black);
     padding: rem(16) rem(32);
   }
 

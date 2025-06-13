@@ -34,8 +34,7 @@
     <style type="text/css">
       :root {
         --font: "Founders Grotesk", sans-serif;
-        --font-size: 20px;
-
+        --font-size: 16px;
         --font-thin: 100;
         --font-extra-light: 200;
         --font-light: 300;
@@ -47,6 +46,7 @@
         --font-extra-black: 900;
         --color-primary: #07C8CC;
         --color-secondary: #07C8CC26;
+        --color-black: #000000;
         --color-danger: #ee3f28;
         --color-gray: #f2f1ed;
         --color-mercury: #e8e8e8
@@ -74,4 +74,4 @@
 		<?php wp_head(); ?>
 	</head>
 	<body <?php body_class(); ?>>
-
+    <?php include get_template_directory() . '/upload/icons/sprite.svg'; ?>

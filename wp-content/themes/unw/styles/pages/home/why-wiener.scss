@@ -1,29 +1,42 @@
 .why-wiener {
+  background-color: var(--color-secondary);
 }
 
 .why-wiener__wrapper {
+  padding: rem(100) rem(107) rem(76);
 }
 
 .why-wiener__title {
+  color: var(--color-black);
+  font-size: rem(36);
+  font-weight: var(--font-bold);
+  margin-bottom: rem(32);
 }
 
 .why-wiener__items {
-}
-
-.why-wiener__item {
-}
-
-.why-wiener__icon {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: rem(34);
 }
 
 .why-wiener__subtitle {
+  color: var(--color-black);
+  font-size: rem(22);
+  font-weight: var(--font-bold);
+  margin: rem(8) 0;
 }
 
-.why-wiener__text {
+.why-wiener__paragraph {
+  color: var(--color-black);
+  font-size: var(--font-size);
 }
-
 .why-wiener__cta {
-}
-
-.why-wiener__btn {
+  display: flex;
+  justify-content: center;
+  margin-top: rem(62);
+  .icon--arrow {
+    width: rem(18);
+    height: rem(18);
+    margin-left: rem(5);
+  }
 }
