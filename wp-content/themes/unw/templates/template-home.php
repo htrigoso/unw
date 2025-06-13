@@ -17,6 +17,7 @@
 <main>
   <?php get_template_part('content-parts/pages/home/content', 'hero'); ?>
   <?php get_template_part('content-parts/pages/home/content', 'why-wiener'); ?>
+  <?php get_template_part('content-parts/pages/home/content', 'impact-results'); ?>
 </main>
 
 <?php
