@@ -8,21 +8,12 @@ const HeroSwiper = (sectionEl = '.hero') => {
     spaceBetween: 0,
     speed: 1500,
     lazy: false,
-    autoplay: false,
+    autoplay: true,
     effect: 'fade',
     fadeEffect: {
       crossFade: true
     },
-    autoHeight: false,
-    navigation: {
-      prevEl: `${sectionEl} .swiper-button-prev`,
-      nextEl: `${sectionEl} .swiper-button-next`
-    },
-    pagination: {
-      el: `${sectionEl} .swiper-pagination`,
-      type: 'progressbar',
-      clickable: false
-    }
+    autoHeight: false
   })
 }
 

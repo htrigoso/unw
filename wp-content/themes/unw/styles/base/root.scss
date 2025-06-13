@@ -11,9 +11,8 @@ body {
 body {
   font-family: var(--font);
   font-weight: var(--font-regular);
-  color: var(--color-primary);
+  color: var(--color-black);
   counter-reset: section;
-  // line-height: 1.6;
 }
 
 main {
@@ -46,10 +45,20 @@ section {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: rem(111);
-  padding-right: rem(111);
+  padding-left: rem(16);
+  padding-right: rem(16);
   position: relative;
   z-index: 1;
+
+  @include media(">=phone") {
+    padding-left: rem(24);
+    padding-right: rem(24);
+  }
+
+  @include media(">=tablet") {
+    padding-left: rem(111);
+    padding-right: rem(111);
+  }
 }
 
 .x-container-fluid {

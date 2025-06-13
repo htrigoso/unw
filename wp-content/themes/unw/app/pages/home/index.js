@@ -3,7 +3,7 @@ import HeroSwiper from '../../components/HeroSwiper'
 import PostSwiper from '../../components/PostSwiper'
 
 (function () {
-  const heroSwiper = HeroSwiper()
+  HeroSwiper()
   const postSwiper = PostSwiper('.posts')
 
   const productSwiper = new Swiper('.products .swiper-container', {

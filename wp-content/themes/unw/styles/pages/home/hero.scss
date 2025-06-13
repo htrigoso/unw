@@ -1,0 +1,87 @@
+.swiper-hero__wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-hero__picture {
+  width: 100%;
+}
+
+.swiper-hero__picture--img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  @include media(">=tablet") {
+    max-height: rem(769);
+  }
+}
+
+.hero__wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.x-container {
+  margin-top: auto;
+  padding-bottom: rem(16);
+
+  @include media(">=phone") {
+    padding-bottom: rem(60);
+  }
+
+  @include media(">=tablet") {
+    padding-bottom: rem(84);
+  }
+}
+
+.hero__content {
+  max-width: rem(496);
+}
+
+.hero__content--title {
+  font-size: rem(28);
+  font-weight: var(--font-bold);
+  color: var(--color-white);
+  letter-spacing: rem(0.5);
+  margin-bottom: rem(12);
+
+  @include media(">=tablet") {
+    font-size: rem(80);
+    line-height: 73%;
+    height: rem(137);
+  }
+}
+
+.hero__content--body {
+  color: var(--color-white);
+  font-weight: var(--font-regular);
+  margin-bottom: rem(12);
+
+  @include media(">=tablet") {
+    font-size: rem(32);
+  }
+}
+
+.hero__content--buttons {
+  display: flex;
+  flex-direction: column;
+  gap: rem(12);
+
+  @include media(">=phone") {
+    flex-direction: row;
+  }
+}
+
+.hero__content--cta {
+  font-size: rem(16);
+  color: var(--color-white);
+  width: fit-content;
+}
+
