@@ -6,7 +6,7 @@
   font-size: rem(18);
   font-weight: var(--font-semi-bold);
   text-decoration: none;
-  padding: rem(17) rem(32);
+  padding: rem(15) rem(32);
   border-radius: rem(8);
   appearance: none;
   border: none;
@@ -17,6 +17,7 @@
     background-color: var(--color-black);
     color: var(--black);
   }
+
   &-outline-white {
     background-color: transparent;
     color: var(--color-black);
@@ -28,6 +29,7 @@
     color: var(--color-black);
     border: 1px solid var(--color-primary);
   }
+
   &-outline-primary {
     background-color: transparent;
     color: var(--color-primary);
@@ -44,6 +46,7 @@
     color: var(--color-black);
     border: 1px solid var(--color-danger);
   }
+
   &-outline-danger {
     background-color: transparent;
     color: var(--color-danger);
@@ -60,6 +63,7 @@
     color: var(--black);
     font-weight: var(--font-bold);
   }
+
   &-outline-black {
     background-color: transparent;
     color: var(--black);
