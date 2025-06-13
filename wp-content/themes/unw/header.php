@@ -33,7 +33,7 @@
       <!-- Css vars-->
     <style type="text/css">
       :root {
-        --font: "Nekst", sans-serif;
+        --font: "Founders Grotesk", sans-serif;
         --font-poppins: "Poppins", sans-serif;
         --font-size: 20px;
         --base-transition: 0.4s var(--e);
@@ -48,6 +48,23 @@
         --extra-black: 900;
         --black: #232322;
         --white: #ffffff;
+        --primary-turquoise: #07C8CC;
+        --secondary-grey: #D2D3D5;
+        --secondary-engineering: #FAC93D;
+        --secondary-cp: #00669E;
+        --turquoise-one: #08E1E6;
+        --turquoise-two: #07C8CC;
+        --turquoise-three: #00877D;
+        --light-turquoise: #DAF7F7;
+        --asu-brown: #8C1D43;
+        --asu-rich-black: #000000;
+        --asu-gold: #FFC627;
+        --asu-grey: #747474;
+        --asu-light-grey: #EEEEEE;
+
+        /** DEPRECATED COLORS
+         * These colors are deprecated and should not be used in new code.
+         */
         --primary: #03033f;
         --secondary: #92dce5;
         --success: #93dce5;
@@ -86,4 +103,3 @@
 		<?php wp_head(); ?>
 	</head>
 	<body <?php body_class(); ?>>
-
