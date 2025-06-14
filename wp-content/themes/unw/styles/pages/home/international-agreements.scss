@@ -1,0 +1,47 @@
+.international-agreements {
+  background-color: var(--color-secondary);
+}
+
+.international-agreements__wrapper {
+  padding: rem(52) rem(102);
+
+  @include media("<=tablet") {
+    padding: rem(40) rem(20);
+  }
+}
+
+.international-agreements__title {
+  @extend %title-28;
+  color: var(--color-black);
+  margin-bottom: rem(12);
+}
+
+.international-agreements__subtitle {
+  margin-bottom: rem(24);
+  color: var(--color-black);
+  font-size: rem(18);
+
+  strong {
+    font-weight: var(--font-bold);
+  }
+}
+
+.international-agreements__card {
+  background-color: var(--color-white);
+  border-radius: rem(24);
+  padding: rem(24) rem(16);
+  text-align: center;
+  box-shadow: 0 rem(2) rem(6) rgba(0, 0, 0, 0.1);
+}
+
+.international-agreements__flag {
+  width: rem(80);
+  height: rem(80);
+  margin: 0 auto rem(16);
+}
+
+.international-agreements__country {
+  font-weight: bold;
+  font-size: rem(18);
+  color: var(--color-black);
+}
