@@ -19,6 +19,7 @@
   <?php get_template_part('content-parts/pages/home/content', 'programs'); ?>
   <?php get_template_part('content-parts/pages/home/content', 'impact-results'); ?>
   <?php get_template_part('content-parts/pages/home/content', 'guidance-steps'); ?>
+  <?php get_template_part('content-parts/pages/home/content', 'international-agreements'); ?>
 
 </main>
 
