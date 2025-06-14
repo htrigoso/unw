@@ -7,9 +7,15 @@
   }
   .swiper-pagination {
     display: flex;
+    justify-content: center;
     position: static;
     gap: rem(8);
-    margin-top: rem(16);
+    margin-top: rem(8);
+
+    @include media(">=phone") {
+     margin-top: rem(16);
+     justify-content: flex-start;
+    }
 
     .swiper-pagination-bullet {
       margin: rem(12) 0 !important;

@@ -4,6 +4,6 @@ import InternationalSwiper from './InternationalSwiper'
 
 (function () {
   HeroSwiper()
-  PostSwiper('.programs')
+  PostSwiper('.post-swiper')
   InternationalSwiper()
 })()

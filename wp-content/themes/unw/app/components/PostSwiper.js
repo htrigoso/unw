@@ -4,7 +4,7 @@ const PostSwiper = (sectionEl = '.posts') => {
   return new Swiper(`${sectionEl} .swiper-container`, {
     loop: false,
     slidesPerView: 'auto',
-    spaceBetween: 16,
+    spaceBetween: 8,
     grabCursor: true,
     pagination: {
       el: `${sectionEl} .swiper-pagination`,
@@ -12,6 +12,10 @@ const PostSwiper = (sectionEl = '.posts') => {
     },
     breakpoints: {
       576: {
+        slidesPerView: 'auto',
+        spaceBetween: 16
+      },
+      1024: {
         slidesPerView: 'auto',
         spaceBetween: 24
       }
