@@ -18,7 +18,7 @@
             </p>
             <div class="hero__content--buttons">
               <a class="btn btn-primary hero__content--cta" href="#">Solicitar más información</a>
-              <a class="btn btn-outline-primary hero__content--cta" href="#">Solicitar más información</a>
+              <a class="btn btn-primary-outline hero__content--cta" href="#">Solicitar más información</a>
             </div>
           </article>
         </div>

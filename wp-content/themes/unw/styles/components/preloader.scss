@@ -14,14 +14,10 @@
 }
 
 .preloader__text {
-  @extend %title-20;
-
   max-width: 67rem;
   opacity: 0;
 
   span span {
-    @extend %title-20;
-
     display: inline-block;
     transform-origin: center center 0.5em;
   }
