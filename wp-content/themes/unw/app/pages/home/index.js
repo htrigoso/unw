@@ -4,7 +4,7 @@ import PostSwiper from '../../components/PostSwiper'
 
 (function () {
   HeroSwiper()
-  const postSwiper = PostSwiper('.posts')
+  PostSwiper('.programs')
 
   const productSwiper = new Swiper('.products .swiper-container', {
     loop: true,

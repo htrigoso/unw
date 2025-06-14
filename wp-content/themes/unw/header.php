@@ -52,6 +52,7 @@
       --color-turquoise-three: #00877D;
       --color-light-turquoise: #DAF7F7;
 
+      --color-light-grey: #EEEEEE;
       --color-secondary-grey: #D2D3D5;
       --color-engineering: #FAC93D;
       --color-cp: #00669E;
@@ -59,7 +60,6 @@
       --asu-brown: #8C1D43;
       --asu-gold: #FFC627;
       --asu-grey: #747474;
-      --asu-light-grey: #EEEEEE;
 
       --color-black: #000000;
       --color-danger: #ee3f28;
