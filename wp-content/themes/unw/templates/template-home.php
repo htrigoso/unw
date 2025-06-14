@@ -13,16 +13,19 @@
   // get_template_part('content-parts/content', 'navbar');
 ?>
 
-<main>
-  <?php get_template_part('content-parts/pages/home/content', 'hero'); ?>
-  <?php get_template_part('content-parts/pages/home/content', 'why-wiener'); ?>
-  <?php get_template_part('content-parts/pages/home/content', 'programs'); ?>
-  <?php get_template_part('content-parts/pages/home/content', 'impact-results'); ?>
-  <?php get_template_part('content-parts/pages/home/content', 'testimonial'); ?>
-  <?php get_template_part('content-parts/pages/home/content', 'guidance-steps'); ?>
-  <?php get_template_part('content-parts/pages/home/content', 'international-agreements'); ?>
-  <?php get_template_part('content-parts/pages/home/content', 'last-news'); ?>
+<?php
+  define('HOME_CONTENT_PATH', 'content-parts/pages/home/content');
+?>
 
+<main>
+  <?php get_template_part(HOME_CONTENT_PATH, 'hero'); ?>
+  <?php get_template_part(HOME_CONTENT_PATH, 'why-wiener'); ?>
+  <?php get_template_part(HOME_CONTENT_PATH, 'programs'); ?>
+  <?php get_template_part(HOME_CONTENT_PATH, 'impact-results'); ?>
+  <?php get_template_part(HOME_CONTENT_PATH, 'testimonial'); ?>
+  <?php get_template_part(HOME_CONTENT_PATH, 'guidance-steps'); ?>
+  <?php get_template_part(HOME_CONTENT_PATH, 'international-agreements'); ?>
+  <?php get_template_part(HOME_CONTENT_PATH, 'last-news'); ?>
 </main>
 
 <?php
