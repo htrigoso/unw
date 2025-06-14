@@ -14,7 +14,7 @@
               <div class="guidance-steps__row">
                 <p class="guidance-steps__paragraph">Escoge tu carrera soñada.</p>
                 <span class="guidance-steps__icon">
-                  <svg width="30" height="25" fill="none">
+                  <svg width="32" height="32" fill="none">
                     <use xlink:href="#arrow-right"></use>
                   </svg>
                 </span>
@@ -31,7 +31,7 @@
               <div class="guidance-steps__row">
                 <p class="guidance-steps__paragraph">¿Tienes dudas? ¡Conversemos!</p>
                 <span class="guidance-steps__icon">
-                  <svg width="30" height="25" fill="none">
+                  <svg width="32" height="32" fill="none">
                     <use xlink:href="#arrow-right"></use>
                   </svg>
                 </span>
@@ -48,7 +48,7 @@
               <div class="guidance-steps__row">
                 <p class="guidance-steps__paragraph">¿Estás listo? ¡Es hora de postular!</p>
                 <span class="guidance-steps__icon">
-                  <svg width="30" height="25" fill="none">
+                  <svg width="32" height="32" fill="none">
                     <use xlink:href="#arrow-right"></use>
                   </svg>
                 </span>

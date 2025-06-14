@@ -1,28 +1,44 @@
 .impact-results {
   background-color: var(--color-primary);
 }
+
 .impact-results__wrapper {
-  padding: rem(52) rem(102);
+  padding: rem(32) 0;
+
+  @include media(">=tablet") {
+    padding: rem(52) rem(102);
+  }
 }
+
 .impact-results__title {
   color: var(--color-white);
   @extend %title-28;
+  margin-bottom: rem(24);
 }
+
 .impact-results__items {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: rem(34);
+  grid-template-columns: 1fr;
+  gap: rem(16);
+
+  @include media(">=phone-576") {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include media(">=tablet") {
+    gap: rem(24);
+  }
 }
+
 .impact-results__item {
   background-color: var(--color-white);
-  padding: rem(20);
+  min-height: rem(139);
+  padding: rem(24) rem(20);
   border-radius: rem(20);
 }
+
 .impact-results__subtitle {
-  font-size: rem(22);
-  margin-bottom: rem(5);
+  @include title-22;
+  margin-bottom: rem(8);
   color: var(--color-primary);
-}
-.impact-results__paragraph {
-  color: var(--color-black);
 }
