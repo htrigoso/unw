@@ -21,6 +21,7 @@
   <?php get_template_part('content-parts/pages/home/content', 'testimonial'); ?>
   <?php get_template_part('content-parts/pages/home/content', 'guidance-steps'); ?>
   <?php get_template_part('content-parts/pages/home/content', 'international-agreements'); ?>
+  <?php get_template_part('content-parts/pages/home/content', 'last-news'); ?>
 
 </main>
 

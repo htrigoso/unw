@@ -75,8 +75,8 @@ $testimonials = [
               </div>
             <?php endforeach; ?>
           </div>
+          <div class="swiper-pagination"></div>
         </div>
-        <div class="swiper-pagination"></div>
       </div>
     </div>
   </div>

@@ -8,6 +8,7 @@
   text-decoration: none;
   border-radius: rem(8);
   padding: rem(15) rem(32);
+  gap: rem(8);
   appearance: none;
   border: none;
   outline: none;
@@ -25,10 +26,31 @@
     border: 1px solid var(--color-primary);
   }
 
+  &-secondary {
+    border-radius: rem(64);
+    color: var(--color-black);
+    background-color: var(--color-light-turquoise);
+    border: 1px solid var(--color-light-turquoise);
+  }
+
+  &-transparent-primary {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 1px solid transparent;
+  }
+
   &-danger {
     background-color: var(--color-danger);
     color: var(--color-black);
     border: 1px solid var(--color-danger);
+  }
+
+  &-sm {
+    padding: rem(7) rem(15);
+    height: rem(48);
+    font-size: rem(16);
+    font-weight: var(--font-bold);
+    line-height: rem(24);
   }
 
   // &-lg {
