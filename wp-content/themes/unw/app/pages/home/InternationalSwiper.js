@@ -2,17 +2,27 @@ import Swiper from 'swiper/bundle'
 
 const InternationalSwiper = (sectionEl = '.international-agreements') => {
   return new Swiper(`${sectionEl} .swiper-container`, {
-    slidesPerView: 7,
+    loop: true,
+    slidesPerView: 'auto',
+    spaceBetween: 12,
     centeredSlides: false,
-    spaceBetween: 24,
     autoplay: {
       delay: 0,
       disableOnInteraction: false
     },
     speed: 3000,
-    loop: true,
     allowTouchMove: false,
-    simulateTouch: false
+    simulateTouch: false,
+    breakpoints: {
+      576: {
+        slidesPerView: 'auto',
+        spaceBetween: 16
+      },
+      1024: {
+        slidesPerView: 'auto',
+        spaceBetween: 24
+      }
+    }
   })
 }
 

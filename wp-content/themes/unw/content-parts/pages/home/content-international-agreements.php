@@ -8,6 +8,14 @@ $countries = [
   ['name' => 'Brazil',      'file' => '6.svg'],
   ['name' => 'Costa Rica',  'file' => '7.svg'],
   ['name' => 'Ecuador',     'file' => '8.svg'],
+  ['name' => 'Spain',       'file' => '1.svg'],
+  ['name' => 'Mexico',      'file' => '2.svg'],
+  ['name' => 'Colombia',    'file' => '3.svg'],
+  ['name' => 'Chile',       'file' => '4.svg'],
+  ['name' => 'Italy',       'file' => '5.svg'],
+  ['name' => 'Brazil',      'file' => '6.svg'],
+  ['name' => 'Costa Rica',  'file' => '7.svg'],
+  ['name' => 'Ecuador',     'file' => '8.svg'],
 ];
 ?>
 

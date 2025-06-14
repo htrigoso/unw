@@ -12,6 +12,7 @@
 
   @include media(">=phone") {
     margin-top: 0;
+    padding-inline: 0;
   }
 
   @include media(">=tablet") {

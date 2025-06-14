@@ -9,6 +9,10 @@
   padding: rem(32) rem(16);
   border-radius: rem(12);
 
+  @include media(">=phone") {
+    padding-inline: 0;
+  }
+
   @include media(">=tablet") {
     padding: rem(52) rem(102);
   }
