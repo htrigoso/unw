@@ -24,6 +24,24 @@ $programs = [
     'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.',
     'url' => '#'
   ],
+  [
+    'image' => 'program-4.jpg',
+    'title' => 'Wiener Idiomas',
+    'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.',
+    'url' => '#'
+  ],
+  [
+    'image' => 'program-4.jpg',
+    'title' => 'Wiener Idiomas',
+    'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.',
+    'url' => '#'
+  ],
+  [
+    'image' => 'program-4.jpg',
+    'title' => 'Wiener Idiomas',
+    'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.',
+    'url' => '#'
+  ]
 ];
 ?>
 
@@ -49,11 +67,11 @@ $programs = [
         <?php endforeach; ?>
       </div>
 
-      <div class="programs__cards--desktop">
-        <div class="swiper-container programs__swiper">
+      <div class="programs__cards--desktop post-swiper">
+        <div class="swiper-container">
           <div class="swiper-wrapper">
             <?php foreach ($programs as $program): ?>
-              <div class="swiper-slide programs__card--slide">
+              <div class="swiper-slide">
                 <article class="programs__card">
                   <img
                     src="<?php echo get_template_directory_uri(); ?>/upload/home/programs/<?php echo esc_attr($program['image']); ?>"
@@ -64,13 +82,19 @@ $programs = [
                     <p class="programs__card--content__description">
                       <?php echo esc_html($program['description']); ?>
                     </p>
-                    <a href="<?php echo esc_url($program['url']); ?>" class="btn btn-primary programs__card--content__cta">Ver carreras</a>
+                    <a href="<?php echo esc_url($program['url']); ?>" class="btn btn-primary programs__card--content__cta">
+                      Ver carreras
+                      <i>
+                        <svg class="icon icon--arrow" width="24" height="24">
+                          <use xlink:href="#arrow-right"></use>
+                        </svg>
+                      </i>
+                    </a>
                   </div>
                 </article>
               </div>
             <?php endforeach; ?>
           </div>
-          <!-- <div class="swiper-pagination"></div> -->
         </div>
       </div>
     </div>
