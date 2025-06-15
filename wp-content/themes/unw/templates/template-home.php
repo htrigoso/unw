@@ -26,6 +26,7 @@
   <?php get_template_part(HOME_CONTENT_PATH, 'guidance-steps'); ?>
   <?php get_template_part(HOME_CONTENT_PATH, 'international-agreements'); ?>
   <?php get_template_part(HOME_CONTENT_PATH, 'last-news'); ?>
+  <?php get_template_part(HOME_CONTENT_PATH, 'featured-events'); ?>
 </main>
 
 <?php

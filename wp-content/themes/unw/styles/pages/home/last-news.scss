@@ -2,14 +2,12 @@
   padding: rem(24) 0 rem(24) 0;
 
   @include media(">=tablet") {
-    padding: rem(52) rem(102) rem(52) rem(102);
+    padding: rem(52) rem(102);
   }
 }
 
 .last-news__title {
-  font-size: rem(28);
-  font-weight: var(--font-bold);
-  letter-spacing: 0.5px;
+  @include title-28;
   margin-bottom: rem(16);
 
   @include media(">=tablet") {
@@ -64,10 +62,12 @@
 .last-news__see-more-btn {
   margin-top: rem(16);
 
-  @include media(">=tablet") {
-    margin-top: 0;
+  @include media(">=phone") {
     display: flex;
     justify-content: center;
   }
-}
 
+  @include media(">=tablet") {
+    margin-top: 0;
+  }
+}

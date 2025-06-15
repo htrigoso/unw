@@ -1,13 +1,12 @@
 .see-more-btn {
-  @include media("<tablet") {
-    padding: rem(7) rem(15);
-    height: rem(48);
-    font-size: rem(16);
-    font-weight: var(--font-bold);
-    line-height: rem(24);
+  padding: rem(7) rem(15);
+  justify-content: space-between;
+  width: 100%;
 
-    width: 100%;
-    justify-content: space-between;
+  @include media(">=phone") {
+    width: auto;
+    justify-content: center;
+    padding: rem(15) rem(31);
   }
 
   @include media(">=tablet") {
