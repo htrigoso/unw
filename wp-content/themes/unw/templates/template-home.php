@@ -10,10 +10,10 @@
 <?php get_header(); ?>
 
 <?php
-  // get_template_part('content-parts/content', 'top-bar');
+  get_template_part('content-parts/content', 'top-bar');
 ?>
 <?php
-// get_template_part('content-parts/content', 'navbar');
+ get_template_part('content-parts/content', 'navbar');
 ?>
 
 <?php
