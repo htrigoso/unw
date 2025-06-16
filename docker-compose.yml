@@ -75,3 +75,8 @@ services:
 
 volumes:
   db_data:
+  conf:
+  vhost:
+  html:
+  certs:
+  acme:
