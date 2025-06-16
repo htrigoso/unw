@@ -71,7 +71,7 @@ services:
     volumes:
       - .:/var/www/html
     ports:
-      - "80:8000"
+      - "8000:80"
 
 volumes:
   db_data:
