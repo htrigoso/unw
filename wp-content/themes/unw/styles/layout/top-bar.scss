@@ -1,0 +1,17 @@
+.top-bar {
+  background-color: var(--color-primary);
+}
+
+.top-bar__wrapper {
+  position: relative;
+  padding: rem(15) rem(64);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.top-bar__menu {
+  display: flex;
+  a {
+    color: var(--color-white);
+  }
+}
