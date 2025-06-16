@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  db:
+    image: mariadb:10.4.28
+    container_name: unw-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: unw
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: wpuserpass
+      MYSQL_ROOT_PASSWORD: rootpass
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./unw.sql:/docker-entrypoint-initdb.d/unw.sql
+    ports:
+      - "3306:3306"
+
+  wordpress:
+    image: wordpress:php8.2-apache
+    container_name: unw-wp
+    restart: always
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: unw
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wpuserpass
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "80:80"
+
+volumes:
+  db_data:
