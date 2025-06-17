@@ -14,6 +14,8 @@ require_once dirname(__FILE__) . '/functions/tpl-functions.php';
 require_once dirname(__FILE__) . '/post-types/cpt-project.php';
 
 // require menu walkers
+// require head
+require_once dirname(__FILE__) . '/functions/include-menu.php';
 
 
 

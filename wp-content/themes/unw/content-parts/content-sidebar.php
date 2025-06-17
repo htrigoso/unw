@@ -1,6 +1,5 @@
-<sidebar class="sidebar-container" id="sidebar" style="display: none;">
+<section class="sidebar-container" id="sidebar" style="display: none;">
   <div class="sidebar__wrapper">
-
     <div class="x-container sidebar__header">
       <a class="sidebar__logo pointer" href="<?php echo esc_url(home_url('/')); ?>">
         <img width="101" height="40" src="<?php echo get_template_directory_uri(); ?>/upload/logo-unw.svg" alt="Logo UNW">
@@ -16,11 +15,15 @@
 
     <div class="sidebar__menu" id="mobile-menu">
       <?php
-      wp_nav_menu(array(
+
+
+
+        wp_nav_menu(array(
         'menu' => 'navbar_menu',
-        'menu_class' => 'sidebar__list',
+        'menu_class'=> 'sidebar__list',
         'container' => 'nav',
         'container_class' => 'sidebar__nav',
+        'walker' => new Sidebar_Menu_Walker()
       ));
       ?>
     </div>
@@ -31,4 +34,4 @@
       </div>
     </div>
   </div>
-</sidebar>
+</section>

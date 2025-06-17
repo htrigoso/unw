@@ -57,7 +57,7 @@
 .sidebar__menu {
   padding: rem(16) 0;
   overflow: auto;
-
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -86,22 +86,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    &::after {
-      content: "";
-      position: static;
-      display: block;
-      right: 4px;
-      top: 50%;
-      transform: translateY(-50%) rotate(45deg);
-      width: 8px;
-      height: 8px;
-      border: solid #00b7c2;
-      border-width: 0 3px 3px 0;
-      border-radius: 2px;
-      display: inline-block;
-      pointer-events: none;
-    }
   }
 
   .sub-menu {
@@ -131,4 +115,31 @@
   @include media(">=phone-576") {
     justify-content: center;
   }
+}
+.sidebar__submenu {
+  position: absolute;
+  inset: 0;
+  background: var(--color-white);
+  z-index: 1;
+  transition: transform 0.35s set-tsn("--easeInOutSine"), opacity 0.35s ease;
+  transform: translateX(100%);
+  visibility: hidden;
+  opacity: 0;
+
+  &.is-active {
+    transform: translateX(0);
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &.is-leaving {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+.sidebar__submenu-back {
+  display: flex;
+  align-items: center;
+  font-weight: var(--font-bold);
+  color: var(--color-primary);
 }

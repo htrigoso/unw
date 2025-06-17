@@ -11,6 +11,12 @@
   <symbol id="close" viewBox="0 0 40 40">
     <path d="M32 10.2461L22.2051 20.0771L31.8457 29.7539L29.6084 32L19.9678 22.3232L10.3916 31.9365L8.1543 29.6895L17.7295 20.0771L8 10.3105L10.2383 8.06348L19.9678 17.8301L29.7617 8L32 10.2461Z" fill="currentColor" />
   </symbol>
+  <symbol id="back" viewBox="0 0 24 24">
+    <path d="M14.985 6L9.01492 12L14.985 18" stroke="#07C8CC" stroke-width="3" stroke-linecap="square" fill="none"/>
+  </symbol>
+  <symbol id="forward" viewBox="0 0 24 24">
+    <path d="M9.01501 18L14.9851 12L9.01501 6" stroke="#07C8CC" stroke-width="3" stroke-linecap="square" fill="none"/>
+  </symbol>
 </svg>
 
 
