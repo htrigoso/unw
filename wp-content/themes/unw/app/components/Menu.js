@@ -49,9 +49,11 @@ export default class Menu extends Component {
 
   show () {
     this.element.classList.add('is-active')
+    document.body.classList.add('sidebar-open')
   }
 
   hide () {
     this.element.classList.remove('is-active')
+    document.body.classList.remove('sidebar-open')
   }
 }

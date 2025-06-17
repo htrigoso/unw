@@ -5,10 +5,13 @@ import { $element } from './utils/dom'
 import floatingInputLabel from './utils/floating-input-label'
 import initLazyLoad from './utils/lazyload'
 
+console.log('App started')
+
 class App {
   constructor() {
     // this.createPreloader()
     this.createNavbar()
+    this.createMenu()
   }
 
   createPreloader() {

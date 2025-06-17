@@ -1,17 +1,47 @@
 .top-bar {
-  background-color: var(--color-primary);
+  display: none;
+
+  @include media(">=tablet") {
+    background-color: var(--color-primary);
+    display: block;
+  }
 }
 
 .top-bar__wrapper {
   position: relative;
-  padding: rem(15) rem(64);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: rem(16);
+
+  @include media(">=tablet") {
+    padding: rem(7) rem(64);
+  }
+
+  @include media(">=desktop-s") {
+    gap: rem(32);
+  }
 }
+
 .top-bar__menu {
   display: flex;
+  gap: rem(16);
+
+  @include media(">=desktop-s") {
+    gap: rem(32);
+  }
+
   a {
     color: var(--color-white);
+  }
+}
+
+.top-bar__right {
+  display: flex;
+  align-items: center;
+  gap: rem(16);
+
+  @include media(">=desktop-s") {
+    gap: rem(32);
   }
 }
