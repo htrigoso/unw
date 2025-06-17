@@ -13,14 +13,16 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="GAM CORP">
+  <meta name="apple-mobile-web-app-title" content="Universidad Norbert Wiener: Educación de Clase Mundial
+">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#03033f">
   <meta name="msapplication-TileColor" content="#92dce5">
   <meta name="msapplication-navbutton-color" content="#f7f9fb">
   <meta property="og:type" content="website" />
   <meta property="og:url" content="<?php echo home_url() ?>" />
-  <meta property="og:site_name" content="GAM CORP" />
+  <meta property="og:site_name" content="Universidad Norbert Wiener: Educación de Clase Mundial
+" />
   <meta property="og:locale" content="es_ES">
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:domain" content="<?php echo home_url() ?>" />
