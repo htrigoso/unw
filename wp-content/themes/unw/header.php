@@ -25,7 +25,7 @@
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:domain" content="<?php echo home_url() ?>" />
   <meta name="twitter:title" property="og:title" itemprop="name" content="<?php the_title() ?>" />
-  <meta name="twitter:description" property="og:description" itemprop="description" content="GAM CORP S.A. es una empresa productora de Moluscos Bivalvos, Cefalopodos y Pescados con más de +20 años en el mercado nacional e internacional." />
+  <meta name="twitter:description" property="og:description" itemprop="description" content="Universidad Norbert Wiener, AVANZA+ en tu carrera profesional. Educación de calidad internacional, en alianza con Arizona State University. ¡Postula ya!" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="<?php echo UPLOAD_PATH; ?>/favicon/favicon.png">
   <!-- <link rel="manifest" href="<?php echo UPLOAD_PATH; ?>/favicon/site.webmanifest">
