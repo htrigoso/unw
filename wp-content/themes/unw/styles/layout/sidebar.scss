@@ -5,8 +5,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: var(--vh);
-  background: var(--primary);
+  height: 100dvh;
+  background-color: var(--color-white);
   transition: 0.35s transform set-tsn("--easeInOutSine");
   transform: translateX(100%);
   opacity: 0;
@@ -26,107 +26,109 @@
   }
 }
 
-// .sidebar {
-//   display: flex;
-//   flex-direction: column;
-//   overflow-y: auto;
-//   width: 100%;
-//   height: 100%;
-//   padding: 0 rem(24);
-// }
+.sidebar__wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+}
 
-// .sidebar__header {
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   height: 64px;
-// }
+.sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: rem(12);
+  padding-bottom: rem(12);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+}
 
-// .sidebar__logo {
-//   svg {
-//     width: 100%;
-//     height: auto;
-//     max-width: rem(130);
-//   }
-// }
+.sidebar__logo {
+  img {
+    width: rem(106);
+    height: auto;
+  }
+}
 
-// .sidebar__close {
-//   .btn-icon {
-//     padding: 8px;
-//   }
-// }
+.sidebar__menu {
+  flex: 1;
+}
 
-// .sidebar__nav {
-//   display: flex;
-//   flex: 1 1 auto;
-//   padding: rem(32) rem(8) rem(24);
-// }
+.sidebar__menu {
+  padding: rem(16) 0;
+  overflow: auto;
 
-// .sidebar__menu {
-//   display: flex;
-//   flex-direction: column;
-//   width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 
-//   .menu-item {
-//     width: 100%;
-//     text-align: left;
-//   }
+  .menu-item {
+    width: 100%;
+    text-align: left;
+    padding: rem(16);
 
-//   a {
-//     @include size(32, 48);
-//     display: inline-flex;
-//     color: var(--white);
-//     font-weight: var(--semi-bold);
-//     padding: rem(8) 0;
-//     position: relative;
+    @include media(">=phone") {
+      padding-inline: rem(24);
+    }
+  }
 
-//     &[aria-current="page"] {
-//       color: var(--secondary);
-//     }
-//   }
-// }
+  a {
+    font-size: rem(18);
+    color: var(--color-black);
 
-// .sidebar__footer {
-//   padding: rem(24) 0;
-// }
+    &[aria-current="page"] {
+      color: var(--color-light-turquoise);
+    }
+  }
 
-// .sidebar__footer-phone {
-//   margin-bottom: rem(32);
+  .menu-item-has-children > a {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-//   p {
-//     @include size(12, 20);
-//     color: var(--white);
-//     font-weight: var(--medium);
-//     text-align: center;
+    &::after {
+      content: "";
+      position: static;
+      display: block;
+      right: 4px;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      width: 8px;
+      height: 8px;
+      border: solid #00b7c2;
+      border-width: 0 3px 3px 0;
+      border-radius: 2px;
+      display: inline-block;
+      pointer-events: none;
+    }
+  }
 
-//     &:last-child {
-//       @include size(14, 20);
-//       margin-bottom: rem(8);
-//     }
-//   }
-// }
+  .sub-menu {
+    display: none;
+  }
+}
 
-// .sidebar__footer-social {
-//   p {
-//     @include size(12, 20);
-//     color: var(--white);
-//     font-weight: var(--medium);
-//     text-align: center;
-//   }
+.sidebar__footer {
+  padding-top: rem(20);
+  padding-bottom: rem(20);
+  display: flex;
+  flex-direction: column;
+  gap: rem(32);
+  background-color: var(--color-primary);
 
-//   svg {
-//     width: rem(29.25);
-//     height: rem(29.25);
-//   }
+  @include media(">=phone") {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
 
-//   ul {
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     margin-top: rem(8);
+.sidebar__social {
+  display: flex;
+  justify-content: flex-start;
 
-//     li {
-//       margin: 0 rem(12);
-//     }
-//   }
-// }
+  @include media(">=phone-576") {
+    justify-content: center;
+  }
+}
