@@ -3,7 +3,7 @@ import Component from '../classes/Component'
 import ImagesLoaded from './ImagesLoaded'
 
 export default class Preloader extends Component {
-  constructor ({ element, container, onCompleted }) {
+  constructor({ element, container, onCompleted }) {
     super({
       element,
       elements: {
@@ -18,7 +18,7 @@ export default class Preloader extends Component {
     this.createListeners()
   }
 
-  createListeners () {
+  createListeners() {
     // On progress
     this.imagesLoaded.on('progress', (percent) => {
       console.log('progress', percent)
@@ -37,7 +37,7 @@ export default class Preloader extends Component {
     })
   }
 
-  completed () {
+  completed() {
     if (this.loaded) {
       return
     }
@@ -49,7 +49,7 @@ export default class Preloader extends Component {
     this.animate()
   }
 
-  animate () {
+  animate() {
     this.animateOut = gsap.timeline({
       delay: 0
     })
@@ -70,7 +70,7 @@ export default class Preloader extends Component {
     })
   }
 
-  hiden () {
+  hiden() {
     this.element.classList.add('d-none')
   }
 }

@@ -3,7 +3,7 @@ import Component from '../classes/Component'
 import { $elements } from '../utils/dom'
 
 export default class ImagesLoaded extends Component {
-  constructor ({ element }) {
+  constructor({ element }) {
     super({
       element,
       elements: {}
@@ -17,7 +17,7 @@ export default class ImagesLoaded extends Component {
     this.createLoader()
   }
 
-  createLoader () {
+  createLoader() {
     try {
       // Validation length assets
       this.setTotalImages()
@@ -65,7 +65,7 @@ export default class ImagesLoaded extends Component {
   }
 
   // Set images collection length
-  setTotalImages () {
+  setTotalImages() {
     const images = $elements(this.elements_selector)
     this.total = images.length
   }

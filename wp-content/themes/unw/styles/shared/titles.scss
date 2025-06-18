@@ -32,6 +32,12 @@
   letter-spacing: 0.5px;
 }
 
+@mixin title-56 {
+  font-size: rem(56);
+  font-weight: var(--font-bold);
+  letter-spacing: 0.5px;
+}
+
 %title-28 {
   @include title-28;
 }
