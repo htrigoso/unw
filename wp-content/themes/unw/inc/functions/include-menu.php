@@ -24,20 +24,18 @@ class Sidebar_Menu_Walker extends Walker_Nav_Menu
     $output .= '<li class="sidebar__menu-item ' . esc_attr($class_names) . '">';
 
     if ($has_children) {
-      // Panel lateral para nivel 1
       $output .= '<a href="javascript:void(0)" class="sidebar__menu-link depth-' . $d . '">';
       $output .= esc_html($item->title);
       $output .= '<svg width="24" height="24" aria-hidden="true"><use xlink:href="#forward"></use></svg>';
       $output .= '</a>';
+
       $output .= '<div class="sidebar__submenu depth-' . $d . '">';
+
       $output .= '<button class="sidebar__submenu-back" aria-label="Regresar al menú anterior">';
       $output .= '<svg width="24" height="24" aria-hidden="true"><use xlink:href="#back"></use></svg>';
-      if ($depth == 0) {
-        $output .= 'MENÚ PRINCIPAL';
-      } else {
-        $output .= esc_html($item->title);
-      }
+      $output .= ($depth == 0) ? 'MENÚ PRINCIPAL' : esc_html($item->title);
       $output .= '</button>';
+
       $output .= '<div class="sidebar__submenu-title depth-' . $d . '">';
       $output .= esc_html($item->title);
       if ($depth != 0) {
@@ -45,7 +43,9 @@ class Sidebar_Menu_Walker extends Walker_Nav_Menu
       }
       $output .= '</div>';
     } else {
-      $output .= '<a href="' . esc_url($item->url) . '" class="sidebar__menu-link">' . esc_html($item->title) . '</a>';
+      $output .= '<a href="' . esc_url($item->url) . '" class="sidebar__menu-link">';
+      $output .= esc_html($item->title);
+      $output .= '</a>';
     }
   }
 
