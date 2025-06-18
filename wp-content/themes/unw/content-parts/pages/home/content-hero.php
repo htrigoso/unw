@@ -1,5 +1,5 @@
 <section class="hero">
-  <div class="swiper-container">
+  <div class="swiper-container is-draggable">
     <div class="swiper-wrapper swiper-hero__wrapper">
       <div class="swiper-slide swiper-hero__slide">
         <picture className="swiper-hero__picture">
@@ -24,6 +24,13 @@
         </div>
       </div>
       ...
+    </div>
+  </div>
+  <div class="move-cursor">
+    <div>
+      <div class="move-cursor__circle"></div>
+      <div class="move-cursor__triangle"></div>
+      <div class="move-cursor__triangle"></div>
     </div>
   </div>
 </section>

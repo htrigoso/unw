@@ -26,7 +26,7 @@
     width: rem(54);
     height: rem(54);
     border-radius: 50%;
-    border: 2px solid var(--pacific-blue);
+    border: 2px solid var(--color-primary);
     transform: scale(0.75);
     transition: transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
@@ -43,11 +43,11 @@
     will-change: transform;
     &:nth-child(2) {
       left: -1rem;
-      border-right: 0.35rem solid var(--pacific-blue);
+      border-right: 0.35rem solid var(--color-primary);
     }
     &:nth-child(3) {
       right: -1rem;
-      border-left: 0.35rem solid var(--pacific-blue);
+      border-left: 0.35rem solid var(--color-primary);
     }
   }
   &.active {
