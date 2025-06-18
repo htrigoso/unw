@@ -2,7 +2,7 @@ import Component from '../classes/Component'
 import { $element } from '../utils/dom'
 
 export default class ScrollDown extends Component {
-  constructor ({ element }) {
+  constructor({ element }) {
     super({
       element,
       elements: {
@@ -17,7 +17,7 @@ export default class ScrollDown extends Component {
     }
   }
 
-  createListeners () {
+  createListeners() {
     this.elements.button?.addEventListener('click', (e) => {
       e.preventDefault()
       const el = $element(`#${this.to}`)
@@ -27,7 +27,7 @@ export default class ScrollDown extends Component {
     })
   }
 
-  scrollTo (el) {
+  scrollTo(el) {
     el.scrollIntoView({
       behavior: 'smooth'
     })

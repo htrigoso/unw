@@ -1,6 +1,7 @@
 {
   "bundles": {
     "app": ["./app/index.js", "./styles/index.scss"],
-    "home": ["./app/pages/home/index.js", "./styles/pages/home/index.scss"]
+    "home": ["./app/pages/home/index.js", "./styles/pages/home/index.scss"],
+    "careers": ["./app/pages/careers/index.js", "./styles/pages/careers/index.scss"]
   }
 }

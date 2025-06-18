@@ -10,9 +10,9 @@ define('ALLOW_GZIP', false);
 define('COMMON_CONTENT_PATH', 'content-parts/common/content');
 define('HOME_CONTENT_PATH', 'content-parts/pages/home/content');
 define('GENERAL_CONTENT_PATH', 'content-parts/content');
-define('CAREERS_HERO_CONTENT_PATH', 'content-parts/pages/careers/hero');
-define('CAREERS_CONTENT_PATH', 'content-parts/pages/careers/tabs');
-
+define('CAREERS_HERO_CONTENT_PATH', 'content-parts/pages/careers/hero/content');
+define('CAREERS_TABS_PATH', 'content-parts/pages/careers/tabs/content');
+define('CAREERS_CONTENT_TAB_PATH', 'content-parts/pages/careers/tabs/');
 
 set_query_var( 'NAVBAR_COLOR', false );
 set_query_var( 'MENU_COLOR', false );
