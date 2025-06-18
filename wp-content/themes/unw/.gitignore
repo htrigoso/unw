@@ -16,3 +16,4 @@ package-lock.json
 entrypoints.dev.json
 
 build
+.DS_Store
