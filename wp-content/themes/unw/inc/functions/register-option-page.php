@@ -11,7 +11,7 @@
     if (function_exists('acf_add_options_page')) {
       acf_add_options_page(array(
         'page_title' => __('General', 'unw'),
-        'menu_title' => __('Configuración ' . get_bloginfo('name'), 'unw'),
+        'menu_title' => __('Configuración UNW', 'unw'),
         'menu_slug' => 'unw-general-settings',
         'capability' => 'publish_posts',
         'redirect' => false
