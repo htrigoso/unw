@@ -1,22 +1,31 @@
 <ul class="social-list">
   <li class="social-item">
-    <a class="social-link" href="#">
-      <img class="social-icon" src="<?php echo get_template_directory_uri(); ?>/upload/social/facebook.svg" alt="Facebook" />
+    <a class="social-link" href="#" aria-label="Facebook">
+      <svg class="social-icon" width="24" height="24">
+        <use xlink:href="#facebook"></use>
+      </svg>
     </a>
   </li>
   <li class="social-item">
-    <a class="social-link" href="#">
-      <img class="social-icon" src="<?php echo get_template_directory_uri(); ?>/upload/social/youtube.svg" alt="YouTube" />
+    <a class="social-link" href="#" aria-label="YouTube">
+      <svg class="social-icon" width="24" height="24">
+        <use xlink:href="#youtube"></use>
+      </svg>
     </a>
   </li>
   <li class="social-item">
-    <a class="social-link" href="#">
-      <img class="social-icon" src="<?php echo get_template_directory_uri(); ?>/upload/social/link.svg" alt="LinkedIn" />
+    <a class="social-link" href="#" aria-label="LinkedIn">
+      <svg class="social-icon" width="24" height="24">
+        <use xlink:href="#linkedin"></use>
+      </svg>
     </a>
   </li>
+
   <li class="social-item">
-    <a class="social-link" href="#">
-      <img class="social-icon" src="<?php echo get_template_directory_uri(); ?>/upload/social/instagram.svg" alt="Instagram" />
+    <a class="social-link" href="#" aria-label="Instagram" >
+      <svg class="social-icon" width="24" height="24"  fill="none">
+        <use xlink:href="#instagram"></use>
+      </svg>
     </a>
   </li>
 </ul>
