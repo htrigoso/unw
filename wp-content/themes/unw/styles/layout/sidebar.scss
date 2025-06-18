@@ -70,15 +70,6 @@
     }
   }
 
-  a {
-    font-size: rem(18);
-    color: var(--color-black);
-
-    &[aria-current="page"] {
-      color: var(--color-light-turquoise);
-    }
-  }
-
   .menu-item-has-children > a {
     position: relative;
     display: flex;
@@ -88,6 +79,21 @@
 
   .sub-menu {
     display: none;
+  }
+}
+
+.sidebar__menu-link {
+  font-size: rem(18);
+  color: var(--color-black);
+
+  &[aria-current="page"] {
+    color: var(--color-light-turquoise);
+  }
+}
+
+.sidebar__menu-link.depth-2 {
+  svg {
+    transform: rotate(90deg);
   }
 }
 
@@ -140,6 +146,7 @@
   padding: rem(16);
   gap: rem(8);
   cursor: pointer;
+  font-size: rem(18);
 
   @include media(">=phone") {
     padding-inline: rem(24);
@@ -148,23 +155,22 @@
 
 .sidebar__submenu-title {
   padding: rem(16);
-  background-color: var(--color-light-turquoise);
-  height: rem(46);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-light-grey);
   font-size: rem(18);
+
+  svg {
+    transform: rotate(-90deg);
+  }
 
   @include media(">=phone") {
     padding-inline: rem(24);
   }
 }
 
-.sidebar__menu-link--accordion {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  font-size: rem(18);
-
-  svg {
-    transform: rotate(90deg);
-  }
+.sidebar__submenu-title.depth-1 {
+  background-color: var(--color-light-turquoise);
+  height: rem(46);
 }
