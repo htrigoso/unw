@@ -15,9 +15,6 @@
 
     <div class="sidebar__menu" id="mobile-menu">
       <?php
-
-
-
         wp_nav_menu(array(
         'menu' => 'navbar_menu',
         'menu_class'=> 'sidebar__list',

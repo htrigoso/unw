@@ -9,6 +9,9 @@ export default class Menu extends Component {
 
     this.navbar = navbar
     this.createListeners()
+    this.handleResize = this.handleResize.bind(this)
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize()
   }
 
   createListeners() {
@@ -25,6 +28,12 @@ export default class Menu extends Component {
     this.handleClose()
     this.handleSubmenuOpen()
     this.handleSubmenuBack()
+  }
+
+  handleResize() {
+    if (window.innerWidth >= 1024) {
+      this.hide()
+    }
   }
 
   handleOpen() {
@@ -69,11 +78,17 @@ export default class Menu extends Component {
 
   show() {
     this.element.classList.add('is-active')
-    document.body.classList.add('sidebar-open')
+    setTimeout(() => {
+      document.body.classList.add('sidebar-open')
+    }, 350)
   }
 
   hide() {
     this.element.classList.remove('is-active')
     document.body.classList.remove('sidebar-open')
+  }
+
+  destroy() {
+    window.removeEventListener('resize', this.handleResize)
   }
 }
