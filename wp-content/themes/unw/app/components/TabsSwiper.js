@@ -4,7 +4,7 @@ const TabSwiper = (sectionEl = '.tabs') => {
   return new Swiper(`${sectionEl} .swiper-container`, {
     loop: false,
     slidesPerView: 'auto',
-    spaceBetween: 12,
+    spaceBetween: 0,
     grabCursor: true
   })
 }
