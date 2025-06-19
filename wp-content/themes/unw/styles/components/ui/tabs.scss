@@ -11,8 +11,8 @@
 }
 
 .tabs__navigation-swiper {
-    padding-inline: rem(16) !important;
-    margin-inline: rem(-16) !important;
+  padding-inline: rem(16) !important;
+  margin-inline: rem(-16) !important;
 
   @include media(">=phone") {
     padding-inline: rem(24) !important;
@@ -53,6 +53,7 @@
   border: 1px solid transparent;
   transition: background-color 0.3s ease, color 0.3s ease,
     border-color 0.3s ease;
+  min-width: rem(140);
 
   &:hover {
     background-color: var(--color-primary-light);
@@ -63,9 +64,5 @@
     @include title-18;
     background-color: var(--color-primary);
     border-color: var(--color-primary);
-  }
-
-  @include media(">=tablet") {
-    min-width: rem(140);
   }
 }

@@ -18,6 +18,13 @@
   letter-spacing: 0.5px;
 }
 
+@mixin title-32 {
+  font-size: rem(32);
+  font-weight: var(--font-bold);
+  line-height: normal;
+  letter-spacing: 0.5px;
+}
+
 @mixin title-36 {
   font-size: rem(36);
   font-weight: var(--font-bold);

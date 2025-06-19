@@ -1,0 +1,15 @@
+.career-intro {
+  padding-top: rem(44);
+
+  @include media(">=tablet") {
+    padding-inline: rem(102);
+  }
+}
+
+.career-intro__title {
+  @include title-32;
+
+  span {
+    color: var(--color-primary);
+  }
+}
