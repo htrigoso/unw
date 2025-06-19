@@ -1,36 +1,65 @@
  <div class="tabs">
-   <div class="x-container">
-     <nav class="tabs__navigation">
-       <a href="#" class="tab__item is-active" data-target="presentacion">Presentación</a>
-       <a href="#" class="tab__item" data-target="beneficios">Beneficios</a>
-       <a href="#" class="tab__item" data-target="malla">Malla Curricular</a>
-       <a href="#" class="tab__item" data-target="campo-laboral">Campo Laboral</a>
-       <a href="#" class="tab__item" data-target="docente">Plana Docente</a>
-       <a href="#" class="tab__item" data-target="infraestructura">Infraestructura</a>
-       <a href="#" class="tab__item" data-target="admision">Admisión</a>
-       <a href="#" class="tab__item" data-target="internacionalizacion">Internacionalización</a>
-     </nav>
+   <!-- <nav class="tabs__navigation">
+     <a href="#" class="tab__item is-active" data-target="presentacion">Presentación</a>
+     <a href="#" class="tab__item" data-target="beneficios">Beneficios</a>
+     <a href="#" class="tab__item" data-target="malla">Malla Curricular</a>
+     <a href="#" class="tab__item" data-target="campo-laboral">Campo Laboral</a>
+     <a href="#" class="tab__item" data-target="docente">Plana Docente</a>
+     <a href="#" class="tab__item" data-target="infraestructura">Infraestructura</a>
+     <a href="#" class="tab__item" data-target="admision">Admisión</a>
+     <a href="#" class="tab__item" data-target="internacionalizacion">Internacionalización</a>
+   </nav> -->
 
+   <div class="swiper-container tabs__navigation">
+     <nav class="swiper-wrapper">
+       <div class="swiper-slide tab__item-wrapper">
+         <a href="#" class="tab__item is-active" data-target="presentacion">Presentación</a>
+       </div>
+       <div class="swiper-slide tab__item-wrapper">
+         <a href="#" class="tab__item" data-target="beneficios">Beneficios</a>
+       </div>
+       <div class="swiper-slide tab__item-wrapper">
+         <a href="#" class="tab__item" data-target="malla">Malla Curricular</a>
+       </div>
+       <div class="swiper-slide tab__item-wrapper">
+         <a href="#" class="tab__item" data-target="campo-laboral">Campo Laboral</a>
+       </div>
+       <div class="swiper-slide tab__item-wrapper">
+         <a href="#" class="tab__item" data-target="docente">Plana Docente</a>
+       </div>
+       <div class="swiper-slide tab__item-wrapper">
+         <a href="#" class="tab__item" data-target="infraestructura">Infraestructura</a>
+       </div>
+       <div class="swiper-slide tab__item-wrapper">
+         <a href="#" class="tab__item" data-target="admision">Admisión</a>
+       </div>
+       <div class="swiper-slide tab__item-wrapper">
+         <a href="#" class="tab__item" data-target="internacionalizacion">Internacionalización</a>
+       </div>
+     </nav>
+   </div>
+
+   <div class="x-container">
      <div class="tabs__content">
        <section id="presentacion" class="tab__content">
          <?php
-          get_template_part( CAREERS_CONTENT_TAB_PATH . '1-presentation/content-career-intro' );
-         ?>
+          get_template_part(CAREERS_CONTENT_TAB_PATH . '1-presentation/content-career-intro');
+          ?>
          <?php
-          get_template_part( CAREERS_CONTENT_TAB_PATH . '1-presentation/content-testimonials' );
-         ?>
+          get_template_part(CAREERS_CONTENT_TAB_PATH . '1-presentation/content-testimonials');
+          ?>
        </section>
 
        <section id="beneficios" class="tab__content">
          <?php
-          get_template_part( CAREERS_CONTENT_TAB_PATH . '2-benefits/content-why-wiener' );
-         ?>
+          get_template_part(CAREERS_CONTENT_TAB_PATH . '2-benefits/content-why-wiener');
+          ?>
        </section>
 
        <section id="malla" class="tab__content">
          <?php
-          get_template_part( CAREERS_CONTENT_TAB_PATH . '3-curriculum-map/content-malla' );
-         ?>
+          get_template_part(CAREERS_CONTENT_TAB_PATH . '3-curriculum-map/content-malla');
+          ?>
        </section>
 
        <section id="campo-laboral" class="tab__content">

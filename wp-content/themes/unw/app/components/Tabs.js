@@ -10,7 +10,7 @@ export default class Tabs extends Component {
 
     this.createTabs()
     this.addEventClickTabs()
-    this.activateFirstTab() // Activar primero al inicio
+    this.activateFirstTab()
   }
 
   createTabs() {
