@@ -117,9 +117,10 @@ $featured_events = [
       </div>
       <div class="featured-events__see-more-btn">
         <?php
-        set_query_var('see_more_text', 'Ver todos los eventos');
-        set_query_var('see_more_href', '#');
-        get_template_part('content-parts/components/ui/content', 'see-more-btn');
+        get_template_part(COMMON_CONTENT_PATH, 'see-more-btn', array(
+          'text'  => 'Ver todos los eventos',
+          'href'  => '#',
+        ));
         ?>
       </div>
     </div>

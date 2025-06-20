@@ -66,9 +66,10 @@ $last_news = [
       </div>
       <div class="last-news__see-more-btn">
         <?php
-        set_query_var('see_more_text', 'Ver todas las noticias');
-        set_query_var('see_more_href', '#');
-        get_template_part('content-parts/components/ui/content', 'see-more-btn');
+        get_template_part(COMMON_CONTENT_PATH, 'see-more-btn', array(
+          'text'  => 'Ver todas las noticias',
+          'href'  => '#',
+        ));
         ?>
       </div>
     </div>
