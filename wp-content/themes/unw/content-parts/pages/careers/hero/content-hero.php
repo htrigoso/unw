@@ -13,7 +13,7 @@ $hero_images = [
 ];
 ?>
 
-<section class="hero">
+<section class="hero careers-hero-swiper">
   <div class="swiper-container is-draggable">
     <div class="swiper-wrapper swiper-hero__wrapper">
       <?php foreach ($hero_images as $img): ?>

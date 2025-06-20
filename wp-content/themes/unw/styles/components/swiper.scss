@@ -1,3 +1,29 @@
+%swiper-pagination {
+  display: flex;
+  justify-content: center;
+  position: static;
+  gap: rem(8);
+  margin-top: rem(8);
+
+  @include media(">=phone") {
+    margin-top: rem(16);
+    justify-content: flex-start;
+  }
+
+  .swiper-pagination-bullet {
+    margin: rem(12) 0 !important;
+    width: rem(18);
+    height: rem(3);
+    border-radius: 0;
+    background-color: var(--color-secondary-grey);
+    opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: var(--color-primary);
+  }
+}
+
 .post-swiper {
   .swiper-container {
     padding-inline: rem(16);
@@ -24,28 +50,17 @@
     }
   }
   .swiper-pagination {
-    display: flex;
-    justify-content: center;
-    position: static;
-    gap: rem(8);
-    margin-top: rem(8);
+    @extend %swiper-pagination;
+  }
+}
 
-    @include media(">=phone") {
-      margin-top: rem(16);
-      justify-content: flex-start;
-    }
+.careers-hero-swiper {
+  .swiper-pagination {
+    @extend %swiper-pagination;
+    @extend .x-container;
 
-    .swiper-pagination-bullet {
-      margin: rem(12) 0 !important;
-      width: rem(18);
-      height: rem(3);
-      border-radius: 0;
-      background-color: var(--color-secondary-grey);
-      opacity: 1;
-    }
-
-    .swiper-pagination-bullet-active {
-      background-color: var(--color-primary);
+    @include media("<phone") {
+      display: none;
     }
   }
 }

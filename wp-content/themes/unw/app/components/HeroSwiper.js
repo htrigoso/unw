@@ -13,7 +13,11 @@ const HeroSwiper = (sectionEl = '.hero') => {
     fadeEffect: {
       crossFade: true
     },
-    autoHeight: false
+    autoHeight: false,
+    pagination: {
+      el: `${sectionEl} .swiper-pagination`,
+      clickable: true
+    }
   })
 }
 
