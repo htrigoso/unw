@@ -1,5 +1,5 @@
 <header class="navbar" id="navbar">
-  <div class="x-container navbar__wrapper">
+  <div class="x-container x-container--pad-64 navbar__wrapper">
 
     <a class="navbar__logo pointer">
       <img width="101" height="40" src="<?php echo get_template_directory_uri(); ?>/upload/logo-unw.svg" alt="">

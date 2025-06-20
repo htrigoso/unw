@@ -1,6 +1,5 @@
 <?php
 $testimonial = $args['testimonial'];
-
 ?>
 <article class="testimonial__card">
   <img

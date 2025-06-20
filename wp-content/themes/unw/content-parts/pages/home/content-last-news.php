@@ -34,7 +34,7 @@ $last_news = [
 ?>
 
 <section class="last-news">
-  <div class="x-container">
+  <div class="x-container x-container--pad-213">
     <div class="last-news__wrapper">
       <h2 class="last-news__title">Últimas Noticias</h2>
       <div class="post-swiper last-news__swiper">

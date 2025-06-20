@@ -20,7 +20,7 @@ $countries = [
 ?>
 
 <section class="international-agreements">
-  <div class="x-container">
+  <div class="x-container x-container--pad-213">
     <div class="international-agreements__wrapper">
 
       <h2 class="international-agreements__title">Haz que tu educación cruce fronteras.</h2>

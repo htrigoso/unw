@@ -70,7 +70,7 @@ $featured_events = [
 ?>
 
 <section class="featured-events">
-  <div class="x-container">
+  <div class="x-container x-container--pad-213">
     <div class="featured-events__wrapper">
       <h2 class="featured-events__title">Eventos Destacados</h2>
       <div class="post-swiper featured-events__swiper">

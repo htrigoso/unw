@@ -2,7 +2,8 @@
   padding: rem(24) 0 rem(24) 0;
 
   @include media(">=tablet") {
-    padding: rem(52) rem(102);
+    padding-top: rem(52);
+    padding-bottom: rem(52);
   }
 }
 
