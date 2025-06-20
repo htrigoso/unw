@@ -1,6 +1,6 @@
 import Swiper from 'swiper/bundle'
 
-const TabSwiper = (sectionEl = '.tabs') => {
+const TabSwiper = (sectionEl = '.tabs-swiper') => {
   return new Swiper(`${sectionEl} .swiper-container`, {
     loop: false,
     slidesPerView: 'auto',
