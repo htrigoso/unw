@@ -49,9 +49,9 @@ $tabs = [
       </div>
 
       <div id="campo-laboral" class="tab__content">
-        <h2>Campo Laboral</h2>
-        <p>Podrás desempeñarte en empresas privadas y públicas, en áreas como gestión de proyectos, investigación,
-          consultoría, y desarrollo tecnológico.</p>
+        <?php
+        get_template_part(CAREERS_CONTENT_TAB_PATH . '4-career-field/content-career-field');
+        ?>
       </div>
 
       <div id="docente" class="tab__content">
