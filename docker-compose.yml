@@ -102,3 +102,8 @@ volumes:
   vhost:
   html:
   certs:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/certs
+      o: bind
