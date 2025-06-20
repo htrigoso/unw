@@ -13,6 +13,9 @@ services:
       - html:/usr/share/nginx/html
       - certs:/etc/nginx/certs:ro
       - "./custom_proxy_settings.conf:/etc/nginx/conf.d/custom_proxy_settings.conf"
+      # Certificados propios
+      - "./ssl/qa.uwiener.edu.pe.crt:/etc/nginx/certs/qa.uwiener.edu.pe.crt:ro"
+      - "./ssl/qa.uwiener.edu.pe.key:/etc/nginx/certs/qa.uwiener.edu.pe.key:ro"
      
   docker-gen:
     image: nginxproxy/docker-gen
@@ -66,8 +69,8 @@ services:
       WORDPRESS_DB_PASSWORD: wpuserpass
       VIRTUAL_HOST: qa.uwiener.edu.pe
       VIRTUAL_PORT: 80
-      # LETSENCRYPT_HOST: qa.uwiener.edu.pe
-      # LETSENCRYPT_EMAIL: jgarcia@seek.pe
+      # No configurar LETSENCRYPT_HOST para este dominio
+      # ya que usas certificado propio
     volumes:
       - .:/var/www/html
     ports:
@@ -79,9 +82,4 @@ volumes:
   vhost:
   html:
   certs:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${PWD}/certs
-      o: bind
   acme:
