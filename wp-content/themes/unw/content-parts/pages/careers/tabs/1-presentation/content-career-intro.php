@@ -3,9 +3,9 @@
   <div class="career-intro__content">
     <div class="career-intro__visual">
       <picture className="career-intro__visual--picture">
-        <source srcset="<?php echo get_template_directory_uri(); ?>/upload/careers/intro/intro-summary-desktop.jpg"
+        <source srcset="<?php echo get_template_directory_uri(); ?>/upload/careers/presentation/presentation-summary-desktop.jpg"
           media="(min-width: 768px)" />
-        <img src="<?php echo get_template_directory_uri(); ?>/upload/careers/intro/intro-summary-mobile.jpg"
+        <img src="<?php echo get_template_directory_uri(); ?>/upload/careers/presentation/presentation-summary-mobile.jpg"
           alt="Farmacia y Bioquímica" class="career-intro__visual--img" />
       </picture>
     </div>
