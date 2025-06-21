@@ -58,8 +58,7 @@ $tabs = [
               break;
 
             case 'infraestructura':
-              echo '<h2>Infraestructura</h2>';
-              echo '<p>Contamos con aulas modernas, laboratorios especializados, bibliotecas digitales y espacios de coworking que fomentan la innovación.</p>';
+              get_template_part(CAREERS_CONTENT_TAB_PATH . '6-infrastructure/content-infrastructure');
               break;
 
             case 'admision':
