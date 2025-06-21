@@ -21,7 +21,7 @@ export default class Tabs extends Component {
   }
 
   activateFirstTab() {
-    const firstTab = this.elements.tabItems[6]
+    const firstTab = this.elements.tabItems[0]
     if (!firstTab) return
 
     const targetId = firstTab.dataset.target

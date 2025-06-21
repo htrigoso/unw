@@ -1,0 +1,59 @@
+.internationalization__header {
+  margin-bottom: rem(53);
+}
+.internationalization__wrapper {
+  padding-top: rem(44);
+  padding-bottom: rem(24);
+
+  @include media(">=tablet") {
+    padding-top: rem(88);
+    padding-bottom: rem(80);
+  }
+}
+.internationalization__content {
+  background-color: var(--color-engineering);
+  border-radius: rem(20);
+  padding: rem(44);
+}
+.internationalization__divider {
+  margin: rem(48) 0;
+  border: 1px solid var(--color-black);
+}
+.internationalization__agreements-title {
+  margin-bottom: rem(24);
+}
+
+.internationalization__title {
+  @include title-36;
+  margin-bottom: rem(24);
+}
+.internationalization__highlight {
+  display: flex;
+  justify-content: space-between;
+}
+
+.internationalization__countries {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(rem(124), 1fr));
+  gap: rem(24);
+  margin-top: rem(34);
+}
+
+.internationalization__country-card {
+  width: rem(124);
+  background-color: var(--color-white);
+  border-radius: rem(24);
+  padding: rem(24) 0;
+  text-align: center;
+  box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.25);
+}
+
+.internationalization__country-flag {
+  width: rem(80);
+  height: rem(80);
+  margin: 0 auto rem(16);
+}
+
+.internationalization__country-name {
+  @include title-18;
+}

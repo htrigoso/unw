@@ -11,7 +11,6 @@ import PostSwiper from '../../components/PostSwiper'
 
   const tabsElement = document.querySelector('.tabs')
   if (tabsElement) {
-    // eslint-disable-next-line no-new
     new Tabs({ element: tabsElement })
   }
 })()
