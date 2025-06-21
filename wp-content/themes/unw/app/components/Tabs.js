@@ -1,50 +1,89 @@
 import Component from '../classes/Component'
-import { $elements } from '../utils/dom'
 
 export default class Tabs extends Component {
   constructor({ element }) {
     super({
       element,
-      elements: {}
+      elements: {
+        tabItems: '.tab__item',
+        tabContents: '.tab__content'
+      }
     })
 
-    this.createTabs()
-    this.addEventClickTabs()
-    this.activateFirstTab()
+    this.currentTabId = null
+
+    this.init()
   }
 
-  createTabs() {
-    this.elements.tabItems = $elements('.tab__item')
-    this.elements.tabContents = $elements('.tab__content')
+  init() {
+    this.activateFirstTab()
+    this.bindTabEvents()
   }
 
   activateFirstTab() {
-    const firstTab = this.elements.tabItems[0]
-    const targetId = firstTab.dataset.target
+    const firstTab = this.elements.tabItems[4]
+    if (!firstTab) return
 
-    firstTab.classList.add('is-active')
+    const targetId = firstTab.dataset.target
+    this.currentTabId = targetId
+
+    this.setActiveTab(firstTab)
+    this.showTabContent(targetId)
+  }
+
+  bindTabEvents() {
+    this.elements.tabItems?.forEach(tab => {
+      tab.addEventListener('click', event => this.handleTabClick(event, tab))
+    })
+  }
+
+  handleTabClick(event, tab) {
+    event.preventDefault()
+
+    const targetId = tab.dataset.target
+    if (!targetId || this.currentTabId === targetId) return
+
+    const targetContent = document.getElementById(targetId)
+    if (!targetContent) return
+
+    this.currentTabId = targetId
+    this.setActiveTab(tab)
+    this.showTabContent(targetId)
+    this.scrollToContent(targetContent)
+    this.scrollToTab(tab)
+  }
+
+  setActiveTab(activeTab) {
+    this.elements.tabItems.forEach(tab =>
+      tab.classList.remove('is-active')
+    )
+    activeTab.classList.add('is-active')
+  }
+
+  showTabContent(targetId) {
     this.elements.tabContents.forEach(content => {
       content.style.display = content.id === targetId ? 'block' : 'none'
     })
   }
 
-  addEventClickTabs() {
-    this.elements.tabItems?.forEach(tab => {
-      tab.addEventListener('click', event => {
-        event.preventDefault()
+  scrollToContent(targetContent) {
+    requestAnimationFrame(() => {
+      const offset = 130
+      const top =
+        targetContent.getBoundingClientRect().top +
+        window.pageYOffset -
+        offset
 
-        const targetId = tab.dataset.target
+      window.scrollTo({ top, behavior: 'smooth' })
+    })
+  }
 
-        // Manejo de clase activa
-        this.elements.tabItems.forEach(item =>
-          item.classList.remove('is-active')
-        )
-        tab.classList.add('is-active')
-
-        // Mostrar solo el contenido correspondiente
-        this.elements.tabContents.forEach(content => {
-          content.style.display = content.id === targetId ? 'block' : 'none'
-        })
+  scrollToTab(tab) {
+    requestAnimationFrame(() => {
+      tab.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'nearest'
       })
     })
   }

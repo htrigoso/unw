@@ -4,7 +4,7 @@ $tabs = [
   ['label' => 'Beneficios', 'target' => 'beneficios'],
   ['label' => 'Malla Curricular', 'target' => 'malla'],
   ['label' => 'Campo Laboral', 'target' => 'campo-laboral'],
-  ['label' => 'Plana Docente', 'target' => 'docente'],
+  ['label' => 'Plana Docente', 'target' => 'teaching-staff'],
   ['label' => 'Infraestructura', 'target' => 'infraestructura'],
   ['label' => 'Admisión', 'target' => 'admision'],
   ['label' => 'Internacionalización', 'target' => 'internacionalizacion'],
@@ -12,73 +12,70 @@ $tabs = [
 ?>
 
 <div class="tabs">
-  <div class="tabs__navigation-container tabs-swiper">
-    <div class="swiper-container tabs__navigation-swiper">
-      <nav class="swiper-wrapper tabs__navigation">
+  <div class="tabs__navigation-container">
+    <nav class="tabs__navigation" role="tablist" aria-label="Secciones del contenido">
+      <ul class="tabs__navigation-list">
         <?php foreach ($tabs as $i => $tab) : ?>
-          <div class="swiper-slide tab__item-wrapper">
-            <a href="#" class="btn tab__item<?php echo $i === 0 ? ' is-active' : ''; ?>" data-target="<?php echo esc_attr($tab['target']); ?>">
-              <?php echo esc_html($tab['label']); ?>
-            </a>
-          </div>
+        <li class="tab__item-wrapper" role="presentation">
+          <a href="#" class="btn tab__item<?php echo $i === 0 ? ' is-active' : ''; ?>"
+            data-target="<?php echo esc_attr($tab['target']); ?>" role="tab"
+            aria-selected="<?php echo $i === 0 ? 'true' : 'false'; ?>"
+            aria-controls="<?php echo esc_attr($tab['target']); ?>" id="tab-<?php echo esc_attr($tab['target']); ?>">
+            <?php echo esc_html($tab['label']); ?>
+          </a>
+        </li>
         <?php endforeach; ?>
-      </nav>
-    </div>
+      </ul>
+    </nav>
   </div>
+
   <div class="x-container x-container--pad-213">
     <div class="tabs__content">
-      <div id="presentacion" class="tab__content">
+      <?php foreach ($tabs as $tab) : ?>
+      <div id="<?php echo esc_attr($tab['target']); ?>" class="tab__content">
         <?php
-        get_template_part(CAREERS_CONTENT_TAB_PATH . '1-presentation/content-career-intro');
-        ?>
-        <?php
-        get_template_part(CAREERS_CONTENT_TAB_PATH . '1-presentation/content-testimonials');
-        ?>
-      </div>
+          switch ($tab['target']) {
+            case 'presentacion':
+              get_template_part(CAREERS_CONTENT_TAB_PATH . '1-presentation/content-career-intro');
+              get_template_part(CAREERS_CONTENT_TAB_PATH . '1-presentation/content-testimonials');
+              break;
 
-      <div id="beneficios" class="tab__content">
-        <?php
-        get_template_part(CAREERS_CONTENT_TAB_PATH . '2-benefits/content-benefits');
-        ?>
-      </div>
+            case 'beneficios':
+              get_template_part(CAREERS_CONTENT_TAB_PATH . '2-benefits/content-benefits');
+              break;
 
-      <div id="malla" class="tab__content">
-        <?php
-        get_template_part(CAREERS_CONTENT_TAB_PATH . '3-curriculum-map/content-malla');
-        ?>
-      </div>
+            case 'malla':
+              get_template_part(CAREERS_CONTENT_TAB_PATH . '3-curriculum-map/content-program-curriculum');
+              get_template_part(CAREERS_CONTENT_TAB_PATH . '3-curriculum-map/content-curriculum-legend');
+              break;
 
-      <div id="campo-laboral" class="tab__content">
-        <?php
-        get_template_part(CAREERS_CONTENT_TAB_PATH . '4-career-field/content-career-field');
-        ?>
-      </div>
+            case 'campo-laboral':
+              get_template_part(CAREERS_CONTENT_TAB_PATH . '4-career-field/content-career-field');
+              break;
 
-      <div id="docente" class="tab__content">
-        <h2>Docente</h2>
-        <p>Nuestros docentes combinan experiencia académica con trayectoria profesional, garantizando una formación
-          integral de alta calidad.</p>
-      </div>
+            case 'teaching-staff':
+              get_template_part(CAREERS_CONTENT_TAB_PATH . '5-teaching-staff/content-teaching-staff');
+              break;
 
-      <div id="infraestructura" class="tab__content">
-        <h2>Infraestructura</h2>
-        <p>Contamos con aulas modernas, laboratorios especializados, bibliotecas digitales y espacios de coworking que
-          fomentan la innovación.</p>
-      </div>
+            case 'infraestructura':
+              echo '<h2>Infraestructura</h2>';
+              echo '<p>Contamos con aulas modernas, laboratorios especializados, bibliotecas digitales y espacios de coworking que fomentan la innovación.</p>';
+              break;
 
-      <div id="admision" class="tab__content">
-        <h2>Admisión</h2>
-        <p>Infórmate sobre los requisitos de postulación, cronograma de admisión y beneficios exclusivos para primeros
-          ingresantes.</p>
-        <a href="/admision" class="button">Ver proceso de admisión</a>
-      </div>
+            case 'admision':
+              echo '<h2>Admisión</h2>';
+              echo '<p>Infórmate sobre los requisitos de postulación, cronograma de admisión y beneficios exclusivos para primeros ingresantes.</p>';
+              echo '<a href="/admision" class="button">Ver proceso de admisión</a>';
+              break;
 
-      <div id="internacionalizacion" class="tab__content">
-        <h2>Internacionalización</h2>
-        <p>Participa en intercambios académicos, doble titulación y programas de movilidad estudiantil en instituciones
-          aliadas de prestigio internacional.</p>
+            case 'internacionalizacion':
+              echo '<h2>Internacionalización</h2>';
+              echo '<p>Participa en intercambios académicos, doble titulación y programas de movilidad estudiantil en instituciones aliadas de prestigio internacional.</p>';
+              break;
+          }
+          ?>
       </div>
+      <?php endforeach; ?>
     </div>
   </div>
-
 </div>

@@ -1,3 +1,8 @@
+@mixin title-14 {
+  font-size: rem(14);
+  font-weight: var(--font-bold);
+  line-height: normal;
+}
 @mixin title-18 {
   font-size: rem(18);
   font-weight: var(--font-bold);

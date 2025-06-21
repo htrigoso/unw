@@ -1,0 +1,64 @@
+.program-curriculum {
+  padding-top: rem(44);
+  padding-bottom: rem(24);
+
+  @include media(">=tablet") {
+    padding-top: rem(88);
+    padding-bottom: rem(80);
+  }
+}
+
+.program-curriculum__title {
+  @include title-36;
+  margin-bottom: rem(24);
+}
+
+.program-curriculum__description-wrapper {
+  display: flex;
+  gap: rem(20);
+}
+.program-curriculum__description {
+  a {
+    color: var(--color-black);
+    text-decoration: underline;
+  }
+}
+.program-curriculum__header {
+  margin-bottom: rem(58);
+}
+
+.cycle-card {
+  border-radius: rem(20);
+  border: 1px solid var(--color-secondary-grey);
+}
+.program-curriculum__cycles-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+
+  gap: rem(16);
+}
+
+.cycle-card__wrapper {
+  padding: rem(16) rem(12);
+}
+.cycle-card__header {
+  margin-bottom: rem(30);
+}
+.cycle-card__item {
+  display: flex;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-bottom: rem(16);
+  }
+}
+
+.cycle-card__course {
+  margin-left: rem(8);
+  flex: 1;
+}
+.program-curriculum__footer {
+  padding: rem(24) 0;
+  display: flex;
+  justify-content: center;
+}

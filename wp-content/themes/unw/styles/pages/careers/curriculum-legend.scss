@@ -1,0 +1,39 @@
+.curriculum-legend__wrapper {
+  padding-bottom: rem(151);
+}
+.curriculum-legend__header {
+  margin-bottom: rem(20);
+}
+.curriculum-legend__paragraph {
+  color: var(--color-asu-brown);
+}
+.curriculum-legend__title {
+  margin-bottom: rem(16);
+}
+.curriculum-legend__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: rem(32);
+  margin-bottom: rem(51);
+}
+.curriculum-legend__item {
+  display: flex;
+  align-items: center;
+  span {
+    margin-right: rem(10);
+  }
+}
+.curriculum-legend__notes {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: disc;
+  gap: rem(32);
+}
+.curriculum-legend__note {
+  color: var(--color-asu-grey);
+  @extend %description-14;
+  list-style-type: disc;
+  &:first-of-type {
+    margin-left: rem(10);
+  }
+}

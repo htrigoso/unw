@@ -480,3 +480,31 @@
   -ms-user-select: none;
   user-select: none;
 }
+
+.dot {
+  width: rem(13);
+  height: rem(13);
+  display: block;
+  background-color: var(--color-black);
+  border-radius: 50%;
+}
+
+.dot--purple {
+  background-color: var(--color-purple);
+}
+
+.dot--gray {
+  background-color: var(--color-dove-gray);
+}
+
+.dot--blue {
+  background-color: var(--color-dodger-blue);
+}
+
+.dot--orange {
+  background-color: var(--color-burnt-sienna);
+}
+
+.dot--dark-blue {
+  background-color: var(--color-tory-blue);
+}
