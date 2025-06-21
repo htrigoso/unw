@@ -62,9 +62,7 @@ $tabs = [
               break;
 
             case 'admision':
-              echo '<h2>Admisión</h2>';
-              echo '<p>Infórmate sobre los requisitos de postulación, cronograma de admisión y beneficios exclusivos para primeros ingresantes.</p>';
-              echo '<a href="/admision" class="button">Ver proceso de admisión</a>';
+              get_template_part(CAREERS_CONTENT_TAB_PATH . '7-admission/content-admission');
               break;
 
             case 'internacionalizacion':

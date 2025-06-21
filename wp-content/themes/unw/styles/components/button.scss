@@ -7,8 +7,8 @@
   font-weight: var(--font-bold);
   font-size: rem(18);
   border-radius: rem(8);
-  padding: rem(15) rem(31);
-  height: rem(56);
+  padding: rem(14) rem(31);
+
   gap: rem(8);
   appearance: none;
   border: none;
@@ -54,6 +54,19 @@
       background-color: var(--color-light-turquoise);
       color: var(--color-black);
       border-color: var(--color-light-turquoise);
+    }
+  }
+  &-primary-outline-small {
+    background-color: var(--color-light-turquoise);
+    color: var(--color-black);
+    border: 1px solid var(--color-primary);
+    padding: rem(8.67) rem(15);
+    border-radius: rem(64);
+    &:hover,
+    &:focus {
+      background-color: var(--color-light-turquoise);
+      color: var(--color-black);
+      border-color: var(--color-black);
     }
   }
 
