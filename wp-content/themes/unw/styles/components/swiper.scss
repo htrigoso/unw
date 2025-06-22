@@ -39,7 +39,7 @@
       margin-inline: rem(-213);
     }
 
-    @media (min-width: 1440px) {
+    @include media(">=desktop") {
       padding-inline: calc((100vw - 1014px) / 2 + 213px);
       margin-inline: calc(-1 * ((100vw - 1014px) / 2 + 213px));
     }

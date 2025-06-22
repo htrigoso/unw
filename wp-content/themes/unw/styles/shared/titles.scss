@@ -9,6 +9,13 @@
   line-height: normal;
 }
 
+@mixin title-20 {
+  font-size: rem(20);
+  font-weight: var(--font-bold);
+  line-height: normal;
+  letter-spacing: 0.5px;
+}
+
 @mixin title-22 {
   font-size: rem(22);
   font-weight: var(--font-bold);

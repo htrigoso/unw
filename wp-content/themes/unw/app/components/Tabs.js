@@ -21,7 +21,7 @@ export default class Tabs extends Component {
   }
 
   activateFirstTab() {
-    const firstTab = this.elements.tabItems[2]
+    const firstTab = this.elements.tabItems[0]
     if (!firstTab) return
 
     const targetId = firstTab.dataset.target
@@ -80,9 +80,10 @@ export default class Tabs extends Component {
 
   scrollToTab(tab) {
     requestAnimationFrame(() => {
+      const isWide = window.innerWidth >= 1440
       tab.scrollIntoView({
         behavior: 'smooth',
-        inline: 'center',
+        inline: isWide ? 'nearest' : 'center',
         block: 'nearest'
       })
     })

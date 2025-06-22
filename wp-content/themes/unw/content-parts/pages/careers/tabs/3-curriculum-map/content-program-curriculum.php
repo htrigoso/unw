@@ -105,6 +105,56 @@ $cards = [
         'icon' => ''
       ]
     ]
+  ],
+  [
+    'icon' => get_template_directory_uri() . '/upload/careers/malla/4.svg',
+    'courses' => [
+      [
+        'name' => 'Desarrollo Humano y Social',
+        'icon' => get_template_directory_uri() . '/upload/careers/icon.png'
+      ],
+      [
+        'name' => 'Inglés I (virtual)',
+        'icon' => get_template_directory_uri() . '/upload/careers/icon.png'
+      ],
+      [
+        'name' => 'Fundamentos Químicos I',
+        'icon' => get_template_directory_uri() . '/upload/careers/icon.png'
+      ],
+      [
+        'name' => 'Estructura y Función del Cuerpo Humano',
+        'icon' => ''
+      ],
+      [
+        'name' => 'Prácticas en Farmacia y Bioquímica I',
+        'icon' => ''
+      ]
+    ]
+  ],
+  [
+    'icon' => get_template_directory_uri() . '/upload/careers/malla/4.svg',
+    'courses' => [
+      [
+        'name' => 'Desarrollo Humano y Social',
+        'icon' => get_template_directory_uri() . '/upload/careers/icon.png'
+      ],
+      [
+        'name' => 'Inglés I (virtual)',
+        'icon' => get_template_directory_uri() . '/upload/careers/icon.png'
+      ],
+      [
+        'name' => 'Fundamentos Químicos I',
+        'icon' => get_template_directory_uri() . '/upload/careers/icon.png'
+      ],
+      [
+        'name' => 'Estructura y Función del Cuerpo Humano',
+        'icon' => ''
+      ],
+      [
+        'name' => 'Prácticas en Farmacia y Bioquímica I',
+        'icon' => ''
+      ]
+    ]
   ]
 ];
 ?>
