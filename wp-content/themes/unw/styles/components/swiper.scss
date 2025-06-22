@@ -64,3 +64,23 @@
     }
   }
 }
+
+.post-swiper-desktop {
+  @extend .post-swiper;
+
+  @include media("<phone") {
+    .swiper-wrapper {
+      display: block;
+      transform: none;
+    }
+
+    .swiper-slide {
+      margin-right: 0 !important;
+    }
+
+    .swiper-pagination {
+      display: none;
+    }
+  }
+}
+

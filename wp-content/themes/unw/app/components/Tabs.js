@@ -18,10 +18,20 @@ export default class Tabs extends Component {
   init() {
     this.activateFirstTab()
     this.bindTabEvents()
+    window.addEventListener('resize', this.handleResize.bind(this))
+  }
+
+  handleResize() {
+    const activeTab = this.elements.tabItems.find(tab =>
+      tab.classList.contains('is-active')
+    )
+    if (activeTab) {
+      this.scrollToTab(activeTab)
+    }
   }
 
   activateFirstTab() {
-    const firstTab = this.elements.tabItems[0]
+    const firstTab = this.elements.tabItems[5]
     if (!firstTab) return
 
     const targetId = firstTab.dataset.target
