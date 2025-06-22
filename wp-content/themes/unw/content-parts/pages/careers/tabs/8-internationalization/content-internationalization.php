@@ -1,21 +1,21 @@
 <?php
 $countries = [
-  ['name' => 'Spain',       'file' => '1.svg'],
-  ['name' => 'Mexico',      'file' => '2.svg'],
-  ['name' => 'Colombia',    'file' => '3.svg'],
-  ['name' => 'Chile',       'file' => '4.svg'],
-  ['name' => 'Italy',       'file' => '5.svg'],
-  ['name' => 'Brazil',      'file' => '6.svg'],
-  ['name' => 'Costa Rica',  'file' => '7.svg'],
-  ['name' => 'Ecuador',     'file' => '8.svg'],
-  ['name' => 'Spain',       'file' => '1.svg'],
-  ['name' => 'Mexico',      'file' => '2.svg'],
-  ['name' => 'Colombia',    'file' => '3.svg'],
-  ['name' => 'Chile',       'file' => '4.svg'],
-  ['name' => 'Italy',       'file' => '5.svg'],
-  ['name' => 'Brazil',      'file' => '6.svg'],
-  ['name' => 'Costa Rica',  'file' => '7.svg'],
-  ['name' => 'Ecuador',     'file' => '8.svg'],
+  ['name' => 'Spain',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/1.svg'],
+  ['name' => 'Mexico',      'file' => get_template_directory_uri() . '/upload/home/international-agreements/2.svg'],
+  ['name' => 'Colombia',    'file' => get_template_directory_uri() . '/upload/home/international-agreements/3.svg'],
+  ['name' => 'Chile',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/4.svg'],
+  ['name' => 'Italy',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/5.svg'],
+  ['name' => 'Brazil',      'file' => get_template_directory_uri() . '/upload/home/international-agreements/6.svg'],
+  ['name' => 'Costa Rica',  'file' => get_template_directory_uri() . '/upload/home/international-agreements/7.svg'],
+  ['name' => 'Ecuador',     'file' => get_template_directory_uri() . '/upload/home/international-agreements/8.svg'],
+  ['name' => 'Spain',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/1.svg'],
+  ['name' => 'Mexico',      'file' => get_template_directory_uri() . '/upload/home/international-agreements/2.svg'],
+  ['name' => 'Colombia',    'file' => get_template_directory_uri() . '/upload/home/international-agreements/3.svg'],
+  ['name' => 'Chile',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/4.svg'],
+  ['name' => 'Italy',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/5.svg'],
+  ['name' => 'Brazil',      'file' => get_template_directory_uri() . '/upload/home/international-agreements/6.svg'],
+  ['name' => 'Costa Rica',  'file' => get_template_directory_uri() . '/upload/home/international-agreements/7.svg'],
+  ['name' => 'Ecuador',     'file' => get_template_directory_uri() . '/upload/home/international-agreements/8.svg'],
 ];
 ?>
 
@@ -61,18 +61,21 @@ $countries = [
         </div>
 
         <!-- Lista de países -->
-        <ul class="internationalization__countries">
-          <?php foreach ($countries as $country): ?>
-            <li class="internationalization__country-item">
-              <article class="internationalization__country-card">
-                <img width="80" height="80"
-                  src="<?php echo get_template_directory_uri(); ?>/upload/home/international-agreements/<?php echo $country['file']; ?>"
-                  alt="Bandera de <?php echo esc_attr($country['name']); ?>" class="internationalization__country-flag" />
-                <p class="internationalization__country-name"><?php echo esc_html($country['name']); ?></p>
-              </article>
-            </li>
-          <?php endforeach; ?>
-        </ul>
+        <div class="international-agreements">
+          <div class="swiper-container internationalization-swiper">
+            <ul class="swiper-wrapper">
+              <?php foreach ($countries as $country): ?>
+                <li class="swiper-slide internationalization__country-item">
+                  <?php
+                  get_template_part(COMMON_CONTENT_PATH, 'country-card', array(
+                    'country' => $country
+                  ));
+                  ?>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>

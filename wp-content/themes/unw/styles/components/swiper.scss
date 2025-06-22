@@ -84,3 +84,16 @@
   }
 }
 
+.international-agreements {
+  .swiper-wrapper {
+    transition-timing-function: linear !important;
+  }
+
+  .swiper-container {
+    .swiper-slide {
+      width: auto;
+      height: auto;
+      padding: rem(6) 0;
+    }
+  }
+}

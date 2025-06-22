@@ -104,27 +104,12 @@
   @include description-18;
 }
 
-.internationalization__countries {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(rem(124), 1fr));
-  gap: rem(24);
-}
+.internationalization-swiper {
+  padding-inline: rem(20);
+  margin-inline: rem(-20);
 
-.internationalization__country-card {
-  width: rem(124);
-  background-color: var(--color-white);
-  border-radius: rem(24);
-  padding: rem(24) 0;
-  text-align: center;
-  box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.25);
-}
-
-.internationalization__country-flag {
-  width: rem(80);
-  height: rem(80);
-  margin: 0 auto rem(16);
-}
-
-.internationalization__country-name {
-  @include title-18;
+  @include media(">=tablet") {
+    padding-inline: rem(44);
+    margin-inline: rem(-44);
+  }
 }
