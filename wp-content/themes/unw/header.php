@@ -73,7 +73,7 @@
     --color-dove-gray: #616161;
     --color-dodger-blue: #1C92F4;
     --color-burnt-sienna: #E67E3F;
-    --color-tory-blue: ##0F56A8;
+    --color-tory-blue: #0F56A8;
 
 
   }

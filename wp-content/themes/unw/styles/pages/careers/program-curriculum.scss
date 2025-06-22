@@ -4,46 +4,72 @@
 
   @include media(">=tablet") {
     padding-top: rem(88);
-    padding-bottom: rem(80);
+    padding-bottom: rem(98);
   }
 }
 
 .program-curriculum__title {
-  @include title-36;
+  @include title-28;
   margin-bottom: rem(24);
+
+  @include media(">=tablet") {
+    @include title-36;
+  }
 }
 
-.program-curriculum__description-wrapper {
-  display: flex;
-  gap: rem(20);
-}
 .program-curriculum__description {
+  columns: 1;
+
+  @include media(">=phone") {
+    columns: 2;
+    gap: rem(24);
+  }
+
+  @include media(">=tablet") {
+    max-width: rem(808);
+  }
+
+  p:not(:last-child) {
+    margin-bottom: rem(16);
+  }
+
   a {
     color: var(--color-black);
     text-decoration: underline;
   }
 }
+
 .program-curriculum__header {
-  margin-bottom: rem(58);
+  margin-bottom: rem(24);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(58);
+  }
+}
+
+.program-curriculum__cycles-list {
+}
+
+.program-curriculum__cycles-item {
+  width: rem(266);
+  height: 100%;
 }
 
 .cycle-card {
   border-radius: rem(20);
   border: 1px solid var(--color-secondary-grey);
-}
-.program-curriculum__cycles-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-
-  gap: rem(16);
+  height: 100%;
 }
 
 .cycle-card__wrapper {
   padding: rem(16) rem(12);
+  height: 100%;
 }
+
 .cycle-card__header {
-  margin-bottom: rem(30);
+  margin-bottom: rem(28);
 }
+
 .cycle-card__item {
   display: flex;
   align-items: center;
@@ -57,8 +83,24 @@
   margin-left: rem(8);
   flex: 1;
 }
+
+.cycle-card__course-icon {
+  height: rem(16);
+  width: auto;
+}
+
 .program-curriculum__footer {
-  padding: rem(24) 0;
+  padding-top: rem(24);
   display: flex;
   justify-content: center;
+
+  a {
+    @include media("<phone-576") {
+      width: 100%;
+    }
+  }
+
+  svg {
+    padding: rem(3) rem(4.5);
+  }
 }
