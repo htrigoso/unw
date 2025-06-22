@@ -36,7 +36,7 @@ $countries = [
           <h3 class="internationalization__highlight-subtitle">
             Somos la única Universidad Peruana potenciada por
           </h3>
-          <img class="internationalization__highlight-logo" width="247" height="72"
+          <img class="internationalization__highlight-logo" height="72"
             src="<?php echo get_template_directory_uri(); ?>/upload/careers/asu.png" alt="">
         </div>
         <div class="internationalization__highlight-description">
@@ -52,23 +52,25 @@ $countries = [
 
       <!-- Convenios internacionales -->
       <div class="internationalization__agreements">
-        <h3 class="internationalization__agreements-title">+95 Convenios internacionales</h3>
-        <p class="internationalization__agreements-description">
-          Contamos con Convenios Universitarios para promover intercambios y posibilidades de un desarrollo académico
-          internacional.
-        </p>
+        <div class="internationalization__agreements-header">
+          <h3 class="internationalization__agreements-title">+95 Convenios internacionales</h3>
+          <p class="internationalization__agreements-description">
+            Contamos con Convenios Universitarios para promover intercambios y posibilidades de un desarrollo académico
+            internacional.
+          </p>
+        </div>
 
         <!-- Lista de países -->
         <ul class="internationalization__countries">
           <?php foreach ($countries as $country): ?>
-          <li class="internationalization__country-item">
-            <article class="internationalization__country-card">
-              <img width="80" height="80"
-                src="<?php echo get_template_directory_uri(); ?>/upload/home/international-agreements/<?php echo $country['file']; ?>"
-                alt="Bandera de <?php echo esc_attr($country['name']); ?>" class="internationalization__country-flag" />
-              <p class="internationalization__country-name"><?php echo esc_html($country['name']); ?></p>
-            </article>
-          </li>
+            <li class="internationalization__country-item">
+              <article class="internationalization__country-card">
+                <img width="80" height="80"
+                  src="<?php echo get_template_directory_uri(); ?>/upload/home/international-agreements/<?php echo $country['file']; ?>"
+                  alt="Bandera de <?php echo esc_attr($country['name']); ?>" class="internationalization__country-flag" />
+                <p class="internationalization__country-name"><?php echo esc_html($country['name']); ?></p>
+              </article>
+            </li>
           <?php endforeach; ?>
         </ul>
       </div>

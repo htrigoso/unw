@@ -10,6 +10,13 @@
   line-height: normal;
 }
 
+@mixin description-18 {
+  font-size: rem(18);
+  font-weight: var(--font-regular);
+  line-height: normal;
+}
+
+
 @mixin description-32 {
   font-size: rem(32);
   font-weight: var(--font-regular);
