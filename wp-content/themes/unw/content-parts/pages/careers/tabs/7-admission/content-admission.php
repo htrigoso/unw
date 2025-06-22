@@ -13,7 +13,7 @@ $infra_list = [
   [
     'name' => 'Beca 18',
     'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-     'button' => 'Ir a Beca 18',
+    'button' => 'Ir a Beca 18',
   ],
   [
     'name' => 'Admisión Extraordinaria',
@@ -27,36 +27,52 @@ $infra_list = [
 
     <!-- Header -->
     <header class="admission__header">
-      <h2 id="admission-title" class="admission__title">Proceso de Admisión</h2>
-      <p class="admission__description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua.
-      </p>
+      <div class="admission__header-content">
+        <h2 id="admission-title" class="admission__title">Proceso de Admisión</h2>
+        <p class="admission__description">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.
+        </p>
+      </div>
+      <div class="admission__header-ad">
+        <div class="admission__header-ad__title">
+          <span>Admisión</span>
+        </div>
+        <div class="admission__header-ad__date">
+          <span class="admission__header-ad__date--day">24</span>
+          <span class="admission__header-ad__date--month">MAYO</span>
+        </div>
+      </div>
     </header>
 
     <!-- Content -->
     <div class="admission__content">
-      <ul class="admission__list">
-        <?php foreach ($infra_list as $infra): ?>
-        <li class="admission__item">
-          <article class="admission-card">
-            <div class="admission-card__content">
-              <div class="admission-card__header">
-                <h3 class="admission-card__title"><?php echo $infra['name']; ?></h3>
-                <p class="admission-card__paragraph"><?php echo $infra['description']; ?></p>
-              </div>
-              <div class="admission-card__footer">
-                <a href="" class="btn btn-primary-outline-small"><?php echo $infra['button']; ?> <svg width="16"
-                    height="14" fill="none">
-                    <use xlink:href="#arrow-right"></use>
-                  </svg></a>
-              </div>
-            </div>
+      <div class="post-swiper-desktop">
+        <div class="swiper-container">
+          <ul class="swiper-wrapper admission__list">
+            <?php foreach ($infra_list as $infra): ?>
+              <li class="swiper-slide admission__item">
+                <article class="admission-card">
+                  <div class="admission-card__content">
+                    <div class="admission-card__header">
+                      <h3 class="admission-card__title"><?php echo $infra['name']; ?></h3>
+                      <p class="admission-card__paragraph"><?php echo $infra['description']; ?></p>
+                    </div>
+                    <div class="admission-card__footer">
+                      <a href="" class="btn btn-primary-outline-small"><?php echo $infra['button']; ?> <svg width="16"
+                          height="14" fill="none">
+                          <use xlink:href="#arrow-right"></use>
+                        </svg></a>
+                    </div>
+                  </div>
 
-          </article>
-        </li>
-        <?php endforeach; ?>
-      </ul>
+                </article>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
     </div>
 
   </div>

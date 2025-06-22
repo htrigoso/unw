@@ -56,17 +56,18 @@
       border-color: var(--color-light-turquoise);
     }
   }
+
   &-primary-outline-small {
     background-color: var(--color-light-turquoise);
     color: var(--color-black);
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--color-black);
     padding: rem(8.67) rem(15);
     border-radius: rem(64);
     &:hover,
     &:focus {
       background-color: var(--color-light-turquoise);
       color: var(--color-black);
-      border-color: var(--color-black);
+      border-color: var(--color-primary);
     }
   }
 

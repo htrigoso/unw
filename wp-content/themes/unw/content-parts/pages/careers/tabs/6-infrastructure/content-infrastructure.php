@@ -3,7 +3,7 @@ $infra_list = [
   [
     'name' => 'Laboratorio de Microbiología:',
     'photo' => get_template_directory_uri() . '/upload/careers/infra/infra-1.jpg',
-    'description' => 'Interpretación de Análisis Clínicos. Interpretación de Análisis Clínicos. Interpretación de Análisis Clínicos. Interpretación de Análisis Clínicos. Interpretación de Análisis Clínicos.​',
+    'description' => 'Interpretación de Análisis Clínicos.​',
   ],
   [
     'name' => 'Laboratorio de Farmacognosia y Farmacobotánica.',
