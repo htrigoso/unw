@@ -8,9 +8,9 @@ services:
     volumes:
       - conf:/etc/nginx/conf.d
       - html:/usr/share/nginx/html
-      - "./custom_proxy_settings.conf:/etc/nginx/conf.d/custom_proxy_settings.conf"
+      - ./custom_proxy_settings.conf:/etc/nginx/conf.d/custom_proxy_settings.conf
       - ../CERTIFICADO:/etc/nginx/certs:ro
-     
+      
   db:
     image: mariadb:10.4.28
     container_name: unw-db
