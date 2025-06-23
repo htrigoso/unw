@@ -98,7 +98,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', __DIR__ . '/' );
 }
 
+
+
 /* HTTPS Support */
+
+define('WP_HOME','https://qa.uwiener.edu.pe');
+define('WP_SITEURL','https://qa.uwiener.edu.pe');
+
 if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
     $_SERVER['HTTPS'] = 'on';
 }
