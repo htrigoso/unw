@@ -101,13 +101,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 /* HTTPS Support */
-
 define('WP_HOME','https://qa.uwiener.edu.pe');
 define('WP_SITEURL','https://qa.uwiener.edu.pe');
-
-if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
-    $_SERVER['HTTPS'] = 'on';
-}
+$_SERVER['HTTPS'] = 'on';
 
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
