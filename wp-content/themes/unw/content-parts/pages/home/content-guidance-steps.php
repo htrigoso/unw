@@ -1,5 +1,5 @@
 <section class="guidance-steps">
-  <div class="x-container">
+  <div class="x-container x-container--pad-213">
     <div class="guidance-steps__wrapper">
 
       <h2 class="guidance-steps__title">Te acompañamos en todo momento.</h2>

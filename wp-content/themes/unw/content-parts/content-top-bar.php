@@ -1,5 +1,5 @@
 <section class="top-bar">
-  <div class="x-container top-bar__wrapper">
+  <div class="x-container x-container--pad-64 top-bar__wrapper">
 
     <div class="top-bar__left">
       <ul class="top-bar__menu">

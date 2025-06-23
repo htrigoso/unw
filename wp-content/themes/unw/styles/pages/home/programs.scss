@@ -1,8 +1,10 @@
 .programs__wrapper {
-  padding: rem(40) 0 rem(32) 0;
+  padding-top: rem(40);
+  padding-bottom: rem(32);
 
   @include media(">=tablet") {
-    padding: rem(52) rem(102) rem(52) rem(102);
+    padding-top: rem(52);
+    padding-bottom: rem(52);
   }
 }
 

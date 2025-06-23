@@ -70,7 +70,7 @@ $featured_events = [
 ?>
 
 <section class="featured-events">
-  <div class="x-container">
+  <div class="x-container x-container--pad-213">
     <div class="featured-events__wrapper">
       <h2 class="featured-events__title">Eventos Destacados</h2>
       <div class="post-swiper featured-events__swiper">
@@ -117,9 +117,10 @@ $featured_events = [
       </div>
       <div class="featured-events__see-more-btn">
         <?php
-        set_query_var('see_more_text', 'Ver todos los eventos');
-        set_query_var('see_more_href', '#');
-        get_template_part('content-parts/components/ui/content', 'see-more-btn');
+        get_template_part(COMMON_CONTENT_PATH, 'see-more-btn', array(
+          'text'  => 'Ver todos los eventos',
+          'href'  => '#',
+        ));
         ?>
       </div>
     </div>

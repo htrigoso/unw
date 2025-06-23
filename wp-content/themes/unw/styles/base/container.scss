@@ -1,0 +1,39 @@
+.x-container {
+  max-width: 1440px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-inline: rem(16);
+  position: relative;
+  z-index: 1;
+
+  @include media(">=phone") {
+    padding-inline: rem(24);
+  }
+
+  @include media(">=tablet") {
+    padding-inline: rem(111);
+  }
+}
+
+.x-container--pad-64 {
+  @include media(">=tablet") {
+    padding-inline: rem(64);
+  }
+}
+.x-container--pad-213 {
+  @include media(">=tablet") {
+    padding-inline: rem(213);
+  }
+}
+
+.x-container-fluid {
+  max-width: 1920px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-inline: rem(100);
+  padding-left: rem(100);
+  padding-right: rem(100);
+  position: relative;
+}

@@ -15,7 +15,6 @@
   gap: rem(32);
 
   @include media(">=tablet") {
-    padding: 0 rem(64);
     height: rem(64);
   }
 }

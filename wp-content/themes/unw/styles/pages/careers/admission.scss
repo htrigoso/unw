@@ -1,0 +1,143 @@
+.admission__wrapper {
+  padding-top: rem(32);
+  padding-bottom: rem(20);
+
+  @include media(">=tablet") {
+    padding-top: rem(88);
+    padding-bottom: rem(105);
+  }
+}
+
+.admission__header {
+  margin-bottom: rem(20);
+  display: flex;
+  flex-direction: column-reverse;
+  gap: rem(56);
+
+  @include media(">=phone") {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  @include media(">=tablet") {
+    margin-bottom: rem(45);
+  }
+}
+
+.admission__header-content {
+  @include media(">=phone") {
+    width: 100%;
+  }
+}
+
+.admission__title {
+  @include title-28;
+  margin-bottom: rem(20);
+
+  @include media(">=tablet") {
+    @include title-36;
+    margin-bottom: rem(24);
+  }
+}
+
+.admission__description {
+  max-width: rem(390);
+}
+
+.admission__header-ad {
+  background-color: var(--color-turquoise-three);
+  border-radius: rem(16);
+  padding: rem(20);
+  height: rem(152);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+
+  @include media(">=phone-576") {
+    flex-direction: row;
+    height: rem(122);
+  }
+
+  @include media(">=desktop-s") {
+    max-width: rem(391);
+  }
+}
+
+.admission__header-ad__title {
+  color: var(--color-white);
+  @include title-28;
+  display: flex;
+
+  span {
+    display: block;
+    margin-top: auto;
+  }
+}
+
+.admission__header-ad__date {
+  color: var(--color-white);
+}
+
+.admission__header-ad__date--day {
+  @include title-60;
+  display: block;
+  line-height: rem(44);
+
+  @include media(">=phone-576") {
+    line-height: rem(50);
+  }
+}
+
+.admission__header-ad__date--month {
+  @include title-22;
+}
+
+.admission__list {
+  @include media("<phone") {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: rem(16);
+  }
+}
+
+.admission-card {
+  border: 1px solid var(--color-primary);
+  border-radius: rem(20);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--color-light-turquoise);
+
+  @include media(">=phone") {
+    width: rem(305);
+    min-height: rem(264);
+  }
+}
+
+.admission-card__content {
+  flex-grow: 1;
+  padding: rem(20) rem(16);
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 0 rem(20) rem(20);
+}
+
+.admission-card__header {
+  margin-bottom: rem(24);
+}
+
+.admission-card__title {
+  @include title-22;
+  margin-bottom: rem(12);
+}
+
+.admission-card__paragraph {
+  color: var(--color-black);
+}
+
+.admission-card__footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+}

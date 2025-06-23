@@ -11,7 +11,7 @@ require_once dirname(__FILE__) . '/functions/register-option-page.php';
 require_once dirname(__FILE__) . '/functions/tpl-functions.php';
 
 // require custom post types
-require_once dirname(__FILE__) . '/post-types/cpt-project.php';
+require_once dirname(__FILE__) . '/post-types/cpt-carriers.php';
 
 // require menu walkers
 // require head

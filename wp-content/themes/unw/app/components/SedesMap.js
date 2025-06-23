@@ -2,7 +2,7 @@ import Component from '../classes/Component'
 import each from 'lodash/each'
 
 export default class SedesMap extends Component {
-  constructor ({ element, sectionEl }) {
+  constructor({ element, sectionEl }) {
     super({
       element,
       elements: {
@@ -17,9 +17,9 @@ export default class SedesMap extends Component {
     this.createMap()
   }
 
-  createMap () {
+  createMap() {
     const mql = window.matchMedia('(max-width: 1023px)')
-    let removeEvents = () => {}
+    let removeEvents = () => { }
 
     const setUpMap = (matches) => {
       const media = matches ? 'is-mobile' : 'is-desktop'
@@ -48,7 +48,7 @@ export default class SedesMap extends Component {
   /**
    * Set position x and y for card-map from all markers
    */
-  createMarkers () {
+  createMarkers() {
     const listeners = []
     each(this.markers, marker => {
       const index = parseInt(marker.getAttribute('data-facility'))
@@ -69,7 +69,7 @@ export default class SedesMap extends Component {
    * @param {HTMLElement} card
    * @returns
    */
-  showLocation (marker, card) {
+  showLocation(marker, card) {
     if (marker.classList.contains('is-active')) {
       return
     }
@@ -97,7 +97,7 @@ export default class SedesMap extends Component {
    * @param {HTMLElement} card
    * @returns
    */
-  updateCardPosition (marker, card) {
+  updateCardPosition(marker, card) {
     const cardArrow = card.querySelector('.card-map__arrow')
     const clientRectMarker = marker.getBoundingClientRect()
     const cardWidth = card.clientWidth
@@ -131,7 +131,7 @@ export default class SedesMap extends Component {
     cardArrow.classList.add(arrowPosition)
   }
 
-  getPosition ({ top, left, right, width }) {
+  getPosition({ top, left, right, width }) {
     const clientRectMap = this.element.getBoundingClientRect()
     const clientRectSection = this.sectionEl.getBoundingClientRect()
 
