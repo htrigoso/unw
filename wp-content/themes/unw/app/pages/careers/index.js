@@ -11,7 +11,7 @@ import InternationalSwiper from '../../components/InternationalSwiper'
 
   PostSwiper('.post-swiper')
   PostSwiperDesktop('.post-swiper-desktop')
-  InternationalSwiper()
+  InternationalSwiper('.internationalization')
 
   const tabsElement = document.querySelector('.tabs')
   if (tabsElement) {

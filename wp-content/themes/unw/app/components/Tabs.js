@@ -22,7 +22,7 @@ export default class Tabs extends Component {
   }
 
   handleResize() {
-    const activeTab = this.elements.tabItems.find(tab =>
+    const activeTab = [...this.elements.tabItems].find(tab =>
       tab.classList.contains('is-active')
     )
     if (activeTab) {
