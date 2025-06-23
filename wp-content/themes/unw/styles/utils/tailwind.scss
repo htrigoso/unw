@@ -482,11 +482,14 @@
 }
 
 .dot {
-  width: rem(13);
-  height: rem(13);
+  width: rem(14);
+  height: rem(14);
+  min-width: rem(14);
+  min-height: rem(14);
+  margin: rem(1);
   display: block;
   background-color: var(--color-black);
-  border-radius: 50%;
+  border-radius: 999px;
 }
 
 .dot--purple {

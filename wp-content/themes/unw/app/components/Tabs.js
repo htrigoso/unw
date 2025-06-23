@@ -18,10 +18,20 @@ export default class Tabs extends Component {
   init() {
     this.activateFirstTab()
     this.bindTabEvents()
+    window.addEventListener('resize', this.handleResize.bind(this))
+  }
+
+  handleResize() {
+    const activeTab = [...this.elements.tabItems].find(tab =>
+      tab.classList.contains('is-active')
+    )
+    if (activeTab) {
+      this.scrollToTab(activeTab)
+    }
   }
 
   activateFirstTab() {
-    const firstTab = this.elements.tabItems[4]
+    const firstTab = this.elements.tabItems[0]
     if (!firstTab) return
 
     const targetId = firstTab.dataset.target
@@ -80,9 +90,10 @@ export default class Tabs extends Component {
 
   scrollToTab(tab) {
     requestAnimationFrame(() => {
+      const isWide = window.innerWidth >= 1440
       tab.scrollIntoView({
         behavior: 'smooth',
-        inline: 'center',
+        inline: isWide ? 'nearest' : 'center',
         block: 'nearest'
       })
     })

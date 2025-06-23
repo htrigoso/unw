@@ -1,64 +1,84 @@
 .teaching-staff__header {
-  margin-bottom: rem(53);
+  margin-bottom: rem(16);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(45);
+  }
 }
+
 .teaching-staff__wrapper {
   padding-top: rem(44);
-  padding-bottom: rem(24);
+  padding-bottom: rem(108);
 
   @include media(">=tablet") {
     padding-top: rem(88);
-    padding-bottom: rem(80);
+    padding-bottom: rem(134);
   }
 }
 
 .teaching-staff__title {
-  @include title-36;
-  margin-bottom: rem(24);
+  @include title-28;
+  margin-bottom: rem(16);
+
+  @include media(">=tablet") {
+    @include title-36;
+    margin-bottom: rem(24);
+  }
 }
 
-.teaching-staff__list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: rem(32);
-
-  > .teaching-staff__card {
-    display: flex;
-  }
+.teaching-staff__description {
+  max-width: rem(390);
 }
 
 .teacher-card {
   border: 1px solid var(--color-primary);
+  overflow: hidden;
   border-radius: rem(20);
+  width: rem(307);
+  min-width: rem(307);
+  max-width: rem(307);
+  height: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
+
 .teacher-card__header {
   margin-top: rem(8);
+
   img {
     margin: 0 auto;
+    height: rem(128);
   }
 }
 
 .teacher-card__content {
-  flex-grow: 1;
+  flex: 1;
   background-color: var(--color-light-turquoise);
-  padding: rem(20) rem(16);
+  padding: rem(20) rem(16) rem(24);
   display: flex;
   flex-direction: column;
-  border-radius: 0 0 rem(20) rem(20);
+}
+
+.teacher-card__name {
+  margin-bottom: rem(4);
+  @include title-20;
+}
+
+.teacher-card__role {
+  margin-bottom: rem(20);
+  font-weight: var(--font-bold);
+  color: var(--color-turquoise-three);
 }
 
 .teacher-card__details {
   list-style-type: disc;
   padding-left: rem(16);
 }
+
 .teacher-card__details__item {
   list-style-type: disc;
-}
-.teacher-card__name {
-  margin-bottom: rem(4);
-}
-.teacher-card__role {
-  margin-bottom: rem(20);
+
+  &::marker {
+    font-size: 0.5em;
+  }
 }

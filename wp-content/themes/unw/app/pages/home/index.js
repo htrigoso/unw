@@ -1,7 +1,7 @@
 import HeroSwiper from '../../components/HeroSwiper'
 import PostSwiper from '../../components/PostSwiper'
+import InternationalSwiper from '../../components/InternationalSwiper'
 import { CursorMove } from '../../functions/cursor-move'
-import InternationalSwiper from './InternationalSwiper'
 
 (function () {
   CursorMove()

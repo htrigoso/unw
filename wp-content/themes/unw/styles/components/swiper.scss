@@ -39,7 +39,7 @@
       margin-inline: rem(-213);
     }
 
-    @media (min-width: 1440px) {
+    @include media(">=desktop") {
       padding-inline: calc((100vw - 1014px) / 2 + 213px);
       margin-inline: calc(-1 * ((100vw - 1014px) / 2 + 213px));
     }
@@ -61,6 +61,39 @@
 
     @include media("<phone") {
       display: none;
+    }
+  }
+}
+
+.post-swiper-desktop {
+  @extend .post-swiper;
+
+  @include media("<phone") {
+    .swiper-wrapper {
+      display: block;
+      transform: none;
+    }
+
+    .swiper-slide {
+      margin-right: 0 !important;
+    }
+
+    .swiper-pagination {
+      display: none;
+    }
+  }
+}
+
+.international-agreements {
+  .swiper-wrapper {
+    transition-timing-function: linear !important;
+  }
+
+  .swiper-container {
+    .swiper-slide {
+      width: auto;
+      height: auto;
+      padding: rem(6) 0;
     }
   }
 }
