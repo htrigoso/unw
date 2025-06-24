@@ -26,11 +26,5 @@
       ...
     </div>
   </div>
-  <div class="move-cursor">
-    <div>
-      <div class="move-cursor__circle"></div>
-      <div class="move-cursor__triangle"></div>
-      <div class="move-cursor__triangle"></div>
-    </div>
-  </div>
+
 </section>

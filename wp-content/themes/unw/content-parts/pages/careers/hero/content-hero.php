@@ -17,12 +17,13 @@ $hero_images = [
   <div class="swiper-container is-draggable">
     <div class="swiper-wrapper swiper-hero__wrapper">
       <?php foreach ($hero_images as $img): ?>
-        <div class="swiper-slide swiper-hero__slide">
-          <picture class="swiper-hero__picture">
-            <source srcset="<?php echo $img['desktop']; ?>" media="(min-width: 768px)" />
-            <img src="<?php echo $img['mobile']; ?>" alt="<?php echo esc_attr($img['alt']); ?>" class="swiper-hero__picture--img" />
-          </picture>
-        </div>
+      <div class="swiper-slide swiper-hero__slide">
+        <picture class="swiper-hero__picture">
+          <source srcset="<?php echo $img['desktop']; ?>" media="(min-width: 768px)" />
+          <img src="<?php echo $img['mobile']; ?>" alt="<?php echo esc_attr($img['alt']); ?>"
+            class="swiper-hero__picture--img" />
+        </picture>
+      </div>
       <?php endforeach; ?>
       <div class="hero__wrapper">
         <div class="x-container hero__container">
@@ -44,12 +45,5 @@ $hero_images = [
       </div>
     </div>
     <div class="swiper-pagination"></div>
-  </div>
-  <div class="move-cursor">
-    <div>
-      <div class="move-cursor__circle"></div>
-      <div class="move-cursor__triangle"></div>
-      <div class="move-cursor__triangle"></div>
-    </div>
   </div>
 </section>
