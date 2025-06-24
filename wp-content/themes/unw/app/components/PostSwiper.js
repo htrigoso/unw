@@ -1,6 +1,6 @@
 import Swiper from 'swiper/bundle'
 
-const PostSwiper = (sectionEl = '.posts') => {
+const PostSwiper = (sectionEl = '.post-swiper') => {
   return new Swiper(`${sectionEl} .swiper-container`, {
     loop: false,
     slidesPerView: 'auto',
@@ -9,6 +9,10 @@ const PostSwiper = (sectionEl = '.posts') => {
     pagination: {
       el: `${sectionEl} .swiper-pagination`,
       clickable: true
+    },
+    navigation: {
+      nextEl: `${sectionEl} .post-swiper-button-next`,
+      prevEl: `${sectionEl} .post-swiper-button-prev`
     },
     breakpoints: {
       576: {

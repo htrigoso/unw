@@ -60,9 +60,25 @@
   font-size: rem(16);
 }
 
-.last-news__see-more-btn {
+.last-news__swiper-navigation {
+  display: flex;
+  justify-content: center;
   margin-top: rem(16);
 
+  @include media(">=tablet") {
+    justify-content: space-between;
+  }
+
+  .swiper-navigation {
+    margin-top: 0 !important;
+
+    @include media("<tablet") {
+      display: none !important;
+    }
+  }
+}
+
+.last-news__see-more-btn {
   @include media(">=phone") {
     display: flex;
     justify-content: center;

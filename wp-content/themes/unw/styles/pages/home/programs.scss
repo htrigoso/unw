@@ -13,21 +13,11 @@
   margin-bottom: rem(24);
 }
 
-.programs__cards--mobile {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(rem(280), 1fr));
-  gap: rem(24);
-
-  @include media(">=phone") {
-    display: none;
-  }
-}
-
-.programs__cards--desktop {
-  display: none;
-
-  @include media(">=phone") {
-    display: block;
+.programs__cards {
+  @include media("<phone") {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(rem(280), 1fr));
+    gap: rem(24);
   }
 }
 
@@ -52,7 +42,6 @@
   @include media(">=phone") {
     height: rem(122);
   }
-
 }
 
 .programs__card--content {
@@ -82,6 +71,11 @@
   }
 
   .icon--arrow {
-    padding: rem(3);
+    display: none;
+
+    @include media(">=phone") {
+      display: block;
+      padding: rem(3);
+    }
   }
 }

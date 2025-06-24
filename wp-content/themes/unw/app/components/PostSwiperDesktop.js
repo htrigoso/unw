@@ -4,7 +4,7 @@ let swiperInstance = null
 
 const isTablet = () => window.innerWidth >= 768
 
-const PostSwiperDesktop = (sectionEl = '.posts') => {
+const PostSwiperDesktop = (sectionEl = '.post-swiper-desktop') => {
   const selector = `${sectionEl} .swiper-container`
 
   const init = () => {
@@ -17,6 +17,10 @@ const PostSwiperDesktop = (sectionEl = '.posts') => {
         pagination: {
           el: `${sectionEl} .swiper-pagination`,
           clickable: true
+        },
+        navigation: {
+          nextEl: `${sectionEl} .post-swiper-button-next`,
+          prevEl: `${sectionEl} .post-swiper-button-prev`
         },
         breakpoints: {
           576: {

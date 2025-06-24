@@ -10,7 +10,7 @@ import InternationalSwiper from '../../components/InternationalSwiper'
   HeroSwiper()
 
   PostSwiper('.post-swiper')
-  PostSwiperDesktop('.post-swiper-desktop')
+  PostSwiperDesktop()
   InternationalSwiper('.internationalization')
 
   const tabsElement = document.querySelector('.tabs')
