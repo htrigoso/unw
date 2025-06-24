@@ -37,7 +37,7 @@ $last_news = [
   <div class="x-container x-container--pad-213">
     <div class="last-news__wrapper">
       <h2 class="last-news__title">Últimas Noticias</h2>
-      <div class="post-swiper last-news__swiper">
+      <div class="post-swiper last-news-swiper last-news__swiper">
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <?php foreach ($last_news as $news): ?>
