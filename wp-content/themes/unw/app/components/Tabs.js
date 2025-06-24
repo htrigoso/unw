@@ -61,6 +61,16 @@ export default class Tabs extends Component {
     this.showTabContent(targetId)
     this.scrollToContent(targetContent)
     this.scrollToTab(tab)
+
+    // Update Swiper instances to prevent layout issues
+    setTimeout(() => {
+      const swipers = targetContent.querySelectorAll('.swiper-container')
+      swipers.forEach(container => {
+        if (container.swiper && typeof container.swiper.update === 'function') {
+          container.swiper.update()
+        }
+      })
+    }, 100)
   }
 
   setActiveTab(activeTab) {

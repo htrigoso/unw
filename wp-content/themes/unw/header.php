@@ -75,7 +75,8 @@
     --color-burnt-sienna: #E67E3F;
     --color-tory-blue: #0F56A8;
 
-
+    --swiper-prev-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-left.svg');
+  --swiper-next-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-right.svg');
   }
   </style>
 
