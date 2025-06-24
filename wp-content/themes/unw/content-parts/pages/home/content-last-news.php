@@ -61,17 +61,24 @@ $last_news = [
               </div>
             <?php endforeach; ?>
           </div>
-          <div class="swiper-pagination"></div>
+        </div>
+        <div class="last-news__swiper-navigation">
+          <div class="swiper-navigation">
+            <div class="post-swiper-button-prev"></div>
+            <div class="post-swiper-button-next"></div>
+          </div>
+
+          <div class="last-news__see-more-btn">
+            <?php
+            get_template_part(COMMON_CONTENT_PATH, 'see-more-btn', array(
+              'text'  => 'Ver todas las noticias',
+              'href'  => '#',
+            ));
+            ?>
+          </div>
         </div>
       </div>
-      <div class="last-news__see-more-btn">
-        <?php
-        get_template_part(COMMON_CONTENT_PATH, 'see-more-btn', array(
-          'text'  => 'Ver todas las noticias',
-          'href'  => '#',
-        ));
-        ?>
-      </div>
+
     </div>
   </div>
 </section>

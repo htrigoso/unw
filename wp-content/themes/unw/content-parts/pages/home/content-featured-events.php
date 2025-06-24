@@ -112,16 +112,22 @@ $featured_events = [
               </div>
             <?php endforeach; ?>
           </div>
-          <div class="swiper-pagination"></div>
         </div>
-      </div>
-      <div class="featured-events__see-more-btn">
-        <?php
-        get_template_part(COMMON_CONTENT_PATH, 'see-more-btn', array(
-          'text'  => 'Ver todos los eventos',
-          'href'  => '#',
-        ));
-        ?>
+        <div class="featured-events__swiper-navigation">
+          <div class="swiper-navigation">
+            <div class="post-swiper-button-prev"></div>
+            <div class="post-swiper-button-next"></div>
+          </div>
+
+          <div class="featured-events__see-more-btn">
+            <?php
+            get_template_part(COMMON_CONTENT_PATH, 'see-more-btn', array(
+              'text'  => 'Ver todos las eventos',
+              'href'  => '#',
+            ));
+            ?>
+          </div>
+        </div>
       </div>
     </div>
   </div>

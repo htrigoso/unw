@@ -10,6 +10,10 @@ const PostSwiper = (sectionEl = '.posts') => {
       el: `${sectionEl} .swiper-pagination`,
       clickable: true
     },
+    navigation: {
+      nextEl: `${sectionEl} .post-swiper-button-next`,
+      prevEl: `${sectionEl} .post-swiper-button-prev`
+    },
     breakpoints: {
       576: {
         slidesPerView: 'auto',

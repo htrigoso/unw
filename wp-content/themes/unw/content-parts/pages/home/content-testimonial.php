@@ -49,7 +49,7 @@ $testimonials = [
   <div class="x-container x-container--pad-213">
     <div class="testimonial__wrapper">
       <h2 class="testimonial__title">Experiencias U. Wiener</h2>
-      <div class="post-swiper">
+      <div class="post-swiper switch-pagination-navigation">
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <?php foreach ($testimonials as $testimonial): ?>
@@ -63,6 +63,10 @@ $testimonials = [
             <?php endforeach; ?>
           </div>
           <div class="swiper-pagination"></div>
+        </div>
+        <div class="swiper-navigation">
+          <div class="post-swiper-button-prev"></div>
+          <div class="post-swiper-button-next"></div>
         </div>
       </div>
     </div>
