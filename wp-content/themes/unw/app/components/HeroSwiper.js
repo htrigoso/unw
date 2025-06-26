@@ -2,7 +2,7 @@ import Swiper from 'swiper/bundle'
 
 const HeroSwiper = (sectionEl = '.hero') => {
   return new Swiper(`${sectionEl} .swiper-container`, {
-    loop: false,
+    loop: true,
     slidesPerView: 1,
     centeredSlides: false,
     spaceBetween: 0,
@@ -13,7 +13,11 @@ const HeroSwiper = (sectionEl = '.hero') => {
     fadeEffect: {
       crossFade: true
     },
-    autoHeight: false
+    autoHeight: false,
+    pagination: {
+      el: `${sectionEl} .swiper-pagination`,
+      clickable: true
+    }
   })
 }
 

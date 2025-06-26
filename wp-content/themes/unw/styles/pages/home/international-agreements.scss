@@ -10,7 +10,8 @@
   padding: rem(28) 0;
 
   @include media(">=tablet") {
-    padding: rem(52) rem(102) rem(69);
+    padding-top: rem(52);
+    padding-bottom: rem(69);
   }
 }
 
@@ -34,16 +35,6 @@
   }
 }
 
-.international-agreements__items {
-  transition-timing-function: linear !important;
-}
-
-.international-agreements__item {
-  width: auto;
-  height: auto;
-  padding: rem(6) 0;
-}
-
 .international-agreements__title {
   @extend %title-28;
   color: var(--color-black);
@@ -61,23 +52,4 @@
   @include media(">=tablet") {
     margin-bottom: rem(24);
   }
-}
-
-.international-agreements__card {
-  width: rem(124);
-  background-color: var(--color-white);
-  border-radius: rem(24);
-  padding: rem(24) 0;
-  text-align: center;
-  box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.25);
-}
-
-.international-agreements__flag {
-  width: rem(80);
-  height: rem(80);
-  margin: 0 auto rem(16);
-}
-
-.international-agreements__country {
-  @include title-18;
 }

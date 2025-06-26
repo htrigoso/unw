@@ -1,8 +1,10 @@
 .programs__wrapper {
-  padding: rem(40) 0 rem(32) 0;
+  padding-top: rem(40);
+  padding-bottom: rem(32);
 
   @include media(">=tablet") {
-    padding: rem(52) rem(102) rem(52) rem(102);
+    padding-top: rem(52);
+    padding-bottom: rem(52);
   }
 }
 
@@ -11,21 +13,11 @@
   margin-bottom: rem(24);
 }
 
-.programs__cards--mobile {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(rem(280), 1fr));
-  gap: rem(24);
-
-  @include media(">=phone") {
-    display: none;
-  }
-}
-
-.programs__cards--desktop {
-  display: none;
-
-  @include media(">=phone") {
-    display: block;
+.programs__cards {
+  @include media("<phone") {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(rem(280), 1fr));
+    gap: rem(24);
   }
 }
 
@@ -50,7 +42,6 @@
   @include media(">=phone") {
     height: rem(122);
   }
-
 }
 
 .programs__card--content {
@@ -80,6 +71,11 @@
   }
 
   .icon--arrow {
-    padding: rem(3);
+    display: none;
+
+    @include media(">=phone") {
+      display: block;
+      padding: rem(3);
+    }
   }
 }

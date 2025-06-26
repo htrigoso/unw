@@ -27,7 +27,8 @@
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:domain" content="<?php echo home_url() ?>" />
   <meta name="twitter:title" property="og:title" itemprop="name" content="<?php the_title() ?>" />
-  <meta name="twitter:description" property="og:description" itemprop="description" content="Universidad Norbert Wiener, AVANZA+ en tu carrera profesional. Educación de calidad internacional, en alianza con Arizona State University. ¡Postula ya!" />
+  <meta name="twitter:description" property="og:description" itemprop="description"
+    content="Universidad Norbert Wiener, AVANZA+ en tu carrera profesional. Educación de calidad internacional, en alianza con Arizona State University. ¡Postula ya!" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="<?php echo UPLOAD_PATH; ?>/favicon/favicon.png">
   <!-- <link rel="manifest" href="<?php echo UPLOAD_PATH; ?>/favicon/site.webmanifest">
@@ -35,62 +36,80 @@
 
   <!-- Css vars-->
   <style type="text/css">
-    :root {
-      --font: "Founders Grotesk", sans-serif;
-      --font-size: 16px;
-      --font-thin: 100;
-      --font-extra-light: 200;
-      --font-light: 300;
-      --font-regular: 400;
-      --font-medium: 500;
-      --font-semi-bold: 600;
-      --font-bold: 700;
-      --font-extra-bold: 800;
-      --font-extra-black: 900;
-      --color-primary: #07C8CC;
-      --color-secondary: #07C8CC26;
-      --color-turquoise-one: #08E1E6;
-      --color-turquoise-two: #07C8CC;
-      --color-turquoise-three: #00877D;
-      --color-light-turquoise: #DAF7F7;
+  :root {
+    --font: "Founders Grotesk", sans-serif;
+    --font-size: 16px;
+    --font-thin: 100;
+    --font-extra-light: 200;
+    --font-light: 300;
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-semi-bold: 600;
+    --font-bold: 700;
+    --font-extra-bold: 800;
+    --font-extra-black: 900;
+    --color-primary: #07C8CC;
+    --color-secondary: #07C8CC26;
+    --color-turquoise-one: #08E1E6;
+    --color-turquoise-two: #07C8CC;
+    --color-turquoise-three: #00877D;
+    --color-light-turquoise: #DAF7F7;
 
-      --color-light-grey: #EEEEEE;
-      --color-secondary-grey: #D2D3D5;
-      --color-engineering: #FAC93D;
-      --color-cp: #00669E;
+    --color-light-grey: #EEEEEE;
+    --color-secondary-grey: #D2D3D5;
+    --color-engineering: #FAC93D;
+    --color-cp: #00669E;
 
-      --asu-brown: #8C1D43;
-      --asu-gold: #FFC627;
-      --asu-grey: #747474;
+    --color-asu-brown: #8C1D43;
+    --color-asu-gold: #FFC627;
+    --color-asu-grey: #747474;
 
-      --color-black: #000000;
-      --color-danger: #ee3f28;
-      --color-gray: #f2f1ed;
-      --color-mercury: #e8e8e8;
-      --color-white: #ffffff;
-    }
+    --color-black: #000000;
+    --color-danger: #ee3f28;
+    --color-gray: #f2f1ed;
+    --color-mercury: #e8e8e8;
+    --color-white: #ffffff;
+    --color-purple: #BB4E8E;
+    --color-dove-gray: #616161;
+    --color-dodger-blue: #1C92F4;
+    --color-burnt-sienna: #E67E3F;
+    --color-tory-blue: #0F56A8;
+
+    --swiper-prev-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-left.svg');
+  --swiper-next-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-right.svg');
+  }
   </style>
 
   <!-- Load fonts-->
   <!-- Load Founders Grotesk fonts -->
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Bold.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-BoldItalic.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Semibold.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-SemiboldItalic.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Medium.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-MediumItalic.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Regular.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-RegularItalic.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Light.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-LightItalic.woff2" rel="preload" as="font" type="font/woff2" crossorigin>
+  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Bold.woff2" rel="preload" as="font" type="font/woff2"
+    crossorigin>
+  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-BoldItalic.woff2" rel="preload" as="font"
+    type="font/woff2" crossorigin>
+  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Semibold.woff2" rel="preload" as="font"
+    type="font/woff2" crossorigin>
+  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-SemiboldItalic.woff2" rel="preload" as="font"
+    type="font/woff2" crossorigin>
+  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Medium.woff2" rel="preload" as="font"
+    type="font/woff2" crossorigin>
+  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-MediumItalic.woff2" rel="preload" as="font"
+    type="font/woff2" crossorigin>
+  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Regular.woff2" rel="preload" as="font"
+    type="font/woff2" crossorigin>
+  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-RegularItalic.woff2" rel="preload" as="font"
+    type="font/woff2" crossorigin>
+  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Light.woff2" rel="preload" as="font" type="font/woff2"
+    crossorigin>
+  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-LightItalic.woff2" rel="preload" as="font"
+    type="font/woff2" crossorigin>
   <script>
-    let doc = document.documentElement;
+  let doc = document.documentElement;
 
-    function calcVh() {
-      doc.style.setProperty('--vh', window.innerHeight + 'px');
-    }
-    window.addEventListener('resize', calcVh);
-    calcVh();
+  function calcVh() {
+    doc.style.setProperty('--vh', window.innerHeight + 'px');
+  }
+  window.addEventListener('resize', calcVh);
+  calcVh();
   </script>
   <?php wp_head(); ?>
 </head>

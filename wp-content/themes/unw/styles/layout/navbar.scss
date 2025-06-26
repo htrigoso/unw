@@ -6,6 +6,7 @@
 }
 
 .navbar__wrapper {
+  max-height: rem(64);
   position: relative;
   display: flex;
   align-items: center;
@@ -15,7 +16,6 @@
   gap: rem(32);
 
   @include media(">=tablet") {
-    padding: 0 rem(64);
     height: rem(64);
   }
 }
@@ -29,10 +29,10 @@
   }
 
   img {
-    width: rem(106);
+    width: rem(144);
     height: auto;
 
-    @include media(">=phone") {
+    @include media(">=tablet") {
       width: rem(101);
     }
   }

@@ -1,3 +1,29 @@
+%swiper-pagination {
+  display: flex;
+  justify-content: center;
+  position: static;
+  gap: rem(8);
+  margin-top: rem(8);
+
+  @include media(">=phone") {
+    margin-top: rem(16);
+    justify-content: flex-start;
+  }
+
+  .swiper-pagination-bullet {
+    margin: rem(12) 0 !important;
+    width: rem(18);
+    height: rem(3);
+    border-radius: 0;
+    background-color: var(--color-secondary-grey);
+    opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: var(--color-primary);
+  }
+}
+
 .post-swiper {
   .swiper-container {
     padding-inline: rem(16);
@@ -13,7 +39,7 @@
       margin-inline: rem(-213);
     }
 
-    @media (min-width: 1440px) {
+    @include media(">=desktop") {
       padding-inline: calc((100vw - 1014px) / 2 + 213px);
       margin-inline: calc(-1 * ((100vw - 1014px) / 2 + 213px));
     }
@@ -24,28 +50,121 @@
     }
   }
   .swiper-pagination {
-    display: flex;
-    justify-content: center;
-    position: static;
-    gap: rem(8);
-    margin-top: rem(8);
+    @extend %swiper-pagination;
+  }
+}
 
+.careers-hero-swiper {
+  .swiper-pagination {
+    @extend %swiper-pagination;
+    @extend .x-container;
+
+    @include media("<phone") {
+      display: none;
+    }
+  }
+}
+
+.post-swiper-desktop {
+  @extend .post-swiper;
+
+  @include media("<phone") {
+    .swiper-wrapper {
+      display: block;
+      transform: none;
+    }
+
+    .swiper-slide {
+      margin-right: 0 !important;
+    }
+
+    .swiper-pagination {
+      display: none;
+    }
+  }
+}
+
+.international-agreements {
+  .swiper-wrapper {
+    transition-timing-function: linear !important;
+  }
+
+  .swiper-container {
+    .swiper-slide {
+      width: auto;
+      height: auto;
+      padding: rem(6) 0;
+    }
+  }
+}
+
+.swiper-navigation {
+  display: flex;
+  gap: rem(16);
+  margin-top: rem(24);
+
+  .post-swiper-button-prev,
+  .post-swiper-button-next {
+    border-radius: 999px;
+    border: 1px solid var(--color-turquoise-three);
+    position: relative;
+    cursor: pointer;
+
+    &::before {
+      margin: rem(5);
+      content: "";
+      display: block;
+      width: 43px;
+      height: 43px;
+      background-color: var(--color-turquoise-three);
+      mask-repeat: no-repeat;
+      mask-position: center;
+      mask-size: contain;
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      -webkit-mask-size: contain;
+    }
+
+    &[aria-disabled="true"] {
+      opacity: 0.5;
+      pointer-events: none;
+      border-color: var(--color-secondary-grey);
+
+      &::before {
+        background-color: var(--color-secondary-grey);
+      }
+    }
+
+    &:not([aria-disabled="true"]):hover {
+      border-color: var(--color-turquoise-two);
+
+      &::before {
+        background-color: var(--color-turquoise-two);
+      }
+    }
+  }
+
+  .post-swiper-button-prev::before {
+    mask-image: var(--swiper-prev-icon);
+    -webkit-mask-image: var(--swiper-prev-icon);
+  }
+
+  .post-swiper-button-next::before {
+    mask-image: var(--swiper-next-icon);
+    -webkit-mask-image: var(--swiper-next-icon);
+  }
+}
+
+.switch-pagination-navigation {
+  .swiper-pagination {
     @include media(">=phone") {
-      margin-top: rem(16);
-      justify-content: flex-start;
+      display: none;
     }
+  }
 
-    .swiper-pagination-bullet {
-      margin: rem(12) 0 !important;
-      width: rem(18);
-      height: rem(3);
-      border-radius: 0;
-      background-color: var(--color-secondary-grey);
-      opacity: 1;
-    }
-
-    .swiper-pagination-bullet-active {
-      background-color: var(--color-primary);
+  .swiper-navigation {
+    @include media("<phone") {
+      display: none;
     }
   }
 }

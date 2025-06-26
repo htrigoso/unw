@@ -1,12 +1,16 @@
 .testimonial__wrapper {
-  padding: rem(32) 0 rem(32) 0;
+  padding-bottom: rem(24);
 
   @include media(">=tablet") {
-    padding: rem(60) rem(102) rem(60) rem(102);
+    padding-bottom: rem(67);
   }
 }
 
 .testimonial__title {
-  @include title-28;
-  margin-bottom: rem(24);
+  @include title-22;
+  margin-bottom: rem(16);
+
+  @include media(">=tablet") {
+    @include title-28;
+  }
 }

@@ -46,24 +46,27 @@ $testimonials = [
 ?>
 
 <section class="testimonial">
-  <div class="x-container">
+  <div class="x-container x-container--pad-213">
     <div class="testimonial__wrapper">
       <h2 class="testimonial__title">Experiencias U. Wiener</h2>
-      <div class="post-swiper">
+      <div class="post-swiper testimonial-swiper switch-pagination-navigation">
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <?php foreach ($testimonials as $testimonial): ?>
               <div class="swiper-slide">
-
-               <?php
-                  get_template_part(COMMON_CONTENT_PATH, 'testimonial', array(
-                    'testimonial' => $testimonial
-                  ));
-                  ?>
-               </div>
+                <?php
+                get_template_part(COMMON_CONTENT_PATH, 'testimonial-card', array(
+                  'testimonial' => $testimonial
+                ));
+                ?>
+              </div>
             <?php endforeach; ?>
           </div>
           <div class="swiper-pagination"></div>
+        </div>
+        <div class="swiper-navigation">
+          <div class="post-swiper-button-prev"></div>
+          <div class="post-swiper-button-next"></div>
         </div>
       </div>
     </div>

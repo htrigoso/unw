@@ -1,50 +1,110 @@
 import Component from '../classes/Component'
-import { $elements } from '../utils/dom'
 
 export default class Tabs extends Component {
   constructor({ element }) {
     super({
       element,
-      elements: {}
+      elements: {
+        tabItems: '.tab__item',
+        tabContents: '.tab__content'
+      }
     })
 
-    this.createTabs()
-    this.addEventClickTabs()
-    this.activateFirstTab() // Activar primero al inicio
+    this.currentTabId = null
+
+    this.init()
   }
 
-  createTabs() {
-    this.elements.tabItems = $elements('.tab__item')
-    this.elements.tabContents = $elements('.tab__content')
+  init() {
+    this.activateFirstTab()
+    this.bindTabEvents()
+    window.addEventListener('resize', this.handleResize.bind(this))
+  }
+
+  handleResize() {
+    const activeTab = [...this.elements.tabItems].find(tab =>
+      tab.classList.contains('is-active')
+    )
+    if (activeTab) {
+      this.scrollToTab(activeTab)
+    }
   }
 
   activateFirstTab() {
     const firstTab = this.elements.tabItems[0]
-    const targetId = firstTab.dataset.target
+    if (!firstTab) return
 
-    firstTab.classList.add('is-active')
+    const targetId = firstTab.dataset.target
+    this.currentTabId = targetId
+
+    this.setActiveTab(firstTab)
+    this.showTabContent(targetId)
+  }
+
+  bindTabEvents() {
+    this.elements.tabItems?.forEach(tab => {
+      tab.addEventListener('click', event => this.handleTabClick(event, tab))
+    })
+  }
+
+  handleTabClick(event, tab) {
+    event.preventDefault()
+
+    const targetId = tab.dataset.target
+    if (!targetId || this.currentTabId === targetId) return
+
+    const targetContent = document.getElementById(targetId)
+    if (!targetContent) return
+
+    this.currentTabId = targetId
+    this.setActiveTab(tab)
+    this.showTabContent(targetId)
+    this.scrollToContent(targetContent)
+    this.scrollToTab(tab)
+
+    // Update Swiper instances to prevent layout issues
+    setTimeout(() => {
+      const swipers = targetContent.querySelectorAll('.swiper-container')
+      swipers.forEach(container => {
+        if (container.swiper && typeof container.swiper.update === 'function') {
+          container.swiper.update()
+        }
+      })
+    }, 100)
+  }
+
+  setActiveTab(activeTab) {
+    this.elements.tabItems.forEach(tab =>
+      tab.classList.remove('is-active')
+    )
+    activeTab.classList.add('is-active')
+  }
+
+  showTabContent(targetId) {
     this.elements.tabContents.forEach(content => {
       content.style.display = content.id === targetId ? 'block' : 'none'
     })
   }
 
-  addEventClickTabs() {
-    this.elements.tabItems?.forEach(tab => {
-      tab.addEventListener('click', event => {
-        event.preventDefault()
+  scrollToContent(targetContent) {
+    requestAnimationFrame(() => {
+      const offset = 130
+      const top =
+        targetContent.getBoundingClientRect().top +
+        window.pageYOffset -
+        offset
 
-        const targetId = tab.dataset.target
+      window.scrollTo({ top, behavior: 'smooth' })
+    })
+  }
 
-        // Manejo de clase activa
-        this.elements.tabItems.forEach(item =>
-          item.classList.remove('is-active')
-        )
-        tab.classList.add('is-active')
-
-        // Mostrar solo el contenido correspondiente
-        this.elements.tabContents.forEach(content => {
-          content.style.display = content.id === targetId ? 'block' : 'none'
-        })
+  scrollToTab(tab) {
+    requestAnimationFrame(() => {
+      const isWide = window.innerWidth >= 1440
+      tab.scrollIntoView({
+        behavior: 'smooth',
+        inline: isWide ? 'nearest' : 'center',
+        block: 'nearest'
       })
     })
   }

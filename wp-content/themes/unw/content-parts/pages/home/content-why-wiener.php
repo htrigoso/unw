@@ -1,5 +1,5 @@
 <section class="why-wiener">
-  <div class="x-container">
+  <div class="x-container x-container--pad-213">
     <div class="why-wiener__wrapper">
       <h2 class="why-wiener__title">¿Por qué U. Wiener?</h2>
       <div class="why-wiener__items">

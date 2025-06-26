@@ -34,10 +34,10 @@ $last_news = [
 ?>
 
 <section class="last-news">
-  <div class="x-container">
+  <div class="x-container x-container--pad-213">
     <div class="last-news__wrapper">
       <h2 class="last-news__title">Últimas Noticias</h2>
-      <div class="post-swiper last-news__swiper">
+      <div class="post-swiper last-news-swiper last-news__swiper">
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <?php foreach ($last_news as $news): ?>
@@ -61,16 +61,24 @@ $last_news = [
               </div>
             <?php endforeach; ?>
           </div>
-          <div class="swiper-pagination"></div>
+        </div>
+        <div class="last-news__swiper-navigation">
+          <div class="swiper-navigation">
+            <div class="post-swiper-button-prev"></div>
+            <div class="post-swiper-button-next"></div>
+          </div>
+
+          <div class="last-news__see-more-btn">
+            <?php
+            get_template_part(COMMON_CONTENT_PATH, 'see-more-btn', array(
+              'text'  => 'Ver todas las noticias',
+              'href'  => '#',
+            ));
+            ?>
+          </div>
         </div>
       </div>
-      <div class="last-news__see-more-btn">
-        <?php
-        set_query_var('see_more_text', 'Ver todas las noticias');
-        set_query_var('see_more_href', '#');
-        get_template_part('content-parts/components/ui/content', 'see-more-btn');
-        ?>
-      </div>
+
     </div>
   </div>
 </section>

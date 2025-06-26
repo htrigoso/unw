@@ -70,10 +70,10 @@ $featured_events = [
 ?>
 
 <section class="featured-events">
-  <div class="x-container">
+  <div class="x-container x-container--pad-213">
     <div class="featured-events__wrapper">
       <h2 class="featured-events__title">Eventos Destacados</h2>
-      <div class="post-swiper featured-events__swiper">
+      <div class="post-swiper featured-events-swiper featured-events__swiper">
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <?php foreach ($featured_events as $event): ?>
@@ -112,15 +112,22 @@ $featured_events = [
               </div>
             <?php endforeach; ?>
           </div>
-          <div class="swiper-pagination"></div>
         </div>
-      </div>
-      <div class="featured-events__see-more-btn">
-        <?php
-        set_query_var('see_more_text', 'Ver todos los eventos');
-        set_query_var('see_more_href', '#');
-        get_template_part('content-parts/components/ui/content', 'see-more-btn');
-        ?>
+        <div class="featured-events__swiper-navigation">
+          <div class="swiper-navigation">
+            <div class="post-swiper-button-prev"></div>
+            <div class="post-swiper-button-next"></div>
+          </div>
+
+          <div class="featured-events__see-more-btn">
+            <?php
+            get_template_part(COMMON_CONTENT_PATH, 'see-more-btn', array(
+              'text'  => 'Ver todos las eventos',
+              'href'  => '#',
+            ));
+            ?>
+          </div>
+        </div>
       </div>
     </div>
   </div>

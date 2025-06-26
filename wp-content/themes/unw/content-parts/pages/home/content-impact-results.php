@@ -1,5 +1,5 @@
 <section class="impact-results">
-  <div class="x-container">
+  <div class="x-container x-container--pad-213">
     <div class="impact-results__wrapper">
 
       <h2 class="impact-results__title">Crecemos con resultados que inspiran.</h2>
