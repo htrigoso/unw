@@ -4,16 +4,14 @@
 
 html,
 body {
-  overflow-x: hidden;
   font-size: var(--font-size);
 }
 
 body {
   font-family: var(--font);
   font-weight: var(--font-regular);
-  color: var(--color-primary);
+  color: var(--color-black);
   counter-reset: section;
-  // line-height: 1.6;
 }
 
 main {
@@ -21,51 +19,34 @@ main {
   overflow: hidden;
   position: relative;
 }
+
 section {
   width: 100%;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-gray);
+  background: var(--color-primary);
   border-radius: 3px;
   cursor: pointer;
 }
 ::-webkit-scrollbar-track {
   background: black;
 }
+
 ::-webkit-scrollbar {
-  width: 2px;
+  width: 3px;
   height: 1px;
 }
 
-/**
- * Site container
- */
-.x-container {
-  max-width: 1440px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 24px;
-  padding-right: 24px;
-  position: relative;
-  z-index: 1;
-}
+body.sidebar-open {
+  height: 100dvh;
+  overflow: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
-.x-container-fluid {
-  max-width: 1920px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 100px;
-  padding-right: 100px;
-  position: relative;
-}
-
-.x-wrapper {
-  width: 100%;
-  padding-left: rem(20);
-  padding-right: rem(20);
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .d-none {
@@ -74,8 +55,4 @@ section {
 
 [data-hidden] {
   overflow: hidden;
-}
-
-[data-aos^="fade"][data-aos^="fade"] {
-  transition-property: opacity, transform, background-position !important;
 }

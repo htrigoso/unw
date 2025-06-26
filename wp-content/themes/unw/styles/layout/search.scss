@@ -1,0 +1,39 @@
+.search-form {
+  width: 100%;
+  height: rem(48);
+  padding: rem(16) rem(16);
+  border-radius: rem(64);
+  display: flex;
+  align-items: center;
+  color: var(--color-turquoise-three);
+  background-color: var(--color-light-turquoise);
+  gap: rem(8);
+
+  @include media(">=phone") {
+    width: rem(328);
+  }
+
+  @include media(">=tablet") {
+    padding: rem(12) rem(16);
+    height: rem(40);
+    width: rem(260);
+  }
+
+  @include media(">=desktop-s") {
+    width: rem(328);
+  }
+}
+
+.search-input {
+  flex: 1;
+  font-size: rem(16);
+  line-height: rem(24);
+  color: var(--color-black);
+  font-weight: var(--font-medium);
+  font-family: var(--font);
+}
+
+.search-input::placeholder {
+  color: var(--color-turquoise-three);
+  opacity: 1;
+}

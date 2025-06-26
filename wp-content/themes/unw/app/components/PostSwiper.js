@@ -1,32 +1,27 @@
 import Swiper from 'swiper/bundle'
 
-const PostSwiper = (sectionEl = '.posts') => {
+const PostSwiper = (sectionEl = '.post-swiper') => {
   return new Swiper(`${sectionEl} .swiper-container`, {
     loop: false,
-    paginationClickable: true,
     slidesPerView: 'auto',
-    spaceBetween: 16,
-    // centeredSlides: true,
+    spaceBetween: 8,
     grabCursor: true,
-    navigation: {
-      prevEl: `${sectionEl} .swiper-button-left`,
-      nextEl: `${sectionEl} .swiper-button-right`
-    },
     pagination: {
-      el: `${sectionEl} .swiper-pagination`
+      el: `${sectionEl} .swiper-pagination`,
+      clickable: true
+    },
+    navigation: {
+      nextEl: `${sectionEl} .post-swiper-button-next`,
+      prevEl: `${sectionEl} .post-swiper-button-prev`
     },
     breakpoints: {
       576: {
         slidesPerView: 'auto',
-        spaceBetween: 24
+        spaceBetween: 16
       },
       1024: {
         slidesPerView: 'auto',
-        spaceBetween: 32
-      },
-      1440: {
-        slidesPerView: 'auto',
-        spaceBetween: 40
+        spaceBetween: 24
       }
     }
   })

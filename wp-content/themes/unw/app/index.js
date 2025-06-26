@@ -9,6 +9,7 @@ class App {
   constructor() {
     // this.createPreloader()
     this.createNavbar()
+    this.createMenu()
   }
 
   createPreloader() {

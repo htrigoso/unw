@@ -1,42 +1,78 @@
 .why-wiener {
-  background-color: var(--color-secondary);
+  @include media(">=phone") {
+    background-color: var(--color-light-turquoise);
+  }
 }
 
 .why-wiener__wrapper {
-  padding: rem(100) rem(107) rem(76);
+  background-color: var(--color-light-turquoise);
+  border-radius: rem(20);
+  margin-top: rem(24);
+  padding: rem(32) rem(16) rem(36);
+
+  @include media(">=phone") {
+    margin-top: 0;
+    padding-inline: 0;
+  }
+
+  @include media(">=tablet") {
+    padding-top: rem(100);
+    padding-bottom: rem(76);
+  }
 }
 
 .why-wiener__title {
-  color: var(--color-black);
-  font-size: rem(36);
-  font-weight: var(--font-bold);
+  @include title-28;
   margin-bottom: rem(32);
+
+  @include media(">=tablet") {
+    @include title-36;
+  }
 }
 
 .why-wiener__items {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: rem(34);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  align-items: center;
+  gap: rem(32);
+
+  @include media(">=tablet") {
+    grid-template-columns: repeat(3, 1fr);
+    gap: rem(34);
+  }
 }
 
 .why-wiener__subtitle {
-  color: var(--color-black);
-  font-size: rem(22);
-  font-weight: var(--font-bold);
+  @include title-22;
   margin: rem(8) 0;
 }
 
-.why-wiener__paragraph {
-  color: var(--color-black);
-  font-size: var(--font-size);
-}
 .why-wiener__cta {
+  margin-top: rem(32);
   display: flex;
   justify-content: center;
-  margin-top: rem(62);
+
+  @include media(">=tablet") {
+    margin-top: rem(62);
+  }
+
+  .btn-primary {
+    color: var(--color-white);
+
+    @include media(">=tablet") {
+      color: var(--color-black);
+    }
+  }
+
+  i {
+    display: none;
+
+    @include media(">=tablet") {
+      display: inline-block;
+    }
+  }
+
   .icon--arrow {
-    width: rem(18);
-    height: rem(18);
-    margin-left: rem(5);
+    padding: rem(3);
   }
 }

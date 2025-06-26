@@ -1,105 +1,24 @@
-%description-12 {
-  font-size: 1.2rem;
-
-  @include media("<phone") {
-    font-size: 3rem;
-  }
-}
-
-%description-14 {
+@mixin description-14 {
   font-size: rem(14);
+  font-weight: var(--font-regular);
+  line-height: normal;
 }
 
-%description-14-24 {
-  font-family: var(--font);
-  @include size(12, 20);
-
-  @include media(">=phone") {
-    @include size(14, 24);
-  }
+@mixin description-16 {
+  font-size: rem(16);
+  font-weight: var(--font-regular);
+  line-height: normal;
 }
 
-%description-16 {
-  font-family: var(--font);
-  @include size(12, 20);
-
-  @include media(">=tablet") {
-    @include size(14, 20);
-  }
-
-  @include media(">=tablet") {
-    @include size(16, 20);
-  }
+@mixin description-18 {
+  font-size: rem(18);
+  font-weight: var(--font-regular);
+  line-height: normal;
 }
 
-%description-12-16 {
-  font-family: var(--font);
-  @include size(12, 20);
 
-  @include media(">=phone") {
-    @include size(14, 20);
-  }
-
-  @include media(">=tablet") {
-    @include size(16, 24);
-  }
-}
-
-%description-16-24 {
-  font-family: var(--font);
-  @include size(14, 20);
-
-  @include media(">=tablet") {
-    @include size(16, 24);
-  }
-}
-
-%description-16-32 {
-  font-family: var(--font);
-  @include size(12, 20);
-
-  @include media(">=phone") {
-    @include size(14, 20);
-  }
-
-  @include media(">=tablet") {
-    @include size(16, 32);
-  }
-}
-
-%description-20 {
-  font-family: var(--font);
-  @include size(16, 20);
-
-  @include media(">=tablet") {
-    @include size(20, 24);
-  }
-}
-
-%description-12-20 {
-  font-family: var(--font);
-  @include size(12, 20);
-
-  @include media(">=phone") {
-    @include size(14, 24);
-  }
-
-  @include media(">=tablet") {
-    @include size(20, 24);
-  }
-}
-
-%description-20-32 {
-  @include size(12, 20);
-  font-family: var(--font);
-  font-weight: var(--light);
-
-  @include media(">=phone") {
-    @include size(14, 20);
-  }
-
-  @include media(">=tablet") {
-    @include size(20, 32);
-    letter-spacing: rem(0.75);
-  }
+@mixin description-32 {
+  font-size: rem(32);
+  font-weight: var(--font-regular);
+  line-height: normal;
 }

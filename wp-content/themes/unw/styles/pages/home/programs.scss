@@ -1,0 +1,81 @@
+.programs__wrapper {
+  padding-top: rem(40);
+  padding-bottom: rem(32);
+
+  @include media(">=tablet") {
+    padding-top: rem(52);
+    padding-bottom: rem(52);
+  }
+}
+
+.programs__title {
+  @include title-28;
+  margin-bottom: rem(24);
+}
+
+.programs__cards {
+  @include media("<phone") {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(rem(280), 1fr));
+    gap: rem(24);
+  }
+}
+
+.programs__card {
+  background-color: var(--color-light-grey);
+  border-radius: rem(16);
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  @include media(">=phone") {
+    width: rem(300);
+  }
+}
+
+.programs__card--img {
+  height: rem(140);
+  width: 100%;
+  object-fit: cover;
+
+  @include media(">=phone") {
+    height: rem(122);
+  }
+}
+
+.programs__card--content {
+  padding: rem(24) rem(16) rem(16) rem(16);
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.programs__card--content__title {
+  @include title-22;
+  padding-bottom: rem(8);
+}
+
+.programs__card--content__description {
+  padding-bottom: rem(24);
+  margin-bottom: auto;
+}
+
+.programs__card--content__cta {
+  color: var(--color-white);
+  width: 100%;
+
+  @include media(">=phone") {
+    color: var(--color-black);
+  }
+
+  .icon--arrow {
+    display: none;
+
+    @include media(">=phone") {
+      display: block;
+      padding: rem(3);
+    }
+  }
+}

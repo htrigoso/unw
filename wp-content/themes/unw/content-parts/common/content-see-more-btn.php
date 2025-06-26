@@ -1,0 +1,14 @@
+<?php
+$text = $args['text'] ?? 'Ver más';
+$href = $args['href'] ?? '#';
+$class = $args['class'] ?? '';
+?>
+
+<a href="<?php echo esc_url($href); ?>" class="btn btn-sm btn-secondary-one see-more-btn <?php echo esc_attr($class); ?>">
+  <?php echo esc_html($text); ?>
+  <i>
+    <svg class="icon icon--arrow" width="32" height="32">
+      <use xlink:href="#arrow-right"></use>
+    </svg>
+  </i>
+</a>

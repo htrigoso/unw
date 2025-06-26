@@ -1,0 +1,55 @@
+.international-agreements {
+  background-color: var(--color-light-turquoise);
+
+  @include media("<phone") {
+    margin: rem(32) 0;
+  }
+}
+
+.international-agreements__wrapper {
+  padding: rem(28) 0;
+
+  @include media(">=tablet") {
+    padding-top: rem(52);
+    padding-bottom: rem(69);
+  }
+}
+
+.swiper-agreements {
+  padding-inline: rem(16);
+  margin-inline: rem(-16);
+
+  @include media(">=phone") {
+    padding-inline: rem(24);
+    margin-inline: rem(-24);
+  }
+
+  @include media(">=tablet") {
+    padding-inline: rem(213);
+    margin-inline: rem(-213);
+  }
+
+  @media (min-width: 1440px) {
+    padding-inline: calc((100vw - 1014px) / 2 + 213px);
+    margin-inline: calc(-1 * ((100vw - 1014px) / 2 + 213px));
+  }
+}
+
+.international-agreements__title {
+  @extend %title-28;
+  color: var(--color-black);
+  margin-bottom: rem(20);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(24);
+  }
+}
+
+.international-agreements__subtitle {
+  font-size: rem(18);
+  margin-bottom: rem(20);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(24);
+  }
+}

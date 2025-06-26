@@ -1,0 +1,177 @@
+.sidebar-container {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100dvh;
+  background-color: var(--color-white);
+  transition: 0.35s transform set-tsn("--easeInOutSine");
+  transform: translateX(100%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  &.is-ready {
+    display: block !important;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+  }
+
+  &.is-active {
+    transform: translateX(0);
+  }
+}
+
+.sidebar__wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar__header {
+  max-height: rem(64);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: rem(12);
+  padding-bottom: rem(12);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+}
+
+.sidebar__logo {
+  img {
+    width: rem(144);
+    height: auto;
+  }
+}
+
+.sidebar__menu {
+  flex: 1;
+  padding: rem(16) 0;
+  overflow: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+
+  .menu-item {
+    width: 100%;
+    text-align: left;
+    padding: rem(16);
+
+    @include media(">=phone") {
+      padding-inline: rem(24);
+    }
+  }
+
+  .menu-item-has-children > a {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sub-menu {
+    display: none;
+  }
+}
+
+.sidebar__menu-link {
+  font-size: rem(18);
+  color: var(--color-black);
+
+  &[aria-current="page"] {
+    color: var(--color-light-turquoise);
+  }
+}
+
+.sidebar__menu-link.depth-2 {
+  svg {
+    transform: rotate(90deg);
+  }
+}
+
+.sidebar__footer {
+  padding-top: rem(20);
+  padding-bottom: rem(20);
+  display: flex;
+  flex-direction: column;
+  gap: rem(32);
+  background-color: var(--color-primary);
+
+  @include media(">=phone") {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.sidebar__social {
+  display: flex;
+  justify-content: flex-start;
+
+  @include media(">=phone-576") {
+    justify-content: center;
+  }
+}
+
+.sidebar__submenu {
+  position: absolute;
+  inset: 0;
+  top: rem(2);
+  background: var(--color-white);
+  z-index: 1;
+  transition: 0.35s transform set-tsn("--easeInOutSine");
+  transform: translateX(100%);
+  opacity: 1;
+
+  &.is-active {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.sidebar__submenu-back {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  font-weight: var(--font-bold);
+  color: var(--color-primary);
+  padding: rem(16);
+  gap: rem(8);
+  cursor: pointer;
+  font-size: rem(18);
+
+  @include media(">=phone") {
+    padding-inline: rem(24);
+  }
+}
+
+.sidebar__submenu-title {
+  padding: rem(16);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-light-grey);
+  font-size: rem(18);
+
+  svg {
+    transform: rotate(-90deg);
+  }
+
+  @include media(">=phone") {
+    padding-inline: rem(24);
+  }
+}
+
+.sidebar__submenu-title.depth-1 {
+  background-color: var(--color-light-turquoise);
+  height: rem(46);
+}

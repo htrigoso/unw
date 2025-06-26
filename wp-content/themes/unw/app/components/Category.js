@@ -2,7 +2,7 @@ import Component from '../classes/Component'
 import { $element } from '../utils/dom'
 
 export default class Category extends Component {
-  constructor ({ id, element }) {
+  constructor({ id, element }) {
     super({
       element,
       elements: {}
@@ -13,13 +13,13 @@ export default class Category extends Component {
     this.addEventClickTab()
   }
 
-  createTab () {
+  createTab() {
     this.elements.tabItem = $element(
       `.category-tab__item-link[data-category="${this.id}"]`
     )
   }
 
-  addEventClickTab () {
+  addEventClickTab() {
     this.elements.tabItem
       ?.addEventListener('click', () => {
         $element(`#${this.id}`)
