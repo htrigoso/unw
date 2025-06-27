@@ -18,9 +18,7 @@ if (
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <?php foreach ($testimonial_posts as $testimonial_post) :
-              if (!($testimonial_post instanceof WP_Post)) {
-                continue;
-              }
+
 
               $info = get_field('info-testimonio', $testimonial_post->ID);
               $testimonial_data = [

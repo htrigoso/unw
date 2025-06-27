@@ -1,32 +1,32 @@
+<?php
+  $impact_results = get_field('impact_results');
+  $title = $impact_results['title'] ?? 'Crecemos con resultados que inspiran.';
+  $options = $impact_results['options'] ?? [];
+?>
+
+<?php if (!empty($impact_results) && is_array($impact_results)): ?>
 <section class="impact-results">
   <div class="x-container x-container--pad-213">
     <div class="impact-results__wrapper">
-
-      <h2 class="impact-results__title">Crecemos con resultados que inspiran.</h2>
-
+      <h2 class="impact-results__title"><?php echo esc_html($title); ?></h2>
       <div class="impact-results__items">
+        <?php foreach ($options as $option):
+          $subtitle = $option['title'] ?? '';
+          $description = $option['description'] ?? '';
+          if (empty($subtitle) && empty($description)) continue;
+        ?>
         <article class="impact-results__item">
-          <h3 class="impact-results__subtitle">90% de Empleabilidad</h3>
-          <p>
-            9 de cada 10 alumnos de la U Wiener trabajan al terminar sus carreras.
-          </p>
+          <?php if (!empty($subtitle)): ?>
+          <h3 class="impact-results__subtitle"><?php echo esc_html($subtitle); ?></h3>
+          <?php endif; ?>
+          <?php if (!empty($description)): ?>
+          <p><?php echo esc_html($description); ?></p>
+          <?php endif; ?>
         </article>
-
-        <article class="impact-results__item">
-          <h3 class="impact-results__subtitle">Certificación de Calidad</h3>
-          <p>
-            Somos la primera universidad en Latinoamérica con certificación ISO 9001, que avala la calidad de nuestra educación.
-          </p>
-        </article>
-
-        <article class="impact-results__item">
-          <h3 class="impact-results__subtitle">Calificación Internacional</h3>
-          <p>
-            Nuestra educación de clase mundial ha sido calificada con 4 estrellas en el QS Star Rating System 2023.
-          </p>
-        </article>
+        <?php endforeach; ?>
       </div>
 
     </div>
   </div>
 </section>
+<?php endif; ?>

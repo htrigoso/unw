@@ -1,46 +1,44 @@
 <?php
-$countries = [
-  ['name' => 'Spain',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/1.svg'],
-  ['name' => 'Mexico',      'file' => get_template_directory_uri() . '/upload/home/international-agreements/2.svg'],
-  ['name' => 'Colombia',    'file' => get_template_directory_uri() . '/upload/home/international-agreements/3.svg'],
-  ['name' => 'Chile',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/4.svg'],
-  ['name' => 'Italy',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/5.svg'],
-  ['name' => 'Brazil',      'file' => get_template_directory_uri() . '/upload/home/international-agreements/6.svg'],
-  ['name' => 'Costa Rica',  'file' => get_template_directory_uri() . '/upload/home/international-agreements/7.svg'],
-  ['name' => 'Ecuador',     'file' => get_template_directory_uri() . '/upload/home/international-agreements/8.svg'],
-  ['name' => 'Spain',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/1.svg'],
-  ['name' => 'Mexico',      'file' => get_template_directory_uri() . '/upload/home/international-agreements/2.svg'],
-  ['name' => 'Colombia',    'file' => get_template_directory_uri() . '/upload/home/international-agreements/3.svg'],
-  ['name' => 'Chile',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/4.svg'],
-  ['name' => 'Italy',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/5.svg'],
-  ['name' => 'Brazil',      'file' => get_template_directory_uri() . '/upload/home/international-agreements/6.svg'],
-  ['name' => 'Costa Rica',  'file' => get_template_directory_uri() . '/upload/home/international-agreements/7.svg'],
-  ['name' => 'Ecuador',     'file' => get_template_directory_uri() . '/upload/home/international-agreements/8.svg'],
-];
+$international = get_field('international-agreements');
+$countries = $international['countries'] ?? [];
 ?>
 
+<?php if (!empty($international) && !empty($countries)) : ?>
 <section class="international-agreements">
   <div class="x-container x-container--pad-213">
     <div class="international-agreements__wrapper">
 
-      <h2 class="international-agreements__title">Haz que tu educación cruce fronteras.</h2>
+      <?php if (!empty($international['title'])) : ?>
+      <h2 class="international-agreements__title"><?php echo esc_html($international['title']); ?></h2>
+      <?php endif; ?>
+
+      <?php if (!empty($international['descripcion'])) : ?>
       <p class="international-agreements__subtitle">
-        Explora los <strong>+90 Convenios Internacionales</strong> en universidades reconocidas alrededor del mundo:
+        <?php echo wp_kses_post($international['descripcion']); ?>
       </p>
+      <?php endif; ?>
 
       <div class="swiper-container swiper-agreements">
         <div class="swiper-wrapper international-agreements__items">
-          <?php foreach ($countries as $country): ?>
-            <div class="swiper-slide international-agreements__item">
-              <?php
-              get_template_part(COMMON_CONTENT_PATH, 'country-card', array(
+          <?php foreach ($countries as $country_post) : ?>
+          <?php
+              $country = [
+                'name' => get_the_title($country_post),
+                'file' => get_the_post_thumbnail_url($country_post->ID, 'full') ,
+              ];
+            ?>
+          <div class="swiper-slide international-agreements__item">
+            <?php
+              get_template_part(COMMON_CONTENT_PATH, 'country-card', [
                 'country' => $country
-              ));
+              ]);
               ?>
-            </div>
+          </div>
           <?php endforeach; ?>
         </div>
       </div>
+
     </div>
   </div>
 </section>
+<?php endif; ?>
