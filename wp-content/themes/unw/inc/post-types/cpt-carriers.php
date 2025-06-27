@@ -30,8 +30,8 @@ function register_post_type_carreras() {
     'has_archive'        => false,
     'hierarchical'       => false,
     'menu_position'      => 5,
-    'menu_icon'          => 'dashicons-welcome-learn-more',
-    'supports'           => ['title', 'editor', 'thumbnail', 'excerpt']
+    'menu_icon'          => 'dashicons-book',
+    'supports'           => ['title',  'thumbnail']
   ];
 
   register_post_type('carreras', $args);

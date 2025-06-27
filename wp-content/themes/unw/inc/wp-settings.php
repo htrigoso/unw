@@ -179,20 +179,6 @@ function cc_mime_types($mimes) {
 }
 
 
-/**
- * google map API KEY for Admin
- */
-add_filter( 'acf/settings/google_api_key', 'set_acf_fields_google_map_key' );
-function set_acf_fields_google_map_key() {
-    return 'AIzaSyC2dSaHMoRmFncykyFghoLozdWO_MNq1wM';
-}
-
-add_filter( 'acf/fields/google_map/api', 'set_acf_fields_google_map_lang' );
-function set_acf_fields_google_map_lang($api) {
-    $api['language'] = 'es';
-    return $api;
-}
-
 
 /**
  * add admin style
@@ -250,3 +236,18 @@ function custom_pre_get_posts( $query ) {
 
     return $query;
 }
+
+function custom_acf_accordion_styles() {
+    echo '<style>
+        .acf-field.acf-accordion .acf-label.acf-accordion-title {
+            background-color: #07c8cc;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .acf-field.acf-accordion .acf-label.acf-accordion-title:hover {
+            background-color: #05b0b4;
+        }
+    </style>';
+}
+add_action('admin_head', 'custom_acf_accordion_styles');

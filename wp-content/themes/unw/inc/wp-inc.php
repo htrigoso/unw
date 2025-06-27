@@ -12,9 +12,18 @@ require_once dirname(__FILE__) . '/functions/tpl-functions.php';
 
 // require custom post types
 require_once dirname(__FILE__) . '/post-types/cpt-carriers.php';
+require_once dirname(__FILE__) . '/post-types/cpt-countries.php';
+require_once dirname(__FILE__) . '/post-types/cpt-testimonials.php';
+require_once dirname(__FILE__) . '/post-types/cpt-news.php';
+require_once dirname(__FILE__) . '/post-types/cpt-events.php';
+require_once dirname(__FILE__) . '/post-types/cpt-teachers.php';
+require_once dirname(__FILE__) . '/post-types/cpt-courses.php';
+require_once dirname(__FILE__) . '/post-types/cpt-infrastructure.php';
+require_once dirname(__FILE__) . '/post-types/cpt-admission-process.php';
 
 // require custom taxonomies
 require_once dirname(__FILE__) . '/taxonomies/taxonomy-modalidad.php';
+
 
 // require menu walkers
 // require head
