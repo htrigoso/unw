@@ -1,11 +1,18 @@
 <?php
 $testimonial = $args['testimonial'];
+
+// Imagen puede venir como string (custom) o como array (de ACF tipo imagen)
+$image_url = $testimonial['image'] ?? '';
 ?>
+
 <article class="testimonial__card">
-  <img
-    src="<?php echo get_template_directory_uri(); ?>/upload/home/testimonial/<?php echo esc_attr($testimonial['image']); ?>"
-    alt="<?php echo esc_attr($testimonial['title']); ?>"
-    class="testimonial__card--img" />
+  <?php if ($image_url): ?>
+    <img
+      src="<?php echo esc_url($image_url); ?>"
+      alt="<?php echo esc_attr($testimonial['title']); ?>"
+      class="testimonial__card--img" />
+  <?php endif; ?>
+
   <div class="testimonial__card--content">
     <h3 class="testimonial__card--content__title"><?php echo esc_html($testimonial['title']); ?></h3>
     <p class="testimonial__card--content__description">
