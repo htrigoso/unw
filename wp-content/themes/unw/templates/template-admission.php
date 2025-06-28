@@ -43,7 +43,7 @@
   $breadcrumbs = [
     ['label' => 'Inicio', 'href' => home_url('/')],
     ['label' => 'Admisión', 'href' => '/admision'],
-    ['label' => 'Examen de admisión']
+    ['label' => '']
   ];
   get_template_part(
     COMMON_CONTENT_PATH,

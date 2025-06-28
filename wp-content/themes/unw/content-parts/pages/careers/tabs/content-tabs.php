@@ -6,7 +6,7 @@ $tabs = [
   ['label' => 'Campo Laboral',        'target' => 'campo-laboral'],
   ['label' => 'Plana Docente',        'target' => 'teaching-staff'],
   ['label' => 'Infraestructura',      'target' => 'infraestructura'],
-  ['label' => 'Admisión',             'target' => 'admission'],
+  ['label' => 'Admisión',             'target' => 'admision'],
   ['label' => 'Internacionalización', 'target' => 'internacionalizacion'],
 ];
 ?>
@@ -78,7 +78,7 @@ $tabs = [
               ]);
               break;
 
-            case 'admission':
+            case 'admision':
               $admission_info = get_field('admission_info', get_the_ID());
 
               get_template_part(CAREERS_CONTENT_TAB_PATH . '7-admission/content-admission', null, [

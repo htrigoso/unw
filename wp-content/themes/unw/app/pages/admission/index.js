@@ -6,6 +6,13 @@ import Tabs from '../../components/Tabs'
 
   const tabsElement = document.querySelector('.admission-tabs')
   if (tabsElement) {
-    new Tabs({ element: tabsElement })
+    const tabLabels = {
+      'examen-admision': 'Examen de admisión',
+      'beca-18': 'Beca 18',
+      'graduado-titulado': 'Egresado Universidad',
+      extraordinaria: 'Extraordinaria',
+      prewiener: 'Pre Wiener'
+    }
+    new Tabs({ element: tabsElement, tabLabels })
   }
 })()
