@@ -62,7 +62,7 @@ export default class Tabs extends Component {
     this.scrollToContent(targetContent)
     this.scrollToTab(tab)
 
-    // Update Swiper instances to prevent layout issues
+    // update swiper instances to prevent pagination issues
     setTimeout(() => {
       const swipers = targetContent.querySelectorAll('.swiper-container')
       swipers.forEach(container => {

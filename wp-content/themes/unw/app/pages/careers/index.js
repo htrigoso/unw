@@ -11,7 +11,7 @@ import InternationalSwiper from '../../components/InternationalSwiper'
   PostSwiperDesktop()
   InternationalSwiper('.internationalization')
 
-  const tabsElement = document.querySelector('.tabs')
+  const tabsElement = document.querySelector('.career-tabs')
   if (tabsElement) {
     new Tabs({ element: tabsElement })
   }
