@@ -1,3 +1,4 @@
+import Accordion from '../../components/Accordion'
 import HeroSwiper from '../../components/HeroSwiper'
 import Tabs from '../../components/Tabs'
 
@@ -15,4 +16,8 @@ import Tabs from '../../components/Tabs'
     }
     new Tabs({ element: tabsElement, tabLabels })
   }
+
+  document.querySelectorAll('.dynamic-accordion').forEach(element => {
+    new Accordion({ element })
+  })
 })()
