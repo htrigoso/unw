@@ -1,9 +1,10 @@
 <?php
 $title = $args['title'] ?? '';
 $content = $args['content'] ?? '';
+$variant = $args['variant'] ?? 'standard'; // 'filled' o 'standard'
 ?>
 
-<div class="accordion-one accordion-item">
+<div class="accordion-item accordion-<?= esc_attr($variant) ?>">
   <div class="accordion-header">
     <div class="accordion-label"><?= esc_html($title) ?></div>
     <i>

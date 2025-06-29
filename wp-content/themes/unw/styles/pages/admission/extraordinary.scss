@@ -15,7 +15,33 @@
   }
 }
 
-.extraordinary__benefits--title {
+.extraordinary__benefits--title,
+.extraordinary__faq--title {
   @include title-32;
   margin-bottom: rem(12);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(28);
+  }
+}
+
+.extraordinary__benefits--accordion {
+  & > *:not(:last-child) {
+    margin-bottom: rem(16);
+  }
+}
+
+.extraordinary__faq {
+  margin-top: rem(64);
+  margin-bottom: rem(64);
+
+  @include media(">=tablet") {
+    padding-inline: rem(24);
+  }
+}
+
+.extraordinary__faq--accordion {
+  & > *:not(:last-child) {
+    margin-bottom: rem(12);
+  }
 }
