@@ -23,6 +23,9 @@ ob_start();
     'body' => 'El examen de admisión se lleva a cabo en las fechas y horas programadas, publicadas o comunicadas a los postulantes oportunamente.',
   ]);
   ?>
+  <button class="btn btn-primary entrance-exam__btn">
+    Resultados admisión 2024-II
+  </button>
 </div>
 <?php
 $left_content = ob_get_clean();
