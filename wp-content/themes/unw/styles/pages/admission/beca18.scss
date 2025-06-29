@@ -8,6 +8,12 @@
   }
 }
 
+.beca18__description {
+  strong {
+    font-weight: var(--font-semi-bold);
+  }
+}
+
 .beca18__content {
   & > *:not(:last-child) {
     margin-bottom: rem(42);
