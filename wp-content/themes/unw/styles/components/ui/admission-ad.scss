@@ -1,0 +1,19 @@
+.admission-ad {
+  background-color: var(--color-turquoise-three);
+  padding: rem(20);
+  border-radius: rem(16);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.admission-ad__title {
+  @include title-28;
+  color: var(--color-white);
+}
+
+.admission-ad__subtitle {
+  @include title-60;
+  color: var(--color-white);
+  height: rem(56);
+}

@@ -1,0 +1,15 @@
+.entrance-exam__title {
+  @include title-32;
+  margin-bottom: rem(24);
+
+  @include media(">=tablet") {
+    @include title-36;
+    margin-bottom: rem(26);
+  }
+}
+
+.entrance-exam__content {
+  & > *:not(:last-child) {
+    margin-bottom: rem(42);
+  }
+}

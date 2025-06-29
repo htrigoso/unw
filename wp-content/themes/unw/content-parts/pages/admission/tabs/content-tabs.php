@@ -25,7 +25,7 @@ $tabs = [
           <?php
           switch ($tab['target']) {
             case 'examen-admision':
-              get_template_part(ADMISSION_CONTENT_TAB_PATH . '1-entrance-exam/content-entrance');
+              get_template_part(ADMISSION_CONTENT_TAB_PATH . '1-entrance-exam/content-entrance-exam');
               break;
 
             case 'beca-18':
