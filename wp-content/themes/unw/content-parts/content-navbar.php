@@ -19,13 +19,7 @@
       </div>
 
       <div class="navbar__menu-mobile">
-        <button type="button" class="btn-menu-search pointer">
-          <i>
-            <svg width="40" height="40">
-              <use xlink:href="#search2"></use>
-            </svg>
-          </i>
-        </button>
+
         <button type="button" class="btn-menu-hamburger pointer" id="btn-open-menu">
           <i>
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
