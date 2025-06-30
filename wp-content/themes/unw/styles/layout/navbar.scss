@@ -33,7 +33,7 @@
     height: auto;
 
     @include media(">=tablet") {
-      width: rem(101);
+      width: rem(192);
     }
   }
 }
@@ -93,7 +93,7 @@
 
     & > a {
       display: inline-block;
-      max-width: rem(125);
+
       text-align: center;
     }
   }
