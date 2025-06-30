@@ -77,7 +77,10 @@
 
 .admission__header-ad__date {
   color: var(--color-white);
-  text-align: center;
+
+  @include media(">=phone-576") {
+    text-align: center;
+  }
 }
 
 .admission__header-ad__date--day {
