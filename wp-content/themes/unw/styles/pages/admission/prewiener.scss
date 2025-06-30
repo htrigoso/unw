@@ -1,0 +1,42 @@
+.prewiener__title {
+  @include title-32;
+  margin-bottom: rem(24);
+
+  @include media(">=tablet") {
+    @include title-36;
+    margin-bottom: rem(26);
+  }
+}
+
+.prewiener__content {
+  & > *:not(:last-child) {
+    margin-bottom: rem(42);
+  }
+}
+
+.prewiener__benefits {
+  margin-inline: rem(-16);
+  background-color: var(--color-light-turquoise);
+  padding: rem(16);
+
+  @include media(">=phone") {
+    margin-inline: rem(-24);
+    padding-inline: rem(24);
+  }
+
+  @include media(">=tablet") {
+    margin: 0;
+    background-color: transparent;
+    padding: 0;
+  }
+}
+
+.prewiener-wrapper {
+  .layout__right {
+    display: none;
+
+    @include media(">=desktop-s") {
+      display: block;
+    }
+  }
+}
