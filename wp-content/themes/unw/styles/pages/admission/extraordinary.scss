@@ -1,0 +1,47 @@
+.extraordinary__benefits {
+  background-color: var(--color-light-turquoise);
+  padding: rem(24) rem(16) rem(40);
+  margin-inline: rem(-16);
+
+  @include media(">=phone") {
+    padding-inline: rem(24);
+    margin-inline: rem(-24);
+  }
+
+  @include media(">=tablet") {
+    padding: rem(24);
+    margin: 0;
+    border-radius: rem(16);
+  }
+}
+
+.extraordinary__benefits--title,
+.extraordinary__faq--title {
+  @include title-32;
+  margin-bottom: rem(12);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(28);
+  }
+}
+
+.extraordinary__benefits--accordion {
+  & > *:not(:last-child) {
+    margin-bottom: rem(16);
+  }
+}
+
+.extraordinary__faq {
+  margin-top: rem(64);
+  margin-bottom: rem(64);
+
+  @include media(">=tablet") {
+    padding-inline: rem(24);
+  }
+}
+
+.extraordinary__faq--accordion {
+  & > *:not(:last-child) {
+    margin-bottom: rem(12);
+  }
+}

@@ -1,0 +1,12 @@
+.admission-hero {
+  .hero__content--title {
+    @include media(">=tablet") {
+      height: auto;
+      margin-bottom: rem(26);
+    }
+  }
+
+  .swiper-pagination {
+    display: none;
+  }
+}

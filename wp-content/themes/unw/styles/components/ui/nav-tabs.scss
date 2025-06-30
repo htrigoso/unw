@@ -1,19 +1,19 @@
-.tabs__navigation-container {
-  @extend .x-container;
-  display: flex;
-  flex-direction: column;
-  margin-top: rem(20);
-
-  @include media(">=tablet") {
-    padding-inline: rem(81);
-    margin-top: rem(63);
-  }
+.nav-tabs {
+  overflow: auto;
+  scrollbar-width: none;
 }
 
-.tabs__navigation {
+.nav-tabs__list {
+  display: flex;
+  width: fit-content;
+  justify-content: space-between;
   padding: rem(4) !important;
   border-radius: rem(64);
   background-color: var(--color-light-turquoise);
+}
+
+.tab__item-wrapper:not(:last-child) {
+  margin-right: rem(10);
 }
 
 .tab__item {
@@ -38,13 +38,4 @@
     background-color: var(--color-primary);
     border-color: var(--color-primary);
   }
-}
-.tabs__navigation-list {
-  display: flex;
-  justify-content: space-between;
-  overflow: auto;
-  scrollbar-width: none;
-}
-.tab__item-wrapper:not(:last-child) {
-  margin-right: rem(10);
 }
