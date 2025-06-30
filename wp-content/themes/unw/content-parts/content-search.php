@@ -1,13 +1,8 @@
-<form action="/" method="get" class="search-form">
+<div class="search-form">
+  <p>Busca aquí</p>
   <i>
-    <svg width="19" height="19">
-      <use xlink:href="#search"></use>
+    <svg width="24" height="24">
+      <use xlink:href="#search-strong"></use>
     </svg>
   </i>
-  <input
-    class="search-input"
-    type="text"
-    name="search"
-    placeholder="¿Qué estás buscando?"
-    aria-label="Buscar" />
-</form>
+</div>
