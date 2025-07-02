@@ -1,0 +1,25 @@
+.health {
+
+}
+
+.health__header {
+  padding-top: rem(42);
+  padding-bottom: rem(42);
+
+  @include media(">=tablet") {
+    padding-top: rem(38);
+    padding-bottom: rem(9);
+  }
+}
+
+.health__header--title {
+  @include title-32;
+
+  @include media(">=tablet") {
+    @include title-62;
+  }
+
+  span {
+    color: var(--color-primary);
+  }
+}

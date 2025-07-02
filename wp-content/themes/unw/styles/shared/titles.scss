@@ -51,6 +51,13 @@
   letter-spacing: 0.5px;
 }
 
+@mixin title-62 {
+  font-size: rem(62);
+  font-weight: var(--font-bold);
+  line-height: normal;
+  letter-spacing: 0.5px;
+}
+
 @mixin title-80 {
   font-size: rem(80);
   font-weight: var(--font-bold);
