@@ -19,7 +19,7 @@ $teaching_staff = $args['teaching_staff'] ?? null;
 
     <!-- Content -->
     <div class="teaching-staff__content">
-      <div class="post-swiper">
+      <div class="post-swiper" data-width="wide">
         <div class="swiper-container">
           <ul class="swiper-wrapper">
             <?php foreach ($teaching_staff['staff'] as $teacher): ?>

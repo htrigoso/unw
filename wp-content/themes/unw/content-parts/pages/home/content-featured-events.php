@@ -7,7 +7,7 @@ $featured_events = $acf_data['events'] ?? [];
     <div class="x-container x-container--pad-213">
       <div class="featured-events__wrapper">
         <h2 class="featured-events__title"><?php echo esc_html($acf_data['title'] ?? 'Eventos Destacados'); ?></h2>
-        <div class="post-swiper featured-events-swiper featured-events__swiper">
+        <div class="post-swiper featured-events-swiper featured-events__swiper" data-width="compact">
           <div class="swiper-container">
             <div class="swiper-wrapper">
               <?php foreach ($featured_events as $post): ?>

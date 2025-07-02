@@ -13,7 +13,7 @@ $testimonial_posts = $testimonial_data['testimonials'] ?? [];
         <?php echo esc_html($testimonial_data['title'] ?? 'Experiencias U. Wiener'); ?>
       </h2>
 
-      <div class="post-swiper testimonial-swiper switch-pagination-navigation">
+      <div class="post-swiper testimonial-swiper switch-pagination-navigation" data-width="compact">
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <?php foreach ($testimonial_posts as $testimonial_post) :

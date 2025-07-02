@@ -21,7 +21,7 @@ $infra_items = $infrastructure['list'] ?? [];
 
     <!-- Content -->
     <div class="infrastructure__content">
-      <div class="post-swiper-desktop">
+      <div class="post-swiper-desktop" data-width="wide">
         <div class="swiper-container">
           <ul class="swiper-wrapper infrastructure__list">
             <?php

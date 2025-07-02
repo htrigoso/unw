@@ -14,7 +14,7 @@ if (
     <div class="testimonial__wrapper">
       <h2 class="testimonial__title"><?= wp_kses_post($title); ?></h2>
 
-      <div class="post-swiper">
+      <div class="post-swiper" data-width="wide">
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <?php foreach ($testimonial_posts as $testimonial_post) :

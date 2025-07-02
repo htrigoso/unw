@@ -9,7 +9,7 @@ $lists = $programs['lists'] ?? [];
   <div class="x-container x-container--pad-213 programs__wrapper">
     <h2 class="programs__title"><?php echo esc_html($title); ?></h2>
 
-    <div class="post-swiper-desktop switch-pagination-navigation">
+    <div class="post-swiper-desktop switch-pagination-navigation" data-width="compact">
       <div class="swiper-container">
         <div class="swiper-wrapper programs__cards">
           <?php foreach ($lists as $program):

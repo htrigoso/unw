@@ -18,7 +18,7 @@ $link = $malla_curricular['link'] ?? null;
     </div>
 
     <div class="program-curriculum__content" aria-label="Listado de cursos por ciclo">
-      <div class="post-swiper">
+      <div class="post-swiper" data-width="wide">
         <div class="swiper-container">
           <ul class="swiper-wrapper program-curriculum__cycles-list">
             <?php foreach ($lists as $list): ?>
