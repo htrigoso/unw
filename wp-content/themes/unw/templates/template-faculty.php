@@ -17,11 +17,11 @@
       [
         'images' => [
           'desktop' => [
-            'url' => get_template_directory_uri() . '/upload/faculty/hero/hero-1-desktop.jpg',
+            'url' => UPLOAD_PATH . '/faculty/hero/hero-1-desktop.jpg',
             'alt' => 'Facultad Hero Desktop'
           ],
           'mobile' => [
-            'url' => get_template_directory_uri() . '/upload/faculty/hero/hero-1-mobile.jpg',
+            'url' => UPLOAD_PATH . '/faculty/hero/hero-1-mobile.jpg',
             'alt' => 'Facultad Hero Mobile'
           ]
         ]
@@ -29,11 +29,11 @@
       [
         'images' => [
           'desktop' => [
-            'url' => get_template_directory_uri() . '/upload/faculty/hero/hero-1-desktop.jpg',
+            'url' => UPLOAD_PATH . '/faculty/hero/hero-1-desktop.jpg',
             'alt' => 'Facultad Hero Desktop'
           ],
           'mobile' => [
-            'url' => get_template_directory_uri() . '/upload/faculty/hero/hero-1-mobile.jpg',
+            'url' => UPLOAD_PATH . '/faculty/hero/hero-1-mobile.jpg',
             'alt' => 'Facultad Hero Mobile'
           ]
         ]
@@ -55,6 +55,6 @@
       'extra_class' => 'faculty-hero'
     ]
   ); ?>
-  <?php get_template_part(ADMISSION_TABS_PATH, 'tabs'); ?>
+  <?php get_template_part(FACULTY_TABS_PATH, 'tabs'); ?>
 </main>
 <?php get_footer(); ?>

@@ -1,23 +1,19 @@
-import Accordion from '../../components/Accordion'
 import HeroSwiper from '../../components/HeroSwiper'
 import Tabs from '../../components/Tabs'
 
 (function () {
   HeroSwiper()
 
-  const tabsElement = document.querySelector('.admission-tabs')
+  const tabsElement = document.querySelector('.faculty-tabs')
   if (tabsElement) {
     const tabLabels = {
-      'examen-admision': 'Examen de admisión',
-      'beca-18': 'Beca 18',
-      'graduado-titulado': 'Egresado Universidad',
-      extraordinaria: 'Extraordinaria',
-      prewiener: 'Pre Wiener'
+      'ciencias-salud': 'Ciencias de la Salud',
+      arquitectura: 'Arquitectura',
+      ingenieria: 'Ingeniería',
+      'derecho-politica': 'Derecho y Ciencia Política',
+      negocios: 'Negocios',
+      comunicaciones: 'Comunicaciones'
     }
     new Tabs({ element: tabsElement, tabLabels })
   }
-
-  document.querySelectorAll('.dynamic-accordion').forEach(element => {
-    new Accordion({ element })
-  })
 })()

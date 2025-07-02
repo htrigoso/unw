@@ -13,8 +13,10 @@ define('GENERAL_CONTENT_PATH', 'content-parts/content');
 define('CAREERS_HERO_CONTENT_PATH', 'content-parts/pages/careers/hero/content');
 define('CAREERS_TABS_PATH', 'content-parts/pages/careers/tabs/content');
 define('ADMISSION_TABS_PATH', 'content-parts/pages/admission/tabs/content');
+define('FACULTY_TABS_PATH', 'content-parts/pages/faculty/tabs/content');
 define('CAREERS_CONTENT_TAB_PATH', 'content-parts/pages/careers/tabs/');
 define('ADMISSION_CONTENT_TAB_PATH', 'content-parts/pages/admission/tabs/');
+define('FACULTY_CONTENT_TAB_PATH', 'content-parts/pages/faculty/tabs/');
 
 set_query_var( 'NAVBAR_COLOR', false );
 set_query_var( 'MENU_COLOR', false );
