@@ -1,4 +1,4 @@
-.health__header {
+.faculty__header {
   padding-top: rem(42);
   padding-bottom: rem(42);
 
@@ -8,7 +8,7 @@
   }
 }
 
-.health__header--title {
+.faculty__header--title {
   @include title-32;
 
   @include media(">=tablet") {
@@ -20,7 +20,7 @@
   }
 }
 
-.health__testimonials {
+.faculty__testimonials {
   padding-top: rem(74);
 
   @include media(">=tablet") {
@@ -33,7 +33,7 @@
   }
 }
 
-.health__internationalization {
+.faculty__internationalization {
   margin-top: rem(80);
   margin-bottom: rem(83);
 

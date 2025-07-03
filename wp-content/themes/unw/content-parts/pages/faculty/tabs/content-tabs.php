@@ -26,27 +26,27 @@ $tabs = [
           <?php
           switch ($tab['target']) {
             case 'ciencias-salud':
-              get_template_part(FACULTY_CONTENT_TAB_PATH . '1-health-science/content-health');
+              get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-faculty');
               break;
 
             case 'arquitectura':
-              get_template_part(FACULTY_CONTENT_TAB_PATH . '1-health-science/content-health');
+              get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-faculty');
               break;
 
             case 'ingenieria':
-              get_template_part(FACULTY_CONTENT_TAB_PATH . '1-health-science/content-health');
+              get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-faculty');
               break;
 
             case 'derecho-politica':
-              get_template_part(FACULTY_CONTENT_TAB_PATH . '1-health-science/content-health');
+              get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-faculty');
               break;
 
             case 'negocios':
-              get_template_part(FACULTY_CONTENT_TAB_PATH . '1-health-science/content-health');
+              get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-faculty');
               break;
 
             case 'comunicaciones':
-              get_template_part(FACULTY_CONTENT_TAB_PATH . '1-health-science/content-health');
+              get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-faculty');
               break;
           }
           ?>
