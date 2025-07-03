@@ -6,8 +6,14 @@ import PostSwiperDesktop from '../../components/PostSwiperDesktop'
 (function () {
   HeroSwiper()
 
-  PostSwiper('.post-swiper')
+  PostSwiper('.testimonial-swiper')
   PostSwiperDesktop()
+  PostSwiper('.simple-events-swiper', {
+    breakpoints: {
+      1024: { slidesPerView: 2 },
+      1200: { slidesPerView: 3 }
+    }
+  })
 
   const tabsElement = document.querySelector('.faculty-tabs')
   if (tabsElement) {
