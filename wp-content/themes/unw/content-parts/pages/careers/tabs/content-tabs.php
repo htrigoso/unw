@@ -50,6 +50,7 @@ $tabs = [
                 }
               }
 
+              echo '<div class="career-tab">';
               get_template_part(CAREERS_CONTENT_TAB_PATH . '1-presentation/content-career-intro', null, [
                 'presentation' => $presentation
               ]);
@@ -57,6 +58,7 @@ $tabs = [
                 'title' => $testimonials_info['title'] ?? '',
                 'testimonials' => $testimonials
               ]);
+              echo '</div>';
               break;
 
             case 'beneficios':
@@ -107,7 +109,9 @@ $tabs = [
               break;
 
             case 'internacionalizacion':
-              get_template_part(CAREERS_CONTENT_TAB_PATH . '8-internationalization/content-internationalization');
+              echo '<div class="internationalization-tab">';
+              get_template_part(COMMON_CONTENT_PATH, 'internationalization');
+              echo '</div>';
               break;
           }
           ?>

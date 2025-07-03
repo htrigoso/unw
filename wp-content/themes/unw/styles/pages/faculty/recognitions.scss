@@ -67,4 +67,8 @@
 .recognitions__cta-btn {
   background-color: var(--color-black);
   color: var(--color-white);
+
+  &:hover, &:focus {
+    background-color: var(--color-secondary-grey);
+  }
 }

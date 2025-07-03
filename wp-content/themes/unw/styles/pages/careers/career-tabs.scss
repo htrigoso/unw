@@ -18,3 +18,23 @@
     margin-top: rem(63);
   }
 }
+
+.career-tab {
+  padding-bottom: rem(24);
+
+  @include media(">=tablet") {
+    padding-bottom: rem(67);
+  }
+}
+
+.internationalization-tab {
+  .internationalization__wrapper {
+    padding-top: rem(44);
+    padding-bottom: rem(96);
+
+    @include media(">=tablet") {
+      padding-top: rem(88);
+      padding-bottom: rem(96);
+    }
+  }
+}

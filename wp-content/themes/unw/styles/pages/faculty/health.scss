@@ -1,7 +1,3 @@
-.health {
-
-}
-
 .health__header {
   padding-top: rem(42);
   padding-bottom: rem(42);
@@ -34,5 +30,21 @@
   .testimonial__title {
     @include title-28;
     margin-bottom: rem(24);
+  }
+}
+
+.health__internationalization {
+  margin-top: rem(80);
+  margin-bottom: rem(83);
+
+  @include media(">=tablet") {
+    margin-top: rem(54);
+    margin-bottom: rem(68);
+  }
+
+  .internationalization__header {
+    @include media(">=tablet") {
+      margin-bottom: rem(32);
+    }
   }
 }

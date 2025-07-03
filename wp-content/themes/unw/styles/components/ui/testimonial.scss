@@ -1,11 +1,3 @@
-.testimonial__wrapper {
-  padding-bottom: rem(24);
-
-  @include media(">=tablet") {
-    padding-bottom: rem(67);
-  }
-}
-
 .testimonial__title {
   @include title-22;
   margin-bottom: rem(16);

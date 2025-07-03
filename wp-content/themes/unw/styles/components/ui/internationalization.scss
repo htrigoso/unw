@@ -1,13 +1,3 @@
-.internationalization__wrapper {
-  padding-top: rem(44);
-  padding-bottom: rem(96);
-
-  @include media(">=tablet") {
-    padding-top: rem(88);
-    padding-bottom: rem(96);
-  }
-}
-
 .internationalization__header {
   margin-bottom: rem(24);
 
@@ -105,11 +95,11 @@
 }
 
 .internationalization-swiper {
-  padding-inline: rem(20);
-  margin-inline: rem(-20);
+  padding-inline: rem(20) !important;
+  margin-inline: rem(-20) !important;
 
   @include media(">=tablet") {
-    padding-inline: rem(44);
-    margin-inline: rem(-44);
+    padding-inline: rem(44) !important;
+    margin-inline: rem(-44) !important;
   }
 }

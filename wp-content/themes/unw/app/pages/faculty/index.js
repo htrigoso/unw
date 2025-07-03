@@ -2,6 +2,7 @@ import Tabs from '../../components/Tabs'
 import PostSwiper from '../../components/PostSwiper'
 import HeroSwiper from '../../components/HeroSwiper'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
+import InternationalSwiper from '../../components/InternationalSwiper'
 
 (function () {
   HeroSwiper()
@@ -14,6 +15,7 @@ import PostSwiperDesktop from '../../components/PostSwiperDesktop'
       1200: { slidesPerView: 3 }
     }
   })
+  InternationalSwiper('.internationalization')
 
   const tabsElement = document.querySelector('.faculty-tabs')
   if (tabsElement) {
