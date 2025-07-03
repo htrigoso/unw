@@ -54,6 +54,7 @@ $testimonials = [
   <div class="health__internationalization">
     <?php get_template_part(COMMON_CONTENT_PATH, 'internationalization'); ?>
   </div>
+  <?php get_template_part(FACULTY_CONTENT_TAB_PATH . '1-health-science/content-majors'); ?>
   <?php get_template_part(FACULTY_CONTENT_TAB_PATH . '1-health-science/content-simple-events'); ?>
   <?php get_template_part(FACULTY_CONTENT_TAB_PATH . '1-health-science/content-recognitions'); ?>
 </div>

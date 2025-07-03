@@ -30,23 +30,23 @@ $tabs = [
               break;
 
             case 'arquitectura':
-              get_template_part(FACULTY_CONTENT_TAB_PATH . '2-architecture/content-architecture');
+              get_template_part(FACULTY_CONTENT_TAB_PATH . '1-health-science/content-health');
               break;
 
             case 'ingenieria':
-              get_template_part(FACULTY_CONTENT_TAB_PATH . '3-engineering/content-engineering');
+              get_template_part(FACULTY_CONTENT_TAB_PATH . '1-health-science/content-health');
               break;
 
             case 'derecho-politica':
-              get_template_part(FACULTY_CONTENT_TAB_PATH . '4-political-science/content-political');
+              get_template_part(FACULTY_CONTENT_TAB_PATH . '1-health-science/content-health');
               break;
 
             case 'negocios':
-              get_template_part(FACULTY_CONTENT_TAB_PATH . '5-business/content-business');
+              get_template_part(FACULTY_CONTENT_TAB_PATH . '1-health-science/content-health');
               break;
 
             case 'comunicaciones':
-              get_template_part(FACULTY_CONTENT_TAB_PATH . '6-communication/content-communication');
+              get_template_part(FACULTY_CONTENT_TAB_PATH . '1-health-science/content-health');
               break;
           }
           ?>
