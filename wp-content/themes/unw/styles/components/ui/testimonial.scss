@@ -12,5 +12,6 @@
 
   @include media(">=tablet") {
     @include title-28;
+    margin-bottom: rem(32);
   }
 }

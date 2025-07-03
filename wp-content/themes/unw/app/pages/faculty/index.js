@@ -1,9 +1,12 @@
 import Tabs from '../../components/Tabs'
+import PostSwiper from '../../components/PostSwiper'
 import HeroSwiper from '../../components/HeroSwiper'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
 
 (function () {
   HeroSwiper()
+
+  PostSwiper('.post-swiper')
   PostSwiperDesktop()
 
   const tabsElement = document.querySelector('.faculty-tabs')

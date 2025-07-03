@@ -23,3 +23,16 @@
     color: var(--color-primary);
   }
 }
+
+.health__testimonials {
+  padding-top: rem(74);
+
+  @include media(">=tablet") {
+    padding-top: rem(47);
+  }
+
+  .testimonial__title {
+    @include title-28;
+    margin-bottom: rem(24);
+  }
+}
