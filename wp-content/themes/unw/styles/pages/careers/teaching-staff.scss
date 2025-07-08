@@ -40,6 +40,12 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+
+  @include media(">=tablet") {
+    width: auto;
+    min-width: auto;
+    max-width: none;
+  }
 }
 
 .teacher-card__header {

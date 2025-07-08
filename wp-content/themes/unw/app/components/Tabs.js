@@ -82,12 +82,14 @@ export default class Tabs extends Component {
       this.updateBreadcrumb(targetId)
     }
 
-    // update swiper instances to prevent pagination issues
+    // Update Swiper instances if they exist (prevent pagination issues)
     setTimeout(() => {
       const swipers = targetContent.querySelectorAll('.swiper-container')
       swipers.forEach(container => {
-        if (container.swiper && typeof container.swiper.update === 'function') {
-          container.swiper.update()
+        if (container.swiper) {
+          if (typeof container.swiper.update === 'function') {
+            container.swiper.update()
+          }
         }
       })
     }, 100)

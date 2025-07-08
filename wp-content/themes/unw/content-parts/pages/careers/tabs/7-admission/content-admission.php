@@ -43,7 +43,7 @@ $admission_items = $admission_info['process'] ?? [];
 
     <!-- Content -->
     <div class="admission__content">
-      <div class="post-swiper-desktop" data-width="wide">
+      <div class="admission-swiper post-swiper-desktop switch-pagination-navigation" data-width="compact">
         <div class="swiper-container">
           <ul class="swiper-wrapper admission__list">
             <?php
@@ -91,6 +91,10 @@ $admission_items = $admission_info['process'] ?? [];
             ?>
           </ul>
           <div class="swiper-pagination"></div>
+        </div>
+        <div class="swiper-navigation">
+          <div class="post-swiper-button-prev"></div>
+          <div class="post-swiper-button-next"></div>
         </div>
       </div>
     </div>

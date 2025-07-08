@@ -7,12 +7,22 @@ import InternationalSwiper from '../../components/InternationalSwiper'
 (function () {
   HeroSwiper()
 
-  PostSwiper('.testimonial-swiper')
-  PostSwiperDesktop()
+  PostSwiper('.testimonials-swiper', {
+    breakpoints: {
+      1024: { slidesPerView: 2, spaceBetween: 24 },
+      1200: { slidesPerView: 3, spaceBetween: 48 }
+    }
+  })
+  PostSwiperDesktop('.laboratories-swiper', {
+    breakpoints: {
+      1024: { slidesPerView: 2, spaceBetween: 24 },
+      1200: { slidesPerView: 3, spaceBetween: 48 }
+    }
+  })
   PostSwiper('.simple-events-swiper', {
     breakpoints: {
       1024: { slidesPerView: 2 },
-      1200: { slidesPerView: 3 }
+      1200: { slidesPerView: 3, spaceBetween: 88 }
     }
   })
   InternationalSwiper('.internationalization')

@@ -42,7 +42,6 @@ $testimonials = [
     "img_url" => UPLOAD_PATH . '/faculty/quote/quote-author.jpg',
   ]); ?>
   <?php get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-laboratories'); ?>
-  <?php get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-graduate-testimonials'); ?>
   <div class="faculty__testimonials">
     <?php
     get_template_part(COMMON_CONTENT_PATH, 'testimonials', [

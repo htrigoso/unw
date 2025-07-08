@@ -5,10 +5,10 @@ $testimonial_posts = $args['testimonials'] ?? [];
 
 if (is_array($testimonial_posts) && !empty($testimonial_posts)) :
 ?>
-  <section class="testimonial">
-    <div class="testimonial__wrapper">
-      <h2 class="testimonial__title"><?= wp_kses_post($title); ?></h2>
-      <div class="testimonial-swiper post-swiper" data-width="wide">
+  <section class="testimonials">
+    <div class="testimonials__wrapper">
+      <h2 class="testimonials__title"><?= wp_kses_post($title); ?></h2>
+      <div class="testimonials-swiper post-swiper switch-pagination-navigation" data-width="compact">
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <?php foreach ($testimonial_posts as $testimonial_data) : ?>
@@ -20,6 +20,10 @@ if (is_array($testimonial_posts) && !empty($testimonial_posts)) :
             <?php endforeach; ?>
           </div>
           <div class="swiper-pagination"></div>
+        </div>
+        <div class="swiper-navigation">
+          <div class="post-swiper-button-prev"></div>
+          <div class="post-swiper-button-next"></div>
         </div>
       </div>
     </div>
