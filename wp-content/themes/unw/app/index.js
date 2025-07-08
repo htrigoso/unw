@@ -1,5 +1,4 @@
 import Menu from './components/Menu'
-import Preloader from './components/Preloader'
 import ScrollDown from './components/ScrollDown'
 import { $element } from './utils/dom'
 import floatingInputLabel from './utils/floating-input-label'
@@ -7,21 +6,9 @@ import initLazyLoad from './utils/lazyload'
 
 class App {
   constructor() {
-    // this.createPreloader()
     this.createNavbar()
     this.createMenu()
-  }
-
-  createPreloader() {
-    const container = $element('body')
-    this.preloader = new Preloader({
-      element: '.preloader',
-      container,
-      onCompleted: () => {
-        this.onPreloaded()
-        console.log('Preloader completed')
-      }
-    })
+    this.megaMenuDesktop()
   }
 
   createNavbar() {
@@ -75,7 +62,21 @@ class App {
       }
     })
   }
+
+  megaMenuDesktop() {
+    const elements = document.querySelectorAll('.has-link-parent')
+
+    elements.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault() // por si acaso
+
+        const parentItem = link.closest('li')
+        if (!parentItem) return
+
+        parentItem.classList.toggle('is-open')
+      })
+    })
+  }
 }
 
-// eslint-disable-next-line no-new
 new App()

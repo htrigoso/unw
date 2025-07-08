@@ -59,8 +59,9 @@
   .menu-item-has-children > a {
     position: relative;
     padding-right: 24px;
-
-    &:first-of-type::after {
+  }
+  .has-link-parent {
+    &::after {
       content: "";
       position: absolute;
       top: 50%;
@@ -76,7 +77,7 @@
     }
   }
 
-  .menu-item-object-page {
+  .menu-item-parent-page {
     margin-inline: rem(12);
 
     @include media(">=desktop-s") {
@@ -104,14 +105,6 @@
   .sub-menu-parent {
     display: none;
   }
-}
-.main-submenu-wrapper {
-  position: fixed;
-  left: 0%;
-  top: 115px;
-  right: 0%;
-  bottom: 0%;
-  background-color: rgba(7, 3, 3, 0.48);
 }
 
 .navbar__menu-mobile {
