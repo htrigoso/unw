@@ -18,7 +18,7 @@ $link_title = $args['link_title'];
     <p class="program-card--content__description"><?php echo esc_html($desc); ?></p>
     <?php if (!empty($link)): ?>
       <a href="<?php echo esc_url($link); ?>" target="<?php echo esc_attr($link_target); ?>"
-        class="btn btn-primary program-card--content__cta">
+        class="btn btn-primary-one program-card--content__cta">
         <?php echo esc_html($link_title); ?>
         <i>
           <svg class="icon icon--arrow" width="24" height="24">

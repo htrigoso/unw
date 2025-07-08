@@ -25,13 +25,8 @@
   }
 
   @include media(">=tablet") {
-    padding-inline: rem(213);
-    margin-inline: rem(-213);
-  }
-
-  @media (min-width: 1440px) {
-    padding-inline: calc((100vw - 1014px) / 2 + 213px);
-    margin-inline: calc(-1 * ((100vw - 1014px) / 2 + 213px));
+    padding-inline: rem(0);
+    margin-inline: rem(-5);
   }
 }
 

@@ -1,0 +1,35 @@
+.whatsapp-link {
+  position: fixed;
+  bottom: rem(50);
+  right: rem(13);
+  z-index: 1;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: rem(999);
+
+  &:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 16px 4px rgba(37, 211, 102, 0.45),
+      0 2px 8px rgba(0, 0, 0, 0.1);
+    background: rgba(37, 211, 102, 0.1);
+  }
+
+  @include media(">=tablet") {
+    bottom: rem(16);
+    right: rem(64);
+  }
+
+  @include media(">=desktop") {
+    right: rem(132);
+  }
+}
+
+.whatsapp-link__icon {
+  width: rem(56);
+  height: rem(56);
+
+  @include media(">=desktop") {
+    width: rem(86);
+    height: rem(86);
+  }
+}

@@ -98,8 +98,14 @@
 
 .hero__content--cta {
   font-size: rem(16);
+  white-space: nowrap;
+  min-width: rem(242);
   font-weight: var(--font-semi-bold);
   color: var(--color-white);
-  width: fit-content;
+  width: rem(242);
   height: rem(51);
+
+  @include media(">=phone-m") {
+    width: fit-content;
+  }
 }
