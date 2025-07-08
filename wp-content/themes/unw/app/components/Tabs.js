@@ -82,15 +82,11 @@ export default class Tabs extends Component {
       this.updateBreadcrumb(targetId)
     }
 
-    // Reiniciar autoplay de Swiper en el tab activo
+    // Update Swiper instances if they exist (prevent pagination issues)
     setTimeout(() => {
       const swipers = targetContent.querySelectorAll('.swiper-container')
       swipers.forEach(container => {
         if (container.swiper) {
-          if (container.swiper.autoplay && typeof container.swiper.autoplay.start === 'function') {
-            console.log('Reiniciando autoplay de Swiper en el tab activo')
-            container.swiper.autoplay.start()
-          }
           if (typeof container.swiper.update === 'function') {
             container.swiper.update()
           }

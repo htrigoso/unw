@@ -26,7 +26,7 @@ $card_items = [
 <section class="laboratories">
   <h2 class="laboratories--title">Laboratorios Especializados</h2>
   <p class="laboratories--description">Al estudiar la carrera profesional de Farmacia y Bioquímica, podrás acceder a moderna infraestructura que potenciará tu aprendizaje:</p>
-  <div class="post-swiper-desktop" data-width="wide">
+  <div class="laboratories-swiper post-swiper-desktop switch-pagination-navigation" data-width="compact">
     <div class="swiper-container">
       <ul class="swiper-wrapper laboratories__list">
         <?php
@@ -44,6 +44,10 @@ $card_items = [
         <?php } ?>
       </ul>
       <div class="swiper-pagination"></div>
+    </div>
+    <div class="swiper-navigation">
+      <div class="post-swiper-button-prev"></div>
+      <div class="post-swiper-button-next"></div>
     </div>
   </div>
 </section>

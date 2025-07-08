@@ -36,5 +36,9 @@
     @include media(">=phone") {
       width: rem(305);
     }
+
+    @include media(">=tablet") {
+      width: 100%
+    }
   }
 }
