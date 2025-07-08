@@ -27,4 +27,5 @@ require_once dirname(__FILE__) . '/taxonomies/taxonomy-modalidad.php';
 
 // require menu walkers
 // require head
-require_once dirname(__FILE__) . '/functions/include-menu.php';
+require_once dirname(__FILE__) . '/functions/include-menu-desktop.php';
+require_once dirname(__FILE__) . '/functions/include-menu-mobile.php';

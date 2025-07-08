@@ -9,13 +9,16 @@
     <div class="navbar__content">
       <div class="navbar__menu-wrapper">
         <?php
-        wp_nav_menu(array(
-          'menu' => 'navbar_menu',
-          'menu_class' => 'flex items-center justify-end',
-          'container' => 'nav',
-          'container_class' => 'navbar__menu flex-auto',
-        ));
+            wp_nav_menu(array(
+              'menu' => 'navbar_menu',
+              'menu_class' => 'flex items-center justify-end',
+              'container' => 'nav',
+              'container_class' => 'navbar__menu flex-auto',
+              'walker' => new Desktop_Menu_Walker(),
+            ));
         ?>
+
+
       </div>
 
       <div class="navbar__menu-mobile">
