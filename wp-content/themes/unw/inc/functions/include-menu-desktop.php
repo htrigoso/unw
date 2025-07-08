@@ -12,9 +12,10 @@ class Desktop_Menu_Walker extends Walker_Nav_Menu {
         if ( $depth === 0 ) {
             $output .= "\n$indent<nav class=\"main-submenu-wrapper\">\n";
             $output .= "$indent\t<div class=\"main-submenu-wrapper__content\">\n";
-            // Marcador temporal para insertar super-tab después
+            $output .= "$indent\t\t<div class=\"main-submenu-wrapper__main\">\n";
+            // Marcador temporal para insertar submenu-tab después
             $output .= "<!--SUPER_TAB_PLACEHOLDER-->\n";
-            $output .= "$indent\t\t<ul class=\"sub-menu sub-menu-parent\">\n";
+            $output .= "$indent\t\t\t<ul class=\"sub-menu sub-menu-parent\">\n";
         } else {
             $output .= "\n$indent<ul class=\"sub-menu\">\n";
         }
@@ -26,20 +27,21 @@ class Desktop_Menu_Walker extends Walker_Nav_Menu {
         $output .= "$indent</ul>\n";
 
         if ( $depth === 0 ) {
-            // Generar super-tab
+            // Generar submenu-tab
             $super_tab_content = '';
             if ( $this->parent_item && in_array( 'sub-menu-parent-tab', $this->parent_item->classes ) ) {
-                $super_tab_content .= "$indent\t\t<div class=\"super-tab\">\n";
+                $super_tab_content .= "$indent\t\t\t<div class=\"submenu-tab\">\n";
                 foreach ( $this->child_titles as $index => $button_title ) {
-                    $super_tab_content .= "$indent\t\t\t<button data-id=\"{$index}\">{$button_title}</button>\n";
+                    $super_tab_content .= "$indent\t\t\t\t<button data-id=\"{$index}\">{$button_title}</button>\n";
                 }
-                $super_tab_content .= "$indent\t\t</div>\n";
+                $super_tab_content .= "$indent\t\t\t</div>\n";
             }
 
-            // Reemplazar el marcador con el contenido del super-tab
+            // Reemplazar el marcador con el contenido del submenu-tab
             $output = str_replace("<!--SUPER_TAB_PLACEHOLDER-->\n", $super_tab_content, $output);
 
-            $output .= "$indent\t</div>\n";
+            $output .= "$indent\t\t</div>\n"; // Cierra .main-submenu-wrapper__main
+            $output .= "$indent\t</div>\n";   // Cierra .main-submenu-wrapper__content
             $output .= "$indent</nav>\n";
         }
     }
@@ -52,8 +54,8 @@ class Desktop_Menu_Walker extends Walker_Nav_Menu {
 
         if ( in_array( 'menu-item-has-children', $classes ) && $depth === 0 ) {
             $this->parent_item = $item;
-            $this->child_titles = array(); // reinicia
-            $this->child_index = 0; // reinicia contador
+            $this->child_titles = array();
+            $this->child_index = 0;
         }
 
         if ( $depth === 1 && $this->parent_item && in_array( 'sub-menu-parent-tab', $this->parent_item->classes ) ) {

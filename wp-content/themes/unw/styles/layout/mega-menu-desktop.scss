@@ -14,11 +14,16 @@
 }
 
 .menu-item-has-children.is-open {
-  .main-submenu-wrapper__content {
-    background-color: var(--color-white);
+  .main-submenu-wrapper {
+    display: flex;
+  }
+
+  .main-submenu-wrapper__main {
     position: relative;
     padding: rem(20) rem(24);
     border-radius: rem(12);
+    max-width: rem(1066);
+    width: 100%;
     background: linear-gradient(171deg, #fff 80.91%, #07c8cc 123.34%);
   }
   .menu-item-has-children > a {
@@ -38,6 +43,24 @@
           font-weight: var(--font-semi-bold);
         }
       }
+    }
+  }
+}
+.sub-menu-parent-tab.is-open {
+  .sub-menu-parent {
+    > li {
+      display: none;
+
+      &:first-child {
+        display: block;
+      }
+    }
+  }
+  .main-submenu-wrapper__main {
+    > .sub-menu {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 2px solid red;
     }
   }
 }
