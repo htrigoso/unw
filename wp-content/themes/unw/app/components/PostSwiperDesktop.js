@@ -1,4 +1,4 @@
-import { createPostSwiper } from './createPostSwiper'
+import { createSwiper } from './createSwiper'
 
 const isTablet = () => window.innerWidth >= 768
 
@@ -32,7 +32,7 @@ const PostSwiperDesktop = (sectionEl = '.post-swiper-desktop', config = {}) => {
   function handleResize() {
     let swiperInstance = instances.get(sectionEl)
     if (isTablet() && !swiperInstance) {
-      swiperInstance = createPostSwiper(sectionEl, config, defaultConfig)
+      swiperInstance = createSwiper(sectionEl, config, defaultConfig)
       instances.set(sectionEl, swiperInstance)
     } else if (!isTablet() && swiperInstance) {
       swiperInstance.destroy(true, true)

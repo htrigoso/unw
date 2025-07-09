@@ -1,4 +1,4 @@
-import { createPostSwiper } from './createPostSwiper'
+import { createSwiper } from './createSwiper'
 
 const PostSwiper = (sectionEl = '.post-swiper', config = {}) => {
   const defaultConfig = {
@@ -26,7 +26,7 @@ const PostSwiper = (sectionEl = '.post-swiper', config = {}) => {
     }
   }
 
-  return createPostSwiper(sectionEl, config, defaultConfig)
+  return createSwiper(sectionEl, config, defaultConfig)
 }
 
 export default PostSwiper
