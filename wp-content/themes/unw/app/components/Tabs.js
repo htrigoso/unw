@@ -125,7 +125,7 @@ export default class Tabs extends Component {
 
   scrollToContent(targetContent) {
     requestAnimationFrame(() => {
-      const offset = 130
+      const offset = 200
       const top =
         targetContent.getBoundingClientRect().top +
         window.pageYOffset -

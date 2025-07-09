@@ -1,92 +1,57 @@
 <?php
-$events = [
-  [
-    "title" => "Wiener Sessions",
-    "date" => "04/06/2025",
-    "hour" => "4:00pm",
-    "location" => "Zoom",
-    "register_url" => "#",
-    "image_url" => UPLOAD_PATH . '/home/featured-events/featured-event-1.jpg',
-    "image_alt" => "Wiener Sessions",
-  ],
-  [
-    "title" => "Wiener Fest",
-    "date" => "27/05/2025",
-    "hour" => "4:00pm",
-    "location" => "Norbert Wiener",
-    "register_url" => "#",
-    "image_url" => UPLOAD_PATH . '/home/featured-events/featured-event-2.jpg',
-    "image_alt" => "Wiener Fest",
-  ],
-  [
-    "title" => "Wiener Tours",
-    "date" => "29/05/2025",
-    "hour" => "4:00pm",
-    "location" => "Presencial",
-    "register_url" => "#",
-    "image_url" => UPLOAD_PATH . '/home/featured-events/featured-event-3.jpg',
-    "image_alt" => "Wiener Tours",
-  ],
-  [
-    "title" => "Wiener Fest",
-    "date" => "27/05/2025",
-    "hour" => "4:00pm",
-    "location" => "Norbert Wiener",
-    "register_url" => "#",
-    "image_url" => UPLOAD_PATH . '/home/featured-events/featured-event-2.jpg',
-    "image_alt" => "Wiener Fest",
-  ],
-  [
-    "title" => "Wiener Tours",
-    "date" => "29/05/2025",
-    "hour" => "4:00pm",
-    "location" => "Presencial",
-    "register_url" => "#",
-    "image_url" => UPLOAD_PATH . '/home/featured-events/featured-event-3.jpg',
-    "image_alt" => "Wiener Tours",
-  ],
-  [
-    "title" => "Wiener Sessions",
-    "date" => "04/06/2025",
-    "hour" => "4:00pm",
-    "location" => "Zoom",
-    "register_url" => "#",
-    "image_url" => UPLOAD_PATH . '/home/featured-events/featured-event-1.jpg',
-    "image_alt" => "Wiener Sessions",
-  ],
-]
+$postId = $args['id'] ?? get_the_ID();
+$acf_data = get_field('events', $postId);
+
+$featured_events = $acf_data['list'] ?? [];
+$link = $acf_data['link'] ?? null;
 ?>
 
+<?php if (!empty($acf_data) && is_array($acf_data)): ?>
 <section class="simple-events">
-  <h2 class="simple-events__title">Eventos Destacados</h2>
-  <div class="simple-events-swiper post-swiper" data-width="compact">
-    <div class="simple-events__swiper-container swiper-container">
-      <div class="simple-events__swiper-wrapper swiper-wrapper">
-        <?php foreach ($events as $event): ?>
-          <?php
-          $date = DateTime::createFromFormat('d/m/Y', $event['date']);
-          $formatted_day = $date->format('d.m');
-          ?>
-          <div class="simple-events__slide swiper-slide">
-            <?php
-            get_template_part(COMMON_CONTENT_PATH, 'event-card', [
-              'title' => $event['title'],
-              'hour' => $event['hour'],
-              'location' => $event['location'],
-              'date' => $formatted_day,
-              'url' => $event['register_url'],
-              'image_url' => $event['image_url'],
-              'image_alt' => $event['image_alt'],
-            ]);
+  <h2 class="simple-events__title"><?php echo esc_html($acf_data['title'] ?? 'Eventos Destacados'); ?></h2>
+
+  <div class="post-swiper simple-events-swiper" data-width="compact">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <?php foreach ($featured_events as $post): ?>
+        <?php
+              $info = get_field('event_info', $post->ID);
+
+              $date = !empty($info['date']) ? DateTime::createFromFormat('d/m/Y', $info['date']) : null;
+              $formatted_day = $date ? $date->format('d.m') : '';
+
+              $title    = get_the_title($post->ID);
+              $hour     = $info['time'] ?? '';
+              $location = $info['location'] ?? '';
+              $url      = $info['register_url'] ?? '';
+
+              $image_url = get_the_post_thumbnail_url($post->ID, 'full') ?: get_template_directory_uri() . '/upload/default-event.jpg';
+              $image_alt = $title;
             ?>
-          </div>
+        <div class="swiper-slide simple-events__slide">
+          <?php
+              get_template_part(COMMON_CONTENT_PATH, 'event-card', [
+                'title' => $title,
+                'hour' => $hour,
+                'location' => $location,
+                'date' => $formatted_day,
+                'url' => $url,
+                'image_url' => $image_url,
+                'image_alt' => $image_alt,
+              ]);
+              ?>
+        </div>
         <?php endforeach; ?>
       </div>
     </div>
   </div>
+
+  <?php
+ if ($link && !empty($link['url'])): ?>
   <div class="simple-events__see-more">
-    <a href="#" class="btn btn-sm btn-secondary-one simple-events__see-more-btn">
-      Ver todos los eventos
+    <a href="<?php echo esc_url($link['url']); ?>" target="<?php echo esc_attr($link['target'] ?? '_self'); ?>"
+      class="btn btn-sm btn-secondary-one simple-events__see-more-btn">
+      <?php echo esc_html($link['title'] ?? 'Ver todos los eventos'); ?>
       <i>
         <svg class="icon icon--arrow" width="32" height="32">
           <use xlink:href="#arrow-right"></use>
@@ -94,4 +59,6 @@ $events = [
       </i>
     </a>
   </div>
+  <?php endif; ?>
 </section>
+<?php endif; ?>

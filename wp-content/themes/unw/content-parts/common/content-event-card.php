@@ -6,12 +6,11 @@ $title          = $args['title'] ?? '';
 $date           = $args['date'] ?? '';
 $hour           = $args['hour'] ?? '';
 $location       = $args['location'] ?? '';
-$url            = $args['url'] ?? '/';
+$url            = $args['url'];
 ?>
 
 <article class="event-card">
-  <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($image_alt); ?>"
-    class="event-card--img" />
+  <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($image_alt); ?>" class="event-card--img" />
   <div class="event-card--content">
     <h3 class="event-card--title"><?php echo esc_html($title); ?></h3>
     <div class="event-card--row">
@@ -28,14 +27,20 @@ $url            = $args['url'] ?? '/';
       <span class="event-card--info--title">Lugar</span>
       <span class="event-card--info--desc"><?php echo esc_html($location); ?></span>
     </div>
-    <a href="<?php echo esc_url($url); ?>"
+    <?php
+     if($url && is_array($url)):
+    ?>
+    <a href=" <?=$url['url']?>" target=" <?=$url['target']?>"
       class="btn btn-sm btn-secondary-one-outline event-card--cta">
-      Inscribirme
+      <?=$url['title']?>
       <i>
         <svg class="icon icon--arrow" width="32" height="32">
           <use xlink:href="#arrow-right"></use>
         </svg>
       </i>
     </a>
+    <?php
+      endif;
+    ?>
   </div>
 </article>

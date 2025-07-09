@@ -10,6 +10,7 @@ class App {
     this.createMenu()
     this.megaMenuDesktop()
     this.tabMegaMenuDesktop()
+    this.hideBackdrop()
   }
 
   createNavbar() {
@@ -129,6 +130,38 @@ class App {
         })
       })
     })
+  }
+
+  hideBackdrop() {
+    this.addBackdropListeners()
+  }
+
+  addBackdropListeners() {
+    const wrappers = document.querySelectorAll('.main-submenu-wrapper')
+
+    wrappers.forEach((wrapper) => {
+      wrapper.addEventListener('click', (e) => this.handleBackdropClick(e))
+    })
+  }
+
+  handleBackdropClick(e) {
+    e.preventDefault()
+
+    if (!this.shouldCloseBackdrop(e.target)) return
+
+    this.closeOpenMenus()
+  }
+
+  shouldCloseBackdrop(target) {
+    return !target.closest('.main-submenu-wrapper__main')
+  }
+
+  closeOpenMenus() {
+    const openItems = document.querySelectorAll('#menu-navbar_menu > .menu-item-has-children.is-open')
+
+    openItems.forEach((item) => item.classList.remove('is-open'))
+
+    document.documentElement.style.overflow = ''
   }
 }
 

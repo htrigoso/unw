@@ -27,9 +27,4 @@
 .whatsapp-link__icon {
   width: rem(56);
   height: rem(56);
-
-  @include media(">=desktop") {
-    width: rem(86);
-    height: rem(86);
-  }
 }
