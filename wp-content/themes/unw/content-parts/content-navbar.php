@@ -1,4 +1,5 @@
 <header class="navbar" id="navbar">
+  <?php get_template_part(GENERAL_CONTENT_PATH, 'top-bar');?>
   <div class="x-container x-container--pad-64 navbar__wrapper">
 
     <a class="navbar__logo pointer">

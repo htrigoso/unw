@@ -9,6 +9,7 @@ class App {
     this.createNavbar()
     this.createMenu()
     this.megaMenuDesktop()
+    this.tabMegaMenuDesktop()
   }
 
   createNavbar() {
@@ -68,12 +69,64 @@ class App {
 
     elements.forEach((link) => {
       link.addEventListener('click', (e) => {
-        e.preventDefault() // por si acaso
+        e.preventDefault()
+        const _html = document.querySelector('html')
+        _html.style.overflow = 'hidden'
 
         const parentItem = link.closest('li')
         if (!parentItem) return
 
+        document.querySelectorAll('li.is-open').forEach((item) => {
+          if (item !== parentItem) {
+            item.classList.remove('is-open')
+          }
+        })
+
         parentItem.classList.toggle('is-open')
+        // Si ahora hay alguno abierto, bloquea scroll. Si no, lo quita.
+        const anyOpen = document.querySelector('li.is-open')
+        if (anyOpen) {
+          _html.style.overflow = 'hidden'
+        } else {
+          _html.style.overflow = ''
+        }
+      })
+    })
+  }
+
+  tabMegaMenuDesktop() {
+    const elements = document.querySelectorAll('.submenu-tab > button')
+
+    elements.forEach((link) => {
+      const dataId = link.getAttribute('data-id')
+
+      link.addEventListener('click', (e) => {
+        e.preventDefault()
+
+        const parentWrapper = link.closest('.main-submenu-wrapper__main')
+
+        if (!parentWrapper) {
+          console.error('No se encontró el contenedor principal')
+          return
+        }
+
+        elements.forEach((btn) => {
+          btn.classList.remove('is-active')
+        })
+
+        link.classList.add('is-active')
+
+        const listItems = parentWrapper.querySelectorAll('.sub-menu-parent > li')
+
+        listItems.forEach((li) => {
+          const liId = li.getAttribute('id')
+
+          if (liId === dataId) {
+            li.classList.add('is-active')
+          } else {
+            li.classList.remove('is-active')
+          }
+        })
       })
     })
   }
