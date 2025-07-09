@@ -107,16 +107,26 @@ class App {
         const parentWrapper = link.closest('.main-submenu-wrapper__main')
 
         if (!parentWrapper) {
-          console.error('No se encontró el contenedor principal')
           return
         }
 
+        // Obtener el contenedor .submenu-tab del botón clicado
+        const submenuTab = link.closest('.submenu-tab')
+
+        // Limpiar todos los botones activos dentro de este wrapper
         elements.forEach((btn) => {
           btn.classList.remove('is-active')
         })
 
+        // Activar el botón clicado
         link.classList.add('is-active')
 
+        // Si hay al menos uno activo, poner has-active al contenedor
+        if (submenuTab) {
+          submenuTab.classList.add('has-active')
+        }
+
+        // Desactivar todos los items del submenú
         const listItems = parentWrapper.querySelectorAll('.sub-menu-parent > li')
 
         listItems.forEach((li) => {
