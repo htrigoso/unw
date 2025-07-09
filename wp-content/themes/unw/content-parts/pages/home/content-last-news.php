@@ -11,7 +11,7 @@ $news_items = $news_data['news'] ?? [];
       <h2 class="last-news__title"><?php echo esc_html($news_data['title']); ?></h2>
       <?php endif; ?>
 
-      <div class="post-swiper last-news-swiper last-news__swiper">
+      <div class="post-swiper last-news-swiper last-news__swiper" data-width="compact">
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <?php foreach ($news_items as $news_post) :

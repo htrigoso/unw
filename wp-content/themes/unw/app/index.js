@@ -1,5 +1,4 @@
 import Menu from './components/Menu'
-import Preloader from './components/Preloader'
 import ScrollDown from './components/ScrollDown'
 import { $element } from './utils/dom'
 import floatingInputLabel from './utils/floating-input-label'
@@ -7,21 +6,10 @@ import initLazyLoad from './utils/lazyload'
 
 class App {
   constructor() {
-    // this.createPreloader()
     this.createNavbar()
     this.createMenu()
-  }
-
-  createPreloader() {
-    const container = $element('body')
-    this.preloader = new Preloader({
-      element: '.preloader',
-      container,
-      onCompleted: () => {
-        this.onPreloaded()
-        console.log('Preloader completed')
-      }
-    })
+    this.megaMenuDesktop()
+    this.tabMegaMenuDesktop()
   }
 
   createNavbar() {
@@ -75,7 +63,73 @@ class App {
       }
     })
   }
+
+  megaMenuDesktop() {
+    const elements = document.querySelectorAll('.has-link-parent')
+
+    elements.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault()
+        const _html = document.querySelector('html')
+        _html.style.overflow = 'hidden'
+
+        const parentItem = link.closest('li')
+        if (!parentItem) return
+
+        document.querySelectorAll('li.is-open').forEach((item) => {
+          if (item !== parentItem) {
+            item.classList.remove('is-open')
+          }
+        })
+
+        parentItem.classList.toggle('is-open')
+        // Si ahora hay alguno abierto, bloquea scroll. Si no, lo quita.
+        const anyOpen = document.querySelector('li.is-open')
+        if (anyOpen) {
+          _html.style.overflow = 'hidden'
+        } else {
+          _html.style.overflow = ''
+        }
+      })
+    })
+  }
+
+  tabMegaMenuDesktop() {
+    const elements = document.querySelectorAll('.submenu-tab > button')
+
+    elements.forEach((link) => {
+      const dataId = link.getAttribute('data-id')
+
+      link.addEventListener('click', (e) => {
+        e.preventDefault()
+
+        const parentWrapper = link.closest('.main-submenu-wrapper__main')
+
+        if (!parentWrapper) {
+          console.error('No se encontró el contenedor principal')
+          return
+        }
+
+        elements.forEach((btn) => {
+          btn.classList.remove('is-active')
+        })
+
+        link.classList.add('is-active')
+
+        const listItems = parentWrapper.querySelectorAll('.sub-menu-parent > li')
+
+        listItems.forEach((li) => {
+          const liId = li.getAttribute('id')
+
+          if (liId === dataId) {
+            li.classList.add('is-active')
+          } else {
+            li.classList.remove('is-active')
+          }
+        })
+      })
+    })
+  }
 }
 
-// eslint-disable-next-line no-new
 new App()

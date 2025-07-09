@@ -1,7 +1,7 @@
 import Component from '../classes/Component'
 
 export default class Tabs extends Component {
-  constructor({ element }) {
+  constructor({ element, tabLabels = {} }) {
     super({
       element,
       elements: {
@@ -10,13 +10,14 @@ export default class Tabs extends Component {
       }
     })
 
+    this.tabLabels = tabLabels
     this.currentTabId = null
 
     this.init()
   }
 
   init() {
-    this.activateFirstTab()
+    this.activeTabFromUrl()
     this.bindTabEvents()
     window.addEventListener('resize', this.handleResize.bind(this))
   }
@@ -30,15 +31,29 @@ export default class Tabs extends Component {
     }
   }
 
-  activateFirstTab() {
-    const firstTab = this.elements.tabItems[0]
-    if (!firstTab) return
+  activeTabFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search)
+    const tabId = urlParams.get('tab')
+    let tabToActivate = null
 
-    const targetId = firstTab.dataset.target
+    if (tabId) {
+      tabToActivate = [...this.elements.tabItems].find(tab => tab.dataset.target === tabId)
+    }
+
+    if (!tabToActivate) {
+      tabToActivate = this.elements.tabItems[0]
+    }
+
+    if (!tabToActivate) return
+
+    const targetId = tabToActivate.dataset.target
     this.currentTabId = targetId
 
-    this.setActiveTab(firstTab)
+    this.setActiveTab(tabToActivate)
     this.showTabContent(targetId)
+    if (Object.keys(this.tabLabels).length > 0) {
+      this.updateBreadcrumb(targetId)
+    }
   }
 
   bindTabEvents() {
@@ -61,16 +76,38 @@ export default class Tabs extends Component {
     this.showTabContent(targetId)
     this.scrollToContent(targetContent)
     this.scrollToTab(tab)
+    this.updateUrl(targetId)
 
-    // Update Swiper instances to prevent layout issues
+    if (Object.keys(this.tabLabels).length > 0) {
+      this.updateBreadcrumb(targetId)
+    }
+
+    // Update Swiper instances if they exist (prevent pagination issues)
     setTimeout(() => {
       const swipers = targetContent.querySelectorAll('.swiper-container')
       swipers.forEach(container => {
-        if (container.swiper && typeof container.swiper.update === 'function') {
-          container.swiper.update()
+        if (container.swiper) {
+          if (typeof container.swiper.update === 'function') {
+            container.swiper.update()
+          }
         }
       })
     }, 100)
+  }
+
+  updateUrl(targetId) {
+    const url = new URL(window.location)
+    url.searchParams.set('tab', targetId)
+    window.history.replaceState({}, '', url)
+  }
+
+  updateBreadcrumb(targetId) {
+    const breadcrumbLast = document.querySelector('.breadcrumb__label.current')
+    if (!breadcrumbLast) return
+
+    if (this.tabLabels && this.tabLabels[targetId]) {
+      breadcrumbLast.textContent = this.tabLabels[targetId]
+    }
   }
 
   setActiveTab(activeTab) {

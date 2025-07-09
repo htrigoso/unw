@@ -62,6 +62,7 @@
   overflow: hidden;
 
   .menu-item {
+    display: block;
     width: 100%;
     text-align: left;
     padding: rem(16);
@@ -89,12 +90,6 @@
 
   &[aria-current="page"] {
     color: var(--color-light-turquoise);
-  }
-}
-
-.sidebar__menu-link.depth-2 {
-  svg {
-    transform: rotate(90deg);
   }
 }
 
@@ -148,6 +143,7 @@
   gap: rem(8);
   cursor: pointer;
   font-size: rem(18);
+  height: rem(74);
 
   @include media(">=phone") {
     padding-inline: rem(24);
@@ -156,22 +152,16 @@
 
 .sidebar__submenu-title {
   padding: rem(16);
-  display: flex;
+  display: none;
+  // display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--color-light-grey);
+  height: rem(74);
+  background-color: var(--color-light-turquoise);
   font-size: rem(18);
-
-  svg {
-    transform: rotate(-90deg);
-  }
 
   @include media(">=phone") {
     padding-inline: rem(24);
   }
 }
 
-.sidebar__submenu-title.depth-1 {
-  background-color: var(--color-light-turquoise);
-  height: rem(46);
-}

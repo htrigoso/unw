@@ -1,9 +1,12 @@
 <?php
 $slider_group = $args['sliders'] ?? [];
 $slides = $slider_group['list_of_files'] ?? [];
+$breadcrumbs = $args['breadcrumbs'] ?? [];
+$hero_title = $args['hero_title'] ?? '';
+$extra_class = $args['extra_class'] ?? '';
 if (!empty($slides)) :
 ?>
-<section class="hero careers-hero-swiper">
+<section class="hero <?php echo esc_attr($extra_class); ?>">
   <div class="swiper-container is-draggable">
     <div class="swiper-wrapper swiper-hero__wrapper">
 
@@ -29,15 +32,11 @@ if (!empty($slides)) :
         <div class="x-container hero__container">
           <article class="hero__content">
             <h1 class="hero__content--title">
-              <?php echo esc_html(get_the_title()); ?>
+              <?php echo esc_html($hero_title); ?>
             </h1>
             <?php
             get_template_part(COMMON_CONTENT_PATH, 'breadcrumb', [
-              'breadcrumb' => [
-                ['label' => 'Inicio', 'href' => home_url('/')],
-                ['label' => 'Ciencias de la Salud', 'href' => '/salud'],
-                ['label' => get_the_title()]
-              ]
+              'breadcrumb' => $breadcrumbs
             ]);
             ?>
           </article>

@@ -1,0 +1,40 @@
+.career-tabs__container {
+  display: flex;
+  flex-direction: column;
+  margin-top: rem(20);
+
+  .nav-tabs {
+    padding-inline: rem(16);
+    margin-inline: rem(-16);
+
+    @include media(">=phone") {
+      padding-inline: rem(24);
+      margin-inline: rem(-24);
+    }
+  }
+
+  @include media(">=tablet") {
+    padding-inline: rem(81);
+    margin-top: rem(63);
+  }
+}
+
+.career-tab {
+  padding-bottom: rem(24);
+
+  @include media(">=tablet") {
+    padding-bottom: rem(67);
+  }
+}
+
+.internationalization-tab {
+  .internationalization__wrapper {
+    padding-top: rem(44);
+    padding-bottom: rem(96);
+
+    @include media(">=tablet") {
+      padding-top: rem(88);
+      padding-bottom: rem(96);
+    }
+  }
+}

@@ -1,4 +1,4 @@
-%swiper-pagination {
+%swiper-pagination-bullets {
   display: flex;
   justify-content: center;
   position: static;
@@ -24,8 +24,28 @@
   }
 }
 
+/**
+ * Post Swiper Styles
+ * Variants
+  * - [data-width="wide"] - Full width swiper
+  * - [data-width="compact"] - Full width swiper below tablet
+ */
 .post-swiper {
-  .swiper-container {
+  &[data-width="compact"] .swiper-container {
+    padding-inline: rem(16);
+    margin-inline: rem(-16);
+
+    @include media(">=phone") {
+      padding-inline: rem(24);
+      margin-inline: rem(-24);
+    }
+    @include media(">=tablet") {
+      padding-inline: 0;
+      margin-inline: 0;
+    }
+  }
+
+  &[data-width="wide"] .swiper-container {
     padding-inline: rem(16);
     margin-inline: rem(-16);
 
@@ -43,20 +63,27 @@
       padding-inline: calc((100vw - 1014px) / 2 + 213px);
       margin-inline: calc(-1 * ((100vw - 1014px) / 2 + 213px));
     }
+  }
 
+  .swiper-container {
     .swiper-slide {
       width: auto;
       height: auto;
+
+      & > * {
+        margin-inline: auto
+      }
     }
   }
+
   .swiper-pagination {
-    @extend %swiper-pagination;
+    @extend %swiper-pagination-bullets;
   }
 }
 
 .careers-hero-swiper {
   .swiper-pagination {
-    @extend %swiper-pagination;
+    @extend %swiper-pagination-bullets;
     @extend .x-container;
 
     @include media("<phone") {

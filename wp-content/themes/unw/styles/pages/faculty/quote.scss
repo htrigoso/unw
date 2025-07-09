@@ -1,0 +1,60 @@
+.quote {
+  @include media(">=phone") {
+    display: flex;
+    gap: rem(24);
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+}
+
+.quote--img {
+  height: rem(326);
+  object-fit: cover;
+  width: 100%;
+
+  @include media(">=phone") {
+    flex-basis: 50%;
+    max-width: rem(496);
+    width: auto;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  @include media(">=desktop-s") {
+    flex-basis: 60%;
+  }
+}
+
+.quote__content {
+  @include media(">=phone") {
+    flex: 1;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  @include media(">=tablet") {
+    margin-bottom: rem(18);
+    max-width: rem(392);
+  }
+}
+
+.quote__content--text {
+  margin-top: rem(15);
+  margin-bottom: rem(15);
+
+  @include media(">=tablet") {
+    margin-top: 0;
+    margin-bottom: rem(24);
+  }
+}
+
+.quote__content--author {
+  @include title-20;
+  margin-bottom: rem(8);
+}
+
+.quote__content--position {
+  color: var(--color-turquoise-three);
+}

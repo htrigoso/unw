@@ -1,4 +1,5 @@
 <header class="navbar" id="navbar">
+  <?php get_template_part(GENERAL_CONTENT_PATH, 'top-bar');?>
   <div class="x-container x-container--pad-64 navbar__wrapper">
 
     <a class="navbar__logo pointer">
@@ -9,13 +10,16 @@
     <div class="navbar__content">
       <div class="navbar__menu-wrapper">
         <?php
-        wp_nav_menu(array(
-          'menu' => 'navbar_menu',
-          'menu_class' => 'flex items-center justify-end',
-          'container' => 'nav',
-          'container_class' => 'navbar__menu flex-auto',
-        ));
+            wp_nav_menu(array(
+              'menu' => 'navbar_menu',
+              'menu_class' => 'flex items-center justify-end',
+              'container' => 'nav',
+              'container_class' => 'navbar__menu flex-auto',
+              'walker' => new Desktop_Menu_Walker(),
+            ));
         ?>
+
+
       </div>
 
       <div class="navbar__menu-mobile">
