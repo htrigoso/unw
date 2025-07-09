@@ -12,39 +12,15 @@
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 <main>
   <?php
-  $sliders = [
-    'list_of_files' => [
-      [
-        'images' => [
-          'desktop' => [
-            'url' => UPLOAD_PATH . '/faculty/hero/hero-1-desktop.jpg',
-            'alt' => 'Facultad Hero Desktop'
-          ],
-          'mobile' => [
-            'url' => UPLOAD_PATH . '/faculty/hero/hero-1-mobile.jpg',
-            'alt' => 'Facultad Hero Mobile'
-          ]
-        ]
-      ],
-      [
-        'images' => [
-          'desktop' => [
-            'url' => UPLOAD_PATH . '/faculty/hero/hero-1-desktop.jpg',
-            'alt' => 'Facultad Hero Desktop'
-          ],
-          'mobile' => [
-            'url' => UPLOAD_PATH . '/faculty/hero/hero-1-mobile.jpg',
-            'alt' => 'Facultad Hero Mobile'
-          ]
-        ]
-      ]
-    ]
-  ];
+  $sliders = get_field('hero_slider');
+
+
   $breadcrumbs = [
     ['label' => 'Inicio', 'href' => home_url('/')],
     ['label' => 'Facultad', 'href' => '/facultad'],
     ['label' => '']
   ];
+
   get_template_part(
     COMMON_CONTENT_PATH,
     'swiper-hero',
