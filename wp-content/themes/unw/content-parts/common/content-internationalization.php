@@ -1,4 +1,6 @@
 <?php
+
+$postId = $args['id'];
 $countries = [
   ['name' => 'Spain',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/1.svg'],
   ['name' => 'Mexico',      'file' => get_template_directory_uri() . '/upload/home/international-agreements/2.svg'],
@@ -19,7 +21,8 @@ $countries = [
 ];
 ?>
 
-<section class="internationalization" aria-labelledby="internationalization-title">
+<section class="internationalization" id="internationalization-<?=$postId?>"
+  aria-labelledby="internationalization-title">
   <div class="internationalization__wrapper">
 
     <!-- Header -->
@@ -65,13 +68,13 @@ $countries = [
           <div class="swiper-container internationalization-swiper">
             <ul class="swiper-wrapper">
               <?php foreach ($countries as $country): ?>
-                <li class="swiper-slide internationalization__country-item">
-                  <?php
+              <li class="swiper-slide internationalization__country-item">
+                <?php
                   get_template_part(COMMON_CONTENT_PATH, 'country-card', array(
                     'country' => $country
                   ));
                   ?>
-                </li>
+              </li>
               <?php endforeach; ?>
             </ul>
           </div>

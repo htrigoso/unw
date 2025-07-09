@@ -51,9 +51,17 @@ $postID = $args['id'];
     ?>
   </div>
   <div class="faculty__internationalization">
-    <?php get_template_part(COMMON_CONTENT_PATH, 'internationalization'); ?>
+    <?php get_template_part(COMMON_CONTENT_PATH, 'internationalization',  [
+       'id'=>$postID
+    ]); ?>
   </div>
-  <?php get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-majors'); ?>
-  <?php get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-simple-events'); ?>
-  <?php get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-recognitions'); ?>
+  <?php get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-majors', null, [
+      'id'=>$postID
+  ]); ?>
+  <?php get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-simple-events', null, [
+      'id'=>$postID
+  ]); ?>
+  <?php get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-recognitions', null, [
+      'id'=>$postID
+  ]); ?>
 </div>

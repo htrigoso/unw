@@ -23,9 +23,9 @@ $tabs = [
   <div class="x-container x-container--pad-213">
     <div class="career-tabs__content">
       <?php foreach ($tabs as $i => $tab): ?>
-        <div id="<?php echo esc_attr($tab['target']); ?>" class="tab__content<?php echo $i === 0 ? ' is-active' : ''; ?>"
-          role="tabpanel" aria-labelledby="tab-<?php echo esc_attr($tab['target']); ?>">
-          <?php
+      <div id="<?php echo esc_attr($tab['target']); ?>" class="tab__content<?php echo $i === 0 ? ' is-active' : ''; ?>"
+        role="tabpanel" aria-labelledby="tab-<?php echo esc_attr($tab['target']); ?>">
+        <?php
           switch ($tab['target']) {
             case 'presentacion':
 
@@ -110,12 +110,14 @@ $tabs = [
 
             case 'internacionalizacion':
               echo '<div class="internationalization-tab">';
-              get_template_part(COMMON_CONTENT_PATH, 'internationalization');
+              get_template_part(COMMON_CONTENT_PATH, 'internationalization', null, [
+                'id'=>0
+              ]);
               echo '</div>';
               break;
           }
           ?>
-        </div>
+      </div>
       <?php endforeach; ?>
     </div>
   </div>

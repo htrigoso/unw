@@ -25,8 +25,23 @@ import InternationalSwiper from '../../components/InternationalSwiper'
       1200: { slidesPerView: 3, spaceBetween: 88 }
     }
   })
-  InternationalSwiper('.internationalization')
 
+  const International = () => {
+    const elements = document.querySelectorAll('.internationalization')
+
+    elements.forEach((element) => {
+      const id = element.id
+      console.log('ID:', id)
+
+      InternationalSwiper(`#${id}`)
+
+      // Si quieres hacer algo más con el ID:
+      // por ejemplo: pasarlo a otra función
+      // InternationalSwiper(element)
+    })
+  }
+
+  International()
   const tabsElement = document.querySelector('.faculty-tabs')
   if (tabsElement) {
     const tabLabels = {
