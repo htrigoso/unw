@@ -44,8 +44,8 @@ $featured_events = $acf_data['events'] ?? [];
 
           <div class="featured-events__swiper-navigation">
             <div class="swiper-navigation">
-              <div class="post-swiper-button-prev"></div>
-              <div class="post-swiper-button-next"></div>
+              <div class="swiper-primary-button-prev"></div>
+              <div class="swiper-primary-button-next"></div>
             </div>
 
             <?php

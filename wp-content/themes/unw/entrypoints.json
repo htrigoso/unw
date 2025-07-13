@@ -4,6 +4,7 @@
     "home": ["./app/pages/home/index.js", "./styles/pages/home/index.scss"],
     "careers": ["./app/pages/careers/index.js", "./styles/pages/careers/index.scss"],
     "admission": ["./app/pages/admission/index.js", "./styles/pages/admission/index.scss"],
-    "faculty": ["./app/pages/faculty/index.js", "./styles/pages/faculty/index.scss"]
+    "faculty": ["./app/pages/faculty/index.js", "./styles/pages/faculty/index.scss"],
+    "news": ["./app/pages/news/index.js", "./styles/pages/news/index.scss"]
   }
 }

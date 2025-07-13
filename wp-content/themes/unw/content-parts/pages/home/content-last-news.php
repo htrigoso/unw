@@ -42,8 +42,8 @@ $news_items = $news_data['news'] ?? [];
 
         <div class="last-news__swiper-navigation">
           <div class="swiper-navigation">
-            <div class="post-swiper-button-prev"></div>
-            <div class="post-swiper-button-next"></div>
+            <div class="swiper-primary-button-prev"></div>
+            <div class="swiper-primary-button-next"></div>
           </div>
 
           <?php if (!empty($news_data['link']['url'])) : ?>

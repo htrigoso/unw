@@ -9,16 +9,19 @@ define('ALLOW_UNFILTERED_UPLOADS', true);
 define('ALLOW_GZIP', false);
 define('COMMON_CONTENT_PATH', 'content-parts/common/content');
 define('HOME_CONTENT_PATH', 'content-parts/pages/home/content');
+define('NEWS_CONTENT_PATH', 'content-parts/pages/news/content');
 define('GENERAL_CONTENT_PATH', 'content-parts/content');
 
 define('CAREERS_TABS_PATH', 'content-parts/pages/careers/tabs/content');
 define('ADMISSION_TABS_PATH', 'content-parts/pages/admission/tabs/content');
 define('FACULTY_TABS_PATH', 'content-parts/pages/faculty/tabs/content');
+define('NEWS_TABS_PATH', 'content-parts/pages/news/tabs/content');
 
 define('CAREERS_HERO_CONTENT_PATH', 'content-parts/pages/careers/hero/content');
 define('CAREERS_CONTENT_TAB_PATH', 'content-parts/pages/careers/tabs/');
 define('ADMISSION_CONTENT_TAB_PATH', 'content-parts/pages/admission/tabs/');
 define('FACULTY_CONTENT_TAB_PATH', 'content-parts/pages/faculty/tabs/');
+define('NEWS_CONTENT_TAB_PATH', 'content-parts/pages/news/tabs/');
 
 set_query_var( 'NAVBAR_COLOR', false );
 set_query_var( 'MENU_COLOR', false );

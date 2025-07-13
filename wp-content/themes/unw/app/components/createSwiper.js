@@ -8,8 +8,8 @@ export function createSwiper(sectionEl, config = {}, defaultConfig) {
   )
   mergedConfig.pagination.el = `${sectionEl} .swiper-pagination`
   if (mergedConfig.navigation) {
-    mergedConfig.navigation.nextEl = `${sectionEl} .post-swiper-button-next`
-    mergedConfig.navigation.prevEl = `${sectionEl} .post-swiper-button-prev`
+    mergedConfig.navigation.nextEl = `${sectionEl} .swiper-primary-button-next`
+    mergedConfig.navigation.prevEl = `${sectionEl} .swiper-primary-button-prev`
   }
   return new Swiper(`${sectionEl} .swiper-container`, mergedConfig)
 }

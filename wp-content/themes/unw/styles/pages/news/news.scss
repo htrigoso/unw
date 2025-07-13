@@ -1,0 +1,7 @@
+.news {
+  margin-top: rem(32);
+
+  @include media(">=tablet") {
+    margin-top: rem(42);
+  }
+}

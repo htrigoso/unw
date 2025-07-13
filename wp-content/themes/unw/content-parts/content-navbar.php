@@ -2,7 +2,7 @@
   <?php get_template_part(GENERAL_CONTENT_PATH, 'top-bar');?>
   <div class="x-container x-container--pad-64 navbar__wrapper">
 
-    <a class="navbar__logo pointer">
+    <a class="navbar__logo pointer" href="<?php echo home_url('/'); ?>">
       <img width="101" height="40" src="<?php echo get_template_directory_uri(); ?>/upload/logo-unw.svg" alt="">
     </a>
 

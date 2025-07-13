@@ -1,0 +1,43 @@
+.news-hero {
+  position: relative;
+}
+
+.news-hero__picture {
+  width: 100%;
+}
+
+.news-hero__picture--img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  height: rem(180);
+
+  @include media(">=phone") {
+    height: rem(355);
+  }
+}
+
+.news-hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(218, 247, 247, 0.80);
+}
+
+.news-hero__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.news-hero__content--title {
+  @include title-28;
+
+  @include media(">=phone") {
+    font-size: rem(56);
+  }
+}
+

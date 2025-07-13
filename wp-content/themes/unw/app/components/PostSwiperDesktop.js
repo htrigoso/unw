@@ -14,8 +14,8 @@ const PostSwiperDesktop = (sectionEl = '.post-swiper-desktop', config = {}) => {
       el: `${sectionEl} .swiper-pagination`
     },
     navigation: {
-      nextEl: `${sectionEl} .post-swiper-button-next`,
-      prevEl: `${sectionEl} .post-swiper-button-prev`
+      nextEl: `${sectionEl} .swiper-primary-button-next`,
+      prevEl: `${sectionEl} .swiper-primary-button-prev`
     },
     breakpoints: {
       576: {
