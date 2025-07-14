@@ -5,7 +5,6 @@ const PostSwiper = (sectionEl = '.post-swiper', config = {}) => {
     loop: false,
     slidesPerView: 'auto',
     spaceBetween: 8,
-    grabCursor: true,
     pagination: {
       el: `${sectionEl} .swiper-pagination`,
       clickable: true

@@ -27,6 +27,13 @@
   }
 }
 
+%swiper-pagination-fraction {
+  display: block;
+  position: static;
+  @include title-20;
+  color: var(--color-asu-grey);
+}
+
 %swiper-primary-navigation {
   .swiper-primary-button-prev,
   .swiper-primary-button-next {
@@ -132,8 +139,17 @@
     }
   }
 
-  .swiper-pagination {
+  .swiper-counter {
+    display: flex;
+    align-items: center;
+  }
+
+  .swiper-pagination.swiper-pagination-bullets {
     @extend %swiper-pagination-bullets;
+  }
+
+  .swiper-pagination.swiper-pagination-fraction {
+    @extend %swiper-pagination-fraction;
   }
 
   .swiper-navigation {
