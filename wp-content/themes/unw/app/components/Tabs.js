@@ -1,7 +1,7 @@
 import Component from '../classes/Component'
 
 export default class Tabs extends Component {
-  constructor({ element, tabLabels = {} }) {
+  constructor({ element, swiper = null }) {
     super({
       element,
       elements: {
@@ -9,9 +9,8 @@ export default class Tabs extends Component {
         tabContents: '.tab__content'
       }
     })
-
-    this.tabLabels = tabLabels
     this.currentTabId = null
+    this.swiper = swiper
 
     this.init()
   }
@@ -51,9 +50,7 @@ export default class Tabs extends Component {
 
     this.setActiveTab(tabToActivate)
     this.showTabContent(targetId)
-    if (Object.keys(this.tabLabels).length > 0) {
-      this.updateBreadcrumb(targetId)
-    }
+    this.changeSwiperSlide(tabToActivate)
   }
 
   bindTabEvents() {
@@ -71,16 +68,14 @@ export default class Tabs extends Component {
     const targetContent = document.getElementById(targetId)
     if (!targetContent) return
 
+    this.changeSwiperSlide(tab)
+
     this.currentTabId = targetId
     this.setActiveTab(tab)
     this.showTabContent(targetId)
     this.scrollToContent(targetContent)
     this.scrollToTab(tab)
     this.updateUrl(targetId)
-
-    if (Object.keys(this.tabLabels).length > 0) {
-      this.updateBreadcrumb(targetId)
-    }
 
     // Update Swiper instances if they exist (prevent pagination issues)
     setTimeout(() => {
@@ -95,19 +90,17 @@ export default class Tabs extends Component {
     }, 100)
   }
 
+  changeSwiperSlide(tab) {
+    if (this.swiper && typeof this.swiper.slideTo === 'function') {
+      const tabIndex = [...this.elements.tabItems].indexOf(tab)
+      this.swiper.slideTo(tabIndex)
+    }
+  }
+
   updateUrl(targetId) {
     const url = new URL(window.location)
     url.searchParams.set('tab', targetId)
     window.history.replaceState({}, '', url)
-  }
-
-  updateBreadcrumb(targetId) {
-    const breadcrumbLast = document.querySelector('.breadcrumb__label.current')
-    if (!breadcrumbLast) return
-
-    if (this.tabLabels && this.tabLabels[targetId]) {
-      breadcrumbLast.textContent = this.tabLabels[targetId]
-    }
   }
 
   setActiveTab(activeTab) {
