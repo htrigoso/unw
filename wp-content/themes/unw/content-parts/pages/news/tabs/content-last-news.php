@@ -4,25 +4,25 @@ $slides = [
     'image' => UPLOAD_PATH . '/home/last-news/last-news-1.jpg',
     'title' => 'Titular de la noticia',
     'content' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-    'href' => '#'
+    'href' => '/detalle-de-noticia'
   ],
   [
     'image' => UPLOAD_PATH . '/home/last-news/last-news-2.jpg',
     'title' => 'Titular de la noticia',
     'content' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-    'href' => '#'
+    'href' => '/detalle-de-noticia'
   ],
   [
     'image' => UPLOAD_PATH . '/home/last-news/last-news-3.jpg',
     'title' => 'Titular de la noticia',
     'content' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-    'href' => '#'
+    'href' => '/detalle-de-noticia'
   ],
   [
     'image' => UPLOAD_PATH . '/home/last-news/last-news-1.jpg',
     'title' => 'Titular de la noticia',
     'content' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-    'href' => '#'
+    'href' => '/detalle-de-noticia'
   ]
 ]
 ?>

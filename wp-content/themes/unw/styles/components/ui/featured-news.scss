@@ -1,11 +1,3 @@
-.featured-news {
-  padding-top: rem(36);
-
-  @include media(">=tablet") {
-    padding-top: rem(42);
-  }
-}
-
 .featured-news__title {
   @include title-32;
   margin-bottom: rem(20);
@@ -24,7 +16,7 @@
 
 .featured-news__swiper-navigation {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   margin-top: rem(28);
 
   @include media(">=tablet") {
@@ -37,11 +29,9 @@
   }
 }
 
-.featured-news__swiper-counter {
-  user-select: none;
-}
-
 .featured-news__see-more-btn {
+  display: none;
+
   @include media(">=phone") {
     display: flex;
     justify-content: center;
