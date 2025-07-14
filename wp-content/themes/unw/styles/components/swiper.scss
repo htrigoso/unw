@@ -206,7 +206,7 @@
 }
 
 .switch-pagination-navigation {
-  .swiper-pagination {
+  .swiper-pagination.swiper-pagination-bullets {
     @include media(">=phone") {
       display: none;
     }
