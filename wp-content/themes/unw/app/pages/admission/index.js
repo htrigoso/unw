@@ -3,7 +3,10 @@ import HeroSwiper from '../../components/HeroSwiper'
 import Tabs from '../../components/Tabs'
 
 (function () {
-  HeroSwiper()
+  HeroSwiper('.hero', {
+    loop: false,
+    autoplay: false
+  })
 
   const tabsElement = document.querySelector('.admission-tabs')
   if (tabsElement) {

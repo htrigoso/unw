@@ -1,7 +1,7 @@
 import Component from '../classes/Component'
 
 export default class Tabs extends Component {
-  constructor({ element, swiper = null }) {
+  constructor({ element, swiper = null, tabLabels = {} }) {
     super({
       element,
       elements: {
@@ -11,6 +11,7 @@ export default class Tabs extends Component {
     })
     this.currentTabId = null
     this.swiper = swiper
+    this.tabLabels = tabLabels
 
     this.init()
   }
@@ -50,6 +51,9 @@ export default class Tabs extends Component {
 
     this.setActiveTab(tabToActivate)
     this.showTabContent(targetId)
+    if (Object.keys(this.tabLabels).length > 0) {
+      this.updateBreadcrumb(targetId)
+    }
     this.changeSwiperSlide(tabToActivate)
   }
 
@@ -76,6 +80,9 @@ export default class Tabs extends Component {
     this.scrollToContent(targetContent)
     this.scrollToTab(tab)
     this.updateUrl(targetId)
+    if (Object.keys(this.tabLabels).length > 0) {
+      this.updateBreadcrumb(targetId)
+    }
 
     // Update Swiper instances if they exist (prevent pagination issues)
     setTimeout(() => {
@@ -88,6 +95,15 @@ export default class Tabs extends Component {
         }
       })
     }, 100)
+  }
+
+  updateBreadcrumb(targetId) {
+    const breadcrumbLast = document.querySelector('.breadcrumb__label.current')
+    if (!breadcrumbLast) return
+
+    if (this.tabLabels && this.tabLabels[targetId]) {
+      breadcrumbLast.textContent = this.tabLabels[targetId]
+    }
   }
 
   changeSwiperSlide(tab) {

@@ -24,7 +24,9 @@
             'url' => get_template_directory_uri() . '/upload/admission/hero/hero-1-mobile.jpg',
             'alt' => 'Admisión Hero Mobile'
           ]
-        ]
+        ],
+        'title' => 'Admisión Wiener',
+        'label' => 'Admisión'
       ],
       [
         'images' => [
@@ -40,18 +42,16 @@
       ]
     ]
   ];
-  $breadcrumbs = [
+  $base_breadcrumbs = [
     ['label' => 'Inicio', 'href' => home_url('/')],
-    ['label' => 'Admisión', 'href' => '/admision'],
-    ['label' => '']
+    ['label' => 'Admisión', 'href' => '/admision']
   ];
   get_template_part(
     COMMON_CONTENT_PATH,
     'swiper-hero',
     [
       'sliders' => $sliders,
-      'breadcrumbs' => $breadcrumbs,
-      'hero_title' => 'Admisión Wiener',
+      'base_breadcrumbs' => $base_breadcrumbs,
       'extra_class' => 'admission-hero'
     ]
   ); ?>

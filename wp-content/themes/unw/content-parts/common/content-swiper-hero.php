@@ -17,7 +17,9 @@ if (!empty($slides)) :
         $label    = $slide['label'] ?? '';
 
         $slide_breadcrumbs = $base_breadcrumbs;
-        $slide_breadcrumbs[] = ['label' => $label];
+        if (isset($label)) {
+          $slide_breadcrumbs[] = ['label' => $label];
+        }
       ?>
       <div class="swiper-slide swiper-hero__slide">
         <picture class="swiper-hero__picture">
