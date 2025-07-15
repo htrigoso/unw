@@ -6,6 +6,7 @@
     "admission": ["./app/pages/admission/index.js", "./styles/pages/admission/index.scss"],
     "faculty": ["./app/pages/faculty/index.js", "./styles/pages/faculty/index.scss"],
     "news": ["./app/pages/news/index.js", "./styles/pages/news/index.scss"],
-    "news-detail": ["./app/pages/news-detail/index.js", "./styles/pages/news-detail/index.scss"]
+    "news-detail": ["./app/pages/news-detail/index.js", "./styles/pages/news-detail/index.scss"],
+    "event-detail": ["./app/pages/event-detail/index.js", "./styles/pages/event-detail/index.scss"]
   }
 }

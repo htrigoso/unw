@@ -3,7 +3,7 @@ import HeroSwiper from '../../components/HeroSwiper'
 import Tabs from '../../components/Tabs'
 
 (function () {
-  HeroSwiper('.hero', {
+  HeroSwiper('.hero-swiper', {
     loop: false,
     autoplay: false
   })

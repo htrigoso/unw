@@ -1,6 +1,6 @@
 import { createSwiper } from './createSwiper'
 
-const HeroSwiper = (sectionEl = '.hero', config = {}) => {
+const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
   const defaultConfig = {
     loop: true,
     slidesPerView: 1,

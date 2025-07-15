@@ -5,7 +5,7 @@ $base_breadcrumbs = $args['base_breadcrumbs'] ?? [];
 $extra_class = $args['extra_class'] ?? '';
 if (!empty($slides)) :
 ?>
-<section class="hero <?php echo esc_attr($extra_class); ?>">
+<section class="hero-swiper <?php echo esc_attr($extra_class); ?>">
   <div class="swiper-container is-draggable">
     <div class="swiper-wrapper swiper-hero__wrapper">
 

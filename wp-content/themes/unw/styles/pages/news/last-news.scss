@@ -12,6 +12,7 @@
   @include media("<tablet") {
     display: grid !important;
     grid-template-columns: repeat(auto-fill, minmax(rem(250), 1fr));
-    gap: rem(16);
+    row-gap: rem(42);
+    column-gap: rem(16);
   }
 }

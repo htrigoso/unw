@@ -4,7 +4,7 @@ import InternationalSwiper from '../../components/InternationalSwiper'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
 
 (function () {
-  HeroSwiper('.hero', {
+  HeroSwiper('.hero-swiper', {
     autoplay: false
   })
   PostSwiper('.testimonial-swiper')

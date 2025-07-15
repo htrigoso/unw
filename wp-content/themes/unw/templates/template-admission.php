@@ -17,11 +17,11 @@
       [
         'images' => [
           'desktop' => [
-            'url' => get_template_directory_uri() . '/upload/admission/hero/hero-1-desktop.jpg',
+            'url' => UPLOAD_PATH . '/admission/hero/hero-1-desktop.jpg',
             'alt' => 'Admisión Hero Desktop'
           ],
           'mobile' => [
-            'url' => get_template_directory_uri() . '/upload/admission/hero/hero-1-mobile.jpg',
+            'url' => UPLOAD_PATH . '/admission/hero/hero-1-mobile.jpg',
             'alt' => 'Admisión Hero Mobile'
           ]
         ],
@@ -37,8 +37,10 @@
           'mobile' => [
             'url' => get_template_directory_uri() . '/upload/admission/hero/hero-1-mobile.jpg',
             'alt' => 'Admisión Hero Mobile'
-          ]
-        ]
+          ],
+        ],
+        'title' => 'Admisión Wiener',
+        'label' => 'Admisión'
       ]
     ]
   ];
