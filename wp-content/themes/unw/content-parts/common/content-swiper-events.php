@@ -1,13 +1,16 @@
+
 <?php
-$acf_data = get_field('featured-events');
+$swiper_name = $args["swiper_class"] ?? [];
+$acf_data = $args['acf_data'] ?? [];
 $featured_events = $acf_data['events'] ?? [];
 ?>
+
 <?php if (!empty($acf_data) && is_array($acf_data)): ?>
-  <section class="featured-events">
+  <section class="swiper-events">
     <div class="x-container x-container--pad-213">
-      <div class="featured-events__wrapper">
-        <h2 class="featured-events__title"><?php echo esc_html($acf_data['title'] ?? 'Eventos Destacados'); ?></h2>
-        <div class="post-swiper featured-events-swiper featured-events__swiper" data-width="compact">
+      <div class="swiper-events__wrapper">
+        <h2 class="swiper-events__title"><?php echo esc_html($acf_data['title']); ?></h2>
+        <div class="post-swiper swiper-events__swiper <?php echo esc_attr($swiper_name); ?>" data-width="compact">
           <div class="swiper-container">
             <div class="swiper-wrapper">
               <?php foreach ($featured_events as $post): ?>
@@ -25,7 +28,7 @@ $featured_events = $acf_data['events'] ?? [];
                 $image_url = get_the_post_thumbnail_url($post->ID, 'full') ?: get_template_directory_uri() . '/upload/default.jpg';
                 $image_alt = get_the_title($post->ID);
                 ?>
-                <div class="swiper-slide featured-events__card">
+                <div class="swiper-slide swiper-events__card">
                   <?php
                   get_template_part(COMMON_CONTENT_PATH, 'event-card', [
                     'title' => $title,
@@ -42,7 +45,7 @@ $featured_events = $acf_data['events'] ?? [];
             </div>
           </div>
 
-          <div class="featured-events__swiper-navigation">
+          <div class="swiper-events__swiper-navigation">
             <div class="swiper-navigation">
               <div class="swiper-primary-button-prev"></div>
               <div class="swiper-primary-button-next"></div>
@@ -52,11 +55,11 @@ $featured_events = $acf_data['events'] ?? [];
             $link = $acf_data['link'] ?? null;
             if ($link):
             ?>
-              <div class="featured-events__see-more-btn">
+              <div class="swiper-events__see-more-btn">
                 <?php
                 get_template_part(COMMON_CONTENT_PATH, 'see-more-btn', array(
-                  'text' => 'Ver todos los eventos',
-                  'href' => '#',
+                  'text' => $acf_data['see_more_text'],
+                  'href' => $acf_data['see_more_url'],
                 ));
                 ?>
               </div>
