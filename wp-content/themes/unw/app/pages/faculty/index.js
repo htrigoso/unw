@@ -3,6 +3,7 @@ import PostSwiper from '../../components/PostSwiper'
 import HeroSwiper from '../../components/HeroSwiper'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
 import InternationalSwiper from '../../components/InternationalSwiper'
+import { changeSwiperSlide, updateSwipers } from '../../utils/swiper'
 
 (function () {
   const heroSwiper = HeroSwiper('.hero-swiper', {
@@ -43,6 +44,13 @@ import InternationalSwiper from '../../components/InternationalSwiper'
 
   const tabsElement = document.querySelector('.faculty-tabs')
   if (tabsElement) {
-    new Tabs({ element: tabsElement, heroSwiper })
+    new Tabs({
+      element: tabsElement,
+      onTabChange(tab, targetContent, tabIndex) {
+        console.log('Tab changed:', tabIndex, targetContent, tab)
+        changeSwiperSlide(tabIndex, heroSwiper)
+        updateSwipers(targetContent)
+      }
+    })
   }
 })()

@@ -9,7 +9,6 @@ const PostSwiperDesktop = (sectionEl = '.post-swiper-desktop', config = {}) => {
     loop: false,
     slidesPerView: 'auto',
     spaceBetween: 8,
-    grabCursor: true,
     pagination: {
       el: `${sectionEl} .swiper-pagination`
     },

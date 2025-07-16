@@ -10,7 +10,11 @@ $data = [
         "date" => "04/06/2025",
         "time" => "4:00pm",
         "location" => "Zoom",
-        "register_url" => "#"
+        "register_url" => [
+          "title" => "Inscribirme",
+          "url" => "/detalle-de-evento",
+          "target" => "_self"
+        ]
       ],
       "thumbnail_url" => UPLOAD_PATH . '/home/featured-events/featured-event-1.jpg',
     ],
@@ -21,7 +25,11 @@ $data = [
         "date" => "27/05/2025",
         "time" => "4:00pm",
         "location" => "Norbert Wiener",
-        "register_url" => "#"
+        "register_url" => [
+          "title" => "Inscribirme",
+          "url" => "/detalle-de-evento",
+          "target" => "_self"
+        ]
       ],
       "thumbnail_url" => UPLOAD_PATH . '/home/featured-events/featured-event-2.jpg',
     ],
@@ -32,7 +40,11 @@ $data = [
         "date" => "29/05/2025",
         "time" => "4:00pm",
         "location" => "Presencial",
-        "register_url" => "#"
+        "register_url" => [
+          "title" => "Inscribirme",
+          "url" => "/detalle-de-evento",
+          "target" => "_self"
+        ]
       ],
       "thumbnail_url" => UPLOAD_PATH . '/home/featured-events/featured-event-3.jpg',
     ],
@@ -50,7 +62,11 @@ $data_two = [
         "date" => "04/06/2025",
         "time" => "4:00pm",
         "location" => "Zoom",
-        "register_url" => "#"
+        "register_url" => [
+          "title" => "Inscribirme",
+          "url" => "/detalle-de-evento",
+          "target" => "_self"
+        ]
       ],
       "thumbnail_url" => UPLOAD_PATH . '/home/featured-events/featured-event-1.jpg',
     ],
@@ -61,7 +77,11 @@ $data_two = [
         "date" => "27/05/2025",
         "time" => "4:00pm",
         "location" => "Norbert Wiener",
-        "register_url" => "#"
+        "register_url" => [
+          "title" => "Inscribirme",
+          "url" => "/detalle-de-evento",
+          "target" => "_self"
+        ]
       ],
       "thumbnail_url" => UPLOAD_PATH . '/home/featured-events/featured-event-2.jpg',
     ],
@@ -72,7 +92,11 @@ $data_two = [
         "date" => "29/05/2025",
         "time" => "4:00pm",
         "location" => "Presencial",
-        "register_url" => "#"
+        "register_url" => [
+          "title" => "Inscribirme",
+          "url" => "/detalle-de-evento",
+          "target" => "_self"
+        ]
       ],
       "thumbnail_url" => UPLOAD_PATH . '/home/featured-events/featured-event-3.jpg',
     ],
@@ -83,7 +107,11 @@ $data_two = [
         "date" => "04/06/2025",
         "time" => "4:00pm",
         "location" => "Zoom",
-        "register_url" => "#"
+        "register_url" => [
+          "title" => "Inscribirme",
+          "url" => "/detalle-de-evento",
+          "target" => "_self"
+        ]
       ],
       "thumbnail_url" => UPLOAD_PATH . '/home/featured-events/featured-event-1.jpg',
     ],
@@ -94,7 +122,11 @@ $data_two = [
         "date" => "27/05/2025",
         "time" => "4:00pm",
         "location" => "Norbert Wiener",
-        "register_url" => "#"
+        "register_url" => [
+          "title" => "Inscribirme",
+          "url" => "/detalle-de-evento",
+          "target" => "_self"
+        ]
       ],
       "thumbnail_url" => UPLOAD_PATH . '/home/featured-events/featured-event-2.jpg',
     ]

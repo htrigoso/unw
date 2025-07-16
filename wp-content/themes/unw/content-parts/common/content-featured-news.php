@@ -30,7 +30,7 @@ $slides = [
 <section class="featured-news">
   <h2 class="featured-news__title">Noticias destacadas</h2>
 
-  <div class="featured-news-swiper post-swiper" data-width="wide">
+  <div class="featured-news-swiper post-swiper" data-width="compact">
     <div class="swiper-container">
       <ul class="swiper-wrapper featured-news__list">
         <?php foreach ($slides as $slide): ?>
@@ -52,7 +52,7 @@ $slides = [
           <?php
           get_template_part(COMMON_CONTENT_PATH, 'see-more-btn', array(
             'text' => 'Ver todas las noticias',
-            'href' => '#',
+            'href' => '/noticias',
           ));
           ?>
         </div>

@@ -1,6 +1,7 @@
 import PostSwiper from '../../components/PostSwiper'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
 import Tabs from '../../components/Tabs'
+import { updateSwipers } from '../../utils/swiper'
 
 (function () {
   PostSwiperDesktop('.last-news-swiper', {
@@ -18,6 +19,6 @@ import Tabs from '../../components/Tabs'
 
   const tabsElement = document.querySelector('.news-tabs')
   if (tabsElement) {
-    new Tabs({ element: tabsElement })
+    new Tabs({ element: tabsElement, onTabChange: updateSwipers })
   }
 })()

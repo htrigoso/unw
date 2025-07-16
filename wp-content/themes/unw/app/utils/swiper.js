@@ -1,6 +1,31 @@
-// SwiperCounter.js
-// Utility to display a counter for Swiper slides
+/**
+ * Updates all Swiper instances found within the specified target content element.
+ *
+ * This function searches for elements with the class 'swiper-container' inside the given
+ * targetContent element. For each container that has an initialized Swiper instance,
+ * it calls the Swiper's `update` method to refresh its state. The update is triggered
+ * after a short delay to ensure the DOM is ready.
+ *
+ * @param {Element} targetContent - The DOM element within which to search for Swiper containers.
+ */
+export function updateSwipers(targetContent) {
+  setTimeout(() => {
+    const swipers = targetContent.querySelectorAll('.swiper-container')
+    swipers.forEach(container => {
+      if (container.swiper && typeof container.swiper.update === 'function') {
+        container.swiper.update()
+      }
+    })
+  }, 100)
+}
 
+export function changeSwiperSlide(index, swiper) {
+  if (swiper && typeof swiper.slideTo === 'function') {
+    swiper.slideTo(index)
+  }
+}
+
+// Utility to display a counter for Swiper slides
 export default function SwiperCounter(swiper, counterSelector) {
   if (Array.isArray(swiper)) {
     swiper.forEach((instance, i) => {

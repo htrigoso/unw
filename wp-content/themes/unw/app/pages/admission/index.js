@@ -1,6 +1,7 @@
 import Accordion from '../../components/Accordion'
 import HeroSwiper from '../../components/HeroSwiper'
 import Tabs from '../../components/Tabs'
+import { updateSwipers } from '../../utils/swiper'
 
 (function () {
   HeroSwiper('.hero-swiper', {
@@ -17,7 +18,11 @@ import Tabs from '../../components/Tabs'
       extraordinaria: 'Extraordinaria',
       prewiener: 'Pre Wiener'
     }
-    new Tabs({ element: tabsElement, tabLabels })
+    new Tabs({
+      element: tabsElement,
+      tabLabels,
+      onTabChange: updateSwipers
+    })
   }
 
   document.querySelectorAll('.dynamic-accordion').forEach(element => {

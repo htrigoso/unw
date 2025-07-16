@@ -1,7 +1,7 @@
 import Component from '../classes/Component'
 
 export default class Tabs extends Component {
-  constructor({ element, swiper = null, tabLabels = {} }) {
+  constructor({ element, tabLabels = {}, onTabChange = null }) {
     super({
       element,
       elements: {
@@ -10,8 +10,8 @@ export default class Tabs extends Component {
       }
     })
     this.currentTabId = null
-    this.swiper = swiper
     this.tabLabels = tabLabels
+    this.onTabChange = onTabChange
 
     this.init()
   }
@@ -54,7 +54,13 @@ export default class Tabs extends Component {
     if (Object.keys(this.tabLabels).length > 0) {
       this.updateBreadcrumb(targetId)
     }
-    this.changeSwiperSlide(tabToActivate)
+
+    // Callback para notificar el cambio de tab inicial
+    if (typeof this.onTabChange === 'function') {
+      const targetContent = document.getElementById(targetId)
+      const tabIndex = this.getTabIndex(tabToActivate)
+      this.onTabChange(tabToActivate, targetContent, tabIndex)
+    }
   }
 
   bindTabEvents() {
@@ -72,8 +78,6 @@ export default class Tabs extends Component {
     const targetContent = document.getElementById(targetId)
     if (!targetContent) return
 
-    this.changeSwiperSlide(tab)
-
     this.currentTabId = targetId
     this.setActiveTab(tab)
     this.showTabContent(targetId)
@@ -84,17 +88,15 @@ export default class Tabs extends Component {
       this.updateBreadcrumb(targetId)
     }
 
-    // Update Swiper instances if they exist (prevent pagination issues)
-    setTimeout(() => {
-      const swipers = targetContent.querySelectorAll('.swiper-container')
-      swipers.forEach(container => {
-        if (container.swiper) {
-          if (typeof container.swiper.update === 'function') {
-            container.swiper.update()
-          }
-        }
-      })
-    }, 100)
+    // Callback para notificar el cambio de tab
+    if (typeof this.onTabChange === 'function') {
+      const tabIndex = this.getTabIndex(tab)
+      this.onTabChange(tab, targetContent, tabIndex)
+    }
+  }
+
+  getTabIndex(tab) {
+    return [...this.elements.tabItems].indexOf(tab)
   }
 
   updateBreadcrumb(targetId) {
@@ -103,13 +105,6 @@ export default class Tabs extends Component {
 
     if (this.tabLabels && this.tabLabels[targetId]) {
       breadcrumbLast.textContent = this.tabLabels[targetId]
-    }
-  }
-
-  changeSwiperSlide(tab) {
-    if (this.swiper && typeof this.swiper.slideTo === 'function') {
-      const tabIndex = [...this.elements.tabItems].indexOf(tab)
-      this.swiper.slideTo(tabIndex)
     }
   }
 

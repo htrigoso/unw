@@ -3,6 +3,7 @@ import Tabs from '../../components/Tabs'
 import PostSwiper from '../../components/PostSwiper'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
 import InternationalSwiper from '../../components/InternationalSwiper'
+import { updateSwipers } from '../../utils/swiper'
 
 (function () {
   HeroSwiper()
@@ -36,6 +37,6 @@ import InternationalSwiper from '../../components/InternationalSwiper'
 
   const tabsElement = document.querySelector('.career-tabs')
   if (tabsElement) {
-    new Tabs({ element: tabsElement })
+    new Tabs({ element: tabsElement, onTabChange: updateSwipers })
   }
 })()
