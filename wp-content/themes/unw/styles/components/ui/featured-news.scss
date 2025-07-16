@@ -16,12 +16,11 @@
 
 .featured-news__swiper-navigation {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   margin-top: rem(28);
 
   @include media(">=tablet") {
     margin-top: rem(24);
-    justify-content: space-between;
   }
 
   .swiper-navigation {

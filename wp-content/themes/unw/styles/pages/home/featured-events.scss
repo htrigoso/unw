@@ -10,4 +10,17 @@
     padding-top: rem(40);
     padding-bottom: rem(40);
   }
+
+  .swiper-navigation {
+    @include media("<phone") {
+      display: none;
+    }
+  }
+
+  .swiper-events__see-more-btn {
+    @include media("<phone") {
+      display: block;
+      margin-inline: auto;
+    }
+  }
 }

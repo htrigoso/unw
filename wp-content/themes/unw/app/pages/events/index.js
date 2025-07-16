@@ -10,5 +10,10 @@ import PostSwiperDesktop from '../../components/PostSwiperDesktop'
       1200: { slidesPerView: 3, spaceBetween: 87 }
     }
   })
-  PostSwiper('.all-events-swiper')
+  PostSwiper('.all-events-swiper', {
+    pagination: {
+      el: '.all-events-swiper .swiper-pagination',
+      type: 'fraction'
+    }
+  })
 })()

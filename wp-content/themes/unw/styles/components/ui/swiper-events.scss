@@ -13,33 +13,23 @@
   }
 }
 
-.swiper-events__swiper {
-  .swiper-pagination {
-    @include media("<tablet") {
-      display: none;
-    }
-  }
-}
-
 .swiper-events__swiper-navigation {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   margin-top: rem(16);
 
   @include media(">=tablet") {
-    justify-content: space-between;
+    margin-top: rem(24);
   }
 
   .swiper-navigation {
     margin-top: 0 !important;
-
-    @include media("<tablet") {
-      display: none !important;
-    }
   }
 }
 
 .swiper-events__see-more-btn {
+  display: none;
+
   @include media(">=phone") {
     display: flex;
     justify-content: center;

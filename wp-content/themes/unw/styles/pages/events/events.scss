@@ -14,9 +14,11 @@
   }
 
   .swiper-events__title {
+    @include title-32;
     margin-bottom: rem(32);
 
     @include media(">=tablet") {
+      @include title-28;
       margin-bottom: rem(24);
     }
   }
@@ -30,5 +32,28 @@
 
   .swiper-events__swiper-navigation {
     display: none;
+  }
+}
+
+.all-events__wrapper {
+  margin-top: rem(42);
+  margin-bottom: rem(36);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(42);
+  }
+
+  .swiper-events__title {
+    @include title-32;
+    margin-bottom: rem(32);
+
+    @include media(">=tablet") {
+      @include title-28;
+      margin-bottom: rem(24);
+    }
+  }
+
+  .swiper-events__swiper-navigation {
+    margin-top: rem(42);
   }
 }

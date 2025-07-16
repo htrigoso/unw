@@ -51,37 +51,40 @@ if (!function_exists('unw_get_event_data')) {
 <?php if (!empty($acf_data) && is_array($acf_data)): ?>
   <div class="swiper-events">
     <h2 class="swiper-events__title"><?php echo esc_html($acf_data['title']); ?></h2>
+
     <div class="swiper-events__swiper <?php echo esc_attr($swiper_name); ?>" data-width="compact">
       <div class="swiper-container">
-        <div class="swiper-wrapper swiper-events__cards">
+        <ul class="swiper-wrapper swiper-events__cards">
           <?php foreach ($featured_events as $post): ?>
             <?php $event = unw_get_event_data($post); ?>
-            <div class="swiper-slide swiper-events__card">
+            <li class="swiper-slide swiper-events__card">
               <?php get_template_part(COMMON_CONTENT_PATH, 'event-card', $event); ?>
-            </div>
+            </li>
           <?php endforeach; ?>
-        </div>
-      </div>
-
-      <div class="swiper-events__swiper-navigation">
-        <div class="swiper-navigation">
-          <div class="swiper-primary-button-prev"></div>
-          <div class="swiper-primary-button-next"></div>
-        </div>
-
-        <?php
-        $link = $acf_data['link'] ?? null;
-        if ($link):
-        ?>
-          <div class="swiper-events__see-more-btn">
-            <?php
-            get_template_part(COMMON_CONTENT_PATH, 'see-more-btn', array(
-              'text' => $acf_data['see_more_text'],
-              'href' => $acf_data['see_more_url'],
-            ));
-            ?>
+        </ul>
+        <div class="swiper-events__swiper-navigation">
+          <div class="swiper-navigation">
+            <div class="swiper-primary-button-prev"></div>
+            <div class="swiper-primary-button-next"></div>
+            <div class="swiper-counter">
+              <div class="swiper-pagination"></div>
+            </div>
           </div>
-        <?php endif; ?>
+
+          <?php
+          $link = $acf_data['link'] ?? null;
+          if ($link):
+          ?>
+            <div class="swiper-events__see-more-btn">
+              <?php
+              get_template_part(COMMON_CONTENT_PATH, 'see-more-btn', array(
+                'text' => $acf_data['see_more_text'],
+                'href' => $acf_data['see_more_url'],
+              ));
+              ?>
+            </div>
+          <?php endif; ?>
+        </div>
       </div>
     </div>
   </div>

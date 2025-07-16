@@ -9,7 +9,9 @@ import PostSwiperDesktop from '../../components/PostSwiperDesktop'
   })
   PostSwiper('.testimonial-swiper')
   PostSwiper('.last-news-swiper')
-  PostSwiper('.featured-events-swiper')
+  PostSwiper('.featured-events-swiper', {
+    pagination: false
+  })
   PostSwiperDesktop()
   InternationalSwiper()
 })()
