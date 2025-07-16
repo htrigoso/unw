@@ -12,5 +12,6 @@
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 <main>
   <?php get_template_part(EVENTS_CONTENT_PATH, 'events-hero'); ?>
+  <?php get_template_part(EVENTS_CONTENT_PATH, 'events'); ?>
 </main>
 <?php get_footer(); ?>

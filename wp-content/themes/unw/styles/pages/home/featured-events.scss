@@ -1,15 +1,13 @@
 .featured-events {
-  .swiper-events {
-    background-color: var(--color-light-turquoise);
-  }
+  background-color: var(--color-light-turquoise);
+}
 
-  .swiper-events__wrapper {
-    padding-top: rem(24);
-    padding-bottom: rem(36);
+.featured-events__wrapper {
+  padding-top: rem(24);
+  padding-bottom: rem(36);
 
-    @include media(">=tablet") {
-      padding-top: rem(40);
-      padding-bottom: rem(40);
-    }
+  @include media(">=tablet") {
+    padding-top: rem(40);
+    padding-bottom: rem(40);
   }
 }
