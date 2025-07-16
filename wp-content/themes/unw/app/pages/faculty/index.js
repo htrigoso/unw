@@ -47,7 +47,6 @@ import { changeSwiperSlide, updateSwipers } from '../../utils/swiper'
     new Tabs({
       element: tabsElement,
       onTabChange(tab, targetContent, tabIndex) {
-        console.log('Tab changed:', tabIndex, targetContent, tab)
         changeSwiperSlide(tabIndex, heroSwiper)
         updateSwipers(targetContent)
       }

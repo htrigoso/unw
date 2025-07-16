@@ -19,6 +19,11 @@ import { updateSwipers } from '../../utils/swiper'
 
   const tabsElement = document.querySelector('.news-tabs')
   if (tabsElement) {
-    new Tabs({ element: tabsElement, onTabChange: updateSwipers })
+    new Tabs({
+      element: tabsElement,
+      onTabChange(tab, targetContent, tabIndex) {
+        updateSwipers(targetContent)
+      }
+    })
   }
 })()

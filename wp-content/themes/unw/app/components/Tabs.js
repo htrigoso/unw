@@ -1,7 +1,7 @@
 import Component from '../classes/Component'
 
 export default class Tabs extends Component {
-  constructor({ element, tabLabels = {}, onTabChange = null }) {
+  constructor({ element, onTabChange = null }) {
     super({
       element,
       elements: {
@@ -10,7 +10,6 @@ export default class Tabs extends Component {
       }
     })
     this.currentTabId = null
-    this.tabLabels = tabLabels
     this.onTabChange = onTabChange
 
     this.init()
@@ -51,9 +50,6 @@ export default class Tabs extends Component {
 
     this.setActiveTab(tabToActivate)
     this.showTabContent(targetId)
-    if (Object.keys(this.tabLabels).length > 0) {
-      this.updateBreadcrumb(targetId)
-    }
 
     // Callback para notificar el cambio de tab inicial
     if (typeof this.onTabChange === 'function') {
@@ -84,9 +80,6 @@ export default class Tabs extends Component {
     this.scrollToContent(targetContent)
     this.scrollToTab(tab)
     this.updateUrl(targetId)
-    if (Object.keys(this.tabLabels).length > 0) {
-      this.updateBreadcrumb(targetId)
-    }
 
     // Callback para notificar el cambio de tab
     if (typeof this.onTabChange === 'function') {
@@ -97,15 +90,6 @@ export default class Tabs extends Component {
 
   getTabIndex(tab) {
     return [...this.elements.tabItems].indexOf(tab)
-  }
-
-  updateBreadcrumb(targetId) {
-    const breadcrumbLast = document.querySelector('.breadcrumb__label.current')
-    if (!breadcrumbLast) return
-
-    if (this.tabLabels && this.tabLabels[targetId]) {
-      breadcrumbLast.textContent = this.tabLabels[targetId]
-    }
   }
 
   updateUrl(targetId) {
