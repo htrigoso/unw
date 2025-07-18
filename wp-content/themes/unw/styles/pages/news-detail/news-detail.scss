@@ -1,0 +1,27 @@
+.news-detail__body {
+  margin-top: rem(24);
+  margin-bottom: rem(42);
+
+  @include media(">=tablet") {
+    margin-top: rem(52);
+  }
+}
+
+.news-detail__body--content {
+  margin-top: rem(42);
+  margin-bottom: rem(42);
+}
+
+.news-detail__featured {
+  margin-bottom: rem(44);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(84);
+  }
+
+  .featured-news__title {
+    @include media("<tablet") {
+      margin-bottom: rem(42);
+    }
+  }
+}

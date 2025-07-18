@@ -1,20 +1,24 @@
 import Accordion from '../../components/Accordion'
 import HeroSwiper from '../../components/HeroSwiper'
 import Tabs from '../../components/Tabs'
+import { updateBreadcrumbLabels } from '../../utils/breadcrumb'
+import { updateSwipers } from '../../utils/swiper'
 
 (function () {
-  HeroSwiper()
+  HeroSwiper('.hero-swiper', {
+    loop: false,
+    autoplay: false
+  })
 
   const tabsElement = document.querySelector('.admission-tabs')
   if (tabsElement) {
-    const tabLabels = {
-      'examen-admision': 'Examen de admisión',
-      'beca-18': 'Beca 18',
-      'graduado-titulado': 'Egresado Universidad',
-      extraordinaria: 'Extraordinaria',
-      prewiener: 'Pre Wiener'
-    }
-    new Tabs({ element: tabsElement, tabLabels })
+    new Tabs({
+      element: tabsElement,
+      onTabChange(tab, targetContent, tabIndex) {
+        updateBreadcrumbLabels(tab)
+        updateSwipers(targetContent)
+      }
+    })
   }
 
   document.querySelectorAll('.dynamic-accordion').forEach(element => {

@@ -1,3 +1,6 @@
+/**
+  * Swiper Components Styles
+  */
 %swiper-pagination-bullets {
   display: flex;
   justify-content: center;
@@ -24,11 +27,71 @@
   }
 }
 
+%swiper-pagination-fraction {
+  display: block;
+  position: static;
+  @include title-20;
+  color: var(--color-asu-grey);
+}
+
+%swiper-primary-navigation {
+  .swiper-primary-button-prev,
+  .swiper-primary-button-next {
+    border-radius: 999px;
+    border: 1px solid var(--color-turquoise-three);
+    position: relative;
+    cursor: pointer;
+
+    &::before {
+      margin: rem(5);
+      content: "";
+      display: block;
+      width: 43px;
+      height: 43px;
+      background-color: var(--color-turquoise-three);
+      mask-repeat: no-repeat;
+      mask-position: center;
+      mask-size: contain;
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      -webkit-mask-size: contain;
+    }
+
+    &[aria-disabled="true"] {
+      opacity: 0.5;
+      pointer-events: none;
+      border-color: var(--color-secondary-grey);
+
+      &::before {
+        background-color: var(--color-secondary-grey);
+      }
+    }
+
+    &:not([aria-disabled="true"]):hover {
+      border-color: var(--color-turquoise-two);
+
+      &::before {
+        background-color: var(--color-turquoise-two);
+      }
+    }
+  }
+
+  .swiper-primary-button-prev::before {
+    mask-image: var(--swiper-prev-icon);
+    -webkit-mask-image: var(--swiper-prev-icon);
+  }
+
+  .swiper-primary-button-next::before {
+    mask-image: var(--swiper-next-icon);
+    -webkit-mask-image: var(--swiper-next-icon);
+  }
+}
+
 /**
- * Post Swiper Styles
+ * Swiper types
  * Variants
   * - [data-width="wide"] - Full width swiper
-  * - [data-width="compact"] - Full width swiper below tablet
+  * - [data-width="compact"] - Full width swiper below tablet screen size
  */
 .post-swiper {
   &[data-width="compact"] .swiper-container {
@@ -71,25 +134,31 @@
       height: auto;
 
       & > * {
-        margin-inline: auto
+        margin-inline: auto;
       }
     }
   }
 
-  .swiper-pagination {
+  .swiper-counter {
+    display: flex;
+    align-items: center;
+  }
+
+  .swiper-pagination.swiper-pagination-bullets {
     @extend %swiper-pagination-bullets;
   }
-}
 
-.careers-hero-swiper {
-  .swiper-pagination {
-    @extend %swiper-pagination-bullets;
-    @extend .x-container;
-
-    @include media("<phone") {
-      display: none;
-    }
+  .swiper-pagination.swiper-pagination-fraction {
+    @extend %swiper-pagination-fraction;
   }
+
+  .swiper-navigation {
+    display: flex;
+    gap: rem(16);
+    margin-top: rem(24);
+  }
+
+  @extend %swiper-primary-navigation;
 }
 
 .post-swiper-desktop {
@@ -111,6 +180,17 @@
   }
 }
 
+.hero-swiper {
+  .swiper-pagination {
+    @extend %swiper-pagination-bullets;
+    @extend .x-container;
+
+    @include media("<phone") {
+      display: none;
+    }
+  }
+}
+
 .international-agreements {
   .swiper-wrapper {
     transition-timing-function: linear !important;
@@ -125,65 +205,8 @@
   }
 }
 
-.swiper-navigation {
-  display: flex;
-  gap: rem(16);
-  margin-top: rem(24);
-
-  .post-swiper-button-prev,
-  .post-swiper-button-next {
-    border-radius: 999px;
-    border: 1px solid var(--color-turquoise-three);
-    position: relative;
-    cursor: pointer;
-
-    &::before {
-      margin: rem(5);
-      content: "";
-      display: block;
-      width: 43px;
-      height: 43px;
-      background-color: var(--color-turquoise-three);
-      mask-repeat: no-repeat;
-      mask-position: center;
-      mask-size: contain;
-      -webkit-mask-repeat: no-repeat;
-      -webkit-mask-position: center;
-      -webkit-mask-size: contain;
-    }
-
-    &[aria-disabled="true"] {
-      opacity: 0.5;
-      pointer-events: none;
-      border-color: var(--color-secondary-grey);
-
-      &::before {
-        background-color: var(--color-secondary-grey);
-      }
-    }
-
-    &:not([aria-disabled="true"]):hover {
-      border-color: var(--color-turquoise-two);
-
-      &::before {
-        background-color: var(--color-turquoise-two);
-      }
-    }
-  }
-
-  .post-swiper-button-prev::before {
-    mask-image: var(--swiper-prev-icon);
-    -webkit-mask-image: var(--swiper-prev-icon);
-  }
-
-  .post-swiper-button-next::before {
-    mask-image: var(--swiper-next-icon);
-    -webkit-mask-image: var(--swiper-next-icon);
-  }
-}
-
 .switch-pagination-navigation {
-  .swiper-pagination {
+  .swiper-pagination.swiper-pagination-bullets {
     @include media(">=phone") {
       display: none;
     }

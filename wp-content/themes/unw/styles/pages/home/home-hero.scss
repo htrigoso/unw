@@ -33,8 +33,11 @@
   width: 100%;
   object-fit: cover;
   object-position: center;
+  aspect-ratio: 10/9;
+  max-height: rem(500);
 
   @include media(">=tablet") {
+    aspect-ratio: 1/2;
     max-height: rem(769);
   }
 }

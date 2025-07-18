@@ -1,14 +1,17 @@
 import { createSwiper } from './createSwiper'
 
-const HeroSwiper = (sectionEl = '.hero', config = {}) => {
+const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
   const defaultConfig = {
     loop: true,
     slidesPerView: 1,
     centeredSlides: false,
     spaceBetween: 0,
-    speed: 5000,
+    speed: 500,
     lazy: false,
-    autoplay: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
     effect: 'fade',
     fadeEffect: {
       crossFade: true

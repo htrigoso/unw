@@ -5,14 +5,13 @@ const PostSwiper = (sectionEl = '.post-swiper', config = {}) => {
     loop: false,
     slidesPerView: 'auto',
     spaceBetween: 8,
-    grabCursor: true,
     pagination: {
       el: `${sectionEl} .swiper-pagination`,
       clickable: true
     },
     navigation: {
-      nextEl: `${sectionEl} .post-swiper-button-next`,
-      prevEl: `${sectionEl} .post-swiper-button-prev`
+      nextEl: `${sectionEl} .swiper-primary-button-next`,
+      prevEl: `${sectionEl} .swiper-primary-button-prev`
     },
     breakpoints: {
       576: {

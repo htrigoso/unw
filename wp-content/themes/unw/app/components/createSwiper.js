@@ -6,10 +6,5 @@ export function createSwiper(sectionEl, config = {}, defaultConfig) {
     JSON.parse(JSON.stringify(defaultConfig)),
     config
   )
-  mergedConfig.pagination.el = `${sectionEl} .swiper-pagination`
-  if (mergedConfig.navigation) {
-    mergedConfig.navigation.nextEl = `${sectionEl} .post-swiper-button-next`
-    mergedConfig.navigation.prevEl = `${sectionEl} .post-swiper-button-prev`
-  }
   return new Swiper(`${sectionEl} .swiper-container`, mergedConfig)
 }

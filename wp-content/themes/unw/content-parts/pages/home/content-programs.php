@@ -38,8 +38,8 @@ $lists = $programs['lists'] ?? [];
           </div>
         </div>
         <div class="swiper-navigation">
-          <div class="post-swiper-button-prev"></div>
-          <div class="post-swiper-button-next"></div>
+          <div class="swiper-primary-button-prev"></div>
+          <div class="swiper-primary-button-next"></div>
         </div>
       </div>
     </div>

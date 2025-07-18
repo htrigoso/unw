@@ -6,11 +6,11 @@ $link_one = $hero['link_one'] ?? null;
 $link_two = $hero['link_two'] ?? null;
 $hero_image = $hero['list'][0]['images'] ?? null;
 
-$img_desktop = $hero_image['desktop']['url'] ?? get_template_directory_uri() . '/upload/home/hero/hero-desktop.png';
-$img_mobile = $hero_image['mobile']['url'] ?? get_template_directory_uri() . '/upload/home/hero/hero-mobile.png';
+$img_desktop = $hero_image['desktop']['url'] ?? UPLOAD_PATH . '/home/hero/hero-desktop.png';
+$img_mobile = $hero_image['mobile']['url'] ?? UPLOAD_PATH . '/home/hero/hero-mobile.png';
 ?>
 <?php if(!empty($hero) && is_array($hero)): ?>
-<section class="hero">
+<section class="hero hero-swiper">
   <div class="swiper-container is-draggable">
     <div class="swiper-wrapper swiper-hero__wrapper">
       <div class="swiper-slide swiper-hero__slide">
