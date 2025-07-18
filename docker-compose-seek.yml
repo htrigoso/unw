@@ -49,7 +49,7 @@ services:
       MYSQL_ROOT_PASSWORD: rootpass
     volumes:
       - db_data:/var/lib/mysql
-      - ./unw.09.07.2025.15.00.sql:/docker-entrypoint-initdb.d/unw.sql
+      - ./18.07.2025.12.01.sql:/docker-entrypoint-initdb.d/unw.sql
     ports:
       - "3306:3306"
 
