@@ -70,10 +70,12 @@
       width: 8px;
       height: 8px;
       border: solid #00b7c2;
-      border-width: 0 2px 2px 0;
+      border-width: 0 3px 3px 0;
       border-radius: 2px;
       display: inline-block;
       pointer-events: none;
+      transform-origin: bottom bottom;
+      transition: transform 0.3s ease;
     }
   }
 

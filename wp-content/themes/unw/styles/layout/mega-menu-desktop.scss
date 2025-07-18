@@ -15,6 +15,9 @@
 .menu-item-has-children.is-open {
   a.has-link-parent {
     font-weight: var(--font-semi-bold);
+    &::after {
+      transform: translateY(-50%) rotate(-135deg);
+    }
   }
 }
 
@@ -85,8 +88,10 @@
   }
 }
 .submenu-tab {
-  padding-bottom: rem(20);
-  border-bottom: 1px solid var(--color-secondary-grey);
+  &.has-active {
+    padding-bottom: rem(20);
+    border-bottom: 1px solid var(--color-secondary-grey);
+  }
   button {
     font-size: rem(18);
     cursor: pointer;
