@@ -1,7 +1,7 @@
 import Component from '../classes/Component'
 
 export default class Tabs extends Component {
-  constructor({ element, tabLabels = {} }) {
+  constructor({ element, onTabChange = null }) {
     super({
       element,
       elements: {
@@ -9,9 +9,8 @@ export default class Tabs extends Component {
         tabContents: '.tab__content'
       }
     })
-
-    this.tabLabels = tabLabels
     this.currentTabId = null
+    this.onTabChange = onTabChange
 
     this.init()
   }
@@ -51,8 +50,12 @@ export default class Tabs extends Component {
 
     this.setActiveTab(tabToActivate)
     this.showTabContent(targetId)
-    if (Object.keys(this.tabLabels).length > 0) {
-      this.updateBreadcrumb(targetId)
+
+    // Callback para notificar el cambio de tab inicial
+    if (typeof this.onTabChange === 'function') {
+      const targetContent = document.getElementById(targetId)
+      const tabIndex = this.getTabIndex(tabToActivate)
+      this.onTabChange(tabToActivate, targetContent, tabIndex)
     }
   }
 
@@ -78,34 +81,21 @@ export default class Tabs extends Component {
     this.scrollToTab(tab)
     this.updateUrl(targetId)
 
-    if (Object.keys(this.tabLabels).length > 0) {
-      this.updateBreadcrumb(targetId)
+    // Callback para notificar el cambio de tab
+    if (typeof this.onTabChange === 'function') {
+      const tabIndex = this.getTabIndex(tab)
+      this.onTabChange(tab, targetContent, tabIndex)
     }
+  }
 
-    // update swiper instances to prevent pagination issues
-    setTimeout(() => {
-      const swipers = targetContent.querySelectorAll('.swiper-container')
-      swipers.forEach(container => {
-        if (container.swiper && typeof container.swiper.update === 'function') {
-          container.swiper.update()
-        }
-      })
-    }, 100)
+  getTabIndex(tab) {
+    return [...this.elements.tabItems].indexOf(tab)
   }
 
   updateUrl(targetId) {
     const url = new URL(window.location)
     url.searchParams.set('tab', targetId)
     window.history.replaceState({}, '', url)
-  }
-
-  updateBreadcrumb(targetId) {
-    const breadcrumbLast = document.querySelector('.breadcrumb__label.current')
-    if (!breadcrumbLast) return
-
-    if (this.tabLabels && this.tabLabels[targetId]) {
-      breadcrumbLast.textContent = this.tabLabels[targetId]
-    }
   }
 
   setActiveTab(activeTab) {
@@ -123,7 +113,7 @@ export default class Tabs extends Component {
 
   scrollToContent(targetContent) {
     requestAnimationFrame(() => {
-      const offset = 130
+      const offset = 200
       const top =
         targetContent.getBoundingClientRect().top +
         window.pageYOffset -

@@ -55,10 +55,12 @@ export default class Menu extends Component {
 
     this.menuLinks.forEach((link) => {
       link.addEventListener('click', (e) => {
-        e.preventDefault()
         const parent = link.closest('.sidebar__menu-item')
         const submenu = parent?.querySelector('.sidebar__submenu')
-        submenu?.classList.add('is-active')
+        if (submenu) {
+          e.preventDefault()
+          submenu.classList.add('is-active')
+        }
       })
     })
   }

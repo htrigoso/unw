@@ -18,7 +18,7 @@ $link = $malla_curricular['link'] ?? null;
     </div>
 
     <div class="program-curriculum__content" aria-label="Listado de cursos por ciclo">
-      <div class="post-swiper">
+      <div class="program-swiper post-swiper switch-pagination-navigation" data-width="compact">
         <div class="swiper-container">
           <ul class="swiper-wrapper program-curriculum__cycles-list">
             <?php foreach ($lists as $list): ?>
@@ -57,7 +57,10 @@ $link = $malla_curricular['link'] ?? null;
             <?php endforeach; ?>
           </ul>
           <div class="swiper-pagination"></div>
-          <div class="swiper-scrollbar"></div>
+        </div>
+        <div class="swiper-navigation">
+          <div class="swiper-primary-button-prev"></div>
+          <div class="swiper-primary-button-next"></div>
         </div>
       </div>
     </div>

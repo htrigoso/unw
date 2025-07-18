@@ -4,10 +4,14 @@ import InternationalSwiper from '../../components/InternationalSwiper'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
 
 (function () {
-  HeroSwiper()
+  HeroSwiper('.hero-swiper', {
+    autoplay: false
+  })
   PostSwiper('.testimonial-swiper')
   PostSwiper('.last-news-swiper')
-  PostSwiper('.featured-events-swiper')
+  PostSwiper('.featured-events-swiper', {
+    pagination: false
+  })
   PostSwiperDesktop()
   InternationalSwiper()
 })()

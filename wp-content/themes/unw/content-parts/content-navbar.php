@@ -1,7 +1,8 @@
 <header class="navbar" id="navbar">
+  <?php get_template_part(GENERAL_CONTENT_PATH, 'top-bar');?>
   <div class="x-container x-container--pad-64 navbar__wrapper">
 
-    <a class="navbar__logo pointer">
+    <a class="navbar__logo pointer" href="<?php echo home_url('/'); ?>">
       <img width="101" height="40" src="<?php echo get_template_directory_uri(); ?>/upload/logo-unw.svg" alt="">
     </a>
 
@@ -9,13 +10,16 @@
     <div class="navbar__content">
       <div class="navbar__menu-wrapper">
         <?php
-        wp_nav_menu(array(
-          'menu' => 'navbar_menu',
-          'menu_class' => 'flex items-center justify-end',
-          'container' => 'nav',
-          'container_class' => 'navbar__menu flex-auto',
-        ));
+            wp_nav_menu(array(
+              'menu' => 'navbar_menu',
+              'menu_class' => 'flex items-center justify-end',
+              'container' => 'nav',
+              'container_class' => 'navbar__menu flex-auto',
+              'walker' => new Desktop_Menu_Walker(),
+            ));
         ?>
+
+
       </div>
 
       <div class="navbar__menu-mobile">

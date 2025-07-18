@@ -1,0 +1,9 @@
+.testimonials__title {
+  @include title-22;
+  margin-bottom: rem(16);
+
+  @include media(">=tablet") {
+    @include title-28;
+    margin-bottom: rem(32);
+  }
+}

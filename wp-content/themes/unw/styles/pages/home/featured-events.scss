@@ -3,62 +3,24 @@
 }
 
 .featured-events__wrapper {
-  padding: rem(24) 0 rem(36) 0;
+  padding-top: rem(24);
+  padding-bottom: rem(36);
 
   @include media(">=tablet") {
     padding-top: rem(40);
     padding-bottom: rem(40);
   }
-}
 
-.featured-events__title {
-  @include title-28;
-  margin-bottom: rem(16);
-
-  @include media(">=tablet") {
-    margin-bottom: rem(24);
-  }
-}
-
-.featured-events__card {
-  .event-card {
-    width: rem(280);
-  }
-}
-
-.featured-events__swiper {
-  .swiper-pagination {
-    @include media("<tablet") {
+  .swiper-navigation {
+    @include media("<phone") {
       display: none;
     }
   }
-}
 
-.featured-events__swiper-navigation {
-  display: flex;
-  justify-content: center;
-  margin-top: rem(16);
-
-  @include media(">=tablet") {
-    justify-content: space-between;
-  }
-
-  .swiper-navigation {
-    margin-top: 0 !important;
-
-    @include media("<tablet") {
-      display: none !important;
+  .swiper-events__see-more-btn {
+    @include media("<phone") {
+      display: block;
+      margin-inline: auto;
     }
-  }
-}
-
-.featured-events__see-more-btn {
-  @include media(">=phone") {
-    display: flex;
-    justify-content: center;
-  }
-
-  @include media(">=tablet") {
-    margin-top: 0;
   }
 }

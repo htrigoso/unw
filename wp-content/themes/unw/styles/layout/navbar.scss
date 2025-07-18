@@ -59,12 +59,13 @@
   .menu-item-has-children > a {
     position: relative;
     padding-right: 24px;
-
+  }
+  .has-link-parent {
     &::after {
       content: "";
       position: absolute;
-      right: 4px;
       top: 50%;
+      right: 4px;
       transform: translateY(-50%) rotate(45deg);
       width: 8px;
       height: 8px;
@@ -73,10 +74,12 @@
       border-radius: 2px;
       display: inline-block;
       pointer-events: none;
+      transform-origin: bottom bottom;
+      transition: transform 0.3s ease;
     }
   }
 
-  .menu-item-object-page {
+  .menu-item-parent-page {
     margin-inline: rem(12);
 
     @include media(">=desktop-s") {
@@ -97,11 +100,12 @@
       text-align: center;
     }
   }
+  .menu-item {
+    position: relative;
+  }
 
-  .menu-item-has-children {
-    .sub-menu {
-      display: none;
-    }
+  .main-submenu-wrapper {
+    display: none;
   }
 }
 

@@ -1,0 +1,17 @@
+.news {
+  padding-top: rem(32);
+  padding-bottom: rem(42);
+
+  @include media(">=tablet") {
+    padding-top: rem(42);
+    padding-bottom: rem(104);
+  }
+}
+
+.featured-news-container {
+  padding-top: rem(36);
+
+  @include media(">=tablet") {
+    padding-top: rem(42);
+  }
+}

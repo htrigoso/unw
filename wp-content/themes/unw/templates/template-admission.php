@@ -8,7 +8,7 @@
 <?php set_query_var('ASSETS_CHUNK_NAME', 'admission'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php get_header(); ?>
-<?php get_template_part(GENERAL_CONTENT_PATH, 'top-bar'); ?>
+
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 <main>
   <?php
@@ -17,14 +17,16 @@
       [
         'images' => [
           'desktop' => [
-            'url' => get_template_directory_uri() . '/upload/admission/hero/hero-1-desktop.jpg',
+            'url' => UPLOAD_PATH . '/admission/hero/hero-1-desktop.jpg',
             'alt' => 'Admisión Hero Desktop'
           ],
           'mobile' => [
-            'url' => get_template_directory_uri() . '/upload/admission/hero/hero-1-mobile.jpg',
+            'url' => UPLOAD_PATH . '/admission/hero/hero-1-mobile.jpg',
             'alt' => 'Admisión Hero Mobile'
           ]
-        ]
+        ],
+        'title' => 'Admisión Wiener',
+        'label' => 'Admisión'
       ],
       [
         'images' => [
@@ -35,23 +37,23 @@
           'mobile' => [
             'url' => get_template_directory_uri() . '/upload/admission/hero/hero-1-mobile.jpg',
             'alt' => 'Admisión Hero Mobile'
-          ]
-        ]
+          ],
+        ],
+        'title' => 'Admisión Wiener',
+        'label' => 'Admisión'
       ]
     ]
   ];
-  $breadcrumbs = [
+  $base_breadcrumbs = [
     ['label' => 'Inicio', 'href' => home_url('/')],
-    ['label' => 'Admisión', 'href' => '/admision'],
-    ['label' => '']
+    ['label' => 'Admisión', 'href' => '/admision']
   ];
   get_template_part(
     COMMON_CONTENT_PATH,
     'swiper-hero',
     [
       'sliders' => $sliders,
-      'breadcrumbs' => $breadcrumbs,
-      'hero_title' => 'Admisión Wiener',
+      'base_breadcrumbs' => $base_breadcrumbs,
       'extra_class' => 'admission-hero'
     ]
   ); ?>
