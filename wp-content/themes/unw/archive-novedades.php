@@ -1,10 +1,3 @@
-<?php
-
-/**
- * Template Name: Noticias Template
- */
-?>
-
 <?php set_query_var('ASSETS_CHUNK_NAME', 'news'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php get_header(); ?>

@@ -21,7 +21,7 @@ function register_post_type_novedades() {
         'has_archive' => true,
         'rewrite' => array('slug' => 'novedades'),
         'menu_icon' => 'dashicons-megaphone',
-        'supports' => array('title', 'editor', 'thumbnail'),
+        'supports' => array('title','thumbnail'),
         'show_in_rest' => true,
     );
 

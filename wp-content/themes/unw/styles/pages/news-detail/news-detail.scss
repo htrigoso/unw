@@ -8,8 +8,10 @@
 }
 
 .news-detail__body--content {
-  margin-top: rem(42);
-  margin-bottom: rem(42);
+  p {
+    margin-top: rem(20);
+    margin-bottom: rem(20);
+  }
 }
 
 .news-detail__featured {
