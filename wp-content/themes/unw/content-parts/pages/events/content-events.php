@@ -1,148 +1,84 @@
 <?php
-$data = [
+// =======================
+// 1. FEATURED EVENTS
+// =======================
+$feature_events = [
   "title" => "Eventos Destacados",
   "link" => false,
-  "events" => [
-    (object)[
-      "ID" => 1,
-      "post_title" => "Wiener Sessions",
-      "event_info" => [
-        "date" => "04/06/2025",
-        "time" => "4:00pm",
-        "location" => "Zoom",
-        "register_url" => [
-          "title" => "Inscribirme",
-          "url" => "/detalle-de-evento",
-          "target" => "_self"
-        ]
-      ],
-      "thumbnail_url" => UPLOAD_PATH . '/home/featured-events/featured-event-1.jpg',
-    ],
-    (object)[
-      "ID" => 2,
-      "post_title" => "Wiener Fest",
-      "event_info" => [
-        "date" => "27/05/2025",
-        "time" => "4:00pm",
-        "location" => "Norbert Wiener",
-        "register_url" => [
-          "title" => "Inscribirme",
-          "url" => "/detalle-de-evento",
-          "target" => "_self"
-        ]
-      ],
-      "thumbnail_url" => UPLOAD_PATH . '/home/featured-events/featured-event-2.jpg',
-    ],
-    (object)[
-      "ID" => 3,
-      "post_title" => "Wiener Tours",
-      "event_info" => [
-        "date" => "29/05/2025",
-        "time" => "4:00pm",
-        "location" => "Presencial",
-        "register_url" => [
-          "title" => "Inscribirme",
-          "url" => "/detalle-de-evento",
-          "target" => "_self"
-        ]
-      ],
-      "thumbnail_url" => UPLOAD_PATH . '/home/featured-events/featured-event-3.jpg',
-    ],
-  ]
+  "events" => []
 ];
 
-$data_two = [
+$feature_events_query = new WP_Query([
+  'post_type'      => 'eventos',
+  'orderby'        => 'date',
+  'order'          => 'DESC',
+  'meta_query'     => [
+    [
+      'key'     => 'featured',
+      'value'   => 1,
+      'compare' => '='
+    ]
+  ],
+  'posts_per_page' => 4,
+]);
+
+if ($feature_events_query->have_posts()) {
+  while ($feature_events_query->have_posts()) {
+    $feature_events_query->the_post();
+    $info = get_field('event_info', get_the_ID());
+    $feature_events['events'][] = (object) [
+      "ID" => get_the_ID(),
+      "post_title" => get_the_title(),
+      "event_info" => $info,
+      "thumbnail_url" => get_the_post_thumbnail_url(get_the_ID(), 'large'),
+    ];
+  }
+  wp_reset_postdata();
+}
+
+// =======================
+// 2. ALL EVENTS
+// =======================
+$all_events = [
   "title" => "Todos los eventos",
   "link" => false,
-  "events" => [
-    (object)[
-      "ID" => 6,
-      "post_title" => "Wiener Sessions",
-      "event_info" => [
-        "date" => "04/06/2025",
-        "time" => "4:00pm",
-        "location" => "Zoom",
-        "register_url" => [
-          "title" => "Inscribirme",
-          "url" => "/detalle-de-evento",
-          "target" => "_self"
-        ]
-      ],
-      "thumbnail_url" => UPLOAD_PATH . '/home/featured-events/featured-event-1.jpg',
-    ],
-    (object)[
-      "ID" => 7,
-      "post_title" => "Wiener Fest",
-      "event_info" => [
-        "date" => "27/05/2025",
-        "time" => "4:00pm",
-        "location" => "Norbert Wiener",
-        "register_url" => [
-          "title" => "Inscribirme",
-          "url" => "/detalle-de-evento",
-          "target" => "_self"
-        ]
-      ],
-      "thumbnail_url" => UPLOAD_PATH . '/home/featured-events/featured-event-2.jpg',
-    ],
-    (object)[
-      "ID" => 8,
-      "post_title" => "Wiener Tours",
-      "event_info" => [
-        "date" => "29/05/2025",
-        "time" => "4:00pm",
-        "location" => "Presencial",
-        "register_url" => [
-          "title" => "Inscribirme",
-          "url" => "/detalle-de-evento",
-          "target" => "_self"
-        ]
-      ],
-      "thumbnail_url" => UPLOAD_PATH . '/home/featured-events/featured-event-3.jpg',
-    ],
-    (object)[
-      "ID" => 9,
-      "post_title" => "Wiener Sessions",
-      "event_info" => [
-        "date" => "04/06/2025",
-        "time" => "4:00pm",
-        "location" => "Zoom",
-        "register_url" => [
-          "title" => "Inscribirme",
-          "url" => "/detalle-de-evento",
-          "target" => "_self"
-        ]
-      ],
-      "thumbnail_url" => UPLOAD_PATH . '/home/featured-events/featured-event-1.jpg',
-    ],
-    (object)[
-      "ID" => 10,
-      "post_title" => "Wiener Fest",
-      "event_info" => [
-        "date" => "27/05/2025",
-        "time" => "4:00pm",
-        "location" => "Norbert Wiener",
-        "register_url" => [
-          "title" => "Inscribirme",
-          "url" => "/detalle-de-evento",
-          "target" => "_self"
-        ]
-      ],
-      "thumbnail_url" => UPLOAD_PATH . '/home/featured-events/featured-event-2.jpg',
-    ]
-  ]
-]
+  "events" => []
+];
+
+$all_events_query = new WP_Query([
+  'post_type'      => 'eventos',
+  'orderby'        => 'date',
+  'order'          => 'DESC',
+  'posts_per_page' => -1,
+]);
+
+if ($all_events_query->have_posts()) {
+  while ($all_events_query->have_posts()) {
+    $all_events_query->the_post();
+    $info = get_field('event_info', get_the_ID());
+    $all_events['events'][] = (object) [
+      "ID" => get_the_ID(),
+      "post_title" => get_the_title(),
+      "event_info" => $info,
+      "thumbnail_url" => get_the_post_thumbnail_url(get_the_ID(), 'large'),
+    ];
+  }
+  wp_reset_postdata();
+}
 ?>
 
+<!-- ===========================
+  SECTION: FEATURED EVENTS
+=========================== -->
 <section class="featured-events">
   <div class="x-container x-container--pad-213">
     <div class="featured-events__wrapper">
       <?php
       get_template_part(COMMON_CONTENT_PATH, 'swiper-events', [
         'acf_data' => [
-          'title' => $data['title'] ?? 'Eventos Destacados',
-          'events' => $data['events'] ?? [],
-          'link' => $data['link'] ?? false,
+          'title' => $feature_events['title'] ?? 'Eventos Destacados',
+          'events' => $feature_events['events'] ?? [],
+          'link' => $feature_events['link'] ?? false,
         ],
         "swiper_class" => 'featured-events-swiper post-swiper-desktop',
       ]);
@@ -150,15 +86,19 @@ $data_two = [
     </div>
   </div>
 </section>
+
+<!-- ===========================
+  SECTION: ALL EVENTS
+=========================== -->
 <section class="all-events">
   <div class="x-container x-container--pad-213">
     <div class="all-events__wrapper">
       <?php
       get_template_part(COMMON_CONTENT_PATH, 'swiper-events', [
         'acf_data' => [
-          'title' => $data_two['title'] ?? 'Todos los eventos',
-          'events' => $data_two['events'] ?? [],
-          'link' => $data_two['link'] ?? false,
+          'title' => $all_events['title'] ?? 'Todos los eventos',
+          'events' => $all_events['events'] ?? [],
+          'link' => $all_events['link'] ?? false,
         ],
         "swiper_class" => 'all-events-swiper post-swiper',
       ]);

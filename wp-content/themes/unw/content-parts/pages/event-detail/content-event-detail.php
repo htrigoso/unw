@@ -1,3 +1,7 @@
+<?php
+$event = get_field('event_content');
+ ?>
+<?php if(!empty($event)): ?>
 <div class="event-detail">
   <div class="x-container x-container--pad-213">
     <section class="event-detail__wrapper">
@@ -5,37 +9,52 @@
         <h2 class="event-detail__subtitle">
           Detalle del evento
         </h2>
+
+        <?php if (!empty($event['title'])) : ?>
         <h1 class="event-detail__title">
-          📣 ¡Prepárate para estudiar sin límites en la Universidad Norbert Wiener!
+          <?= esc_html($event['title']); ?>
         </h1>
-        <p class="event-detail__description">
-          ¿Te imaginas estudiar una carrera profesional sin salir de casa? 🌐💻 ¡Es posible! Te invitamos a participar en nuestra charla informativa sobre carreras a distancia, donde conocerás todo lo que necesitas saber para comenzar tu futuro profesional con flexibilidad y calidad académica🚀. Descubre nuestras carreras 100% online:
-        </p>
+        <?php endif; ?>
+
+        <?php if (!empty($event['content'])) : ?>
+        <div class="event-detail__description">
+          <?= wp_kses_post(wpautop($event['content'])); ?>
+        </div>
+        <?php endif; ?>
+
         <div class="event-detail__video">
           <?php
           get_template_part(COMMON_CONTENT_PATH, 'video-w-thumbnail', [
-            'thumbnail' => UPLOAD_PATH . '/event-detail/video/video-thumbnail.jpg',
+            'thumbnail' => $event['image']['url'] ?? '',
+            'video_url' => $event['video']['url'] ?? '',
+            'is_video' => $event['is_video'],
           ]);
           ?>
         </div>
+
         <div class="event-detail__data">
           <?php
-          get_template_part(COMMON_CONTENT_PATH, 'body-w-list', [
-            'title' => 'Fecha y plataforma',
-            'blocks' => [
-              [
-                'list' => [
-                  '24 y 26 de junio',
-                  '7:00 PM',
-                  'Zoom',
-                ],
-              ]
-            ],
-          ]);
-          ?>
+            $event_info = get_field('event_info');
+            get_template_part(COMMON_CONTENT_PATH, 'body-w-list', [
+              'title' => 'Fecha y plataforma',
+              'blocks' => [
+                [
+                  'list' => [
+                    $event_info['date'] ?? '',
+                    $event_info['time'] ?? '',
+                    $event_info['location'] ?? '',
+                  ],
+                ]
+              ],
+            ]);
+            ?>
         </div>
       </article>
-      <article class="event-detail__form">FORMULARIO DE REGISTRO</article>
+
+      <article class="event-detail__form">
+        FORMULARIO DE REGISTRO
+      </article>
     </section>
   </div>
 </div>
+<?php endif ?>

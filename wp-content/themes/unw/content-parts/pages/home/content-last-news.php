@@ -22,7 +22,7 @@ $news_items = $news_data['news'] ?? [];
               $formatted_date = $date_obj ? date_i18n('j \d\e F, Y', $date_obj->getTimestamp()) : '';
 
               $image = get_the_post_thumbnail_url($news_post->ID, 'medium') ?: get_template_directory_uri() . '/upload/home/last-news/default.jpg';
-              $content = get_the_content(null, false, $news_post);
+              $content = get_field('extract', $news_post->ID);
             ?>
             <div class="swiper-slide">
               <article class="last-news__card">
