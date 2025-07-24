@@ -46,6 +46,9 @@
   @include media(">=tablet") {
     margin-bottom: rem(24);
   }
+  p {
+    margin: rem(15) 0;
+  }
 }
 
 .event-detail__video {

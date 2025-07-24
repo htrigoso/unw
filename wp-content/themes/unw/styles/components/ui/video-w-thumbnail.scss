@@ -2,7 +2,8 @@
   position: relative;
 }
 
-.video-w-thumb__img {
+.video-w-thumb__img,
+.video-w-thumb__video {
   width: 100%;
   aspect-ratio: 11/7;
   object-fit: cover;

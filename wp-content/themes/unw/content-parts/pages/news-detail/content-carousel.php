@@ -1,48 +1,34 @@
 <?php
-$slides = [
-  [
-    'image' => UPLOAD_PATH . '/news-detail/carousel/carousel-1.jpg',
-    'alt' => 'Noticia 1',
-    'description' => 'Universidad Norbert Wiener organizó <strong>encuentro de docentes de Enfermería y Medicina Humana</strong> en reconocimiento al importante trabajo que realizan.'
-  ],
-  [
-    'image' => UPLOAD_PATH . '/news-detail/carousel/carousel-1.jpg',
-    'alt' => 'Noticia 1',
-    'description' => 'Universidad Norbert Wiener organizó <strong>encuentro de docentes de Enfermería y Medicina Humana</strong> en reconocimiento al importante trabajo que realizan.'
-  ],
-  [
-    'image' => UPLOAD_PATH . '/news-detail/carousel/carousel-1.jpg',
-    'alt' => 'Noticia 1',
-    'description' => 'Universidad Norbert Wiener organizó <strong>encuentro de docentes de Enfermería y Medicina Humana</strong> en reconocimiento al importante trabajo que realizan.'
-  ],
-  [
-    'image' => UPLOAD_PATH . '/news-detail/carousel/carousel-1.jpg',
-    'alt' => 'Noticia 1',
-    'description' => 'Universidad Norbert Wiener organizó <strong>encuentro de docentes de Enfermería y Medicina Humana</strong> en reconocimiento al importante trabajo que realizan.'
-  ]
-]
+$slider = get_field('slider');
 ?>
 
-<div class="carousel post-swiper">
-  <div class="swiper-container">
-    <ul class="swiper-wrapper carousel__list">
-      <?php foreach ($slides as $slide): ?>
-        <li class="swiper-slide carousel__item">
-          <div class="carousel__content">
-            <img src="<?php echo esc_url($slide['image']); ?>" alt="<?php echo esc_attr($slide['alt']); ?>" class="carousel__content--image" />
-            <p class="carousel__content--description"><?php echo $slide['description']; ?></p>
+<?php if (!empty($slider)) : ?>
+  <div class="carousel post-swiper">
+    <div class="swiper-container">
+      <ul class="swiper-wrapper carousel__list">
+        <?php foreach ($slider as $slide) : ?>
+          <?php
+            $image_url = esc_url($slide['image']['url']);
+            $image_alt = esc_attr($slide['image']['alt']) ?: 'Slide image';
+            $description = wp_kses_post($slide['description']);
+          ?>
+          <li class="swiper-slide carousel__item">
+            <div class="carousel__content">
+              <img src="<?php echo $image_url; ?>" alt="<?php echo $image_alt; ?>" class="carousel__content--image" />
+              <p class="carousel__content--description"><?php echo $description; ?></p>
+            </div>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+      <div class="carousel__swiper-navigation">
+        <div class="swiper-navigation">
+          <div class="swiper-primary-button-prev"></div>
+          <div class="swiper-primary-button-next"></div>
+          <div class="swiper-counter">
+            <div class="swiper-pagination"></div>
           </div>
-        </li>
-      <?php endforeach; ?>
-    </ul>
-    <div class="carousel__swiper-navigation">
-      <div class="swiper-navigation">
-        <div class="swiper-primary-button-prev"></div>
-        <div class="swiper-primary-button-next"></div>
-        <div class="swiper-counter">
-          <div class="swiper-pagination"></div>
         </div>
       </div>
     </div>
   </div>
-</div>
+<?php endif; ?>
