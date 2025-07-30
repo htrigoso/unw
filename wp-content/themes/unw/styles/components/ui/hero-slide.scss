@@ -27,6 +27,7 @@
   width: 100%;
   object-fit: cover;
   object-position: center;
+  max-height: rem(350);
 
   @include media(">=tablet") {
     max-height: rem(769);
@@ -68,10 +69,37 @@
 
 .hero-slide[data-variant="primary"] {
   &::after {
+    height: 70%;
     background: linear-gradient(
       23deg,
       rgba(0, 102, 158, 0.7) 19.02%,
-      rgba(218, 247, 247, 0) 40.17%
+      rgba(218, 247, 247, 0) 60.17%
     );
+
+    @include media(">=phone") {
+      height: 100%;
+      background: linear-gradient(
+        23deg,
+        rgba(0, 102, 158, 0.7) 10.02%,
+        rgba(218, 247, 247, 0) 30.17%
+      );
+    }
+  }
+
+  .hero-slide__content--title {
+    @include title-40;
+
+    @include media(">=tablet") {
+      @include title-56;
+      margin-bottom: rem(39);
+    }
+  }
+
+  .breadcrumb__label.current {
+    color: var(--color-white);
+
+    @include media("<tablet") {
+      font-weight: var(--font-regular);
+    }
   }
 }
