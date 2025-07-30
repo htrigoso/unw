@@ -5,7 +5,6 @@ import copyToClipboard from '../../utils/copy-to-clipboard'
   const toaster = new Toaster({
     element: document.body
   })
-  window.toasterInstance = toaster
 
   document.addEventListener('DOMContentLoaded', function () {
     const shareBtns = document.querySelectorAll('#copy-link')
