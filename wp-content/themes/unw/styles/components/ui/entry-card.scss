@@ -1,26 +1,33 @@
-.last-news-card {
+.entry-card {
   border-radius: rem(16);
   border: 1px solid var(--color-light-grey);
   overflow: hidden;
 }
 
-.last-news-card__image {
+.entry-card__image {
   height: rem(171);
   width: 100%;
   object-fit: cover;
   object-position: center;
 }
 
-.last-news-card__content {
+.entry-card__content {
   padding: rem(12);
 }
 
-.last-news-card__title {
+.entry-card__title {
   @include title-22;
   margin-bottom: rem(16);
 }
 
-.last-news-card__desc {
+.entry-card__date {
+  display: inline-block;
+  font-size: rem(14);
+  color: var(--color-asu-grey);
+  margin-bottom: rem(16);
+}
+
+.entry-card__desc {
   margin-bottom: rem(12);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -30,7 +37,7 @@
   white-space: normal;
 }
 
-.last-news-card__button {
+.entry-card__button {
   padding: rem(7) rem(15);
   justify-content: space-between;
 

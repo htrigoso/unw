@@ -28,5 +28,6 @@
     ],
     'variant' => 'primary',
   ]); ?>
+  <?php get_template_part(BLOG_CONTENT_PATH, 'blog'); ?>
 </main>
 <?php get_footer(); ?>
