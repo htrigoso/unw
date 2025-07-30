@@ -9,6 +9,7 @@
     "news-detail": ["./app/pages/news-detail/index.js", "./styles/pages/news-detail/index.scss"],
     "event-detail": ["./app/pages/event-detail/index.js", "./styles/pages/event-detail/index.scss"],
     "events": ["./app/pages/events/index.js", "./styles/pages/events/index.scss"],
-    "blog": ["./app/pages/blog/index.js", "./styles/pages/blog/index.scss"]
+    "blog": ["./app/pages/blog/index.js", "./styles/pages/blog/index.scss"],
+    "blog-detail": ["./app/pages/blog-detail/index.js", "./styles/pages/blog-detail/index.scss"]
   }
 }

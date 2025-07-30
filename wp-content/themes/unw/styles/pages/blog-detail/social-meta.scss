@@ -1,0 +1,12 @@
+.social-meta {
+  display: flex;
+  gap: rem(16);
+}
+
+.social-meta__share-button {
+  color: var(--color-asu-grey);
+  display: flex;
+  gap: rem(10);
+  align-items: center;
+  cursor: pointer;
+}

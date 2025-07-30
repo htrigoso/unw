@@ -14,6 +14,7 @@ define('NEWS_DETAIL_CONTENT_PATH', 'content-parts/pages/news-detail/content');
 define('EVENT_DETAIL_CONTENT_PATH', 'content-parts/pages/event-detail/content');
 define('EVENTS_CONTENT_PATH', 'content-parts/pages/events/content');
 define('BLOG_CONTENT_PATH', 'content-parts/pages/blog/content');
+define('BLOG_DETAIL_CONTENT_PATH', 'content-parts/pages/blog-detail/content');
 
 define('GENERAL_CONTENT_PATH', 'content-parts/content');
 
