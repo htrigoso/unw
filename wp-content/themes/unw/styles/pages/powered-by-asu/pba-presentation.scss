@@ -1,10 +1,10 @@
 .pba-presentation {
-  margin-top: rem(26);
-  margin-bottom: rem(50);
+  padding-top: rem(26);
+  padding-bottom: rem(50);
 
   @include media(">=tablet") {
-    margin-top: rem(76);
-    margin-bottom: rem(82);
+    padding-top: rem(76);
+    padding-bottom: rem(82);
   }
 }
 
@@ -36,6 +36,7 @@
   display: flex;
   flex-direction: column;
   gap: rem(24);
+  margin-bottom: rem(49);
 
   @include media(">=phone") {
     flex-direction: row;
@@ -46,6 +47,7 @@
 
   @include media(">=tablet") {
     margin-top: rem(74);
+    margin-bottom: rem(52);
   }
 
   & > * {
@@ -60,5 +62,59 @@
 
   strong {
     color: var(--color-asu-brown);
+  }
+}
+
+.pba-presentation__building {
+  position: relative;
+}
+
+.pba-presentation__building--img {
+  width: calc(100% + 32px);
+  height: rem(467);
+  object-fit: cover;
+  object-position: center;
+  margin-inline: rem(-16);
+  max-width: fit-content;
+
+  @include media(">=phone-576") {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
+  }
+
+  @include media(">=tablet") {
+    height: rem(571);
+  }
+}
+
+.pba-presentation__building--desc {
+  position: absolute;
+  padding: rem(10) rem(16);
+  background-color: var(--color-engineering);
+  border-radius: rem(12);
+  bottom: rem(-45);
+  width: rem(329);
+
+  @include media(">=phone-576") {
+    left: rem(16);
+  }
+
+  strong {
+    @include title-22;
+    color: var(--color-asu-brown);
+  }
+
+  span {
+    display: block;
+    font-weight: var(--font-semi-bold);
+  }
+}
+
+.pba-presentation__list {
+  margin-top: rem(84);
+
+  @include media(">=tablet") {
+    margin-top: rem(80);
   }
 }
