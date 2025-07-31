@@ -1,0 +1,64 @@
+.pba-presentation {
+  margin-top: rem(26);
+  margin-bottom: rem(50);
+
+  @include media(">=tablet") {
+    margin-top: rem(76);
+    margin-bottom: rem(82);
+  }
+}
+
+.pba-presentation__logos {
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+
+  @include media(">=phone-576") {
+    gap: rem(32);
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  img {
+    width: 100%;
+    max-width: rem(250);
+
+    @include media(">=tablet") {
+      width: calc(50% - 16px);
+      max-width: none;
+    }
+  }
+}
+
+.pba-presentation__desc {
+  margin-top: rem(24);
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+
+  @include media(">=phone") {
+    flex-direction: row;
+    gap: rem(32);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @include media(">=tablet") {
+    margin-top: rem(74);
+  }
+
+  & > * {
+    @include media(">=phone") {
+      width: calc(50% - 16px);
+    }
+  }
+}
+
+.pba-presentation__desc--title {
+  @include title-32;
+
+  strong {
+    color: var(--color-asu-brown);
+  }
+}

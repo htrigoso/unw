@@ -10,6 +10,13 @@
 
 <?php get_template_part(PBA_CONTENT_PATH, 'pba-navbar'); ?>
 <main>
-  FASD
+  <?php get_template_part(PBA_CONTENT_PATH, 'pba-hero', [
+    "img_desktop" => UPLOAD_PATH . "/powered-by-asu/hero/hero-desktop.png",
+    "img_mobile" => UPLOAD_PATH . "/powered-by-asu/hero/hero-mobile.png",
+    "alt" => "Powered by ASU",
+    "title" => "Una experiencia de aprendizaje de clase mundial",
+    "description" => "respaldada por el liderazgo en innovación de una de las principales universidades de EE.UU.",
+  ]); ?>
+  <?php get_template_part(PBA_CONTENT_PATH, 'pba'); ?>
 </main>
 <?php get_footer(); ?>
