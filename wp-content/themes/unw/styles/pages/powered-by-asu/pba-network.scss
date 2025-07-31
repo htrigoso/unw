@@ -85,7 +85,10 @@
 }
 
 .pba-network__mastering--content {
-  width: rem(328);
+  @include media(">=desktop-s") {
+    max-width: rem(328);
+  }
+
 }
 
 .pba-network__mastering--title {
