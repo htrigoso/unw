@@ -1,0 +1,130 @@
+.pba-network {
+  position: relative;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: calc(100% - 201px);
+    background-color: #ececec;
+    width: 100%;
+    bottom: 0;
+    z-index: -1;
+  }
+}
+
+.pba-network__wrapper {
+}
+
+.pba-network__card {
+  border-radius: rem(12);
+  overflow: hidden;
+
+  @include media(">=tablet") {
+    display: flex;
+  }
+}
+
+.pba-network__card--content {
+  background-color: var(--color-engineering);
+  padding: rem(24);
+
+  @include media(">=tablet") {
+    width: 41%;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.pba-network__card--text {
+  @include title-20;
+
+  strong {
+    color: var(--color-asu-brown);
+    @include title-32;
+  }
+}
+
+.pba-network__card--image {
+  min-height: rem(208);
+  max-height: rem(280);
+  width: 100%;
+
+  @include media(">=tablet") {
+    flex: 1;
+    height: rem(401);
+    max-height: rem(401);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.pba-network__mastering {
+  padding-top: rem(36);
+  padding-bottom: rem(46);
+  display: flex;
+  flex-direction: column;
+  gap: rem(32);
+
+  @include media(">=tablet") {
+    padding-top: rem(84);
+    padding-bottom: rem(105);
+  }
+
+  @include media(">=desktop-s") {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: rem(83);
+    justify-content: space-between;
+  }
+}
+
+.pba-network__mastering--content {
+  width: rem(328);
+}
+
+.pba-network__mastering--title {
+  @include title-32;
+  margin-bottom: rem(24);
+}
+
+.pba-network__mastering--cards {
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: rem(16);
+
+  @include media(">=phone") {
+    flex-direction: row;
+    justify-content: center;
+    gap: rem(45);
+  }
+}
+
+.pba-network__mastering--card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  img {
+    width: rem(292);
+    height: auto;
+  }
+
+  span {
+    width: 100%;
+    text-align: center;
+    display: block;
+    margin-top: rem(12);
+    font-size: rem(20);
+
+    @include media(">=phone") {
+      font-size: rem(16);
+    }
+  }
+}
