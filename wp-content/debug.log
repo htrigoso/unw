@@ -1,0 +1,17 @@
+[31-Jul-2025 23:26:24 UTC] PHP Warning:  Undefined variable $env in /Applications/MAMP/htdocs/unw/wp-content/themes/unw/inc/functions/include-assets.php on line 38
+[31-Jul-2025 23:26:24 UTC] PHP Warning:  Attempt to read property "comment_count" on null in /Applications/MAMP/htdocs/unw/wp-includes/general-template.php on line 3352
+[31-Jul-2025 23:26:27 UTC] PHP Warning:  Undefined variable $env in /Applications/MAMP/htdocs/unw/wp-content/themes/unw/inc/functions/include-assets.php on line 38
+[31-Jul-2025 23:26:27 UTC] PHP Warning:  Attempt to read property "comment_count" on null in /Applications/MAMP/htdocs/unw/wp-includes/general-template.php on line 3352
+[31-Jul-2025 23:26:31 UTC] PHP Warning:  Attempt to read property "comment_count" on null in /Applications/MAMP/htdocs/unw/wp-includes/general-template.php on line 3352
+[31-Jul-2025 23:29:04 UTC] PHP Warning:  Attempt to read property "comment_count" on null in /Applications/MAMP/htdocs/unw/wp-includes/general-template.php on line 3352
+[31-Jul-2025 23:29:06 UTC] PHP Warning:  Attempt to read property "comment_count" on null in /Applications/MAMP/htdocs/unw/wp-includes/general-template.php on line 3352
+[31-Jul-2025 23:30:53 UTC] PHP Warning:  Attempt to read property "comment_count" on null in /Applications/MAMP/htdocs/unw/wp-includes/general-template.php on line 3352
+[31-Jul-2025 23:30:55 UTC] PHP Warning:  Attempt to read property "comment_count" on null in /Applications/MAMP/htdocs/unw/wp-includes/general-template.php on line 3352
+[31-Jul-2025 23:31:02 UTC] PHP Warning:  Attempt to read property "comment_count" on null in /Applications/MAMP/htdocs/unw/wp-includes/general-template.php on line 3352
+[31-Jul-2025 23:32:36 UTC] PHP Warning:  Attempt to read property "comment_count" on null in /Applications/MAMP/htdocs/unw/wp-includes/general-template.php on line 3352
+[31-Jul-2025 23:33:34 UTC] PHP Warning:  Attempt to read property "comment_count" on null in /Applications/MAMP/htdocs/unw/wp-includes/general-template.php on line 3352
+[31-Jul-2025 23:33:40 UTC] PHP Warning:  Attempt to read property "comment_count" on null in /Applications/MAMP/htdocs/unw/wp-includes/general-template.php on line 3352
+[31-Jul-2025 23:33:46 UTC] PHP Warning:  Attempt to read property "comment_count" on null in /Applications/MAMP/htdocs/unw/wp-includes/general-template.php on line 3352
+[31-Jul-2025 23:33:50 UTC] PHP Warning:  Attempt to read property "comment_count" on null in /Applications/MAMP/htdocs/unw/wp-includes/general-template.php on line 3352
+[31-Jul-2025 23:34:02 UTC] PHP Warning:  Attempt to read property "comment_count" on null in /Applications/MAMP/htdocs/unw/wp-includes/general-template.php on line 3352
+[31-Jul-2025 23:34:51 UTC] PHP Warning:  Attempt to read property "comment_count" on null in /Applications/MAMP/htdocs/unw/wp-includes/general-template.php on line 3352

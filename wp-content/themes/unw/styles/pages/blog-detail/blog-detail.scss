@@ -11,6 +11,11 @@
     margin-bottom: rem(70);
   }
 }
+.entry-meta__avatar {
+  border-radius: 50%;
+  width: rem(24);
+  height: rem(24);
+}
 
 .blog-detail__article {
   flex: 1;
@@ -37,9 +42,13 @@
   strong {
     color: var(--color-primary);
   }
+  p:not(:last-child) {
+    margin-bottom: rem(20);
+  }
 
   h2 {
     @include title-32;
+    margin-bottom: rem(20);
   }
 
   &::after {

@@ -1,69 +1,11 @@
 <?php
-$results = [
-  [
-    'image' => UPLOAD_PATH . '/blog/cards/card-1.jpg',
-    'title' => 'Lorem Ipsum is simply dummy text of the printing',
-    'date' => 'Enero 25, 2024',
-    'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s...',
-    'href' => '/detalle-de-entrada',
-  ],
-  [
-    'image' => UPLOAD_PATH . '/blog/cards/card-2.jpg',
-    'title' => 'Lorem Ipsum is simply dummy text of the printing',
-    'date' => 'Enero 25, 2024',
-    'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s...',
-    'href' => '/detalle-de-entrada',
-  ],
-  [
-    'image' => UPLOAD_PATH . '/blog/cards/card-3.jpg',
-    'title' => 'Lorem Ipsum is simply dummy text of the printing',
-    'date' => 'Enero 25, 2024',
-    'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s...',
-    'href' => '/detalle-de-entrada',
-  ],
-  [
-    'image' => UPLOAD_PATH . '/blog/cards/card-1.jpg',
-    'title' => 'Lorem Ipsum is simply dummy text of the printing',
-    'date' => 'Enero 25, 2024',
-    'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s...',
-    'href' => '/detalle-de-entrada',
-  ],
-  [
-    'image' => UPLOAD_PATH . '/blog/cards/card-1.jpg',
-    'title' => 'Lorem Ipsum is simply dummy text of the printing',
-    'date' => 'Enero 25, 2024',
-    'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s...',
-    'href' => '/detalle-de-entrada',
-  ],
-  [
-    'image' => UPLOAD_PATH . '/blog/cards/card-2.jpg',
-    'title' => 'Lorem Ipsum is simply dummy text of the printing',
-    'date' => 'Enero 25, 2024',
-    'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s...',
-    'href' => '/detalle-de-entrada',
-  ],
-  [
-    'image' => UPLOAD_PATH . '/blog/cards/card-3.jpg',
-    'title' => 'Lorem Ipsum is simply dummy text of the printing',
-    'date' => 'Enero 25, 2024',
-    'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s...',
-    'href' => '/detalle-de-entrada',
-  ],
-  [
-    'image' => UPLOAD_PATH . '/blog/cards/card-1.jpg',
-    'title' => 'Lorem Ipsum is simply dummy text of the printing',
-    'date' => 'Enero 25, 2024',
-    'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s...',
-    'href' => '/detalle-de-entrada',
-  ],
-  [
-    'image' => UPLOAD_PATH . '/blog/cards/card-2.jpg',
-    'title' => 'Lorem Ipsum is simply dummy text of the printing',
-    'date' => 'Enero 25, 2024',
-    'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s...',
-    'href' => '/detalle-de-entrada',
-  ]
-]
+// Obtener los posts del blog
+$query = new WP_Query([
+  'post_type'      => 'post',
+  'posts_per_page' => 10,
+  's' => get_query_var('s') ?: '',
+  'paged'          => get_query_var('paged') ?: 1,
+]);
 ?>
 
 <section class="blog">
@@ -74,9 +16,24 @@ $results = [
       </div>
       <div class="blog-content">
         <div class="blog-content__results">
-          <?php foreach ($results as $result) : ?>
-            <?php get_template_part(COMMON_CONTENT_PATH, 'entry-card', $result); ?>
-          <?php endforeach; ?>
+          <?php if ($query->have_posts()) : ?>
+          <?php while ($query->have_posts()) : $query->the_post(); ?>
+          <?php
+                // Construir array con formato esperado por tu tarjeta
+                $result = [
+                  'image'   => get_the_post_thumbnail_url(get_the_ID(), 'medium_large') ?: UPLOAD_PATH . '/default-image.jpg',
+                  'title'   => get_the_title(),
+                  'date'    => get_the_date('F j, Y'),
+                  'content' => get_the_excerpt(),
+                  'href'    => get_permalink(),
+                ];
+                get_template_part(COMMON_CONTENT_PATH, 'entry-card', $result);
+              ?>
+          <?php endwhile; ?>
+          <?php wp_reset_postdata(); ?>
+          <?php else : ?>
+          <p>No hay entradas aún.</p>
+          <?php endif; ?>
         </div>
       </div>
     </div>

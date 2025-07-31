@@ -1,27 +1,43 @@
+<?php
+$image_hero = get_field('banner-image');
+
+$titulo = get_the_title();
+$fecha = get_the_date('F j, Y');
+$autor = get_the_author();
+$author_id = get_the_author_meta('ID');
+
+$breadcrumbs = [
+  ['label' => 'Inicio', 'href' => home_url('/')],
+  ['label' => 'Blog', 'href' => '/blog/'],
+  ['label' => $titulo]
+];
+?>
+
 <div class="entry-meta">
   <div class="entry-meta__content">
-    <h1 class="entry-meta__title">Conoce las rutas profesionales para la especialidad de arquitectura en Perú</h1>
+    <h1 class="entry-meta__title"><?php echo esc_html($titulo); ?></h1>
+
     <div class="entry-meta__info">
-      <img src="<?php echo UPLOAD_PATH . '/blog-detail/avatar.png' ?>" class="entry-meta__avatar" alt="Autor Avatar">
-      <span class="entry-meta__author">By <strong>Autor</strong></span>
-      <span class="entry-meta__date">Julio 12, 2025</span>
+      <?php echo get_avatar($author_id, 24, '', 'Avatar del autor', [
+        'class' => 'entry-meta__avatar',
+      ]); ?>
+      <span class="entry-meta__author">By <strong><?php echo esc_html($autor); ?></strong></span>
+      <span class="entry-meta__date"><?php echo esc_html($fecha); ?></span>
     </div>
+
     <div class="entry-meta__breadcrumbs">
       <?php
       get_template_part(COMMON_CONTENT_PATH, 'breadcrumb', [
-        'breadcrumb' => [
-          ['label' => 'Inicio', 'href' => '/'],
-          ['label' => 'Blog', 'href' => '/blog'],
-          ['label' => 'Vocación Estudiantil']
-        ]
+        'breadcrumb' => $breadcrumbs
       ]);
       ?>
     </div>
   </div>
-  <img src="<?php echo UPLOAD_PATH . '/blog/hero/hero-mobile.jpg' ?>" class="entry-meta__image" alt="Autor Avatar">
+
+  <img src="<?php echo esc_url($image_hero['imagen']['url']); ?>" class="entry-meta__image"
+    alt="<?php echo esc_attr($image_hero['imagen']['alt'] ?? 'Imagen destacada'); ?>">
+
   <div class="entry-meta__social">
-    <?php
-    get_template_part(BLOG_DETAIL_CONTENT_PATH, 'social-meta');
-    ?>
+    <?php get_template_part(BLOG_DETAIL_CONTENT_PATH, 'social-meta'); ?>
   </div>
 </div>

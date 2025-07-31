@@ -267,3 +267,21 @@ function custom_acf_accordion_styles() {
     </style>';
 }
 add_action('admin_head', 'custom_acf_accordion_styles');
+
+
+function desactivar_editor_en_paginas($post) {
+  // ID de la página a ocultar el editor (cámbialo por el tuyo)
+  $id_pagina = 602;
+
+  if ($post->ID === $id_pagina) {
+    remove_post_type_support('page', 'editor');
+  }
+}
+add_action('edit_form_after_title', 'desactivar_editor_en_paginas');
+
+
+
+
+add_action('init', function() {
+  remove_post_type_support('post', 'editor');
+});
