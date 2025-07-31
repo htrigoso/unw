@@ -29,12 +29,6 @@
 
 .entry-card__desc {
   margin-bottom: rem(12);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  white-space: normal;
 }
 
 .entry-card__button {

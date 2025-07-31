@@ -12,7 +12,7 @@
         'breadcrumb' => [
           ['label' => 'Inicio', 'href' => '/'],
           ['label' => 'Blog', 'href' => '/blog'],
-          ['label' => 'Detalle del Blog']
+          ['label' => 'Vocación Estudiantil']
         ]
       ]);
       ?>

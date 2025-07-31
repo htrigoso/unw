@@ -13,7 +13,7 @@ $href = $args['href'];
     <?php if (!empty($date)) : ?>
       <span class="entry-card__date"><?php echo esc_html($date); ?></span>
     <?php endif; ?>
-    <p class="entry-card__desc" title="<?php echo esc_attr($content); ?>"><?php echo esc_html($content); ?></p>
+    <p class="entry-card__desc line-clamp-2" title="<?php echo esc_attr($content); ?>"><?php echo esc_html($content); ?></p>
     <a class="entry-card__button btn btn-link btn-sm" href="<?php echo esc_url($href); ?>">Leer más
       <i>
         <svg class="icon icon--arrow" width="32" height="32">

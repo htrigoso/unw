@@ -1,6 +1,13 @@
 .social-meta {
   display: flex;
   gap: rem(16);
+
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .social-meta__share-button {
