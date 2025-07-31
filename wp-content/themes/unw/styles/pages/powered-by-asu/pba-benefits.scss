@@ -1,0 +1,110 @@
+.pba-benefits {
+  padding-top: rem(35);
+  position: relative;
+
+  @include media(">=phone") {
+    padding-top: rem(39);
+    padding-bottom: rem(42);
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: calc(100% - 145px);
+    background-color: var(--color-turquoise-one);
+    width: 100%;
+    top: 0;
+    z-index: -1;
+
+    @include media(">=phone") {
+      height: 100%;
+    }
+  }
+}
+
+.pba-benefits__wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.pba-benefits__title {
+  @include title-28;
+  margin-bottom: rem(49);
+
+  @include media(">=phone") {
+    width: rem(328);
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  @include media(">=tablet") {
+    margin-bottom: rem(36);
+  }
+}
+
+.pba-benefits__grid {
+  columns: 2;
+  column-gap: rem(16);
+
+  @include media(">=phone") {
+    columns: 1;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: rem(16);
+  }
+}
+
+.pba-benefits__item--container {
+  &:nth-child(5) {
+    padding-top: rem(126);
+  }
+
+  &:not(:last-child) {
+    padding-bottom: rem(16);
+  }
+
+  @include media(">=phone") {
+    padding: 0 !important;
+  }
+}
+
+.pba-benefits__item {
+  border: 1px solid var(--color-turquoise-one);
+  break-inside: avoid;
+  background-color: var(--color-white);
+  padding: rem(24) rem(20);
+  border-radius: rem(20);
+
+  @include media(">=phone") {
+    width: rem(240);
+    min-height: rem(190);
+  }
+}
+
+.pba-benefits__icon {
+  width: rem(52);
+  height: rem(52);
+  margin-bottom: rem(8);
+}
+
+.pba-benefits__unw {
+  position: absolute;
+  bottom: rem(40);
+  right: rem(-63);
+  color: var(--color-turquoise-two);
+  z-index: -1;
+
+  @include media(">=phone") {
+    bottom: rem(-85);
+  }
+
+  svg {
+    @include media(">=phone") {
+      width: rem(520);
+      height: rem(260);
+    }
+  }
+}
