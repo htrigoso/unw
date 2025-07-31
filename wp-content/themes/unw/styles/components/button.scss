@@ -68,6 +68,19 @@
     }
   }
 
+  &-primary-two-outline {
+    background-color: transparent;
+    color: var(--color-turquoise-two);
+    border: 1px solid var(--color-turquoise-two);
+
+    &:hover,
+    &:focus {
+      background-color: var(--color-light-turquoise);
+      color: var(--color-turquoise-three);
+      border-color: var(--color-light-turquoise);
+    }
+  }
+
   &-primary-outline-small {
     background-color: var(--color-light-turquoise);
     color: var(--color-black);
@@ -107,6 +120,20 @@
       background-color: var(--color-light-turquoise);
       color: var(--color-black);
       border-color: var(--color-light-turquoise);
+    }
+  }
+
+  &-black {
+    border-radius: rem(64);
+    background-color: var(--color-black);
+    color: var(--color-white);
+    border: 1px solid transparent;
+
+    &:hover,
+    &:focus {
+      background-color: var(--color-white);
+      color: var(--color-black);
+      border-color: var(--color-white);
     }
   }
 

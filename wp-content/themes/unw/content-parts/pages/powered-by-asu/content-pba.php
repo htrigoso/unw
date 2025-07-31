@@ -5,4 +5,5 @@
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-benefits'); ?>
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-highlights'); ?>
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-network'); ?>
+  <?php get_template_part(PBA_CONTENT_PATH, 'pba-cta'); ?>
 </div>
