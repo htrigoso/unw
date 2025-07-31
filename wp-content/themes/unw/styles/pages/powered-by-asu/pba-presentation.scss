@@ -111,8 +111,19 @@
   }
 }
 
+.pba-presentation__list-container {
+  display: flex;
+}
+
 .pba-presentation__list {
   margin-top: rem(84);
+  max-width: rem(808);
+
+  @include media(">=phone-576") {
+    columns: 2;
+    column-gap: rem(24);
+    margin-inline: auto;
+  }
 
   @include media(">=tablet") {
     margin-top: rem(80);

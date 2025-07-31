@@ -16,12 +16,14 @@
         <span>Universidad de Prestigio Mundial</span>
       </div>
     </div>
-    <ul class="list-format pba-presentation__list" data-variant="asu">
-      <li>Con más 10 años consecutivos siendo #1 en innovación en Estados Unidos.</li>
-      <li>Más de 120,000 Estudiantes.</li>
-      <li>Cientos de Programas Académicos.</li>
-      <li>Galardonados con Premios Nobel y Pulitzer.</li>
-      <li>Comprometida con el Acceso y el Impacto.</li>
-    </ul>
+    <div class="pba-presentation__list-container">
+      <ul class="list-format pba-presentation__list" data-variant="asu">
+        <li>Con más 10 años consecutivos siendo #1 en innovación en Estados Unidos.</li>
+        <li>Más de 120,000 Estudiantes.</li>
+        <li>Cientos de Programas Académicos.</li>
+        <li>Galardonados con Premios Nobel y Pulitzer.</li>
+        <li>Comprometida con el Acceso y el Impacto.</li>
+      </ul>
+    </div>
   </div>
 </section>
