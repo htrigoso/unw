@@ -32,7 +32,7 @@ $query = new WP_Query([
           <?php endwhile; ?>
           <?php wp_reset_postdata(); ?>
           <?php else : ?>
-          <p>No hay entradas aún.</p>
+          <p>No se encontraron resultados para tu búsqueda.</p>
           <?php endif; ?>
         </div>
       </div>

@@ -36,6 +36,19 @@ function set_post_views($postID) {
     }
 }
 
+// Ensure global post object is set to prevent comment_count errors
+function ensure_global_post_set() {
+    global $post;
+    if (!$post && is_search()) {
+        // Create a dummy post object to prevent errors
+        $post = new stdClass();
+        $post->ID = 0;
+        $post->post_type = 'post';
+        $post->comment_count = 0;
+    }
+}
+add_action('wp', 'ensure_global_post_set');
+
 // Search
 function custom_blog_search_rewrite_rules() {
     add_rewrite_rule(

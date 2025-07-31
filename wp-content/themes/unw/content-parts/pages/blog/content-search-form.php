@@ -6,7 +6,7 @@
       </svg>
     </i>
     <input type="search" placeholder="Ej: Arquitectura" name="s" value="<?php echo esc_attr(get_search_query()); ?>"
-      aria-label="Buscar en el blog" required>
+      aria-label="Buscar en el blog">
   </div>
   <button class="btn btn-primary-one blog-search-form__button" type="submit">
     Buscar

@@ -11,7 +11,7 @@
 .blog-content {
   margin-bottom: rem(33);
 
-   @include media(">=tablet") {
+  @include media(">=tablet") {
     margin-bottom: rem(54);
   }
 }
@@ -20,11 +20,10 @@
   display: grid;
   row-gap: rem(42);
   column-gap: rem(16);
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 
   @include media(">=tablet") {
     row-gap: rem(36);
     column-gap: rem(32);
   }
 }
-
