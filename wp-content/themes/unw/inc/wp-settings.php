@@ -285,3 +285,17 @@ add_action('edit_form_after_title', 'desactivar_editor_en_paginas');
 add_action('init', function() {
   remove_post_type_support('post', 'editor');
 });
+
+
+function unw_remove_editor_from_specific_page() {
+  // Reemplaza 42 con el ID de tu página
+  $page_id = 16;
+
+  if (isset($_GET['post']) || isset($_POST['post'])) {
+    $post_id = $_GET['post'] ?? $_POST['post'];
+    if ($post_id == $page_id) {
+      remove_post_type_support('page', 'editor');
+    }
+  }
+}
+add_action('admin_init', 'unw_remove_editor_from_specific_page');

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Template Name: Powered By ASU Template
  */
@@ -10,13 +9,18 @@
 
 <?php get_template_part(PBA_CONTENT_PATH, 'pba-navbar'); ?>
 <main>
-  <?php get_template_part(PBA_CONTENT_PATH, 'pba-hero', [
-    "img_desktop" => UPLOAD_PATH . "/powered-by-asu/hero/hero-desktop.png",
-    "img_mobile" => UPLOAD_PATH . "/powered-by-asu/hero/hero-mobile.png",
-    "alt" => "Powered by ASU",
-    "title" => "Una experiencia de aprendizaje de clase mundial",
-    "description" => "respaldada por el liderazgo en innovación de una de las principales universidades de EE.UU.",
-  ]); ?>
+  <?php
+  $slide_hero = get_field('slide-hero');
+
+  get_template_part(PBA_CONTENT_PATH, 'pba-hero', [
+    "img_desktop" => $slide_hero['images']['desktop']['url'],
+    "img_mobile"  => $slide_hero['images']['mobile']['url'],
+    "alt"         => $slide_hero['images']['desktop']['alt'] ?? 'Powered by ASU',
+    "title"       => $slide_hero['title'],
+    "description" => $slide_hero['description'],
+  ]);
+  ?>
+
   <?php get_template_part(PBA_CONTENT_PATH, 'pba'); ?>
 </main>
 <?php get_footer(); ?>
