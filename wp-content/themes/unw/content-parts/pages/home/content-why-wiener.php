@@ -36,11 +36,6 @@ $titulo = $why_wiener['titulo'] ?? '¿Por qué U. Wiener?';
         <a href="<?php echo esc_url($link['url']); ?>" target="<?php echo esc_attr($link['target'] ?? '_self'); ?>"
           class="btn btn-primary">
           <?php echo esc_html($link['title']); ?>
-          <i>
-            <svg class="icon icon--arrow" width="24" height="24">
-              <use xlink:href="#arrow-right"></use>
-            </svg>
-          </i>
         </a>
       </div>
       <?php endif; ?>

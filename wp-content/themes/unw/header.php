@@ -70,11 +70,14 @@
     --color-light-gray: #eeeeee;
     --color-mercury: #e8e8e8;
     --color-white: #ffffff;
-    --color-purple: #BB4E8E;
+    --color-purple: #7458EC;
     --color-dove-gray: #616161;
     --color-dodger-blue: #1C92F4;
     --color-burnt-sienna: #E67E3F;
     --color-tory-blue: #0F56A8;
+    --color-olive-green: #5E9440;
+    --color-gold: #F6BD23;
+    --color-pink: #BB4E8E;
 
     --swiper-prev-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-left.svg');
     --swiper-next-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-right.svg');
