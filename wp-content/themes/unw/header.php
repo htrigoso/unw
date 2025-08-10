@@ -67,6 +67,7 @@
     --color-black: #000000;
     --color-danger: #ee3f28;
     --color-gray: #f2f1ed;
+    --color-light-gray: #eeeeee;
     --color-mercury: #e8e8e8;
     --color-white: #ffffff;
     --color-purple: #BB4E8E;

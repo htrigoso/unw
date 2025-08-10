@@ -7,17 +7,16 @@
   padding-bottom: rem(24);
   display: flex;
   flex-direction: column;
+
+  @include media(">=desktop-s") {
+    padding-inline: rem(315);
+  }
 }
 
 .search-section__form {
   width: 100%;
   display: flex;
   flex-direction: column;
-
-  @include media(">=tablet") {
-    max-width: rem(808);
-    margin-inline: auto;
-  }
 }
 
 .search-section__title {

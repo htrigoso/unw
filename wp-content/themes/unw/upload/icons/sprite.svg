@@ -6,6 +6,14 @@
       fill="currentColor" />
   </symbol>
 
+  <!-- Arrow Left -->
+  <svg id="arrow-left" viewBox="0 0 32 32">
+    <path
+      d="M15.6896 24.0296L14.2783 25.4468L4.7915 15.9992L14.2784 6.55308L15.6896 7.97033L8.62961 15L27.209 15L27.209 17L8.63072 17L15.6896 24.0296Z"
+      fill="currentColor" />
+  </svg>
+
+
   <!-- Search -->
   <symbol id="search" viewBox="0 0 24 24">
     <path fill-rule="evenodd" clip-rule="evenodd"

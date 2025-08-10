@@ -19,6 +19,7 @@ $href = $args['href'];
         <svg class="icon icon--arrow" width="32" height="32">
           <use xlink:href="#arrow-right"></use>
         </svg>
-      </i></a>
+      </i>
+    </a>
   </div>
 </div>

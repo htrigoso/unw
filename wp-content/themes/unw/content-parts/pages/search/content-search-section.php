@@ -1,5 +1,5 @@
 <section class="search-section">
-  <div class="search-section__wrapper x-container">
+  <div class="search-section__wrapper x-container x-container--pad-213">
     <form class="search-section__form">
       <h1 class="search-section__title">Resultados de la búsqueda:</h1>
       <?php get_template_part(
