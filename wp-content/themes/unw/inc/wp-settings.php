@@ -16,6 +16,7 @@ define('EVENTS_CONTENT_PATH', 'content-parts/pages/events/content');
 define('BLOG_CONTENT_PATH', 'content-parts/pages/blog/content');
 define('BLOG_DETAIL_CONTENT_PATH', 'content-parts/pages/blog-detail/content');
 define('PBA_CONTENT_PATH', 'content-parts/pages/powered-by-asu/content');
+define('SEARCH_CONTENT_PATH', 'content-parts/pages/search/content');
 
 define('GENERAL_CONTENT_PATH', 'content-parts/content');
 
