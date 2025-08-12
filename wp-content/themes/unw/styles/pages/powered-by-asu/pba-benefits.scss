@@ -58,7 +58,7 @@
 }
 
 .pba-benefits__item--container {
-  &:nth-child(5) {
+  &[data-padded= "1"] {
     padding-top: rem(126);
   }
 
@@ -106,5 +106,11 @@
       width: rem(520);
       height: rem(260);
     }
+  }
+}
+
+.pba-benefits-modal {
+  .modal-body {
+    padding: rem(20) rem(16);
   }
 }
