@@ -29,8 +29,11 @@ export default class Toaster extends Component {
     if (!this.elements.toaster || !this.elements.message) return
     this.elements.message.textContent = message
     this.setVariant(options.variant || 'info')
-    this.elements.toaster.classList.add('is-active')
-    this.isVisible = true
+    this.elements.toaster.classList.add('active')
+    setTimeout(() => {
+      this.elements.toaster.classList.add('visible')
+      this.isVisible = true
+    }, 50)
 
     if (this.timeoutId) clearTimeout(this.timeoutId)
     const autoClose = options.autoClose !== undefined ? options.autoClose : true
@@ -54,14 +57,17 @@ export default class Toaster extends Component {
 
   hide() {
     if (!this.isVisible || !this.elements.toaster) return
-    this.elements.toaster.classList.remove('is-active')
+    this.elements.toaster.classList.remove('visible')
     this.isVisible = false
     if (this.timeoutId) {
       clearTimeout(this.timeoutId)
       this.timeoutId = null
     }
-    if (typeof this.onClose === 'function') {
-      this.onClose()
-    }
+    setTimeout(() => {
+      this.elements.toaster.classList.remove('active')
+      if (typeof this.onClose === 'function') {
+        this.onClose()
+      }
+    }, 300)
   }
 }

@@ -11,12 +11,17 @@
   box-shadow: 0 8px 32px rgba(0,0,0,0.18);
   padding: 16px 48px 16px 20px;
   font-size: 1rem;
-  opacity: 0;
-  pointer-events: none;
   transition: opacity 0.3s, transform 0.3s;
   z-index: 9999;
+  display: none;
 
-  &.is-active {
+  &.active {
+    display: block;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &.visible {
     opacity: 1;
     pointer-events: auto;
     transform: translateX(-50%) scale(1);

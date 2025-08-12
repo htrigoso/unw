@@ -11,30 +11,42 @@ export class ModalManager {
         const modal = document.getElementById(modalId)
         if (modal) {
           modal.classList.add('active')
-          document.body.style.overflow = 'hidden'
+          setTimeout(() => {
+            modal.classList.add('visible')
+            document.body.style.overflow = 'hidden'
+          }, 50)
         }
       }
       const closeBtn = e.target.closest('[data-modal-close]')
       if (closeBtn) {
         const modal = closeBtn.closest('.modal')
         if (modal) {
-          modal.classList.remove('active')
+          modal.classList.remove('visible')
           document.body.style.overflow = ''
+          setTimeout(() => {
+            modal.classList.remove('active')
+          }, 300)
         }
       }
       if (e.target.classList.contains('modal-overlay')) {
         const modal = e.target.closest('.modal')
         if (modal) {
-          modal.classList.remove('active')
+          modal.classList.remove('visible')
           document.body.style.overflow = ''
+          setTimeout(() => {
+            modal.classList.remove('active')
+          }, 300)
         }
       }
     })
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        document.querySelectorAll('.modal.active').forEach((modal) => {
-          modal.classList.remove('active')
+        document.querySelectorAll('.modal.visible').forEach((modal) => {
+          modal.classList.remove('visible')
           document.body.style.overflow = ''
+          setTimeout(() => {
+            modal.classList.remove('active')
+          }, 300)
         })
       }
     })
