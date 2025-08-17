@@ -1,7 +1,7 @@
 <?php
 $image = $args['image'];
 $title = $args['title'];
-$date = $args['date'];
+$date = $args['date'] ?? '';
 $content = $args['content'];
 $href = $args['href'];
 ?>
