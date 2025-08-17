@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Template Name: Admisión Template
+ * Template Name: Admisión Antiguo Template
  */
 ?>
 
-<?php set_query_var('ASSETS_CHUNK_NAME', 'admission'); ?>
+<?php set_query_var('ASSETS_CHUNK_NAME', 'admission_old'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php get_header(); ?>
 

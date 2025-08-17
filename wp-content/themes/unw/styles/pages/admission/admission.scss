@@ -1,0 +1,76 @@
+.admission__wrapper {
+  padding-top: rem(28);
+  padding-bottom: rem(64);
+
+  @include media(">=tablet") {
+    padding-top: rem(63);
+    padding-bottom: rem(56);
+  }
+}
+
+.admission__title {
+  @include title-28;
+  padding-bottom: rem(20);
+
+  @include media(">=tablet") {
+    padding-bottom: rem(42);
+  }
+}
+
+.admission__modalities {
+}
+
+.modality-accordion {
+}
+
+.modality-accordion__title,
+.modality-accordion__subtitle {
+  @include title-22;
+  margin-bottom: rem(14);
+}
+
+.modality-accordion__desc {
+  margin-bottom: rem(24);
+}
+
+.modality-accordion__list {
+  margin: 0;
+  padding: 0;
+}
+
+.modality-accordion__list--item {
+  display: flex;
+  align-items: flex-start;
+  gap: rem(12);
+
+  &:not(:last-child) {
+    margin-bottom: rem(12);
+  }
+}
+
+.modality-accordion__list--item--number {
+  font-weight: var(--font-semi-bold);
+  width: rem(22);
+  height: rem(22);
+  min-width: rem(22);
+  min-height: rem(22);
+  background-color: var(--color-engineering);
+  display: grid;
+  place-items: center;
+  border-radius: rem(999);
+}
+
+.admission__faq__wrapper {
+  padding-bottom: rem(64);
+}
+
+.admission__faq__title {
+  @include title-28;
+  margin-bottom: rem(11);
+  display: flex;
+  gap: rem(8);
+}
+
+.admission__cta__wrapper {
+  padding-bottom: rem(64);
+}

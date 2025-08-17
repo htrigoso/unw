@@ -15,6 +15,10 @@
     }
   }
 
+  .accordion-label {
+    font-size: rem(18);
+  }
+
   .accordion-content {
     max-height: 0;
     opacity: 0;
@@ -31,28 +35,8 @@
     }
 
     .accordion-content {
-      padding: rem(8) rem(0) rem(24);
       max-height: rem(1000);
       opacity: 1;
-    }
-  }
-}
-
-// Variants for different accordion styles
-.accordion-item.accordion-filled {
-  background-color: var(--color-white);
-  border-radius: rem(16);
-  padding-inline: rem(8);
-
-  @include media(">=tablet") {
-    padding-inline: rem(32);
-  }
-
-  .accordion-header {
-    height: rem(64);
-
-    @include media(">=tablet") {
-      height: rem(80);
     }
   }
 }
@@ -60,11 +44,83 @@
 .accordion-item.accordion-standard {
   border-bottom: 1px solid var(--color-secondary-grey);
 
-  @include media(">=tablet") {
-    margin-inline: rem(32);
+  &:not(:last-child) {
+    margin-bottom: rem(12);
   }
 
   .accordion-header {
     height: rem(88);
+  }
+
+  .accordion-label {
+    font-weight: var(--font-semi-bold);
+  }
+
+  &.is-open {
+    .accordion-header {
+      height: auto;
+    }
+
+    .accordion-content {
+      padding: rem(24) rem(0) rem(12);
+      font-style: italic;
+    }
+  }
+}
+
+.accordion-item.accordion-filled {
+  &:not(:last-child) {
+    margin-bottom: rem(16);
+  }
+
+  .accordion-header {
+    padding: rem(16);
+    background-color: var(--color-light-turquoise);
+    border-radius: rem(12);
+    border: 1px solid transparent;
+    position: relative;
+  }
+
+  .accordion-label {
+    font-weight: var(--font-medium);
+  }
+
+  .accordion-content {
+    margin-left: rem(14);
+    border: 1px solid var(--color-primary);
+    border-top: none;
+    border-radius: 0 0 rem(12) rem(12);
+    padding-inline: rem(24);
+  }
+
+  &.is-open {
+    &:not(:last-child) {
+      margin-bottom: rem(24);
+    }
+
+    .accordion-header {
+      &:after {
+        content: "";
+        position: absolute;
+        width: 1px;
+        height: rem(24);
+        background-color: var(--color-primary);
+        right: -0.5px;
+        bottom: rem(-12);
+
+        @include media('>=phone') {
+          right: rem(-1);
+        }
+      }
+    }
+
+    .accordion-header {
+      border: 1px solid var(--color-primary);
+    }
+
+    .accordion-content {
+      padding-top: rem(20);
+      padding-bottom: rem(20);
+    }
   }
 }
