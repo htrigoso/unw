@@ -3,7 +3,7 @@
  * Template Name: Admisión uno Template
  */
 ?>
-<?php set_query_var('ASSETS_CHUNK_NAME', 'admission-one'); ?>
+<?php set_query_var('ASSETS_CHUNK_NAME', 'admission'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php get_header(); ?>
 

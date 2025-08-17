@@ -3,7 +3,7 @@
  * Template Name: Admisión tres Template
  */
 ?>
-<?php set_query_var('ASSETS_CHUNK_NAME', 'admission-three'); ?>
+<?php set_query_var('ASSETS_CHUNK_NAME', 'admission'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php get_header(); ?>
 

@@ -1,0 +1,38 @@
+.modality-accordion__title,
+.modality-accordion__subtitle {
+  @include title-22;
+  margin-bottom: rem(14);
+}
+
+.modality-accordion__desc {
+  margin-bottom: rem(24);
+  max-width: rem(600);
+}
+
+.modality-accordion__list {
+  margin: 0;
+  padding: 0;
+}
+
+.modality-accordion__list--item {
+  display: flex;
+  align-items: flex-start;
+  gap: rem(12);
+  max-width: rem(430);
+
+  &:not(:last-child) {
+    margin-bottom: rem(12);
+  }
+}
+
+.modality-accordion__list--item--number {
+  font-weight: var(--font-semi-bold);
+  width: rem(22);
+  height: rem(22);
+  min-width: rem(22);
+  min-height: rem(22);
+  background-color: var(--color-engineering);
+  display: grid;
+  place-items: center;
+  border-radius: rem(999);
+}

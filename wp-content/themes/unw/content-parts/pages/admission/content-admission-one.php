@@ -90,38 +90,13 @@ $faq = [
   <div class="x-container x-container--pad-213 admission__wrapper">
     <h1 class="admission__title">¿Vas a terminar o concluiste tus estudios escolares?</h1>
     <div class="dynamic-accordion admission__modalities">
-      <?php foreach ($modalities as $i => $item) { ?>
-        <?php ob_start(); ?>
-        <div class="modality-accordion">
-          <h4 class="modality-accordion__title">Dirigido a:</h4>
-          <p class="modality-accordion__desc"><?= esc_attr($item['description']) ?></p>
-          <h4 class="modality-accordion__subtitle">Requisitos:</h4>
-          <ol class="modality-accordion__list">
-            <?php foreach ($item['requirements'] as $j => $requirement) { ?>
-              <li class="modality-accordion__list--item">
-                <div class="modality-accordion__list--item--number">
-                  <?= $j + 1 ?>
-                </div>
-                <span class="modality-accordion__list--item--text">
-                  <?= esc_attr($requirement) ?>
-                </span>
-              </li>
-            <?php } ?>
-          </ol>
-
-        </div>
-        <?php
-        $content = ob_get_clean();
-        ?>
-
-      <?php
-        get_template_part(COMMON_CONTENT_PATH, 'accordion', [
+      <?php foreach ($modalities as $i => $item) {
+        get_template_part(ADMISSION_CONTENT_PATH, 'modality-accordion', [
           'label' => $i + 1 . '. ' . $item['label'],
-          'content' => $content,
-          'variant' => 'filled',
+          'description' => $item['description'],
+          'requirements' => $item['requirements'],
         ]);
-      }
-      ?>
+      } ?>
     </div>
   </div>
 </section>
@@ -157,5 +132,4 @@ $faq = [
     ]);
     ?>
   </div>
-
 </section>

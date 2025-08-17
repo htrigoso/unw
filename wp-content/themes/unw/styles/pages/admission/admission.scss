@@ -11,6 +11,7 @@
 .admission__title {
   @include title-28;
   padding-bottom: rem(20);
+  max-width: rem(495);
 
   @include media(">=tablet") {
     padding-bottom: rem(42);
@@ -18,46 +19,6 @@
 }
 
 .admission__modalities {
-}
-
-.modality-accordion {
-}
-
-.modality-accordion__title,
-.modality-accordion__subtitle {
-  @include title-22;
-  margin-bottom: rem(14);
-}
-
-.modality-accordion__desc {
-  margin-bottom: rem(24);
-}
-
-.modality-accordion__list {
-  margin: 0;
-  padding: 0;
-}
-
-.modality-accordion__list--item {
-  display: flex;
-  align-items: flex-start;
-  gap: rem(12);
-
-  &:not(:last-child) {
-    margin-bottom: rem(12);
-  }
-}
-
-.modality-accordion__list--item--number {
-  font-weight: var(--font-semi-bold);
-  width: rem(22);
-  height: rem(22);
-  min-width: rem(22);
-  min-height: rem(22);
-  background-color: var(--color-engineering);
-  display: grid;
-  place-items: center;
-  border-radius: rem(999);
 }
 
 .admission__faq__wrapper {
