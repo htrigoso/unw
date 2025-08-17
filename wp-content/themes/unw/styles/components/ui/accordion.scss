@@ -91,6 +91,10 @@
     border-top: none;
     border-radius: 0 0 rem(12) rem(12);
     padding-inline: rem(24);
+
+    @include media(">=tablet") {
+      margin-left: rem(77);
+    }
   }
 
   &.is-open {
@@ -108,7 +112,7 @@
         right: -0.5px;
         bottom: rem(-12);
 
-        @include media('>=phone') {
+        @include media(">=phone") {
           right: rem(-1);
         }
       }
