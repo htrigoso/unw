@@ -32,5 +32,9 @@
   ?>
   <?php get_template_part(ABOUT_US_CONTENT_PATH, 'presentation'); ?>
   <?php get_template_part(ABOUT_US_CONTENT_PATH, 'purpose'); ?>
+  <?php get_template_part(ABOUT_US_CONTENT_PATH, 'quote'); ?>
+  <?php get_template_part(ABOUT_US_CONTENT_PATH, 'authorities'); ?>
+  <?php get_template_part(ABOUT_US_CONTENT_PATH, 'certifications'); ?>
+  <?php get_template_part(ABOUT_US_CONTENT_PATH, 'more'); ?>
 </main>
 <?php get_footer(); ?>

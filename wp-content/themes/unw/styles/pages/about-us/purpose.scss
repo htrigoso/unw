@@ -13,7 +13,7 @@
     width: 100%;
     height: calc(100% - 174px);
 
-    @include media(">=tablet") {
+    @include media(">=phone") {
       height: 100%;
     }
   }
@@ -22,7 +22,7 @@
 .us-purpose__wrapper {
   padding-top: rem(32);
 
-  @include media(">=tablet") {
+  @include media(">=phone") {
     padding-bottom: rem(32);
   }
 }
@@ -54,7 +54,7 @@
 }
 
 .purpose-swiper__navigation {
-  @include media(">=tablet") {
+  @include media(">=phone") {
     display: none;
   }
 }

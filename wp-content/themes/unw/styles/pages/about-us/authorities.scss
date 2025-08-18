@@ -1,0 +1,48 @@
+.us-authorities__wrapper {
+  @include media(">=tablet") {
+    padding-top: rem(40);
+    padding-bottom: rem(40);
+  }
+}
+
+.us-authorities__title {
+  @include title-32;
+  margin-bottom: rem(27);
+}
+
+.authorities-card {
+  width: rem(305);
+  border: 1px solid var(--color-turquoise-two);
+  border-radius: rem(12);
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.authorities-card__header {
+  padding-top: rem(8);
+  display: flex;
+  justify-content: center;
+}
+
+.authorities-card__img {
+  height: rem(128);
+  width: auto;
+}
+
+.authorities-card__body {
+  background-color: var(--color-light-turquoise);
+  padding: rem(20) rem(16);
+  flex: 1;
+}
+
+.authorities-card__body--name {
+  @include title-20;
+  margin-bottom: rem(4);
+}
+
+.authorities-card__body--role {
+  color: var(--color-turquoise-three);
+  margin-bottom: rem(20);
+}
