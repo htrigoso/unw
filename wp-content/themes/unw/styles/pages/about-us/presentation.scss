@@ -1,0 +1,28 @@
+.us-presentation__wrapper {
+  padding-top: rem(24);
+  padding-bottom: rem(36);
+
+  @include media(">=tablet") {
+    padding-top: rem(52);
+    padding-bottom: rem(52);
+  }
+}
+
+.us-presentation__title {
+  @include title-32;
+  margin-bottom: rem(24);
+
+  strong {
+    color: var(--color-turquoise-two);
+  }
+
+  @include media(">=tablet") {
+    @include title-62;
+  }
+}
+
+.us-presentation__description {
+  @include media(">=tablet") {
+    font-size: rem(20);
+  }
+}
