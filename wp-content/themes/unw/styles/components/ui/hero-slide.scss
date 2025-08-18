@@ -63,9 +63,5 @@
 
   .breadcrumb__label.current {
     color: var(--color-white);
-
-    @include media("<tablet") {
-      font-weight: var(--font-regular);
-    }
   }
 }

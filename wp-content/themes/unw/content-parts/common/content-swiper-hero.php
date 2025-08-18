@@ -3,6 +3,7 @@ $slider_group = $args['sliders'] ?? [];
 $slides = $slider_group['list_of_files'] ?? [];
 $base_breadcrumbs = $args['base_breadcrumbs'] ?? [];
 $extra_class = $args['extra_class'] ?? '';
+$variant = $args['variant'] ?? 'standard';
 if (!empty($slides)) :
 ?>
   <section class="hero-swiper <?php echo esc_attr($extra_class); ?>">
@@ -27,7 +28,8 @@ if (!empty($slides)) :
               'img_mobile'  => $mobile,
               'alt'         => $alt,
               'title'       => $title,
-              'breadcrumbs' => $slide_breadcrumbs
+              'breadcrumbs' => $slide_breadcrumbs,
+              'variant'    => $variant
             ]); ?>
           </div>
         <?php endforeach; ?>

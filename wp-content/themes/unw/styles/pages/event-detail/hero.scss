@@ -1,10 +1,10 @@
 .event-detail-hero {
-  .hero__content--title {
+  .hero-slide__content--title {
     @include media(">=tablet") {
       margin-bottom: rem(42);
     }
   }
-  .swiper-hero__picture--img {
+  .hero-slide__picture--img {
     aspect-ratio: 90/47;
   }
   .swiper-pagination {

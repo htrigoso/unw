@@ -1,0 +1,10 @@
+.all-body__wrapper {
+  padding-top: rem(53);
+  padding-bottom: rem(64);
+}
+
+.all-body__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: rem(32);
+}
