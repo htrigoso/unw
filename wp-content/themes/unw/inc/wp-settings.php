@@ -19,6 +19,7 @@ define('PBA_CONTENT_PATH', 'content-parts/pages/powered-by-asu/content');
 define('SEARCH_CONTENT_PATH', 'content-parts/pages/search/content');
 define('ADMISSION_CONTENT_PATH', 'content-parts/pages/admission/content');
 define('ABOUT_US_CONTENT_PATH', 'content-parts/pages/about-us/content');
+define('OUR_HISTORY_CONTENT_PATH', 'content-parts/pages/our-history/content');
 
 define('GENERAL_CONTENT_PATH', 'content-parts/content');
 

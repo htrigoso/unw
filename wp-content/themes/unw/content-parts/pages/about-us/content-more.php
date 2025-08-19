@@ -4,13 +4,13 @@ $cards = [
     'image' => UPLOAD_PATH . '/about-us/more/card-1.jpg',
     'title' => 'Nuestra Historia',
     'href' => '/nuestra-historia',
-    'target' => '_blank'
+    'target' => '_self'
   ],
   [
     'image' => UPLOAD_PATH . '/about-us/more/card-2.jpg',
     'title' => 'Política de calidad y valores',
     'href' => '/politica-de-calidad-y-valores',
-    'target' => '_blank'
+    'target' => '_self'
   ]
 ]
 ?>
