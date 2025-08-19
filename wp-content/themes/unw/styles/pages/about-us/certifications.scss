@@ -1,0 +1,48 @@
+.us-certifications__wrapper {
+  padding-top: rem(69);
+  padding-bottom: rem(54);
+
+  @include media(">=tablet") {
+    padding-top: rem(14);
+    padding-bottom: rem(70);
+  }
+}
+
+.us-certifications__label {
+  @include title-22;
+  color: var(--color-primary);
+  margin-bottom: rem(24);
+
+  @include media(">=tablet") {
+    @include title-36;
+  }
+}
+
+.us-certifications__title {
+  @include title-32;
+  margin-bottom: rem(42);
+
+  @include media(">=tablet") {
+    @include title-42;
+  }
+}
+
+.certifications-card {
+  width: rem(328);
+  padding: rem(32) rem(16) rem(36);
+  border-radius: rem(20);
+  background-color: var(--color-light-turquoise);
+  display: grid;
+  gap: rem(24);
+}
+
+.certifications-card__item {
+  min-height: rem(130);
+}
+
+.certifications-card__header {
+  height: rem(64);
+  display: grid;
+  align-items: center;
+  margin-bottom: rem(8);
+}

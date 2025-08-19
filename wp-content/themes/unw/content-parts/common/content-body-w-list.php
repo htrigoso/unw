@@ -29,14 +29,14 @@ $blocks = $args['blocks'] ?? [];
   <?php foreach ($blocks as $block) : ?>
     <?php if (!empty($block['body'])) : ?>
       <p class="body-w-list__body">
-        <?php echo esc_html($block['body']); ?>
+        <?php echo esc_attr($block['body']); ?>
       </p>
     <?php endif; ?>
     <?php if (!empty($block['list'])) : ?>
-      <ul class="body-w-list__list">
+      <ul class="body-w-list__list list-primary">
         <?php foreach ($block['list'] as $item) : ?>
           <li class="body-w-list__item">
-            <?php echo esc_html($item); ?>
+            <?php echo esc_attr($item); ?>
           </li>
         <?php endforeach; ?>
       </ul>

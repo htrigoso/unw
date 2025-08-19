@@ -1,0 +1,65 @@
+.our-history__wrapper {
+  padding-top: rem(32);
+  padding-bottom: rem(64);
+
+  @include media(">=tablet") {
+    padding-top: rem(46);
+  }
+}
+
+.our-history__title {
+  @include title-22;
+  margin-bottom: rem(24);
+
+  @include media(">=tablet") {
+    @include title-28;
+    margin-bottom: rem(42);
+  }
+}
+
+.milestone-item {
+  &:not(:last-child) {
+    margin-bottom: rem(24);
+  }
+}
+
+.milestone-year {
+  @include title-22;
+  color: var(--color-primary);
+  display: flex;
+  align-items: flex-end;
+  gap: rem(16);
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: var(--color-primary);
+    border-radius: rem(999);
+    margin-bottom: rem(4);
+  }
+}
+
+.milestone-content--wrapper {
+  display: flex;
+  align-items: stretch;
+  gap: rem(16);
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    background-color: var(--color-primary);
+    margin-inline: rem(8);
+    opacity: 0.5;
+  }
+}
+
+.milestone-image {
+  margin-bottom: rem(4);
+}
+
+.milestone-description {
+  white-space: pre-line;
+}
