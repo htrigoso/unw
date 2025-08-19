@@ -26,7 +26,7 @@ $last_news = new WP_Query($args);
             ?>
 
         <li class="swiper-slide last-news__item">
-          <?php get_template_part(COMMON_CONTENT_PATH, 'last-news-card', $slide); ?>
+          <?php get_template_part(COMMON_CONTENT_PATH, 'entry-card', $slide); ?>
         </li>
 
         <?php endwhile; ?>

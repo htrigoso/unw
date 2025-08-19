@@ -6,10 +6,13 @@
 // require 3th party packages
 
 // require WP updates
-require_once dirname( __FILE__ ) . '/inc/wp-updates.php';
+require_once dirname(__FILE__) . '/inc/wp-updates.php';
 
 // require theme setting
 require_once dirname(__FILE__) . '/inc/wp-settings.php';
+
+// require blog
+require_once dirname(__FILE__) . '/inc/wp-blog.php';
 
 // require theme functions
 require_once dirname(__FILE__) . '/inc/wp-inc.php';

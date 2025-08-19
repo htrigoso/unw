@@ -32,7 +32,7 @@ $recognitions = get_field('recognitions', $postId);
         <?php if (!empty($recognitions['register']['link']['url'])): ?>
           <a href="<?php echo esc_url($recognitions['register']['link']['url']); ?>"
              target="<?php echo esc_attr($recognitions['register']['link']['target'] ?: '_self'); ?>"
-             class="recognitions__cta-btn btn btn-primary">
+             class="btn btn-black" style="border-radius: 8px;">
             <?php echo esc_html($recognitions['register']['link']['title'] ?? 'Inscríbete aquí'); ?>
           </a>
         <?php endif; ?>

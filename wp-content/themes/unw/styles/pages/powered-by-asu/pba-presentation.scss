@@ -1,0 +1,131 @@
+.pba-presentation {
+  padding-top: rem(26);
+  padding-bottom: rem(50);
+
+  @include media(">=tablet") {
+    padding-top: rem(76);
+    padding-bottom: rem(82);
+  }
+}
+
+.pba-presentation__logos {
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+
+  @include media(">=phone-576") {
+    gap: rem(32);
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  img {
+    width: 100%;
+    max-width: rem(250);
+
+    @include media(">=tablet") {
+      width: calc(50% - 16px);
+      max-width: none;
+    }
+  }
+}
+
+.pba-presentation__desc {
+  margin-top: rem(24);
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+  margin-bottom: rem(49);
+
+  @include media(">=phone") {
+    flex-direction: row;
+    gap: rem(32);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @include media(">=tablet") {
+    margin-top: rem(74);
+    margin-bottom: rem(52);
+  }
+
+  & > * {
+    @include media(">=phone") {
+      width: calc(50% - 16px);
+    }
+  }
+}
+
+.pba-presentation__desc--title {
+  @include title-32;
+
+  strong {
+    color: var(--color-asu-brown);
+  }
+}
+
+.pba-presentation__building {
+  position: relative;
+}
+
+.pba-presentation__building--img {
+  width: calc(100% + 32px);
+  height: rem(467);
+  object-fit: cover;
+  object-position: center;
+  margin-inline: rem(-16);
+  max-width: fit-content;
+
+  @include media(">=phone-576") {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
+  }
+
+  @include media(">=tablet") {
+    height: rem(571);
+  }
+}
+
+.pba-presentation__building--desc {
+  position: absolute;
+  padding: rem(10) rem(16);
+  background-color: var(--color-engineering);
+  border-radius: rem(12);
+  bottom: rem(-45);
+  width: rem(329);
+
+  @include media(">=phone-576") {
+    left: rem(16);
+  }
+
+  strong {
+    @include title-22;
+    color: var(--color-asu-brown);
+  }
+
+  span {
+    display: block;
+    font-weight: var(--font-semi-bold);
+  }
+}
+
+.pba-presentation__list-container {
+  display: flex;
+}
+
+.pba-presentation__list {
+  margin-top: rem(84);
+  max-width: rem(808);
+
+  @include media(">=phone-576") {
+    columns: 2;
+    column-gap: rem(24);
+    margin-inline: auto;
+  }
+
+  @include media(">=tablet") {
+    margin-top: rem(80);
+  }
+}

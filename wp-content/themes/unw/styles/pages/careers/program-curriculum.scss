@@ -104,6 +104,8 @@
   justify-content: center;
 
   a {
+    color: var(--color-black);
+
     @include media("<phone-576") {
       width: 100%;
     }

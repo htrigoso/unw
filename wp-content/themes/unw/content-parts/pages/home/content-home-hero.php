@@ -6,8 +6,8 @@ $link_one = $hero['link_one'] ?? null;
 $link_two = $hero['link_two'] ?? null;
 $hero_image = $hero['list'][0]['images'] ?? null;
 
-$img_desktop = $hero_image['desktop']['url'] ?? UPLOAD_PATH . '/home/hero/hero-desktop.png';
-$img_mobile = $hero_image['mobile']['url'] ?? UPLOAD_PATH . '/home/hero/hero-mobile.png';
+$img_desktop = $hero_image['desktop']['url'] ?? UPLOAD_PATH . '/home/hero/hero-desktop.jpg';
+$img_mobile = $hero_image['mobile']['url'] ?? UPLOAD_PATH . '/home/hero/hero-mobile.jpg';
 ?>
 <?php if(!empty($hero) && is_array($hero)): ?>
 <section class="hero hero-swiper">

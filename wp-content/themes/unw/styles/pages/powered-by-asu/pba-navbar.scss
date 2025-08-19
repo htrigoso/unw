@@ -1,0 +1,67 @@
+.pba-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--color-primary);
+}
+
+.pba-navbar__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-primary);
+  padding-top: rem(12);
+  padding-bottom: rem(12);
+}
+
+.pba-navbar__logo {
+  height: rem(34);
+
+  @include media(">=tablet") {
+    height: rem(43);
+  }
+}
+
+.language-switch {
+  position: relative;
+  width: 63px;
+  height: 33px;
+  background-color: var(--color-light-turquoise);
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-turquoise-three);
+}
+
+.language-switch .lang-left,
+.language-switch .lang-right {
+  position: absolute;
+  color: var(--color-turquoise-three);
+  font-size: 16px;
+}
+
+.language-switch .lang-left {
+  left: 8px;
+}
+
+.language-switch .lang-right {
+  right: 8px;
+}
+
+.switch-circle {
+  position: absolute;
+  width: 27px;
+  height: 27px;
+  background-color: var(--color-turquoise-three);
+  color: var(--color-white);
+  font-size: 16px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 26px;
+  padding-right: 2px;
+  transition: transform 0.3s ease;
+  transform: translateX(55%);
+  z-index: 1;
+}

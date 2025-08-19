@@ -28,8 +28,7 @@
     'swiper-hero',
     [
       'sliders' => $sliders,
-      'base_breadcrumbs' => $base_breadcrumbs,
-      'extra_class' => 'careers-hero-swiper'
+      'base_breadcrumbs' => $base_breadcrumbs
     ]
   ); ?>
   <?php get_template_part(CAREERS_TABS_PATH, 'tabs'); ?>
