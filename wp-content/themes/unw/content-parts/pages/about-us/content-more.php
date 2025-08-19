@@ -9,7 +9,7 @@ $cards = [
   [
     'image' => UPLOAD_PATH . '/about-us/more/card-2.jpg',
     'title' => 'Política de calidad y valores',
-    'href' => '/politica-de-calidad-y-valores',
+    'href' => '/politica-de-calidad',
     'target' => '_self'
   ]
 ]

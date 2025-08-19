@@ -15,6 +15,7 @@
     "powered-by-asu": ["./app/pages/powered-by-asu/index.js", "./styles/pages/powered-by-asu/index.scss"],
     "search": ["./app/pages/search/index.js", "./styles/pages/search/index.scss"],
     "about-us": ["./app/pages/about-us/index.js", "./styles/pages/about-us/index.scss"],
-    "our-history": ["./app/pages/our-history/index.js", "./styles/pages/our-history/index.scss"]
+    "our-history": ["./app/pages/our-history/index.js", "./styles/pages/our-history/index.scss"],
+    "quality-policy": ["./app/pages/quality-policy/index.js", "./styles/pages/quality-policy/index.scss"]
   }
 }

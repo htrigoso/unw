@@ -538,3 +538,21 @@
     @include line-clamp($i);
   }
 }
+
+.list-primary {
+  & > li {
+    display: flex;
+    gap: rem(12);
+
+    &:before {
+      content: "";
+      width: rem(13);
+      min-width: rem(13);
+      height: rem(13);
+      border-radius: rem(999);
+      display: inline-block;
+      margin: rem(3.5);
+      background-color: var(--color-primary);
+    }
+  }
+}
