@@ -39,6 +39,60 @@ function register_post_type_carreras() {
 
 
 
+//***************** */
+// Metabox con radio buttons para MODALIDAD
+// Metabox con radio buttons para MODALIDAD (SIN opción "Ninguna")
+// Metabox con radio buttons para MODALIDAD (Presencial por defecto y primero)
+function modalidad_meta_box_radio($post, $box) {
+ $defaults = ['taxonomy' => 'modalidad'];
+ if (!isset($box['args']) || !is_array($box['args'])) {
+   $args = [];
+ } else {
+   $args = $box['args'];
+ }
+
+ $r = wp_parse_args($args, $defaults);
+ $tax_name = esc_attr($r['taxonomy']);
+ $taxonomy = get_taxonomy($r['taxonomy']);
+ $terms = wp_get_post_terms($post->ID, $tax_name);
+ $current_term = !empty($terms) ? $terms[0]->term_id : 0;
+ $all_terms = get_terms(['taxonomy' => $tax_name, 'hide_empty' => false]);
+
+ echo '<div id="taxonomy-' . $tax_name . '">';
+ echo '<ul>';
+
+ // Buscar término "presencial" y mostrarlo primero
+ $presencial_term = null;
+ $otros_terms = [];
+
+ foreach ($all_terms as $term) {
+   if ($term->slug === 'presencial') {
+     $presencial_term = $term;
+   } else {
+     $otros_terms[] = $term;
+   }
+ }
+
+ // Mostrar presencial primero y seleccionado por defecto si no hay selección
+ if ($presencial_term) {
+   $is_checked = ($current_term == $presencial_term->term_id) || ($current_term == 0);
+   echo '<li><label><input type="radio" name="tax_input[' . $tax_name . '][]" value="' . $presencial_term->term_id . '" ' . checked(true, $is_checked, false) . '> ' . $presencial_term->name . '</label></li>';
+ }
+
+ // Mostrar el resto de términos
+ foreach ($otros_terms as $term) {
+   echo '<li><label><input type="radio" name="tax_input[' . $tax_name . '][]" value="' . $term->term_id . '" ' . checked($term->term_id, $current_term, false) . '> ' . $term->name . '</label></li>';
+ }
+
+ echo '</ul>';
+ echo '</div>';
+}
+
+// La taxonomía categoria_carrera usará el metabox de checkboxes por defecto de WordPress
+
+
+
+// PERMALINKS PERSONALIZADOS basados en modalidad
 add_filter('post_type_link', 'custom_carrera_permalink_by_tax', 10, 2);
 function custom_carrera_permalink_by_tax($post_link, $post) {
   if ($post->post_type === 'carreras') {
@@ -46,16 +100,14 @@ function custom_carrera_permalink_by_tax($post_link, $post) {
 
     if (!empty($terms) && !is_wp_error($terms)) {
       $slug = $terms[0]->slug;
-
       $base = ($slug === 'virtual') ? 'carreras-a-distancia' : 'carreras';
-
       return home_url("/{$base}/{$post->post_name}/");
     }
   }
   return $post_link;
 }
 
-
+// REWRITE RULES
 add_action('init', 'custom_carreras_rewrite_rules');
 function custom_carreras_rewrite_rules() {
   // Virtuales: carreras-a-distancia
@@ -63,4 +115,100 @@ function custom_carreras_rewrite_rules() {
 
   // Presenciales: carreras
   add_rewrite_rule('^carreras/([^/]+)/?$', 'index.php?carreras=$matches[1]', 'top');
+}
+
+
+
+
+// FUNCIÓN HELPER para obtener carreras por modalidad y categoría(s)
+function get_carreras_by_filters($modalidad = '', $categorias = []) {
+  $args = [
+    'post_type' => 'carreras',
+    'post_status' => 'publish',
+    'posts_per_page' => -1,
+    'tax_query' => []
+  ];
+
+  if ($modalidad) {
+    $args['tax_query'][] = [
+      'taxonomy' => 'modalidad',
+      'field'    => 'slug',
+      'terms'    => $modalidad,
+    ];
+  }
+
+  if (!empty($categorias)) {
+    // Si es string, convertir a array
+    if (is_string($categorias)) {
+      $categorias = [$categorias];
+    }
+
+    $args['tax_query'][] = [
+      'taxonomy' => 'categoria_carrera',
+      'field'    => 'slug',
+      'terms'    => $categorias,
+      'operator' => 'IN' // Cualquiera de las categorías (OR)
+      // Usar 'AND' si quieres que tenga TODAS las categorías
+    ];
+  }
+
+  if (count($args['tax_query']) > 1) {
+    $args['tax_query']['relation'] = 'AND';
+  }
+
+  return new WP_Query($args);
+}
+
+// FUNCIÓN HELPER para obtener carreras que tengan TODAS las categorías especificadas
+function get_carreras_with_all_categories($modalidad = '', $categorias = []) {
+  if (empty($categorias)) {
+    return get_carreras_by_filters($modalidad);
+  }
+
+  $args = [
+    'post_type' => 'carreras',
+    'post_status' => 'publish',
+    'posts_per_page' => -1,
+    'tax_query' => []
+  ];
+
+  if ($modalidad) {
+    $args['tax_query'][] = [
+      'taxonomy' => 'modalidad',
+      'field'    => 'slug',
+      'terms'    => $modalidad,
+    ];
+  }
+
+  // Si es string, convertir a array
+  if (is_string($categorias)) {
+    $categorias = [$categorias];
+  }
+
+  $args['tax_query'][] = [
+    'taxonomy' => 'categoria_carrera',
+    'field'    => 'slug',
+    'terms'    => $categorias,
+    'operator' => 'AND' // Debe tener TODAS las categorías
+  ];
+
+  if (count($args['tax_query']) > 1) {
+    $args['tax_query']['relation'] = 'AND';
+  }
+
+  return new WP_Query($args);
+}
+
+// FUNCIÓN HELPER para obtener todas las categorías de una carrera
+function get_carrera_categories($post_id) {
+  $terms = wp_get_post_terms($post_id, 'categoria_carrera');
+  if (empty($terms) || is_wp_error($terms)) {
+    return [];
+  }
+  return $terms;
+}
+
+// FUNCIÓN HELPER para verificar si una carrera pertenece a una categoría específica
+function carrera_has_category($post_id, $category_slug) {
+  return has_term($category_slug, 'categoria_carrera', $post_id);
 }
