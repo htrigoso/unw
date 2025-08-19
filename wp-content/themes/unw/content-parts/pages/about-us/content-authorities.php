@@ -32,7 +32,7 @@ $cards = [
     <h3 class="us-authorities__title">
       Autoridades
     </h3>
-    <div class="authorities-swiper post-swiper" data-width="wide">
+    <div class="authorities-swiper post-swiper" data-width="compact">
       <div class="swiper-container">
         <ul class="swiper-wrapper authorities-swiper__list">
           <?php foreach ($cards as $card) : ?>
