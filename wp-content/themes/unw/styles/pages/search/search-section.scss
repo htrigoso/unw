@@ -1,0 +1,41 @@
+.search-section {
+  background-color: var(--color-light-turquoise);
+}
+
+.search-section__wrapper {
+  padding-top: rem(60);
+  padding-bottom: rem(24);
+  display: flex;
+  flex-direction: column;
+
+  @include media(">=desktop-s") {
+    padding-inline: rem(315);
+  }
+}
+
+.search-section__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-section__title {
+  @include title-22;
+  margin-bottom: rem(42);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(18);
+  }
+}
+
+.search-section__button {
+  width: 100%;
+  max-width: rem(328);
+  margin-top: rem(24);
+  max-height: rem(42);
+
+  @include media(">=phone") {
+    margin-inline: auto;
+    margin-top: rem(18);
+  }
+}

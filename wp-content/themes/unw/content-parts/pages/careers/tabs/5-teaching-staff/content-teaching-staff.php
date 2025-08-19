@@ -57,11 +57,13 @@ $teaching_staff = $args['teaching_staff'] ?? null;
                 </li>
               <?php endforeach; ?>
             </ul>
-            <div class="swiper-pagination"></div>
-          </div>
-          <div class="swiper-navigation">
-            <div class="swiper-primary-button-prev"></div>
-            <div class="swiper-primary-button-next"></div>
+            <div class="swiper-navigation">
+              <div class="swiper-primary-button-prev"></div>
+              <div class="swiper-primary-button-next"></div>
+              <div class="swiper-counter">
+                <div class="swiper-pagination"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

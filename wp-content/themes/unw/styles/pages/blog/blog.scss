@@ -1,0 +1,29 @@
+.blog-search {
+  margin-top: rem(24);
+  margin-bottom: rem(32);
+
+  @include media(">=tablet") {
+    margin-top: rem(49);
+    margin-bottom: rem(47);
+  }
+}
+
+.blog-content {
+  margin-bottom: rem(33);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(54);
+  }
+}
+
+.blog-content__results {
+  display: grid;
+  row-gap: rem(42);
+  column-gap: rem(16);
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+
+  @include media(">=tablet") {
+    row-gap: rem(36);
+    column-gap: rem(32);
+  }
+}

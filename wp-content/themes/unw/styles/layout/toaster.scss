@@ -1,0 +1,77 @@
+.toaster {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%) scale(0.95);
+  min-width: 280px;
+  max-width: 90vw;
+  background: #222;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  padding: 16px 48px 16px 20px;
+  font-size: 1rem;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 9999;
+  display: none;
+
+  &.active {
+    display: block;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) scale(1);
+  }
+
+  .toaster__message {
+    margin: 0;
+    padding: 0;
+    word-break: break-word;
+  }
+
+  .toaster__close {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.3rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    line-height: 1;
+    padding: 0;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &.toaster--info {
+    background: #222;
+    color: #fff;
+    border-left: 4px solid #2196f3;
+  }
+
+  &.toaster--success {
+    background: #2e7d32;
+    color: #fff;
+    border-left: 4px solid #4caf50;
+  }
+
+  &.toaster--error {
+    background: #b71c1c;
+    color: #fff;
+    border-left: 4px solid #f44336;
+  }
+
+  &.toaster--warning {
+    background: #f57c00;
+    color: #fff;
+    border-left: 4px solid #ff9800;
+  }
+}

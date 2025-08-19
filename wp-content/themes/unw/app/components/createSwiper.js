@@ -1,5 +1,5 @@
 import Swiper from 'swiper/bundle'
-import { deepMerge } from '../utils/deepMerge'
+import { deepMerge } from '../utils/deep-merge'
 
 export function createSwiper(sectionEl, config = {}, defaultConfig) {
   const mergedConfig = deepMerge(

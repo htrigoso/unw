@@ -15,12 +15,15 @@ function register_taxonomy_modalidad() {
   ];
 
   $args = [
-    'hierarchical'      => false,
-    'labels'            => $labels,
+   'labels'            => $labels,
+    'hierarchical'      => true,
+    'public'            => true,
     'show_ui'           => true,
     'show_admin_column' => true,
-    'query_var'         => true,
-    'rewrite'           => false
+    'show_in_nav_menus' => true,
+    'show_tagcloud'     => false,
+    'rewrite'           => false,
+    'meta_box_cb'       => 'modalidad_meta_box_radio'
   ];
 
   register_taxonomy('modalidad', ['carreras'], $args);

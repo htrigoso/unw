@@ -22,58 +22,60 @@ $link = $malla_curricular['link'] ?? null;
         <div class="swiper-container">
           <ul class="swiper-wrapper program-curriculum__cycles-list">
             <?php foreach ($lists as $list): ?>
-            <div class="swiper-slide">
-              <li class="program-curriculum__cycles-item">
-                <article class="cycle-card">
-                  <div class="cycle-card__wrapper">
-                    <header class="cycle-card__header">
-                      <?php if (!empty($list['icon']['url'])): ?>
-                      <img class="cycle-card__header-icon" width="80" height="80"
-                        src="<?php echo esc_url($list['icon']['url']); ?>" alt="" />
-                      <?php endif; ?>
-                    </header>
-                    <div class="cycle-card__content">
-                      <ul class="cycle-card__list">
-                        <?php foreach ($list['courses'] as $i => $course):
+              <div class="swiper-slide">
+                <li class="program-curriculum__cycles-item">
+                  <article class="cycle-card">
+                    <div class="cycle-card__wrapper">
+                      <header class="cycle-card__header">
+                        <?php if (!empty($list['icon']['url'])): ?>
+                          <img class="cycle-card__header-icon" width="80" height="80"
+                            src="<?php echo esc_url($list['icon']['url']); ?>" alt="" />
+                        <?php endif; ?>
+                      </header>
+                      <div class="cycle-card__content">
+                        <ul class="cycle-card__list">
+                          <?php foreach ($list['courses'] as $i => $course):
                             $dot_color = $dot_colors[$i % count($dot_colors)];
                             $thumbnail_url = get_the_post_thumbnail_url($course->ID, 'full');
                           ?>
-                        <li class="cycle-card__item">
-                          <span class="dot dot--<?php echo $dot_color; ?>" aria-hidden="true"></span>
-                          <div class="cycle-card__course">
-                            <?php if (!empty($thumbnail_url)): ?>
-                            <img class="cycle-card__course-icon" src="<?php echo esc_url($thumbnail_url); ?>" alt="" />
-                            <?php endif; ?>
-                            <p class="cycle-card__course-name"><?php echo esc_html($course->post_title ?? ''); ?></p>
-                          </div>
-                        </li>
-                        <?php endforeach; ?>
-                      </ul>
+                            <li class="cycle-card__item">
+                              <span class="dot dot--<?php echo $dot_color; ?>" aria-hidden="true"></span>
+                              <div class="cycle-card__course">
+                                <?php if (!empty($thumbnail_url)): ?>
+                                  <img class="cycle-card__course-icon" src="<?php echo esc_url($thumbnail_url); ?>" alt="" />
+                                <?php endif; ?>
+                                <p class="cycle-card__course-name"><?php echo esc_html($course->post_title ?? ''); ?></p>
+                              </div>
+                            </li>
+                          <?php endforeach; ?>
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                </article>
-              </li>
-            </div>
+                  </article>
+                </li>
+              </div>
             <?php endforeach; ?>
           </ul>
-          <div class="swiper-pagination"></div>
-        </div>
-        <div class="swiper-navigation">
-          <div class="swiper-primary-button-prev"></div>
-          <div class="swiper-primary-button-next"></div>
+          <div class="swiper-navigation">
+            <div class="swiper-primary-button-prev"></div>
+            <div class="swiper-primary-button-next"></div>
+            <div class="swiper-counter">
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <?php if (!empty($link['url']) && !empty($link['title'])): ?>
-    <div class="program-curriculum__footer">
-      <a class="btn btn-primary" href="<?php echo esc_url($link['url']); ?>"
-        target="<?php echo esc_attr($link['target'] ?? '_self'); ?>">
-        <?php echo esc_html($link['title']); ?>
-        <svg width="24" height="24" aria-hidden="true">
-          <use xlink:href="#arrow-down"></use>
-        </svg>
-      </a>
-    </div>
+      <div class="program-curriculum__footer">
+        <a class="btn btn-primary" href="<?php echo esc_url($link['url']); ?>"
+          target="<?php echo esc_attr($link['target'] ?? '_self'); ?>">
+          <?php echo esc_html($link['title']); ?>
+          <svg width="24" height="24" aria-hidden="true">
+            <use xlink:href="#arrow-down"></use>
+          </svg>
+        </a>
+      </div>
     <?php endif; ?>
 </section>

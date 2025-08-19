@@ -13,10 +13,19 @@ define('NEWS_CONTENT_PATH', 'content-parts/pages/news/content');
 define('NEWS_DETAIL_CONTENT_PATH', 'content-parts/pages/news-detail/content');
 define('EVENT_DETAIL_CONTENT_PATH', 'content-parts/pages/event-detail/content');
 define('EVENTS_CONTENT_PATH', 'content-parts/pages/events/content');
+define('BLOG_CONTENT_PATH', 'content-parts/pages/blog/content');
+define('BLOG_DETAIL_CONTENT_PATH', 'content-parts/pages/blog-detail/content');
+define('PBA_CONTENT_PATH', 'content-parts/pages/powered-by-asu/content');
+define('SEARCH_CONTENT_PATH', 'content-parts/pages/search/content');
+define('ADMISSION_CONTENT_PATH', 'content-parts/pages/admission/content');
+define('ABOUT_US_CONTENT_PATH', 'content-parts/pages/about-us/content');
+define('OUR_HISTORY_CONTENT_PATH', 'content-parts/pages/our-history/content');
+define('QUALITY_POLICY_CONTENT_PATH', 'content-parts/pages/quality-policy/content');
 
 define('GENERAL_CONTENT_PATH', 'content-parts/content');
 
 define('CAREERS_TABS_PATH', 'content-parts/pages/careers/tabs/content');
+define('ALL_CAREERS_TABS_PATH', 'content-parts/pages/all-careers/tabs/content');
 define('ADMISSION_TABS_PATH', 'content-parts/pages/admission/tabs/content');
 define('FACULTY_TABS_PATH', 'content-parts/pages/faculty/tabs/content');
 define('NEWS_TABS_PATH', 'content-parts/pages/news/tabs/content');
@@ -264,3 +273,35 @@ function custom_acf_accordion_styles() {
     </style>';
 }
 add_action('admin_head', 'custom_acf_accordion_styles');
+
+
+function desactivar_editor_en_paginas($post) {
+  // ID de la página a ocultar el editor (cámbialo por el tuyo)
+  $id_pagina = 602;
+
+  if ($post->ID === $id_pagina) {
+    remove_post_type_support('page', 'editor');
+  }
+}
+add_action('edit_form_after_title', 'desactivar_editor_en_paginas');
+
+
+
+
+add_action('init', function() {
+  remove_post_type_support('post', 'editor');
+});
+
+
+function unw_remove_editor_from_specific_page() {
+  // Reemplaza 42 con el ID de tu página
+  $page_id = 16;
+
+  if (isset($_GET['post']) || isset($_POST['post'])) {
+    $post_id = $_GET['post'] ?? $_POST['post'];
+    if ($post_id == $page_id) {
+      remove_post_type_support('page', 'editor');
+    }
+  }
+}
+add_action('admin_init', 'unw_remove_editor_from_specific_page');
