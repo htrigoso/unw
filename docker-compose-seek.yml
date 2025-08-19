@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  nginx-proxy:
+    image: nginx:alpine
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - conf:/etc/nginx/conf.d
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs:ro
+      - "./custom_proxy_settings_seek.conf:/etc/nginx/conf.d/custom_proxy_settings.conf"
+     
+  docker-gen:
+    image: nginxproxy/docker-gen
+    container_name: nginx-proxy-gen
+    command: -notify-sighup nginx-proxy -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
+    volumes_from:
+      - nginx-proxy
+    volumes:
+      - ./nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    labels:
+      - "com.github.nginx-proxy.docker-gen"
+
+  acme-companion:
+    image: nginxproxy/acme-companion
+    container_name: nginx-proxy-acme
+    environment:
+      DEFAULT_EMAIL: jgarcia@seek.pe
+    volumes_from:
+      - nginx-proxy
+    volumes:
+      - certs:/etc/nginx/certs:rw
+      - acme:/etc/acme.sh
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+  db:
+    image: mariadb:10.4.28
+    container_name: unw-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: unw
+      MYSQL_USER: wpuser
+      MYSQL_PASSWORD: wpuserpass
+      MYSQL_ROOT_PASSWORD: rootpass
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./unw.24.07.14.46.sql:/docker-entrypoint-initdb.d/unw.sql
+    ports:
+      - "3306:3306"
+
+  wordpress:
+    image: wordpress:php8.2-apache
+    container_name: unw-wp
+    restart: always
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: unw
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wpuserpass
+      VIRTUAL_HOST: unw.seekqa.com
+      VIRTUAL_PORT: 80
+      LETSENCRYPT_HOST:  unw.seekqa.com
+      LETSENCRYPT_EMAIL: jgarcia@seek.pe
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8000:80"
+
+volumes:
+  db_data:
+  conf:
+  vhost:
+  html:
+  certs:
+  acme:
