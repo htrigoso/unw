@@ -1,0 +1,45 @@
+.promote {
+  background-color: var(--color-light-turquoise);
+}
+
+.promote__wrapper {
+  padding-top: rem(12);
+  padding-bottom: rem(24);
+
+  @include media(">=tablet") {
+    padding-top: rem(36);
+    padding-bottom: rem(36);
+  }
+}
+
+.promote__title {
+  @include title-22;
+  margin-bottom: rem(12);
+
+  @include media(">=tablet") {
+    @include title-28;
+    margin-bottom: rem(24);
+  }
+}
+
+.promote-card {
+  padding: rem(24) rem(20);
+  display: flex;
+  flex-direction: column;
+  gap: rem(8);
+  border-radius: rem(20);
+  border: 1px solid var(--color-turquoise-one);
+  height: 100%;
+  width: rem(284);
+  background-color: var(--color-white);
+}
+
+.promote-card__icon {
+  height: rem(52);
+  width: auto;
+}
+
+.promote-card__title {
+  font-weight: var(--font-semi-bold);
+  color: var(--color-turquoise-three);
+}

@@ -1,0 +1,82 @@
+.us-purpose {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-cp);
+    z-index: -1;
+    width: 100%;
+    height: calc(100% - 174px);
+
+    @include media(">=phone") {
+      height: 100%;
+    }
+  }
+}
+
+.us-purpose__wrapper {
+  padding-top: rem(32);
+
+  @include media(">=phone") {
+    padding-bottom: rem(32);
+  }
+}
+
+.us-purpose__label {
+  @include title-22;
+  display: block;
+  color: var(--color-primary);
+  margin-bottom: rem(12);
+
+  @include media(">=tablet") {
+    @include title-36;
+  }
+}
+
+.us-purpose__title {
+  @include title-36;
+  margin-bottom: rem(42);
+  color: var(--color-white);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(12);
+    @include title-42;
+  }
+}
+
+.purpose-swiper__item {
+  padding: rem(8);
+}
+
+.purpose-swiper__navigation {
+  @include media(">=phone") {
+    display: none;
+  }
+}
+
+.purpose-card {
+  height: 100%;
+  background-color: var(--color-white);
+  border-radius: rem(20);
+  padding: rem(24) rem(20);
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.25);
+}
+
+.purpose-card__icon {
+  width: rem(52);
+  height: rem(52);
+  object-fit: contain;
+  margin-bottom: rem(4);
+}
+
+.purpose-card__title {
+  @include title-22;
+  display: block;
+  color: var(--color-primary);
+  margin-bottom: rem(8);
+}
