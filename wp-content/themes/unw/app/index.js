@@ -1,4 +1,5 @@
 import Menu from './components/Menu'
+import { ModalManager } from './components/Modal'
 import ScrollDown from './components/ScrollDown'
 import { $element } from './utils/dom'
 import floatingInputLabel from './utils/floating-input-label'
@@ -11,6 +12,11 @@ class App {
     this.megaMenuDesktop()
     this.tabMegaMenuDesktop()
     this.hideBackdrop()
+    this.createModal()
+  }
+
+  createModal() {
+    new ModalManager()
   }
 
   createNavbar() {

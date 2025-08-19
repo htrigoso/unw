@@ -8,29 +8,50 @@ import { updateSwipers } from '../../utils/swiper'
 (function () {
   HeroSwiper()
 
-  PostSwiper('.testimonials-swiper')
+  PostSwiper('.testimonials-swiper', {
+    pagination: {
+      el: '.testimonials-swiper .swiper-pagination',
+      type: 'fraction'
+    }
+  })
   PostSwiper('.program-swiper', {
     breakpoints: {
       1024: { slidesPerView: 2 },
       1200: { slidesPerView: 3, spaceBetween: 52 }
+    },
+    pagination: {
+      el: '.program-swiper .swiper-pagination',
+      type: 'fraction'
     }
   })
   PostSwiper('.staff-swiper', {
     breakpoints: {
       1024: { slidesPerView: 2 },
       1200: { slidesPerView: 3, spaceBetween: 46 }
+    },
+    pagination: {
+      el: '.staff-swiper .swiper-pagination',
+      type: 'fraction'
     }
   })
   PostSwiperDesktop('.infra-swiper', {
     breakpoints: {
       1024: { slidesPerView: 2 },
       1200: { slidesPerView: 3, spaceBetween: 42 }
+    },
+    pagination: {
+      el: '.infra-swiper .swiper-pagination',
+      type: 'fraction'
     }
   })
   PostSwiperDesktop('.admission-swiper', {
     breakpoints: {
       1024: { slidesPerView: 2 },
       1200: { slidesPerView: 3, spaceBetween: 40 }
+    },
+    pagination: {
+      el: '.admission-swiper .swiper-pagination',
+      type: 'fraction'
     }
   })
   InternationalSwiper('.internationalization')

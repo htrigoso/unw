@@ -96,3 +96,16 @@ function handle_blog_search($wp_query) {
     }
 }
 add_action('pre_get_posts', 'handle_blog_search');
+
+function redirect_empty_blog_search() {
+    if (
+        is_search() &&
+        isset($_GET['s']) &&
+        trim($_GET['s']) === '' &&
+        strpos($_SERVER['REQUEST_URI'], '/blog') !== false
+    ) {
+        wp_redirect(home_url('/blog/'));
+        exit;
+    }
+}
+add_action('template_redirect', 'redirect_empty_blog_search');

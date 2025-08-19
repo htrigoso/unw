@@ -1,5 +1,4 @@
 <?php
-// Obtener los posts del blog
 $query = new WP_Query([
   'post_type'      => 'post',
   'posts_per_page' => 10,

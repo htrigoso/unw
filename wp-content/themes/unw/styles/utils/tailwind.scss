@@ -492,14 +492,6 @@
   border-radius: 999px;
 }
 
-.dot--purple {
-  background-color: var(--color-purple);
-}
-
-.dot--gray {
-  background-color: var(--color-dove-gray);
-}
-
 .dot--blue {
   background-color: var(--color-dodger-blue);
 }
@@ -508,8 +500,28 @@
   background-color: var(--color-burnt-sienna);
 }
 
-.dot--dark-blue {
+.dot--gray {
+  background-color: var(--color-dove-gray);
+}
+
+.dot--purple {
+  background-color: var(--color-purple);
+}
+
+.dot--green {
+  background-color: var(--color-olive-green);
+}
+
+.dot--blue-dark {
   background-color: var(--color-tory-blue);
+}
+
+.dot--yellow {
+  background-color: var(--color-gold);
+}
+
+.dot--pink {
+  background-color: var(--color-pink);
 }
 
 @mixin line-clamp($lines) {

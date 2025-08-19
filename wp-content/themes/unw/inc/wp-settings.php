@@ -16,10 +16,13 @@ define('EVENTS_CONTENT_PATH', 'content-parts/pages/events/content');
 define('BLOG_CONTENT_PATH', 'content-parts/pages/blog/content');
 define('BLOG_DETAIL_CONTENT_PATH', 'content-parts/pages/blog-detail/content');
 define('PBA_CONTENT_PATH', 'content-parts/pages/powered-by-asu/content');
+define('SEARCH_CONTENT_PATH', 'content-parts/pages/search/content');
+define('ADMISSION_CONTENT_PATH', 'content-parts/pages/admission/content');
 
 define('GENERAL_CONTENT_PATH', 'content-parts/content');
 
 define('CAREERS_TABS_PATH', 'content-parts/pages/careers/tabs/content');
+define('ALL_CAREERS_TABS_PATH', 'content-parts/pages/all-careers/tabs/content');
 define('ADMISSION_TABS_PATH', 'content-parts/pages/admission/tabs/content');
 define('FACULTY_TABS_PATH', 'content-parts/pages/faculty/tabs/content');
 define('NEWS_TABS_PATH', 'content-parts/pages/news/tabs/content');

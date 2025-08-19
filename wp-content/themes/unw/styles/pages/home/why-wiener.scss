@@ -55,24 +55,4 @@
   @include media(">=tablet") {
     margin-top: rem(62);
   }
-
-  .btn-primary {
-    color: var(--color-white);
-
-    @include media(">=tablet") {
-      color: var(--color-black);
-    }
-  }
-
-  i {
-    display: none;
-
-    @include media(">=tablet") {
-      display: inline-block;
-    }
-  }
-
-  .icon--arrow {
-    padding: rem(3);
-  }
 }

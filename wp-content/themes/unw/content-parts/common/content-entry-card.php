@@ -1,7 +1,7 @@
 <?php
 $image = $args['image'];
 $title = $args['title'];
-$date = $args['date'];
+$date = $args['date'] ?? '';
 $content = $args['content'];
 $href = $args['href'];
 ?>
@@ -19,6 +19,7 @@ $href = $args['href'];
         <svg class="icon icon--arrow" width="32" height="32">
           <use xlink:href="#arrow-right"></use>
         </svg>
-      </i></a>
+      </i>
+    </a>
   </div>
 </div>
