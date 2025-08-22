@@ -1,29 +1,57 @@
 .pba-highlights__wrapper {
-  padding-top: rem(6);
-  padding-bottom: rem(39);
-  display: flex;
-  flex-direction: column;
-  gap: rem(29);
-
-  @include media(">=phone") {
-    padding-top: rem(40);
-  }
+  padding-top: rem(42);
+  padding-bottom: rem(42);
 
   @include media(">=tablet") {
-    padding-top: rem(96);
-    padding-bottom: rem(96);
-    flex-direction: row;
-    align-items: center;
-  }
-}
-
-.pba-highlights__text {
-  @include media(">=tablet") {
-    width: 39%;
+    padding-top: rem(0);
+    padding-bottom: rem(128);
   }
 }
 
 .pba-highlights__title {
+  @include title-28;
+  margin-bottom: rem(24);
+
+  @include media(">=phone") {
+    text-align: center;
+  }
+
+  @include media(">=tablet") {
+    margin-bottom: rem(61);
+  }
+}
+
+.pba-highlights__item {
+  &:not(:last-child) {
+    margin-bottom: rem(42);
+
+    @include media(">=phone") {
+      margin-bottom: rem(0);
+    }
+  }
+}
+
+.pba-highlights__card {
+  background-color: var(--color-engineering);
+  border-radius: rem(12) rem(12) rem(20) rem(20);
+  overflow: hidden;
+
+  @include media(">=phone") {
+    display: flex;
+    width: rem(856);
+    border-radius: rem(12) rem(20) rem(20) rem(12);
+  }
+}
+
+.pba-highlights__card-left {
+  padding: rem(12) rem(12) rem(22);
+
+  @include media(">=phone") {
+    padding: rem(25) rem(30) rem(25) rem(24);
+  }
+}
+
+.pba-highlights__card-title {
   @include title-32;
   margin-bottom: rem(24);
 
@@ -32,30 +60,38 @@
   }
 }
 
-.pba-highlights__video {
-  flex: 1;
-  position: relative;
-  box-shadow: 0 4px 16px 4px rgba(0, 0, 0, 0.25);
-  border: 6px solid var(--color-light-turquoise);
-  border-radius: rem(20);
-  overflow: hidden;
+.pba-highlights__card-right {
   height: rem(450);
+  width: 100%;
+  position: relative;
+
+  @include media(">=phone") {
+    flex: 1;
+    min-height: rem(435);
+    height: 100%;
+    width: rem(600);
+    min-width: rem(600);
+  }
 }
 
-.pba-highlights__video-img {
+.pba-highlights__card-image {
   height: 100%;
   width: 100%;
   object-fit: cover;
   object-position: center;
+  border-radius: rem(20);
+  border: 6px solid var(--color-light-turquoise);
+  box-shadow: 0 4px 16px 4px rgba(0, 0, 0, 0.25);
 }
 
-.pba-highlights__video-btn {
+.pba-highlights__card-video-btn {
   position: absolute;
-  bottom: rem(36);
-  left: rem(36);
   background: none;
   border: none;
   cursor: pointer;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   svg {
     color: #f3f3fa;

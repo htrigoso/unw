@@ -4,6 +4,12 @@ export class ModalManager {
   }
 
   init() {
+    document.querySelectorAll('.modal').forEach((modal) => {
+      if (modal.parentElement !== document.body) {
+        document.body.appendChild(modal)
+      }
+    })
+
     document.body.addEventListener('click', (e) => {
       const openBtn = e.target.closest('[data-modal-target]')
       if (openBtn) {

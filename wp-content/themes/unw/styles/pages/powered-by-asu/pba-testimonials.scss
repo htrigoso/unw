@@ -1,14 +1,10 @@
-.pba-testimonials {
-  background-color: var(--color-light-turquoise);
-}
-
 .pba-testimonials__wrapper {
-  padding-top: rem(35);
-  padding-bottom: rem(59);
+  padding-top: rem(42);
+  padding-bottom: rem(42);
 
   @include media(">=tablet") {
-    padding-top: rem(52);
-    padding-bottom: rem(114);
+    padding-top: rem(66);
+    padding-bottom: rem(96);
   }
 }
 

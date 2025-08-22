@@ -1,3 +1,5 @@
+import PostSwiperDesktop from '../../components/PostSwiperDesktop'
+
 (function () {
   let currentLang = 'ES' // Puedes leer esto de localStorage o PHP
 
@@ -17,6 +19,13 @@
       circle.innerText = 'ES'
       // localStorage.setItem('lang', 'es');
       // window.location.href = '?lang=es';
+    }
+  })
+
+  PostSwiperDesktop('.highlight-swiper', {
+    pagination: {
+      el: '.highlight-swiper .swiper-pagination',
+      type: 'fraction'
     }
   })
 })()

@@ -1,0 +1,106 @@
+.pba-mastery {
+  position: relative;
+}
+
+.pba-mastery__wrapper {
+  padding-top: rem(42);
+  padding-bottom: rem(42);
+
+  @include media(">=tablet") {
+    padding-top: rem(85);
+    padding-bottom: rem(125);
+  }
+}
+
+.pba-mastery__title {
+  @include title-28;
+  margin-bottom: rem(42);
+
+  @include media(">=phone") {
+    text-align: center;
+  }
+
+  @include media(">=tablet") {
+    margin-bottom: rem(56);
+  }
+}
+
+.pba-mastery__content {
+  display: flex;
+  flex-direction: column;
+  gap: rem(32);
+
+  @include media(">=desktop-s") {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.pba-mastery__content--desc {
+  @include title-28;
+
+  strong {
+    color: var(--color-asu-brown);
+  }
+
+  @include media(">=desktop-s") {
+    width: 42%;
+  }
+}
+
+.pba-mastery__content--cards {
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: rem(42);
+
+  @include media(">=phone") {
+    flex-direction: row;
+    justify-content: center;
+    gap: rem(24);
+  }
+}
+
+.pba-mastery__content--card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  img {
+    width: rem(224);
+    height: auto;
+  }
+
+  span {
+    width: 100%;
+    text-align: center;
+    display: block;
+    margin-top: rem(12);
+
+    @include media(">=phone") {
+      margin-top: rem(18);
+    }
+  }
+}
+
+.pba-mastery__more {
+  padding-top: rem(56);
+  display: grid;
+  place-items: center;
+}
+
+.pba-mastery__more-card {
+  margin-inline: auto;
+  background-color: var(--color-light-turquoise);
+  border-radius: rem(12);
+  padding: rem(10) rem(16);
+
+  max-width: rem(495);
+}
+
+.pba-mastery__more--title {
+  margin-bottom: rem(16);
+  color: var(--color-cp);
+  @include title-22;
+}
