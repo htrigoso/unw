@@ -102,6 +102,43 @@ function addAttrs($url)
 }
 
 
+
+
+if (!function_exists('vdebug')) {
+    function vdebug($hero) {
+        static $vdebug_id = 0;
+        $vdebug_id++;
+
+        $output = print_r($hero, true); // Captura el contenido en string
+
+        echo '
+        <div style="position:relative; margin:10px 0; border:1px solid #ccc; border-radius:8px; background:#f9f9f9;">
+            <button onclick="vdebugCopy(\'vdebug-' . $vdebug_id . '\')"
+                style="position:absolute; top:5px; right:5px; padding:4px 8px; font-size:12px; cursor:pointer; border:none; border-radius:4px; background:#0073aa; color:#fff;">
+                📋 Copiar
+            </button>
+            <pre id="vdebug-' . $vdebug_id . '" style="margin:0; padding:10px; overflow:auto; max-height:400px;">' . esc_html($output) . '</pre>
+        </div>
+        <script>
+        function vdebugCopy(id) {
+            var el = document.getElementById(id);
+            var range = document.createRange();
+            range.selectNode(el);
+            var sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+            try {
+                document.execCommand("copy");
+                alert("✅ Copiado al portapapeles");
+            } catch(e) {
+                alert("❌ No se pudo copiar");
+            }
+            sel.removeAllRanges();
+        }
+        </script>';
+    }
+}
+
 function placeholder() {
   echo 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAECAYAAABGM/VAAAAABHNCSVQICAgIfAhkiAAAAF1JREFUCFtjvP/m1n8GIPj64TzD5f+GDJ8+/WBgrDp767+DKAOD1K/zDEpShgxbH/xhYFx+59Z/LW5Ghg9//zMoMd5mePJZiYHxxMsH2w6+BhnAwJAo9pvh5GcmBgCRxSUqb+IRJgAAAABJRU5ErkJggg==';
 }

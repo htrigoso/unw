@@ -17,18 +17,22 @@
     ['label' => 'Nosotros']
   ];
 
-  get_template_part(
-    COMMON_CONTENT_PATH,
-    'hero-slide',
-    [
-      'img_desktop' => UPLOAD_PATH . '/about-us/hero/about-us-hero-desktop.jpg',
-      'img_mobile'  => UPLOAD_PATH . '/about-us/hero/about-us-hero-mobile.jpg',
-      'alt'         => '',
-      'title'       => 'No solo educamos, inspiramos',
-      'breadcrumbs' => $breadcrumbs,
-      'variant'    => 'primary'
-    ]
-  );
+  $hero = get_field('hero');
+
+if ( $hero && is_array($hero) ) {
+    get_template_part(
+        COMMON_CONTENT_PATH,
+        'hero-slide',
+        [
+            'title'       => $hero['title'],
+            'img_desktop' => $hero['images']['desktop']['url'],
+            'img_mobile'  => $hero['images']['mobile']['url'],
+            'alt'         => $hero['images']['desktop']['alt'] ?? '',
+            'breadcrumbs' => $breadcrumbs ?? [],
+            'variant'     => 'primary',
+        ]
+    );
+}
   ?>
   <?php get_template_part(ABOUT_US_CONTENT_PATH, 'presentation'); ?>
   <?php get_template_part(ABOUT_US_CONTENT_PATH, 'purpose'); ?>
