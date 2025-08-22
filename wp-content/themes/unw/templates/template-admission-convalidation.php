@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Admisión dos Template
+ * Template Name: Admisión Convalidación Template
  */
 ?>
 <?php set_query_var('ASSETS_CHUNK_NAME', 'admission'); ?>
