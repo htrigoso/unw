@@ -1,7 +1,6 @@
 {
   "bundles": {
     "app": ["./app/index.js", "./styles/index.scss"],
-    "404": ["./app/pages/404/index.js", "./styles/pages/404/index.scss"],
     "home": ["./app/pages/home/index.js", "./styles/pages/home/index.scss"],
     "careers": ["./app/pages/careers/index.js", "./styles/pages/careers/index.scss"],
     "all-careers": ["./app/pages/all-careers/index.js", "./styles/pages/all-careers/index.scss"],
@@ -17,6 +16,7 @@
     "search": ["./app/pages/search/index.js", "./styles/pages/search/index.scss"],
     "about-us": ["./app/pages/about-us/index.js", "./styles/pages/about-us/index.scss"],
     "our-history": ["./app/pages/our-history/index.js", "./styles/pages/our-history/index.scss"],
-    "quality-policy": ["./app/pages/quality-policy/index.js", "./styles/pages/quality-policy/index.scss"]
+    "quality-policy": ["./app/pages/quality-policy/index.js", "./styles/pages/quality-policy/index.scss"],
+    "404": ["./app/pages/404/index.js", "./styles/pages/404/index.scss"]
   }
 }

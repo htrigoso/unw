@@ -79,6 +79,8 @@
     --color-gold: #F6BD23;
     --color-pink: #BB4E8E;
 
+    --color-bg-secondary: #F0EAEE;
+
     --swiper-prev-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-left.svg');
     --swiper-next-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-right.svg');
   }
