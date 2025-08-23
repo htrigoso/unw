@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Admisión dos Template
+ * Template Name: Admisión Pregado Template
  */
 ?>
 <?php set_query_var('ASSETS_CHUNK_NAME', 'admission'); ?>
@@ -10,7 +10,7 @@
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 
 <main>
-  <?php get_template_part(ADMISSION_CONTENT_PATH, 'admission-two'); ?>
+  <?php get_template_part(ADMISSION_CONTENT_PATH,'shared-admission');?>
 </main>
 
 <?php get_footer(); ?>
