@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { ModalManager } from '../../components/Modal'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
 
@@ -48,7 +49,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const tooltip = document.getElementById('tooltip')
 
   const globe = new Globe(document.getElementById('globeViz'))
-    .globeImageUrl(`${themeData.uploadUrl}/powered-by-asu/globe/maps/america.jpg`)
+    .globeImageUrl(`${window.appConfigUnw.uploadUrl}/powered-by-asu/globe/maps/america.jpg`)
     .backgroundColor('rgb(218, 247, 247, 1)')
     .showAtmosphere(false)
     .globeOffset([0, 0])

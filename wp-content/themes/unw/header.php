@@ -109,6 +109,10 @@
   <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-LightItalic.woff2" rel="preload" as="font"
     type="font/woff2" crossorigin>
   <script>
+  window.appConfigUnw = {
+    themeUrl: "<?= get_template_directory_uri(); ?>",
+    uploadUrl: "<?= get_template_directory_uri(); ?>/upload"
+  };
   let doc = document.documentElement;
 
   function calcVh() {

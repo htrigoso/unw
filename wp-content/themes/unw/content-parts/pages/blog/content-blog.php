@@ -1,9 +1,12 @@
 <?php
+$paged = get_query_var('paged') ? get_query_var('paged') : 1;
+$search_term = get_query_var('s') ?: '';
+
 $query = new WP_Query([
   'post_type'      => 'post',
-  'posts_per_page' => 10,
-  's' => get_query_var('s') ?: '',
-  'paged'          => get_query_var('paged') ?: 1,
+  'posts_per_page' => 5,
+  's'              => $search_term,
+  'paged'          => $paged,
 ]);
 ?>
 
@@ -34,6 +37,46 @@ $query = new WP_Query([
           <p>No se encontraron resultados para tu búsqueda.</p>
           <?php endif; ?>
         </div>
+
+        <!-- Paginación -->
+        <?php if ($query->max_num_pages > 1) : ?>
+        <div class="blog-pagination">
+          <?php
+            $big = 999999999; // necesario para que funcione str_replace
+
+            $pagination_args = [
+              'base'      => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+              'format'    => '?paged=%#%',
+              'current'   => max(1, $paged),
+              'total'     => $query->max_num_pages,
+              'prev_text' => '<',
+              'next_text' => '>',
+              'type'      => 'array',
+              'end_size'  => 1,
+              'mid_size'  => 2,
+            ];
+
+            // Si hay búsqueda, agregar el parámetro s a la URL
+            if (!empty($search_term)) {
+              $pagination_args['add_args'] = ['s' => $search_term];
+            }
+
+            $pages = paginate_links($pagination_args);
+
+            if ($pages) :
+            ?>
+          <nav class="pagination" role="navigation" aria-label="Navegación de entradas">
+            <ul class="pagination__list">
+              <?php foreach ($pages as $page) : ?>
+              <li class="pagination__item">
+                <?php echo $page; ?>
+              </li>
+              <?php endforeach; ?>
+            </ul>
+          </nav>
+          <?php endif; ?>
+        </div>
+        <?php endif; ?>
       </div>
     </div>
   </div>
