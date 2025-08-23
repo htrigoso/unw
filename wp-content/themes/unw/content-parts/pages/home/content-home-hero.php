@@ -28,7 +28,7 @@ $img_mobile = $hero_image['mobile']['url'] ?? UPLOAD_PATH . '/home/hero/hero-mob
             <?php endif; ?>
 
             <?php if (!empty($hero_description)): ?>
-            <p class="hero__content--body"><?php echo esc_html($hero_description); ?></p>
+            <p class="hero__content--body"><?= $hero_description ?></p>
             <?php endif; ?>
 
             <div class="hero__content--buttons">
