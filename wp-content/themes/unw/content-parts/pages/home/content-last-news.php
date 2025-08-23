@@ -13,7 +13,7 @@ $news_items = $news_data['news'] ?? [];
 
       <div class="post-swiper last-news-swiper last-news__swiper" data-width="compact">
         <div class="swiper-container">
-          <div class="swiper-wrapper">
+          <ul class="swiper-wrapper">
             <?php foreach ($news_items as $news_post) :
               if (!($news_post instanceof WP_Post)) continue;
 
@@ -24,7 +24,7 @@ $news_items = $news_data['news'] ?? [];
               $image = get_the_post_thumbnail_url($news_post->ID, 'medium') ?: get_template_directory_uri() . '/upload/home/last-news/default.jpg';
               $content = get_field('extract', $news_post->ID);
             ?>
-            <div class="swiper-slide">
+            <li class="swiper-slide">
               <article class="last-news__card">
                 <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr(get_the_title($news_post)); ?>"
                   class="last-news__card--img" />
@@ -35,9 +35,9 @@ $news_items = $news_data['news'] ?? [];
                   </p>
                 </div>
               </article>
-            </div>
+            </li>
             <?php endforeach; ?>
-          </div>
+            </ul>
         </div>
 
         <div class="last-news__swiper-navigation">

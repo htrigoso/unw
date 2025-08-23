@@ -12,7 +12,7 @@ if ( $authorities && is_array($authorities) ) :
         <ul class="swiper-wrapper authorities-swiper__list">
           <?php foreach ($authorities['list'] as $card) : ?>
           <li class="swiper-slide authorities-swiper__item">
-            <div class="authorities-card">
+            <article class="authorities-card">
               <div class="authorities-card__header">
                 <img src="<?= esc_url($card['image']['url']); ?>" alt="<?= esc_attr($card['image']['alt']); ?>"
                   class="authorities-card__img" />
@@ -22,7 +22,7 @@ if ( $authorities && is_array($authorities) ) :
                 <span class="authorities-card__body--role"><?= esc_html($card['rol']); ?></span>
                 <p class="authorities-card__body--desc"><?= esc_html($card['description']); ?></p>
               </div>
-            </div>
+            </article>
           </li>
           <?php endforeach; ?>
         </ul>

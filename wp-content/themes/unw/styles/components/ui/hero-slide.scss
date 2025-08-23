@@ -47,7 +47,7 @@
   @include media(">=tablet") {
     @include title-56;
     margin-bottom: rem(85);
-    height: rem(132);
+    min-height: rem(132);
   }
 }
 

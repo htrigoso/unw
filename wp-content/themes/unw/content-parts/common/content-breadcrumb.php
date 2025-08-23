@@ -22,10 +22,10 @@ $lastIndex = count($items) - 1;
     $isLast = $index === $lastIndex;
     ?>
 
-    <?php if (!$isLast && isset($item['href'])): ?>
+    <?php if (!$isLast && !empty($item['href'])): ?>
       <a class="breadcrumb__label" href="<?= esc_url($item['href']) ?>"><?= $label ?></a>
     <?php else: ?>
-      <span class="breadcrumb__label current"><?= $label ?></span>
+      <span class="breadcrumb__label <?php if ($isLast) echo 'current'; ?>"><?= $label ?></span>
     <?php endif; ?>
   <?php endforeach; ?>
 </div>

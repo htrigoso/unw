@@ -1,0 +1,130 @@
+.error-page {
+  background-color: var(--color-bg-secondary);
+  min-height: calc(100dvh - 64px);
+  display: flex;
+  flex-direction: column;
+
+  @include media(">=tablet") {
+    min-height: calc(100dvh - 118px);
+  }
+}
+
+.error-page__wrapper {
+  padding-bottom: rem(34);
+  display: flex;
+  flex: 1;
+
+  @include media(">=tablet") {
+    align-items: center;
+  }
+}
+
+.error-page__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: rem(600);
+  margin-inline: auto;
+  width: 100%;
+
+  @include media(">=tablet") {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: none;
+  }
+}
+
+.error-page__header {
+  max-width: 71dvw;
+  height: 100%;
+  max-height: rem(784);
+
+  @include media(">=tablet") {
+    max-width: none;
+    max-height: none;
+  }
+}
+
+.error-page__code {
+  font-size: rem(120);
+  font-weight: var(--font-bold);
+  line-height: normal;
+  letter-spacing: 2.843px;
+  margin-bottom: rem(4);
+  color: var(--color-cp);
+
+  @include media(">=tablet") {
+    font-size: rem(205);
+  }
+}
+
+.error-page__title {
+  @include title-32;
+  margin-bottom: rem(4);
+
+  @include media(">=tablet") {
+    font-size: rem(56);
+  }
+}
+
+.error-page__subtitle {
+  @include title-20;
+  margin-bottom: rem(4);
+
+  @include media(">=tablet") {
+    font-size: rem(36);
+  }
+}
+
+.error-page__desc {
+  font-weight: var(--font-semi-bold);
+
+  @include media(">=tablet") {
+    @include title-24;
+    margin-bottom: rem(38);
+  }
+}
+
+.error-page__actions {
+  position: relative;
+}
+
+.error-page__image {
+  min-width: rem(445);
+  position: absolute;
+  bottom: rem(34);
+  max-height: none;
+  z-index: -1;
+
+  @include media(">=tablet") {
+    position: relative;
+    max-width: none;
+    left: rem(-162);
+  }
+
+  @include media(">=desktop-s") {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.error-page__button {
+  width: 100%;
+
+  &.mobile {
+    @include media(">=tablet") {
+      display: none;
+    }
+  }
+
+  &.desktop {
+    display: none;
+
+    @include media(">=tablet") {
+      display: inline-flex;
+      width: rem(236);
+    }
+  }
+}

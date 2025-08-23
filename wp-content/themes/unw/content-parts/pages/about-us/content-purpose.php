@@ -14,14 +14,14 @@ if ( $purpose && is_array($purpose) ) :
           <ul class="swiper-wrapper purpose-swiper__list">
             <?php foreach ($purpose['list'] as $item) : ?>
               <li class="swiper-slide purpose-swiper__item">
-                <div class="purpose-card">
+                <article class="purpose-card">
                   <img src="<?= $item['icon']['url']; ?>"
                        alt="<?= $item['icon']['alt'] ?? ''; ?>"
                        aria-hidden="true"
                        class="purpose-card__icon" />
                   <span class="purpose-card__title"><?= $item['title']; ?></span>
                   <p class="purpose-card__description"><?= $item['description']; ?></p>
-                </div>
+                </article>
               </li>
             <?php endforeach; ?>
           </ul>
