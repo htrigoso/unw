@@ -18,7 +18,7 @@ if (is_array($testimonial_posts) && !empty($testimonial_posts)) :
                 ]); ?>
               </li>
             <?php endforeach; ?>
-              </ul>
+          </ul>
           <div class="swiper-navigation">
             <div class="swiper-primary-button-prev"></div>
             <div class="swiper-primary-button-next"></div>
