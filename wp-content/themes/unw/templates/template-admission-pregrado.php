@@ -10,7 +10,7 @@
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 
 <main>
-  <?php get_template_part(ADMISSION_CONTENT_PATH, 'admission-one'); ?>
+  <?php get_template_part(ADMISSION_CONTENT_PATH,'shared-admission');?>
 </main>
 
 <?php get_footer(); ?>
