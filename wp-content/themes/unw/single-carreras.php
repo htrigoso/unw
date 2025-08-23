@@ -20,7 +20,7 @@
 
   $base_breadcrumbs = [
     ['label' => 'Inicio', 'href' => home_url('/')],
-    ['label' => 'Ciencias de la Salud', 'href' => '/salud']
+    ['label' => 'Ciencias de la Salud', 'href' => '']
   ];
 
   get_template_part(

@@ -61,22 +61,12 @@ if ($faq && is_array($faq)) :
 ?>
   <section class="admission__faq">
     <div class="x-container x-container--pad-213 admission__faq__wrapper">
-      <h2 class="admission__faq__title">
-        <i>
-          <svg width="32" height="32">
-            <use xlink:href="#question-mark"></use>
-          </svg>
-        </i>
-        <span><?= esc_html($faq['title']); ?></span>
-      </h2>
-      <div class="dynamic-accordion">
-        <?php foreach ($faq['list'] as $item) {
-          get_template_part(COMMON_CONTENT_PATH, 'accordion', [
-            'label' => $item['title'],
-            'content' => $item['description'],
-          ]);
-        } ?>
-      </div>
+      <?php
+      get_template_part(COMMON_CONTENT_PATH, 'faq-section', [
+        'title' => $faq['title'],
+        'faq' => $faq['list'],
+      ]);
+      ?>
     </div>
   </section>
 <?php endif; ?>

@@ -19,15 +19,12 @@
   }
 }
 
-.career-tab {
-  padding-bottom: rem(24);
-
-  @include media(">=tablet") {
-    padding-bottom: rem(67);
-  }
+.career-tabs__faq {
+  padding-top: rem(64);
+  padding-bottom: rem(70);
 }
 
-.internationalization-tab {
+.career-tabs__internationalization {
   .internationalization__wrapper {
     padding-top: rem(44);
     padding-bottom: rem(96);

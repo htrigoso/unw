@@ -1,0 +1,6 @@
+.faq-section__title {
+  @include title-28;
+  margin-bottom: rem(11);
+  display: flex;
+  gap: rem(8);
+}
