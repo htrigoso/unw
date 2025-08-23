@@ -6,7 +6,7 @@ $content = $args['content'];
 $href = $args['href'];
 ?>
 
-<div class="entry-card">
+<article class="entry-card">
   <img src="<?php echo $image; ?>" alt="<?php echo esc_attr($title); ?>" class="entry-card__image">
   <div class="entry-card__content">
     <h3 class="entry-card__title"><?php echo esc_html($title); ?></h3>
@@ -22,4 +22,4 @@ $href = $args['href'];
       </i>
     </a>
   </div>
-</div>
+</article>

@@ -6,6 +6,10 @@ import PostSwiper from '../../components/PostSwiper'
       0: { slidesPerView: 'auto', spaceBetween: 16 },
       768: { slidesPerView: 'auto', spaceBetween: 16 },
       1024: { slidesPerView: 'auto', spaceBetween: 16 }
+    },
+    pagination: {
+      el: '.promote-swiper .swiper-pagination',
+      type: 'fraction'
     }
   })
 })()
