@@ -13,10 +13,10 @@ $slider = get_field('slider');
             $description = wp_kses_post($slide['description']);
           ?>
           <li class="swiper-slide carousel__item">
-            <div class="carousel__content">
+            <article class="carousel__content">
               <img src="<?php echo $image_url; ?>" alt="<?php echo $image_alt; ?>" class="carousel__content--image" />
               <p class="carousel__content--description"><?php echo $description; ?></p>
-            </div>
+            </article>
           </li>
         <?php endforeach; ?>
       </ul>

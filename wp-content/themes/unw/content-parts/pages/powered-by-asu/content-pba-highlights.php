@@ -26,7 +26,7 @@ $mock_highlights = [
         <ul class="swiper-wrapper pba-highlights__list">
           <?php foreach ($mock_highlights as $i => $highlight): ?>
             <li class="swiper-slide pba-highlights__item">
-              <div class="pba-highlights__card">
+              <article class="pba-highlights__card">
                 <div class="pba-highlights__card-left">
                   <h3 class="pba-highlights__card-title"><?= $highlight['title'] ?></h3>
                   <p class="pba-highlights__card-description"><?= $highlight['description'] ?></p>
@@ -43,7 +43,7 @@ $mock_highlights = [
                     </i>
                   </div>
                 </div>
-              </div>
+              </article>
 
               <?php
               ob_start();

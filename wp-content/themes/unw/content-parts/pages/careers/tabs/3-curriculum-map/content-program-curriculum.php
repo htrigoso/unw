@@ -22,9 +22,9 @@ $link = $malla_curricular['link'] ?? null;
         <div class="swiper-container">
           <ul class="swiper-wrapper program-curriculum__cycles-list">
             <?php foreach ($lists as $list): ?>
-              <div class="swiper-slide">
-                <li class="program-curriculum__cycles-item">
-                  <article class="cycle-card">
+              <li class="swiper-slide">
+                <article class="program-curriculum__cycles-item">
+                  <div class="cycle-card">
                     <div class="cycle-card__wrapper">
                       <header class="cycle-card__header">
                         <?php if (!empty($list['icon']['url'])): ?>
@@ -51,9 +51,9 @@ $link = $malla_curricular['link'] ?? null;
                         </ul>
                       </div>
                     </div>
-                  </article>
-                </li>
-              </div>
+                  </div>
+                </article>
+              </li>
             <?php endforeach; ?>
           </ul>
           <div class="swiper-navigation">
