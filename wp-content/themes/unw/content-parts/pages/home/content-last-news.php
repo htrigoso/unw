@@ -26,8 +26,10 @@ $news_items = $news_data['news'] ?? [];
               ?>
                 <li class="swiper-slide">
                   <article class="last-news__card">
-                    <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr(get_the_title($news_post)); ?>"
-                      class="last-news__card--img" />
+                    <a class="last-news__card--img" href="<?php echo esc_url(get_permalink($news_post)); ?>">
+                      <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr(get_the_title($news_post)); ?>"
+                        class="last-news__card--img" />
+                    </a>
                     <div class="last-news__card--content">
                       <h3 class="last-news__card--content__date"><?php echo esc_html($formatted_date); ?></h3>
                       <p class="last-news__card--content__description">
