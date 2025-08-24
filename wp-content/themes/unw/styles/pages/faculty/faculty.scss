@@ -1,10 +1,10 @@
 .faculty__header {
   padding-top: rem(42);
-  padding-bottom: rem(42);
+  padding-bottom: rem(35);
 
   @include media(">=tablet") {
-    padding-top: rem(38);
-    padding-bottom: rem(9);
+    padding-top: rem(40);
+    padding-bottom: rem(30);
   }
 }
 
@@ -22,10 +22,6 @@
 
 .faculty__testimonials {
   padding-top: rem(74);
-
-  @include media(">=tablet") {
-    padding-top: rem(47);
-  }
 
   .testimonial__title {
     @include title-28;

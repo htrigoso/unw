@@ -42,6 +42,18 @@
     position: relative;
     cursor: pointer;
 
+    &[data-size="responsive"] {
+      &::before {
+        width: 27px;
+        height: 27px;
+
+        @include media(">=tablet") {
+          width: 43px;
+          height: 43px;
+        }
+      }
+    }
+
     &::before {
       margin: rem(5);
       content: "";
@@ -156,6 +168,14 @@
     display: flex;
     gap: rem(16);
     margin-top: rem(24);
+
+    &[data-size="responsive"] {
+      gap: rem(10);
+
+      @include media(">=tablet") {
+        gap: rem(16);
+      }
+    }
   }
 
   @extend %swiper-primary-navigation;
