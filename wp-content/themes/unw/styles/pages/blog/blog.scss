@@ -9,10 +9,10 @@
 }
 
 .blog-content {
-  margin-bottom: rem(33);
+  padding-bottom: rem(48);
 
   @include media(">=tablet") {
-    margin-bottom: rem(54);
+    padding-bottom: rem(64);
   }
 }
 
@@ -21,9 +21,29 @@
   row-gap: rem(42);
   column-gap: rem(16);
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  padding-bottom: rem(32);
 
   @include media(">=tablet") {
     row-gap: rem(36);
     column-gap: rem(32);
+    padding-bottom: rem(64);
+  }
+}
+
+.blog-newsletter {
+  margin-top: rem(32);
+  display: flex;
+  justify-content: center;
+
+  @include media(">=tablet") {
+    margin-top: rem(64);
+  }
+}
+
+.blog-newsletter__btn {
+  border-radius: rem(64);
+
+  svg {
+    padding: rem(4);
   }
 }

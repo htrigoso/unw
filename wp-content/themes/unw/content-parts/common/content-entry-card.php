@@ -4,12 +4,28 @@ $title = $args['title'];
 $date = $args['date'] ?? '';
 $content = $args['content'];
 $href = $args['href'];
+
+$tags = $args['tags'] ?? [];
 ?>
 
 <article class="entry-card">
   <img src="<?php echo $image; ?>" alt="<?php echo esc_attr($title); ?>" class="entry-card__image">
   <div class="entry-card__content">
     <h3 class="entry-card__title"><?php echo esc_html($title); ?></h3>
+    <?php
+    if (!empty($tags)) :
+
+    ?>
+      <div class="entry-card__tags">
+        <?php foreach ($tags as $tag) : ?>
+          <span class="entry-card__tags--tag"><?= esc_html($tag); ?></span>
+        <?php
+        endforeach;
+        ?>
+      </div>
+    <?php
+    endif;
+    ?>
     <?php if (!empty($date)) : ?>
       <span class="entry-card__date"><?php echo esc_html($date); ?></span>
     <?php endif; ?>
