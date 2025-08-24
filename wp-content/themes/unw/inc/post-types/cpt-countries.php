@@ -56,7 +56,7 @@ function paises_mostrar_imagen_columna($column, $post_id) {
         $thumb_url = wp_get_attachment_url($thumb_id);
 
         if ($thumb_url) {
-            echo '<img src="' . esc_url($thumb_url) . '" style="height: 40px; width: auto;" />';
+            echo '<img src="' . esc_url($thumb_url) . '" alt="" style="height: 40px; width: auto;" />';
         } else {
             echo '—';
         }
