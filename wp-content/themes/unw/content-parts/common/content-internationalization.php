@@ -1,23 +1,23 @@
 <?php
 
-$postId = $args['id'];
+$postId = $args['id'] ?? '';
 $countries = [
-  ['name' => 'Spain',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/1.svg'],
-  ['name' => 'Mexico',      'file' => get_template_directory_uri() . '/upload/home/international-agreements/2.svg'],
-  ['name' => 'Colombia',    'file' => get_template_directory_uri() . '/upload/home/international-agreements/3.svg'],
-  ['name' => 'Chile',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/4.svg'],
-  ['name' => 'Italy',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/5.svg'],
-  ['name' => 'Brazil',      'file' => get_template_directory_uri() . '/upload/home/international-agreements/6.svg'],
-  ['name' => 'Costa Rica',  'file' => get_template_directory_uri() . '/upload/home/international-agreements/7.svg'],
-  ['name' => 'Ecuador',     'file' => get_template_directory_uri() . '/upload/home/international-agreements/8.svg'],
-  ['name' => 'Spain',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/1.svg'],
-  ['name' => 'Mexico',      'file' => get_template_directory_uri() . '/upload/home/international-agreements/2.svg'],
-  ['name' => 'Colombia',    'file' => get_template_directory_uri() . '/upload/home/international-agreements/3.svg'],
-  ['name' => 'Chile',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/4.svg'],
-  ['name' => 'Italy',       'file' => get_template_directory_uri() . '/upload/home/international-agreements/5.svg'],
-  ['name' => 'Brazil',      'file' => get_template_directory_uri() . '/upload/home/international-agreements/6.svg'],
-  ['name' => 'Costa Rica',  'file' => get_template_directory_uri() . '/upload/home/international-agreements/7.svg'],
-  ['name' => 'Ecuador',     'file' => get_template_directory_uri() . '/upload/home/international-agreements/8.svg'],
+  ['name' => 'Spain',       'file' => UPLOAD_PATH . '/home/international-agreements/1.svg'],
+  ['name' => 'Mexico',      'file' => UPLOAD_PATH . '/home/international-agreements/2.svg'],
+  ['name' => 'Colombia',    'file' => UPLOAD_PATH . '/home/international-agreements/3.svg'],
+  ['name' => 'Chile',       'file' => UPLOAD_PATH . '/home/international-agreements/4.svg'],
+  ['name' => 'Italy',       'file' => UPLOAD_PATH . '/home/international-agreements/5.svg'],
+  ['name' => 'Brazil',      'file' => UPLOAD_PATH . '/home/international-agreements/6.svg'],
+  ['name' => 'Costa Rica',  'file' => UPLOAD_PATH . '/home/international-agreements/7.svg'],
+  ['name' => 'Ecuador',     'file' => UPLOAD_PATH . '/home/international-agreements/8.svg'],
+  ['name' => 'Spain',       'file' => UPLOAD_PATH . '/home/international-agreements/1.svg'],
+  ['name' => 'Mexico',      'file' => UPLOAD_PATH . '/home/international-agreements/2.svg'],
+  ['name' => 'Colombia',    'file' => UPLOAD_PATH . '/home/international-agreements/3.svg'],
+  ['name' => 'Chile',       'file' => UPLOAD_PATH . '/home/international-agreements/4.svg'],
+  ['name' => 'Italy',       'file' => UPLOAD_PATH . '/home/international-agreements/5.svg'],
+  ['name' => 'Brazil',      'file' => UPLOAD_PATH . '/home/international-agreements/6.svg'],
+  ['name' => 'Costa Rica',  'file' => UPLOAD_PATH . '/home/international-agreements/7.svg'],
+  ['name' => 'Ecuador',     'file' => UPLOAD_PATH . '/home/international-agreements/8.svg'],
 ];
 ?>
 

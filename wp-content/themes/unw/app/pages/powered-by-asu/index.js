@@ -111,6 +111,7 @@ window.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', resizeGlobe)
 
   globe.pointOfView({ lat: 0, lng: -90, altitude: 1.5 })
+  globe.controls().enableZoom = false
 
   document.querySelectorAll('#globeControls button').forEach(btn => {
     btn.addEventListener('click', () => {
