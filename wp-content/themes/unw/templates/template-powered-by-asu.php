@@ -24,6 +24,7 @@
 
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-presentation'); ?>
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-recognitions'); ?>
+  <?php get_template_part(PBA_CONTENT_PATH, 'pba-powered'); ?>
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-benefits'); ?>
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-mastery'); ?>
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-highlights'); ?>
