@@ -45,7 +45,7 @@
     .sub-menu {
       a {
         font-size: rem(16);
-        padding: rem(12) 0;
+        padding: rem(6) 0;
         display: block;
         transition: font-weight 0.2s ease;
         &:hover {
@@ -64,24 +64,9 @@
         width: 100%;
 
         &.is-active {
-          display: flex;
-        }
-        > .sub-menu {
-          width: 100%;
-          display: flex;
-          gap: rem(40);
-          flex-wrap: wrap;
-          > li {
-            flex: 0 0 30.3333%;
-            box-sizing: border-box;
-          }
-        }
-      }
-    }
-    > .sub-menu {
-      > li {
-        > a {
-          display: none;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: rem(100);
         }
       }
     }
