@@ -71,6 +71,7 @@ services:
       WORDPRESS_CONFIG_EXTRA: |
         define('WP_HOME','https://uwiener.btechcloud.pe/www-02');
         define('WP_SITEURL','https://uwiener.btechcloud.pe/www-02');
+        define('FORCE_SSL_ADMIN', true);
     volumes:
       - .:/var/www/html
     ports:

@@ -1,26 +1,13 @@
 # Custom configuration for uwiener.btechcloud.pe
 # This file will be included in the server block for this domain
 
-# Handle /www-02 subdirectory
-location /www-02 {
-    proxy_pass http://wordpress:80/;
+# Proxy all requests to WordPress container
+# WordPress will handle the /www-02 routing internally
+location / {
+    proxy_pass http://wordpress:80;
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
     proxy_redirect off;
-}
-
-location /www-02/ {
-    proxy_pass http://wordpress:80/;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
-    proxy_redirect off;
-}
-
-# Redirect root to /www-02
-location = / {
-    return 301 https://$host/www-02;
 }
