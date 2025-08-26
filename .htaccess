@@ -5,12 +5,20 @@
 # Cualquier cambio en las directivas que hay entre esos marcadores serán sobrescritas.
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-RewriteBase /
-RewriteRule ^index\.php$ - [L]
+RewriteBase /www-02/
+
+# Handle /www-02 path
+RewriteCond %{REQUEST_URI} ^/www-02/$
+RewriteRule ^(.*)$ /www-02/index.php [L]
+
+# Handle WordPress admin and other paths
+RewriteCond %{REQUEST_URI} ^/www-02/(wp-admin|wp-login|wp-content|wp-includes)
+RewriteRule ^(.*)$ /www-02/index.php [L]
+
+# Handle all other requests
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [L]
+RewriteRule . /www-02/index.php [L]
 </IfModule>
 
 # END WordPress
