@@ -154,14 +154,13 @@
 }
 
 .pba-network-modal__content--body {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: rem(32);
 
   @include media(">=tablet") {
     gap: rem(64);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   img {

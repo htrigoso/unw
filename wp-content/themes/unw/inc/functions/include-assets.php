@@ -129,8 +129,7 @@ if (!function_exists('vdebug')) {
             sel.addRange(range);
             try {
                 document.execCommand("copy");
-                alert("✅ Copiado al portapapeles");
-            } catch(e) {
+             } catch(e) {
                 alert("❌ No se pudo copiar");
             }
             sel.removeAllRanges();
