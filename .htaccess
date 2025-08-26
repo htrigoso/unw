@@ -1,16 +1,40 @@
 
 # BEGIN WordPress
-# Las directivas (líneas) entre «BEGIN WordPress» y «END WordPress» son
-# generadas dinámicamente y solo deberían ser modificadas mediante filtros de WordPress.
-# Cualquier cambio en las directivas que hay entre esos marcadores serán sobrescritas.
+# The following lines are required for WordPress to work in /www-02 subpath
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-RewriteBase /
+RewriteBase /www-02/
+
+# Handle WordPress permalinks
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [L]
+RewriteRule . /www-02/index.php [L]
+
+# Redirect root to subpath if accessed directly
+RewriteCond %{REQUEST_URI} ^/$
+RewriteRule ^$ /www-02/ [R=301,L]
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# WordPress specific settings
+<IfModule mod_rewrite.c>
+    # Ensure proper handling of WordPress URLs
+    RewriteEngine On
+    
+    # Handle wp-admin and wp-login
+    RewriteRule ^wp-admin/(.*)$ /www-02/wp-admin/$1 [L]
+    RewriteRule ^wp-login\.php$ /www-02/wp-login.php [L]
+    
+    # Handle wp-content and wp-includes
+    RewriteRule ^wp-content/(.*)$ /www-02/wp-content/$1 [L]
+    RewriteRule ^wp-includes/(.*)$ /www-02/wp-includes/$1 [L]
 </IfModule>
 
 # END WordPress
