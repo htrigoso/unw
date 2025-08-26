@@ -5,33 +5,12 @@
 # Cualquier cambio en las directivas que hay entre esos marcadores serán sobrescritas.
 <IfModule mod_rewrite.c>
 RewriteEngine On
-
-# Allow ACME challenges to pass through
-RewriteRule ^\.well-known/acme-challenge/(.*)$ - [L]
-
-# Handle /www-02 subdirectory
-RewriteCond %{REQUEST_URI} ^/www-02/$
-RewriteRule ^www-02/$ /www-02/index.php [L]
-
-# Handle WordPress admin and other paths under /www-02
-RewriteCond %{REQUEST_URI} ^/www-02/(wp-admin|wp-login|wp-content|wp-includes)
-RewriteRule ^www-02/(.*)$ /www-02/index.php [L]
-
-# Handle all other requests under /www-02
-RewriteCond %{REQUEST_URI} ^/www-02/
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^www-02/(.*)$ /www-02/index.php [L]
-
-# Redirect root to /www-02
-RewriteCond %{REQUEST_URI} ^/$
-RewriteRule ^$ /www-02/ [R=301,L]
-
-# Handle WordPress standard routing for /www-02
-RewriteBase /www-02/
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /www-02/index.php [L]
+RewriteRule . /index.php [L]
 </IfModule>
+
 # END WordPress
