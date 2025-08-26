@@ -12,7 +12,7 @@ services:
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - certs:/etc/nginx/certs:ro
-      - ./custom_proxy_settings.conf:/etc/nginx/conf.d/custom_proxy_settings.conf
+      - ./uwiener.btechcloud.pe:/etc/nginx/vhost.d/uwiener.btechcloud.pe
      
   docker-gen:
     image: nginxproxy/docker-gen
