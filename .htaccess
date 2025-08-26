@@ -6,6 +6,9 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
+# Allow ACME challenges to pass through
+RewriteRule ^\.well-known/acme-challenge/(.*)$ - [L]
+
 # Handle /www-02 subdirectory
 RewriteCond %{REQUEST_URI} ^/www-02/$
 RewriteRule ^www-02/$ /www-02/index.php [L]

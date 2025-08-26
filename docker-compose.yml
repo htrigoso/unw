@@ -12,7 +12,7 @@ services:
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - certs:/etc/nginx/certs:ro
-      - ./uwiener.btechcloud.pe:/etc/nginx/vhost.d/uwiener.btechcloud.pe
+      - "./custom_proxy_settings_seek.conf:/etc/nginx/conf.d/custom_proxy_settings.conf"
      
   docker-gen:
     image: nginxproxy/docker-gen
@@ -68,10 +68,8 @@ services:
       VIRTUAL_PORT: 80
       LETSENCRYPT_HOST: uwiener.btechcloud.pe
       LETSENCRYPT_EMAIL: jgarcia@seek.pe
-      WORDPRESS_CONFIG_EXTRA: |
-        define('WP_HOME','https://uwiener.btechcloud.pe/www-02');
-        define('WP_SITEURL','https://uwiener.btechcloud.pe/www-02');
-        define('FORCE_SSL_ADMIN', true);
+      VIRTUAL_PATH: /www-02
+
     volumes:
       - .:/var/www/html
     ports:
