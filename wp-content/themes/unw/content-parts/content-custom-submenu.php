@@ -9,15 +9,14 @@ foreach ($menu as $column_key => $column_data):
 <ul class="sub-menu">
   <?php foreach ($column_data as $section): ?>
   <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-396">
-    <a href="http://unw.loc/ciencias-de-la-salud/"><?= $section['title'] ?></a>
+    <a href="javascript:void(0)"><?= $section['title'] ?></a>
 
     <?php if (!empty($section['links'])): ?>
     <ul class="sub-menu">
       <?php foreach ($section['links'] as $link_item): ?>
       <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-403">
-        <a href="<?= $link_item['link']['url'] ?>"
-           target="<?= $link_item['link']['target'] ?>">
-           <?= $link_item['link']['title'] ?>
+        <a href="<?= $link_item['link']['url'] ?>" target="<?= $link_item['link']['target'] ?>">
+          <?= $link_item['link']['title'] ?>
         </a>
       </li>
       <?php endforeach; ?>
