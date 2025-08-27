@@ -26,7 +26,6 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  z-index: 5;
 }
 
 .hero-slide__container {
@@ -47,7 +46,7 @@
   @include media(">=tablet") {
     @include title-56;
     margin-bottom: rem(85);
-    height: rem(132);
+    min-height: rem(132);
   }
 }
 

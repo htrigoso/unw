@@ -17,6 +17,9 @@
 
   @include media(">=tablet") {
     height: rem(64);
+    padding-top: 0;
+    padding-bottom: 0;
+    align-items: stretch;
   }
 }
 
@@ -43,11 +46,34 @@
   align-items: center;
   justify-content: flex-end;
   pointer-events: all;
+
+  @include media(">=tablet") {
+    height: 100%;
+  }
 }
 
 .navbar__menu-wrapper {
-  @include media("<tablet") {
-    display: none;
+  display: none;
+
+  @include media(">=tablet") {
+    height: 100%;
+    display: block;
+  }
+}
+
+.navbar__menu,
+.navbar__menu > ul,
+.navbar__menu > ul > li {
+  @include media(">=tablet") {
+    height: 100%;
+  }
+}
+
+.navbar__menu > ul > li > a {
+  @include media(">=tablet") {
+    height: 100%;
+    display: flex !important;
+    align-items: center;
   }
 }
 

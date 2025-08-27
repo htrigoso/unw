@@ -117,7 +117,7 @@
 
   $base_breadcrumbs = [
     ['label' => 'Inicio', 'href' => home_url('/')],
-    ['label' => 'Carreras', 'href' => '/carreras']
+    ['label' => 'Carreras', 'href' => '']
   ];
 
   get_template_part(

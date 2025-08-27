@@ -33,13 +33,16 @@
 
 .impact-results__item {
   background-color: var(--color-white);
-  min-height: rem(139);
   padding: rem(24) rem(20);
   border-radius: rem(20);
 }
 
 .impact-results__subtitle {
   @include title-22;
-  margin-bottom: rem(8);
-  color: var(--color-primary);
+  color: var(--color-cp);
+  text-align: center;
+
+  @include media(">=tablet") {
+    text-align: left;
+  }
 }

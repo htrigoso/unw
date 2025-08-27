@@ -32,10 +32,10 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    margin-bottom: auto;
   }
 
   @include media(">=tablet") {
-    margin-bottom: rem(18);
     max-width: rem(392);
   }
 }

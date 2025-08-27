@@ -21,6 +21,9 @@ define('ADMISSION_CONTENT_PATH', 'content-parts/pages/admission/content');
 define('ABOUT_US_CONTENT_PATH', 'content-parts/pages/about-us/content');
 define('OUR_HISTORY_CONTENT_PATH', 'content-parts/pages/our-history/content');
 define('QUALITY_POLICY_CONTENT_PATH', 'content-parts/pages/quality-policy/content');
+define('CAREERS_CONTENT_PATH', 'content-parts/pages/careers/content');
+
+define('ERROR_CONTENT_PATH', 'content-parts/pages/404/content');
 
 define('GENERAL_CONTENT_PATH', 'content-parts/content');
 

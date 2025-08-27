@@ -25,6 +25,21 @@
   margin-bottom: rem(16);
 }
 
+.entry-card__tags {
+  display: inline-flex;
+  gap: rem(8);
+  flex-wrap: wrap;
+  margin-bottom: rem(16);
+}
+
+.entry-card__tags--tag {
+  display: block;
+  padding: rem(6) rem(8);
+  border-radius: rem(8);
+  background-color: var(--color-light-turquoise);
+  font-size: rem(12);
+}
+
 .entry-card__date {
   display: inline-block;
   font-size: rem(14);
@@ -39,7 +54,7 @@
 .entry-card__button {
   margin-top: auto;
   width: fit-content;
-  padding: rem(7) rem(15);
+  padding: rem(7) rem(15) rem(7) rem(0);
   justify-content: space-between;
 
   svg {

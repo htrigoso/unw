@@ -23,11 +23,13 @@
   ?>
 
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-presentation'); ?>
-  <?php get_template_part(PBA_CONTENT_PATH, 'pba-testimonials'); ?>
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-recognitions'); ?>
+  <?php get_template_part(PBA_CONTENT_PATH, 'pba-powered'); ?>
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-benefits'); ?>
+  <?php get_template_part(PBA_CONTENT_PATH, 'pba-mastery'); ?>
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-highlights'); ?>
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-network'); ?>
+  <?php get_template_part(PBA_CONTENT_PATH, 'pba-testimonials'); ?>
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-cta'); ?>
 </main>
 <?php get_footer(); ?>

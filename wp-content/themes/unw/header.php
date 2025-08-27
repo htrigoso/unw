@@ -64,6 +64,7 @@
     --color-asu-gold: #FFC627;
     --color-asu-grey: #747474;
 
+    --color-error: #FF5050;
     --color-black: #000000;
     --color-danger: #ee3f28;
     --color-gray: #f2f1ed;
@@ -79,8 +80,11 @@
     --color-gold: #F6BD23;
     --color-pink: #BB4E8E;
 
+    --color-bg-secondary: #F0EAEE;
+
     --swiper-prev-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-left.svg');
     --swiper-next-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-right.svg');
+    --white-check: url('<?php echo get_template_directory_uri(); ?>/upload/icons/white-check.svg');
   }
   </style>
 
@@ -107,6 +111,10 @@
   <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-LightItalic.woff2" rel="preload" as="font"
     type="font/woff2" crossorigin>
   <script>
+  window.appConfigUnw = {
+    themeUrl: "<?= get_template_directory_uri(); ?>",
+    uploadUrl: "<?= get_template_directory_uri(); ?>/upload"
+  };
   let doc = document.documentElement;
 
   function calcVh() {
@@ -115,8 +123,30 @@
   window.addEventListener('resize', calcVh);
   calcVh();
   </script>
+  <!-- Google Tag Manager -->
+  <script>
+  (function(w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+      'gtm.start': new Date().getTime(),
+      event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s),
+      dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+      'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', 'GTM-W8DNW8B');
+  </script>
+  <!-- End Google Tag Manager -->
   <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W8DNW8B" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe>
+  </noscript>
   <?php include get_template_directory() . '/upload/icons/sprite.svg'; ?>

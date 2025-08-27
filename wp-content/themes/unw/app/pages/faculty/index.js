@@ -8,7 +8,8 @@ import { changeSwiperSlide, updateSwipers } from '../../utils/swiper'
 (function () {
   const heroSwiper = HeroSwiper('.hero-swiper', {
     loop: false,
-    autoplay: false
+    autoplay: false,
+    allowTouchMove: false
   })
 
   PostSwiper('.testimonials-swiper', {
@@ -17,12 +18,22 @@ import { changeSwiperSlide, updateSwipers } from '../../utils/swiper'
       1200: { slidesPerView: 3, spaceBetween: 48 }
     }
   })
+
   PostSwiperDesktop('.laboratories-swiper', {
     breakpoints: {
       1024: { slidesPerView: 2, spaceBetween: 24 },
       1200: { slidesPerView: 3, spaceBetween: 48 }
     }
   })
+
+  PostSwiper('.laboratories-modal-swiper', {
+    slidesPerView: 1,
+    breakpoints: {
+      576: { slidesPerView: 1, spaceBetween: 8 },
+      1024: { slidesPerView: 1, spaceBetween: 8 }
+    }
+  })
+
   PostSwiper('.simple-events-swiper', {
     breakpoints: {
       1024: { slidesPerView: 2 },

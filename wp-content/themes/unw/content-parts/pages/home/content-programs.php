@@ -11,7 +11,7 @@ $lists = $programs['lists'] ?? [];
 
       <div class="post-swiper-desktop switch-pagination-navigation" data-width="compact">
         <div class="swiper-container">
-          <div class="swiper-wrapper programs__cards">
+          <ul class="swiper-wrapper programs__cards">
             <?php foreach ($lists as $program):
               $image = $program['image']['url'] ?? '';
               $alt = $program['image']['alt'] ?? $program['title'] ?? '';
@@ -21,7 +21,7 @@ $lists = $programs['lists'] ?? [];
               $link_title = $program['link']['title'] ?? 'Ver carreras';
               $link_target = $program['link']['target'] ?? '_self';
             ?>
-              <div class="swiper-slide">
+              <li class="swiper-slide">
                 <?php
                 get_template_part(COMMON_CONTENT_PATH, 'program-card', array(
                   'image' => $image,
@@ -33,9 +33,9 @@ $lists = $programs['lists'] ?? [];
                   'link_target' => $link_target
                 ));
                 ?>
-              </div>
+              </li>
             <?php endforeach; ?>
-          </div>
+          </ul>
         </div>
         <div class="swiper-navigation">
           <div class="swiper-primary-button-prev"></div>

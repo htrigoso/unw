@@ -1,17 +1,6 @@
-<?php
-// Ensure global post object is set to prevent comment_count errors
-global $post;
-if (!$post && is_search()) {
-    $post = new stdClass();
-    $post->ID = 0;
-    $post->post_type = 'post';
-    $post->comment_count = 0;
-}
-
-set_query_var('ASSETS_CHUNK_NAME', 'blog');
-set_query_var('NAVBAR_COLOR', '');
-get_header();
-?>
+<?php set_query_var('ASSETS_CHUNK_NAME', 'blog'); ?>
+<?php set_query_var('NAVBAR_COLOR', ''); ?>
+<?php get_header(); ?>
 
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 
@@ -49,7 +38,7 @@ get_header();
     $search_query = get_query_var('s');
     if (!empty($search_query)) {
       get_template_part(BLOG_CONTENT_PATH, 'blog');
-    }
+    } 
   ?>
 </main>
 

@@ -1,38 +1,59 @@
 <?php
-$network = get_field('network');
+$globe = get_field('globe');
+if(!isset($globe )&& !is_array($globe)){
+  return;
+}
+$countries = $globe['countries'];
+$controls = $globe['controls'];
 
 ?>
+<script>
+window.pbaCountries = <?php echo wp_json_encode($countries); ?>;
+</script>
+<section class="pba-network" data-map="<?=$globe['map_default']['url']?>" data-marker="<?=$globe['marker']['url']?>">
+  <div class="pba-network__wrapper">
+    <h3 class="pba-network__title x-container x-container--pad-213"><?= nl2br(wp_kses_post($globe['title']));?></h3>
+    <div class="pba-network__globe">
+      <span class="pba-network__water-mark">Red Global</span>
+      <div id="globeViz" class="pba-network__globe-container"></div>
+      <div id="globeControls" class="pba-network__globe--controls">
+        <?php foreach ($controls as $key => $value):?>
+        <button data-map="<?=$value['map']['url'] ?>" data-lat="<?=$value['coordinates']['lat']?>"
+          data-lng="<?=$value['coordinates']['lng']?>"
+          class="<?=$key === 0 ? 'active': ''?>"><?=$value['name']?></button>
 
-<section class="pba-network">
-  <div class="x-container x-container--pad-213 pba-network__wrapper">
-    <div class="pba-network__card">
-      <div class="pba-network__card--content">
-        <p class="pba-network__card--text">
-          <?php echo nl2br($network['title']); ?>
-        </p>
-      </div>
-      <div class="pba-network__card--image">
-        <img src="<?php echo esc_url($network['image']['url']); ?>"
-          alt="<?php echo esc_attr($network['image']['alt'] ?? ''); ?>">
+        <?php endforeach;?>
       </div>
     </div>
 
-    <?php if (!empty($network['master_programs'])): ?>
-    <div class="pba-network__mastering">
-      <div class="pba-network__mastering--content">
-        <h3 class="pba-network__mastering--title"><?php echo esc_html($network['master_programs']['title']); ?></h3>
-        <p><?php echo $network['master_programs']['description']; ?></p>
-      </div>
-      <div class="pba-network__mastering--cards">
-        <?php foreach ($network['master_programs']['logos'] as $program): ?>
-        <div class="pba-network__mastering--card">
-          <img src="<?php echo esc_url($program['logo']['url']); ?>"
-            alt="<?php echo esc_attr($program['logo']['alt'] ?? ''); ?>">
-          <span><?php echo esc_html($program['description']); ?></span>
-        </div>
-        <?php endforeach; ?>
-      </div>
-    </div>
-    <?php endif; ?>
+    <div id="tooltip" class="tooltip"></div>
   </div>
 </section>
+
+<?php foreach ($globe['countries'] as $country): ?>
+<?php
+  ob_start();
+  ?>
+<div class="pba-network-modal__content">
+  <div class="pba-network-modal__content--header">
+    <img src="<?php echo esc_url($country['flag']['url']); ?>" alt="" aria-hidden="true" />
+    <h4><?= esc_html($country['name']) ?></h4>
+  </div>
+
+  <div class="pba-network-modal__content--body">
+    <?php foreach ($country['agreements'] as $agreement): ?>
+    <img src="<?php echo esc_url($agreement['image']['url']); ?>" alt="" aria-hidden="true" />
+    <?php endforeach; ?>
+  </div>
+</div>
+<?php
+  $content = ob_get_clean();
+  ?>
+<?php
+  get_template_part(COMMON_CONTENT_PATH, 'modal', [
+    'content' => $content,
+    'id' => $country['name'],
+    'class' => 'pba-network-modal'
+  ]);
+  ?>
+<?php endforeach; ?>
