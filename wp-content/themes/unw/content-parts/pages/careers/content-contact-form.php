@@ -1,4 +1,5 @@
-<form class="contact-form">
+<form id="form" class="contact-form formCarrera" method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
+  action="https://forms.zohopublic.com/adminzoho11/form/WebCarreras/formperma/T3JIAMOGnJxkHbk-qsPtLTz8XUz9NaQDXxHjjRe_AKk/htmlRecords/submit">
   <div class="form-header">
     <i>
       <svg width="52" height="52">
@@ -9,36 +10,44 @@
       ¡Déjanos tus datos y nos contactaremos contigo!
     </h4>
   </div>
+  <input type="hidden" name="utm_source" value="web">
+  <input type="hidden" name="utm_medium" value="formulario_facultad">
+  <input type="hidden" name="utm_campaign" value="admision_2024_II">
+  <input type="hidden" name="utm_term" value="organico">
+  <input type="hidden" name="utm_content" value="organico">
+  <input type="hidden" name="zc_gad" value="admision_2024_II">
+  <input type="hidden" name="Website" value="https://www.uwiener.edu.pe/carreras/farmacia-y-bioquimica/">
 
   <div class="form-body">
     <div class="form-body__fields">
       <div class="form-field form-field-select">
-        <label for="document">Nombre</label>
-        <select name="document" id="documentType" type="text" required>
-          <option value="" selected disabled>Tipo de documento (*)</option>
-          <option value="dni">DNI</option>
-          <option value="carnet">Carnet de extranjería</option>
+        <select name="Dropdown" id="documentType" type="text" required>
+          <option value="-Select-" disabled>Tipo de Documento</option>
+          <option value="DNI" selected="">DNI</option>
+          <option value="Carnet de extranjería">Carnet de extranjería</option>
+          <option value="Pasaporte">Pasaporte</option>
         </select>
+        <label for="document">Tipo de documento</label>
         <span class="error-message">Datos inválidos</span>
       </div>
       <div class="form-field">
-        <label for="docNumber">Número de documento</label>
-        <input name="docNumber" id="docNumber" type="text" placeholder="Número de documento (*)" required />
+        <input name="SingleLine" id="docNumber" placeholder="" type="text" required />
+        <label for="docNumber">Número de documento (*)</label>
         <span class="error-message">Datos inválidos</span>
       </div>
       <div class="form-field">
-        <label for="fullname">Nombres y apellidos</label>
-        <input name="fullname" id="fullname" type="text" placeholder="Nombres y apellidos (*)" required />
+        <input name="Name_Last" id="fullname" placeholder="" type="text" required />
+        <label for="fullname">Nombres y apellidos (*)</label>
         <span class="error-message">Datos inválidos</span>
       </div>
       <div class="form-field">
-        <label for="cellNumber">Número de celular</label>
-        <input name="cellNumber" id="cellNumber" type="text" placeholder="Número de celular (*)" required />
+        <input name="PhoneNumber_countrycode" placeholder="" id="cellNumber" type="tel" required minlength="9" />
+        <label for="cellNumber">Número de celular (*)</label>
         <span class="error-message">Datos inválidos</span>
       </div>
       <div class="form-field">
-        <label for="email">Correo electrónico</label>
-        <input name="email" id="email" type="text" placeholder="Correo electrónico (*)" required />
+        <input name="Email" id="email" type="text" placeholder="" required />
+        <label for="email">Correo electrónico (*)</label>
         <span class="error-message">Datos inválidos</span>
       </div>
     </div>
@@ -47,7 +56,7 @@
     </p>
     <div class="form-body__terms">
       <div class="form-field-checkbox">
-        <input type="checkbox" id="politicas" name="politicas">
+        <input type="checkbox" name="DecisionBox1" id="politicas" name="politicas" required checked>
         <label for="politicas">
           <span class="custom-checkbox"></span>
           <span class="text">

@@ -3,14 +3,16 @@
 
   label {
     position: absolute;
-    width: 1px;
-    height: 1px;
+    left: 0;
     padding: 0;
     margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
+
     white-space: nowrap;
     border: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+
+    color: var(--color-asu-grey);
   }
 
   input,
@@ -26,11 +28,28 @@
       color: var(--color-asu-grey);
     }
 
-    &:focus {
+    // Anima el label cuando tiene foco O cuando no está vacío
+    &:focus,
+    &:not(:placeholder-shown) {
       border-bottom-color: var(--color-primary);
 
       &::placeholder {
         color: transparent;
+      }
+
+      ~ label {
+        transform: translateY(-15px);
+        font-size: rem(12);
+        color: var(--color-asu-grey);
+      }
+    }
+
+    // Para select, necesitamos una clase adicional ya que no tiene placeholder
+    &.has-value {
+      ~ label {
+        transform: translateY(-15px);
+        font-size: rem(12);
+        color: var(--color-primary);
       }
     }
   }

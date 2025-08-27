@@ -70,4 +70,15 @@ import Accordion from '../../components/Accordion'
       }
     })
   }
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('form')
+    form.addEventListener('submit', function (e) {
+      if (typeof dataLayer !== 'undefined') {
+        alert('form submit')
+        window.dataLayer.push({
+          event: 'gtm.formSubmit'
+        })
+      }
+    })
+  })
 })()

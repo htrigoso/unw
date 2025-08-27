@@ -98,7 +98,7 @@ function addAttrs($url)
     return $url;
   }
 
-  return "$url' defer";
+   return $url ;
 }
 
 
