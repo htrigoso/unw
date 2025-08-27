@@ -103,9 +103,11 @@ class App {
 
   tabMegaMenuDesktop() {
     const elements = document.querySelectorAll('.submenu-tab > button')
+    console.log(elements)
 
     elements.forEach((link) => {
       const dataId = link.getAttribute('data-id')
+      console.log(dataId)
 
       link.addEventListener('click', (e) => {
         e.preventDefault()
@@ -154,6 +156,7 @@ class App {
 
   addBackdropListeners() {
     const wrappers = document.querySelectorAll('.main-submenu-wrapper')
+    console.log(wrappers)
 
     wrappers.forEach((wrapper) => {
       wrapper.addEventListener('click', (e) => this.handleBackdropClick(e))
@@ -161,6 +164,10 @@ class App {
   }
 
   handleBackdropClick(e) {
+    if (e.target.closest('a')) {
+      return
+    }
+
     e.preventDefault()
 
     if (!this.shouldCloseBackdrop(e.target)) return

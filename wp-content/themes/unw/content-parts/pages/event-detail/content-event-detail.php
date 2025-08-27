@@ -52,7 +52,7 @@ $event = get_field('event_content');
       </article>
 
       <article class="event-detail__form">
-        FORMULARIO DE REGISTRO
+        <?php get_template_part(EVENT_DETAIL_CONTENT_PATH, 'contact-form') ?>
       </article>
     </section>
   </div>

@@ -17,7 +17,12 @@
   <input type="hidden" name="utm_content" value="organico">
   <input type="hidden" name="zc_gad" value="admision_2024_II">
   <input type="hidden" name="Website" value="https://www.uwiener.edu.pe/carreras/farmacia-y-bioquimica/">
-
+  <!-- Campos vacios -->
+  <input type="hidden" name="Name_Middle" value="">
+  <input type="hidden" name="Dropdown3" value="Perú (+51)">
+  <input type="hidden" name="Dropdown2" value="">
+  <input type="hidden" name="Number" value="">
+  <!-- ////Campos vacios -->
   <div class="form-body">
     <div class="form-body__fields">
       <div class="form-field form-field-select">
@@ -36,7 +41,7 @@
         <span class="error-message">Datos inválidos</span>
       </div>
       <div class="form-field">
-        <input name="Name_Last" id="fullname" placeholder="" type="text" required />
+        <input name="Name_First" id="fullname" placeholder="" type="text" required />
         <label for="fullname">Nombres y apellidos (*)</label>
         <span class="error-message">Datos inválidos</span>
       </div>

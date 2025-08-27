@@ -31,9 +31,10 @@ class Desktop_Menu_Walker extends Walker_Nav_Menu {
             // Generar submenu-tab
             $super_tab_content = '';
             if ( $this->parent_item && in_array( 'sub-menu-parent-tab', $this->parent_item->classes ) ) {
-                $super_tab_content .= "$indent\t\t\t<div class=\"submenu-tab\">\n";
+                $super_tab_content .= "$indent\t\t\t<div class=\"submenu-tab has-active\">\n";
                 foreach ( $this->child_titles as $index => $button_title ) {
-                    $super_tab_content .= "$indent\t\t\t\t<button data-id=\"{$index}\">{$button_title}</button>\n";
+                    $active_class = ($index === 0) ? 'is-active' : '';
+                    $super_tab_content .= "$indent\t\t\t\t<button class=\"$active_class\" data-id=\"{$index}\">{$button_title}</button>\n";
                 }
                 $super_tab_content .= "$indent\t\t\t</div>\n";
             }
@@ -80,13 +81,22 @@ class Desktop_Menu_Walker extends Walker_Nav_Menu {
             $classes[] = 'menu-item-parent-page';
         }
 
-        $class_names = join( ' ', array_filter( $classes ) );
-        $class_names = ' class="' . esc_attr( $class_names ) . '"';
 
-        $id_attr = '';
+
+        $classes = array_filter( $classes );
+  $id_attr = '';
+        // si es el primer hijo, agregar is-active
         if ( $depth === 1 && $this->parent_item && in_array( 'sub-menu-parent-tab', $this->parent_item->classes ) ) {
+            if ( $this->child_index === 0 ) {
+                $classes[] = 'is-active';
+            }
             $id_attr = ' id="' . $this->child_index . '"';
             $this->child_index++;
+        }
+
+        $class_names = '';
+        if ( ! empty( $classes ) ) {
+            $class_names = ' class="' . esc_attr( join( ' ', $classes ) ) . '"';
         }
 
         $output .= $indent . '<li' . $class_names . $id_attr .'>';
