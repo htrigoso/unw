@@ -64,6 +64,7 @@
       --color-asu-gold: #FFC627;
       --color-asu-grey: #747474;
 
+      --color-error: #FF5050;
       --color-black: #000000;
       --color-danger: #ee3f28;
       --color-gray: #f2f1ed;
@@ -83,6 +84,7 @@
 
       --swiper-prev-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-left.svg');
       --swiper-next-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-right.svg');
+      --white-check: url('<?php echo get_template_directory_uri(); ?>/upload/icons/white-check.svg');
     }
   </style>
 

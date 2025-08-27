@@ -1,0 +1,22 @@
+.careers-hero {
+  position: relative;
+}
+
+.careers-hero__form__wrapper {
+  position: absolute;
+  display: none;
+  inset: 0;
+  pointer-events: none;
+
+  @include media(">=desktop-s") {
+    display: block;
+  }
+}
+
+.careers-hero__form {
+  width: rem(360);
+  position: absolute;
+  pointer-events: all;
+  right: rem(108);
+  bottom: 0;
+}
