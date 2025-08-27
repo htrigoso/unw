@@ -36,54 +36,56 @@
 
   <!-- Css vars-->
   <style type="text/css">
-  :root {
-    --font: "Founders Grotesk", sans-serif;
-    --font-size: 16px;
-    --font-thin: 100;
-    --font-extra-light: 200;
-    --font-light: 300;
-    --font-regular: 400;
-    --font-medium: 500;
-    --font-semi-bold: 600;
-    --font-bold: 700;
-    --font-extra-bold: 800;
-    --font-extra-black: 900;
-    --color-primary: #07C8CC;
-    --color-secondary: #07C8CC26;
-    --color-turquoise-one: #08E1E6;
-    --color-turquoise-two: #07C8CC;
-    --color-turquoise-three: #00877D;
-    --color-light-turquoise: #DAF7F7;
+    :root {
+      --font: "Founders Grotesk", sans-serif;
+      --font-size: 16px;
+      --font-thin: 100;
+      --font-extra-light: 200;
+      --font-light: 300;
+      --font-regular: 400;
+      --font-medium: 500;
+      --font-semi-bold: 600;
+      --font-bold: 700;
+      --font-extra-bold: 800;
+      --font-extra-black: 900;
+      --color-primary: #07C8CC;
+      --color-secondary: #07C8CC26;
+      --color-turquoise-one: #08E1E6;
+      --color-turquoise-two: #07C8CC;
+      --color-turquoise-three: #00877D;
+      --color-light-turquoise: #DAF7F7;
 
-    --color-light-grey: #EEEEEE;
-    --color-secondary-grey: #D2D3D5;
-    --color-engineering: #FAC93D;
-    --color-cp: #00669E;
+      --color-light-grey: #EEEEEE;
+      --color-secondary-grey: #D2D3D5;
+      --color-engineering: #FAC93D;
+      --color-cp: #00669E;
 
-    --color-asu-brown: #8C1D43;
-    --color-asu-gold: #FFC627;
-    --color-asu-grey: #747474;
+      --color-asu-brown: #8C1D43;
+      --color-asu-gold: #FFC627;
+      --color-asu-grey: #747474;
 
-    --color-black: #000000;
-    --color-danger: #ee3f28;
-    --color-gray: #f2f1ed;
-    --color-light-gray: #eeeeee;
-    --color-mercury: #e8e8e8;
-    --color-white: #ffffff;
-    --color-purple: #7458EC;
-    --color-dove-gray: #616161;
-    --color-dodger-blue: #1C92F4;
-    --color-burnt-sienna: #E67E3F;
-    --color-tory-blue: #0F56A8;
-    --color-olive-green: #5E9440;
-    --color-gold: #F6BD23;
-    --color-pink: #BB4E8E;
+      --color-error: #FF5050;
+      --color-black: #000000;
+      --color-danger: #ee3f28;
+      --color-gray: #f2f1ed;
+      --color-light-gray: #eeeeee;
+      --color-mercury: #e8e8e8;
+      --color-white: #ffffff;
+      --color-purple: #7458EC;
+      --color-dove-gray: #616161;
+      --color-dodger-blue: #1C92F4;
+      --color-burnt-sienna: #E67E3F;
+      --color-tory-blue: #0F56A8;
+      --color-olive-green: #5E9440;
+      --color-gold: #F6BD23;
+      --color-pink: #BB4E8E;
 
-    --color-bg-secondary: #F0EAEE;
+      --color-bg-secondary: #F0EAEE;
 
-    --swiper-prev-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-left.svg');
-    --swiper-next-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-right.svg');
-  }
+      --swiper-prev-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-left.svg');
+      --swiper-next-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-right.svg');
+      --white-check: url('<?php echo get_template_directory_uri(); ?>/upload/icons/white-check.svg');
+    }
   </style>
 
   <!-- Load fonts-->
@@ -109,17 +111,17 @@
   <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-LightItalic.woff2" rel="preload" as="font"
     type="font/woff2" crossorigin>
   <script>
-  window.appConfigUnw = {
-    themeUrl: "<?= get_template_directory_uri(); ?>",
-    uploadUrl: "<?= get_template_directory_uri(); ?>/upload"
-  };
-  let doc = document.documentElement;
+    window.appConfigUnw = {
+      themeUrl: "<?= get_template_directory_uri(); ?>",
+      uploadUrl: "<?= get_template_directory_uri(); ?>/upload"
+    };
+    let doc = document.documentElement;
 
-  function calcVh() {
-    doc.style.setProperty('--vh', window.innerHeight + 'px');
-  }
-  window.addEventListener('resize', calcVh);
-  calcVh();
+    function calcVh() {
+      doc.style.setProperty('--vh', window.innerHeight + 'px');
+    }
+    window.addEventListener('resize', calcVh);
+    calcVh();
   </script>
   <?php wp_head(); ?>
 </head>
