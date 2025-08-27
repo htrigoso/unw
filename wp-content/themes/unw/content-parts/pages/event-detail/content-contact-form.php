@@ -17,7 +17,7 @@
 
   <div class="form-body">
     <div class="form-body__fields">
-      <div class="form-field form-field-select">
+      <div class="form-field form-field-select m-b-24">
         <select name="Dropdown" id="documentType" type="text" required>
           <option value="-Select-" disabled>Tipo de Documento</option>
           <option value="DNI" selected="">DNI</option>
@@ -28,41 +28,41 @@
         <span class="error-message">Datos inválidos</span>
       </div>
 
-      <div class="form-field">
+      <div class="form-field m-b-24">
         <input name="SingleLine" id="docNumber" placeholder="" type="text" required />
         <label for="docNumber">Número de documento (*)</label>
         <span class="error-message">Datos inválidos</span>
       </div>
 
-      <div class="form-field">
+      <div class="form-field m-b-24">
         <input name="Name_First" id="fullname" placeholder="" type="text" required />
         <label for="fullname">Nombres(*)</label>
         <span class="error-message">Datos inválidos</span>
       </div>
 
-      <div class="form-field">
+      <div class="form-field m-b-24">
         <input name="Name_Last" id="fullname" placeholder="" type="text" required />
         <label for="fullname">Apellido paterno(*)</label>
         <span class="error-message">Datos inválidos</span>
       </div>
 
-      <div class="form-field">
+      <div class="form-field m-b-24">
         <input name="Name_Middle" id="fullname" placeholder="" type="text" required />
         <label for="fullname">Apellido materno(*)</label>
         <span class="error-message">Datos inválidos</span>
       </div>
 
-      <div class="form-field">
+      <div class="form-field m-b-24">
         <input name="PhoneNumber_countrycode" placeholder="" id="cellNumber" type="tel" required minlength="9" />
         <label for="cellNumber">Celular (*)</label>
         <span class="error-message">Datos inválidos</span>
       </div>
-      <div class="form-field">
+      <div class="form-field m-b-24">
         <input name="Email" id="email" type="text" placeholder="" required />
         <label for="email">Correo electrónico (*)</label>
         <span class="error-message">Datos inválidos</span>
       </div>
-      <div class="form-field form-field-select">
+      <div class="form-field form-field-select m-b-24">
         <select name="Dropdown100" id="documentType" type="text" required>
           <option value="" selected="" disabled="">Escoge tu carrera</option>
           <optgroup label="Ciencias de la Salud">

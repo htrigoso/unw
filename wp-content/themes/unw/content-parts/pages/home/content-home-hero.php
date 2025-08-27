@@ -6,8 +6,9 @@ $link_one = $hero['link_one'] ?? null;
 $link_two = $hero['link_two'] ?? null;
 $hero_image = $hero['list'][0]['images'] ?? null;
 
-$img_desktop = $hero_image['desktop']['url'] ?? UPLOAD_PATH . '/home/hero/hero-desktop.jpg';
-$img_mobile = $hero_image['mobile']['url'] ?? UPLOAD_PATH . '/home/hero/hero-mobile.jpg';
+$img_desktop = $hero_image['desktop']['url'];
+$img_mobile = $hero_image['mobile']['url'];
+$img_alt = $hero_image['mobile']['alt'];
 ?>
 <?php if(!empty($hero) && is_array($hero)): ?>
 <section class="hero hero-swiper">
@@ -16,7 +17,7 @@ $img_mobile = $hero_image['mobile']['url'] ?? UPLOAD_PATH . '/home/hero/hero-mob
       <div class="swiper-slide swiper-hero__slide">
         <picture class="swiper-hero__picture">
           <source srcset="<?php echo esc_url($img_desktop); ?>" media="(min-width: 768px)" />
-          <img src="<?php echo esc_url($img_mobile); ?>" alt="Universidad Norbert Wiener"
+          <img alt="<?=$img_alt?>" src="<?php echo esc_url($img_mobile); ?>" alt="Universidad Norbert Wiener"
             class="swiper-hero__picture--img" />
         </picture>
       </div>

@@ -32,7 +32,7 @@
 
       <div class="form-field-radio m-b-24">
         <fieldset>
-          <legend>Modalidad:</legend>
+
           <div class="radio-option m-b-10">
             <input type="radio" id="pregrado" name="form_mixto" value="pregrado" checked />
             <label for="pregrado">Pregrado</label>
@@ -52,7 +52,7 @@
         <div class="f-50">
           <div class="form-field form-field-select">
             <select name="Dropdown100" id="documentType" type="text" required>
-              <option value="" selected="" disabled="">Escoge tu carrera</option>
+              <option value="" selected="" disabled="">--Seleccione--</option>
               <optgroup label="Ciencias de la Salud">
                 <option value="5985073000000969086" data-campus="63-64">Farmacia y Bioquímica</option>
                 <option value="5985073000000969096" data-campus="63-64">Tecnología Médica en Terapia Física y
