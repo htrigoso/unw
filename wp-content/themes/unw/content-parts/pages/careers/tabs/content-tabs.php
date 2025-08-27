@@ -9,6 +9,7 @@ $tabs = [
   ['label' => 'Admisión',             'target' => 'admision'],
   ['label' => 'Internacionalización', 'target' => 'internacionalizacion'],
 ];
+
 ?>
 
 <div class="career-tabs">
@@ -23,9 +24,9 @@ $tabs = [
   <div class="x-container x-container--pad-213">
     <div class="career-tabs__content">
       <?php foreach ($tabs as $i => $tab): ?>
-        <div id="<?php echo esc_attr($tab['target']); ?>" class="tab__content<?php echo $i === 0 ? ' is-active' : ''; ?>"
-          role="tabpanel" aria-labelledby="tab-<?php echo esc_attr($tab['target']); ?>">
-          <?php
+      <div id="<?php echo esc_attr($tab['target']); ?>" class="tab__content<?php echo $i === 0 ? ' is-active' : ''; ?>"
+        role="tabpanel" aria-labelledby="tab-<?php echo esc_attr($tab['target']); ?>">
+        <?php
           switch ($tab['target']) {
             case 'presentacion':
 
@@ -38,6 +39,7 @@ $tabs = [
                 !empty($testimonials_info['testimonials']) &&
                 is_array($testimonials_info['testimonials'])
               ) {
+
                 foreach ($testimonials_info['testimonials'] as $testimonial_post) {
                   $info = get_field('info-testimonio', $testimonial_post->ID);
                   $testimonials[] = [
@@ -49,31 +51,27 @@ $tabs = [
                   ];
                 }
               } ?>
-              <?php
+        <?php
               get_template_part(CAREERS_CONTENT_TAB_PATH . '1-presentation/content-career-intro', null, [
                 'presentation' => $presentation
               ]);
               ?>
-              <?php
+        <?php
               get_template_part(COMMON_CONTENT_PATH, 'testimonials', [
                 'title' => $testimonials_info['title'] ?? '',
                 'testimonials' => $testimonials
               ]);
               ?>
-              <section class="career-tabs__faq">
-                <?php
+        <section class="career-tabs__faq">
+          <?php
+              $faqs = $presentation['faqs'];
                 get_template_part(COMMON_CONTENT_PATH, 'faq-section', [
-                  'title' => 'Preguntas Frecuentes',
-                  'faq' => [
-                    ['title' => '¿Pregunta 1?', 'description' => 'Respuesta a la pregunta 1'],
-                    ['title' => '¿Pregunta 2?', 'description' => 'Respuesta a la pregunta 2'],
-                    ['title' => '¿Pregunta 3?', 'description' => 'Respuesta a la pregunta 3'],
-                    ['title' => '¿Pregunta 4?', 'description' => 'Respuesta a la pregunta 4']
-                  ],
+                  'title' => $faqs['title'],
+                  'faq' => $faqs['faq']
                 ]);
                 ?>
-              </section>
-            <?php
+        </section>
+        <?php
               break;
 
             case 'beneficios':
@@ -125,18 +123,18 @@ $tabs = [
 
             case 'internacionalizacion':
             ?>
-              <div class="career-tabs__internationalization">
-                <?php
+        <div class="career-tabs__internationalization">
+          <?php
                 get_template_part(COMMON_CONTENT_PATH, 'internationalization', null, [
                   'id' => 0
                 ]);
                 ?>
-              </div>
-          <?php
+        </div>
+        <?php
               break;
           }
           ?>
-        </div>
+      </div>
       <?php endforeach; ?>
     </div>
   </div>
