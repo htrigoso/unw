@@ -1,26 +1,21 @@
 export class ModalManager {
-  constructor() {
+  constructor(options = {}) {
     this.lastFocusedElement = null
+    this.onOpenCallback = options.onOpen || null
     this.init()
   }
 
   openModal(modalId) {
     let modal = document.getElementById(modalId)
-
     if (!modal) {
       const template = document.getElementById(`template-${modalId}`)
-
       if (template) {
         const clone = template.content.cloneNode(true)
         document.body.appendChild(clone)
         modal = document.getElementById(modalId)
       }
     }
-
-    if (!modal) {
-      console.error(`No se encontró el modal ni la plantilla para el id: ${modalId}`)
-      return
-    }
+    if (!modal) return
 
     this.lastFocusedElement = document.activeElement
     modal.classList.add('active')
@@ -28,6 +23,10 @@ export class ModalManager {
     setTimeout(() => {
       modal.classList.add('visible')
       document.body.style.overflow = 'hidden'
+
+      if (this.onOpenCallback) {
+        this.onOpenCallback(modal)
+      }
     }, 50)
   }
 
