@@ -91,16 +91,18 @@
 }
 
 .error-page__image {
-  min-width: rem(445);
+  min-width: rem(322);
   position: absolute;
   bottom: rem(34);
-  max-height: none;
+  max-height: rem(500);
   z-index: -1;
+  left: 50%;
+  transform: translateX(-50%);
 
   @include media(">=tablet") {
+    max-height: none;
     position: relative;
     max-width: none;
-    left: rem(-162);
   }
 
   @include media(">=desktop-s") {
