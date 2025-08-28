@@ -28,7 +28,6 @@
 
       <div class="form-field-radio m-b-24">
         <fieldset>
-
           <div class="radio-option m-b-10">
             <input type="radio" id="pregrado" name="form_mixto" value="pregrado" checked />
             <label for="pregrado">Pregrado</label>
@@ -117,21 +116,3 @@
     </div>
   </div>
 </form>
-
-<!-- <div class="form-field-radio">
-  <fieldset>
-    <legend>Modalidad:</legend>
-    <div class="radio-option">
-      <input type="radio" id="pregrado" name="modalidad" value="pregrado" checked />
-      <label for="pregrado">Pregrado</label>
-    </div>
-    <div class="radio-option">
-      <input type="radio" id="gente-trabaja" name="modalidad" value="gente-trabaja" />
-      <label for="gente-trabaja">Carreras para gente que trabaja</label>
-    </div>
-    <div class="radio-option">
-      <input type="radio" id="virtual" name="modalidad" value="virtual" />
-      <label for="virtual">100% virtual</label>
-    </div>
-  </fieldset>
-</div> -->

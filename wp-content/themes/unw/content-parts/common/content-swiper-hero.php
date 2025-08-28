@@ -14,6 +14,7 @@ if (!empty($slides)) :
           $desktop  = $slide['images']['desktop']['url'] ?? '';
           $mobile   = $slide['images']['mobile']['url'] ?? '';
           $alt      = $slide['images']['desktop']['alt'] ?? 'Slide Carrera';
+          $type     = $slide['images']['type'] ?? '';
           $title    = $slide['title'] ?? '';
           $label    = $slide['label'] ?? '';
 
@@ -29,7 +30,8 @@ if (!empty($slides)) :
               'alt'         => $alt,
               'title'       => $title,
               'breadcrumbs' => $slide_breadcrumbs,
-              'variant'    => $variant
+              'type'        => $type,
+              'variant'     => $variant
             ]); ?>
           </div>
         <?php endforeach; ?>
