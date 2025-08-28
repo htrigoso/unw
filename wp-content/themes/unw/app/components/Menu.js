@@ -4,7 +4,9 @@ export default class Menu extends Component {
   constructor({ element, navbar }) {
     super({
       element,
-      elements: {}
+      elements: {
+        btnSearchModalForm: '#btn-search-modal-form'
+      }
     })
 
     this.navbar = navbar
@@ -23,11 +25,14 @@ export default class Menu extends Component {
     this.btnClose = this.element.querySelector('#btn-close-menu')
     this.menuLinks = this.element.querySelectorAll('.sidebar__menu-link')
     this.submenuBackButtons = this.element.querySelectorAll('.sidebar__submenu-back')
+    this.btnSearchhModalForm = this.elements.btnSearchModalForm
+    console.log('hi', this.element)
 
     this.handleOpen()
     this.handleClose()
     this.handleSubmenuOpen()
     this.handleSubmenuBack()
+    this.handleBtnSearchhModalForm()
   }
 
   handleResize() {
@@ -76,6 +81,14 @@ export default class Menu extends Component {
         submenu?.classList.remove('is-active')
       })
     })
+  }
+
+  handleBtnSearchhModalForm() {
+    // if (!this.btnSearchhModalForm.length) return
+    // this.btnSearchhModalForm.addEventListener('click', (e) => {
+    //   e.preventDefault()
+    //   alert('ok')
+    // })
   }
 
   show() {
