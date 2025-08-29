@@ -28,10 +28,24 @@ $base_breadcrumbs = [
       'base_breadcrumbs' => $base_breadcrumbs
     ]
   );
+
+  // Obtenemos los términos de la taxonomía 'modalidad'
+  $terms = get_the_terms(get_the_ID(), 'modalidad');
   ?>
+
   <div class="x-container careers-hero__form__wrapper">
     <div class="careers-hero__form">
-      <?php get_template_part(CAREERS_CONTENT_PATH, 'contact-form') ?>
+      <?php
+      if ($terms && !is_wp_error($terms)) {
+        $slugs = wp_list_pluck($terms, 'slug');
+
+        if (in_array('presencial', $slugs)) {
+          get_template_part(CAREERS_CONTENT_PATH, 'contact-form-presencial');
+        } else {
+          get_template_part(CAREERS_CONTENT_PATH, 'contact-form-virtual');
+        }
+      }
+      ?>
     </div>
   </div>
 </div>

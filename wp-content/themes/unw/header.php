@@ -90,26 +90,26 @@
 
   <!-- Load fonts-->
   <!-- Load Founders Grotesk fonts -->
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Bold.woff2" rel="preload" as="font" type="font/woff2"
-    crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-BoldItalic.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Semibold.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-SemiboldItalic.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Medium.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-MediumItalic.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Regular.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-RegularItalic.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Light.woff2" rel="preload" as="font" type="font/woff2"
-    crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-LightItalic.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
+  <link href="<?php echo get_template_directory_uri(); ?>/assets/fonts/FoundersGrotesk-Bold.woff2" rel="preload"
+    as="font" type="font/woff2" crossorigin>
+  <link href="<?php echo get_template_directory_uri(); ?>/assets/fonts/FoundersGrotesk-BoldItalic.woff2" rel="preload"
+    as="font" type="font/woff2" crossorigin>
+  <link href="<?php echo get_template_directory_uri(); ?>/assets/fonts/FoundersGrotesk-Semibold.woff2" rel="preload"
+    as="font" type="font/woff2" crossorigin>
+  <link href="<?php echo get_template_directory_uri(); ?>/assets/fonts/FoundersGrotesk-SemiboldItalic.woff2"
+    rel="preload" as="font" type="font/woff2" crossorigin>
+  <link href="<?php echo get_template_directory_uri(); ?>/assets/fonts/FoundersGrotesk-Medium.woff2" rel="preload"
+    as="font" type="font/woff2" crossorigin>
+  <link href="<?php echo get_template_directory_uri(); ?>/assets/fonts/FoundersGrotesk-MediumItalic.woff2" rel="preload"
+    as="font" type="font/woff2" crossorigin>
+  <link href="<?php echo get_template_directory_uri(); ?>/assets/fonts/FoundersGrotesk-Regular.woff2" rel="preload"
+    as="font" type="font/woff2" crossorigin>
+  <link href="<?php echo get_template_directory_uri(); ?>/assets/fonts/FoundersGrotesk-RegularItalic.woff2"
+    rel="preload" as="font" type="font/woff2" crossorigin>
+  <link href="<?php echo get_template_directory_uri(); ?>/assets/fonts/FoundersGrotesk-Light.woff2" rel="preload"
+    as="font" type="font/woff2" crossorigin>
+  <link href="<?php echo get_template_directory_uri(); ?>/assets/fonts/FoundersGrotesk-LightItalic.woff2" rel="preload"
+    as="font" type="font/woff2" crossorigin>
   <script>
   window.appConfigUnw = {
     themeUrl: "<?= get_template_directory_uri(); ?>",
@@ -124,29 +124,11 @@
   calcVh();
   </script>
   <!-- Google Tag Manager -->
-  <script>
-  (function(w, d, s, l, i) {
-    w[l] = w[l] || [];
-    w[l].push({
-      'gtm.start': new Date().getTime(),
-      event: 'gtm.js'
-    });
-    var f = d.getElementsByTagName(s)[0],
-      j = d.createElement(s),
-      dl = l != 'dataLayer' ? '&l=' + l : '';
-    j.async = true;
-    j.src =
-      'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-    f.parentNode.insertBefore(j, f);
-  })(window, document, 'script', 'dataLayer', 'GTM-W8DNW8B');
-  </script>
+
   <!-- End Google Tag Manager -->
   <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W8DNW8B" height="0" width="0"
-      style="display:none;visibility:hidden"></iframe>
-  </noscript>
+
   <?php include get_template_directory() . '/upload/icons/sprite.svg'; ?>

@@ -4,6 +4,7 @@ import HeroSwiper from '../../components/HeroSwiper'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
 import InternationalSwiper from '../../components/InternationalSwiper'
 import { changeSwiperSlide, updateSwipers } from '../../utils/swiper'
+import { ModalManager } from '../../components/Modal'
 
 (function () {
   const heroSwiper = HeroSwiper('.hero-swiper', {
@@ -63,4 +64,24 @@ import { changeSwiperSlide, updateSwipers } from '../../utils/swiper'
       }
     })
   }
+
+  new ModalManager({
+    onOpen: (modal) => {
+      const swiperElement = modal.querySelector('.laboratories-modal-swiper')
+
+      if (swiperElement) {
+        if (swiperElement.swiper) {
+          swiperElement.swiper.update()
+        } else {
+          PostSwiper('.laboratories-modal-swiper', {
+            slidesPerView: 1,
+            breakpoints: {
+              576: { slidesPerView: 1, spaceBetween: 8 },
+              1024: { slidesPerView: 1, spaceBetween: 8 }
+            }
+          })
+        }
+      }
+    }
+  })
 })()

@@ -4,12 +4,14 @@ export default class Menu extends Component {
   constructor({ element, navbar }) {
     super({
       element,
-      elements: {}
+      elements: {
+      }
     })
 
     this.navbar = navbar
     this.createListeners()
     this.handleResize = this.handleResize.bind(this)
+    this.searchModalForm = document.querySelector('.search-modal__wrapper')
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
   }
@@ -23,11 +25,14 @@ export default class Menu extends Component {
     this.btnClose = this.element.querySelector('#btn-close-menu')
     this.menuLinks = this.element.querySelectorAll('.sidebar__menu-link')
     this.submenuBackButtons = this.element.querySelectorAll('.sidebar__submenu-back')
+    this.btnSearchModalForm = this.navbar.querySelector('.btn-search-modal-form')
+    this.btnCloseSearchModalForm = document.querySelector('#btn-close-modal')
 
     this.handleOpen()
     this.handleClose()
     this.handleSubmenuOpen()
     this.handleSubmenuBack()
+    this.handleSearchModal()
   }
 
   handleResize() {
@@ -76,6 +81,27 @@ export default class Menu extends Component {
         submenu?.classList.remove('is-active')
       })
     })
+  }
+
+  toggleSearchModal(open = true) {
+    if (!this.searchModalForm) return
+    this.searchModalForm.classList.toggle('is-active', open)
+  }
+
+  handleSearchModal() {
+    if (this.btnSearchModalForm) {
+      this.btnSearchModalForm.addEventListener('click', (e) => {
+        e.preventDefault()
+        this.toggleSearchModal(true)
+      })
+    }
+
+    if (this.btnCloseSearchModalForm) {
+      this.btnCloseSearchModalForm.addEventListener('click', (e) => {
+        e.preventDefault()
+        this.toggleSearchModal(false)
+      })
+    }
   }
 
   show() {

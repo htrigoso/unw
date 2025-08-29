@@ -112,6 +112,7 @@
   flex: 1 1 100%;
   max-width: calc(40% - 5px);
 }
+
 .f-60 {
   flex: 1 1 100%;
   max-width: calc(60% - 5px);
@@ -133,7 +134,7 @@
   flex: 1 1 100%;
 }
 .f-50 {
-  max-width: calc(50% - 5px);
+  max-width: calc(50% - 8px);
   flex: 1 1 100%;
 }
 .f-50-10 {
@@ -186,6 +187,9 @@
 }
 .m-b-10 {
   margin-bottom: rem(10);
+}
+.m-b-12 {
+  margin-bottom: rem(12);
 }
 .m-b-15 {
   margin-bottom: rem(15);

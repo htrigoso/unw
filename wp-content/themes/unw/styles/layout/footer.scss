@@ -98,15 +98,31 @@
 }
 
 .footer__menu__list {
-  .menu-item {
+  > .menu-item {
     &:not(:last-child) {
       margin-bottom: rem(20);
     }
 
-    a {
-      @include title-22;
+    > a {
+      @include title-20;
       color: var(--color-white);
       text-transform: capitalize;
+    }
+  }
+
+  .sub-menu {
+    margin-top: rem(6);
+
+    .menu-item {
+      &:not(:first-child) {
+        margin-top: rem(6);
+      }
+
+      a {
+        font-size: rem(16);
+        color: var(--color-white);
+        text-transform: capitalize;
+      }
     }
   }
 }
