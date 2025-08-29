@@ -1,11 +1,11 @@
-<div class="search-modal__wrapper"> <!-- Add "is-active" class -->
+<div class="search-modal__wrapper">
+  <!-- Add "is-active" class -->
   <div class="search-modal__wrapper__content">
     <div class="x-container sidebar__header">
       <a class="sidebar__logo pointer" href="<?php echo esc_url(home_url('/')); ?>">
-        <img width="101" height="40" src="<?= UPLOAD_PATH . '/logo-unw.svg' ?>"
-          alt="Logo UNW">
+        <img width="101" height="40" src="<?= UPLOAD_PATH . '/logo-unw.svg' ?>" alt="Logo UNW">
       </a>
-      <button type="button" class="btn-menu-hamburger pointer">
+      <button type="button" class="btn-menu-hamburger pointer" id="btn-close-modal">
         <i>
           <svg width="40" height="40">
             <use xlink:href="#close"></use>

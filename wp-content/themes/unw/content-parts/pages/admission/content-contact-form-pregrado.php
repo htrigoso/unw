@@ -22,7 +22,7 @@
   <!-- Campos vacios -->
   <input type="hidden" name="Name_Middle" value="">
   <input type="hidden" name="Dropdown3" value="Perú (+51)">
-  <input type="hidden" name="Dropdown2" value="">
+  <input type="hidden" name="Dropdown" value="DNI">
   <input type="hidden" name="Number" value="">
   <!-- ////Campos vacios -->
 
@@ -37,10 +37,7 @@
             <input type="radio" id="pregrado" name="form_mixto" value="pregrado" checked />
             <label for="pregrado">Pregrado</label>
           </div>
-          <div class="radio-option m-b-10">
-            <input type="radio" id="gente-trabaja" name="form_mixto" value="gente-trabaja" />
-            <label for="gente-trabaja">Carreras para gente que trabaja</label>
-          </div>
+
           <div class="radio-option m-b-10">
             <input type="radio" id="virtual" name="form_mixto" value="virtual" />
             <label for="virtual">100% virtual</label>
@@ -110,15 +107,15 @@
       <div class="flex justify-between m-b-24">
         <div class="f-50">
           <div class="form-field">
-            <input name="Name_First" id="fullname" placeholder="" type="text" required />
-            <label for="fullname">Nombres (*)</label>
+            <input name="Name_First" id="Name_First" placeholder="" type="text" required />
+            <label for="Name_First">Nombres (*)</label>
             <span class="error-message">Datos inválidos</span>
           </div>
         </div>
         <div class="f-50">
           <div class="form-field">
-            <input name="Name_First" id="fullname" placeholder="" type="text" />
-            <label for="fullname">Apellidos (*)</label>
+            <input name="Name_Last" id="name_last" placeholder="" type="text" />
+            <label for="name_last">Apellidos (*)</label>
             <span class="error-message">Datos inválidos</span>
           </div>
         </div>
@@ -134,8 +131,8 @@
         </div>
         <div class="f-50">
           <div class="form-field">
-            <input name="Email" id="email" type="text" placeholder="" required />
-            <label for="email">Celular (*)</label>
+            <input name="PhoneNumber_countrycode" id="PhoneNumber_countrycode" type="text" placeholder="" required />
+            <label for="PhoneNumber_countrycode">Celular (*)</label>
             <span class="error-message">Datos inválidos</span>
           </div>
         </div>

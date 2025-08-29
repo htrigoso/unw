@@ -1,5 +1,5 @@
 <form id="form" class="contact-form formCarrera" method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
-  action="https://forms.zohopublic.com/adminzoho11/form/WebCarreras/formperma/T3JIAMOGnJxkHbk-qsPtLTz8XUz9NaQDXxHjjRe_AKk/htmlRecords/submit">
+  action="https://forms.zohopublic.com/adminzoho11/form/WebCarrerasVirtual/formperma/f1PqvMaVQ3bdPj9ELVT4XJWYy_eHSjrAECWfWqSB_uE/htmlRecords/submit">
   <div class="form-header">
     <i>
       <svg width="52" height="52">
@@ -16,21 +16,25 @@
   <input type="hidden" name="utm_term" value="organico">
   <input type="hidden" name="utm_content" value="organico">
   <input type="hidden" name="zc_gad" value="admision_2024_II">
-  <input type="hidden" name="Website" value="https://www.uwiener.edu.pe/carreras/farmacia-y-bioquimica/">
+  <input type="hidden" name="Website" value="http://unw.loc/carreras-a-distancia/carrera-de-farmacia-y-bioquimica/">
   <!-- Campos vacios -->
   <input type="hidden" name="Name_Middle" value="">
   <input type="hidden" name="Dropdown3" value="Perú (+51)">
-  <input type="hidden" name="Dropdown2" value="">
+  <input type="hidden" name="Dropdown" value="DNI">
   <input type="hidden" name="Number" value="">
+
+  <input type="hidden" name="SingleLine5" value="Ingeniería">
+  <input type="hidden" name="SingleLine4" value="5985073000303051026">
+  <input type="hidden" name="SingleLine3" value="Ingeniería de Sistemas e Informática">
+  <input type="hidden" name="SingleLine8" value="Amazonas">
+
   <!-- ////Campos vacios -->
   <div class="form-body">
     <div class="form-body__fields">
-
-
       <div class="flex justify-between m-b-24">
         <div class="f-50">
           <div class="form-field form-field-select">
-            <select name="departamentos_zoho" id="documentType" type="text" required>
+            <select name="SingleLine7" id="documentType" type="text" required>
               <option value="" selected="" disabled="">Departamento de procedencia</option>
               <option value="5985073000001376346">Amazonas</option>
               <option value="5985073000001376347">Áncash</option>
@@ -73,15 +77,15 @@
       <div class="flex justify-between m-b-24">
         <div class="f-50">
           <div class="form-field">
-            <input name="Name_First" id="fullname" placeholder="" type="text" required />
-            <label for="fullname">Nombres (*)</label>
+            <input name="Name_Last" id="name_last" placeholder="" type="text" required />
+            <label for="name_last">Apellidos (*)</label>
             <span class="error-message">Datos inválidos</span>
           </div>
         </div>
         <div class="f-50">
           <div class="form-field">
-            <input name="Name_First" id="fullname" placeholder="" type="text" />
-            <label for="fullname">Número de documento (*)</label>
+            <input name="SingleLine" id="singleLine" placeholder="" type="text" />
+            <label for="singleLine">Número de documento (*)</label>
             <span class="error-message">Datos inválidos</span>
           </div>
         </div>

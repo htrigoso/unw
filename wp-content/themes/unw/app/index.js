@@ -156,7 +156,6 @@ class App {
 
   addBackdropListeners() {
     const wrappers = document.querySelectorAll('.main-submenu-wrapper')
-    console.log(wrappers)
 
     wrappers.forEach((wrapper) => {
       wrapper.addEventListener('click', (e) => this.handleBackdropClick(e))

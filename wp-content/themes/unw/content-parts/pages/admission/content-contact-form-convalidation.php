@@ -38,10 +38,6 @@
             <label for="pregrado">Pregrado</label>
           </div>
           <div class="radio-option m-b-10">
-            <input type="radio" id="gente-trabaja" name="form_mixto" value="gente-trabaja" />
-            <label for="gente-trabaja">Carreras para gente que trabaja</label>
-          </div>
-          <div class="radio-option m-b-10">
             <input type="radio" id="virtual" name="form_mixto" value="virtual" />
             <label for="virtual">100% virtual</label>
           </div>

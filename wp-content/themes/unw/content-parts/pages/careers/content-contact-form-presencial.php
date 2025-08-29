@@ -32,10 +32,7 @@
             <input type="radio" id="pregrado" name="form_mixto" value="pregrado" checked />
             <label for="pregrado">Pregrado</label>
           </div>
-          <div class="radio-option m-b-10">
-            <input type="radio" id="gente-trabaja" name="form_mixto" value="gente-trabaja" />
-            <label for="gente-trabaja">Carreras para gente que trabaja</label>
-          </div>
+
           <div class="radio-option m-b-10">
             <input type="radio" id="virtual" name="form_mixto" value="virtual" />
             <label for="virtual">100% virtual</label>
@@ -56,8 +53,8 @@
         </div>
         <div class="f-50">
           <div class="form-field">
-            <input name="Name_First" id="fullname" placeholder="" type="text" required />
-            <label for="fullname">Nombres (*)</label>
+            <input name="Name_First" id="name_first" placeholder="" type="text" required />
+            <label for="name_first">Nombres (*)</label>
             <span class="error-message">Datos inválidos</span>
           </div>
         </div>
@@ -66,15 +63,15 @@
       <div class="flex justify-between m-b-24">
         <div class="f-50">
           <div class="form-field">
-            <input name="Name_First" id="fullname" placeholder="" type="text" required />
-            <label for="fullname">Nombres (*)</label>
+            <input name="Name_Last" id="name_last" placeholder="" type="text" required />
+            <label for="name_last">Apellidos (*)</label>
             <span class="error-message">Datos inválidos</span>
           </div>
         </div>
         <div class="f-50">
           <div class="form-field">
-            <input name="Name_First" id="fullname" placeholder="" type="text" />
-            <label for="fullname">Número de documento (*)</label>
+            <input name="SingleLine" id="singleLine" placeholder="" type="text" />
+            <label for="singleLine">Número de documento (*)</label>
             <span class="error-message">Datos inválidos</span>
           </div>
         </div>
