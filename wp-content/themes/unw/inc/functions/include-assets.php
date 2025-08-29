@@ -1,4 +1,5 @@
 <?php
+add_filter( 'big_image_size_threshold', '__return_false' );
 
 add_action('wp_footer', 'include_the_json_settings');
 function include_the_json_settings()
