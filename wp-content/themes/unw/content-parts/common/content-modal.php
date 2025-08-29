@@ -2,10 +2,11 @@
 $content = $args['content'] ?? '';
 $id = $args['id'] ?? '';
 $class = $args['class'] ?? '';
+$variant = $args['variant'] ?? 'default'; // Variants: Default | Float
 ?>
 
 <template id="template-<?= $id ?>">
-  <div id="<?php echo esc_attr($id); ?>" class="modal <?php echo esc_attr($class); ?>">
+  <div id="<?php echo esc_attr($id); ?>" class="modal <?= $variant ?> <?php echo esc_attr($class); ?>">
     <div class="modal-overlay" data-modal-close></div>
     <div class="modal-container">
       <div class="modal-header">
