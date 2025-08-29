@@ -43,25 +43,57 @@
   animation: modal-fade-in 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.modal-header {
-  padding: rem(22) rem(20) 0;
-  display: flex;
-  width: 100%;
-}
-
-.modal-close {
-  cursor: pointer;
-  margin-left: auto;
-  border-radius: rem(6);
-
-  svg {
-    &:hover {
-      color: var(--color-danger);
-    }
+.modal.default {
+  .modal-header {
+    padding: rem(22) rem(20) 0;
+    display: flex;
+    width: 100%;
   }
 
-  &:hover {
-    background: rgba(255, 0, 0, 0.1);
+  .modal-close {
+    cursor: pointer;
+    margin-left: auto;
+    border-radius: rem(6);
+
+    svg {
+      &:hover {
+        color: var(--color-danger);
+      }
+    }
+
+    &:hover {
+      background: rgba(255, 0, 0, 0.1);
+    }
+  }
+}
+
+.modal.float {
+  .modal-header {
+    position: relative;
+  }
+
+  .modal-close {
+    padding: rem(10);
+    cursor: pointer;
+    border-radius: rem(9999);
+    background-color: var(--color-white);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+
+    position: absolute;
+    right: rem(-7);
+    top: rem(-20);
+
+    svg {
+      width: rem(34);
+      height: rem(34);
+      &:hover {
+        color: var(--color-danger);
+      }
+    }
+
+    &:hover {
+      background: rgb(255, 225, 225);
+    }
   }
 }
 

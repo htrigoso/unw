@@ -10,6 +10,7 @@
 
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar');?>
 <main>
+  <?php get_template_part(HOME_CONTENT_PATH, 'more-info-form');?>
   <?php get_template_part(HOME_CONTENT_PATH, 'home-hero');?>
   <?php get_template_part(HOME_CONTENT_PATH, 'why-wiener'); ?>
   <?php get_template_part(HOME_CONTENT_PATH, 'programs'); ?>
