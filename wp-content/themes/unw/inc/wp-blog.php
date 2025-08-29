@@ -1,5 +1,23 @@
 <?php
 
+function blog_search_template($template) {
+    if (isset($_GET['blog_search'])) {
+        $new_template = locate_template(array('search-blog.php'));
+        if ('' != $new_template) {
+            return $new_template;
+        }
+    }
+    return $template;
+}
+add_filter('template_include', 'blog_search_template');
+
+function blog_search_filter($query) {
+    if ($query->is_search() && !is_admin() && isset($_GET['blog_search'])) {
+        $query->set('post_type', 'post'); // solo entradas del blog
+    }
+}
+add_action('pre_get_posts', 'blog_search_filter');
+
 
 // Cambiar la URL de las entradas para incluir /blog/
 function custom_post_permalink($permalink, $post) {

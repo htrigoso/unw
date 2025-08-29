@@ -1,45 +1,16 @@
-<?php set_query_var('ASSETS_CHUNK_NAME', 'blog'); ?>
+<?php
+
+/**
+ * Template Name: Buscador Template
+ */
+?>
+<?php set_query_var('ASSETS_CHUNK_NAME', 'search'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php get_header(); ?>
 
-<?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
-
+<?php get_template_part(GENERAL_CONTENT_PATH, 'navbar');?>
 <main>
-  <?php
-    $acf_hero = get_field('hero-slide');
-
-    $img_desktop = $acf_hero['images']['desktop']['url'] ?? '';
-    $img_mobile = $acf_hero['images']['mobile']['url'] ?? '';
-    $alt = $acf_hero['images']['desktop']['alt'] ?? '';
-    $title = $acf_hero['title'] ?? 'Tendencias y novedades';
-    $breadcrumbs = [
-        [
-          'label' => 'Inicio',
-          'href' => home_url('/'),
-        ],
-        [
-          'label' => 'Blog',
-          'href' => '/blog/',
-        ],
-      ];
-
-    get_template_part(COMMON_CONTENT_PATH, 'hero-slide', [
-      'img_desktop' => $img_desktop,
-      'img_mobile' => $img_mobile,
-      'alt' => $alt,
-      'title' => $title,
-      'breadcrumbs' => $breadcrumbs,
-      'variant' => 'primary',
-    ]);
-  ?>
-
-  <?php
-    // Ensure we have a proper query and global post object
-    $search_query = get_query_var('s');
-    if (!empty($search_query)) {
-      get_template_part(BLOG_CONTENT_PATH, 'blog');
-    } 
-  ?>
+  <?php get_template_part(SEARCH_CONTENT_PATH, 'search-section'); ?>
+  <?php get_template_part(SEARCH_CONTENT_PATH, 'search-results'); ?>
 </main>
-
 <?php get_footer(); ?>

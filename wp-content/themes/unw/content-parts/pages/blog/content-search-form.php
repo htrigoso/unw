@@ -3,11 +3,12 @@
     COMMON_CONTENT_PATH,
     'search-input',
     [
-      'input_name' => 's',
+      'input_name' => 'blog_search',
       'aria_label' => 'Buscar en el blog',
       'placeholder' => 'Ej: Arquitectura'
     ]
   ) ?>
+  <input type="hidden" name="blog_search" value="1">
   <button class="btn btn-primary-one blog-search-form__button" type="submit">
     Buscar
   </button>

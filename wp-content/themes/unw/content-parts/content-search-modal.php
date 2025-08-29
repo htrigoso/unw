@@ -25,15 +25,17 @@
         </button>
       </div>
       <div class="search-modal__form">
-        <div class="search-field">
-          <input type="text" placeholder="¿Qué estás buscando?" />
-          <i>
-            <svg width="24" height="24">
-              <use xlink:href="#search"></use>
-            </svg>
-          </i>
-        </div>
-        <button class="btn btn-primary-one search-modal__form--btn">Buscar</button>
+        <form action="<?php echo home_url('/'); ?>">
+          <div class="search-field">
+            <input type="text" name="s" placeholder="¿Qué estás buscando?" />
+            <i>
+              <svg width="24" height="24">
+                <use xlink:href="#search"></use>
+              </svg>
+            </i>
+          </div>
+          <button type="submit" class="btn btn-primary-one search-modal__form--btn">Buscar</button>
+        </form>
       </div>
     </div>
   </div>
