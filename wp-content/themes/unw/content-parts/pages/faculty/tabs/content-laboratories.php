@@ -23,59 +23,48 @@ $card_items = $infrastructure['list'];
             $excerpt = get_the_excerpt($post_id);
             $photo = get_the_post_thumbnail_url($post_id, 'full') ?: UPLOAD_PATH . '/careers/infra/default.jpg';
 
-            $slides = [
-              [
-                'title' => $title,
-                'photo' => $photo,
-              ],
-              [
-                'title' => $title,
-                'photo' => $photo,
-              ]
-            ];
+            $slides =  get_field('list', $post_id);
 
             $modal_id = 'laboratories-modal-' . $i
         ?>
-            <li class="swiper-slide laboratories__item" data-modal-target="<?= $modal_id ?>">
-              <?php
+        <li class="swiper-slide laboratories__item" data-modal-target="<?= $modal_id ?>">
+          <?php
               get_template_part(COMMON_CONTENT_PATH, 'infra-card', [
                 'title' => esc_html($title),
                 'excerpt' => esc_html($excerpt),
                 'photo' => esc_url($photo),
               ]);
               ?>
-            </li>
+        </li>
 
-            <?php
+        <?php
             ob_start();
             ?>
-            <div class="laboratories-modal__content">
-              <div class="laboratories-modal-swiper post-swiper">
-                <div class="swiper-container">
-                  <ul class="swiper-wrapper laboratories-modal__list">
-                    <?php foreach ($slides as $slide) { ?>
-                      <li class="swiper-slide">
-                        <article class="laboratories-modal__card">
-                          <img
-                            src="<?php echo esc_url($slide['photo']); ?>"
-                            alt=""
-                            class="laboratories-modal__card--img" />
-                          <p class="laboratories-modal__card--desc"><?= esc_html($slide['title']) ?></p>
-                        </article>
-                      </li>
-                    <?php } ?>
-                  </ul>
-                  <div class="swiper-navigation" data-size="responsive">
-                    <div class="swiper-primary-button-prev" data-size="responsive"></div>
-                    <div class="swiper-primary-button-next" data-size="responsive"></div>
-                  </div>
-                </div>
+        <div class="laboratories-modal__content">
+          <div class="laboratories-modal-swiper post-swiper">
+            <div class="swiper-container">
+              <ul class="swiper-wrapper laboratories-modal__list">
+                <?php foreach ($slides as $slide) { ?>
+                <li class="swiper-slide">
+                  <article class="laboratories-modal__card">
+                    <img src="<?php echo esc_url($slide['image']['url']); ?>"
+                      alt="<?php echo esc_url($slide['image']['alt']); ?>" class="laboratories-modal__card--img" />
+                    <p class="laboratories-modal__card--desc"><?= esc_html($slide['title']) ?></p>
+                  </article>
+                </li>
+                <?php } ?>
+              </ul>
+              <div class="swiper-navigation" data-size="responsive">
+                <div class="swiper-primary-button-prev" data-size="responsive"></div>
+                <div class="swiper-primary-button-next" data-size="responsive"></div>
               </div>
             </div>
-            <?php
+          </div>
+        </div>
+        <?php
             $content = ob_get_clean();
             ?>
-            <?php
+        <?php
             get_template_part(COMMON_CONTENT_PATH, 'modal', [
               'content' => $content,
               'id' => $modal_id,

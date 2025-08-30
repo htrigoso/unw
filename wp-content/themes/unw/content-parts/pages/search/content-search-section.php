@@ -6,7 +6,7 @@
         COMMON_CONTENT_PATH,
         'search-input',
         [
-          'input_name' => 'p',
+          'input_name' => 's',
           'aria_label' => 'Buscar en el sitio',
           'placeholder' => 'Ej: Admisión'
         ]

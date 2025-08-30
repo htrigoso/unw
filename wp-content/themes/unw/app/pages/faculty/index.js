@@ -54,17 +54,6 @@ import { ModalManager } from '../../components/Modal'
   }
   International()
 
-  const tabsElement = document.querySelector('.faculty-tabs')
-  if (tabsElement) {
-    new Tabs({
-      element: tabsElement,
-      onTabChange(tab, targetContent, tabIndex) {
-        changeSwiperSlide(tabIndex, heroSwiper)
-        updateSwipers(targetContent)
-      }
-    })
-  }
-
   new ModalManager({
     onOpen: (modal) => {
       const swiperElement = modal.querySelector('.laboratories-modal-swiper')
