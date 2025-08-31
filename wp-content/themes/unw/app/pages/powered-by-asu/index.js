@@ -34,14 +34,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const modals = new ModalManager()
   const section = document.querySelector('.pba-network')
-  const countries = JSON.parse(section.dataset.countries)
+  const marker = section.dataset.marker
+  const map = section.dataset.map
+  const countries = window.pbaCountries
   const container = document.getElementById('globeViz')
 
   const gData = countries.map((p, i) => ({
     id: i + 1,
     lat: p.lat,
     lng: p.lng,
-    icono: p.icon,
     nombre: p.name,
     size: 30
   }))
@@ -49,14 +50,14 @@ window.addEventListener('DOMContentLoaded', () => {
   const tooltip = document.getElementById('tooltip')
 
   const globe = new Globe(document.getElementById('globeViz'))
-    .globeImageUrl(`${window.appConfigUnw.uploadUrl}/powered-by-asu/globe/maps/america.jpg`)
+    .globeImageUrl(map)
     .backgroundColor('rgb(218, 247, 247, 1)')
     .showAtmosphere(false)
     .globeOffset([0, 0])
     .htmlElementsData(gData)
     .htmlElement(d => {
       const el = document.createElement('img')
-      el.src = d.icono
+      el.src = marker
       el.style.width = `${d.size}px`
       el.style.transition = 'opacity 250ms'
       el.style.pointerEvents = 'auto'
@@ -79,11 +80,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
       el.addEventListener('click', e => {
         e.stopPropagation()
+        console.log(d)
+
         openModal({
           id: d.id,
           name: d.nombre,
-          lat: d.lat.toFixed(2),
-          lng: d.lng.toFixed(2)
+          lat: Number(d.lat),
+          lng: Number(d.lng)
         })
         globe.pointOfView(
           { lat: d.lat, lng: d.lng, altitude: 1.5 },
@@ -111,6 +114,7 @@ window.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', resizeGlobe)
 
   globe.pointOfView({ lat: 0, lng: -90, altitude: 1.5 })
+  globe.controls().enableZoom = false
 
   document.querySelectorAll('#globeControls button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -121,6 +125,7 @@ window.addEventListener('DOMContentLoaded', () => {
       btn.classList.add('active')
 
       const img = btn.dataset.map
+
       const lat = parseFloat(btn.dataset.lat)
       const lng = parseFloat(btn.dataset.lng)
       toggleMap(img, { lat, lng })

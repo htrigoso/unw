@@ -1,12 +1,23 @@
 <?php
-$tabs_items = get_field('tabs');
+$current_facultad = get_queried_object();
+$current_id = $current_facultad && isset($current_facultad->ID) ? $current_facultad->ID : null;
+
+$tabs_items = get_posts(array(
+    'post_type'      => 'facultad',
+    'post_status'    => 'publish',
+    'posts_per_page' => -1,
+));
+
+
+
 $tabs = [];
 if ($tabs_items) {
   foreach ($tabs_items as $item) {
     $tabs[] = [
       'id'    => $item->ID,
       'label' => $item->post_title,
-      'target' => sanitize_title($item->post_title)
+      'url'  => esc_url(get_permalink($item->ID)),
+      'target' => sanitize_title($item->post_title),
     ];
   }
 }
@@ -17,7 +28,9 @@ if ($tabs_items) {
   <div class="x-container faculty-tabs__container">
     <?php
     get_template_part(COMMON_CONTENT_PATH, 'nav-tabs', [
-      'nav_tabs' => $tabs
+      'nav_tabs' => $tabs,
+       'is_url' => true,
+      'active_id' => $current_id,
     ]);
     ?>
   </div>

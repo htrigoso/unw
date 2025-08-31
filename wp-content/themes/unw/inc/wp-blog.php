@@ -1,5 +1,23 @@
 <?php
 
+function blog_search_template($template) {
+    if (isset($_GET['blog_search'])) {
+        $new_template = locate_template(array('search-blog.php'));
+        if ('' != $new_template) {
+            return $new_template;
+        }
+    }
+    return $template;
+}
+add_filter('template_include', 'blog_search_template');
+
+function blog_search_filter($query) {
+    if ($query->is_search() && !is_admin() && isset($_GET['blog_search'])) {
+        $query->set('post_type', 'post'); // solo entradas del blog
+    }
+}
+add_action('pre_get_posts', 'blog_search_filter');
+
 
 // Cambiar la URL de las entradas para incluir /blog/
 function custom_post_permalink($permalink, $post) {
@@ -48,31 +66,6 @@ function ensure_global_post_set() {
     }
 }
 add_action('wp', 'ensure_global_post_set');
-
-// Search
-function custom_blog_search_rewrite_rules() {
-    add_rewrite_rule(
-        '^blog/?$',
-        'index.php?is_blog_home=1',
-        'top'
-    );
-
-    // Regla para búsqueda en blog
-    add_rewrite_rule(
-        '^blog/\?(.*)$',
-        'index.php?is_blog_search=1&$matches[1]',
-        'top'
-    );
-}
-add_action('init', 'custom_blog_search_rewrite_rules');
-
-// Agregar query vars personalizadas
-function custom_blog_query_vars($vars) {
-    $vars[] = 'is_blog_home';
-    $vars[] = 'is_blog_search';
-    return $vars;
-}
-add_filter('query_vars', 'custom_blog_query_vars');
 
 // Manejar la búsqueda del blog
 function handle_blog_search($wp_query) {

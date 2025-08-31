@@ -19,9 +19,6 @@
           <?php if (!empty($subtitle)): ?>
           <h3 class="impact-results__subtitle"><?php echo esc_html($subtitle); ?></h3>
           <?php endif; ?>
-          <?php if (!empty($description)): ?>
-          <p><?php echo esc_html($description); ?></p>
-          <?php endif; ?>
         </article>
         <?php endforeach; ?>
       </div>

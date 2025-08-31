@@ -20,6 +20,14 @@
   }
 }
 
+.majors__item {
+  .program-card {
+    img {
+      height: rem(140);
+    }
+  }
+}
+
 .majors__cta {
   margin-top: rem(16);
   width: 100%;

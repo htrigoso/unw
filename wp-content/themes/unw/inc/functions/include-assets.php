@@ -1,4 +1,5 @@
 <?php
+add_filter( 'big_image_size_threshold', '__return_false' );
 
 add_action('wp_footer', 'include_the_json_settings');
 function include_the_json_settings()
@@ -98,7 +99,7 @@ function addAttrs($url)
     return $url;
   }
 
-  return "$url' defer";
+   return $url ;
 }
 
 
@@ -129,8 +130,7 @@ if (!function_exists('vdebug')) {
             sel.addRange(range);
             try {
                 document.execCommand("copy");
-                alert("✅ Copiado al portapapeles");
-            } catch(e) {
+             } catch(e) {
                 alert("❌ No se pudo copiar");
             }
             sel.removeAllRanges();

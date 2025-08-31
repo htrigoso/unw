@@ -10,19 +10,18 @@ $testimonials = $acf_data['testimonios'];
 
     <div class="pba-testimonials-cards">
       <?php foreach ($testimonials as $i => $testimonial): ?>
-        <div class="pba-testimonials-card">
-          <img
-            src="<?php echo $testimonial['image']['url']; ?>"
-            alt=""
-            aria-hidden="true"
-            class="pba-testimonials-card__image"
-          >
-          <div class="pba-testimonials-card__content"<?php if ($i === 1) echo ' data-variant="asu"'; ?>>
-            <p class="pba-testimonials-card__content--quote"><?php echo $testimonial['quote']; ?></p>
-            <p class="pba-testimonials-card__content--author line-clamp-1"><?php echo $testimonial['author']; ?></p>
-            <p class="pba-testimonials-card__content--position"><?php echo $testimonial['position']; ?></p>
-          </div>
+      <div class="pba-testimonials-card">
+        <img class="lazyload"
+          src="<?=placeholder() ?>"
+          data-src="<?php echo esc_url($testimonial['image']['url']); ?>"
+          alt="<?php echo esc_attr($testimonial['image']['alt']); ?>"
+          class="pba-testimonials-card__image">
+        <div class="pba-testimonials-card__content" <?php if ($i === 1) echo ' data-variant="asu"'; ?>>
+          <p class="pba-testimonials-card__content--quote"><?php echo $testimonial['quote']; ?></p>
+          <p class="pba-testimonials-card__content--author line-clamp-1"><?php echo $testimonial['author']; ?></p>
+          <p class="pba-testimonials-card__content--position"><?php echo $testimonial['position']; ?></p>
         </div>
+      </div>
       <?php endforeach; ?>
     </div>
   </div>

@@ -11,7 +11,6 @@ $titulo = $why_wiener['titulo'] ?? '¿Por qué U. Wiener?';
     <div class="why-wiener__wrapper">
       <h2 class="why-wiener__title"><?php echo esc_html($titulo); ?></h2>
       <div class="why-wiener__items">
-
         <?php foreach ($options as $item):
           $icon = $item['icon']['url'] ?? '';
           $title = $item['title'] ?? '';
@@ -19,7 +18,8 @@ $titulo = $why_wiener['titulo'] ?? '¿Por qué U. Wiener?';
         ?>
         <article class="why-wiener__item">
           <?php if ($icon): ?>
-          <img src="<?php echo esc_url($icon); ?>" alt="<?php echo esc_attr($title); ?>" class="why-wiener__icon">
+          <img class="lazyload" src="<?=placeholder() ?>" data-src="<?php echo esc_url($icon); ?>" alt="<?php echo esc_attr($title); ?>"
+            class="why-wiener__icon">
           <?php endif; ?>
           <?php if ($title): ?>
           <h3 class="why-wiener__subtitle"><?php echo esc_html($title); ?></h3>

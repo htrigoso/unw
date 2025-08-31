@@ -1,4 +1,4 @@
-<div class="search-form">
+<div class="search-form pointer" data-open-modal="search-modal">
   <p>Busca aquí</p>
   <i>
     <svg width="24" height="24">

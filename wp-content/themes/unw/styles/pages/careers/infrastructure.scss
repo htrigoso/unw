@@ -1,10 +1,10 @@
 .infrastructure__wrapper {
   padding-top: rem(40);
-  padding-bottom: rem(120);
+  padding-bottom: rem(74);
 
   @include media(">=tablet") {
     padding-top: rem(88);
-    padding-bottom: rem(90);
+    padding-bottom: rem(62);
   }
 }
 
@@ -12,7 +12,7 @@
   margin-bottom: rem(24);
 
   @include media(">=tablet") {
-    margin-bottom: rem(45);
+    margin-bottom: rem(83);
   }
 }
 
@@ -23,10 +23,6 @@
   @include media(">=tablet") {
     @include title-36;
   }
-}
-
-.infrastructure__description {
-  max-width: rem(390);
 }
 
 .infrastructure__list {

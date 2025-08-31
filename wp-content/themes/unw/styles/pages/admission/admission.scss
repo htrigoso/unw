@@ -18,18 +18,8 @@
   }
 }
 
-.admission__modalities {
-}
-
 .admission__faq__wrapper {
   padding-bottom: rem(64);
-}
-
-.admission__faq__title {
-  @include title-28;
-  margin-bottom: rem(11);
-  display: flex;
-  gap: rem(8);
 }
 
 .admission__cta__wrapper {

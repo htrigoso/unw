@@ -18,6 +18,12 @@
   }
 
   .swiper-events__see-more-btn {
+    width: 100%;
+
+    @include media(">=phone-576") {
+      width: auto;
+    }
+
     @include media("<phone") {
       display: block;
       margin-inline: auto;

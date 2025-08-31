@@ -121,6 +121,23 @@
 
 .pba-highlights-modal__video {
   position: relative;
+  &-iframe,
+  &-mp4 {
+    padding-left: rem(20);
+    padding-right: rem(20);
+  }
+  &-iframe {
+    iframe {
+      width: 100%;
+      min-height: rem(420);
+    }
+  }
+  &-mp4 {
+    video {
+      width: 100%;
+      display: block;
+    }
+  }
 }
 
 .pba-highlights-modal__video-img {

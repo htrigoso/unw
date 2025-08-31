@@ -5,7 +5,8 @@ import { changeSwiperSlide, updateSwipers } from '../../utils/swiper'
 (function () {
   const heroSwiper = HeroSwiper('.hero-swiper', {
     loop: false,
-    autoplay: false
+    autoplay: false,
+    allowTouchMove: false
   })
 
   const tabsElement = document.querySelector('.all-careers-tabs')

@@ -24,7 +24,7 @@
         ],
         [
           'label' => 'Blog',
-          'href' => '/blog/',
+          'href'  => home_url('/blog/'),
         ],
       ];
 

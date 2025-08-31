@@ -1,10 +1,11 @@
-<?php
-$hero = get_field('Hero');
-$breadcrumbs = [
-  ['label' => 'Inicio', 'href' => home_url('/')],
-  ['label' => 'Admisión', 'href' => ''],
-  ['label' => get_the_title(), 'href' => '']
-];
+<div class="admission-hero">
+  <?php
+  $hero = get_field('Hero');
+  $breadcrumbs = [
+    ['label' => 'Inicio', 'href' => home_url('/')],
+    ['label' => 'Admisión', 'href' => ''],
+    ['label' => get_the_title(), 'href' => '']
+  ];
 
 if ($hero && is_array($hero)) :
   get_template_part(
@@ -21,18 +22,24 @@ if ($hero && is_array($hero)) :
   );
 endif;
 ?>
+  <div class="x-container admission-hero__form__wrapper">
+    <div class="admission-hero__form">
+      <?php get_template_part(ADMISSION_CONTENT_PATH,$args['form']) ?>
+    </div>
+  </div>
+</div>
 
 <?php
 $admission = get_field('list');
 
 if ($admission && is_array($admission)) :
 ?>
-  <section class="admission">
-    <div class="x-container x-container--pad-213 admission__wrapper">
-      <h1 class="admission__title"><?= esc_html($admission['title'] ?? '') ?></h1>
+<section class="admission">
+  <div class="x-container x-container--pad-213 admission__wrapper">
+    <h1 class="admission__title"><?= esc_html($admission['title'] ?? '') ?></h1>
 
-      <div class="dynamic-accordion admission__modalities">
-        <?php foreach ($admission['options'] as $i => $item) :
+    <div class="dynamic-accordion admission__modalities">
+      <?php foreach ($admission['options'] as $i => $item) :
           $requirements = [];
           if (!empty($item['content']['requirements'])) {
             $requirements = array_filter(array_map('trim', explode("\n", $item['content']['requirements'])));
@@ -49,9 +56,9 @@ if ($admission && is_array($admission)) :
             ]
           );
         endforeach; ?>
-      </div>
     </div>
-  </section>
+  </div>
+</section>
 <?php endif; ?>
 
 
@@ -59,35 +66,25 @@ if ($admission && is_array($admission)) :
 $faq = get_field('faq');
 if ($faq && is_array($faq)) :
 ?>
-  <section class="admission__faq">
-    <div class="x-container x-container--pad-213 admission__faq__wrapper">
-      <h2 class="admission__faq__title">
-        <i>
-          <svg width="32" height="32">
-            <use xlink:href="#question-mark"></use>
-          </svg>
-        </i>
-        <span><?= esc_html($faq['title']); ?></span>
-      </h2>
-      <div class="dynamic-accordion">
-        <?php foreach ($faq['list'] as $item) {
-          get_template_part(COMMON_CONTENT_PATH, 'accordion', [
-            'label' => $item['title'],
-            'content' => $item['description'],
-          ]);
-        } ?>
-      </div>
-    </div>
-  </section>
+<section class="admission__faq">
+  <div class="x-container x-container--pad-213 admission__faq__wrapper">
+    <?php
+      get_template_part(COMMON_CONTENT_PATH, 'faq-section', [
+        'title' => $faq['title'],
+        'faq' => $faq['list'],
+      ]);
+      ?>
+  </div>
+</section>
 <?php endif; ?>
 
 <?php
 $cta = get_field('cta');
 if ($cta && is_array($cta)) :
 ?>
-  <section class="admission__cta">
-    <div class="x-container x-container--pad-213 admission__cta__wrapper">
-      <?php
+<section class="admission__cta">
+  <div class="x-container x-container--pad-213 admission__cta__wrapper">
+    <?php
       get_template_part(COMMON_CONTENT_PATH, 'cta-card', [
         'title'       => $cta['title'] ?? '',
         'description' => $cta['description'] ?? '',
@@ -96,6 +93,6 @@ if ($cta && is_array($cta)) :
         'target'      => $cta['link']['target'] ?? '_self',
       ]);
       ?>
-    </div>
-  </section>
+  </div>
+</section>
 <?php endif; ?>

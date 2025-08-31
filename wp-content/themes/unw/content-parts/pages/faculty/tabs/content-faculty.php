@@ -4,7 +4,7 @@ $postID = $args['id'];
 
 <div class="faculty">
   <?php
-    $title = get_field('description',$postID);
+    $title = get_field('description', $postID);
   ?>
   <div class="faculty__header">
     <h1 class="faculty__header--title">

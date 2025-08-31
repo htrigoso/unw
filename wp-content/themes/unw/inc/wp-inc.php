@@ -24,7 +24,7 @@ require_once dirname(__FILE__) . '/post-types/cpt-faculties.php';
 
 // require custom taxonomies
 require_once dirname(__FILE__) . '/taxonomies/taxonomy-modalidad.php';
-require_once dirname(__FILE__) . '/taxonomies/taxonomy-categoria-carriers.php';
+require_once dirname(__FILE__) . '/taxonomies/taxonomy-facultad-carriers.php';
 require_once dirname(__FILE__) . '/taxonomies/taxonomy-news.php';
 
 

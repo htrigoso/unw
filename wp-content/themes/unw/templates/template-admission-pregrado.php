@@ -10,7 +10,10 @@
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 
 <main>
-  <?php get_template_part(ADMISSION_CONTENT_PATH,'shared-admission');?>
+  <?php get_template_part(ADMISSION_CONTENT_PATH,'shared-admission', [
+      'form' => 'contact-form-pregrado'
+  ]);?>
+
 </main>
 
 <?php get_footer(); ?>

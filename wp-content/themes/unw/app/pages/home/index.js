@@ -8,7 +8,12 @@ import PostSwiperDesktop from '../../components/PostSwiperDesktop'
     autoplay: false
   })
   PostSwiper('.testimonial-swiper')
-  PostSwiper('.last-news-swiper')
+  PostSwiper('.last-news-swiper', {
+    pagination: {
+      el: '.last-news-swiper .swiper-pagination',
+      type: 'fraction'
+    }
+  })
   PostSwiper('.featured-events-swiper', {
     pagination: false
   })

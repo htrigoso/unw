@@ -26,6 +26,9 @@
     overflow: hidden;
     transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
     will-change: max-height, opacity;
+    a {
+      text-decoration: underline;
+    }
   }
 
   &.is-open {
@@ -50,7 +53,7 @@
   }
 
   .accordion-header {
-    height: rem(88);
+    min-height: rem(88);
   }
 
   .accordion-label {

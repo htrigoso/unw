@@ -34,6 +34,8 @@
   <!-- <link rel="manifest" href="<?php echo UPLOAD_PATH; ?>/favicon/site.webmanifest">
     <link rel="mask-icon" href="<?php echo UPLOAD_PATH; ?>/favicon/safari-pinned-tab.svg" color="#5bbad5"> -->
 
+  <?php get_template_part('content-parts/content', 'fonts'); ?>
+
   <!-- Css vars-->
   <style type="text/css">
   :root {
@@ -64,6 +66,7 @@
     --color-asu-gold: #FFC627;
     --color-asu-grey: #747474;
 
+    --color-error: #FF5050;
     --color-black: #000000;
     --color-danger: #ee3f28;
     --color-gray: #f2f1ed;
@@ -83,36 +86,20 @@
 
     --swiper-prev-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-left.svg');
     --swiper-next-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-right.svg');
+    --white-check: url('<?php echo get_template_directory_uri(); ?>/upload/icons/white-check.svg');
   }
   </style>
 
   <!-- Load fonts-->
-  <!-- Load Founders Grotesk fonts -->
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Bold.woff2" rel="preload" as="font" type="font/woff2"
-    crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-BoldItalic.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Semibold.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-SemiboldItalic.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Medium.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-MediumItalic.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Regular.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-RegularItalic.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Light.woff2" rel="preload" as="font" type="font/woff2"
-    crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-LightItalic.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
+
+
+
   <script>
   window.appConfigUnw = {
     themeUrl: "<?= get_template_directory_uri(); ?>",
     uploadUrl: "<?= get_template_directory_uri(); ?>/upload"
   };
+
   let doc = document.documentElement;
 
   function calcVh() {
@@ -121,8 +108,12 @@
   window.addEventListener('resize', calcVh);
   calcVh();
   </script>
+  <!-- Google Tag Manager -->
+
+  <!-- End Google Tag Manager -->
   <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
+
   <?php include get_template_directory() . '/upload/icons/sprite.svg'; ?>

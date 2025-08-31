@@ -21,7 +21,8 @@ $guidance_steps = get_field('guidance_steps');
         <article class="guidance-steps__item">
           <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>" class="guidance-steps__link">
             <?php if ($img) : ?>
-            <img src="<?php echo esc_url($img); ?>" alt="<?php echo esc_attr($title); ?>" class="guidance-steps__image">
+            <img class="lazyload" src="<?=placeholder() ?>" data-src="<?php echo esc_url($img); ?>"
+              alt="<?php echo esc_attr($title); ?>" class="guidance-steps__image">
             <?php endif; ?>
             <div class="guidance-steps__overlay">
               <span class="guidance-steps__number"><?php echo ($index + 1) . '.'; ?></span>

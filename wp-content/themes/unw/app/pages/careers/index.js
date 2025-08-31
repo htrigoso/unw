@@ -4,6 +4,7 @@ import PostSwiper from '../../components/PostSwiper'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
 import InternationalSwiper from '../../components/InternationalSwiper'
 import { updateSwipers } from '../../utils/swiper'
+import Accordion from '../../components/Accordion'
 
 (function () {
   HeroSwiper()
@@ -56,6 +57,10 @@ import { updateSwipers } from '../../utils/swiper'
   })
   InternationalSwiper('.internationalization')
 
+  document.querySelectorAll('.dynamic-accordion').forEach(element => {
+    new Accordion({ element, allowMultiple: true })
+  })
+
   const tabsElement = document.querySelector('.career-tabs')
   if (tabsElement) {
     new Tabs({
@@ -65,4 +70,15 @@ import { updateSwipers } from '../../utils/swiper'
       }
     })
   }
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('form')
+    form.addEventListener('submit', function (e) {
+      if (typeof dataLayer !== 'undefined') {
+        alert('form submit')
+        window.dataLayer.push({
+          event: 'gtm.formSubmit'
+        })
+      }
+    })
+  })
 })()

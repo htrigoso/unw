@@ -9,6 +9,7 @@ $tabs = [
   ['label' => 'Admisión',             'target' => 'admision'],
   ['label' => 'Internacionalización', 'target' => 'internacionalizacion'],
 ];
+
 ?>
 
 <div class="career-tabs">
@@ -38,6 +39,7 @@ $tabs = [
                 !empty($testimonials_info['testimonials']) &&
                 is_array($testimonials_info['testimonials'])
               ) {
+
                 foreach ($testimonials_info['testimonials'] as $testimonial_post) {
                   $info = get_field('info-testimonio', $testimonial_post->ID);
                   $testimonials[] = [
@@ -48,17 +50,28 @@ $tabs = [
                     'image'       => get_the_post_thumbnail_url($testimonial_post->ID, 'full') ?: '',
                   ];
                 }
-              }
-
-              echo '<div class="career-tab">';
+              } ?>
+        <?php
               get_template_part(CAREERS_CONTENT_TAB_PATH . '1-presentation/content-career-intro', null, [
                 'presentation' => $presentation
               ]);
+              ?>
+        <?php
               get_template_part(COMMON_CONTENT_PATH, 'testimonials', [
                 'title' => $testimonials_info['title'] ?? '',
                 'testimonials' => $testimonials
               ]);
-              echo '</div>';
+              ?>
+        <section class="career-tabs__faq">
+          <?php
+              $faqs = $presentation['faqs'];
+                get_template_part(COMMON_CONTENT_PATH, 'faq-section', [
+                  'title' => $faqs['title'],
+                  'faq' => $faqs['faq']
+                ]);
+                ?>
+        </section>
+        <?php
               break;
 
             case 'beneficios':
@@ -109,11 +122,15 @@ $tabs = [
               break;
 
             case 'internacionalizacion':
-              echo '<div class="internationalization-tab">';
-              get_template_part(COMMON_CONTENT_PATH, 'internationalization', null, [
-                'id'=>0
-              ]);
-              echo '</div>';
+            ?>
+        <div class="career-tabs__internationalization">
+          <?php
+                get_template_part(COMMON_CONTENT_PATH, 'internationalization', null, [
+                  'id' => 0
+                ]);
+                ?>
+        </div>
+        <?php
               break;
           }
           ?>
