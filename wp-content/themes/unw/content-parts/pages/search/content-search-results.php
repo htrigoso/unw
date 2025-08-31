@@ -2,7 +2,7 @@
 $search_term = get_search_query(); // término de búsqueda
 
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; // página actual
-$posts_per_page= 20;
+$posts_per_page = 20;
 $args = [
   'post_type'      => 'any',
   'post_status'    => 'publish',
@@ -70,7 +70,6 @@ if (!empty($search_term) && $wp_query->have_posts()) {
     <?php get_template_part(GENERAL_CONTENT_PATH, 'pagination', [
       'search_term' => $search_term,
       'wp_query'    => $wp_query,
-      '$posts_per_page' => $posts_per_page
-    ]);?>
+     ]);?>
   </div>
 </section>

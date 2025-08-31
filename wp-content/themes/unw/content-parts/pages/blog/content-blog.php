@@ -42,7 +42,6 @@ $wp_query = new WP_Query([
         <?php get_template_part(GENERAL_CONTENT_PATH, 'pagination', [
           'search_term' => $search_term,
           'wp_query'    => $wp_query,
-          '$posts_per_page' => $posts_per_page
         ]);?>
 
         <div class="blog-newsletter">

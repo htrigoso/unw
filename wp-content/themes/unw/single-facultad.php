@@ -12,6 +12,10 @@
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 <main>
   <?php
+
+  $current_term = get_queried_object();
+
+
   $sliders = get_field('hero_slider');
   if ($sliders && is_array($sliders['list_of_files'])) {
     foreach ($sliders['list_of_files'] as $i => $slide):
@@ -22,10 +26,11 @@
     endforeach;
   }
 
+
   $base_breadcrumb = [
     ['label' => 'Inicio', 'href' => home_url('/')],
     ['label' => 'Facultad', 'href' => home_url('/facultad/')],
-
+    ['label' => $current_term->post_title, 'href' => '']
   ];
 
   get_template_part(
