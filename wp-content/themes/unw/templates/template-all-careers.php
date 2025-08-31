@@ -12,6 +12,14 @@
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 <main>
   <?php
+  $current_id_term = get_current_term_id();
+  $images = get_field('images', 'facultad_' . $current_id_term);
+
+  if (   $current_id_term ) {
+    /// vdebug(get_field('hero'));
+  }else {
+  // vdebug($images);
+  }
   $facultades = get_terms([
     'taxonomy'   => 'facultad',
     'hide_empty' => false,
@@ -27,14 +35,16 @@
 
   if (!is_wp_error($facultades) && !empty($facultades)):
     foreach ($facultades as $facultad):
-      $tabs[] = [
-        'id' => $facultad->ID,
+       $tabs[] = [
+        'id' => $facultad->term_id,
         'label'  => $facultad->name,
         'target' => $facultad->slug,
-        'url'   => esc_url(get_term_link($facultad))
+        'url'   =>  get_carreras_filter_url($facultad->slug)
       ];
     endforeach;
   endif;
+
+
 
   $breadcrumb = [
     ['label' => 'Inicio', 'href' => home_url('/')],
