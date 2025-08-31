@@ -21,7 +21,7 @@ ob_start();
         </div>
         <div class="radio-option">
           <input type="radio" id="trabajo" name="form_mixto" value="trabajo" />
-          <label for="virtual">Carreras para gente que trabaja</label>
+          <label for="trabajo">Carreras para gente que trabaja</label>
         </div>
         <div class="radio-option">
           <input type="radio" id="virtual" name="form_mixto" value="virtual" />
