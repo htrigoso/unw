@@ -186,7 +186,7 @@ function get_carreras_with_all_categories($modalidad = '', $categorias = []) {
   }
 
   $args['tax_query'][] = [
-    'taxonomy' => 'categoria_carrera',
+    'taxonomy' => 'facultad',
     'field'    => 'slug',
     'terms'    => $categorias,
     'operator' => 'AND' // Debe tener TODAS las categorías
@@ -201,7 +201,7 @@ function get_carreras_with_all_categories($modalidad = '', $categorias = []) {
 
 // FUNCIÓN HELPER para obtener todas las categorías de una carrera
 function get_carrera_categories($post_id) {
-  $terms = wp_get_post_terms($post_id, 'categoria_carrera');
+  $terms = wp_get_post_terms($post_id, 'facultad');
   if (empty($terms) || is_wp_error($terms)) {
     return [];
   }
@@ -210,5 +210,5 @@ function get_carrera_categories($post_id) {
 
 // FUNCIÓN HELPER para verificar si una carrera pertenece a una categoría específica
 function carrera_has_category($post_id, $category_slug) {
-  return has_term($category_slug, 'categoria_carrera', $post_id);
+  return has_term($category_slug, 'facultad', $post_id);
 }

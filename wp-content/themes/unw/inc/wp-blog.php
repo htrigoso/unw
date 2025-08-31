@@ -67,31 +67,6 @@ function ensure_global_post_set() {
 }
 add_action('wp', 'ensure_global_post_set');
 
-// Search
-function custom_blog_search_rewrite_rules() {
-    add_rewrite_rule(
-        '^blog/?$',
-        'index.php?is_blog_home=1',
-        'top'
-    );
-
-    // Regla para búsqueda en blog
-    add_rewrite_rule(
-        '^blog/\?(.*)$',
-        'index.php?is_blog_search=1&$matches[1]',
-        'top'
-    );
-}
-add_action('init', 'custom_blog_search_rewrite_rules');
-
-// Agregar query vars personalizadas
-function custom_blog_query_vars($vars) {
-    $vars[] = 'is_blog_home';
-    $vars[] = 'is_blog_search';
-    return $vars;
-}
-add_filter('query_vars', 'custom_blog_query_vars');
-
 // Manejar la búsqueda del blog
 function handle_blog_search($wp_query) {
     if (!is_admin() && $wp_query->is_main_query()) {

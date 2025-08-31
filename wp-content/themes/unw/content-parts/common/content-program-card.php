@@ -10,19 +10,19 @@ $link_title = $args['link_title'];
 
 <article class="program-card">
   <?php if ($image): ?>
-    <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($alt); ?>"
-      class="program-card--img" />
+  <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($alt); ?>"
+    class="program-card--img lazyload" />
   <?php endif; ?>
   <div class="program-card--content">
     <h3 class="program-card--content__title"><?php echo esc_html($title_item); ?></h3>
     <?php if (!empty($desc)) : ?>
-      <p class="program-card--content__description"><?php echo esc_html($desc); ?></p>
+    <p class="program-card--content__description"><?php echo esc_html($desc); ?></p>
     <?php endif; ?>
     <?php if (!empty($link)): ?>
-      <a href="<?php echo esc_url($link); ?>" target="<?php echo esc_attr($link_target); ?>"
-        class="btn btn-primary program-card--content__cta">
-        <?php echo esc_html($link_title); ?>
-      </a>
+    <a href="<?php echo esc_url($link); ?>" target="<?php echo esc_attr($link_target); ?>"
+      class="btn btn-primary program-card--content__cta">
+      <?php echo esc_html($link_title); ?>
+    </a>
     <?php endif; ?>
   </div>
 </article>

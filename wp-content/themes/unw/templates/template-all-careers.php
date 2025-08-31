@@ -12,6 +12,29 @@
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 <main>
   <?php
+  $facultades = get_terms([
+      'taxonomy'   => 'facultad',
+      'hide_empty' => false,
+  ]);
+  $tabs = [
+        [
+            'id'=> 0,
+            'label' => 'Todas las carreras',
+            'target' => 'todas-las-carreras',
+            'url'   => get_permalink() // URL de la página actual
+        ]
+    ];
+
+  if (!is_wp_error($facultades) && !empty($facultades)):
+      foreach ($facultades as $facultad):
+          $tabs[] = [
+              'id'=> $facultad->ID,
+              'label'  => $facultad->name,
+              'target' => $facultad->slug,
+              'url'   => esc_url(get_term_link($facultad))
+          ];
+        endforeach;
+    endif;
   $sliders = [
     'list_of_files' => [
       [
@@ -131,6 +154,8 @@
     ]
   );
   ?>
-  <?php get_template_part(ALL_CAREERS_TABS_PATH, 'tabs'); ?>
+  <?php get_template_part(ALL_CAREERS_TABS_PATH, 'tabs', [
+    'tabs'=> $tabs
+  ]); ?>
 </main>
 <?php get_footer(); ?>

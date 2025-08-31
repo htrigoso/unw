@@ -7,10 +7,8 @@ $image_url = $testimonial['image'] ?? '';
 
 <article class="testimonial__card">
   <?php if ($image_url): ?>
-    <img
-      src="<?php echo esc_url($image_url); ?>"
-      alt="<?php echo esc_attr($testimonial['title']); ?>"
-      class="testimonial__card--img" />
+  <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($image_url); ?>"
+    alt="<?php echo esc_attr($testimonial['title']); ?>" class="testimonial__card--img lazyload" />
   <?php endif; ?>
 
   <div class="testimonial__card--content">

@@ -22,7 +22,8 @@ function register_cpt_facultades() {
     'menu_icon'          => 'dashicons-welcome-learn-more',
     'show_in_rest'       => true,
     'has_archive'        => false,
-     'supports'           => array('title'),
+    'supports'           => array('title'),
+    'show_ui' => true,
   );
 
   register_post_type('facultad', $args);
