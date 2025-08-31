@@ -267,3 +267,60 @@ function get_carreras_by_facultad_filter($facultad_slug = '', $modalidad = '') {
 
     return new WP_Query($args);
 }
+
+//////******* */
+// Función para obtener el ID del término de facultad actual
+function get_current_facultad_id() {
+    $facultad_slug = get_query_var('facultad_filter');
+    if (empty($facultad_slug)) {
+        return 0;
+    }
+
+    $term = get_term_by('slug', $facultad_slug, 'facultad');
+    return ($term && !is_wp_error($term)) ? $term->term_id : 0;
+}
+
+
+// Función para obtener el ID del término de modalidad actual
+function get_current_modalidad_id() {
+    $modalidad_slug = get_query_var('modalidad_filter');
+    if (empty($modalidad_slug)) {
+        return 0;
+    }
+
+    $term = get_term_by('slug', $modalidad_slug, 'modalidad');
+    return ($term && !is_wp_error($term)) ? $term->term_id : 0;
+}
+
+function get_current_term_id() {
+    // Prioridad: facultad primero, luego modalidad
+    $facultad_id = get_current_facultad_id();
+    if ($facultad_id > 0) {
+        return $facultad_id;
+    }
+
+    return get_current_modalidad_id();
+}
+
+
+// Función para obtener el slug de facultad actual
+function get_current_facultad_slug() {
+    return get_query_var('facultad_filter');
+}
+
+// Función para obtener el slug de modalidad actual
+function get_current_modalidad_slug() {
+    return get_query_var('modalidad_filter');
+}
+
+
+// Función para obtener el slug del término activo (cualquier taxonomía)
+function get_current_term_slug() {
+    // Prioridad: facultad primero, luego modalidad
+    $facultad_slug = get_current_facultad_slug();
+    if (!empty($facultad_slug)) {
+        return $facultad_slug;
+    }
+
+    return get_current_modalidad_slug();
+}
