@@ -6,7 +6,8 @@ endif;
 $wp_query = $args['wp_query'] ?? null;
 $search_term = $args['search_term'] ?? '';
 
-if (  $wp_query->max_num_pages > 20) : ?>
+
+if (  $wp_query->max_num_pages > 1) : ?>
 <div class="blog-pagination">
   <?php
           $big = 999999999;
