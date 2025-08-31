@@ -15,7 +15,7 @@ if (!empty($slides)) :
           $mobile   = $slide['images']['mobile']['url'] ?? '';
           $alt      = $slide['images']['desktop']['alt'] ?? 'Slide Carrera';
           $type     = $slide['images']['type'] ?? '';
-          $title    = $slide['title'] ?? '';
+          $title    = $slide['title'] ?? $slider_group['title'];
           $label    = $slide['label'] ?? '';
 
           $slide_breadcrumbs = $base_breadcrumbs;

@@ -17,17 +17,8 @@
 
 
   $sliders = get_field('hero_slider');
-  if ($sliders && is_array($sliders['list_of_files'])) {
-    foreach ($sliders['list_of_files'] as $i => $slide):
-      if (!isset($sliders['list_of_files'][$i]['title'])) {
-        $sliders['list_of_files'][$i]['title'] = $sliders['title'];
-      }
-      $sliders['list_of_files'][$i]['label'] = $sliders['title'];
-    endforeach;
-  }
 
-
-  $base_breadcrumb = [
+  $breadcrumb = [
     ['label' => 'Inicio', 'href' => home_url('/')],
     ['label' => 'Facultad', 'href' => home_url('/facultad/')],
     ['label' => $current_term->post_title, 'href' => '']
@@ -38,7 +29,7 @@
     'swiper-hero',
     [
       'sliders' => $sliders,
-      'base_breadcrumbs' => $base_breadcrumb,
+      'base_breadcrumbs' => $breadcrumb,
       'extra_class' => 'faculty-hero'
     ]
   ); ?>
