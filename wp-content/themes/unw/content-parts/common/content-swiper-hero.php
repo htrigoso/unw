@@ -19,7 +19,7 @@ if (!empty($slides)) :
           $label    = $slide['label'] ?? '';
 
           $slide_breadcrumbs = $base_breadcrumbs;
-          if (isset($label)) {
+          if (!empty($label)) {
             $slide_breadcrumbs[] = ['label' => $label];
           }
         ?>
