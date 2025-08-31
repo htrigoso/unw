@@ -81,7 +81,7 @@
 
 .search-modal__header--close {
   display: none;
-
+  cursor: pointer;
   @include media(">=tablet") {
     display: block;
   }

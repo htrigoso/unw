@@ -3,7 +3,7 @@
     COMMON_CONTENT_PATH,
     'search-input',
     [
-      'input_name' => 'blog_search',
+      'input_name' => 's',
       'aria_label' => 'Buscar en el blog',
       'placeholder' => 'Ej: Arquitectura'
     ]

@@ -8,7 +8,7 @@ $author_id = get_the_author_meta('ID');
 
 $breadcrumbs = [
   ['label' => 'Inicio', 'href' => home_url('/')],
-  ['label' => 'Blog', 'href' => '/blog/'],
+  ['label' => 'Blog', 'href' => home_url('/blog/')],
   ['label' => $titulo]
 ];
 ?>

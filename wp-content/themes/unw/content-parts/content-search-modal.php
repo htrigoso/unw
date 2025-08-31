@@ -5,7 +5,7 @@
       <a class="sidebar__logo pointer" href="<?php echo esc_url(home_url('/')); ?>">
         <img width="101" height="40" src="<?= UPLOAD_PATH . '/logo-unw.svg' ?>" alt="Logo UNW">
       </a>
-      <button type="button" class="btn-menu-hamburger pointer" id="btn-close-modal">
+      <button type="button" class="btn-menu-hamburger pointer" data-close-modal="search-modal">
         <i>
           <svg width="40" height="40">
             <use xlink:href="#close"></use>
@@ -16,7 +16,7 @@
     <div class="search-modal">
       <div class="search-modal__header">
         <h4 class="search-modal__header--title">Busca aquí</h4>
-        <button type="button" class="search-modal__header--close">
+        <button type="button" class="search-modal__header--close" data-close-modal="search-modal">
           <i>
             <svg width="32" height="32">
               <use xlink:href="#close"></use>

@@ -103,11 +103,9 @@ class App {
 
   tabMegaMenuDesktop() {
     const elements = document.querySelectorAll('.submenu-tab > button')
-    console.log(elements)
 
     elements.forEach((link) => {
       const dataId = link.getAttribute('data-id')
-      console.log(dataId)
 
       link.addEventListener('click', (e) => {
         e.preventDefault()

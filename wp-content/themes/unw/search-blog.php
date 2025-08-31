@@ -36,6 +36,7 @@
   <?php
     // Ensure we have a proper query and global post object
     $search_query = get_query_var('s');
+
     if (!empty($search_query)) {
       get_template_part(BLOG_CONTENT_PATH, 'blog');
     }

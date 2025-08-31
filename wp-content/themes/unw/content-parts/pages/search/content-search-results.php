@@ -2,11 +2,11 @@
 $search_term = get_search_query(); // término de búsqueda
 
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; // página actual
-
+$posts_per_page= 20;
 $args = [
   'post_type'      => 'any',
   'post_status'    => 'publish',
-  'posts_per_page' => 10,   // usa 10 para paginar mejor
+  'posts_per_page' => $posts_per_page,
   'paged'          => $paged,
 ];
 
@@ -67,43 +67,10 @@ if (!empty($search_term) && $wp_query->have_posts()) {
       <p>No hay resultados porque no se ingresó un término de búsqueda.</p>
       <?php endif; ?>
     </div>
-    <!-- Paginación -->
-    <?php if (!empty($search_term) && $wp_query->max_num_pages > 1) : ?>
-    <div class="blog-pagination">
-      <?php
-          $big = 999999999; // necesario para que funcione str_replace
-
-          $pagination_args = [
-            'base'      => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-            'format'    => '?paged=%#%',
-            'current'   => max(1, $paged),
-            'total'     => $wp_query->max_num_pages,
-            'prev_text' => '<',
-            'next_text' => '>',
-            'type'      => 'array',
-            'end_size'  => 1,
-            'mid_size'  => 2,
-          ];
-
-          if (!empty($search_term)) {
-            $pagination_args['add_args'] = ['s' => $search_term];
-          }
-
-          $pages = paginate_links($pagination_args);
-
-          if ($pages) :
-        ?>
-      <nav class="pagination" role="navigation" aria-label="Navegación de entradas">
-        <ul class="pagination__list">
-          <?php foreach ($pages as $page) : ?>
-          <li class="pagination__item">
-            <?php echo $page; ?>
-          </li>
-          <?php endforeach; ?>
-        </ul>
-      </nav>
-      <?php endif; ?>
-    </div>
-    <?php endif; ?>
+    <?php get_template_part(GENERAL_CONTENT_PATH, 'pagination', [
+      'search_term' => $search_term,
+      'wp_query'    => $wp_query,
+      '$posts_per_page' => $posts_per_page
+    ]);?>
   </div>
 </section>
