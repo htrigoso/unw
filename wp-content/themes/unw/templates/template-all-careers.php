@@ -12,6 +12,8 @@
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 <main>
   <?php
+
+  vdebug(get_carreras_filter_url('arquitectura'));
   $facultades = get_terms([
       'taxonomy'   => 'facultad',
       'hide_empty' => false,
