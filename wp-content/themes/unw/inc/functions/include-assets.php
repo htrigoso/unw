@@ -139,6 +139,25 @@ if (!function_exists('vdebug')) {
     }
 }
 
+
+function get_current_page_url() {
+    if (is_front_page()) {
+        return home_url('/');
+    } elseif (is_home()) {
+        return get_permalink(get_option('page_for_posts'));
+    } elseif (is_single() || is_page()) {
+        return get_permalink();
+    } elseif (is_category()) {
+        return get_category_link(get_query_var('cat'));
+    } elseif (is_tag()) {
+        return get_tag_link(get_query_var('tag_id'));
+    } elseif (is_author()) {
+        return get_author_posts_url(get_query_var('author'));
+    } else {
+        return home_url(add_query_arg(array()));
+    }
+}
+
 function placeholder() {
   echo 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAECAYAAABGM/VAAAAABHNCSVQICAgIfAhkiAAAAF1JREFUCFtjvP/m1n8GIPj64TzD5f+GDJ8+/WBgrDp767+DKAOD1K/zDEpShgxbH/xhYFx+59Z/LW5Ghg9//zMoMd5mePJZiYHxxMsH2w6+BhnAwJAo9pvh5GcmBgCRxSUqb+IRJgAAAABJRU5ErkJggg==';
 }

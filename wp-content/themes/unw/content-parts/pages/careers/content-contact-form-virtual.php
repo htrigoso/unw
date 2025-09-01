@@ -1,5 +1,18 @@
+<?php
+$crm_carriers      = get_field('crm');
+$formUrl           = "https://forms.zohopublic.com/adminzoho11/form/WebCarrerasVirtual/formperma/f1PqvMaVQ3bdPj9ELVT4XJWYy_eHSjrAECWfWqSB_uE/htmlRecords/submit";
+$form_crm_option   = get_field('form_crm', 'option');
+$utms_default      = get_field('list_utms', 'option');
+$utm_carriers      = $crm_carriers['list_utms'] ?? [];
+$list_departaments = $form_crm_option['list_departaments'];
+$term              = get_facultad_taxonomy_name(get_the_ID());
+$page_title        = get_current_page_title();
+$code_carrier     = $crm_carriers['code'];
+// ---- Fusionar UTMs ----
+$utms_final = merge_utms($utms_default, $utm_carriers);
+?>
 <form id="form" class="contact-form formCarrera" method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
-  action="https://forms.zohopublic.com/adminzoho11/form/WebCarrerasVirtual/formperma/f1PqvMaVQ3bdPj9ELVT4XJWYy_eHSjrAECWfWqSB_uE/htmlRecords/submit">
+  action="<?=$formUrl?>">
   <div class="form-header">
     <i>
       <svg width="52" height="52">
@@ -10,58 +23,40 @@
       ¡Déjanos tus datos y nos contactaremos contigo!
     </h4>
   </div>
-  <input type="hidden" name="utm_source" value="web">
-  <input type="hidden" name="utm_medium" value="formulario_facultad">
-  <input type="hidden" name="utm_campaign" value="admision_2024_II">
-  <input type="hidden" name="utm_term" value="organico">
-  <input type="hidden" name="utm_content" value="organico">
-  <input type="hidden" name="zc_gad" value="admision_2024_II">
-  <input type="hidden" name="Website" value="http://unw.loc/carreras-a-distancia/carrera-de-farmacia-y-bioquimica/">
+  <?php foreach ($utms_final as $utm): ?>
+  <input type="hidden" name="<?= esc_attr($utm['name']); ?>" value="<?= esc_attr($utm['value']); ?>">
+  <?php endforeach; ?>
+
+  <input type="hidden" name="Website" value="<?=get_current_page_url()?>">
   <!-- Campos vacios -->
   <input type="hidden" name="Name_Middle" value="">
   <input type="hidden" name="Dropdown3" value="Perú (+51)">
   <input type="hidden" name="Dropdown" value="DNI">
   <input type="hidden" name="Number" value="">
+  <!-- Catergoria(Facultad) -->
+  <input type="hidden" name="SingleLine5" value="<?=esc_attr($term)?>">
+  <!-- Codigo por carrera acf -->
+  <input type="hidden" name="SingleLine4" value="<?=esc_attr($code_carrier)?>">
+  <!-- Nombre de la carrera -->
+  <input type="hidden" name="SingleLine3" value="<?=esc_attr($page_title)?>">
+  <!-- Nombre del departamento -->
+  <input type="hidden" name="SingleLine8" value="">
 
-  <input type="hidden" name="SingleLine5" value="Ingeniería">
-  <input type="hidden" name="SingleLine4" value="5985073000303051026">
-  <input type="hidden" name="SingleLine3" value="Ingeniería de Sistemas e Informática">
-  <input type="hidden" name="SingleLine8" value="Amazonas">
 
-  <!-- ////Campos vacios -->
   <div class="form-body">
     <div class="form-body__fields">
       <div class="flex justify-between m-b-24">
         <div class="f-50">
           <div class="form-field form-field-select">
-            <select name="SingleLine7" id="documentType" type="text" required>
-              <option value="" selected="" disabled="">Departamento de procedencia</option>
-              <option value="5985073000001376346">Amazonas</option>
-              <option value="5985073000001376347">Áncash</option>
-              <option value="5985073000001376348">Apurímac</option>
-              <option value="5985073000001376349">Arequipa</option>
-              <option value="5985073000001376350">Ayacucho</option>
-              <option value="5985073000001376351">Cajamarca</option>
-              <option value="5985073000001376352">Cusco</option>
-              <option value="5985073000001376353">Huancavelica</option>
-              <option value="5985073000001376354">Huánuco</option>
-              <option value="5985073000001376355">Ica</option>
-              <option value="5985073000001376356">Junín</option>
-              <option value="5985073000001376357">La Libertad</option>
-              <option value="5985073000001376358">Lambayeque</option>
-              <option value="5985073000001376359">Lima</option>
-              <option value="5985073000001376360">Loreto</option>
-              <option value="5985073000001376361">Madre de Dios</option>
-              <option value="5985073000001376362">Moquegua</option>
-              <option value="5985073000001376363">Pasco</option>
-              <option value="5985073000001376364">Piura</option>
-              <option value="5985073000001376365">Puno</option>
-              <option value="5985073000001376366">San Martín</option>
-              <option value="5985073000001376367">Tacna</option>
-              <option value="5985073000001376368">Tumbes</option>
-              <option value="5985073000001376369">Callao</option>
+            <select name="SingleLine7" id="departament" required>
+              <option value="" selected disabled>Departamento de procedencia</option>
+              <?php foreach ($list_departaments as $dep): ?>
+              <option value="<?= htmlspecialchars($dep['value']); ?>">
+                <?= htmlspecialchars($dep['name']); ?>
+              </option>
+              <?php endforeach; ?>
             </select>
-            <label for="document">Elige tu departamento</label>
+            <label for="departament">Elige tu departamento</label>
             <span class="error-message">Datos inválidos</span>
           </div>
         </div>
@@ -127,3 +122,7 @@
     </div>
   </div>
 </form>
+<?php
+// Para debug
+// vdebug($utms_final);
+?>
