@@ -39,7 +39,7 @@ $countries = [
           <h3 class="internationalization__highlight-subtitle">
             Somos la única Universidad Peruana potenciada por
           </h3>
-          <img class="internationalization__highlight-logo" height="72"
+          <img class="internationalization__highlight-logo lazyload" height="72"
             src="<?php echo get_template_directory_uri(); ?>/upload/careers/asu.png" alt="">
         </div>
         <div class="internationalization__highlight-description">

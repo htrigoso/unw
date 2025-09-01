@@ -28,7 +28,7 @@ $link = $malla_curricular['link'] ?? null;
                     <div class="cycle-card__wrapper">
                       <header class="cycle-card__header">
                         <?php if (!empty($list['icon']['url'])): ?>
-                          <img class="cycle-card__header-icon" width="80" height="80"
+                          <img class="cycle-card__header-icon lazyload" width="80" height="80"
                             src="<?php echo esc_url($list['icon']['url']); ?>" alt="" />
                         <?php endif; ?>
                       </header>
@@ -42,7 +42,7 @@ $link = $malla_curricular['link'] ?? null;
                               <span class="dot dot--<?php echo $dot_color; ?>" aria-hidden="true"></span>
                               <div class="cycle-card__course">
                                 <?php if (!empty($thumbnail_url)): ?>
-                                  <img class="cycle-card__course-icon" src="<?php echo esc_url($thumbnail_url); ?>" alt="" />
+                                  <img class="cycle-card__course-icon lazyload" src="<?php echo esc_url($thumbnail_url); ?>" alt="" />
                                 <?php endif; ?>
                                 <p class="cycle-card__course-name"><?php echo esc_html($course->post_title ?? ''); ?></p>
                               </div>

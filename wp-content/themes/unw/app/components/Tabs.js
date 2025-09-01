@@ -62,10 +62,10 @@ export default class Tabs extends Component {
   }
 
   bindTabEvents() {
+    if (this.preventDefault) return
+
     this.elements.tabItems?.forEach(tab => {
-      if (!this.preventDefault) {
-        tab.addEventListener('click', event => this.handleTabClick(event, tab))
-      }
+      tab.addEventListener('click', event => this.handleTabClick(event, tab))
     })
   }
 
@@ -110,7 +110,9 @@ export default class Tabs extends Component {
   }
 
   showTabContent(targetId) {
-    this.elements.tabContents.forEach(content => {
+    if (this.preventDefault) return
+
+    this.elements.tabContents?.forEach(content => {
       content.style.display = content.id === targetId ? 'block' : 'none'
     })
   }

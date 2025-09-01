@@ -24,8 +24,8 @@ $title = $benefits['title'] ?? 'Beneficios para nuestros estudiantes';
           <?php if ($icon && $text): ?>
             <li class="pba-benefits__item--container" <?php if ($should_pad) echo ' data-padded="1"'; ?>>
               <div class="pba-benefits__item">
-                <img src="<?php echo esc_url($icon); ?>" alt="<?php echo esc_attr($alt); ?>" aria-hidden="true" loading="lazy"
-                  class="pba-benefits__icon" />
+                <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($icon); ?>" alt="<?php echo esc_attr($alt); ?>" aria-hidden="true" loading="lazy"
+                  class="pba-benefits__icon lazyload" />
                 <p class="pba-benefits__text"><?php echo $text; ?></p>
               </div>
             </li>

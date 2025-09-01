@@ -10,8 +10,8 @@ if ( $quote && is_array($quote) ) :
       <div class="us-quote__card__right">
         <picture class="us-quote__card__picture">
           <source srcset="<?= $quote['us-quote']['image']['desktop']['url']; ?>" media="(min-width: 768px)" />
-          <img src="<?= $quote['us-quote']['image']['mobile']['url']; ?>"
-            alt="<?= esc_attr($quote['us-quote']['image']['mobile']['alt']); ?>" class="us-quote__card__img" />
+          <img src="<?=placeholder() ?>" data-src="<?= $quote['us-quote']['image']['mobile']['url']; ?>"
+            alt="<?= esc_attr($quote['us-quote']['image']['mobile']['alt']); ?>" class="us-quote__card__img lazyload" />
         </picture>
       </div>
       <div class="us-quote__card__left">

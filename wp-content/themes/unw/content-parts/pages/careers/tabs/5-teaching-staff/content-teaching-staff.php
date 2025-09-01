@@ -34,7 +34,7 @@ $teaching_staff = $args['teaching_staff'] ?? null;
                 <li class="swiper-slide">
                   <article class="teacher-card">
                     <div class="teacher-card__header">
-                      <img class="teacher-card__photo" src="<?php echo esc_url($photo); ?>"
+                      <img class="teacher-card__photo lazyload" src="<?=placeholder() ?>" data-src="<?php echo esc_url($photo); ?>"
                         alt="Foto de <?php echo esc_attr($name); ?>" />
                     </div>
                     <div class="teacher-card__content">

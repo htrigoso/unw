@@ -13,8 +13,8 @@ if(!isset($mastery )&& !is_array($mastery)){
       <div class="pba-mastery__content--cards">
         <?php foreach ($mastery['master_programs']['logos'] as $program): ?>
         <div class="pba-mastery__content--card">
-          <img src="<?php echo esc_url($program['logo']['url']); ?>"
-            alt="<?php echo esc_attr($program['logo']['alt'] ?? ''); ?>">
+          <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($program['logo']['url']); ?>"
+            alt="<?php echo esc_attr($program['logo']['alt'] ?? ''); ?>" class="lazyload">
           <span><?php echo esc_html($program['description']); ?></span>
         </div>
         <?php endforeach; ?>

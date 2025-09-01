@@ -18,7 +18,7 @@ if ( $purpose && is_array($purpose) ) :
                   <img src="<?= $item['icon']['url']; ?>"
                        alt="<?= $item['icon']['alt'] ?? ''; ?>"
                        aria-hidden="true"
-                       class="purpose-card__icon" />
+                       class="purpose-card__icon lazyload" />
                   <span class="purpose-card__title"><?= $item['title']; ?></span>
                   <p class="purpose-card__description"><?= $item['description']; ?></p>
                 </article>
