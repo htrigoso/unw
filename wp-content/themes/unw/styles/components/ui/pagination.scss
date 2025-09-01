@@ -1,7 +1,12 @@
 /* Estilos para la paginación */
-.blog-pagination {
+.pagination-container {
   display: flex;
   justify-content: center;
+  margin-top: rem(32);
+
+  @include media(">=tablet") {
+    margin-top: rem(64);
+  }
 }
 
 .pagination {

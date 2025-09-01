@@ -1,13 +1,12 @@
-import Tabs from '../../components/Tabs'
 import PostSwiper from '../../components/PostSwiper'
 import HeroSwiper from '../../components/HeroSwiper'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
 import InternationalSwiper from '../../components/InternationalSwiper'
-import { changeSwiperSlide, updateSwipers } from '../../utils/swiper'
 import { ModalManager } from '../../components/Modal'
+import Tabs from '../../components/Tabs'
 
 (function () {
-  const heroSwiper = HeroSwiper('.hero-swiper', {
+  HeroSwiper('.hero-swiper', {
     loop: false,
     autoplay: false,
     allowTouchMove: false
@@ -53,6 +52,14 @@ import { ModalManager } from '../../components/Modal'
     })
   }
   International()
+
+  const tabsElement = document.querySelector('.faculty-tabs')
+  if (tabsElement) {
+    new Tabs({
+      element: tabsElement,
+      preventDefault: true
+    })
+  }
 
   new ModalManager({
     onOpen: (modal) => {

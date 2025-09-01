@@ -1,7 +1,7 @@
 import Component from '../classes/Component'
 
 export default class Tabs extends Component {
-  constructor({ element, onTabChange = null }) {
+  constructor({ element, preventDefault = false, onTabChange = null }) {
     super({
       element,
       elements: {
@@ -9,6 +9,7 @@ export default class Tabs extends Component {
         tabContents: '.tab__content'
       }
     })
+    this.preventDefault = preventDefault
     this.currentTabId = null
     this.onTabChange = onTabChange
 
@@ -40,16 +41,17 @@ export default class Tabs extends Component {
     }
 
     if (!tabToActivate) {
-      tabToActivate = this.elements.tabItems[0]
+      tabToActivate = [...this.elements.tabItems].find(tab =>
+        tab.classList.contains('is-active')
+      )
     }
-
-    if (!tabToActivate) return
 
     const targetId = tabToActivate.dataset.target
     this.currentTabId = targetId
 
     this.setActiveTab(tabToActivate)
     this.showTabContent(targetId)
+    this.scrollToTab(tabToActivate)
 
     // Callback para notificar el cambio de tab inicial
     if (typeof this.onTabChange === 'function') {
@@ -60,6 +62,8 @@ export default class Tabs extends Component {
   }
 
   bindTabEvents() {
+    if (this.preventDefault) return
+
     this.elements.tabItems?.forEach(tab => {
       tab.addEventListener('click', event => this.handleTabClick(event, tab))
     })
@@ -106,7 +110,9 @@ export default class Tabs extends Component {
   }
 
   showTabContent(targetId) {
-    this.elements.tabContents.forEach(content => {
+    if (this.preventDefault) return
+
+    this.elements.tabContents?.forEach(content => {
       content.style.display = content.id === targetId ? 'block' : 'none'
     })
   }

@@ -9,7 +9,7 @@ $tags = $args['tags'] ?? [];
 ?>
 
 <article class="entry-card">
-  <img src="<?php echo $image; ?>" alt="<?php echo esc_attr($title); ?>" class="entry-card__image">
+  <img src="<?=placeholder() ?>" data-src="<?php echo $image; ?>" alt="<?php echo esc_attr($title); ?>" class="entry-card__image lazyload">
   <div class="entry-card__content">
     <h3 class="entry-card__title"><?php echo esc_html($title); ?></h3>
     <?php

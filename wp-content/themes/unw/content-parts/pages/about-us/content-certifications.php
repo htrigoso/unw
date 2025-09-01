@@ -22,7 +22,7 @@ $certifications = get_field('certifications');
               <li class="certifications-card__item">
                 <div class="certifications-card__header">
                   <img src="<?= esc_url($item['icon']['url']); ?>" alt="<?= esc_attr($item['icon']['alt']); ?>"
-                    aria-hidden="true" class="certifications-card__icon" />
+                    aria-hidden="true" class="certifications-card__icon lazyload" />
                 </div>
                 <p class="certifications-card__desc">
                   <?= esc_html($item['description']); ?>

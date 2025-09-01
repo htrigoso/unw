@@ -8,7 +8,7 @@ $search_term = $args['search_term'] ?? '';
 
 
 if (  $wp_query->max_num_pages > 1) : ?>
-<div class="blog-pagination">
+<div class="pagination-container">
   <?php
           $big = 999999999;
 

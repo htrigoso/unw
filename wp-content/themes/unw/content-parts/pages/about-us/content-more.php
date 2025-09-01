@@ -11,8 +11,8 @@ if ($more && is_array($more)) :
       <?php foreach ($more['list'] as $card): ?>
         <a class="us-more__item" href="<?php echo esc_url($card['link']['url']); ?>"
            target="<?php echo esc_attr($card['link']['target']); ?>">
-          <img class="us-more__item--image"
-               src="<?php echo esc_url($card['image']['url']); ?>"
+          <img class="us-more__item--image lazyload "
+               src="<?=placeholder() ?>" data-src="<?php echo esc_url($card['image']['url']); ?>"
                alt="<?php echo esc_attr($card['image']['alt']); ?>">
           <div class="us-more__item--overlay">
             <div class="us-more__item--content">

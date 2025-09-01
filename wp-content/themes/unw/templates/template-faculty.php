@@ -14,13 +14,11 @@
   <?php
   $sliders = get_field('hero_slider');
 
-  $default_title = 'Facultad de Ciencias de la Salud';
-
   if (isset($sliders['list_of_files']) && is_array($sliders['list_of_files'])) {
     $tabs_items = get_field('tabs');
     foreach ($sliders['list_of_files'] as $i => $slide) {
       if (!isset($sliders['list_of_files'][$i]['title'])) {
-        $sliders['list_of_files'][$i]['title'] = $default_title;
+        $sliders['list_of_files'][$i]['title'] = $tabs_items[$i]->post_title;
       }
       if (isset($tabs_items[$i])) {
         $sliders['list_of_files'][$i]['label'] = $tabs_items[$i]->post_title;
