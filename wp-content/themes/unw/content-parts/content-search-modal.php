@@ -1,5 +1,4 @@
 <div class="search-modal__wrapper">
-  <!-- Add "is-active" class -->
   <div class="search-modal__wrapper__content">
     <div class="x-container sidebar__header">
       <a class="sidebar__logo pointer" href="<?php echo esc_url(home_url('/')); ?>">
