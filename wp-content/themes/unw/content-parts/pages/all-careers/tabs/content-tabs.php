@@ -4,7 +4,7 @@ $current_id = get_current_term_id();
 $tabs = $args['tabs'] ?? [];
 $carreras_query = get_carreras_by_facultad_filter(get_current_facultad_slug());
 $facultad_carreras = [];
-foreach ($carreras_query->posts as $carrera) {
+ foreach ($carreras_query->posts as $carrera) {
   $facultades = wp_get_post_terms($carrera->ID, 'facultad');
   if (!empty($facultades)) {
     foreach ($facultades as $facultad) {
@@ -12,6 +12,7 @@ foreach ($carreras_query->posts as $carrera) {
     }
   }
 }
+
 ?>
 
 <div class="all-careers-tabs">
@@ -27,11 +28,8 @@ foreach ($carreras_query->posts as $carrera) {
 
   <div class="x-container x-container--pad-213">
     <div class="all-careers-tabs__content">
-      <?php foreach ($tabs as $i => $tab): ?>
-        <div id="<?php echo esc_attr($tab['target']); ?>" class="tab__content<?php echo $i === 0 ? ' is-active' : ''; ?>"
-          role="tabpanel" aria-labelledby="tab-<?php echo esc_attr($tab['target']); ?>">
-
-          <?php
+      <div class="tab__content" role="tabpanel" aria-labelledby="tab">
+        <?php
           $cards = [];
           foreach ($facultad_carreras as $carrera) {
             $cards[] = [
@@ -45,8 +43,7 @@ foreach ($carreras_query->posts as $carrera) {
           }
           get_template_part(ALL_CAREERS_TABS_PATH, 'body', ['cards' => $cards]);
           ?>
-        </div>
-      <?php endforeach; ?>
+      </div>
     </div>
   </div>
 </div>
