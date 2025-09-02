@@ -21,7 +21,7 @@
       </div>
 
       <div class="navbar__menu-mobile">
-        <button type="button" class="btn-search-modal-form">
+        <button type="button" class="btn-search-modal-form" data-open-modal="search-modal">
           <i>
             <svg width="40" height="40">
               <use xlink:href="#search2"></use>

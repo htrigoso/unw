@@ -36,7 +36,7 @@ window.pbaCountries = <?php echo wp_json_encode($countries); ?>;
   ?>
 <div class="pba-network-modal__content">
   <div class="pba-network-modal__content--header">
-    <img src="<?php echo esc_url($country['flag']['url']); ?>" alt="" aria-hidden="true" />
+    <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($country['flag']['url']); ?>" alt="" aria-hidden="true" class="lazyload" />
     <h4><?= esc_html($country['name']) ?></h4>
   </div>
 

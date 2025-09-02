@@ -14,8 +14,8 @@ if ( $authorities && is_array($authorities) ) :
           <li class="swiper-slide authorities-swiper__item">
             <article class="authorities-card">
               <div class="authorities-card__header">
-                <img src="<?= esc_url($card['image']['url']); ?>" alt="<?= esc_attr($card['image']['alt']); ?>"
-                  class="authorities-card__img" />
+                <img src="<?=placeholder() ?>" data-src="<?= esc_url($card['image']['url']); ?>" alt="<?= esc_attr($card['image']['alt']); ?>"
+                  class="authorities-card__img lazyload" />
               </div>
               <div class="authorities-card__body">
                 <h4 class="authorities-card__body--name"><?= esc_html($card['name']); ?></h4>

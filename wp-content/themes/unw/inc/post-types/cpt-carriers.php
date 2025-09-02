@@ -115,8 +115,10 @@ function custom_carreras_rewrite_rules() {
 
   // Presenciales: carreras
   add_rewrite_rule('^carreras/([^/]+)/?$', 'index.php?carreras=$matches[1]', 'top');
-}
 
+
+  add_rewrite_rule('^carreras-uwiener/([^/]+)/?$', 'index.php?pagename=carreras-uwiener&facultad_filter=$matches[1]', 'top');
+}
 
 
 
@@ -186,7 +188,7 @@ function get_carreras_with_all_categories($modalidad = '', $categorias = []) {
   }
 
   $args['tax_query'][] = [
-    'taxonomy' => 'categoria_carrera',
+    'taxonomy' => 'facultad',
     'field'    => 'slug',
     'terms'    => $categorias,
     'operator' => 'AND' // Debe tener TODAS las categorías
@@ -201,7 +203,7 @@ function get_carreras_with_all_categories($modalidad = '', $categorias = []) {
 
 // FUNCIÓN HELPER para obtener todas las categorías de una carrera
 function get_carrera_categories($post_id) {
-  $terms = wp_get_post_terms($post_id, 'categoria_carrera');
+  $terms = wp_get_post_terms($post_id, 'facultad');
   if (empty($terms) || is_wp_error($terms)) {
     return [];
   }
@@ -210,5 +212,157 @@ function get_carrera_categories($post_id) {
 
 // FUNCIÓN HELPER para verificar si una carrera pertenece a una categoría específica
 function carrera_has_category($post_id, $category_slug) {
-  return has_term($category_slug, 'categoria_carrera', $post_id);
+  return has_term($category_slug, 'facultad', $post_id);
+}
+
+
+/////*****otros ******/////
+
+
+// Agregar query var para el filtro de facultad
+add_filter('query_vars', 'add_facultad_query_var');
+function add_facultad_query_var($vars) {
+    $vars[] = 'facultad_filter';
+    return $vars;
+}
+
+// Función para obtener el filtro actual desde la URL
+function get_current_facultad_filter() {
+    return get_query_var('facultad_filter');
+}
+
+// Función para generar URL de filtro por facultad
+function get_carreras_filter_url($facultad_slug, $base_page = 'carreras-uwiener') {
+    return home_url("/{$base_page}/{$facultad_slug}/");
+}
+
+// Función para obtener carreras filtradas por facultad
+function get_carreras_by_facultad_filter($facultad_slug = '', $modalidad = '') {
+    $args = [
+        'post_type' => 'carreras',
+        'post_status' => 'publish',
+        'posts_per_page' => -1,
+        'tax_query' => []
+    ];
+
+    if ($facultad_slug) {
+        $args['tax_query'][] = [
+            'taxonomy' => 'facultad',
+            'field'    => 'slug',
+            'terms'    => $facultad_slug,
+        ];
+    }
+
+    if ($modalidad) {
+        $args['tax_query'][] = [
+            'taxonomy' => 'modalidad',
+            'field'    => 'slug',
+            'terms'    => $modalidad,
+        ];
+    }
+
+    if (count($args['tax_query']) > 1) {
+        $args['tax_query']['relation'] = 'AND';
+    }
+
+    return new WP_Query($args);
+}
+
+//////******* */
+// Función para obtener el ID del término de facultad actual
+function get_current_facultad_id() {
+    $facultad_slug = get_query_var('facultad_filter');
+    if (empty($facultad_slug)) {
+        return 0;
+    }
+
+    $term = get_term_by('slug', $facultad_slug, 'facultad');
+    return ($term && !is_wp_error($term)) ? $term->term_id : 0;
+}
+
+
+// Función para obtener el ID del término de modalidad actual
+function get_current_modalidad_id() {
+    $modalidad_slug = get_query_var('modalidad_filter');
+    if (empty($modalidad_slug)) {
+        return 0;
+    }
+
+    $term = get_term_by('slug', $modalidad_slug, 'modalidad');
+    return ($term && !is_wp_error($term)) ? $term->term_id : 0;
+}
+
+function get_current_term_id() {
+    // Prioridad: facultad primero, luego modalidad
+    $facultad_id = get_current_facultad_id();
+    if ($facultad_id > 0) {
+        return $facultad_id;
+    }
+
+    return get_current_modalidad_id();
+}
+
+
+// Función para obtener el slug de facultad actual
+function get_current_facultad_slug() {
+    return get_query_var('facultad_filter');
+}
+
+// Función para obtener el slug de modalidad actual
+function get_current_modalidad_slug() {
+    return get_query_var('modalidad_filter');
+}
+
+
+// Función para obtener el slug del término activo (cualquier taxonomía)
+function get_current_term_slug() {
+    // Prioridad: facultad primero, luego modalidad
+    $facultad_slug = get_current_facultad_slug();
+    if (!empty($facultad_slug)) {
+        return $facultad_slug;
+    }
+
+    return get_current_modalidad_slug();
+}
+
+
+
+function get_facultad_taxonomy_name( $post_id = null ) {
+    if ( ! $post_id ) {
+        $post_id = get_the_ID();
+    }
+
+    $terms = get_the_terms( $post_id, 'facultad' );
+
+    if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+        return $terms[0]->name; // devuelve solo el nombre del primer término
+    }
+
+    return '';
+}
+
+function get_current_page_title() {
+    if ( is_singular() ) {
+        // Para posts, páginas o CPT
+        return get_the_title();
+    } elseif ( is_home() || is_front_page() ) {
+        // Página de inicio o blog
+        return get_bloginfo( 'name' );
+    } elseif ( is_category() || is_tag() || is_tax() ) {
+        // Términos de taxonomía
+        return single_term_title( '', false );
+    } elseif ( is_post_type_archive() ) {
+        // Archivo de CPT
+        return post_type_archive_title( '', false );
+    } elseif ( is_archive() ) {
+        // Archivos en general (fecha, autor, etc.)
+        return get_the_archive_title();
+    } elseif ( is_search() ) {
+        // Página de búsqueda
+        return sprintf( 'Resultados de búsqueda para: %s', get_search_query() );
+    } elseif ( is_404() ) {
+        return 'Página no encontrada';
+    }
+
+    return '';
 }

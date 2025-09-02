@@ -13,7 +13,7 @@ if ($promote && is_array($promote)) :
               <li class="swiper-slide promote-swiper__item">
                 <article class="promote-card">
                   <div>
-                    <img class="promote-card__icon" src="<?= esc_url($card['icon']['url']); ?>"
+                    <img class="promote-card__icon lazyload" src="<?=placeholder() ?>" data-src="<?= esc_url($card['icon']['url']); ?>"
                       alt="<?= esc_attr($card['icon']['alt']); ?>" aria-hidden="true">
                   </div>
                   <span class="promote-card__title"><?= esc_html($card['title']); ?></span>

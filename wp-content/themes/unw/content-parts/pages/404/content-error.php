@@ -9,7 +9,7 @@
         <a href="<?php echo home_url(); ?>" class="btn btn-primary error-page__button desktop">Regresar al inicio</a>
       </div>
       <div class="error-page__actions">
-        <img src="<?php echo UPLOAD_PATH . '/error/owl-illustration.png' ?>" alt="" aria-hidden="true" class="error-page__image" />
+        <img src="<?php echo UPLOAD_PATH . '/error/owl-illustration.png' ?>" alt="" aria-hidden="true" class="error-page__image" fetchpriority="high" decoding="async" loading="eager" />
         <a href="<?php echo home_url(); ?>" class="btn btn-primary error-page__button mobile">Regresar al inicio</a>
       </div>
     </div>

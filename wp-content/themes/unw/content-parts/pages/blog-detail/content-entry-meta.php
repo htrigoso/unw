@@ -8,7 +8,7 @@ $author_id = get_the_author_meta('ID');
 
 $breadcrumbs = [
   ['label' => 'Inicio', 'href' => home_url('/')],
-  ['label' => 'Blog', 'href' => '/blog/'],
+  ['label' => 'Blog', 'href' => home_url('/blog/')],
   ['label' => $titulo]
 ];
 ?>
@@ -34,7 +34,7 @@ $breadcrumbs = [
     </div>
   </div>
 
-  <img src="<?php echo esc_url($image_hero['imagen']['url']); ?>" class="entry-meta__image"
+  <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($image_hero['imagen']['url']); ?>" class="entry-meta__image lazyload"
     alt="<?php echo esc_attr($image_hero['imagen']['alt'] ?? 'Imagen destacada'); ?>">
 
   <div class="entry-meta__social">

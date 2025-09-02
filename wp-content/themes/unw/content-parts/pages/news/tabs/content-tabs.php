@@ -1,7 +1,7 @@
 <?php
 
 $current_term = get_queried_object();
-$current_term_id = $current_term && isset($current_term->term_id) ? $current_term->term_id : null;
+$current_id = $current_term && isset($current_term->term_id) ? $current_term->term_id : null;
 
  $terms = get_terms([
   'taxonomy' => 'categoria_novedad',
@@ -29,7 +29,7 @@ if (!empty($terms) && !is_wp_error($terms)) {
     get_template_part(COMMON_CONTENT_PATH, 'nav-tabs', [
       'nav_tabs' => $tabs,
       'is_url' => true,
-      'active_term_id' => $current_term_id,
+      'active_id' => $current_id,
     ]);
     ?>
   </div>

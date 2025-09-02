@@ -22,9 +22,9 @@ $events = get_field('hero-events', 'option');
           ?>
       <div class="swiper-slide event-slide">
         <picture class="event-slide__picture">
-          <source srcset="<?php echo esc_url($desktop_image); ?>" media="(min-width: 768px)" />
+          <source srcset="<?php echo esc_url($desktop_image); ?>" media="(min-width: 768px)" fetchpriority="high" />
           <img src="<?php echo esc_url($mobile_image); ?>" alt="<?php echo esc_attr($title); ?>"
-            class="event-slide__picture--img" />
+            class="event-slide__picture--img" fetchpriority="high" decoding="async" loading="eager" />
         </picture>
         <div class="event-slide__wrapper">
           <div class="x-container event-slide__container">

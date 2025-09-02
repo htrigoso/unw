@@ -27,7 +27,7 @@ $socials = [
   <div class="x-container x-container--pad-213 footer__wrapper">
     <div class="footer__upper">
       <div class="footer__left">
-        <img src="<?= UPLOAD_PATH . '/logo-unw-white.svg' ?>" alt="" aria-hidden="false" class="footer__logo" />
+        <img src="<?= UPLOAD_PATH . '/logo-unw-white.svg' ?>" alt="" aria-hidden="false" class="footer__logo" fetchpriority="high" decoding="async" loading="eager" />
         <h3 class="footer__cta--title">Agenda una visita</h3>
         <p class="footer__cta--desc">Un experto te dará un recorrido a nuestras instalaciones y resolverá tus dudas</p>
         <a href="https://wa.me/" target="_blank" class="btn btn-sm footer__cta--link">
@@ -68,5 +68,5 @@ $socials = [
 </footer>
 
 <a href="https://wa.me/" target="_blank" class="whatsapp-link">
-  <img src="<?= UPLOAD_PATH . '/icons/whatsapp.png'; ?>" alt="WhatsApp" class="whatsapp-link__icon" />
+  <img src="<?= UPLOAD_PATH . '/icons/whatsapp.png'; ?>" alt="WhatsApp" class="whatsapp-link__icon" fetchpriority="high" decoding="async" loading="eager" />
 </a>

@@ -14,7 +14,7 @@ $slider = get_field('slider');
           ?>
           <li class="swiper-slide carousel__item">
             <article class="carousel__content">
-              <img src="<?php echo $image_url; ?>" alt="<?php echo $image_alt; ?>" class="carousel__content--image" />
+              <img src="<?=placeholder() ?>" data-src="<?php echo $image_url; ?>" alt="<?php echo $image_alt; ?>" class="carousel__content--image lazyload" />
               <p class="carousel__content--description"><?php echo $description; ?></p>
             </article>
           </li>

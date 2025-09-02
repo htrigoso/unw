@@ -10,7 +10,7 @@ $url            = $args['url'];
 ?>
 
 <article class="event-card">
-  <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($image_alt); ?>" class="event-card--img" />
+  <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($image_alt); ?>" class="event-card--img lazyload" />
   <div class="event-card--content">
     <h3 class="event-card--title"><?php echo esc_html($title); ?></h3>
     <div class="event-card--row">

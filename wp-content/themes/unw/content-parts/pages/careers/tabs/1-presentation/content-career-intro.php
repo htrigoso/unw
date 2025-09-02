@@ -22,8 +22,8 @@ $detailText  = $presentation['detail'] ?? '';
         <source srcset="<?php echo esc_url($desktopImg); ?>" media="(min-width: 768px)" />
         <?php endif; ?>
         <?php if ($mobileImg): ?>
-        <img src="<?php echo esc_url($mobileImg); ?>" alt="<?php echo esc_attr($altImg); ?>"
-          class="career-intro__visual--img" />
+        <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($mobileImg); ?>" alt="<?php echo esc_attr($altImg); ?>"
+          class="career-intro__visual--img lazyload" />
         <?php endif; ?>
       </picture>
     </div>

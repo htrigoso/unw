@@ -1,18 +1,19 @@
 import Menu from './components/Menu'
 import { ModalManager } from './components/Modal'
-import ScrollDown from './components/ScrollDown'
 import { $element } from './utils/dom'
-import floatingInputLabel from './utils/floating-input-label'
 import initLazyLoad from './utils/lazyload'
+import FormCRM from './components/FormCRM'
 
 class App {
   constructor() {
+    this.createLazyLoad()
     this.createNavbar()
     this.createMenu()
     this.megaMenuDesktop()
     this.tabMegaMenuDesktop()
     this.hideBackdrop()
     this.createModal()
+    this.createFormCRM()
   }
 
   createModal() {
@@ -34,41 +35,8 @@ class App {
     })
   }
 
-  createScrollDown() {
-    const element = $element('.scroll-down')
-
-    if (!element) {
-      return
-    }
-
-    this.scrollDown = new ScrollDown({ element })
-  }
-
-  onPreloaded() {
+  createLazyLoad() {
     initLazyLoad()
-    this.onScroll()
-    this.createMenu()
-
-    const formContact = $element('#form-contact')
-
-    if (formContact) {
-      floatingInputLabel({
-        container: $element('#form-contact')
-      })
-    }
-
-    this.createScrollDown()
-  }
-
-  onScroll() {
-    window.addEventListener('scroll', (e) => {
-      const scrollTop = window.pageYOffset
-      if (scrollTop > 10) {
-        this.navbar.classList.add('active')
-      } else {
-        this.navbar.classList.remove('active')
-      }
-    })
   }
 
   megaMenuDesktop() {
@@ -103,11 +71,9 @@ class App {
 
   tabMegaMenuDesktop() {
     const elements = document.querySelectorAll('.submenu-tab > button')
-    console.log(elements)
 
     elements.forEach((link) => {
       const dataId = link.getAttribute('data-id')
-      console.log(dataId)
 
       link.addEventListener('click', (e) => {
         e.preventDefault()
@@ -184,6 +150,12 @@ class App {
     openItems.forEach((item) => item.classList.remove('is-open'))
 
     document.documentElement.style.overflow = ''
+  }
+
+  createFormCRM() {
+    new FormCRM({
+      element: 'form'
+    })
   }
 }
 

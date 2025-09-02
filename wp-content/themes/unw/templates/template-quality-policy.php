@@ -14,7 +14,7 @@
   <?php
   $breadcrumbs = [
     ['label' => 'Inicio', 'href' => home_url('/')],
-    ['label' => 'Nosotros', 'href' => home_url('/nosotros')],
+    ['label' => 'Nosotros', 'href' => home_url('/nosotros/')],
     ['label' => 'Política de calidad'],
   ];
 

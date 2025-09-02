@@ -1,18 +1,21 @@
 <?php
 $nav_tabs = $args['nav_tabs'];
-$active_term_id = isset($args['active_term_id']) ? $args['active_term_id'] : null;
+$active_id = isset($args['active_id']) ? $args['active_id'] : null;
 $is_url = isset($args['is_url']) ? $args['is_url'] : false;
+
 ?>
-<nav data-id="<?php echo $active_term_id ?>" class="nav-tabs" role="tablist" aria-label="Secciones del contenido">
+<nav data-id="<?php echo $active_id ?>" class="nav-tabs" role="tablist" aria-label="Secciones del contenido">
   <ul class="nav-tabs__list">
-    <?php foreach ($nav_tabs as $i => $tab): ?>
+    <?php foreach ($nav_tabs as $i => $tab):
+
+      ?>
     <li class="tab__item-wrapper" role="presentation">
       <?php
           $url = $is_url ?  $tab['url'] : '#';
           $active = $i === 0 ? ' is-active' : '';
 
            if ($is_url) {
-            $active = $active_term_id === $tab['id'] ? ' is-active' : '';
+            $active = $active_id === $tab['id'] ? ' is-active' : '';
            }
         ?>
       <a href="<?php echo esc_url($url); ?>" class="btn tab__item<?php echo $active; ?>" role="tab"

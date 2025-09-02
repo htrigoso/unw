@@ -15,8 +15,8 @@ $history = get_field('history');
         <div class="milestone-content--wrapper">
           <div class="milestone-content">
             <?php if (!empty($milestone['image'])): ?>
-            <img src="<?= $milestone['image']['url']; ?>" alt="<?= $milestone['image']['alt']; ?>"
-              class="milestone-image">
+            <img src="<?=placeholder() ?>" data-src="<?= $milestone['image']['url']; ?>" alt="<?= $milestone['image']['alt']; ?>"
+              class="milestone-image lazyload">
             <?php endif; ?>
             <p class="milestone-description">
               <?= $milestone['description']; ?>

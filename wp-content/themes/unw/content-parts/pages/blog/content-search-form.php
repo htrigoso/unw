@@ -8,6 +8,7 @@
       'placeholder' => 'Ej: Arquitectura'
     ]
   ) ?>
+  <input type="hidden" name="blog_search" value="1">
   <button class="btn btn-primary-one blog-search-form__button" type="submit">
     Buscar
   </button>
