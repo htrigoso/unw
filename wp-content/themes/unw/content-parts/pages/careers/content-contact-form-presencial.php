@@ -64,7 +64,7 @@
   <input type="hidden" name="Dropdown3" value="Perú (+51)"> <!-- Código de teléfono -->
   <input type="hidden" name="Dropdown100" value="<?=esc_attr($page_title)?>"> <!-- Carreras -->
   <input type="hidden" name="Dropdown2" value=""> <!-- Grado -->
-  <input type="hidden" name="Dropdown2" value="Number"> <!-- Año de egreso -->
+  <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
 
   <input type="hidden" name="SingleLine5" value="<?=esc_attr($term)?>"><!-- Catergoria(Facultad) -->
   <input type="hidden" name="SingleLine4" value="<?=esc_attr($code_carrier)?>"> <!-- Codigo por carrera acf -->
@@ -76,13 +76,16 @@
     <div class="form-body__fields">
       <?php if ( $is_form_mixto ): ?>
       <div class="form-field-radio m-b-24">
-        <fieldset class="flex">
-          <div class="radio-option ">
+        <fieldset>
+          <div class="radio-option m-b-15">
             <input type="radio" id="pregrado" name="form_mixto" value="pregrado" checked />
-            <label for="pregrado">Pregrado</label>
+            <label for="pregrado">Presencial</label>
           </div>
 
-          <div class="radio-option m-l-15">
+
+
+
+          <div class="radio-option m-b-15">
             <input type="radio" id="virtual" name="form_mixto" value="virtual" />
             <label for="virtual">100% virtual</label>
           </div>
@@ -175,3 +178,6 @@
     </div>
   </div>
 </form>
+<!-- Falta el nombre del campus:  SingleLine8 -->
+
+<!-- Falta el nombre del depatamento:  SingleLine8 -->

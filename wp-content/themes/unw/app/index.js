@@ -2,7 +2,6 @@ import Menu from './components/Menu'
 import { ModalManager } from './components/Modal'
 import { $element } from './utils/dom'
 import initLazyLoad from './utils/lazyload'
-import FormCRM from './components/FormCRM'
 
 class App {
   constructor() {
@@ -13,7 +12,6 @@ class App {
     this.tabMegaMenuDesktop()
     this.hideBackdrop()
     this.createModal()
-    this.createFormCRM()
   }
 
   createModal() {
@@ -150,12 +148,6 @@ class App {
     openItems.forEach((item) => item.classList.remove('is-open'))
 
     document.documentElement.style.overflow = ''
-  }
-
-  createFormCRM() {
-    new FormCRM({
-      element: 'form'
-    })
   }
 }
 

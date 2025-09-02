@@ -5,6 +5,7 @@ import PostSwiperDesktop from '../../components/PostSwiperDesktop'
 import InternationalSwiper from '../../components/InternationalSwiper'
 import { updateSwipers } from '../../utils/swiper'
 import Accordion from '../../components/Accordion'
+import FormCrmCareer from '../../components/FormCRM/FormCrmCareer'
 
 (function () {
   HeroSwiper()
@@ -80,5 +81,9 @@ import Accordion from '../../components/Accordion'
         })
       }
     })
+  })
+
+  new FormCrmCareer({
+    element: 'form'
   })
 })()
