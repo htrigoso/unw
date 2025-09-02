@@ -27,20 +27,18 @@ $utms_final = merge_utms($utms_default, $utm_carriers);
   <input type="hidden" name="<?= esc_attr($utm['name']); ?>" value="<?= esc_attr($utm['value']); ?>">
   <?php endforeach; ?>
 
-  <input type="hidden" name="Website" value="<?=get_current_page_url()?>">
-  <!-- Campos vacios -->
+  <!-- Enviar Campos vacios -->
   <input type="hidden" name="Name_Middle" value="">
   <input type="hidden" name="Dropdown3" value="Perú (+51)">
   <input type="hidden" name="Dropdown" value="DNI">
   <input type="hidden" name="Number" value="">
   <!-- Catergoria(Facultad) -->
-  <input type="hidden" name="SingleLine5" value="<?=esc_attr($term)?>">
-  <!-- Codigo por carrera acf -->
-  <input type="hidden" name="SingleLine4" value="<?=esc_attr($code_carrier)?>">
-  <!-- Nombre de la carrera -->
-  <input type="hidden" name="SingleLine3" value="<?=esc_attr($page_title)?>">
-  <!-- Nombre del departamento -->
-  <input type="hidden" name="SingleLine8" value="">
+
+  <input type="hidden" name="SingleLine5" value="<?=esc_attr($term)?>"><!-- Codigo por carrera acf -->
+  <input type="hidden" name="SingleLine4" value="<?=esc_attr($code_carrier)?>"><!-- Nombre de la carrera -->
+  <input type="hidden" name="SingleLine3" value="<?=esc_attr($page_title)?>"><!-- Nombre del departamento -->
+  <input type="hidden" name="SingleLine8" id="hidden_departament" value=""> <!-- Departamento -->
+  <input type="hidden" name="Website" value="<?=get_current_page_url()?>"> <!-- Url de Trakeo -->
 
 
   <div class="form-body">
@@ -49,10 +47,10 @@ $utms_final = merge_utms($utms_default, $utm_carriers);
         <div class="f-50">
           <div class="form-field form-field-select">
             <select name="SingleLine7" id="departament" required>
-              <option value="" selected disabled>Departamento de procedencia</option>
+              <option value="" selected disabled>--Seleccione--</option>
               <?php foreach ($list_departaments as $dep): ?>
-              <option value="<?= htmlspecialchars($dep['value']); ?>">
-                <?= htmlspecialchars($dep['name']); ?>
+              <option value="<?= esc_html($dep['value']); ?>">
+                <?= esc_html($dep['name']); ?>
               </option>
               <?php endforeach; ?>
             </select>
