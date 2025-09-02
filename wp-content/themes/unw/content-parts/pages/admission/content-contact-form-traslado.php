@@ -32,23 +32,26 @@ $utms_final = merge_utms($utms_default, $utm_admission);
   <input type="hidden" name="Dropdown" value="DNI">
   <input type="hidden" name="Dropdown2" value=""> <!-- Grado -->
   <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
-  <input type="hidden" name="SingleLine1" value=""> <!-- Unidad de negocio -->
 
-  <input type="hidden" name="SingleLine5" value="">
-  <!--Facultad) -->
-  <input type="hidden" name="SingleLine4" value=""> <!-- Codigo por carrera acf -->
-  <input type="hidden" name="SingleLine3" value=""> <!-- Escoge tu facultad valor -->
+
+  <!--Facultad) Falta -->
+  <div class="custom-hidden"></div>
+  <!--Facultad) Falta -->
+  <input type="hidden" name="SingleLine1" value="UNW_Pregrado"> <!-- Unidad de negocio -->
+  <input type="hidden" name="SingleLine2" value="Web Admisión II"> <!-- Fuente de origen -->
+
 
   <input type="hidden" name="Dropdown500" value=""> <!-- Escoge Instituto / Universidad -->
   <input type="hidden" name="SingleLine6" value=""> <!-- Escoge instituto universitario Grupo -->
   <input type="hidden" name="SingleLine7" value=""> <!-- Escoge instituto universitario Valor -->
   <input type="hidden" name="SingleLine8" value=""> <!-- Escoge instituto universitario text -->
 
-  <input type="hidden" name="Dropdown4" value=""> <!-- Estado de período -->
+  <input type="hidden" name="Dropdown4" value="Activo"> <!-- Estado de período -->
   <input type="hidden" name="Website" value="<?=get_current_page_url()?>"> <!-- Url de Trakeo -->
-  <input type="hidden" name="SingleLine2" value=""> <!-- Fuente de origen -->
   <input type="hidden" name="SingleLine10" value=""> <!-- Escoge tu sede - Text -->
   <input type="hidden" name="SingleLine11" value=""> <!-- Escoge tu sede - Valor -->
+
+
 
 
   <div class="form-body">
@@ -96,7 +99,7 @@ $utms_final = merge_utms($utms_default, $utm_admission);
         </div>
         <div class="f-50">
           <div class="form-field form-field-select">
-            <select name="Dropdown100" id="careerSelect" required>
+            <select name="SingleLine3" id="careerSelect" required>
               <option value="" selected disabled>--Seleccione--</option>
               <?php foreach ($careers as $career) : ?>
               <optgroup label="<?= esc_html($career['faculty']); ?>">
@@ -139,12 +142,12 @@ $utms_final = merge_utms($utms_default, $utm_admission);
           <legend>¿Eres egresado de Instituto o estudiante de Universidad?* </legend>
           <div class="flex">
             <div class="radio-option">
-              <input type="radio" id="pregrado" name="Radio" value="Sí" checked />
-              <label for="pregrado">Sí</label>
+              <input type="radio" id="pregrado1" name="Radio" value="Sí" checked />
+              <label for="pregrado1">Sí</label>
             </div>
             <div class="radio-option m-l-15">
-              <input type="radio" id="gente-trabaja" name="Radio" value="No" />
-              <label for="gente-trabaja">No</label>
+              <input type="radio" id="gente-trabaja1" name="Radio" value="No" />
+              <label for="gente-trabaja1">No</label>
             </div>
           </div>
         </fieldset>

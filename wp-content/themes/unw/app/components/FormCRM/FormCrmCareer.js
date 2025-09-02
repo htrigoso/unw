@@ -1,5 +1,5 @@
 import Component from '../../classes/Component'
-import { createSelectCampus, createSelectDepartament, removeSelectCampus, removeSelectDepartament, setClaseName } from './utils'
+import { createSelectCampus, createSelectDepartament, removeSelectCampus, removeSelectDepartament, sanitizeForInput, setClaseName } from './utils'
 
 // ==========================
 // Constantes de formularios
@@ -22,6 +22,7 @@ export default class FormCrmCareer extends Component {
   createListeners() {
     this.handleDepartmentChange()
     this.handleFormMixtoChange()
+    this.handleDepartamentChange()
   }
 
   // ==========================
@@ -35,7 +36,7 @@ export default class FormCrmCareer extends Component {
     selectDepartament.addEventListener('change', () => {
       const selectedText =
         selectDepartament.options[selectDepartament.selectedIndex].text
-      hiddenDepartament.value = this.sanitizeForInput(selectedText)
+      hiddenDepartament.value = sanitizeForInput(selectedText)
     })
   }
 
@@ -59,7 +60,7 @@ export default class FormCrmCareer extends Component {
             removeSelectDepartament(this.element)
 
             if (isMixto && campus.length > 0) {
-              createSelectCampus(this.element)
+              createSelectCampus(this.element, 'SingleLine8')
             }
             break
 
@@ -68,6 +69,7 @@ export default class FormCrmCareer extends Component {
             setClaseName('f-50', this.element)
             createSelectDepartament({
               position: 'prepend',
+              name: 'SingleLine7',
               element: this.element
             })
 
@@ -81,6 +83,33 @@ export default class FormCrmCareer extends Component {
             break
         }
       })
+    })
+  }
+
+  handleDepartamentChange() {
+    this.element.addEventListener('change', (event) => {
+      const target = event.target
+      if (!target) return
+      if (!['departament', 'campus'].includes(target.id)) return
+
+      const selectedOption = target.options[target.selectedIndex]
+      const text = selectedOption?.textContent.trim() || ''
+
+      const hiddenContainer = this.element.querySelector('.custom-hidden')
+      if (!hiddenContainer) return
+
+      const checked = document.querySelector('input[name="form_mixto"]:checked')
+      if (!checked) return
+
+      const map = {
+        pregrado: { campus: 'SingleLine7' },
+        virtual: { departament: 'SingleLine8' }
+      }
+
+      const hiddenName = map[checked.value]?.[target.id]
+      if (hiddenName) {
+        hiddenContainer.innerHTML = `<input type="hidden" name="${hiddenName}" value="${text}">`
+      }
     })
   }
 }

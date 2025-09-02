@@ -20,4 +20,8 @@ import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
   })
   PostSwiperDesktop()
   InternationalSwiper()
+
+  new FormCrmGeneral({
+    element: '#modal-more-info'
+  })
 })()

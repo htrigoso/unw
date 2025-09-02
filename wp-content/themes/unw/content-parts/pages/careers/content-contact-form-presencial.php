@@ -66,11 +66,17 @@
   <input type="hidden" name="Dropdown2" value=""> <!-- Grado -->
   <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
 
-  <input type="hidden" name="SingleLine5" value="<?=esc_attr($term)?>"><!-- Catergoria(Facultad) -->
+  <input type="hidden" name="SingleLine5" value="<?=esc_attr($term)?>"><!-- Facultad -->
   <input type="hidden" name="SingleLine4" value="<?=esc_attr($code_carrier)?>"> <!-- Codigo por carrera acf -->
   <input type="hidden" name="SingleLine3" value="<?=esc_attr($page_title)?>">
   <input type="hidden" name="Website" value="<?=get_current_page_url()?>"> <!-- Url de Trakeo -->
   <!-- ////Campos vacios -->
+
+
+  <div class="custom-hidden"></div>
+
+
+
 
   <div class="form-body">
     <div class="form-body__fields">
@@ -144,7 +150,7 @@
         ?>
         <div class="f-50">
           <div class="form-field form-field-select">
-            <select name="SingleLine7" id="campus" required>
+            <select name="SingleLine8" id="campus" required>
               <option value="" selected disabled>--Seleccione--</option>
               <?php foreach ($campus_json as $cam): ?>
               <option value="<?= esc_html($cam['value']); ?>">
@@ -180,4 +186,4 @@
 </form>
 <!-- Falta el nombre del campus:  SingleLine8 -->
 
-<!-- Falta el nombre del depatamento:  SingleLine8 -->
+<!-- Falta el nombre del campus:  SingleLine8 -->

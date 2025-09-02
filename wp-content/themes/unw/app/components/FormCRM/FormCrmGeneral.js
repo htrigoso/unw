@@ -14,7 +14,6 @@ export default class FormCrmGeneral extends Component {
   constructor({ element, container, onCompleted }) {
     super({ element, elements: {} })
 
-    console.log(this.element, 'a')
     this.createListeners()
   }
 
@@ -30,43 +29,42 @@ export default class FormCrmGeneral extends Component {
   // ==========================
 
   handleFormMixtoChange() {
-    const radios = this.element.querySelectorAll('input[name="form_mixto"]')
-    const departaments = JSON.parse(this.element.dataset.departaments || '[]')
-    console.log(radios.length, 'ss')
-    if (!radios.length) return
+    document.addEventListener('change', (event) => {
+      const target = event.target
 
-    radios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        if (!radio.checked) return
+      if (target && target.matches('input[name="form_mixto"]')) {
+        if (!target.checked) return
 
-        const value = radio.value.trim().toLowerCase()
+        const value = target.value.trim().toLowerCase()
+        const departaments = JSON.parse(
+          target.closest('form')?.dataset.departaments || '[]'
+        )
+        const form = target.closest('form')
 
         switch (value) {
           case 'pregrado':
-            this.element.action = FORM_GENERAL_PRESENCIAL
-            setClaseName('f-100', this.element)
+            form.action = FORM_GENERAL_PRESENCIAL
+            setClaseName('f-100', form)
 
             if (departaments.length > 0) {
-              removeSelectDepartament(this.element)
+              removeSelectDepartament(form)
             }
             break
 
           case 'virtual':
-            this.element.action = FORM_GENERAL_VIRTUAL
-            setClaseName('f-50', this.element)
-            alert(departaments.length)
+            form.action = FORM_GENERAL_VIRTUAL
+            setClaseName('f-50', form)
+
             if (departaments.length > 0) {
-              createSelectDepartament({
-                element: this.element
-              })
+              createSelectDepartament({ element: form })
             }
             break
 
           default:
-            console.warn(`Opción inválida para form_mixto: "${radio.value}"`)
+            console.warn(`Opción inválida para form_mixto: "${target.value}"`)
             break
         }
-      })
+      }
     })
   }
 }

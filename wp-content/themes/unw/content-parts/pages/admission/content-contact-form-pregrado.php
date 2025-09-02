@@ -14,9 +14,8 @@ if($is_departments) {
   $departments_json =  $list_departaments;
 }
 ?>
-<form id="form-traslado" class="contact-form formAdmision"
-  data-departaments="<?= esc_attr(wp_json_encode( $departments_json))?>" method="POST" accept-charset="UTF-8"
-  enctype="multipart/form-data"
+<form class="contact-form formAdmision" data-departaments="<?= esc_attr(wp_json_encode( $departments_json))?>"
+  method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
   action="https://forms.zohopublic.com/adminzoho11/form/Admisin/formperma/qazbrVloDUNKCisJII7v7HMG2gMsSkD30FMV9GEJM4E/htmlRecords/submit">
   <div class="form-header">
     <i>
@@ -28,6 +27,8 @@ if($is_departments) {
       ¡Déjanos tus datos y nos contactaremos contigo!
     </h4>
   </div>
+
+  <div class="custom-hidden"></div>
 
   <?php foreach ($utms_final as $utm): ?>
   <input type="hidden" name="<?= esc_attr($utm['name']); ?>" value="<?= esc_attr($utm['value']); ?>">
@@ -42,21 +43,21 @@ if($is_departments) {
   <input type="hidden" name="Dropdown" value="DNI">
   <input type="hidden" name="Dropdown2" value=""> <!-- Grado -->
   <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
-  <input type="hidden" name="SingleLine1" value=""> <!-- Unidad de negocio -->
 
-  <input type="hidden" name="SingleLine5" value="">
-  <!--Facultad) -->
-  <input type="hidden" name="SingleLine4" value=""> <!-- Codigo por carrera acf -->
-  <input type="hidden" name="SingleLine3" value=""> <!-- Escoge tu facultad valor -->
+
+
+
+  <input type="hidden" name="SingleLine1" value=""> <!-- Unidad de negocio -->
+  <input type="hidden" name="SingleLine2" value=""> <!-- Fuente de origen -->
+
 
   <input type="hidden" name="Dropdown500" value=""> <!-- Escoge Instituto / Universidad -->
   <input type="hidden" name="SingleLine6" value=""> <!-- Escoge instituto universitario Grupo -->
   <input type="hidden" name="SingleLine7" value=""> <!-- Escoge instituto universitario Valor -->
-  <input type="hidden" name="SingleLine8" value=""> <!-- Escoge instituto universitario text -->
+  <input type="hidden" name="SingleLine9" value="">
 
-  <input type="hidden" name="Dropdown4" value=""> <!-- Estado de período -->
+  <input type="hidden" name="Dropdown4" value="Activo"> <!-- Estado de período -->
   <input type="hidden" name="Website" value="<?=get_current_page_url()?>"> <!-- Url de Trakeo -->
-  <input type="hidden" name="SingleLine2" value=""> <!-- Fuente de origen -->
   <input type="hidden" name="SingleLine10" value=""> <!-- Escoge tu sede - Text -->
   <input type="hidden" name="SingleLine11" value=""> <!-- Escoge tu sede - Valor -->
 
@@ -123,7 +124,7 @@ if($is_departments) {
       <div class="flex justify-between m-b-24" data-html-name="departament">
         <div class="f-50">
           <div class="form-field form-field-select">
-            <select name="Dropdown100" id="careerSelect" required>
+            <select name="SingleLine3" id="careerSelect" required>
               <option value="" selected disabled>--Seleccione--</option>
               <?php foreach ($careers as $career) : ?>
               <optgroup label="<?= esc_html($career['faculty']); ?>">

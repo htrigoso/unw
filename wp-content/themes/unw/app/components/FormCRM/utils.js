@@ -11,7 +11,7 @@ export function setClaseName(value, element) {
 // ==========================
 // Creadores dinámicos
 // ==========================
-export function createSelectDepartament({ position = 'append', element } = {}) {
+export function createSelectDepartament({ position = 'append', name = 'SingleLine8', element } = {}) {
   const departaments = JSON.parse(element.dataset.departaments || '[]')
   if (departaments.length === 0) return
 
@@ -25,7 +25,7 @@ export function createSelectDepartament({ position = 'append', element } = {}) {
 
   const wrapperDiv = buildSelectWrapper({
     id: 'departament',
-    name: 'SingleLine7',
+    name,
     label: 'Departamento de procedencia',
     options: departaments
   })
@@ -116,7 +116,7 @@ export function sanitizeForInput(str) {
     .replace(/'/g, '&#039;')
 }
 
-export function createSelectCampus(element) {
+export function createSelectCampus(element, name = 'SingleLine7') {
   const campus = JSON.parse(element.dataset.campus || '[]')
   if (campus.length === 0) return
 
@@ -125,7 +125,7 @@ export function createSelectCampus(element) {
 
   const wrapperDiv = buildSelectWrapper({
     id: 'campus',
-    name: 'SingleLine7',
+    name,
     label: 'Elige tu campus',
     options: campus
   })
