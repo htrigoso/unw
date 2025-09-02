@@ -1,7 +1,13 @@
 import Component from '../classes/Component'
 
-const FORM_CARRIERS_PRESENCIAL = 'https://forms.zohopublic.com/adminzoho11/form/WebCarreras/formperma/T3JIAMOGnJxkHbk-qsPtLTz8XUz9NaQDXxHjjRe_AKk/htmlRecords/submit'
-const FORM_CARRIERS_VIRTUAL = 'https://forms.zohopublic.com/adminzoho11/form/WebCarrerasVirtual/formperma/f1PqvMaVQ3bdPj9ELVT4XJWYy_eHSjrAECWfWqSB_uE/htmlRecords/submit'
+// ==========================
+// Constantes de formularios
+// ==========================
+const FORM_CARRIERS_PRESENCIAL =
+  'https://forms.zohopublic.com/adminzoho11/form/WebCarreras/formperma/T3JIAMOGnJxkHbk-qsPtLTz8XUz9NaQDXxHjjRe_AKk/htmlRecords/submit'
+
+const FORM_CARRIERS_VIRTUAL =
+  'https://forms.zohopublic.com/adminzoho11/form/WebCarrerasVirtual/formperma/f1PqvMaVQ3bdPj9ELVT4XJWYy_eHSjrAECWfWqSB_uE/htmlRecords/submit'
 
 export default class FormCRM extends Component {
   constructor({ element, container, onCompleted }) {
@@ -9,6 +15,74 @@ export default class FormCRM extends Component {
     this.createListeners()
   }
 
+  // ==========================
+  // Inicializadores
+  // ==========================
+  createListeners() {
+    this.handleDepartmentChange()
+    this.handleFormMixtoChange()
+  }
+
+  // ==========================
+  // Handlers
+  // ==========================
+  handleDepartmentChange() {
+    const selectDepartament = this.element.querySelector('#departament')
+    const hiddenDepartament = this.element.querySelector('#hidden_departament')
+    if (!selectDepartament || !hiddenDepartament) return
+
+    selectDepartament.addEventListener('change', () => {
+      const selectedText =
+        selectDepartament.options[selectDepartament.selectedIndex].text
+      hiddenDepartament.value = this.sanitizeForInput(selectedText)
+    })
+  }
+
+  handleFormMixtoChange() {
+    const radios = this.element.querySelectorAll('input[name="form_mixto"]')
+    const campus = JSON.parse(this.element.dataset.campus || '[]')
+    const isMixto = JSON.parse(this.element.dataset.mixto || 0)
+
+    if (!radios.length) return
+
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (!radio.checked) return
+
+        const value = radio.value.trim().toLowerCase()
+
+        switch (value) {
+          case 'pregrado':
+            this.element.action = FORM_CARRIERS_PRESENCIAL
+            this.setClaseName('f-100')
+            this.removeSelectDepartament()
+
+            if (isMixto && campus.length > 0) {
+              this.createSelectCampus()
+            }
+            break
+
+          case 'virtual':
+            this.element.action = FORM_CARRIERS_VIRTUAL
+            this.setClaseName('f-50')
+            this.createSelectDepartament()
+
+            if (isMixto && campus.length > 0) {
+              this.removeSelectCampus()
+            }
+            break
+
+          default:
+            console.warn(`Opción inválida para form_mixto: "${radio.value}"`)
+            break
+        }
+      })
+    })
+  }
+
+  // ==========================
+  // Helpers
+  // ==========================
   sanitizeForInput(str) {
     if (typeof str !== 'string') return ''
     return str
@@ -19,68 +93,84 @@ export default class FormCRM extends Component {
       .replace(/'/g, '&#039;')
   }
 
-  createListeners() {
-    this.handleDepartmentChange()
-    this.handleFormMixtoChange()
-  }
-
-  handleDepartmentChange() {
-    const selectDepartament = this.element.querySelector('#departament')
-    const hiddenDepartament = this.element.querySelector('#hidden_departament')
-    if (!selectDepartament || !hiddenDepartament) return
-
-    selectDepartament.addEventListener('change', () => {
-      const selectedText = selectDepartament.options[selectDepartament.selectedIndex].text
-      hiddenDepartament.value = this.sanitizeForInput(selectedText)
-    })
-  }
-
   setClaseName(value) {
-    const htmlNameFirst = this.element.querySelector('[data-html-name="name_first"]')
-    if (!htmlNameFirst) return
-    htmlNameFirst.className = value
+    const htmlNameFirst = this.element.querySelector(
+      '[data-html-name="name_first"]'
+    )
+    if (htmlNameFirst) {
+      htmlNameFirst.className = value
+    }
   }
 
-  handleFormMixtoChange() {
-    const radios = this.element.querySelectorAll('input[name="form_mixto"]')
-
-    if (!radios.length) return
-
-    radios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        if (!radio.checked) return
-
-        const value = radio.value.trim().toLowerCase()
-        switch (value) {
-          case 'pregrado':
-            this.element.action = FORM_CARRIERS_PRESENCIAL
-            this.setClaseName('f-100')
-            this.removeSelectDepartament()
-            this.createSelectCampus()
-            break
-          case 'virtual':
-            this.element.action = FORM_CARRIERS_VIRTUAL
-            this.createSelectDepartament()
-            this.setClaseName('f-50')
-            break
-          default:
-            console.warn(`Opción inválida para form_mixto: "${radio.value}"`)
-            break
-        }
-      })
-    })
-  }
-
+  // ==========================
+  // Creadores dinámicos
+  // ==========================
   createSelectDepartament() {
     const departaments = JSON.parse(this.element.dataset.departaments || '[]')
-
     if (departaments.length === 0) return
-    const containerHtml = this.element.querySelector('[data-html-name="departament"]')
+
+    const containerHtml = this.element.querySelector(
+      '[data-html-name="departament"]'
+    )
     if (!containerHtml) return
 
-    // Evitamos duplicados: si ya existe, no crear de nuevo
+    // Evitar duplicados
     if (containerHtml.querySelector('#departament')) return
 
+    const wrapperDiv = this.buildSelectWrapper({
+      id: 'departament',
+      name: 'SingleLine7',
+      label: 'Departamento de procedencia',
+      options: departaments
+    })
+
+    containerHtml.prepend(wrapperDiv)
+  }
+
+  createSelectCampus() {
+    const campus = JSON.parse(this.element.dataset.campus || '[]')
+    if (campus.length === 0) return
+
+    const containerHtml = this.element.querySelector('[data-html-name="campus"]')
+    if (!containerHtml) return
+
+    const wrapperDiv = this.buildSelectWrapper({
+      id: 'campus',
+      name: 'SingleLine7',
+      label: 'Elige tu campus',
+      options: campus
+    })
+
+    // Si existe reemplaza, sino agrega
+    const existing = containerHtml.querySelector('.f-50')
+    existing ? existing.replaceWith(wrapperDiv) : containerHtml.appendChild(wrapperDiv)
+  }
+
+  // ==========================
+  // Removedores dinámicos
+  // ==========================
+  removeSelectDepartament() {
+    this.removeSelect('[data-html-name="departament"]', '#departament')
+  }
+
+  removeSelectCampus() {
+    this.removeSelect('[data-html-name="campus"]', '#campus')
+  }
+
+  removeSelect(containerSelector, selectId) {
+    const containerHtml = this.element.querySelector(containerSelector)
+    if (!containerHtml) return
+
+    const existingSelect = containerHtml.querySelector(selectId)
+    if (existingSelect) {
+      existingSelect.closest('.f-50')?.remove()
+    }
+  }
+
+  // ==========================
+  // Generador de select genérico
+  // ==========================
+  buildSelectWrapper({ id, name, label, options }) {
     const wrapperDiv = document.createElement('div')
     wrapperDiv.classList.add('f-50')
 
@@ -88,10 +178,11 @@ export default class FormCRM extends Component {
     fieldDiv.classList.add('form-field', 'form-field-select')
 
     const select = document.createElement('select')
-    select.name = 'SingleLine7'
-    select.id = 'departament'
+    select.name = name
+    select.id = id
     select.required = true
 
+    // Opción por defecto
     const defaultOption = document.createElement('option')
     defaultOption.value = ''
     defaultOption.textContent = '--Seleccionar--'
@@ -99,36 +190,27 @@ export default class FormCRM extends Component {
     defaultOption.selected = true
     select.appendChild(defaultOption)
 
-    departaments.forEach(dep => {
+    // Opciones dinámicas
+    options.forEach(opt => {
       const option = document.createElement('option')
-      option.value = dep.value || ''
-      option.textContent = dep.name || ''
+      option.value = opt.value || ''
+      option.textContent = opt.name || ''
       select.appendChild(option)
     })
 
-    const label = document.createElement('label')
-    label.htmlFor = 'departament'
-    label.textContent = 'Departamento de procedencia'
+    const labelEl = document.createElement('label')
+    labelEl.htmlFor = id
+    labelEl.textContent = label
 
     const errorSpan = document.createElement('span')
     errorSpan.classList.add('error-message')
     errorSpan.textContent = 'Datos inválidos'
 
     fieldDiv.appendChild(select)
-    fieldDiv.appendChild(label)
+    fieldDiv.appendChild(labelEl)
     fieldDiv.appendChild(errorSpan)
     wrapperDiv.appendChild(fieldDiv)
 
-    containerHtml.prepend(wrapperDiv)
-  }
-
-  removeSelectDepartament() {
-    const containerHtml = this.element.querySelector('[data-html-name="departament"]')
-    if (!containerHtml) return
-
-    const existingSelect = containerHtml.querySelector('#departament')
-    if (existingSelect) {
-      existingSelect.closest('.f-50')?.remove()
-    }
+    return wrapperDiv
   }
 }
