@@ -111,6 +111,8 @@
   <!-- Google Tag Manager -->
 
   <!-- End Google Tag Manager -->
+
+
   <?php wp_head(); ?>
 </head>
 
