@@ -1,8 +1,7 @@
 <?php
-
   $crm_carriers      = get_field('crm');
-  $box_form_mixto = $crm_carriers['box_form_mixto'];
-  $box_form_normal = $crm_carriers['box_form_normal'];
+  $form_mixto = $crm_carriers['form_mixto'];
+  $form_normal = $crm_carriers['form_normal'];
   $formUrl         = "https://forms.zohopublic.com/adminzoho11/form/WebCarreras/formperma/T3JIAMOGnJxkHbk-qsPtLTz8XUz9NaQDXxHjjRe_AKk/htmlRecords/submit";
   $form_crm_option   = get_field('form_crm', 'option');
   $utms_default      = get_field('list_utms', 'option');
@@ -13,39 +12,38 @@
   $code_carrier     = $crm_carriers['code'];
   // ---- Fusionar UTMs ----
   $utms_final = merge_utms($utms_default, $utm_carriers);
-  $list_campus =  wp_json_encode([]);
   $list_campus_default =    $form_crm_option['list_campus'] ;
+  $list_campus =  wp_json_encode([]);
   $departments_json =  [] ;
   $campus_json =  [] ;
-  $is_form_mixto = $box_form_mixto['is_mixto'];
+  $is_form_mixto = $crm_carriers ['is_mixto'];
 
-   // Si es form normal
-  if(!$box_form_mixto['is_mixto'] && $box_form_normal['is_campus_pre']) {
-      $campus_json = $form_crm_option['list_campus'];
-  }else {
+   // Si es form mixto
+  if($is_form_mixto) {
 
-     // Si Presencial mostrar departamentos
-    if($box_form_mixto['is_campus_pre']) {
+    $group_presencial = $form_mixto['group_presencial'];
+    $group_virtual = $form_mixto['group_virtual'];
+
+
+    if($group_presencial['status']) {
       $campus_json = $form_crm_option['list_campus'];
     }
 
     // Si Virtual mostrar departamentos de procedencia
-     if($box_form_mixto['is_dep_vir']) {
+     if($group_virtual['status']) {
       $departments_json =  $list_departaments;
     }
+
+  }else {
+    if($form_normal['status']) {
+      $campus_json = $form_crm_option['list_campus'];
+    }
   }
-
-
-
-
 ?>
-<form id="form" data-form-type="<?=$box_form_mixto['is_mixto']?>" data-form-pre="<?=$box_form_mixto['is_campus_pre']?>"
-  data-departaments=" <?= esc_attr(wp_json_encode( $departments_json)) ?>"
-  data-campus=" <?= esc_attr(wp_json_encode( $campus_json)) ?>"
-  data-mixto=" <?= $is_form_mixto ?>"
-
-  class="contact-form formCarrera" method="POST"
-  accept-charset="UTF-8" enctype="multipart/form-data" action="<?=$formUrl?>">
+<form id="form" data-departaments=" <?= esc_attr(wp_json_encode( $departments_json)) ?>"
+  data-campus="<?= esc_attr(wp_json_encode( $campus_json)) ?>" data-mixto="<?=esc_attr(trim($is_form_mixto))?>"
+  class="contact-form formCarrera" method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
+  action="<?=$formUrl?>">
   <div class="form-header">
     <i>
       <svg width="52" height="52">
@@ -66,15 +64,16 @@
   <input type="hidden" name="Dropdown3" value="Perú (+51)"> <!-- Código de teléfono -->
   <input type="hidden" name="Dropdown100" value="<?=esc_attr($page_title)?>"> <!-- Carreras -->
   <input type="hidden" name="Dropdown2" value=""> <!-- Grado -->
-  <input type="hidden" name="Dropdown2" value="Number"> <!-- Año de egreso -->
+  <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
 
-  <input type="hidden" name="SingleLine5" value="<?=esc_attr($term)?>"><!-- Catergoria(Facultad) -->
+  <input type="hidden" name="SingleLine5" value="<?=esc_attr($term)?>"><!-- Facultad -->
   <input type="hidden" name="SingleLine4" value="<?=esc_attr($code_carrier)?>"> <!-- Codigo por carrera acf -->
   <input type="hidden" name="SingleLine3" value="<?=esc_attr($page_title)?>">
   <input type="hidden" name="Website" value="<?=get_current_page_url()?>"> <!-- Url de Trakeo -->
   <!-- ////Campos vacios -->
 
 
+  <div class="custom-hidden"></div>
 
 
 
@@ -83,13 +82,16 @@
     <div class="form-body__fields">
       <?php if ( $is_form_mixto ): ?>
       <div class="form-field-radio m-b-24">
-        <fieldset class="flex">
-          <div class="radio-option ">
+        <fieldset>
+          <div class="radio-option m-b-15">
             <input type="radio" id="pregrado" name="form_mixto" value="pregrado" checked />
-            <label for="pregrado">Pregrado</label>
+            <label for="pregrado">Presencial</label>
           </div>
 
-          <div class="radio-option m-l-15">
+
+
+
+          <div class="radio-option m-b-15">
             <input type="radio" id="virtual" name="form_mixto" value="virtual" />
             <label for="virtual">100% virtual</label>
           </div>
@@ -98,7 +100,8 @@
       <?php endif; ?>
 
       <div class="flex justify-between m-b-24" data-html-name="departament">
-        <div class="f-50" data-html-name="name_first">
+
+        <div class="f-100" data-html-name="name_first">
           <div class="form-field">
             <input name="Name_First" id="name_first" placeholder="" type="text" required />
             <label for="name_first">Nombres (*)</label>
@@ -124,7 +127,7 @@
         </div>
       </div>
 
-      <div class="flex justify-between m-b-24">
+      <div class="flex justify-between <?=!empty($campus_json) ? 'm-b-30': ''?> ">
         <div class="f-50">
           <div class="form-field">
             <input name="PhoneNumber_countrycode" placeholder="" id="cellNumber" type="tel" required minlength="9" />
@@ -147,7 +150,7 @@
         ?>
         <div class="f-50">
           <div class="form-field form-field-select">
-            <select name="SingleLine7" id="campus" required>
+            <select name="SingleLine8" id="campus" required>
               <option value="" selected disabled>--Seleccione--</option>
               <?php foreach ($campus_json as $cam): ?>
               <option value="<?= esc_html($cam['value']); ?>">
@@ -181,4 +184,6 @@
     </div>
   </div>
 </form>
-<?php
+<!-- Falta el nombre del campus:  SingleLine8 -->
+
+<!-- Falta el nombre del campus:  SingleLine8 -->

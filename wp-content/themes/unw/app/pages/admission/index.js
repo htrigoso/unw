@@ -1,4 +1,5 @@
 import Accordion from '../../components/Accordion'
+import FormCrmAdmission from '../../components/FormCRM/FormCrmAdmission'
 
 (function () {
   document.querySelectorAll('.dynamic-accordion').forEach(element => {
@@ -14,7 +15,6 @@ import Accordion from '../../components/Accordion'
 
       form.addEventListener('submit', function () {
         if (typeof window.dataLayer !== 'undefined') {
-          alert('form submit')
           window.dataLayer.push({
             event: 'gtm.formSubmit',
             formId: id
@@ -22,5 +22,9 @@ import Accordion from '../../components/Accordion'
         }
       })
     })
+  })
+
+  new FormCrmAdmission({
+    element: 'form'
   })
 })()

@@ -2,6 +2,7 @@ import HeroSwiper from '../../components/HeroSwiper'
 import PostSwiper from '../../components/PostSwiper'
 import InternationalSwiper from '../../components/InternationalSwiper'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
+import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
 
 (function () {
   HeroSwiper('.hero-swiper', {
@@ -19,4 +20,8 @@ import PostSwiperDesktop from '../../components/PostSwiperDesktop'
   })
   PostSwiperDesktop()
   InternationalSwiper()
+
+  new FormCrmGeneral({
+    element: '#modal-more-info'
+  })
 })()

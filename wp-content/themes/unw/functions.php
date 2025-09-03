@@ -19,3 +19,7 @@ require_once dirname(__FILE__) . '/inc/wp-form.php';
 
 // require theme functions
 require_once dirname(__FILE__) . '/inc/wp-inc.php';
+
+
+// Migracion
+require_once dirname(__FILE__) . '/inc/wp-migrar.php';

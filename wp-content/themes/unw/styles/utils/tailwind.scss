@@ -213,7 +213,10 @@
   margin-bottom: rem(30);
 }
 .m-b-32 {
-  margin-bottom: 32px;
+  margin-bottom: rem(32);
+}
+.m-b-40 {
+  margin-bottom: rem(40);
 }
 .m-b-45 {
   margin-bottom: rem(45);
@@ -492,7 +495,6 @@
   min-height: rem(14);
   margin: rem(1);
   display: block;
-  background-color: var(--color-black);
   border-radius: 999px;
 }
 
