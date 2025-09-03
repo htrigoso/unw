@@ -112,7 +112,6 @@
 
   <!-- End Google Tag Manager -->
   <?php wp_head(); ?>
-  <link rel="stylesheet" href="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/css/style.css?v3" type="text/css" media="all">
 </head>
 
 <body <?php body_class(); ?>>
