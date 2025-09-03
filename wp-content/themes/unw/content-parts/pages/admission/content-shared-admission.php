@@ -24,7 +24,7 @@ endif;
 ?>
   <div class="x-container admission-hero__form__wrapper">
     <div class="admission-hero__form">
-      <?php get_template_part(ADMISSION_CONTENT_PATH,$args['form']) ?>
+      <?php get_template_part(ADMISSION_CONTENT_PATH, $args['form']) ?>
     </div>
   </div>
 </div>

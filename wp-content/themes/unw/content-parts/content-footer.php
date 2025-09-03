@@ -13,7 +13,7 @@ $socials = [
     "href" => 'https://www.google.com',
   ],
   [
-    "icon" => 'youtube-fill',
+    "icon" => 'instagram-fill',
     "href" => 'https://www.google.com',
   ],
   [
@@ -22,6 +22,12 @@ $socials = [
   ]
 ]
 ?>
+
+<?php ob_start(); ?>
+<a href="/enlace-a-tu-libro" class="footer__book">
+  Libro de reclamaciones <img src="<?= UPLOAD_PATH . '/icons/laptop.svg' ?>" alt="" aria-hidden="true" />
+</a>
+<?php $libro_reclamaciones_html = ob_get_clean(); ?>
 
 <footer class="footer">
   <div class="x-container x-container--pad-213 footer__wrapper">
@@ -35,13 +41,33 @@ $socials = [
         </a>
       </div>
       <div class="footer__right">
-        <?php
-        wp_nav_menu(array(
-          'menu' => 'navbar_menu_mobile',
-          'menu_class' => 'footer__menu__list',
-          'container' => 'nav',
-        ));
-        ?>
+        <div class="footer__right-col-left">
+          <?php
+          wp_nav_menu(array(
+            'menu' => 'navbar_menu_mobile',
+            'menu_class' => 'footer__menu__list',
+            'container' => 'nav',
+          ));
+          ?>
+          <div class="footer__book--desktop">
+            <?= $libro_reclamaciones_html; ?>
+          </div>
+        </div>
+        <div class="footer__right-col-right">
+          <div class="footer__short-divider"></div>
+          <ul class="footer__more__list">
+            <li class="menu-item"><a href="/">Más de Wiener</a></li>
+            <ul class="sub-menu">
+              <li class="menu-item"><a href="/">Transparencia</a></li>
+              <li class="menu-item"><a href="/">Políticas de privacidad</a></li>
+              <li class="menu-item"><a href="/">Canal ético</a></li>
+            </ul>
+          </ul>
+          <div class="footer__short-divider"></div>
+          <div class="footer__book--mobile">
+            <?= $libro_reclamaciones_html; ?>
+          </div>
+        </div>
       </div>
     </div>
     <div class="footer__divider"></div>
