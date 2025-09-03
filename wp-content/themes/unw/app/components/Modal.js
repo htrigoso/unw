@@ -42,8 +42,9 @@ export class ModalManager {
       if (this.lastFocusedElement) {
         this.lastFocusedElement.focus()
       }
-
-      modal.remove()
+      if (document.getElementById(`template-${modalId}`)) {
+        modal.remove()
+      }
     }, 300)
   }
 
