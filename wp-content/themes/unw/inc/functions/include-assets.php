@@ -46,6 +46,7 @@ function include_assets()
     }
   }
   if (!empty($assets)) {
+
     foreach ($assets as $key => $val) {
       switch ($key) {
         case 'app':
