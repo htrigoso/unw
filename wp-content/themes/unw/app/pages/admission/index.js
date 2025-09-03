@@ -25,6 +25,7 @@ import FormCrmAdmission from '../../components/FormCRM/FormCrmAdmission'
   })
 
   new FormCrmAdmission({
-    element: 'form'
+    element: 'form',
+    container: '.formAdmision'
   })
 })()

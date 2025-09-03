@@ -159,6 +159,47 @@ function get_current_page_url() {
     }
 }
 
+
+/**
+ * Genera <link rel="preload"> para un array de imágenes hero (desktop/mobile).
+ *
+ * @param array $list_images  Array de imágenes del ACF (hero['list']).
+ * @param bool  $echo         Si true imprime el HTML, si false lo devuelve como string.
+ * @return string
+ */
+function uw_preload_hero_images( array $list_images = [], bool $echo = true ) {
+    if (empty($list_images)) {
+        return '';
+    }
+
+    $output = '';
+
+    foreach ($list_images as $images) {
+        $img_desktop = $images['images']['desktop']['url'] ?? '';
+        $img_mobile  = $images['images']['mobile']['url'] ?? '';
+
+        if ($img_desktop) {
+            $output .= sprintf(
+                '<link rel="preload" as="image" href="%s" imagesizes="100vw" media="(min-width: 768px)">' . "\n",
+                esc_url($img_desktop)
+            );
+        }
+
+        if ($img_mobile) {
+            $output .= sprintf(
+                '<link rel="preload" as="image" href="%s" imagesizes="100vw" fetchpriority="high">' . "\n",
+                esc_url($img_mobile)
+            );
+        }
+    }
+
+    if ($echo) {
+        echo $output; // imprime directo en el <head>
+    }
+
+    return $output;
+}
+
 function placeholder() {
   echo 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAECAYAAABGM/VAAAAABHNCSVQICAgIfAhkiAAAAF1JREFUCFtjvP/m1n8GIPj64TzD5f+GDJ8+/WBgrDp767+DKAOD1K/zDEpShgxbH/xhYFx+59Z/LW5Ghg9//zMoMd5mePJZiYHxxMsH2w6+BhnAwJAo9pvh5GcmBgCRxSUqb+IRJgAAAABJRU5ErkJggg==';
 }

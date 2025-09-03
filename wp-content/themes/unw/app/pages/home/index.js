@@ -22,6 +22,7 @@ import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
   InternationalSwiper()
 
   new FormCrmGeneral({
-    element: '#modal-more-info'
+    element: '#form-general',
+    container: '.more-form'
   })
 })()

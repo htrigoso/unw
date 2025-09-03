@@ -8,12 +8,13 @@ const FORM_GENERAL_PRESENCIAL =
   'https://forms.zohopublic.com/adminzoho11/form/WebPreWiener/formperma/l1wwdmdtbCUdnHXBKB4zGg2X1eb12Fnp-VgoBjOAEmA/htmlRecords/submit'
 
 const FORM_GENERAL_VIRTUAL =
-  'https://forms.zohopublic.com/adminzoho11/form/WebSolicitaInformacinVirtual/formperma/kEghJarUi7QiD6-qDLpQpVMV_uW8uH0m1XlinN5KPls/htmlRecords/submit'
+  'https://forms.zohopublic.com/adminzoho11/form/WebSolicitaInformacinVirtual/formperma/jneavx_MTakcvfGLVLDNGhKzvQ_VDeNv4AZ0uZAsetA/htmlRecords/submit'
 
 export default class FormCrmGeneral extends Component {
   constructor({ element, container, onCompleted }) {
     super({ element, elements: {} })
 
+    this.formContainer = container
     this.createListeners()
   }
 
@@ -21,8 +22,8 @@ export default class FormCrmGeneral extends Component {
   // Inicializadores
   // ==========================
   createListeners() {
-    this.handleCarrers()
     this.handleFormMixtoChange()
+    this.handleCarrers()
     this.handleDepartamentChange()
   }
 
@@ -31,28 +32,27 @@ export default class FormCrmGeneral extends Component {
   // ==========================
 
   handleFormMixtoChange() {
-    document.addEventListener('change', (event) => {
-      const target = event.target
+    const radios = this.element.querySelectorAll('input[name="form_mixto"]')
+    const departaments = JSON.parse(this.element.dataset.departaments || '[]')
 
-      if (target && target.matches('input[name="form_mixto"]')) {
-        if (!target.checked) return
+    if (!radios.length) return
 
-        const value = target.value.trim().toLowerCase()
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (!radio.checked) return
 
-        const departaments = JSON.parse(
-          target.closest('form')?.dataset.departaments || '[]'
-        )
-        const form = target.closest('form')
-        const select = form.querySelector('#careerSelect')
-        const hiddenContainer = form.querySelector('.custom-hidden')
+        const value = radio.value.trim().toLowerCase()
+        const select = this.element.querySelector('#careerSelect')
+        const hiddenContainer = this.element.querySelector('.custom-hidden')
+
         switch (value) {
           case 'pregrado':
             select.setAttribute('name', 'SingleLine3')
-            form.action = FORM_GENERAL_PRESENCIAL
-            setClaseName('f-100', form)
+            this.element.action = FORM_GENERAL_PRESENCIAL
+            setClaseName('f-100', this.element)
 
             if (departaments.length > 0) {
-              removeSelectDepartament(form)
+              removeSelectDepartament(this.element)
             }
 
             // ✅ si hay una carrera seleccionada, actualizar inputs
@@ -64,13 +64,13 @@ export default class FormCrmGeneral extends Component {
             break
 
           case 'virtual':
-            form.action = FORM_GENERAL_VIRTUAL
-            setClaseName('f-50', form)
+            this.element.action = FORM_GENERAL_VIRTUAL
+            setClaseName('f-50', this.element)
             select.setAttribute('name', 'SingleLine5')
             document.querySelector('input[name="SingleLine1"]').value = 'UNW_Pregrado_Distancia'
             document.querySelector('input[name="SingleLine2"]').value = 'Web Admisión I - Virtual'
             if (departaments.length > 0) {
-              createSelectDepartament({ element: form })
+              createSelectDepartament({ element: this.element })
             }
 
             // ✅ si hay una carrera seleccionada, actualizar inputs
@@ -80,26 +80,26 @@ export default class FormCrmGeneral extends Component {
             break
 
           default:
-            console.warn('Opción inválida para form_mixto:')
+            console.warn(`Opción inválida para form_mixto: "${radio.value}"`)
             break
         }
-      }
+      })
     })
   }
 
   buildHiddenInputs({ facultyName, careerName, type }) {
     if (type === 'pregrado') {
       return `
-      <input type="hidden" name="SingleLine5" value="${facultyName}">
-      <input type="hidden" name="SingleLine4" value="${careerName}">
-    `
+        <input type="hidden" name="SingleLine5" value="${facultyName}">
+        <input type="hidden" name="SingleLine4" value="${careerName}">
+      `
     }
 
     if (type === 'virtual') {
       return `
-      <input type="hidden" name="SingleLine4" value="${facultyName}">
-      <input type="hidden" name="SingleLine6" value="${careerName}">
-    `
+        <input type="hidden" name="SingleLine4" value="${facultyName}">
+        <input type="hidden" name="SingleLine6" value="${careerName}">
+      `
     }
 
     return ''
@@ -124,13 +124,13 @@ export default class FormCrmGeneral extends Component {
   }
 
   handleCarrers() {
-    const select = document.getElementById('careerSelect')
-    const form = document.querySelector('.more-form')
+    const form = document.querySelector(`${this.formContainer}`)
     if (!form) return
+    const select = document.getElementById('careerSelect')
+
     const hiddenContainer = form.querySelector('.custom-hidden')
 
     const boundUpdate = () => {
-      alert('ok')
       const checked = document.querySelector('input[name="form_mixto"]:checked')
       const selectedOption = select.options[select.selectedIndex]
 
@@ -147,9 +147,9 @@ export default class FormCrmGeneral extends Component {
       } else {
         // ✅ sin radio → aún actualiza con datos de carrera/optgroup
         hiddenContainer.innerHTML = `
-        <input type="hidden" name="SingleLine5" value="${facultyName}">
-        <input type="hidden" name="SingleLine4" value="${careerName}">
-      `
+          <input type="hidden" name="SingleLine5" value="${facultyName}">
+          <input type="hidden" name="SingleLine4" value="${careerName}">
+        `
       }
     }
 
@@ -170,6 +170,8 @@ export default class FormCrmGeneral extends Component {
       if (target && target.matches('#departament')) {
         const form = target.closest('form')
         if (!form) return
+
+        console.log('ok')
 
         const selectedOption = target.options[target.selectedIndex]
         const text = selectedOption?.textContent.trim() || ''

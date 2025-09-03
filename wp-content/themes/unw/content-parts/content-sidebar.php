@@ -5,7 +5,7 @@
         <img width="101" height="40" src="<?php echo get_template_directory_uri(); ?>/upload/logo-unw.svg"
           alt="Logo UNW">
       </a>
-      <button type="button" class="btn-menu-hamburger pointer" id="btn-close-menu">
+      <button type="button" aria-label="Abrir sidebar" class="btn-menu-hamburger pointer" id="btn-close-menu">
         <i>
           <svg width="40" height="40">
             <use xlink:href="#close"></use>

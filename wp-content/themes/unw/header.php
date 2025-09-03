@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="es_PE">
+<html lang="es">
 
 <head>
   <title><?php the_title() ?></title>
   <base href="/">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="Cache-control" content="public">
   <meta name="keywords" content="unw">
@@ -23,16 +23,15 @@
   <meta property="og:url" content="<?php echo home_url() ?>" />
   <meta property="og:site_name" content="Universidad Norbert Wiener: Educación de Clase Mundial
 " />
+  <meta name="description"
+    content="Universidad Norbert Wiener, AVANZA+ en tu carrera profesional. Educación de calidad internacional, en alianza con Arizona State University. ¡Postula ya!">
   <meta property="og:locale" content="es_ES">
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:domain" content="<?php echo home_url() ?>" />
   <meta name="twitter:title" property="og:title" itemprop="name" content="<?php the_title() ?>" />
   <meta name="twitter:description" property="og:description" itemprop="description"
     content="Universidad Norbert Wiener, AVANZA+ en tu carrera profesional. Educación de calidad internacional, en alianza con Arizona State University. ¡Postula ya!" />
-
   <link rel="icon" type="image/png" sizes="32x32" href="<?php echo UPLOAD_PATH; ?>/favicon/favicon.png">
-  <!-- <link rel="manifest" href="<?php echo UPLOAD_PATH; ?>/favicon/site.webmanifest">
-    <link rel="mask-icon" href="<?php echo UPLOAD_PATH; ?>/favicon/safari-pinned-tab.svg" color="#5bbad5"> -->
 
   <?php get_template_part('content-parts/content', 'fonts'); ?>
 

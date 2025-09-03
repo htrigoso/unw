@@ -7,8 +7,15 @@
 
 <?php set_query_var('ASSETS_CHUNK_NAME', 'home'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
-<?php get_header(); ?>
-
+<?php get_header();?>
+<?php
+add_action('wp_head', function () {
+  $hero = get_field('hero');
+  if ($hero && !empty($hero['list'])) {
+      uw_preload_hero_images($hero['list']);
+  }
+});
+?>
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 <main>
   <?php get_template_part(HOME_CONTENT_PATH, 'more-info-form'); ?>

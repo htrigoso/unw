@@ -2,22 +2,27 @@
 $socials = [
   [
     "icon" => 'facebook-fill',
+    "name" => 'Facebook',
     "href" => 'https://www.google.com',
   ],
   [
     "icon" => 'youtube-fill',
+    "name" => 'Youtube',
     "href" => 'https://www.google.com',
   ],
   [
     "icon" => 'linkedin-fill',
+    "name" => 'Linkedin',
     "href" => 'https://www.google.com',
   ],
   [
     "icon" => 'instagram-fill',
+    "name" => 'Instagram',
     "href" => 'https://www.google.com',
   ],
   [
     "icon" => 'tiktok-fill',
+     "name" => 'Tiktok',
     "href" => 'https://www.google.com',
   ]
 ]
@@ -33,7 +38,8 @@ $socials = [
   <div class="x-container x-container--pad-213 footer__wrapper">
     <div class="footer__upper">
       <div class="footer__left">
-        <img src="<?= UPLOAD_PATH . '/logo-unw-white.svg' ?>" alt="" aria-hidden="false" class="footer__logo" fetchpriority="high" decoding="async" loading="eager" />
+        <img src="<?= UPLOAD_PATH . '/logo-unw-white.svg' ?>" alt="" aria-hidden="false" class="footer__logo"
+          fetchpriority="high" decoding="async" loading="eager" />
         <h3 class="footer__cta--title">Agenda una visita</h3>
         <p class="footer__cta--desc">Un experto te dará un recorrido a nuestras instalaciones y resolverá tus dudas</p>
         <a href="https://wa.me/" target="_blank" class="btn btn-sm footer__cta--link">
@@ -77,15 +83,16 @@ $socials = [
         <span>Síguenos en:</span>
         <ul class="footer__bottom__list">
           <?php foreach ($socials as $social): ?>
-            <li class="footer__bottom__item">
-              <a href="<?= $social['href'] ?>" target="_blank" class="footer__bottom__link">
-                <i>
-                  <svg width="24" height="24">
-                    <use xlink:href="#<?= $social['icon'] ?>"></use>
-                  </svg>
-                </i>
-              </a>
-            </li>
+          <li class="footer__bottom__item">
+            <a href="<?= $social['href'] ?>" target="_blank" aria-label="<?=$social['name']?>"
+              class="footer__bottom__link">
+              <i>
+                <svg width="24" height="24">
+                  <use xlink:href="#<?= $social['icon'] ?>"></use>
+                </svg>
+              </i>
+            </a>
+          </li>
           <?php endforeach ?>
         </ul>
       </div>
@@ -94,5 +101,6 @@ $socials = [
 </footer>
 
 <a href="https://wa.me/" target="_blank" class="whatsapp-link">
-  <img src="<?= UPLOAD_PATH . '/icons/whatsapp.png'; ?>" alt="WhatsApp" class="whatsapp-link__icon" fetchpriority="high" decoding="async" loading="eager" />
+  <img src="<?= UPLOAD_PATH . '/icons/whatsapp.png'; ?>" alt="WhatsApp" class="whatsapp-link__icon" fetchpriority="high"
+    decoding="async" loading="eager" />
 </a>

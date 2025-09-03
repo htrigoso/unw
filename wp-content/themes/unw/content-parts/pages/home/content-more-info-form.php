@@ -5,12 +5,12 @@ $utms_default      = get_field('list_utms', 'option');
 $utm_admission      = $crm_carriers['list_utms'] ?? [];
 $utms_final = merge_utms($utms_default, $utm_admission);
 $form_crm_option   = get_field('form_crm', 'option');
-
+$formUrl           = "https://forms.zohopublic.com/adminzoho11/form/WebPreWiener/formperma/l1wwdmdtbCUdnHXBKB4zGg2X1eb12Fnp-VgoBjOAEmA/htmlRecords/submit";
 $careers = $form_crm_option['careers'];
 $list_departaments = $form_crm_option['list_departaments'];
 ?>
 <form id="form-general" class="more-form" data-departaments="<?= esc_attr(wp_json_encode( $list_departaments))?>"
-  action="https://forms.zohopublic.com/adminzoho11/form/WebPreWiener/formperma/l1wwdmdtbCUdnHXBKB4zGg2X1eb12Fnp-VgoBjOAEmA/htmlRecords/submit">
+  method="POST" accept-charset="UTF-8" enctype="multipart/form-data" action="<?=$formUrl?>">
   <div class="form-header more-form__header">
     <i>
       <svg width="52" height="52">
@@ -34,6 +34,9 @@ $list_departaments = $form_crm_option['list_departaments'];
   <input type="hidden" name="Dropdown" value="DNI">
   <input type="hidden" name="Dropdown2" value=""> <!-- Grado -->
   <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
+  <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
+
+
 
 
 
