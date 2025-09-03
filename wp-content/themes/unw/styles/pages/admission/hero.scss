@@ -3,7 +3,7 @@
 }
 
 .admission-hero__form__wrapper {
-  position: absolute !important;
+  position: absolute;
   display: none;
   inset: 0;
   pointer-events: none;
@@ -15,8 +15,8 @@
 
 .admission-hero__form {
   width: rem(496);
-  position: absolute !important;
+  position: absolute;
   pointer-events: all;
   right: rem(108);
-  top: rem(20);
+  bottom: rem(-49);
 }

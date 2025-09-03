@@ -6,8 +6,7 @@ import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
 
 (function () {
   HeroSwiper('.hero-swiper', {
-    autoplay: false,
-    allowTouchMove: false
+    autoplay: false
   })
   PostSwiper('.testimonial-swiper')
   PostSwiper('.last-news-swiper', {
