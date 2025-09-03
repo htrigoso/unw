@@ -5,7 +5,8 @@ $utms_default      = get_field('list_utms', 'option');
 $utm_admission      = $crm_carriers['list_utms'] ?? [];
 $utms_final = merge_utms($utms_default, $utm_admission);
 $form_crm_option   = get_field('form_crm', 'option');
-$list_careers = $form_crm_option['careers'];
+
+$careers = $form_crm_option['careers'];
 $list_departaments = $form_crm_option['list_departaments'];
 ?>
 <form id="form-general" class="more-form" data-departaments="<?= esc_attr(wp_json_encode( $list_departaments))?>"
@@ -35,14 +36,15 @@ $list_departaments = $form_crm_option['list_departaments'];
   <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
 
 
-  <input type="hidden" name="SingleLine1" value="UNW_Pregrado"> <!-- Unidad de negocio -->
-  <input type="hidden" name="SingleLine2" value="Web Admisión II"> <!-- Fuente de origen -->
+
+  <input type="hidden" name="SingleLine1" value=""> <!-- Unidad de negocio -->
+  <input type="hidden" name="SingleLine2" value=""> <!-- Fuente de origen -->
 
 
   <input type="hidden" name="Dropdown500" value=""> <!-- Escoge Instituto / Universidad -->
   <input type="hidden" name="SingleLine6" value=""> <!-- Escoge instituto universitario Grupo -->
   <input type="hidden" name="SingleLine7" value=""> <!-- Escoge instituto universitario Valor -->
-  <input type="hidden" name="SingleLine8" value=""> <!-- Escoge instituto universitario text -->
+  <input type="hidden" name="SingleLine9" value="">
 
   <input type="hidden" name="Dropdown4" value="Activo"> <!-- Estado de período -->
   <input type="hidden" name="Website" value="<?=get_current_page_url()?>"> <!-- Url de Trakeo -->
