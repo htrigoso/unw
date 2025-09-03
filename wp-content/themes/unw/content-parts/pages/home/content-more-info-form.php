@@ -161,6 +161,7 @@ get_template_part(COMMON_CONTENT_PATH, 'modal', [
   'content' => $content,
   'id' => 'modal-more-info',
   'variant' => 'float',
-  'class' => 'more-modal'
+  'class' => 'more-modal',
+  'preloaded' => true,
 ]);
 ?>
