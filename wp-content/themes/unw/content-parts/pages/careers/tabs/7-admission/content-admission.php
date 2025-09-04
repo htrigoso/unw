@@ -68,7 +68,7 @@ $admission_items = $admission_info['process'] ?? [];
                 <div class="admission-card__content">
                   <div class="admission-card__header">
                     <h3 class="admission-card__title"><?php echo esc_html($title); ?></h3>
-                    <div class="admission-card__paragraph">
+                    <div class="admission-card__paragraph" data-content="paragraph">
                       <?php
                       the_content()
                       ?>
