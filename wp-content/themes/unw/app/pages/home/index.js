@@ -17,7 +17,8 @@ export default class HomePage extends Page {
 
   create() {
     HeroSwiper('.hero-swiper', {
-      autoplay: false
+      autoplay: false,
+      allowTouchMove: false
     })
     PostSwiper('.testimonial-swiper')
     PostSwiper('.last-news-swiper', {

@@ -30,7 +30,7 @@ $socials = [
 
 <?php ob_start(); ?>
 <a href="/enlace-a-tu-libro" class="footer__book">
-  Libro de reclamaciones <img src="<?= UPLOAD_PATH . '/icons/laptop.svg' ?>" alt="" aria-hidden="true" />
+  Libro de reclamaciones <img src="<?= UPLOAD_PATH . '/icons/laptop.svg' ?>" width="40" height="40" alt="" aria-hidden="true" />
 </a>
 <?php $libro_reclamaciones_html = ob_get_clean(); ?>
 
