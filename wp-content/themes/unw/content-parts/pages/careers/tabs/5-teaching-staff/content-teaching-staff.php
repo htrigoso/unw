@@ -26,7 +26,7 @@ $teaching_staff = $args['teaching_staff'] ?? null;
             <?php
                 $id = $teacher->ID;
                 $name = get_the_title($id);
-                $photo = get_the_post_thumbnail_url($id, 'full') ?: get_template_directory_uri() . '/upload/careers/staff/staff.jpg';
+                $photo = get_the_post_thumbnail_url($id, 'full');
                 $profile = get_field('teacher_profile', $id);
                 $role = $profile['academic_title'] ?? '';
                 $bio = $profile['academic_profile'] ?? null;
@@ -34,8 +34,12 @@ $teaching_staff = $args['teaching_staff'] ?? null;
             <li class="swiper-slide">
               <article class="teacher-card">
                 <div class="teacher-card__header">
+                  <?php
+                  if(!empty($photo)){
+                  ?>
                   <img class="teacher-card__photo lazyload" src="<?=placeholder() ?>"
                     data-src="<?php echo esc_url($photo); ?>" alt="Foto de <?php echo esc_attr($name); ?>" />
+                  <?php }?>
                 </div>
                 <div class="teacher-card__content">
                   <h3 class="teacher-card__name"><?php echo esc_html($name); ?></h3>
