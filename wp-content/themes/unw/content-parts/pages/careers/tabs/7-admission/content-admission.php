@@ -14,7 +14,7 @@ $admission_items = $admission_info['process'] ?? [];
           <?php echo esc_html($admission_info['title'] ?? 'Proceso de Admisión'); ?>
         </h2>
         <?php if (!empty($admission_info['description'])): ?>
-        <div class="admission__description">
+        <div class="admission__description" data-content="paragraph">
           <?php echo wp_kses_post(wpautop($admission_info['description'])); ?>
         </div>
         <?php endif; ?>

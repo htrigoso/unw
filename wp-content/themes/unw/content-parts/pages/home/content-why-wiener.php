@@ -18,7 +18,7 @@ $titulo = $why_wiener['titulo'] ?? '¿Por qué U. Wiener?';
         ?>
         <article class="why-wiener__item">
           <?php if ($icon): ?>
-          <img class="lazyload" src="<?=placeholder() ?>" data-src="<?php echo esc_url($icon); ?>"
+          <img class="lazyload" src="<?=placeholder() ?>" data-src="<?php echo esc_url($icon); ?>" width="auto" height="auto"
             alt="<?php echo esc_attr($title); ?>" class="why-wiener__icon">
           <?php endif; ?>
           <?php if ($title): ?>
