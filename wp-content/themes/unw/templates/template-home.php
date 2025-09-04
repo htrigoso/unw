@@ -17,7 +17,7 @@ add_action('wp_head', function () {
 });
 ?>
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
-<main>
+<main id="home-page" class="home-page">
   <?php get_template_part(HOME_CONTENT_PATH, 'more-info-form'); ?>
   <?php get_template_part(HOME_CONTENT_PATH, 'home-hero'); ?>
   <?php get_template_part(HOME_CONTENT_PATH, 'why-wiener'); ?>

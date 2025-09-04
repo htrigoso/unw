@@ -60,3 +60,12 @@ body.sidebar-open {
 [data-hidden] {
   overflow: hidden;
 }
+[data-animation="label"],
+[data-animation="paragraph"],
+[data-animation="title"] {
+  span {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+  }
+}
