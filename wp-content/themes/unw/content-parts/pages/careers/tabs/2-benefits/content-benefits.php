@@ -21,7 +21,7 @@ if (!empty($benefits_info) && is_array($benefits_info['list'])) :
         <?= get_value_or_default($benefit_title, true); ?>
       </p>
       <p class="benefits__item-description">
-        <?= get_value_or_default($benefit_description, true); ?>
+        <?= nl2br(get_value_or_default($benefit_description, true)); ?>
     </li>
     <?php endforeach; ?>
   </ul>
