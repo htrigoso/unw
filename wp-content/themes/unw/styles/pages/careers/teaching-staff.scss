@@ -75,6 +75,13 @@
 .teacher-card__details {
   list-style-type: disc;
   padding-left: rem(16);
+
+  p:not(:last-child) {
+    margin-bottom: rem(10);
+  }
+  a {
+    font-weight: var(--font-medium);
+  }
 }
 
 .teacher-card__details__item {

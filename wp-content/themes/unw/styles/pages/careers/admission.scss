@@ -42,6 +42,12 @@
 
 .admission__description {
   max-width: rem(390);
+  ul {
+    margin-left: rem(17);
+    li {
+      list-style-type: disc;
+    }
+  }
 }
 
 .admission__header-ad {

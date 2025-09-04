@@ -29,7 +29,7 @@ $teaching_staff = $args['teaching_staff'] ?? null;
                 $photo = get_the_post_thumbnail_url($id, 'full') ?: get_template_directory_uri() . '/upload/careers/staff/staff.jpg';
                 $profile = get_field('teacher_profile', $id);
                 $role = $profile['academic_title'] ?? '';
-                $bio_list = $profile['academic_profile'] ?? [];
+                $bio = $profile['academic_profile'] ?? null;
                 ?>
             <li class="swiper-slide">
               <article class="teacher-card">
@@ -39,19 +39,15 @@ $teaching_staff = $args['teaching_staff'] ?? null;
                 </div>
                 <div class="teacher-card__content">
                   <h3 class="teacher-card__name"><?php echo esc_html($name); ?></h3>
-                  <p class="teacher-card__role"><?php echo esc_html($role); ?></p>
+                  <div class="teacher-card__role"><?php echo esc_html($role); ?></div>
 
-                  <?php if (!empty($bio_list)): ?>
-                  <ul class="teacher-card__details">
-                    <?php foreach ($bio_list as $item): ?>
-                    <?php if (!empty($item['title'])): ?>
-                    <li class="teacher-card__details__item">
-                      <?php echo esc_html($item['title']); ?>
-                    </li>
-                    <?php endif; ?>
-                    <?php endforeach; ?>
-                  </ul>
-                  <?php endif; ?>
+
+                  <div class="teacher-card__details">
+                    <?php
+                    echo $bio;
+                  ?>
+                  </div>
+
                 </div>
               </article>
             </li>
