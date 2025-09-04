@@ -148,6 +148,12 @@
     text-decoration: underline;
     font-weight: var(--font-medium);
   }
+  ul {
+    li {
+      list-style-type: disc;
+    }
+    margin-left: rem(17);
+  }
 }
 
 .admission-card__footer {
