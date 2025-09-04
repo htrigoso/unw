@@ -13,7 +13,7 @@ $infra_items = $infrastructure['list'] ?? [];
         <?php echo esc_html($infrastructure['title'] ?? 'Infraestructura Especializada'); ?>
       </h2>
       <?php if (!empty($infrastructure['description'])): ?>
-      <div class="infrastructure__description">
+      <div class="infrastructure__description" data-content="paragraph">
         <?php echo wp_kses_post(wpautop($infrastructure['description'])); ?>
       </div>
       <?php endif; ?>
