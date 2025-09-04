@@ -76,14 +76,16 @@ $utms_final = merge_utms($utms_default, $utm_admission);
       <div class="flex justify-between m-b-24">
         <div class="f-50">
           <div class="form-field">
-            <input name="SingleLine" placeholder="" id="SingleLine" type="tel" />
-            <label for="SingleLine">Número de documento</label>
+               <input required type="tel" inputmode="numeric" pattern="\d{8}" maxlength="8" name="SingleLine" placeholder=""
+              id="SingleLine" />
+            <label for="SingleLine">Número de documento (*)</label>
             <span class="error-message">Datos inválidos</span>
           </div>
         </div>
         <div class="f-50">
           <div class="form-field">
-            <input name="PhoneNumber_countrycode" id="PhoneNumber_countrycode" type="text" placeholder="" required />
+            <input type="tel" inputmode="numeric" pattern="\d{9}" maxlength="9" name="PhoneNumber_countrycode"
+              id="PhoneNumber_countrycode" placeholder="" required />
             <label for="PhoneNumber_countrycode">Celular (*)</label>
             <span class="error-message">Datos inválidos</span>
           </div>
@@ -92,7 +94,7 @@ $utms_final = merge_utms($utms_default, $utm_admission);
       <div class="flex justify-between m-b-24">
         <div class="f-50">
           <div class="form-field">
-            <input name="Email" id="Email" type="text" placeholder="" required />
+            <input type="email" name="Email" id="Email" placeholder="" required />
             <label for="Email">Correo electrónico (*)</label>
             <span class="error-message">Datos inválidos</span>
           </div>

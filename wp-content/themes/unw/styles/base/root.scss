@@ -69,3 +69,17 @@ body.sidebar-open {
     vertical-align: top;
   }
 }
+[data-content="paragraph"] {
+  p {
+    margin-bottom: rem(10);
+  }
+  ul {
+    margin-left: rem(17);
+    li {
+      list-style-type: disc;
+    }
+  }
+  a {
+    font-weight: var(--font-medium);
+  }
+}

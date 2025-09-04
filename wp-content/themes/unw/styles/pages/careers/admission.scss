@@ -141,6 +141,13 @@
 
 .admission-card__paragraph {
   color: var(--color-black);
+  p:not(:last-child) {
+    margin-bottom: rem(10);
+  }
+  a {
+    text-decoration: underline;
+    font-weight: var(--font-medium);
+  }
 }
 
 .admission-card__footer {
