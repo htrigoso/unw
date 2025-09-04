@@ -47,8 +47,8 @@ $card_items = $infrastructure['list'];
                 <?php foreach ($slides as $slide) { ?>
                 <li class="swiper-slide">
                   <article class="laboratories-modal__card">
-                    <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($slide['image']['url']); ?>"
-                      alt="<?php echo esc_url($slide['image']['alt']); ?>" class="laboratories-modal__card--img lazyload" />
+                    <img src="<?php echo esc_url($slide['image']['url']); ?>"
+                      alt="<?php echo esc_url($slide['image']['alt']); ?>" class="laboratories-modal__card--img" />
                     <p class="laboratories-modal__card--desc"><?= esc_html($slide['title']) ?></p>
                   </article>
                 </li>

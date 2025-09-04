@@ -21,7 +21,7 @@ function register_post_type_proceso_admision() {
         'has_archive'           => false,
         'rewrite'               => array('slug' => 'proceso-admision'),
         'menu_icon'             => 'dashicons-welcome-learn-more',
-        'supports'              => array('title', 'excerpt'), // usas excerpt como resumen visible
+        'supports'              => array('title', 'editor', 'excerpt'), // usas excerpt como resumen visible
         'show_in_rest'          => true,
     );
 

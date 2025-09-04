@@ -13,6 +13,7 @@ const FORM_ADMISSION_VIRTUAL =
 export default class FormCrmAdmission extends Component {
   constructor({ element, container, onCompleted }) {
     super({ element, elements: {} })
+    this.formContainer = container
     this.createListeners()
   }
 
@@ -123,7 +124,7 @@ export default class FormCrmAdmission extends Component {
 
   handleCarrers() {
     const select = document.getElementById('careerSelect')
-    const form = document.querySelector('.formAdmision')
+    const form = document.querySelector(`${this.formContainer}`)
     const hiddenContainer = form.querySelector('.custom-hidden')
 
     const boundUpdate = () => {

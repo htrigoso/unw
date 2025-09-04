@@ -5,11 +5,12 @@ $utms_default      = get_field('list_utms', 'option');
 $utm_admission      = $crm_carriers['list_utms'] ?? [];
 $utms_final = merge_utms($utms_default, $utm_admission);
 $form_crm_option   = get_field('form_crm', 'option');
-$list_careers = $form_crm_option['careers'];
+$formUrl           = "https://forms.zohopublic.com/adminzoho11/form/WebPreWiener/formperma/l1wwdmdtbCUdnHXBKB4zGg2X1eb12Fnp-VgoBjOAEmA/htmlRecords/submit";
+$careers = $form_crm_option['careers'];
 $list_departaments = $form_crm_option['list_departaments'];
 ?>
 <form id="form-general" class="more-form" data-departaments="<?= esc_attr(wp_json_encode( $list_departaments))?>"
-  action="https://forms.zohopublic.com/adminzoho11/form/WebPreWiener/formperma/l1wwdmdtbCUdnHXBKB4zGg2X1eb12Fnp-VgoBjOAEmA/htmlRecords/submit">
+  method="POST" accept-charset="UTF-8" enctype="multipart/form-data" action="<?=$formUrl?>">
   <div class="form-header more-form__header">
     <i>
       <svg width="52" height="52">
@@ -33,16 +34,20 @@ $list_departaments = $form_crm_option['list_departaments'];
   <input type="hidden" name="Dropdown" value="DNI">
   <input type="hidden" name="Dropdown2" value=""> <!-- Grado -->
   <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
+  <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
 
 
-  <input type="hidden" name="SingleLine1" value="UNW_Pregrado"> <!-- Unidad de negocio -->
-  <input type="hidden" name="SingleLine2" value="Web Admisión II"> <!-- Fuente de origen -->
+
+
+
+  <input type="hidden" name="SingleLine1" value=""> <!-- Unidad de negocio -->
+  <input type="hidden" name="SingleLine2" value=""> <!-- Fuente de origen -->
 
 
   <input type="hidden" name="Dropdown500" value=""> <!-- Escoge Instituto / Universidad -->
   <input type="hidden" name="SingleLine6" value=""> <!-- Escoge instituto universitario Grupo -->
   <input type="hidden" name="SingleLine7" value=""> <!-- Escoge instituto universitario Valor -->
-  <input type="hidden" name="SingleLine8" value=""> <!-- Escoge instituto universitario text -->
+  <input type="hidden" name="SingleLine9" value="">
 
   <input type="hidden" name="Dropdown4" value="Activo"> <!-- Estado de período -->
   <input type="hidden" name="Website" value="<?=get_current_page_url()?>"> <!-- Url de Trakeo -->
@@ -161,6 +166,7 @@ get_template_part(COMMON_CONTENT_PATH, 'modal', [
   'content' => $content,
   'id' => 'modal-more-info',
   'variant' => 'float',
-  'class' => 'more-modal'
+  'class' => 'more-modal',
+  'preloaded' => true,
 ]);
 ?>
