@@ -21,7 +21,7 @@ function register_post_type_infraestructura() {
         'has_archive' => false,
         'rewrite' => array('slug' => 'infraestructura'),
         'menu_icon' => 'dashicons-building',
-        'supports' => array('title', 'excerpt', 'thumbnail'),
+        'supports' => array('title', 'editor', 'excerpt', 'thumbnail'),
         'show_in_rest' => true,
     );
 

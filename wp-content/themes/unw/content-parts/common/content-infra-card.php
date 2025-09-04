@@ -12,7 +12,9 @@ $excerpt = $args['excerpt'];
   <div class="infra-card__body">
     <h3 class="infra-card__name"><?php echo esc_html($title); ?></h3>
     <?php if (!empty($excerpt)): ?>
-      <p class="infra-card__description"><?php echo esc_html($excerpt); ?></p>
+    <div class="infra-card__description" data-content="paragraph" >
+      <?php the_content()?>
+    </div>
     <?php endif; ?>
   </div>
 </article>
