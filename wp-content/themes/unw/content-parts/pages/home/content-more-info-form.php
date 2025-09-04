@@ -35,15 +35,14 @@ $list_departaments = $form_crm_option['list_departaments'];
   <input type="hidden" name="Dropdown2" value=""> <!-- Grado -->
   <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
 
-  <input type="hidden" name="Radio" value=""> <!--  Soy padre de familia -->
-  <input type="hidden" name="Name_Last" value=""> <!--  Apellido Paterno-->
+  <input type="hidden" name="Radio" value="No"> <!--  Soy padre de familia -->
 
 
 
 
 
-  <input type="hidden" name="SingleLine1" value=""> <!-- Unidad de negocio -->
-  <input type="hidden" name="SingleLine2" value=""> <!-- Fuente de origen -->
+  <input type="hidden" name="SingleLine1" value="UNW_Pregrado"> <!-- Unidad de negocio -->
+  <input type="hidden" name="SingleLine2" value="Web Solicita Información"> <!-- Fuente de origen -->
 
 
   <input type="hidden" name="Dropdown500" value=""> <!-- Escoge Instituto / Universidad -->
@@ -96,7 +95,7 @@ $list_departaments = $form_crm_option['list_departaments'];
           <div class="form-field">
             <input type="tel" inputmode="numeric" pattern="\d{8}" maxlength="8" name="SingleLine" placeholder=""
               id="SingleLine" />
-            <label for="SingleLine">Número de documento</label>
+            <label for="SingleLine">Número de documento (*)</label>
             <span class="error-message">Datos inválidos</span>
           </div>
         </div>
@@ -122,7 +121,7 @@ $list_departaments = $form_crm_option['list_departaments'];
       <div class="flex justify-between m-b-24" data-html-name="departament">
         <div class="f-50">
           <div class="form-field form-field-select">
-            <select name="Dropdown100" id="careerSelect" required>
+            <select name="SingleLine5" id="careerSelect" required>
               <option value="" selected disabled>--Seleccione--</option>
               <?php foreach ($careers as $career) : ?>
               <optgroup label="<?= esc_html($career['faculty']); ?>">

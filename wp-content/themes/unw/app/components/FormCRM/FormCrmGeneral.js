@@ -8,7 +8,7 @@ const FORM_GENERAL_PRESENCIAL =
   'https://forms.zohopublic.com/adminzoho11/form/WebPreWiener/formperma/l1wwdmdtbCUdnHXBKB4zGg2X1eb12Fnp-VgoBjOAEmA/htmlRecords/submit'
 
 const FORM_GENERAL_VIRTUAL =
-  'https://forms.zohopublic.com/adminzoho11/form/WebSolicitaInformacinVirtual/formperma/jneavx_MTakcvfGLVLDNGhKzvQ_VDeNv4AZ0uZAsetA/htmlRecords/submit'
+  'https://forms.zohopublic.com/adminzoho11/form/WebSolicitaInformacinVirtual/formperma/kEghJarUi7QiD6-qDLpQpVMV_uW8uH0m1XlinN5KPls/htmlRecords/submit'
 
 export default class FormCrmGeneral extends Component {
   constructor({ element, container, onCompleted }) {
@@ -90,8 +90,8 @@ export default class FormCrmGeneral extends Component {
   buildHiddenInputs({ facultyName, careerName, type }) {
     if (type === 'pregrado') {
       return `
-        <input type="hidden" name="SingleLine5" value="${facultyName}">
-        <input type="hidden" name="SingleLine4" value="${careerName}">
+        <input type="hidden" name="SingleLine3" value="${facultyName}">
+        <input type="hidden" name="SingleLine6" value="${careerName}">
       `
     }
 
@@ -147,8 +147,8 @@ export default class FormCrmGeneral extends Component {
       } else {
         // ✅ sin radio → aún actualiza con datos de carrera/optgroup
         hiddenContainer.innerHTML = `
-          <input type="hidden" name="SingleLine5" value="${facultyName}">
-          <input type="hidden" name="SingleLine4" value="${careerName}">
+          <input type="hidden" name="SingleLine3" value="${facultyName}">
+          <input type="hidden" name="SingleLine6" value="${careerName}">
         `
       }
     }

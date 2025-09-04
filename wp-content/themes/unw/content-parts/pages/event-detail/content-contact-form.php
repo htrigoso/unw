@@ -29,7 +29,8 @@
       </div>
 
       <div class="form-field m-b-24">
-        <input name="SingleLine" id="docNumber" placeholder="" type="text" required />
+        <input required type="tel" inputmode="numeric" pattern="\d{8}" maxlength="8" name="SingleLine" placeholder=""
+          id="SingleLine" />
         <label for="docNumber">Número de documento (*)</label>
         <span class="error-message">Datos inválidos</span>
       </div>

@@ -98,9 +98,9 @@ if($is_departments) {
       <div class="flex justify-between m-b-24">
         <div class="f-50">
           <div class="form-field">
-               <input type="tel" inputmode="numeric" pattern="\d{8}" maxlength="8" name="SingleLine" placeholder=""
+               <input required type="tel" inputmode="numeric" pattern="\d{8}" maxlength="8" name="SingleLine" placeholder=""
               id="SingleLine" />
-            <label for="SingleLine">Número de documento</label>
+            <label for="SingleLine">Número de documento (*)</label>
             <span class="error-message">Datos inválidos</span>
           </div>
         </div>

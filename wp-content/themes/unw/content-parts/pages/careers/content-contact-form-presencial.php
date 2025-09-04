@@ -120,7 +120,8 @@
         </div>
         <div class="f-50">
           <div class="form-field">
-            <input name="SingleLine" id="singleLine" placeholder="" type="text" />
+               <input required type="tel" inputmode="numeric" pattern="\d{8}" maxlength="8" name="SingleLine" placeholder=""
+              id="SingleLine" />
             <label for="singleLine">Número de documento (*)</label>
             <span class="error-message">Datos inválidos</span>
           </div>
