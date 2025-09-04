@@ -88,7 +88,7 @@ if($is_departments) {
         </div>
         <div class="f-50">
           <div class="form-field">
-            <input name="Name_Last" id="Name_Last" placeholder="" type="text" />
+            <input name="Name_Last" id="Name_Last" placeholder="" type="text" required />
             <label for="Name_Last">Apellidos (*)</label>
             <span class="error-message">Datos inválidos</span>
           </div>
@@ -98,9 +98,9 @@ if($is_departments) {
       <div class="flex justify-between m-b-24">
         <div class="f-50">
           <div class="form-field">
-               <input type="tel" inputmode="numeric" pattern="\d{8}" maxlength="8" name="SingleLine" placeholder=""
-              id="SingleLine" />
-            <label for="SingleLine">Número de documento</label>
+            <input required type="tel" inputmode="numeric" pattern="\d{8}" maxlength="8" name="SingleLine"
+              placeholder="" id="SingleLine" />
+            <label for="SingleLine">Número de documento (*)</label>
             <span class="error-message">Datos inválidos</span>
           </div>
         </div>
