@@ -4,6 +4,7 @@ $malla_curricular = $args['malla_curricular'] ?? null;
 $dot_colors = ['purple', 'gray', 'blue', 'orange', 'dark-blue'];
 $lists = $malla_curricular['lists'] ?? [];
 $link = $malla_curricular['link'] ?? null;
+if(wp_is_nonempty_array($lists)) {
 ?>
 
 <section class="program-curriculum" aria-labelledby="program-curriculum-title">
@@ -86,3 +87,5 @@ $link = $malla_curricular['link'] ?? null;
     </div>
     <?php endif; ?>
 </section>
+<?php
+}

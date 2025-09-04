@@ -207,3 +207,31 @@ function placeholder() {
 function get_placeholder() {
   return 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAECAYAAABGM/VAAAAABHNCSVQICAgIfAhkiAAAAF1JREFUCFtjvP/m1n8GIPj64TzD5f+GDJ8+/WBgrDp767+DKAOD1K/zDEpShgxbH/xhYFx+59Z/LW5Ghg9//zMoMd5mePJZiYHxxMsH2w6+BhnAwJAo9pvh5GcmBgCRxSUqb+IRJgAAAABJRU5ErkJggg==';
 }
+
+function get_value_or_default($value,$escape_function = false, $default = 'Por definir') {
+    // Verificar si es null, vacío o contiene solo espacios en blanco
+    if ($value === null || $value === '' || trim($value) === '') {
+        $result = $default;
+    } else {
+        $result = $value;
+    }
+
+    // Aplicar función de escape si se solicita
+    if ($escape_function) {
+        // Si es true, usar esc_html por defecto
+        if ($escape_function === true) {
+            $escape_function = 'esc_html';
+        }
+
+        // Verificar que la función existe y aplicarla
+        if (is_string($escape_function) && function_exists($escape_function)) {
+            return $escape_function($result);
+        }
+    }
+
+    return $result;
+}
+
+function wp_is_nonempty_array( $value ) {
+    return ( is_array( $value ) && ! empty( $value ) );
+}
