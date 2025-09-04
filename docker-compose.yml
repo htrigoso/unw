@@ -38,7 +38,7 @@ services:
       WORDPRESS_DB_NAME: unw
       WORDPRESS_DB_USER: wpuser
       WORDPRESS_DB_PASSWORD: wpuserpass
-    user: "1000:1000"  # Usuario con permisos adecuados
+    user: "1001:1001"  # Usuario con permisos adecuados
     volumes:
       - .:/var/www/html
     ports:

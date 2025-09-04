@@ -1,46 +1,43 @@
 #!/bin/bash
 
-# Script para arreglar permisos de WordPress
-echo "Configurando permisos para WordPress..."
+echo "=== Configurando permisos para WordPress en Docker ==="
 
-# Cambiar el propietario de todos los archivos al usuario 1000:1000
-sudo chown -R 1000:1000 .
+# Obtener UID y GID actuales
+CURRENT_UID=$(id -u)
+CURRENT_GID=$(id -g)
 
-# Configurar permisos para directorios (755)
+echo "UID actual: $CURRENT_UID (debe ser 1001)"
+echo "GID actual: $CURRENT_GID (debe ser 1001)"
+
+if [ "$CURRENT_UID" != "1001" ]; then
+    echo "ADVERTENCIA: Tu UID no es 1001. Verifica el docker-compose.yml"
+fi
+
+# Cambiar propietario de todos los archivos al usuario actual
+echo "Cambiando propietario de archivos a $CURRENT_UID:$CURRENT_GID..."
+sudo chown -R $CURRENT_UID:$CURRENT_GID .
+
+# Permisos básicos para WordPress
+echo "Configurando permisos básicos..."
 find . -type d -exec chmod 755 {} \;
-
-# Configurar permisos para archivos (644)
 find . -type f -exec chmod 644 {} \;
 
-# Configurar permisos especiales para wp-config.php (600)
-if [ -f "wp-config.php" ]; then
-    chmod 600 wp-config.php
-fi
+# Permisos específicos para directorios de WordPress
+echo "Configurando permisos de wp-content..."
+chmod -R 775 wp-content/ 2>/dev/null || echo "wp-content no existe aún"
 
-# Configurar permisos para directorios de WordPress que necesitan escritura
-if [ -d "wp-content" ]; then
-    chmod -R 755 wp-content/
-    find wp-content/ -type d -exec chmod 755 {} \;
-    find wp-content/ -type f -exec chmod 644 {} \;
-fi
+# Crear directorio uploads si no existe
+mkdir -p wp-content/uploads
+chmod -R 775 wp-content/uploads/
 
-# Configurar permisos para uploads (si existe)
-if [ -d "wp-content/uploads" ]; then
-    chmod -R 755 wp-content/uploads/
-fi
+# Permisos especiales para archivos de configuración
+chmod 600 wp-config.php 2>/dev/null || echo "wp-config.php no encontrado"
+chmod +x *.sh 2>/dev/null || echo "No hay scripts .sh para hacer ejecutables"
 
-# Configurar permisos para plugins (si existe)
-if [ -d "wp-content/plugins" ]; then
-    chmod -R 755 wp-content/plugins/
-fi
-
-# Configurar permisos para themes (si existe)
-if [ -d "wp-content/themes" ]; then
-    chmod -R 755 wp-content/themes/
-fi
-
-echo "Permisos configurados correctamente!"
-echo "Usuario propietario: 1000:1000"
-echo "Directorio: 755"
-echo "Archivos: 644"
-echo "wp-config.php: 600"
+echo "=== Permisos configurados correctamente ==="
+echo ""
+echo "Ahora puedes ejecutar:"
+echo "docker-compose down"
+echo "docker-compose up -d"
+echo ""
+echo "El contenedor usará UID:GID = $CURRENT_UID:$CURRENT_GID"
