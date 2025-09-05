@@ -41,14 +41,14 @@ if (!function_exists('unw_get_event_data')) {
 
   <div class="swiper-events__swiper <?php echo esc_attr($swiper_name); ?>" data-width="compact">
     <div class="swiper-container">
-      <ul class="swiper-wrapper swiper-events__cards">
+      <div class="swiper-wrapper swiper-events__cards">
         <?php foreach ($featured_events as $post): ?>
         <?php $event = unw_get_event_data($post); ?>
-        <li class="swiper-slide swiper-events__card">
+        <div class="swiper-slide swiper-events__card">
           <?php get_template_part(COMMON_CONTENT_PATH, 'event-card', $event); ?>
-        </li>
+        </div>
         <?php endforeach; ?>
-      </ul>
+      </div>
       <div class="swiper-events__swiper-navigation">
         <div class="swiper-navigation">
           <div class="swiper-primary-button-prev"></div>
