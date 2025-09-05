@@ -30,7 +30,8 @@ $socials = [
 
 <?php ob_start(); ?>
 <a href="/enlace-a-tu-libro" class="footer__book">
-  Libro de reclamaciones <img src="<?= UPLOAD_PATH . '/icons/laptop.svg' ?>" width="40" height="40" alt="" aria-hidden="true" />
+  Libro de reclamaciones <img class="lazyload" src="<?=placeholder() ?>"
+    data-src="<?= UPLOAD_PATH . '/icons/laptop.svg' ?>" width="40" height="40" alt="" aria-hidden="true" />
 </a>
 <?php $libro_reclamaciones_html = ob_get_clean(); ?>
 
@@ -38,12 +39,13 @@ $socials = [
   <div class="x-container x-container--pad-213 footer__wrapper">
     <div class="footer__upper">
       <div class="footer__left">
-        <img src="<?= UPLOAD_PATH . '/logo-unw-white.svg' ?>" alt="" width="auto" height="auto" aria-hidden="false" class="footer__logo"
-          fetchpriority="high" decoding="async" loading="eager" />
+        <img src="<?=placeholder() ?>" data-src="<?= UPLOAD_PATH . '/logo-unw-white.svg' ?>" alt="" width="auto"
+          height="auto" aria-hidden="false" class="footer__logo lazyload" />
         <h3 class="footer__cta--title">Agenda una visita</h3>
         <p class="footer__cta--desc">Un experto te dará un recorrido a nuestras instalaciones y resolverá tus dudas</p>
         <a href="https://wa.me/" target="_blank" class="btn btn-sm footer__cta--link">
-          Agenda por WhatsApp <img src="<?= UPLOAD_PATH . '/icons/whatsapp.png'; ?>" alt="WhatsApp" />
+          Agenda por WhatsApp <img class="lazyload" src="<?=placeholder() ?>"
+            data-src="<?= UPLOAD_PATH . '/icons/whatsapp.png'; ?>" width="24" height="24" alt="WhatsApp" />
         </a>
       </div>
       <div class="footer__right">
@@ -101,6 +103,6 @@ $socials = [
 </footer>
 
 <a href="https://wa.me/" target="_blank" class="whatsapp-link">
-  <img src="<?= UPLOAD_PATH . '/icons/whatsapp.png'; ?>" width="auto" height="auto" alt="WhatsApp" class="whatsapp-link__icon" fetchpriority="high"
-    decoding="async" loading="eager" />
+  <img src="<?=placeholder() ?>" data-src="<?= UPLOAD_PATH . '/icons/whatsapp.png'; ?>" width="auto" height="auto"
+    alt="WhatsApp" class="whatsapp-link__icon lazyload" />
 </a>
