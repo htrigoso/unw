@@ -86,6 +86,9 @@
 
     --color-bg-secondary: #F0EAEE;
 
+    --navbar-height-mobile: 64px;
+    --navbar-height-desktop: 118px;
+
     --swiper-prev-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-left.svg');
     --swiper-next-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-right.svg');
     --white-check: url('<?php echo get_template_directory_uri(); ?>/upload/icons/white-check.svg');
