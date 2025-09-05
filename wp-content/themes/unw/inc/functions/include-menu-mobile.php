@@ -23,10 +23,10 @@ class Sidebar_Menu_Walker extends Walker_Nav_Menu
 
     if ($has_children) {
       $output .= '<li class="sidebar__menu-item ' . esc_attr($class_names) . '">';
-      $output .= '<a href="javascript:void(0)" class="sidebar__menu-link depth-' . $d . '">';
+      $output .= '<button type="button" aria-expanded="false" aria-controls="submenu-' . $item->title . '" class="sidebar__menu-link depth-' . $d . '">';
       $output .= esc_html($item->title);
       $output .= '<svg width="24" height="24" aria-hidden="true"><use xlink:href="#forward"></use></svg>';
-      $output .= '</a>';
+      $output .= '</button>';
 
       $output .= '<div class="sidebar__submenu depth-' . $d . '">';
 
