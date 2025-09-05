@@ -20,8 +20,9 @@ if (!empty($benefits_info) && is_array($benefits_info['list'])) :
       <p class="benefits__item-title">
         <?= get_value_or_default($benefit_title, true); ?>
       </p>
-      <p class="benefits__item-description">
-        <?= nl2br(get_value_or_default($benefit_description, true)); ?>
+      <div class="benefits__item-description" data-content="paragraph">
+        <?= wp_kses_post(get_value_or_default($benefit_description)); ?>
+      </div>
     </li>
     <?php endforeach; ?>
   </ul>
