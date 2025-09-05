@@ -18,9 +18,9 @@ $img_mobile_alt = $hero_image['mobile']['alt'];
     <div class="swiper-wrapper swiper-hero__wrapper">
       <div class="swiper-slide swiper-hero__slide">
         <picture class="swiper-hero__picture">
-          <source alt="<?= $img_desktop_alt ?>" srcset="<?php echo esc_url($img_desktop); ?>" width="auto" height="auto" media="(min-width: 768px)" />
-          <img alt="<?= $img_mobile_alt ?>" src="<?php echo esc_url($img_mobile); ?>" width="auto" height="auto" class="swiper-hero__picture--img"
-            fetchpriority="high" decoding="async" loading="eager" />
+          <source srcset="<?php echo esc_url($img_desktop); ?>" width="1440" height="600" media="(min-width: 768px)" />
+          <img alt="<?= $img_mobile_alt ?>" src="<?php echo esc_url($img_mobile); ?>" class="swiper-hero__picture--img"
+            width="768" height="500" fetchpriority="high" decoding="async" loading="eager" />
         </picture>
       </div>
       <div class="hero__wrapper">
