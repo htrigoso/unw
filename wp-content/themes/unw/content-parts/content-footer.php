@@ -64,12 +64,14 @@ $socials = [
         <div class="footer__right-col-right">
           <div class="footer__short-divider"></div>
           <ul class="footer__more__list">
-            <li class="menu-item"><a href="/">Más de Wiener</a></li>
-            <ul class="sub-menu">
-              <li class="menu-item"><a href="/">Transparencia</a></li>
-              <li class="menu-item"><a href="/">Políticas de privacidad</a></li>
-              <li class="menu-item"><a href="/">Canal ético</a></li>
-            </ul>
+            <li class="menu-item">
+              <a href="/">Más de Wiener</a>
+              <ul class="sub-menu">
+                <li class="menu-item"><a href="/">Transparencia</a></li>
+                <li class="menu-item"><a href="/">Políticas de privacidad</a></li>
+                <li class="menu-item"><a href="/">Canal ético</a></li>
+              </ul>
+            </li>
           </ul>
           <div class="footer__short-divider"></div>
           <div class="footer__book--mobile">
