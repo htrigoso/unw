@@ -36,7 +36,7 @@
 
 
   <?php get_template_part('content-parts/content', 'fonts'); ?>
-  <?php get_template_part('content-parts/content', 'style-js'); ?>
+
   <!-- Css vars-->
   <style type="text/css">
   :root {
