@@ -39,7 +39,9 @@ class Sidebar_Menu_Walker extends Walker_Nav_Menu
       $output .= esc_html($item->title);
       $output .= '</div>';
     } else {
-      $output .= '<a href="' . esc_url($item->url) . '" class="sidebar__menu-item ' . esc_attr($class_names) . '">';
+      $output .= '<li>';
+      $output .= '<a href="' . esc_url($item->url) . '" class="sidebar__menu-item s' . esc_attr($class_names) . '">';
+      $output .= '</li';
       $output .= '<span class="sidebar__menu-link">';
       $output .= esc_html($item->title);
       $output .= '</span>';
