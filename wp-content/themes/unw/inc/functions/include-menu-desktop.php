@@ -127,7 +127,7 @@ class Desktop_Menu_Walker extends Walker_Nav_Menu {
             $link_classes = array();
             if ( $depth === 0 && in_array( 'menu-item-has-children', $classes ) ) {
                 $link_classes[] = 'has-link-parent';
-                $atts['href'] = 'javascript:void(0)';
+                $atts['href'] = 'javascript:mela(0)';
             }
 
             if ( ! empty( $link_classes ) ) {
