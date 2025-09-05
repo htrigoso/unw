@@ -40,12 +40,13 @@ $default_dot_colors = [
         <?php foreach ($curriculum_legend['options'] as $i => $option): ?>
         <?php
               $title = $option['title'] ?? '';
-              $color = $option['color'] ?? $default_dot_colors[$i % count($default_dot_colors)];
-              $class = 'dot--' . sanitize_html_class($color);
+
+              $color = $option['color_faculty'];
+
             ?>
         <li class="curriculum-legend__item">
           <div class="curriculum-legend__dot">
-            <span class="dot <?php echo esc_attr($class); ?>"></span>
+            <span class="dot" style="background-color:<?=$color?>"></span>
           </div>
           <?php echo esc_html($title); ?>
         </li>
