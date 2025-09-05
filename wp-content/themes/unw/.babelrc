@@ -1,15 +1,37 @@
 {
   "env": {
     "development": {
-      "presets": ["@babel/preset-env"],
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "targets": {
+              "browsers": ["supports es6-module", "defaults and not ie <= 11"]
+            },
+            "modules": false,
+            "useBuiltIns": "usage",
+            "corejs": 3
+          }
+        ]
+      ],
       "plugins": []
     },
     "production": {
-      "presets": ["@babel/preset-env"],
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "targets": {
+              "browsers": ["supports es6-module", "defaults and not ie <= 11"]
+            },
+            "modules": false,
+            "useBuiltIns": "usage",
+            "corejs": 3
+          }
+        ]
+      ],
       "plugins": []
     }
   },
-  "plugins": [
-    "@babel/plugin-transform-runtime"
-  ]
+  "plugins": ["@babel/plugin-transform-runtime"]
 }

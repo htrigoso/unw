@@ -13,9 +13,16 @@
     "clear": "rimraf ./build && rimraf ./dist && rimraf ./public",
     "rm:packs": "rimraf ./node_modules"
   },
+  "browserslist": [
+    "supports es6-module",
+    "defaults and not ie <= 11",
+    "last 2 versions",
+    "> 1%"
+  ],
   "dependencies": {
     "aos": "2.3.4",
     "bezier-easing": "2.1.0",
+    "core-js": "^3.25.0",
     "events": "^3.3.0",
     "gsap": "3.10.4",
     "include-media": "1.4.10",
