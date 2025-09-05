@@ -72,7 +72,8 @@
     }
   }
 
-  .menu-item-has-children > a {
+  .menu-item-has-children > a,
+  .menu-item-has-children > button {
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -164,4 +165,3 @@
     padding-inline: rem(24);
   }
 }
-
