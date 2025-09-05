@@ -117,15 +117,14 @@ export default class Tabs extends Component {
     })
   }
 
-  scrollToContent(targetContent) {
+  scrollToContent(el, offset = 200) {
+    // rAF #1: lectura (posiblemente invalida estilos anteriores)
     requestAnimationFrame(() => {
-      const offset = 200
-      const top =
-        targetContent.getBoundingClientRect().top +
-        window.pageYOffset -
-        offset
-
-      window.scrollTo({ top, behavior: 'smooth' })
+      const top = el.getBoundingClientRect().top + window.pageYOffset - offset
+      // rAF #2: escritura (scroll)
+      requestAnimationFrame(() => {
+        window.scrollTo({ top, behavior: 'smooth' })
+      })
     })
   }
 
