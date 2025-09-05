@@ -8,7 +8,12 @@ import Accordion from '../../components/Accordion'
 import FormCrmCareer from '../../components/FormCRM/FormCrmCareer'
 
 (function () {
-  HeroSwiper()
+  HeroSwiper('.hero-swiper', {
+    autoplay: {
+      delay: 15000,
+      disableOnInteraction: false
+    }
+  })
 
   PostSwiper('.testimonials-swiper', {
     pagination: {

@@ -15,7 +15,7 @@ if(wp_is_nonempty_array($testimonial_posts)){
         <ul class="swiper-wrapper">
           <?php
           foreach ($testimonial_posts as $testimonial_data) : ?>
-          <li class="swiper-slide">
+          <li class="swiper-slide testimonials__item">
             <?php get_template_part(COMMON_CONTENT_PATH, 'testimonial-card', [
                   'testimonial' => $testimonial_data
                 ]); ?>
