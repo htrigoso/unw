@@ -324,3 +324,45 @@ function get_current_term_slug() {
 
     return get_current_modalidad_slug();
 }
+
+
+
+function get_facultad_taxonomy_name( $post_id = null ) {
+    if ( ! $post_id ) {
+        $post_id = get_the_ID();
+    }
+
+    $terms = get_the_terms( $post_id, 'facultad' );
+
+    if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+        return $terms[0]->name; // devuelve solo el nombre del primer término
+    }
+
+    return '';
+}
+
+function get_current_page_title() {
+    if ( is_singular() ) {
+        // Para posts, páginas o CPT
+        return get_the_title();
+    } elseif ( is_home() || is_front_page() ) {
+        // Página de inicio o blog
+        return get_bloginfo( 'name' );
+    } elseif ( is_category() || is_tag() || is_tax() ) {
+        // Términos de taxonomía
+        return single_term_title( '', false );
+    } elseif ( is_post_type_archive() ) {
+        // Archivo de CPT
+        return post_type_archive_title( '', false );
+    } elseif ( is_archive() ) {
+        // Archivos en general (fecha, autor, etc.)
+        return get_the_archive_title();
+    } elseif ( is_search() ) {
+        // Página de búsqueda
+        return sprintf( 'Resultados de búsqueda para: %s', get_search_query() );
+    } elseif ( is_404() ) {
+        return 'Página no encontrada';
+    }
+
+    return '';
+}

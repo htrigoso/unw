@@ -4,6 +4,7 @@ define('ROOTPATH', __DIR__);
 define('BASE_URL', get_bloginfo('url'));
 define('THEME_PATH', get_template_directory_uri());
 define('UPLOAD_PATH', get_template_directory_uri() . '/upload');
+define('IMAGE_DEFAULT', get_template_directory_uri() . '/upload/imagen-defaul.jpg');
 define('ASSETS_PATH', get_template_directory_uri() . '/assets');
 define('ALLOW_UNFILTERED_UPLOADS', true);
 define('ALLOW_GZIP', false);
@@ -22,6 +23,7 @@ define('ABOUT_US_CONTENT_PATH', 'content-parts/pages/about-us/content');
 define('OUR_HISTORY_CONTENT_PATH', 'content-parts/pages/our-history/content');
 define('QUALITY_POLICY_CONTENT_PATH', 'content-parts/pages/quality-policy/content');
 define('CAREERS_CONTENT_PATH', 'content-parts/pages/careers/content');
+define('THANKS_CONTENT_PATH', 'content-parts/pages/thanks/content');
 
 define('ERROR_CONTENT_PATH', 'content-parts/pages/404/content');
 

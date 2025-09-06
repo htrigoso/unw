@@ -16,4 +16,15 @@ import { updateSwipers } from '../../utils/swiper'
       type: 'fraction'
     }
   })
+
+  const tabsElement = document.querySelector('.news-tabs')
+  if (tabsElement) {
+    new Tabs({
+      element: tabsElement,
+      preventDefault: true,
+      onTabChange(tab, targetContent, tabIndex) {
+        updateSwipers(targetContent)
+      }
+    })
+  }
 })()

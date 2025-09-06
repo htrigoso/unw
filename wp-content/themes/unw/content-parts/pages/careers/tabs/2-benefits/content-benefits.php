@@ -1,6 +1,5 @@
 <?php
 $benefits_info = $args['benefits'] ?? null;
-
 if (!empty($benefits_info) && is_array($benefits_info['list'])) :
   $title = $benefits_info['title'] ?? '';
   $benefits_list = $benefits_info['list'];
@@ -16,11 +15,13 @@ if (!empty($benefits_info) && is_array($benefits_info['list'])) :
       ?>
     <li class="benefits__item">
       <?php if ($icon_url): ?>
-      <img src="<?php echo esc_url($icon_url); ?>" alt="<?php echo esc_attr($benefit_title); ?>"
-        class="benefits__item-icon">
+      <img src="<?= esc_url($icon_url); ?>" alt="<?= esc_attr($benefit_title); ?>" class="benefits__item-icon lazyload">
       <?php endif; ?>
-      <p class="benefits__item-title"><?php echo esc_html($benefit_title); ?></p>
-      <p class="benefits__item-description"><?php echo esc_html($benefit_description); ?></p>
+      <p class="benefits__item-title">
+        <?= get_value_or_default($benefit_title, true); ?>
+      </p>
+      <p class="benefits__item-description">
+        <?= nl2br(get_value_or_default($benefit_description, true)); ?>
     </li>
     <?php endforeach; ?>
   </ul>

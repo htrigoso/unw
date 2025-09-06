@@ -72,11 +72,13 @@
     }
   }
 
-  .menu-item-has-children > a {
+  .menu-item-has-children > a,
+  .menu-item-has-children > button {
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
   }
 
   .sub-menu {
@@ -164,4 +166,3 @@
     padding-inline: rem(24);
   }
 }
-

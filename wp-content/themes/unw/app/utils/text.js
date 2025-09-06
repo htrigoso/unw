@@ -1,6 +1,6 @@
 import each from 'lodash/each'
 
-export function split ({ element, expression = ' ', append = true }) {
+export function split({ element, expression = ' ', append = true }) {
   const words = splitText(element.innerHTML.toString().trim(), expression)
 
   let innerHTML = ''
@@ -37,7 +37,7 @@ export function split ({ element, expression = ' ', append = true }) {
   return spans
 }
 
-export function calculate (spans) {
+export function calculate(spans) {
   const lines = []
   let words = []
 
@@ -65,7 +65,7 @@ export function calculate (spans) {
   return lines
 }
 
-function splitText (text, expression) {
+function splitText(text, expression) {
   const splits = text.split('<br>')
 
   let words = []
@@ -114,7 +114,7 @@ function splitText (text, expression) {
   return words
 }
 
-function parseLine (line) {
+function parseLine(line) {
   if (line === '') {
     return line
   } else if (line === ' ') {

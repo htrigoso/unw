@@ -17,79 +17,7 @@ function include_the_json_settings()
 }
 
 
-add_action('wp_enqueue_scripts', 'include_assets');
-function include_assets()
-{
-  global $wp_query;
 
-  $assetsJsonFile = "";
-  if (file_exists(get_template_directory() . '/build/assets.json')) {
-    $assetsJsonFile = file_get_contents(get_template_directory() . '/build/assets.json');
-  } elseif (file_exists(get_template_directory() . '/public/assets.json')) {
-    $assetsJsonFile = file_get_contents(get_template_directory() . '/public/assets.json');
-  }
-
-  if (!empty($assetsJsonFile)) {
-    $assets = json_decode($assetsJsonFile, true);
-    $vars = $wp_query->query_vars;
-    $themePath = get_template_directory_uri();
-    $env = $assets['env'];
-    unset($assets['env']);
-  }
-  if ($env === 'production') {
-    // $plyr_style = $themePath . '/build/plyr/plyr.min.css';
-    if (ALLOW_GZIP) {
-      // $plyr_style = $themePath . '/build/plyr/plyr.min.css.gz';
-    }
-    if (is_page_template('page-about_us.php') || is_front_page() || is_home() || is_singular(['post', 'project'])) {
-      //wp_enqueue_style('plyr', $plyr_style);
-    }
-  }
-  if (!empty($assets)) {
-    foreach ($assets as $key => $val) {
-      switch ($key) {
-        case 'app':
-          {
-            if (array_key_exists('js', $val)) {
-              $style_url = ($env === 'production') ? $themePath . '/' . $val['css'] : null;
-              $script_url = ($env === 'production') ? $themePath . '/' . $val['js'] : $val['js'];
-
-              if (ALLOW_GZIP) {
-                $script_url = $script_url . '.gz';
-              }
-
-              if ($env === 'production') {
-                wp_enqueue_style($key, $style_url);
-              }
-
-              wp_enqueue_script($key, $script_url, [], '', true);
-            }
-          }
-          break;
-        case $vars['ASSETS_CHUNK_NAME']:
-          {
-            if (array_key_exists('js', $val)) {
-              $style_url = ($env === 'production') ? $themePath . '/' . $val['css'] : null;
-              $script_url = ($env === 'production') ? $themePath . '/' . $val['js'] : $val['js'];
-
-              if (ALLOW_GZIP) {
-                $style_url = $style_url . '.gz';
-                $script_url = $script_url . '.gz';
-              }
-
-              if ($env === 'production') {
-                wp_enqueue_style($key, $style_url);
-              }
-
-              wp_enqueue_script($key, $script_url, ['app'], '', true);
-            }
-
-          }
-          break;
-      }
-    }
-  }
-}
 
 
 add_filter('clean_url', 'addAttrs', 11, 1);
@@ -139,10 +67,182 @@ if (!function_exists('vdebug')) {
     }
 }
 
+
+function get_current_page_url() {
+    if (is_front_page()) {
+        return home_url('/');
+    } elseif (is_home()) {
+        return get_permalink(get_option('page_for_posts'));
+    } elseif (is_single() || is_page()) {
+        return get_permalink();
+    } elseif (is_category()) {
+        return get_category_link(get_query_var('cat'));
+    } elseif (is_tag()) {
+        return get_tag_link(get_query_var('tag_id'));
+    } elseif (is_author()) {
+        return get_author_posts_url(get_query_var('author'));
+    } else {
+        return home_url(add_query_arg(array()));
+    }
+}
+
+/**
+ * Genera <link rel="preload"> para un array de imágenes, aceptando una URL base y una opcional para desktop.
+ *
+ * La función asume atributos fijos:
+ * - La URL base (móvil) usará `fetchpriority="high"`.
+ * - La URL de desktop usará `media="(min-width: 768px)"`.
+ *
+ * @param array $image_sets Array de imágenes. Cada elemento puede contener 'url' y/u 'url_desktop'.
+ * Ejemplo:
+ * [
+ * ['url' => 'link/a/imagen-movil.jpg', 'url_desktop' => 'link/a/imagen-desktop.jpg'],
+ * ['url' => 'link/a/otra-imagen-general.jpg']
+ * ]
+ * @param bool  $echo       Si es true, imprime el HTML; si es false, lo devuelve como string.
+ * @return string
+ */
+function uw_preload_responsive_images( array $image_sets = [], bool $echo = true ): string {
+	if (empty($image_sets)) {
+		return '';
+	}
+
+	$output = '';
+
+	foreach ( $image_sets as $set ) {
+		$img_mobile  = $set['url'] ?? '';
+		$img_desktop = $set['url_desktop'] ?? '';
+
+		if ($img_mobile) {
+			$output .= sprintf(
+				'<link rel="preload" as="image" href="%s" imagesizes="100vw" fetchpriority="high">' . "\n",
+				esc_url($img_mobile)
+			);
+		}
+
+		if ( $img_desktop ) {
+			$output .= sprintf(
+				'<link rel="preload" as="image" href="%s" imagesizes="100vw" media="(min-width: 768px)">' . "\n",
+				esc_url($img_desktop)
+			);
+		}
+	}
+
+	if ($echo && $output) {
+		echo $output;
+	}
+
+	return $output;
+}
+
 function placeholder() {
   echo 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAECAYAAABGM/VAAAAABHNCSVQICAgIfAhkiAAAAF1JREFUCFtjvP/m1n8GIPj64TzD5f+GDJ8+/WBgrDp767+DKAOD1K/zDEpShgxbH/xhYFx+59Z/LW5Ghg9//zMoMd5mePJZiYHxxMsH2w6+BhnAwJAo9pvh5GcmBgCRxSUqb+IRJgAAAABJRU5ErkJggg==';
 }
 
 function get_placeholder() {
   return 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAECAYAAABGM/VAAAAABHNCSVQICAgIfAhkiAAAAF1JREFUCFtjvP/m1n8GIPj64TzD5f+GDJ8+/WBgrDp767+DKAOD1K/zDEpShgxbH/xhYFx+59Z/LW5Ghg9//zMoMd5mePJZiYHxxMsH2w6+BhnAwJAo9pvh5GcmBgCRxSUqb+IRJgAAAABJRU5ErkJggg==';
+}
+add_action('wp_enqueue_scripts', 'include_assets');
+
+function include_assets()
+{
+  global $wp_query;
+
+  $assetsJsonFile = "";
+  if (file_exists(get_template_directory() . '/build/assets.json')) {
+    $assetsJsonFile = file_get_contents(get_template_directory() . '/build/assets.json');
+  } elseif (file_exists(get_template_directory() . '/public/assets.json')) {
+    $assetsJsonFile = file_get_contents(get_template_directory() . '/public/assets.json');
+  }
+
+  if (!empty($assetsJsonFile)) {
+    $assets = json_decode($assetsJsonFile, true);
+    $vars = $wp_query->query_vars;
+    $themePath = get_template_directory_uri();
+    $env = $assets['env'];
+    unset($assets['env']);
+  }
+
+
+
+  if (!empty($assets)) {
+    foreach ($assets as $key => $val) {
+      switch ($key) {
+        case 'app':
+          {
+            if (array_key_exists('js', $val)) {
+              $style_url = ($env === 'production') ? $themePath . '/' . $val['css'] : null;
+              $script_url = ($env === 'production') ? $themePath . '/' . $val['js'] : $val['js'];
+
+              if (ALLOW_GZIP) {
+                $script_url = $script_url . '.gz';
+              }
+
+              if ($env === 'production') {
+                // Aquí se agrega la acción para precargar el CSS.
+                add_action('wp_head', function() use ($style_url) {
+                  echo '<link rel="preload" href="' . esc_url($style_url) . '" as="style">';
+                }, 1);
+
+                // Luego, encolamos el estilo de forma normal para que se aplique.
+                wp_enqueue_style($key, $style_url);
+              }
+
+              wp_enqueue_script($key, $script_url, [], '', true);
+            }
+          }
+          break;
+        case $vars['ASSETS_CHUNK_NAME']:
+          {
+            if (array_key_exists('js', $val)) {
+              $style_url = ($env === 'production') ? $themePath . '/' . $val['css'] : null;
+              $script_url = ($env === 'production') ? $themePath . '/' . $val['js'] : $val['js'];
+
+              if (ALLOW_GZIP) {
+                $style_url = $style_url . '.gz';
+                $script_url = $script_url . '.gz';
+              }
+
+              if ($env === 'production') {
+                wp_enqueue_style($key, $style_url);
+              }
+
+              wp_enqueue_script($key, $script_url, ['app'], '', true);
+            }
+          }
+          break;
+      }
+    }
+  }
+}
+
+
+
+
+function get_value_or_default($value,$escape_function = false, $default = 'Por definir') {
+    // Verificar si es null, vacío o contiene solo espacios en blanco
+    if ($value === null || $value === '' || trim($value) === '') {
+        $result = $default;
+    } else {
+        $result = $value;
+    }
+
+    // Aplicar función de escape si se solicita
+    if ($escape_function) {
+        // Si es true, usar esc_html por defecto
+        if ($escape_function === true) {
+            $escape_function = 'esc_html';
+        }
+
+        // Verificar que la función existe y aplicarla
+        if (is_string($escape_function) && function_exists($escape_function)) {
+            return $escape_function($result);
+        }
+    }
+
+    return $result;
+}
+
+function wp_is_nonempty_array( $value ) {
+    return ( is_array( $value ) && ! empty( $value ) );
 }

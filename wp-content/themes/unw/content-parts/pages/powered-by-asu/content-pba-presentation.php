@@ -6,8 +6,8 @@ $presentation = get_field('presentation');
   <div class="x-container x-container--pad-213">
     <!-- Logos -->
     <div class="pba-presentation__logos">
-      <img src="<?php echo esc_url($presentation['images']['logo_unw']['url']); ?>" alt="UNW Logo">
-      <img src="<?php echo esc_url($presentation['images']['logo_asu']['url']); ?>" alt="ASU Logo">
+      <img src="<?php echo esc_url($presentation['images']['logo_unw']['url']); ?>" alt="UNW Logo" class="lazyload">
+      <img src="<?php echo esc_url($presentation['images']['logo_asu']['url']); ?>" alt="ASU Logo" class="lazyload">
     </div>
 
     <!-- Descripción -->
@@ -18,8 +18,8 @@ $presentation = get_field('presentation');
 
     <!-- Edificio -->
     <div class="pba-presentation__building">
-      <img src="<?php echo esc_url($presentation['building_info']['image']['url']); ?>" alt="Building"
-        class="pba-presentation__building--img" />
+      <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($presentation['building_info']['image']['url']); ?>" alt="Building"
+        class="pba-presentation__building--img" class="lazyload" />
       <div class="pba-presentation__building--desc">
         <strong><?php echo $presentation['building_info']['title']; ?></strong>
         <span><?php echo $presentation['building_info']['subtitle']; ?></span>

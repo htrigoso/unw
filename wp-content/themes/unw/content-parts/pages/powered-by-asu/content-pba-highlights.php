@@ -19,8 +19,8 @@ $highlights = get_field('highlights');
 
               <div class="pba-highlights__card-right" data-modal-target="highlight-modal-<?php echo $i; ?>"
                 style="cursor: pointer;">
-                <img src="<?= esc_url($highlight['poster']['url']); ?>"
-                  alt="<?= esc_attr($highlight['poster']['alt']); ?>" class="pba-highlights__card-image" />
+                <img src="<?=placeholder() ?>" data-src="<?= esc_url($highlight['poster']['url']); ?>"
+                  alt="<?= esc_attr($highlight['poster']['alt']); ?>" class="pba-highlights__card-image lazyload" />
                 <div class="pba-highlights__card-video-btn">
                   <i>
                     <svg width="56" height="56">

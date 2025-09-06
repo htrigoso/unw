@@ -6,6 +6,10 @@
 
 .breadcrumb__label {
   color: var(--color-white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .separator {

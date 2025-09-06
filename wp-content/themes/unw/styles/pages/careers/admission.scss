@@ -1,3 +1,5 @@
+@import "./../../components/forms.scss";
+
 .admission__wrapper {
   padding-top: rem(32);
   padding-bottom: rem(20);
@@ -141,6 +143,19 @@
 
 .admission-card__paragraph {
   color: var(--color-black);
+  p:not(:last-child) {
+    margin-bottom: rem(10);
+  }
+  a {
+    text-decoration: underline;
+    font-weight: var(--font-medium);
+  }
+  ul {
+    li {
+      list-style-type: disc;
+    }
+    margin-left: rem(17);
+  }
 }
 
 .admission-card__footer {

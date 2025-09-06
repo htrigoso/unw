@@ -7,8 +7,9 @@ $link_two = $hero['link_two'] ?? null;
 $hero_image = $hero['list'][0]['images'] ?? null;
 
 $img_desktop = $hero_image['desktop']['url'];
+$img_desktop_alt = $hero_image['desktop']['alt'];
 $img_mobile = $hero_image['mobile']['url'];
-$img_alt = $hero_image['mobile']['alt'];
+$img_mobile_alt = $hero_image['mobile']['alt'];
 ?>
 
 <?php if (!empty($hero) && is_array($hero)): ?>
@@ -17,9 +18,9 @@ $img_alt = $hero_image['mobile']['alt'];
     <div class="swiper-wrapper swiper-hero__wrapper">
       <div class="swiper-slide swiper-hero__slide">
         <picture class="swiper-hero__picture">
-          <source srcset="<?php echo esc_url($img_desktop); ?>" media="(min-width: 768px)" fetchpriority="high" />
-          <img alt="<?= $img_alt ?>" src="<?php echo esc_url($img_mobile); ?>"
-            class="swiper-hero__picture--img" fetchpriority="high" decoding="async" loading="eager" />
+          <source srcset="<?php echo esc_url($img_desktop); ?>" width="1440" height="600" media="(min-width: 768px)" />
+          <img alt="<?= $img_mobile_alt ?>" src="<?php echo esc_url($img_mobile); ?>" class="swiper-hero__picture--img"
+            width="768" height="500" fetchpriority="high" decoding="async" loading="eager" />
         </picture>
       </div>
       <div class="hero__wrapper">

@@ -60,3 +60,26 @@ body.sidebar-open {
 [data-hidden] {
   overflow: hidden;
 }
+[data-animation="label"],
+[data-animation="paragraph"],
+[data-animation="title"] {
+  span {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+  }
+}
+[data-content="paragraph"] {
+  p {
+    margin-bottom: rem(10);
+  }
+  ul {
+    margin-left: rem(17);
+    li {
+      list-style-type: disc;
+    }
+  }
+  a {
+    font-weight: var(--font-medium);
+  }
+}

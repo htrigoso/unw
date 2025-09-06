@@ -1,5 +1,5 @@
 .footer {
-  background-color: var(--color-turquoise-two);
+  background-color: var(--color-turquoise-three);
 }
 
 .footer__wrapper {
@@ -74,12 +74,13 @@
 }
 
 .footer__cta--link {
+  font-family: var(--font-inter);
   background-color: var(--color-white);
   border-radius: rem(8);
   width: 100%;
   max-width: rem(335);
   gap: rem(16);
-  font-weight: var(--font-regular);
+  font-weight: var(--font-medium);
 
   @include media(">=phone") {
     font-weight: var(--font-medium);
@@ -95,35 +96,77 @@
   @include media(">=phone") {
     width: rem(328);
   }
+
+  @include media(">=desktop-s") {
+    width: auto;
+    display: grid;
+    gap: rem(46);
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
-.footer__menu__list {
+.footer__right-col-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footer__menu__list,
+.footer__more__list {
   > .menu-item {
     &:not(:last-child) {
       margin-bottom: rem(20);
     }
 
     > a {
-      @include title-20;
+      @include title-22;
       color: var(--color-white);
       text-transform: capitalize;
     }
   }
 
   .sub-menu {
-    margin-top: rem(6);
+    margin-top: rem(20);
 
     .menu-item {
       &:not(:first-child) {
-        margin-top: rem(6);
+        margin-top: rem(20);
+
+        @include media(">=phone") {
+          margin-top: rem(8);
+        }
       }
 
       a {
         font-size: rem(16);
+        font-weight: var(--font-semi-bold);
         color: var(--color-white);
         text-transform: capitalize;
       }
     }
+  }
+}
+
+.footer__book {
+  font-weight: var(--font-semi-bold);
+  color: var(--color-white);
+
+  img {
+    margin-top: rem(6);
+  }
+}
+
+.footer__book--desktop {
+  padding-top: rem(24);
+
+  @include media("<desktop-s") {
+    display: none;
+  }
+}
+
+.footer__book--mobile {
+  @include media(">=desktop-s") {
+    display: none;
   }
 }
 
@@ -139,24 +182,13 @@
   }
 }
 
-.footer__divider {
-  height: 1px;
-  background-color: var(--color-turquoise-one);
-  margin-top: rem(20);
-  margin-bottom: rem(20);
-
-  @include media(">=phone") {
-    margin-top: rem(55);
-    margin-bottom: rem(30);
-  }
-}
-
 .footer__bottom--copy {
   display: block;
   color: var(--color-white);
   font-weight: var(--font-medium);
   line-height: rem(24);
   text-align: center;
+  font-family: var(--font-inter);
 }
 
 .footer__bottom__social {
@@ -183,6 +215,30 @@
   display: flex;
   justify-content: center;
   gap: rem(16);
+}
+
+.footer__divider {
+  height: 1px;
+  background-color: var(--color-turquoise-one);
+  margin-top: rem(20);
+  margin-bottom: rem(20);
+
+  @include media(">=phone") {
+    margin-top: rem(55);
+    margin-bottom: rem(30);
+  }
+}
+
+.footer__short-divider {
+  width: rem(30);
+  height: 1px;
+  background-color: var(--color-white);
+  margin-top: rem(20);
+  margin-bottom: rem(20);
+
+  @include media(">=desktop-s") {
+    display: none;
+  }
 }
 
 .whatsapp-link {

@@ -1,7 +1,16 @@
 <?php
 ob_start();
+$crm_ad      = get_field('crm');
+$utms_default      = get_field('list_utms', 'option');
+$utm_admission      = $crm_carriers['list_utms'] ?? [];
+$utms_final = merge_utms($utms_default, $utm_admission);
+$form_crm_option   = get_field('form_crm', 'option');
+$formUrl           = "https://forms.zohopublic.com/adminzoho11/form/WebPreWiener/formperma/l1wwdmdtbCUdnHXBKB4zGg2X1eb12Fnp-VgoBjOAEmA/htmlRecords/submit";
+$careers = $form_crm_option['careers'];
+$list_departaments = $form_crm_option['list_departaments'];
 ?>
-<form class="more-form">
+<form id="form-general" class="more-form" data-departaments="<?= esc_attr(wp_json_encode( $list_departaments))?>"
+  method="POST" accept-charset="UTF-8" enctype="multipart/form-data" action="<?=$formUrl?>">
   <div class="form-header more-form__header">
     <i>
       <svg width="52" height="52">
@@ -12,66 +21,124 @@ ob_start();
       ¡Déjanos tus datos y nos contactaremos contigo!
     </h4>
   </div>
+
+  <?php foreach ($utms_final as $utm): ?>
+  <input type="hidden" name="<?= esc_attr($utm['name']); ?>" value="<?= esc_attr($utm['value']); ?>">
+  <?php endforeach; ?>
+
+  <div class="custom-hidden"></div>
+
+  <!-- Enviar Campos vacios -->
+  <input type="hidden" name="Name_Middle" value="">
+  <input type="hidden" name="Dropdown3" value="Perú (+51)">
+  <input type="hidden" name="Dropdown" value="DNI">
+  <input type="hidden" name="Dropdown2" value=""> <!-- Grado -->
+  <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
+
+  <input type="hidden" name="Radio" value="No"> <!--  Soy padre de familia -->
+
+
+
+
+
+  <input type="hidden" name="SingleLine1" value="UNW_Pregrado"> <!-- Unidad de negocio -->
+  <input type="hidden" name="SingleLine2" value="Web Solicita Información"> <!-- Fuente de origen -->
+
+
+  <input type="hidden" name="Dropdown500" value=""> <!-- Escoge Instituto / Universidad -->
+  <input type="hidden" name="SingleLine6" value=""> <!-- Escoge instituto universitario Grupo -->
+  <input type="hidden" name="SingleLine7" value=""> <!-- Escoge instituto universitario Valor -->
+  <input type="hidden" name="SingleLine9" value="">
+
+  <input type="hidden" name="Dropdown4" value="Activo"> <!-- Estado de período -->
+  <input type="hidden" name="Website" value="<?=get_current_page_url()?>"> <!-- Url de Trakeo -->
+  <input type="hidden" name="SingleLine10" value=""> <!-- Escoge tu sede - Text -->
+  <input type="hidden" name="SingleLine11" value=""> <!-- Escoge tu sede - Valor -->
+
+
   <div class="form-body more-form-body">
-    <div class="form-field-radio">
-      <fieldset class="more-form-body__radio">
-        <div class="radio-option">
-          <input type="radio" id="pregrado" name="form_mixto" value="pregrado" checked />
-          <label for="pregrado">Pregrado</label>
+
+    <div class="form-body__fields">
+
+      <div class="form-field-radio m-b-24">
+        <fieldset class="flex">
+          <div class="radio-option ">
+            <input type="radio" id="pregrado" name="form_mixto" value="pregrado" checked />
+            <label for="pregrado">Presencial</label>
+          </div>
+          <div class="radio-option m-l-15">
+            <input type="radio" id="virtual" name="form_mixto" value="virtual" />
+            <label for="virtual">100% virtual</label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="flex justify-between m-b-24">
+        <div class="f-50">
+          <div class="form-field">
+            <input name="Name_First" id="Name_First" placeholder="" type="text" required />
+            <label for="Name_First">Nombres (*)</label>
+            <span class="error-message">Datos inválidos</span>
+          </div>
         </div>
-        <div class="radio-option">
-          <input type="radio" id="trabajo" name="form_mixto" value="trabajo" />
-          <label for="trabajo">Carreras para gente que trabaja</label>
+        <div class="f-50">
+          <div class="form-field">
+            <input name="Name_Last" id="Name_Last" placeholder="" type="text" />
+            <label for="Name_Last">Apellidos (*)</label>
+            <span class="error-message">Datos inválidos</span>
+          </div>
         </div>
-        <div class="radio-option">
-          <input type="radio" id="virtual" name="form_mixto" value="virtual" />
-          <label for="virtual">100% virtual</label>
+      </div>
+
+      <div class="flex justify-between m-b-24">
+        <div class="f-50">
+          <div class="form-field">
+            <input type="tel" inputmode="numeric" pattern="\d{8}" maxlength="8" name="SingleLine" placeholder=""
+              id="SingleLine" />
+            <label for="SingleLine">Número de documento (*)</label>
+            <span class="error-message">Datos inválidos</span>
+          </div>
         </div>
-      </fieldset>
-    </div>
-    <div class="form-body__fields more-form-body__fields">
-      <div class="form-field form-field-select">
-        <select name="carrera" id="carrera" type="text" required>
-          <option value="" selected="" disabled="">Elige tu carrera</option>
-          <option value="elec">Electrónica</option>
-          <option value="mec">Mecánica</option>
-        </select>
-        <label for="document">Elige tu carrera</label>
-        <span class="error-message">Datos inválidos</span>
+        <div class="f-50">
+          <div class="form-field">
+            <input type="tel" inputmode="numeric" pattern="\d{9}" maxlength="9" name="PhoneNumber_countrycode"
+              id="PhoneNumber_countrycode" placeholder="" required />
+            <label for="PhoneNumber_countrycode">Celular (*)</label>
+            <span class="error-message">Datos inválidos</span>
+          </div>
+        </div>
       </div>
-      <div class="form-field form-field-select">
-        <select name="campus" id="campus" type="text" required>
-          <option value="" selected="" disabled="">Elige tu campus</option>
-          <option value="camp">Campus 1</option>
-          <option value="camp1">Campus 2</option>
-        </select>
-        <label for="document">Elige tu campus</label>
-        <span class="error-message">Datos inválidos</span>
+      <div class="m-b-24">
+
+        <div class="form-field">
+          <input type="email" name="Email" id="Email" placeholder="" required />
+          <label for="Email">Correo electrónico (*)</label>
+          <span class="error-message">Datos inválidos</span>
+        </div>
+
       </div>
-      <div class="form-field">
-        <input name="nombre" id="nombre" placeholder="" type="text" required />
-        <label for="nombre">Nombre (*)</label>
-        <span class="error-message">Datos inválidos</span>
-      </div>
-      <div class="form-field">
-        <input name="apellido" id="apellido" placeholder="" type="text" required />
-        <label for="apellido">Apellidos (*)</label>
-        <span class="error-message">Datos inválidos</span>
-      </div>
-      <div class="form-field">
-        <input name="doc" id="doc" placeholder="" type="text" required />
-        <label for="doc">Número de documento (*)</label>
-        <span class="error-message">Datos inválidos</span>
-      </div>
-      <div class="form-field">
-        <input name="cel" id="cel" placeholder="" type="text" required />
-        <label for="cel">Celular (*)</label>
-        <span class="error-message">Datos inválidos</span>
-      </div>
-      <div class="form-field">
-        <input name="email" id="email" placeholder="" type="email" required />
-        <label for="email">Correo electrónico (*)</label>
-        <span class="error-message">Datos inválidos</span>
+
+      <div class="flex justify-between m-b-24" data-html-name="departament">
+        <div class="f-50">
+          <div class="form-field form-field-select">
+            <select name="SingleLine5" id="careerSelect" required>
+              <option value="" selected disabled>--Seleccione--</option>
+              <?php foreach ($careers as $career) : ?>
+              <optgroup label="<?= esc_html($career['faculty']); ?>">
+                <?php if (!empty($career['list'])) : ?>
+                <?php foreach ($career['list'] as $item) : ?>
+                <option value="<?= esc_attr($item['value']); ?>">
+                  <?= esc_html($item['name']); ?>
+                </option>
+                <?php endforeach; ?>
+                <?php endif; ?>
+              </optgroup>
+              <?php endforeach; ?>
+            </select>
+            <label for="careerSelect">Elige tu carrera</label>
+            <span class="error-message">Datos inválidos</span>
+          </div>
+        </div>
       </div>
     </div>
     <p class="form-body__hint">
@@ -79,7 +146,7 @@ ob_start();
     </p>
     <div class="form-body__terms">
       <div class="form-field-checkbox">
-        <input type="checkbox" id="politicas" name="politicas" required checked>
+        <input type="checkbox" name="DecisionBox1" id="politicas" name="politicas" required checked>
         <label for="politicas">
           <span class="custom-checkbox"></span>
           <span class="text">
@@ -88,6 +155,7 @@ ob_start();
         </label>
       </div>
     </div>
+
     <div class="form-body__actions more-form-body__actions">
       <button type="submit" class="btn btn-primary">Enviar</button>
     </div>
@@ -101,6 +169,7 @@ get_template_part(COMMON_CONTENT_PATH, 'modal', [
   'content' => $content,
   'id' => 'modal-more-info',
   'variant' => 'float',
-  'class' => 'more-modal'
+  'class' => 'more-modal',
+  'preloaded' => true,
 ]);
 ?>

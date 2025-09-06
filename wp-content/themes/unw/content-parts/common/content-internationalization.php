@@ -1,33 +1,27 @@
 <?php
+$postId = $args['id']??0;
 
-$postId = $args['id'] ?? '';
-$countries = [
-  ['name' => 'Spain',       'file' => UPLOAD_PATH . '/home/international-agreements/1.svg'],
-  ['name' => 'Mexico',      'file' => UPLOAD_PATH . '/home/international-agreements/2.svg'],
-  ['name' => 'Colombia',    'file' => UPLOAD_PATH . '/home/international-agreements/3.svg'],
-  ['name' => 'Chile',       'file' => UPLOAD_PATH . '/home/international-agreements/4.svg'],
-  ['name' => 'Italy',       'file' => UPLOAD_PATH . '/home/international-agreements/5.svg'],
-  ['name' => 'Brazil',      'file' => UPLOAD_PATH . '/home/international-agreements/6.svg'],
-  ['name' => 'Costa Rica',  'file' => UPLOAD_PATH . '/home/international-agreements/7.svg'],
-  ['name' => 'Ecuador',     'file' => UPLOAD_PATH . '/home/international-agreements/8.svg'],
-  ['name' => 'Spain',       'file' => UPLOAD_PATH . '/home/international-agreements/1.svg'],
-  ['name' => 'Mexico',      'file' => UPLOAD_PATH . '/home/international-agreements/2.svg'],
-  ['name' => 'Colombia',    'file' => UPLOAD_PATH . '/home/international-agreements/3.svg'],
-  ['name' => 'Chile',       'file' => UPLOAD_PATH . '/home/international-agreements/4.svg'],
-  ['name' => 'Italy',       'file' => UPLOAD_PATH . '/home/international-agreements/5.svg'],
-  ['name' => 'Brazil',      'file' => UPLOAD_PATH . '/home/international-agreements/6.svg'],
-  ['name' => 'Costa Rica',  'file' => UPLOAD_PATH . '/home/international-agreements/7.svg'],
-  ['name' => 'Ecuador',     'file' => UPLOAD_PATH . '/home/international-agreements/8.svg'],
-];
+$inter = get_field('Internationalization', 'option');
+
+// Campos principales
+$intl_title       = $inter['title'];
+$intl_sub_title   = $inter['sub_title'];
+$intl_description = $inter['description'];
+$image            = $inter['image'];
+$agreements_title = $inter['agreements']['title'];
+$agreements_desc  = $inter['agreements']['description'];
+$paises           = $inter['paises']; // array de WP_Post
 ?>
 
-<section class="internationalization" id="internationalization-<?=$postId?>"
+<section class="internationalization" id="internationalization-<?= esc_attr($postId) ?>"
   aria-labelledby="internationalization-title">
   <div class="internationalization__wrapper">
 
     <!-- Header -->
     <header class="internationalization__header">
-      <h2 id="internationalization-title" class="internationalization__title">Internacionalización</h2>
+      <h2 id="internationalization-title" class="internationalization__title">
+        <?= esc_html($intl_title) ?>
+      </h2>
     </header>
 
     <!-- Content -->
@@ -37,16 +31,14 @@ $countries = [
       <div class="internationalization__highlight">
         <div class="internationalization__highlight-text">
           <h3 class="internationalization__highlight-subtitle">
-            Somos la única Universidad Peruana potenciada por
+            <?= esc_html($intl_sub_title) ?>
           </h3>
-          <img class="internationalization__highlight-logo" height="72"
-            src="<?php echo get_template_directory_uri(); ?>/upload/careers/asu.png" alt="">
+          <img class="internationalization__highlight-logo lazyload" src="<?= esc_url($image['url']) ?>"
+            alt="<?= esc_attr($image['alt']) ?>" width="<?= esc_attr($image['width']) ?>"
+            height="<?= esc_attr($image['height']) ?>" loading="lazy" />
         </div>
         <div class="internationalization__highlight-description">
-          <p><strong>Somos parte de las 19 Universidades en todo el mundo</strong> potenciadas por ASU a través de la
-            red Cintana Alliance.</p>
-          <p>Forma parte de una comunidad global y comparte experiencias con estudiantes de América, Europa, Asia y
-            África.</p>
+          <?= wp_kses_post($intl_description) ?>
         </div>
       </div>
 
@@ -56,10 +48,11 @@ $countries = [
       <!-- Convenios internacionales -->
       <div class="internationalization__agreements">
         <div class="internationalization__agreements-header">
-          <h3 class="internationalization__agreements-title">+95 Convenios internacionales</h3>
+          <h3 class="internationalization__agreements-title">
+            <?= esc_html($agreements_title) ?>
+          </h3>
           <p class="internationalization__agreements-description">
-            Contamos con Convenios Universitarios para promover intercambios y posibilidades de un desarrollo académico
-            internacional.
+            <?= esc_html($agreements_desc) ?>
           </p>
         </div>
 
@@ -67,19 +60,22 @@ $countries = [
         <div class="international-agreements">
           <div class="swiper-container internationalization-swiper">
             <ul class="swiper-wrapper">
-              <?php foreach ($countries as $country): ?>
+              <?php foreach ($paises as $pais):
+
+                $country = [
+                'name' => $pais->post_title,
+                'file' => get_the_post_thumbnail_url($pais->ID, 'full') ,
+              ];
+              ?>
               <li class="swiper-slide internationalization__country-item">
-                <?php
-                  get_template_part(COMMON_CONTENT_PATH, 'country-card', array(
-                    'country' => $country
-                  ));
-                  ?>
+                <?php get_template_part(COMMON_CONTENT_PATH, 'country-card', ['country' => $country]); ?>
               </li>
               <?php endforeach; ?>
             </ul>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>

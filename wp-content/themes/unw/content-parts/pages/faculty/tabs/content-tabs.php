@@ -37,16 +37,15 @@ if ($tabs_items) {
 
   <div class="x-container x-container--pad-213">
     <div class="faculty-tabs__content">
-      <?php foreach ($tabs as $i => $tab): ?>
-      <div id="<?php echo esc_attr($tab['target']); ?>" class="tab__content<?php echo $i === 0 ? ' is-active' : ''; ?>"
-        role="tabpanel" aria-labelledby="tab-<?php echo esc_attr($tab['target']); ?>">
+
+      <div class="tab__content" role="tabpanel">
         <?php
           get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-faculty', null, [
-              'id'=> $tab['id']
+              'id'=> $current_id,
             ]);
           ?>
       </div>
-      <?php endforeach; ?>
+
     </div>
   </div>
 </div>

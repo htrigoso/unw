@@ -91,7 +91,10 @@ export default class Menu extends Component {
     this.buttonsOpenSearchModal.forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault()
-        this.searchModalForm.classList.add('is-active')
+        this.searchModalForm.classList.add('is-ready')
+        setTimeout(() => {
+          this.searchModalForm.classList.add('is-active')
+        }, 10)
       })
     })
 
@@ -99,6 +102,9 @@ export default class Menu extends Component {
       btn.addEventListener('click', (e) => {
         e.preventDefault()
         this.searchModalForm.classList.remove('is-active')
+        setTimeout(() => {
+          this.searchModalForm.classList.remove('is-ready')
+        }, 350)
       })
     })
   }

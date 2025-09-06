@@ -2,7 +2,7 @@
   <?php get_template_part(GENERAL_CONTENT_PATH, 'top-bar'); ?>
   <div class="x-container x-container--pad-64 navbar__wrapper">
 
-    <a class="navbar__logo pointer" href="<?php echo home_url('/'); ?>">
+    <a class="navbar__logo pointer" aria-label="Logo del menú" href="<?php echo home_url('/'); ?>">
       <img width="101" height="40" src="<?php echo get_template_directory_uri(); ?>/upload/logo-unw.svg" alt="">
     </a>
 
@@ -21,7 +21,7 @@
       </div>
 
       <div class="navbar__menu-mobile">
-        <button type="button" class="btn-search-modal-form" data-open-modal="search-modal">
+        <button type="button" class="btn-search-modal-form" aria-label="Abrir buscador" data-open-modal="search-modal">
           <i>
             <svg width="40" height="40">
               <use xlink:href="#search2"></use>
@@ -29,7 +29,7 @@
           </i>
         </button>
 
-        <button type="button" class="btn-menu-hamburger pointer" id="btn-open-menu">
+        <button type="button" aria-label="Abrir menú" class="btn-menu-hamburger pointer" id="btn-open-menu">
           <i>
             <svg width="40" height="40">
               <use xlink:href="#hamburguer"></use>

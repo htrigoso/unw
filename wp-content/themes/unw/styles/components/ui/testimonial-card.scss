@@ -1,6 +1,5 @@
 .testimonial__card {
   width: rem(305);
-  height: rem(456);
   border-radius: rem(12);
   overflow: hidden;
   background: var(--color-light-turquoise);
@@ -33,5 +32,6 @@
 .testimonial__card--content__name {
   margin-top: auto;
   margin-bottom: rem(4);
+  padding-top: rem(12);
   @include title-18;
 }
