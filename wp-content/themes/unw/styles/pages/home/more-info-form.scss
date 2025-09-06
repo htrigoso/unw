@@ -1,3 +1,4 @@
+@import "./../../components/forms.scss";
 .more-form {
   width: 100%;
   border-radius: rem(20);
@@ -28,7 +29,7 @@
   justify-content: space-between;
   margin-bottom: rem(12) !important;
 
-  @include media('>=phone-576') {
+  @include media(">=phone-576") {
     flex-direction: row;
   }
 }
