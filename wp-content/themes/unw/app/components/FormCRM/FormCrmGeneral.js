@@ -32,7 +32,9 @@ export default class FormCrmGeneral extends Component {
   // ==========================
 
   handleFormMixtoChange() {
+    if (!this.element) return
     const radios = this.element.querySelectorAll('input[name="form_mixto"]')
+
     const departaments = JSON.parse(this.element.dataset.departaments || '[]')
 
     if (!radios.length) return

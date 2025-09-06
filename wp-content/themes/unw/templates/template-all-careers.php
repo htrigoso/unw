@@ -4,36 +4,6 @@
  * Template Name: Todas las Carreras Template
  */
 ?>
-
-<?php
-add_action('wp_head', function () {
-    $current_id_term = get_current_term_id();
-    $image_source = null;
-
-    if ($current_id_term == 0) {
-        $hero_data = get_field('hero');
-        if (!empty($hero_data['images'])) {
-            $image_source = $hero_data['images'];
-        }
-    } else {
-        $term_images = get_field('images', 'facultad_' . $current_id_term);
-        if (!empty($term_images)) {
-            $image_source = $term_images;
-        }
-    }
-
-    if ($image_source) {
-        $images_to_preload = [
-            [
-                'url'         => $image_source['mobile']['url'] ?? null,
-                'url_desktop' => $image_source['desktop']['url'] ?? null,
-            ]
-        ];
-        uw_preload_responsive_images($images_to_preload);
-    }
-});
-?>
-
 <?php set_query_var('ASSETS_CHUNK_NAME', 'all-careers'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php get_header(); ?>

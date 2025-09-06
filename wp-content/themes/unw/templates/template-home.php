@@ -5,22 +5,7 @@
  */
 ?>
 
-<?php
-add_action('wp_head', function () {
-    $hero_list = get_field('hero')['list'] ?? [];
 
-    if (empty($hero_list)) { return; }
-
-    $images_to_preload = array_map(
-        fn($item) => [
-            'url'         => $item['images']['mobile']['url'] ?? null,
-            'url_desktop' => $item['images']['desktop']['url'] ?? null,
-        ],
-        $hero_list
-    );
-    uw_preload_responsive_images($images_to_preload);
-});
-?>
 
 <?php set_query_var('ASSETS_CHUNK_NAME', 'home'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
