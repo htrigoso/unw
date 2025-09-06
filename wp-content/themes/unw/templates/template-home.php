@@ -26,6 +26,7 @@ add_action('wp_head', function () {
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php get_header();?>
 
+<?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 <main id="home-page" class="home-page">
   <?php get_template_part(HOME_CONTENT_PATH, 'more-info-form'); ?>
   <?php get_template_part(HOME_CONTENT_PATH, 'home-hero'); ?>
