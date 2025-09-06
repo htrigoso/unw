@@ -1,18 +1,18 @@
 <?php
 /**
- * Template Name: Demo BK Template
+ * Template Name: Centro de Terapia Física y Rehabilitación
  */
 ?>
 
-<?php set_query_var('ASSETS_CHUNK_NAME', 'home'); ?>
+<?php set_query_var('ASSETS_CHUNK_NAME', 'backup'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
-<?php get_header();
+<?php
+  get_header();
 ?>
 
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar');?>
 <main>
   <div class="main_container">
-
     <div class="modal-comunidad">
       <div class="banner-info-comu">
         <div class="content-comunidad w-container">
@@ -344,8 +344,8 @@
     <div class="cover_img_page center">
       <div class="overlay">
       </div>
-      <img src="https://www.uwiener.edu.pe/wp-content/uploads/2022/01/Centro-de-Análisis-Clínicos.png"
-        srcset="https://www.uwiener.edu.pe/wp-content/uploads/2022/01/Centro-de-Análisis-Clínicos.png 500w, https://www.uwiener.edu.pe/wp-content/uploads/2022/01/Centro-de-Análisis-Clínicos.png 1920w"
+      <img src="https://www.uwiener.edu.pe/wp-content/uploads/2022/01/Centro-de-Terapia-Física-y-Rehabilitación.png"
+        srcset="https://www.uwiener.edu.pe/wp-content/uploads/2022/01/Centro-de-Terapia-Física-y-Rehabilitación.png 500w, https://www.uwiener.edu.pe/wp-content/uploads/2022/01/Centro-de-Terapia-Física-y-Rehabilitación.png 1920w"
         sizes="100vw" alt="" class="img_cover left">
       <div class="info_cover_page center">
         <div class="container">
@@ -353,7 +353,7 @@
             Centros Wiener
           </h2>
           <h1 class="h1_carreras small opacity0">
-            Centro de Análisis Clínicos </h1>
+            Centro de Terapia Física y Rehabilitación </h1>
         </div>
       </div>
       <div class="miga_de_pan">
@@ -366,7 +366,7 @@
               Centros Wiener /
             </a>
             <a class="link miga w--current" href="#">
-              Centro de Análisis Clínicos </a>
+              Centro de Terapia Física y Rehabilitación </a>
           </div>
         </div>
       </div>
@@ -378,7 +378,7 @@
           <div class="_2-col">
             <div class="col-1 full">
               <div class="tabs_menu notab serv_uni centros">
-                <a class="link_item_tab w-inline-block" href="#presentacion_centro">
+                <a class="link_item_tab w-inline-block w--current" href="#presentacion_centro">
                   <div>Presentación</div>
                 </a>
                 <a class="link_item_tab w-inline-block" href="#beneficios_centros">
@@ -389,18 +389,17 @@
 
                 <a class="link_item_tab w-inline-block" href="#infraestructura_centros">
                   <div>
-                    Infraestructura
-                  </div>
+                    Infraestructura </div>
                 </a>
-                <a class="link_item_tab w-inline-block" href="#especialidades_centros">
+                <a class="link_item_tab w-inline-block" href="#servicios_centros">
                   <div>
-                    Especialidades </div>
-                </a>
-                <a class="link_item_tab w-inline-block" href="#lista-de-precios_centros">
-                  <div>
-                    Lista de precios </div>
+                    Servicios </div>
                 </a>
 
+                <a class="link_item_tab w-inline-block" href="#promociones_centros">
+                  <div>
+                    Promociones </div>
+                </a>
 
 
 
@@ -433,11 +432,77 @@
                         </div>
                         <div class="">
                           <p class="prf_centro">
-                            Desde el año 2015 el Centro de análisis clínicos de la Universidad Privada Norbert Wiener
-                            brinda el servicio de toma de muestra, procesamiento y entrega de resultados de muestras
-                            clínicas en términos de calidad, precisión y calidez en la atención de sus
-                            pacientes.<br><br>El Centro de análisis clínicos cuenta con espacios para el desarrollo de
-                            trabajos de investigación para los alumnos de los últimos ciclos (9no y 10mo ciclo). <br>
+                            El Centro de Terapia Física y Rehabilitación de la Universidad Norbert Wiener nace como un
+                            Centro Docente Asistencial en el que se fusionan los conocimientos y experiencias adquiridos
+                            en la profesión de Tecnología Médica en Terapia Física y Rehabilitación para brindar una
+                            atención integral de calidad en la prevención, diagnóstico y tratamiento a la población en
+                            situación de disfunción musculoesquelética y discapacidad temporal o permanente, y favorecer
+                            a este grupo humano en su integración a la sociedad.<br><br>En el 2007 se inaugura el
+                            Centro, que fue equipado progresivamente hasta alcanzar la tecnología moderna con la que
+                            cuenta actualmente, luego de realizar un análisis de las necesidades particulares del
+                            proceso de enseñanza-aprendizaje de nuestros estudiantes.<br> <br>
+                          </p>
+                        </div>
+                      </div>
+
+                      <div class="content_section">
+                        <div class="title_section">
+                        </div>
+                        <h2 class="h3_interna_title">
+                          Misión </h2>
+                        <div class="line">
+                        </div>
+                        <div class="">
+                          <p class="prf_centro">
+                            Estamos enfocados en proporcionar servicios de Terapia Física y Rehabilitación de
+                            excelencia, con métodos y técnicas de tratamientos basados en los conceptos científicos más
+                            actuales. <br>
+                          </p>
+                        </div>
+                      </div>
+
+                      <div class="content_section">
+                        <div class="title_section">
+                        </div>
+                        <h2 class="h3_interna_title">
+                          Visión </h2>
+                        <div class="line">
+                        </div>
+                        <div class="">
+                          <p class="prf_centro">
+                            Crear un espacio de rehabilitación único que nos permita ser reconocidos en un futuro
+                            próximo como la mejor alternativa de servicios de Terapia Física y Rehabilitación. <br>
+                          </p>
+                        </div>
+                      </div>
+
+                      <div class="content_section">
+                        <div class="title_section">
+                        </div>
+                        <h2 class="h3_interna_title">
+                          Objetivo </h2>
+                        <div class="line">
+                        </div>
+                        <div class="">
+                          <p class="prf_centro">
+                            Facilitar el desarrollo, mantenimiento y recuperación de la máxima funcionalidad y movilidad
+                            del individuo o grupo de personas a lo largo de su vida. <br>
+                          </p>
+                        </div>
+                      </div>
+
+                      <div class="content_section">
+                        <div class="title_section">
+                        </div>
+                        <h2 class="h3_interna_title">
+                          Carrera Tecnología Médica en Terapia Física y Rehabilitación </h2>
+                        <div class="line">
+                        </div>
+                        <div class="">
+                          <p class="prf_centro">
+                            Desde que inician el primer ciclo, los alumnos toman contacto con los ambientes del Centro
+                            de Terapia Física, en donde realizan sus prácticas de las diferentes asignaturas, siendo
+                            permanentemente supervisados por cada Docente. <br>
                           </p>
                         </div>
                       </div>
@@ -445,16 +510,6 @@
 
                       <div class="content_section">
                         <div class="clase_para_wordpress ">
-                          <h2 style="text-align: left;">Facultad de Ciencias de la Salud</h2>
-                          <p style="text-align: left;">[linea]</p>
-                          <p style="text-align: left;"><span style="color: #00b7bd;"><strong>Tecnología Médica en
-                                Laboratorio Clínico y Anatomía Patológica</strong></span></p>
-                          <p style="text-align: left;">Formamos profesionales altamente especializados con un enfoque
-                            humanista y científico que desarrollan pruebas biológicas y biofísicas que ayudan a
-                            analizar, diagnosticar, prevenir y tratar diversas enfermedades.</p>
-                          <a
-                            href="https://www.uwiener.edu.pe/carreras/tecnologia-medica-en-laboratorio-clinico-y-anatomia-patologica">Ver
-                            Carrera</a>
                         </div>
                       </div>
                     </div>
@@ -467,7 +522,7 @@
                       <div class="content_section">
                         <div class="title_section">
                           <h2 class="h3_interna_title">
-                            Beneficios de nuestro Centro de Análisis Clínicos </h2>
+                            Beneficios de nuestro Centro de Terapia Física y Rehabilitación </h2>
                           <div class="line">
                           </div>
                         </div>
@@ -475,9 +530,9 @@
                           <div class="item_grilla mw">
                             <div class="col-item title">
                               <img alt="" class="img_grilla_item img_grilla_centros"
-                                src="https://www.uwiener.edu.pe/wp-content/uploads/2020/12/icono-centro-analisis-6.svg">
+                                src="https://www.uwiener.edu.pe/wp-content/uploads/2021/01/staff.svg">
                               <div>
-                                Staff de profesionales con amplia experiencia <br>
+                                Staff de profesionales<br>con amplia experiencia <br>
                               </div>
 
                             </div>
@@ -485,9 +540,9 @@
                           <div class="item_grilla mw">
                             <div class="col-item title">
                               <img alt="" class="img_grilla_item img_grilla_centros"
-                                src="https://www.uwiener.edu.pe/wp-content/uploads/2020/12/icono-centro-analisis-4.svg">
+                                src="https://www.uwiener.edu.pe/wp-content/uploads/2021/01/icon_docente.svg">
                               <div>
-                                Precios muy competentes al alcance tanto de los alumnos como de colaboradores de la
+                                Precios muy competentes al alcance tanto de alumnos como de colaboradores de la
                                 corporación Wiener – Carrión <br>
                               </div>
 
@@ -496,7 +551,7 @@
                           <div class="item_grilla mw">
                             <div class="col-item title">
                               <img alt="" class="img_grilla_item img_grilla_centros"
-                                src="https://www.uwiener.edu.pe/wp-content/uploads/2020/12/icono-centro-analisis-5.svg">
+                                src="https://www.uwiener.edu.pe/wp-content/uploads/2021/01/seguimiento.svg">
                               <div>
                                 Ubicación Céntrica <br>
                               </div>
@@ -506,9 +561,9 @@
                           <div class="item_grilla mw">
                             <div class="col-item title">
                               <img alt="" class="img_grilla_item img_grilla_centros"
-                                src="https://www.uwiener.edu.pe/wp-content/uploads/2020/12/icono-centro-analisis-3.svg">
+                                src="https://www.uwiener.edu.pe/wp-content/uploads/2021/01/calidez.svg">
                               <div>
-                                Prontitud en la entrega de resultados <br>
+                                Calidez de atención<br>diferenciada <br>
                               </div>
 
                             </div>
@@ -516,19 +571,9 @@
                           <div class="item_grilla mw">
                             <div class="col-item title">
                               <img alt="" class="img_grilla_item img_grilla_centros"
-                                src="https://www.uwiener.edu.pe/wp-content/uploads/2020/12/icono-centro-analisis-1.svg">
+                                src="https://www.uwiener.edu.pe/wp-content/uploads/2021/01/seguimiento.svg">
                               <div>
-                                Calidez de atención diferenciada <br>
-                              </div>
-
-                            </div>
-                          </div>
-                          <div class="item_grilla mw">
-                            <div class="col-item title">
-                              <img alt="" class="img_grilla_item img_grilla_centros"
-                                src="https://www.uwiener.edu.pe/wp-content/uploads/2020/12/icono-centro-analisis-2.svg">
-                              <div>
-                                Seguimiento personalizado al paciente <br>
+                                Seguimiento personalizado<br>al paciente <br>
                               </div>
 
                             </div>
@@ -538,6 +583,8 @@
                     </div>
                   </div>
                 </div>
+
+
 
 
 
@@ -547,15 +594,14 @@
                       <div class="content_section">
                         <div class="title_section">
                           <h2 class="h3_interna_title">
-                            Infraestuctura y equipamiento
-                          </h2>
+                            Infraestructura </h2>
                           <div class="line">
                           </div>
                         </div>
                         <div class="acordeon">
                           <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
                             <h4 class="h4_admin centros">
-                              Amplios espacios <br>
+                              Sala de Hidroterapia <br>
                             </h4>
                             <div class="icon_box admin">
                               <img alt="" class="arrow_down"
@@ -564,10 +610,9 @@
                           </div>
                           <div class="content_acordeon" style="height: 0px;">
                             <div class="content_section">
-                              <div class="clase_para_wordpress">
-                                <p><span style="background-color: transparent; color: rgb(0, 0, 0);">Amplios espacios
-                                    distribuidos por especialidades: Bioquímica, Hematología, Inmunología,
-                                    Microbiología.</span></p> <br>
+                              <div>
+                                Analgesia.<br>Anti inflamatorio.<br>Incrementar la movilidad articular.<br>Relajación
+                                muscular. <br>
                               </div>
                             </div>
                           </div>
@@ -575,7 +620,7 @@
                         <div class="acordeon">
                           <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
                             <h4 class="h4_admin centros">
-                              Procesamiento de muestras <br>
+                              Sala de Magnetoterapia <br>
                             </h4>
                             <div class="icon_box admin">
                               <img alt="" class="arrow_down"
@@ -584,10 +629,9 @@
                           </div>
                           <div class="content_acordeon" style="height: 0px;">
                             <div class="content_section">
-                              <div class="clase_para_wordpress">
-                                <p><span style="background-color: transparent; color: rgb(0, 0, 0);">Contamos con el
-                                    equipamiento necesario para el procesamiento de muestras para el apoyo diagnóstico y
-                                    prevención de enfermedades.</span></p> <br>
+                              <div>
+                                Favorecer la regeneración del tejido óseo.<br>Procesos inflamatorios.<br>Patologías que
+                                cursan con dolor local. <br>
                               </div>
                             </div>
                           </div>
@@ -595,7 +639,7 @@
                         <div class="acordeon">
                           <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
                             <h4 class="h4_admin centros">
-                              Especialistas e investigadores <br>
+                              Sala de Laser <br>
                             </h4>
                             <div class="icon_box admin">
                               <img alt="" class="arrow_down"
@@ -604,12 +648,67 @@
                           </div>
                           <div class="content_acordeon" style="height: 0px;">
                             <div class="content_section">
-                              <div class="clase_para_wordpress">
-                                <p><span style="background-color: transparent; color: rgb(0, 0, 0);">Contamos con un
-                                    staff de profesionales especialistas e investigadores pertenecientes a la plana
-                                    docente de la Carrera de Laboratorio Clínico y Anatomía Patológica.</span></p>
-                                <p><br></p>
-                                <p><br></p> <br>
+                              <div>
+                                Anti inflamatorio.<br>Anti edematoso.<br>Cicatriza las heridas y traumatismos en
+                                diversos tejidos. <br>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="acordeon">
+                          <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
+                            <h4 class="h4_admin centros">
+                              Sala de Electroterapia <br>
+                            </h4>
+                            <div class="icon_box admin">
+                              <img alt="" class="arrow_down"
+                                src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg">
+                            </div>
+                          </div>
+                          <div class="content_acordeon" style="height: 0px;">
+                            <div class="content_section">
+                              <div>
+                                Disminución del dolor.<br>Estimulación nerviosa.<br>Estimula el aumento de la
+                                musculatura y el mantenimiento de la masa muscular. <br>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="acordeon">
+                          <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
+                            <h4 class="h4_admin centros">
+                              Sala de Ultrasonido <br>
+                            </h4>
+                            <div class="icon_box admin">
+                              <img alt="" class="arrow_down"
+                                src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg">
+                            </div>
+                          </div>
+                          <div class="content_acordeon" style="height: 0px;">
+                            <div class="content_section">
+                              <div>
+                                Favorece la relajación muscular.<br>Disminuye la rigidez articular.<br>Ayuda a movilizar
+                                el edema. <br>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="acordeon">
+                          <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
+                            <h4 class="h4_admin centros">
+                              Gimnasio Terapéutico <br>
+                            </h4>
+                            <div class="icon_box admin">
+                              <img alt="" class="arrow_down"
+                                src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg">
+                            </div>
+                          </div>
+                          <div class="content_acordeon" style="height: 0px;">
+                            <div class="content_section">
+                              <div>
+                                Es un espacio donde se realiza activación física para la salud trabajando diferentes
+                                capacidades como fuerza, flexibilidad, coordinación, equilibrio movilidad, resistencia,
+                                velocidad, entre otras. <br>
                               </div>
                             </div>
                           </div>
@@ -618,22 +717,20 @@
                     </div>
                   </div>
                 </div>
-
-
-                <div class="section_tab _2-col" id="especialidades_centros">
+                <div class="section_tab _2-col" id="servicios_centros">
                   <div class="content_seccion_tab full">
                     <div class="info_section full">
                       <div class="content_section">
                         <div class="title_section">
                           <h2 class="h3_interna_title">
-                            Especialidades </h2>
+                            Servicios </h2>
                           <div class="line">
                           </div>
                         </div>
                         <div class="acordeon">
                           <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
                             <h4 class="h4_admin centros">
-                              Bioquímica <br>
+                              Rehabilitación neurológica <br>
                             </h4>
                             <div class="icon_box admin">
                               <img alt="" class="arrow_down"
@@ -643,9 +740,8 @@
                           <div class="content_acordeon" style="height: 0px;">
                             <div class="content_section">
                               <div>
-                                Estudio de la composición química de los fluidos Humanos. Las Pruebas Generales en esta
-                                área son: Glucosa, Colesterol, Triglicéridos, Transaminasas (TGO y TGP), perfiles
-                                Hepático y lipídico. <br>
+                                Tratamiento de las alteraciones y lesiones ocasionadas por algunas afecciones del
+                                sistema nervioso central o periférico y que afectan al movimiento. <br>
                               </div>
                             </div>
                           </div>
@@ -653,7 +749,7 @@
                         <div class="acordeon">
                           <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
                             <h4 class="h4_admin centros">
-                              Hematología <br>
+                              Rehabilitación traumatológica <br>
                             </h4>
                             <div class="icon_box admin">
                               <img alt="" class="arrow_down"
@@ -663,10 +759,9 @@
                           <div class="content_acordeon" style="height: 0px;">
                             <div class="content_section">
                               <div>
-                                Estudio e investigación de la sangre y los órganos hematopoyéticos. Las Pruebas
-                                Generales en esta área son: Hemograma Completo, Hemoglobina, Hematocrito, Recuento de
-                                Plaquetas, Tiempo de Sangría, Tiempo de Coagulación, Tiempo de Protrombina, Velocidad de
-                                sedimentación, Recuento de Reticulocitos. <br>
+                                Tratamiento de las lesiones producidas por un accidente, estas afectan el sistema
+                                músculo esquelético, tales como musculares, óseas y en oportunidades también lesiones
+                                nerviosas. <br>
                               </div>
                             </div>
                           </div>
@@ -674,7 +769,7 @@
                         <div class="acordeon">
                           <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
                             <h4 class="h4_admin centros">
-                              Imnuno Hematología <br>
+                              Rehabilitación lesiones deportivas <br>
                             </h4>
                             <div class="icon_box admin">
                               <img alt="" class="arrow_down"
@@ -684,9 +779,9 @@
                           <div class="content_acordeon" style="height: 0px;">
                             <div class="content_section">
                               <div>
-                                Parte de la hematología, estudia los procesos inmunitarios que tienen lugar en el
-                                organismo en relación con los elementos sanguíneos. La prueba General en esta área es:
-                                Grupo Sanguíneo. <br>
+                                Trata lesiones que desarrolla el deportista en su práctica de deporte habitual, consiste
+                                en recuperar la funcionalidad del deportista y su readaptación lo antes posible para
+                                limitar lo menos posible su entrenamiento y su vuelta a la actividad. <br>
                               </div>
                             </div>
                           </div>
@@ -694,7 +789,7 @@
                         <div class="acordeon">
                           <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
                             <h4 class="h4_admin centros">
-                              Uroanálisis <br>
+                              Rehabilitación pediátrica <br>
                             </h4>
                             <div class="icon_box admin">
                               <img alt="" class="arrow_down"
@@ -704,50 +799,90 @@
                           <div class="content_acordeon" style="height: 0px;">
                             <div class="content_section">
                               <div>
-                                Consiste en una serie de exámenes efectuados sobre la orina. La prueba en esta área es:
-                                Examen de Orina Completo. <br>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="acordeon">
-                          <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
-                            <h4 class="h4_admin centros">
-                              Inmunología <br>
-                            </h4>
-                            <div class="icon_box admin">
-                              <img alt="" class="arrow_down"
-                                src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg">
-                            </div>
-                          </div>
-                          <div class="content_acordeon" style="height: 0px;">
-                            <div class="content_section">
-                              <div>
-                                Estudia específicamente la inmunidad, que corresponde a la capacidad natural o adquirida
-                                por el cuerpo humano para luchar contra un agente patógeno. Las pruebas Generales en
-                                esta área son: Prueba rápida VIH 1 y 2, HCG sub Beta. <br>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="acordeon">
-                          <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
-                            <h4 class="h4_admin centros">
-                              Parasitología <br>
-                            </h4>
-                            <div class="icon_box admin">
-                              <img alt="" class="arrow_down"
-                                src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg">
-                            </div>
-                          </div>
-                          <div class="content_acordeon" style="height: 0px;">
-                            <div class="content_section">
-                              <div>
-                                Es la expedición de la biología que estudia el fenómeno del parasitismo. Por un lado,
-                                estudia a los organismos vivos parásitos y la relación de ellos con sus hospedadores y
-                                el medio ambiente. Las pruebas Generales en esta área son: Examen parasitológico, Examen
-                                parasitológico seriado (X3), Thevenon, Reacción inflamatoria en heces Test de Graham.
+                                Tratamiento y cuidado de los recién nacidos, niños que presentan alteraciones
+                                congénitas, que afectan a su desarrollo o deficiencias motoras de origen neuromuscular
+                                y/o músculo esquelético de manera que se pueda obtener el mayor nivel funcional posible.
                                 <br>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="acordeon">
+                          <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
+                            <h4 class="h4_admin centros">
+                              Rehabilitación reumatológica <br>
+                            </h4>
+                            <div class="icon_box admin">
+                              <img alt="" class="arrow_down"
+                                src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg">
+                            </div>
+                          </div>
+                          <div class="content_acordeon" style="height: 0px;">
+                            <div class="content_section">
+                              <div>
+                                Aliviar el dolor de los trastornos del aparato locomotor y del tejido conectivo, Abarca
+                                un gran número de dolencias conocidas en conjunto como enfermedades reumáticas. <br>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="acordeon">
+                          <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
+                            <h4 class="h4_admin centros">
+                              Rehabilitación Postural <br>
+                            </h4>
+                            <div class="icon_box admin">
+                              <img alt="" class="arrow_down"
+                                src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg">
+                            </div>
+                          </div>
+                          <div class="content_acordeon" style="height: 0px;">
+                            <div class="content_section">
+                              <div>
+                                Tratamiento de alteraciones que van relacionados con las disfunciones musculo
+                                esqueléticas y óseas, ocasionadas por la alteración de la biomecánica normal de la
+                                columna vertebral. En la cuales se realiza el uso de diferentes técnicas manuales y
+                                estiramientos globales para su mejoría. <br>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="acordeon">
+                          <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
+                            <h4 class="h4_admin centros">
+                              Rehabilitación cardiorrespiratoria <br>
+                            </h4>
+                            <div class="icon_box admin">
+                              <img alt="" class="arrow_down"
+                                src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg">
+                            </div>
+                          </div>
+                          <div class="content_acordeon" style="height: 0px;">
+                            <div class="content_section">
+                              <div>
+                                Tratamiento, prevención y estabilización de las diferentes enfermedades del aparato
+                                respiratorio o cualquiera que interfiera en su correcto funcionamiento, con el fin de
+                                mantener o mejorar la función respiratoria. <br>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="acordeon">
+                          <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
+                            <h4 class="h4_admin centros">
+                              Rehabilitación Geriátrica <br>
+                            </h4>
+                            <div class="icon_box admin">
+                              <img alt="" class="arrow_down"
+                                src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg">
+                            </div>
+                          </div>
+                          <div class="content_acordeon" style="height: 0px;">
+                            <div class="content_section">
+                              <div>
+                                Dedicada a la aplicación de determinadas técnicas de fisioterapia sobre adultos mayores
+                                en los diferentes procesos patológicos que pueden llevar a la disminución de sus
+                                capacidades funcionales. <br>
                               </div>
                             </div>
                           </div>
@@ -757,46 +892,39 @@
                   </div>
                 </div>
 
-                <div class="section_tab _2-col" id="lista-de-precios_centros">
+
+                <div class="section_tab _2-col" id="promociones_centros">
                   <div class="content_seccion_tab full">
                     <div class="info_section full">
                       <div class="info_section full">
                         <div class="content_section">
                           <div class="title_section">
                             <h2 class="h3_interna_title">
-                              Lista de precios </h2>
+                              Promociones </h2>
                             <div class="line">
                             </div>
                           </div>
                         </div>
                         <div class="clase_para_wordpress ">
-                          <h3 style="text-align: left;">Promociones</h3>
-                          <h4 style="text-align: left;"><span style="color: #00b7bd;">Lista de precios</span></h4>
-                          <ul style="text-align: left;">
-                            <li><span style="font-weight: 400;">Particular - Corporativo: Para administrativos de la
-                                corporación Wiener – Carrión</span></li>
-                            <li><span style="font-weight: 400;">Alumnos de clínica Odontológica e Ingresantes</span>
-                            </li>
-                          </ul>
-                          <a href="https://www.uwiener.edu.pe/wp-content/uploads/2020/12/analisis_clinicos_precios.pdf"
-                            target="_blank" rel="noopener">Descargar lista de precios</a>
-
+                          <p style="text-align: left;"><strong><span style="color: #00babe;">Paquete de
+                                promociones</span></strong></p>
                           &nbsp;
-
-                          &nbsp;
-                          <h4 style="text-align: left;"><span style="color: #00b7bd;"><strong>Entrega de
-                                resultados</strong></span></h4>
                           <ul>
-                            <li style="text-align: left;"><span style="font-weight: 400;">Entrega vía correo
-                                electrónico</span></li>
-                            <li style="text-align: left;"><span style="font-weight: 400;">Entrega física</span></li>
+                            <li style="text-align: left;">10% de descuento en paquete de 10 sesiones</li>
+                            <li style="text-align: left;">10% de descuento en paquete de 5 sesiones</li>
                           </ul>
+                          &nbsp;
+                          <p style="text-align: left;"><strong><span style="color: #00babe;">Agenda una evaluación
+                                Fisioterapéutica*</span></strong></p>
+                          &nbsp;
+                          <p style="text-align: left;"><span style="font-weight: 400;">*Es indispensable contar con un
+                              previo diagnóstico médico, orden para terapia o con algún diagnóstico por imágenes.</span>
+                          </p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
 
 
 
@@ -812,18 +940,32 @@
                           <div class="line">
                           </div>
                         </div>
-                        <div class="director_centro">
-                          <img alt="" class="director_img" loading="lazy" src="">
-                          <div class="director_info">
-                            <h4 class="director_centro_name">
-                              Dr. Juan Carlos Benites Azabache </h4>
-                            <div class="director_cargo">
-                              Director del Centro de Análisis Clínicos </div>
-                            <div class="director_name">
-                              Doctor en Educación, Tecnólogo Médico especialista en Microbiología. </div>
+                        <div class="centro_coordinadores">
+                          <div class="item_coordinador">
+                            <ul class="list margintop" role="list">
+                              <li class="item_list">
+                                <div class="coordinador_name">
+                                  Dra. Rosmy Gagliuffi </div>
+                                <p class="coordinador_bio">
+                                  Directora de la carrera de Terapia Física </p>
+                              </li>
+                            </ul>
                           </div>
-
+                          <div class="item_coordinador">
+                            <ul class="list margintop" role="list">
+                              <li class="item_list">
+                                <div class="coordinador_name">
+                                  Mg. Pilar Huarcaya Sihuincha </div>
+                                <p class="coordinador_bio">
+                                  Coordinadora del Centro de Terapia Física </p>
+                              </li>
+                            </ul>
+                          </div>
                         </div>
+                        <a class="btn w-button" data-ix="openmodalcentros" href="#"
+                          style="transition: color 0.15s, background-color 0.2s;">
+                          Ver todo el Staff
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -836,20 +978,20 @@
 
                           <div class="contact_box">
                             <h4 class="h4_verde">
-                              Solicitud de análisis y orientación </h4>
+                              Horario </h4>
                             <div class="item_user_contacto last">
                               <div class="item_contact">
                                 <img alt="" class="icon_contact" loading="lazy"
-                                  src="https://www.uwiener.edu.pe/wp-content/uploads/2020/11/contact_black-1.svg">
+                                  src="https://www.uwiener.edu.pe/wp-content/uploads/2020/11/contact_black.svg">
                                 <div>
-                                  Lunes a viernes de 9:00 a.m.a 8:00 p.m. </div>
+                                  Lunes a sábado de 8:00 a. m. a 2:00 p. m. </div>
 
                               </div>
                               <div class="item_contact">
                                 <img alt="" class="icon_contact" loading="lazy"
-                                  src="https://www.uwiener.edu.pe/wp-content/uploads/2020/11/contact_black-2.svg">
+                                  src="https://www.uwiener.edu.pe/wp-content/uploads/2020/11/contact_black.svg">
                                 <div>
-                                  Sábados de 9:00 a.m. a 6:00 p.m. </div>
+                                  Lunes a viernes de 2:00 p. m. a 8:00 p. m. </div>
 
                               </div>
 
@@ -858,27 +1000,43 @@
 
                           <div class="contact_box">
                             <h4 class="h4_verde">
-                              Ubicación </h4>
+                              Teléfono </h4>
                             <div class="item_user_contacto last">
-                              <div class="item_contact">
-                                <img alt="" class="icon_contact" loading="lazy"
-                                  src="https://www.uwiener.edu.pe/wp-content/uploads/2020/11/ubicacion-3.png">
-                                <div>
-                                  Av. Arequipa 440 – Cercado de Lima </div>
-
-                              </div>
                               <div class="item_contact">
                                 <img alt="" class="icon_contact" loading="lazy"
                                   src="https://www.uwiener.edu.pe/wp-content/uploads/2020/11/phone_black-2.svg">
                                 <div>
-                                  (01) 706-5555 Anexo 3111 </div>
+                                  7065555 anexo 3113 </div>
 
                               </div>
+
+                            </div>
+                          </div>
+
+                          <div class="contact_box">
+                            <h4 class="h4_verde">
+                              Citas en </h4>
+                            <div class="item_user_contacto last">
                               <div class="item_contact">
                                 <img alt="" class="icon_contact" loading="lazy"
                                   src="https://www.uwiener.edu.pe/wp-content/uploads/2020/11/arroba_black-1.svg">
                                 <div>
-                                  analisis.clinicos@uwiener.edu.pe </div>
+                                  centro.terapiafisica@uwiener.edu.pe </div>
+
+                              </div>
+
+                            </div>
+                          </div>
+
+                          <div class="contact_box">
+                            <h4 class="h4_verde">
+                              Ubícanos en </h4>
+                            <div class="item_user_contacto last">
+                              <div class="item_contact">
+                                <img alt="" class="icon_contact" loading="lazy"
+                                  src="https://www.uwiener.edu.pe/wp-content/uploads/2020/11/ubicacion-2.png">
+                                <div>
+                                  Av. Arequipa 440, Lima </div>
 
                               </div>
 
@@ -909,9 +1067,56 @@
           <h3 class="h3_verde">
             Staff de Profesionales
           </h3>
+          <div class="w-layout-grid gridstaff">
+            <div class="itemstaf">
+              <img alt="" class="icon paddingright" loading="lazy"
+                src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/icon_check.svg">
+              <div class="userstaf">
+                <div class="nombrestaff">
+                  Mg. Julio César Granados Carrera </div>
+                <div class="cargostaff">
+                  Fisioterapia en Neurorehabilitación </div>
+              </div>
+
+            </div>
+            <div class="itemstaf">
+              <img alt="" class="icon paddingright" loading="lazy"
+                src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/icon_check.svg">
+              <div class="userstaf">
+                <div class="nombrestaff">
+                  Dra. Rosa Vicenta Rodríguez García </div>
+                <div class="cargostaff">
+                  Fisioterapia en Adulto Mayor </div>
+              </div>
+
+            </div>
+            <div class="itemstaf">
+              <img alt="" class="icon paddingright" loading="lazy"
+                src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/icon_check.svg">
+              <div class="userstaf">
+                <div class="nombrestaff">
+                  Mg. Santos Lucio Chero Pisfil </div>
+                <div class="cargostaff">
+                  Fisioterapia Cardiorrespiratoria </div>
+              </div>
+
+            </div>
+            <div class="itemstaf">
+              <img alt="" class="icon paddingright" loading="lazy"
+                src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/icon_check.svg">
+              <div class="userstaf">
+                <div class="nombrestaff">
+                  Mg. Juan Américo Vera Arriola </div>
+                <div class="cargostaff">
+                  Terapia manual Ortopédica </div>
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
 </main>
 <?php get_footer(); ?>

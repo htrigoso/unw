@@ -5,23 +5,6 @@
  */
 ?>
 
-<?php
-add_action('wp_head', function () {
-  $hero = get_field('hero');
-
-  if (empty($hero['images'])) {
-    return;
-  }
-
-  $images_to_preload = [
-    [
-      'url'         => $hero['images']['mobile']['url'] ?? null,
-      'url_desktop' => $hero['images']['desktop']['url'] ?? null,
-    ]
-  ];
-  uw_preload_responsive_images($images_to_preload);
-});
-?>
 
 <?php set_query_var('ASSETS_CHUNK_NAME', 'our-history'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>

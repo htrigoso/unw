@@ -1,4 +1,8 @@
 <?php
+
+
+
+
 add_filter( 'big_image_size_threshold', '__return_false' );
 
 add_action('wp_footer', 'include_the_json_settings');
@@ -86,54 +90,6 @@ function get_current_page_url() {
     }
 }
 
-/**
- * Genera <link rel="preload"> para un array de imágenes, aceptando una URL base y una opcional para desktop.
- *
- * La función asume atributos fijos:
- * - La URL base (móvil) usará `fetchpriority="high"`.
- * - La URL de desktop usará `media="(min-width: 768px)"`.
- *
- * @param array $image_sets Array de imágenes. Cada elemento puede contener 'url' y/u 'url_desktop'.
- * Ejemplo:
- * [
- * ['url' => 'link/a/imagen-movil.jpg', 'url_desktop' => 'link/a/imagen-desktop.jpg'],
- * ['url' => 'link/a/otra-imagen-general.jpg']
- * ]
- * @param bool  $echo       Si es true, imprime el HTML; si es false, lo devuelve como string.
- * @return string
- */
-function uw_preload_responsive_images( array $image_sets = [], bool $echo = true ): string {
-	if (empty($image_sets)) {
-		return '';
-	}
-
-	$output = '';
-
-	foreach ( $image_sets as $set ) {
-		$img_mobile  = $set['url'] ?? '';
-		$img_desktop = $set['url_desktop'] ?? '';
-
-		if ($img_mobile) {
-			$output .= sprintf(
-				'<link rel="preload" as="image" href="%s" imagesizes="100vw" fetchpriority="high">' . "\n",
-				esc_url($img_mobile)
-			);
-		}
-
-		if ( $img_desktop ) {
-			$output .= sprintf(
-				'<link rel="preload" as="image" href="%s" imagesizes="100vw" media="(min-width: 768px)">' . "\n",
-				esc_url($img_desktop)
-			);
-		}
-	}
-
-	if ($echo && $output) {
-		echo $output;
-	}
-
-	return $output;
-}
 
 function placeholder() {
   echo 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAECAYAAABGM/VAAAAABHNCSVQICAgIfAhkiAAAAF1JREFUCFtjvP/m1n8GIPj64TzD5f+GDJ8+/WBgrDp767+DKAOD1K/zDEpShgxbH/xhYFx+59Z/LW5Ghg9//zMoMd5mePJZiYHxxMsH2w6+BhnAwJAo9pvh5GcmBgCRxSUqb+IRJgAAAABJRU5ErkJggg==';
