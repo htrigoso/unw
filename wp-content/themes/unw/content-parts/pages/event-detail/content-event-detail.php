@@ -24,7 +24,7 @@ $event = get_field('event_content');
 
         <div class="event-detail__video">
           <?php
-          get_template_part(COMMON_CONTENT_PATH, 'video-w-thumbnail', [
+          get_template_part(EVENT_DETAIL_CONTENT_PATH, 'video-w-thumbnail', [
             'thumbnail' => $event['image']['url'] ?? '',
             'video_url' => $event['video']['url'] ?? '',
             'is_video' => $event['is_video'],

@@ -32,7 +32,7 @@ if(wp_is_nonempty_array($lists)) {
                     <header class="cycle-card__header">
                       <?php if (!empty($list['icon']['url'])): ?>
                       <img class="cycle-card__header-icon lazyload" width="80" height="80"
-                        src="<?php echo esc_url($list['icon']['url']); ?>" alt="" />
+                        src="<?php echo esc_url($list['icon']['url']); ?>" alt="<?php echo esc_url($list['icon']['alt']); ?>" />
                       <?php endif; ?>
                     </header>
                     <div class="cycle-card__content">
