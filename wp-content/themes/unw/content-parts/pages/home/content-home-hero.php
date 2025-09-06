@@ -12,7 +12,9 @@ $img_mobile = $hero_image['mobile']['url'];
 $img_mobile_alt = $hero_image['mobile']['alt'];
 ?>
 
-<?php if (!empty($hero) && is_array($hero)): ?>
+<?php if (!empty($hero) && is_array($hero)):?>
+
+
 <section class="hero hero-swiper">
   <div class="swiper-container is-draggable">
     <div class="swiper-wrapper swiper-hero__wrapper">

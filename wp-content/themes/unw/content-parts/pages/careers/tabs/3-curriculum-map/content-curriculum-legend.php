@@ -24,7 +24,7 @@ $default_dot_colors = [
       <div class="curriculum-legend__description">
         <?php if (!empty($curriculum_legend['icon']['url'])): ?>
         <img class="curriculum-legend__logo lazyload" src="<?php echo esc_url($curriculum_legend['icon']['url']); ?>"
-          alt="" />
+          src="<?php echo esc_url($curriculum_legend['icon']['alt']); ?>" />
         <?php endif; ?>
         <?php if (!empty($curriculum_legend['description'])): ?>
         <p class="curriculum-legend__paragraph">
