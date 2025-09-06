@@ -1,3 +1,22 @@
+<?php
+add_action('wp_head', function () {
+  $list = get_field('list_of_files');
+  if (empty($list)) {
+    return;
+  }
+
+  $images_to_preload = array_map(
+    fn($item) => [
+      'url'         => $item['imagen']['mobile']['url'] ?? null,
+      'url_desktop' => $item['imagen']['desktop']['url'] ?? null,
+    ],
+    $list
+  );
+
+  uw_preload_responsive_images($images_to_preload);
+});
+?>
+
 <?php set_query_var('ASSETS_CHUNK_NAME', 'event-detail'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php get_header(); ?>

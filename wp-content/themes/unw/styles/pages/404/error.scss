@@ -1,11 +1,11 @@
 .error-page {
   background-color: var(--color-bg-secondary);
-  min-height: calc(100dvh - 64px);
+  min-height: calc(100dvh - var(--navbar-height-mobile));
   display: flex;
   flex-direction: column;
 
   @include media(">=tablet") {
-    min-height: calc(100dvh - 118px);
+    min-height: calc(100dvh - var(--navbar-height-desktop));
   }
 }
 

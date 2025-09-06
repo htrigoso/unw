@@ -23,6 +23,7 @@ define('ABOUT_US_CONTENT_PATH', 'content-parts/pages/about-us/content');
 define('OUR_HISTORY_CONTENT_PATH', 'content-parts/pages/our-history/content');
 define('QUALITY_POLICY_CONTENT_PATH', 'content-parts/pages/quality-policy/content');
 define('CAREERS_CONTENT_PATH', 'content-parts/pages/careers/content');
+define('THANKS_CONTENT_PATH', 'content-parts/pages/thanks/content');
 
 define('ERROR_CONTENT_PATH', 'content-parts/pages/404/content');
 
