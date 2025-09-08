@@ -40,12 +40,16 @@ $default_dot_colors = [
         <?php foreach ($curriculum_legend['options'] as $i => $option): ?>
         <?php
               $title = $option['title'] ?? '';
-              $color = $option['color'] ?? $default_dot_colors[$i % count($default_dot_colors)];
-              $class = 'dot--' . sanitize_html_class($color);
+              $color_hex = '';
+
+
+              if (!empty($option['color_faculty_hex']) && is_object($option['color_faculty_hex']) && !empty($option['color_faculty_hex']->ID)) {
+                $color_hex = get_the_excerpt($option['color_faculty_hex']->ID);
+              }
             ?>
         <li class="curriculum-legend__item">
           <div class="curriculum-legend__dot">
-            <span class="dot <?php echo esc_attr($class); ?>"></span>
+            <span class="dot" style="background-color:<?= esc_attr($color_hex) ?>"></span>
           </div>
           <?php echo esc_html($title); ?>
         </li>

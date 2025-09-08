@@ -1,5 +1,5 @@
 import Component from '../../classes/Component'
-import { createSelectCampus, createSelectDepartament, removeSelectCampus, removeSelectDepartament, sanitizeForInput, setClaseName } from './utils'
+import { createSelectCampus, createSelectDepartament, removeSelectCampus, removeSelectDepartament, sanitizeForInput, setClaseName, validateInputs } from './utils'
 
 // ==========================
 // Constantes de formularios
@@ -20,6 +20,7 @@ export default class FormCrmCareer extends Component {
   // Inicializadores
   // ==========================
   createListeners() {
+    validateInputs()
     this.handleDepartmentChange()
     this.handleFormMixtoChange()
     this.handleDepartamentChange()
@@ -62,6 +63,7 @@ export default class FormCrmCareer extends Component {
             if (isMixto && campus.length > 0) {
               createSelectCampus(this.element, 'SingleLine8')
             }
+
             break
 
           case 'virtual':
@@ -76,6 +78,12 @@ export default class FormCrmCareer extends Component {
             if (isMixto && campus.length > 0) {
               removeSelectCampus(this.element)
             }
+            break
+          case 'work':
+            this.element.action = FORM_CARRIERS_VIRTUAL
+            removeSelectCampus(this.element)
+            setClaseName('f-100', this.element)
+            removeSelectDepartament(this.element)
             break
 
           default:

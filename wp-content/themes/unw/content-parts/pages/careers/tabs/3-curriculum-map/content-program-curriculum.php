@@ -32,20 +32,24 @@ if(wp_is_nonempty_array($lists)) {
                     <header class="cycle-card__header">
                       <?php if (!empty($list['icon']['url'])): ?>
                       <img class="cycle-card__header-icon lazyload" width="80" height="80"
-                        src="<?php echo esc_url($list['icon']['url']); ?>" alt="<?php echo esc_url($list['icon']['alt']); ?>" />
+                        src="<?php echo esc_url($list['icon']['url']); ?>"
+                        alt="<?php echo esc_url($list['icon']['alt']); ?>" />
                       <?php endif; ?>
                     </header>
                     <div class="cycle-card__content">
                       <ul class="cycle-card__list">
                         <?php foreach ($list['courses'] as $i => $course):
-
-
                             $thumbnail_url = get_the_post_thumbnail_url($course['course_name']->ID, 'full');
 
+                             $color_hex = '';
+
+
+                            if (!empty($course['color_faculty_hex']) && is_object($course['color_faculty_hex']) && !empty($course['color_faculty_hex']->ID)) {
+                              $color_hex = get_the_excerpt($course['color_faculty_hex']->ID);
+                            }
                           ?>
                         <li class="cycle-card__item">
-                          <span class="dot" style="background-color:<?=$course['color_faculty']?>"
-                            aria-hidden="true"></span>
+                          <span class="dot" style="background-color:<?=$color_hex?>" aria-hidden="true"></span>
                           <div class="cycle-card__course">
                             <?php if (!empty($thumbnail_url)): ?>
                             <img class="cycle-card__course-icon lazyload" src="<?php echo esc_url($thumbnail_url); ?>"

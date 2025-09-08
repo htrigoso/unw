@@ -58,7 +58,7 @@
     display: none;
   }
 
-  &.error {
+  &.has-error {
     .error-message {
       display: block;
     }
@@ -68,6 +68,11 @@
     textarea {
       border-bottom-color: var(--color-error);
       color: var(--color-error);
+      ~ label {
+        transform: translateY(-15px);
+        font-size: rem(13);
+        color: var(--color-asu-grey);
+      }
     }
   }
 }
@@ -111,6 +116,10 @@
     padding: 0;
     margin: 0;
     border: 0;
+    flex-direction: column;
+    @include media(">=desktop-s") {
+      flex-direction: row;
+    }
   }
 
   legend {

@@ -15,340 +15,11 @@
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar');?>
 <main>
   <div class="main_container">
-
-    <div class="modal-comunidad">
-      <div class="banner-info-comu">
-        <div class="content-comunidad w-container">
-          <div class="content-intranet">
-            <h3>Intranet</h3>
-            <div class="content-botones"><a href="#" class="btn white intranet w-button">Portal para Estudiantes</a><a
-                href="#" class="btn white intranet w-button">Portal para Docentes</a><a href="#"
-                class="btn white intranet w-button">Portal para Administración</a><a href="#"
-                class="btn-2 intra none w-button">Portal para Egresados</a></div>
-          </div>
-          <div class="titulares-comu"><img
-              src="https://assets.website-files.com/5cb0bebddf9044906507faf0/5cb4beacf78568206ef8ca8d_cerrar-blanco.svg"
-              alt="" class="img-cerrar ico-blanco" data-ix="cerrar-comunidad" style="transition: all;">
-            <h3>Comunidad</h3>
-          </div>
-          <div>
-            <div class="menu-comunidad">
-              <div class="menu-izq">
-                <ul role="list" class="items-menu-comu">
-                  <li class="item-comunidad" data-ix="mostrar-comunidad" style="transition: all;">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 comunidad" data-ix="mostar-submenu" style="transition: 0.3s;">Servicios Wiener
-                      </div>
-                    </a>
-                  </li>
-                  <li class="item-comunidad">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 comunidad" data-ix="mostrar-sub-su" style="transition: 0.3s;">Servicios
-                        Universitarios</div>
-                    </a>
-                  </li>
-                  <li class="item-comunidad">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 comunidad small" data-ix="esconder-sw" style="transition: 0.3s;">Blog</div>
-                    </a>
-                  </li>
-                  <li class="item-comunidad">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 comunidad" data-ix="esconder-sw" style="transition: 0.3s;">Bolsa de Trabajo</div>
-                    </a>
-                  </li>
-                  <li class="item-comunidad" data-ix="esconder-sw" style="transition: all;">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 comunidad">Contáctanos</div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="menu-izq-movil">
-                <ul role="list" class="items-menu-comu">
-                  <li class="item-comunidad">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 comunidad" data-ix="mobil-menu-sw" style="transition: 0.3s;">Servicios Wiener
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-                <div class="submenu-drc-movil" data-ix="mouse-out" style="transition: all;">
-                  <ul role="list" class="items-menu-comu">
-                    <li class="item-submenu">
-                      <a href="#" class="link-comunidad w-inline-block">
-                        <div class="p-18 sub-menu">Centro de Terapia Física y Rehabilitación</div>
-                      </a>
-                    </li>
-                    <li class="item-submenu">
-                      <a href="#" class="link-comunidad w-inline-block">
-                        <div class="p-18 sub-menu">Centro de Información del Medicamento</div>
-                      </a>
-                    </li>
-                    <li class="item-submenu">
-                      <a href="#" class="link-comunidad w-inline-block">
-                        <div class="p-18 sub-menu">Centro Odontológico</div>
-                      </a>
-                    </li>
-                    <li class="item-submenu">
-                      <a href="#" class="link-comunidad w-inline-block">
-                        <div class="p-18 sub-menu">Wiener Ambiental</div>
-                      </a>
-                    </li>
-                    <li class="item-submenu">
-                      <a href="#" class="link-comunidad w-inline-block">
-                        <div class="p-18 sub-menu">Unidad Académica de Estudios Generales</div>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <ul role="list" class="items-menu-comu">
-                  <li class="item-comunidad">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 comunidad" data-ix="mobil-menu-su" style="transition: 0.3s;">Servicios
-                        Universitarios</div>
-                    </a>
-                  </li>
-                </ul>
-                <div class="submenu_su_mobil" data-ix="mouse-out" style="transition: all;">
-                  <ul role="list" class="items-menu-comu">
-                    <li class="item-submenu">
-                      <a href="#" class="link-comunidad w-inline-block">
-                        <div class="p-18 sub-menu">Oficina de Admisión y Registros Académicos</div>
-                      </a>
-                    </li>
-                    <li class="item-submenu">
-                      <a href="#" class="link-comunidad w-inline-block">
-                        <div class="p-18 sub-menu">Secretaría General</div>
-                      </a>
-                    </li>
-                    <li class="item-submenu">
-                      <a href="#" class="link-comunidad w-inline-block">
-                        <div class="p-18 sub-menu">Dirección de Bienestar Universitario</div>
-                      </a>
-                    </li>
-                    <li class="item-submenu">
-                      <a href="#" class="link-comunidad w-inline-block">
-                        <div class="p-18 sub-menu">Centro de Investigación</div>
-                      </a>
-                    </li>
-                    <li class="item-submenu">
-                      <a href="#" class="link-comunidad w-inline-block">
-                        <div class="p-18 sub-menu">Defensoría Universitaria</div>
-                      </a>
-                    </li>
-                    <li class="item-submenu">
-                      <a href="#" class="link-comunidad w-inline-block">
-                        <div class="p-18 sub-menu">Centro de Idiomas</div>
-                      </a>
-                    </li>
-                    <li class="item-submenu">
-                      <a href="#" class="link-comunidad w-inline-block">
-                        <div class="p-18 sub-menu">Biblioteca</div>
-                      </a>
-                    </li>
-                    <li class="item-submenu">
-                      <a href="#" class="link-comunidad w-inline-block">
-                        <div class="p-18 sub-menu">Transparencia</div>
-                      </a>
-                    </li>
-                    <li class="item-submenu">
-                      <a href="#" class="link-comunidad w-inline-block">
-                        <div class="p-18 sub-menu">Repositorio Institucional</div>
-                      </a>
-                    </li>
-                    <li class="item-submenu">
-                      <a href="#" class="link-comunidad w-inline-block">
-                        <div class="p-18 sub-menu">Gestor de contenidos Runachay</div>
-                      </a>
-                    </li>
-                    <li class="item-submenu">
-                      <a href="#" class="link-comunidad w-inline-block">
-                        <div class="p-18 sub-menu">InfoWiener</div>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <ul role="list" class="items-menu-comu">
-                  <li class="item-comunidad">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 comunidad small">Blog</div>
-                    </a>
-                  </li>
-                  <li class="item-comunidad">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 comunidad">Bolsa de Trabajo</div>
-                    </a>
-                  </li>
-                  <li class="item-comunidad" data-ix="esconder-sw" style="transition: all;">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 comunidad">Contáctanos</div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="submenu-drc" data-ix="mouse-out" style="transition: all;">
-                <ul role="list" class="items-menu-comu">
-                  <li class="item-submenu">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 sub-menu">Centro de Terapia Física y Rehabilitación</div>
-                    </a>
-                  </li>
-                  <li class="item-submenu">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 sub-menu">Centro de Información del Medicamento</div>
-                    </a>
-                  </li>
-                  <li class="item-submenu">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 sub-menu">Centro Odontológico</div>
-                    </a>
-                  </li>
-                  <li class="item-submenu">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 sub-menu">Wiener Ambiental</div>
-                    </a>
-                  </li>
-                  <li class="item-submenu">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 sub-menu">Unidad Académica de Estudios Generales</div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="submenu_su" data-ix="mouse-out" style="transition: all;">
-                <ul role="list" class="items-menu-comu">
-                  <li class="item-submenu">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 sub-menu">Oficina de Admisión y Registros Académicos</div>
-                    </a>
-                  </li>
-                  <li class="item-submenu">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 sub-menu">Secretaría General</div>
-                    </a>
-                  </li>
-                  <li class="item-submenu">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 sub-menu">Dirección de Bienestar Universitario</div>
-                    </a>
-                  </li>
-                  <li class="item-submenu">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 sub-menu">Centro de Investigación</div>
-                    </a>
-                  </li>
-                  <li class="item-submenu">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 sub-menu">Defensoría Universitaria</div>
-                    </a>
-                  </li>
-                  <li class="item-submenu">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 sub-menu">Centro de Idiomas</div>
-                    </a>
-                  </li>
-                  <li class="item-submenu">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 sub-menu">Biblioteca</div>
-                    </a>
-                  </li>
-                  <li class="item-submenu">
-                    <a href="https://intranet.uwiener.edu.pe/univwiener/transparencia/presentacion.asp" target="_blank"
-                      class="link-comunidad w-inline-block">
-                      <div class="p-18 sub-menu">Transparencia</div>
-                    </a>
-                  </li>
-                  <li class="item-submenu">
-                    <a href="http://repositorio.uwiener.edu.pe/xmlui/" class="link-comunidad w-inline-block">
-                      <div class="p-18 sub-menu">Repositorio Institucional</div>
-                    </a>
-                  </li>
-                  <li class="item-submenu">
-                    <a href="#" class="link-comunidad w-inline-block">
-                      <div class="p-18 sub-menu">Gestor de contenidos Runachay</div>
-                    </a>
-                  </li>
-                  <li class="item-submenu">
-                    <a href="https://intranet.uwiener.edu.pe/univwiener/infowiener.aspx"
-                      class="link-comunidad w-inline-block">
-                      <div class="p-18 sub-menu">InfoWiener</div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="content-contacto">
-            <div class="contac-column central">
-              <div class="p-16 blanco"><span class="p-14 blanco">Central de informes:<br></span>(01) 706-5100</div>
-            </div>
-            <div class="contac-column">
-              <div class="p-16 blanco"><span class="p-14 blanco">Email:<br></span>info@uwiener.edu.pe</div>
-            </div>
-            <div class="contac-column">
-              <div class="p-14 blanco t-social">Síguenos en:</div>
-              <div class="icon-social"><a href="https://www.facebook.com/uwiener/" target="_blank"
-                  class="link-icon w-inline-block"><img
-                    src="https://assets.website-files.com/5cb0bebddf9044906507faf0/5cb224fa4e4584303704b84c_fb-icon-white.svg"
-                    alt=""></a><a href="https://www.youtube.com/user/uwiener" target="_blank"
-                  class="link-icon w-inline-block"><img
-                    src="https://assets.website-files.com/5cb0bebddf9044906507faf0/5cb224fa2da2ad4cde5507b8_yt-icon-white.svg"
-                    alt=""></a><a href="https://pe.linkedin.com/school/universidadnorbertwiener/" target="_blank"
-                  class="link-icon w-inline-block"><img
-                    src="https://assets.website-files.com/5cb0bebddf9044906507faf0/5cb224fbdfaff51dc236a34b_link-icon-white.svg"
-                    alt=""></a><a href="https://www.instagram.com/u.wiener/" target="_blank"
-                  class="link-icon w-inline-block"><img
-                    src="https://assets.website-files.com/5cb0bebddf9044906507faf0/5cb224fadfaff518cc36a34a_inst-icon-white.svg"
-                    alt=""></a></div>
-            </div>
-            <div class="contac-column">
-              <div class="p-14 blanco t-social">Conversa con nosotros</div>
-              <div class="wsp-item"><a href="https://api.whatsapp.com/send?phone=51951296667" target="_blank"
-                  class="wsp-link w-inline-block"><img
-                    src="https://assets.website-files.com/5cb0bebddf9044906507faf0/5cb4b0dfb097ed1ed00a25cb_icon-wsp.svg"
-                    alt="">
-                  <div class="p-18 comu">997535372</div>
-                </a></div>
-            </div>
-          </div>
-          <div class="direccion-uni">
-            <div class="p-14 blanco">Av. Arequipa 440 con Jr. Larrabure y Unanue 110. Urb. Santa Beatriz<br>Av. Petit
-              Thouars 2021, Lince<br></div>
-          </div>
-        </div>
-      </div>
-      <div class="banner_comu">
-        <div class="titular-banner">
-          <div class="cerar-comunidad" data-ix="cerrar-comunidad" style="transition: all;">
-            <div class="p-14 cerrar">Cerrar</div><img
-              src="https://assets.website-files.com/5e14b299ed73794253b5000e/5e14ef04b86f101b6b8ca790_cerrar-icon.svg"
-              alt="" class="img-cerrar">
-          </div>
-          <div class="cuadro_prueba-2">
-            <div class="profezio_titulo-2">
-              <h2 class="prueba-aptitud-2">Examen de<br>Admisión Pregrado</h2>
-            </div>
-            <div class="texto-2-columnos">
-              <div class="tu_cuadro">
-                <h2 class="_24-2">17</h2>
-              </div>
-              <div class="texto_big">
-                <h2 class="mes-2">MAR.</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="img-banner"><img
-            src="https://assets.website-files.com/5e14b299ed73794253b5000e/5e14ef04b86f10545e8ca789_foto-comunidad.png"
-            alt="" class="image-4"></div>
-      </div>
-    </div>
     <div class="info_page">
       <div class="cover_img_page center">
         <div class="overlay"></div>
-        <img src="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/Banner_ResponsabilidadSocial_1920x400-2023.jpg"
-          srcset="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/Banner_ResponsabilidadSocial_1920x400-2023-1.jpg 500w, https://www.uwiener.edu.pe/wp-content/uploads/2022/11/Banner_ResponsabilidadSocial_1920x400-2023.jpg 1920w"
+        <img src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/banner_responsabilidad_social.jpg' ?>"
+          srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/banner_responsabilidad_social.jpg' ?> 500w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/banner_responsabilidad_social.jpg' ?> 1920w"
           sizes="100vw" alt="" class="img_cover">
         <div id="presentacion_vf" class="info_cover_page center">
           <div id="presentacion" class="container">
@@ -373,7 +44,7 @@
                 <div class="tabs_menu notab serv_uni secretaria">
                   <a href="#presentacion" data-w-id="02261821-febb-e71d-e9d9-920de6f6c5b8"
                     class="link_item_tab scroll large extra anipo mb-ra w-inline-block"><img
-                      src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/icon_current_tab.svg"
+                      src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
                       data-w-id="c6e84752-d069-2d2e-c308-cfadd25fc9ae" style="opacity:1" alt="" class="point_anima">
                     <div>Presentación</div>
                   </a>
@@ -386,7 +57,7 @@
 
                   <a href="#servsecretaria" data-w-id="57f48af4-b33b-b43e-3e49-c16889aafb45"
                     class="link_item_tab scroll large extra anipo w-inline-block"><img
-                      src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/icon_current_tab.svg"
+                      src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
                       data-w-id="c9f76258-0e42-88e6-5bde-44ec8f994c72" style="opacity:0" alt="" class="point_anima">
                     <div>Servicios</div>
                   </a>
@@ -426,10 +97,10 @@
                             educación ambiental y el compromiso social en el desarrollo sostenible.</p>
                           <p><br></p>
                           <p><img fetchpriority="high" decoding="async" class="alignnone wp-image-5145"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/campus-sostenible-1.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/campus-sostenible-1.jpg' ?>"
                               alt="Imagen de servicios universitarios 1" width="386" height="256">&nbsp; &nbsp; &nbsp;
                             &nbsp;<img decoding="async" class="wp-image-5146 alignnone"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/campus-sostenible-2.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/campus-sostenible-2.jpg' ?>"
                               alt="Imagen de servicios universitarios 2" width="386" height="257"></p>
                           <p><br></p>
                           <p>Plan de Campus Sostenible</p>
@@ -439,14 +110,14 @@
                           </ul>
                           <p><br></p>
                           <p><img decoding="async" class="wp-image-4702 alignnone"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/1.-campus-sostenible-WEB.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-campus-sostenible-WEB.jpg' ?>"
                               alt="Imagen de servicios universitarios 3" width="540" height="360"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/1.-campus-sostenible-WEB.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2022/11/1.-campus-sostenible-WEB-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2022/11/1.-campus-sostenible-WEB-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-campus-sostenible-WEB.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-campus-sostenible-WEB.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-campus-sostenible-WEB.jpg' ?> 768w"
                               sizes="(max-width: 540px) 100vw, 540px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                             &nbsp; &nbsp; <img loading="lazy" decoding="async" class=" wp-image-4703 alignnone"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/2.-compus-sostenible-WEB.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-campus-sostenible-WEB.jpg' ?>"
                               alt="Imagen de servicios universitarios 4" width="540" height="360"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/2.-compus-sostenible-WEB.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2022/11/2.-compus-sostenible-WEB-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2022/11/2.-compus-sostenible-WEB-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-campus-sostenible-WEB.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-campus-sostenible-WEB.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-campus-sostenible-WEB.jpg' ?> 768w"
                               sizes="auto, (max-width: 540px) 100vw, 540px"></p>
                           <p><br></p>
                           <ul>
@@ -465,9 +136,9 @@
                             otros.</p>
                           <p><br></p>
                           <p><img loading="lazy" decoding="async" class=" wp-image-4702 aligncenter"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/1.-campus-sostenible-WEB.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-campus-sostenible-WEB.jpg' ?>"
                               alt="Imagen de servicios universitarios 5" width="599" height="399"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/1.-campus-sostenible-WEB.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2022/11/1.-campus-sostenible-WEB-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2022/11/1.-campus-sostenible-WEB-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-campus-sostenible-WEB.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-campus-sostenible-WEB.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-campus-sostenible-WEB.jpg' ?> 768w"
                               sizes="auto, (max-width: 599px) 100vw, 599px"></p>
                           <p><br></p>
                           <p><br></p>
@@ -486,9 +157,9 @@
                             la electricidad en la Universidad.</p>
                           <p><br></p>
                           <p><img loading="lazy" decoding="async" class="wp-image-4705 aligncenter"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/4.-ENERGIAELECTRICA-compus-sostenible-WEB.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/4.-ENERGIAELECTRICA-compus-sostenible-WEB.jpg' ?>"
                               alt="Imagen de servicios universitarios 6" width="599" height="399"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/4.-ENERGIAELECTRICA-compus-sostenible-WEB.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2022/11/4.-ENERGIAELECTRICA-compus-sostenible-WEB-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2022/11/4.-ENERGIAELECTRICA-compus-sostenible-WEB-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/4.-ENERGIAELECTRICA-compus-sostenible-WEB.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/4.-ENERGIAELECTRICA-compus-sostenible-WEB.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/4.-ENERGIAELECTRICA-compus-sostenible-WEB.jpg' ?> 768w"
                               sizes="auto, (max-width: 599px) 100vw, 599px"></p>
                           <p><br></p>
                           <ul>
@@ -507,9 +178,9 @@
                           </p>
                           <p><br></p>
                           <p><img loading="lazy" decoding="async" class="wp-image-4706 aligncenter"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/5.-PAPEL-compus-sostenible-WEB.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/5.-PAPEL-compus-sostenible-WEB.jpg' ?>"
                               alt="Imagen de servicios universitarios 7" width="605" height="403"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/5.-PAPEL-compus-sostenible-WEB.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2022/11/5.-PAPEL-compus-sostenible-WEB-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2022/11/5.-PAPEL-compus-sostenible-WEB-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/5.-PAPEL-compus-sostenible-WEB.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/5.-PAPEL-compus-sostenible-WEB.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/5.-PAPEL-compus-sostenible-WEB.jpg' ?> 768w"
                               sizes="auto, (max-width: 605px) 100vw, 605px"></p>
                           <p><br></p>
                           <ul>
@@ -525,9 +196,9 @@
                             impulsará la implementación de tecnologías limpias.</p>
                           <p><br></p>
                           <p><img loading="lazy" decoding="async" class="wp-image-4707 aligncenter"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/6.-RESIDUOS-compus-sostenible-WEB.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/6.-RESIDUOS-compus-sostenible-WEB.jpg' ?>"
                               alt="Imagen de servicios universitarios 8" width="614" height="409"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/6.-RESIDUOS-compus-sostenible-WEB.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2022/11/6.-RESIDUOS-compus-sostenible-WEB-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2022/11/6.-RESIDUOS-compus-sostenible-WEB-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/6.-RESIDUOS-compus-sostenible-WEB.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/6.-RESIDUOS-compus-sostenible-WEB.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/6.-RESIDUOS-compus-sostenible-WEB.jpg' ?> 768w"
                               sizes="auto, (max-width: 614px) 100vw, 614px"></p>
                           <p><br></p>
                           <ul>
@@ -572,19 +243,19 @@
                             social.</p>
                           <p><br></p>
                           <p><img loading="lazy" decoding="async" class="wp-image-4500 alignnone"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/2.-Ciudad-de-los-niños.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-Ciudad-de-los-niños.jpg' ?>"
                               alt="Imagen de servicios universitarios 9" width="332" height="221"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/2.-Ciudad-de-los-niños.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/2.-Ciudad-de-los-niños-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/2.-Ciudad-de-los-niños-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-Ciudad-de-los-niños.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-Ciudad-de-los-niños.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-Ciudad-de-los-niños.jpg' ?> 768w"
                               sizes="auto, (max-width: 332px) 100vw, 332px"> &nbsp;<img loading="lazy" decoding="async"
                               class="wp-image-4494 alignnone"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/1.-Ciudad-de-los-niños.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-Ciudad-de-los-niños.jpg' ?>"
                               alt="Imagen de servicios universitarios 10" width="331" height="220"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/1.-Ciudad-de-los-niños.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/1.-Ciudad-de-los-niños-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/1.-Ciudad-de-los-niños-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-Ciudad-de-los-niños.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-Ciudad-de-los-niños.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-Ciudad-de-los-niños.jpg' ?> 768w"
                               sizes="auto, (max-width: 331px) 100vw, 331px"> &nbsp;<img loading="lazy" decoding="async"
                               class="wp-image-4506 alignnone"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/3.-Ciudad-de-los-niños.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/3.-Ciudad-de-los-niños.jpg' ?>"
                               alt="Imagen de servicios universitarios 11" width="330" height="220"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/3.-Ciudad-de-los-niños.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/3.-Ciudad-de-los-niños-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/3.-Ciudad-de-los-niños-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/3.-Ciudad-de-los-niños.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/3.-Ciudad-de-los-niños.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/3.-Ciudad-de-los-niños.jpg' ?> 768w"
                               sizes="auto, (max-width: 330px) 100vw, 330px"></p>
                           <p><br></p>
                           <ul>
@@ -597,19 +268,19 @@
                             orientación nutricional a los niños de este populoso sector.</p>
                           <p><br></p>
                           <p><img loading="lazy" decoding="async" class="wp-image-4502 alignnone"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/2.-Curso-integrador-Maraton-contra-la-anemia.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-Curso-integrador-Maraton-contra-la-anemia.jpg' ?>"
                               alt="Imagen de servicios universitarios 12" width="326" height="218"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/2.-Curso-integrador-Maraton-contra-la-anemia.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/2.-Curso-integrador-Maraton-contra-la-anemia-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/2.-Curso-integrador-Maraton-contra-la-anemia-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-Curso-integrador-Maraton-contra-la-anemia.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-Curso-integrador-Maraton-contra-la-anemia.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-Curso-integrador-Maraton-contra-la-anemia.jpg' ?> 768w"
                               sizes="auto, (max-width: 326px) 100vw, 326px"> &nbsp;<img loading="lazy" decoding="async"
                               class="wp-image-4496 alignnone"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/1.-Curso-integrador-Maraton-contra-la-anemia.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-Curso-integrador-Maraton-contra-la-anemia.jpg' ?>"
                               alt="Imagen de servicios universitarios 13" width="326" height="217"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/1.-Curso-integrador-Maraton-contra-la-anemia.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/1.-Curso-integrador-Maraton-contra-la-anemia-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/1.-Curso-integrador-Maraton-contra-la-anemia-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-Curso-integrador-Maraton-contra-la-anemia.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-Curso-integrador-Maraton-contra-la-anemia.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-Curso-integrador-Maraton-contra-la-anemia.jpg' ?> 768w"
                               sizes="auto, (max-width: 326px) 100vw, 326px"> &nbsp;<img loading="lazy" decoding="async"
                               class="wp-image-4508 alignnone"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/3.-Curso-integrador-Maraton-contra-la-anemia.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/3.-Curso-integrador-Maraton-contra-la-anemia.jpg' ?>"
                               alt="Imagen de servicios universitarios 14" width="326" height="217"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/3.-Curso-integrador-Maraton-contra-la-anemia.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/3.-Curso-integrador-Maraton-contra-la-anemia-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/3.-Curso-integrador-Maraton-contra-la-anemia-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/3.-Curso-integrador-Maraton-contra-la-anemia.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/3.-Curso-integrador-Maraton-contra-la-anemia.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/3.-Curso-integrador-Maraton-contra-la-anemia.jpg' ?> 768w"
                               sizes="auto, (max-width: 326px) 100vw, 326px"></p>
                           <p><br></p>
                           <ul>
@@ -624,14 +295,14 @@
                             Edilberto Ramos.</p>
                           <p><br></p>
                           <p><img loading="lazy" decoding="async" class="wp-image-4495 alignnone"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/1.-Curso-integrador-Arborización.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-Curso-integrador-Arborización.jpg' ?>"
                               alt="Imagen de servicios universitarios 15" width="365" height="243"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/1.-Curso-integrador-Arborización.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/1.-Curso-integrador-Arborización-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/1.-Curso-integrador-Arborización-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-Curso-integrador-Arborización.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-Curso-integrador-Arborización.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-Curso-integrador-Arborización.jpg' ?> 768w"
                               sizes="auto, (max-width: 365px) 100vw, 365px"> &nbsp;<img loading="lazy" decoding="async"
                               class="wp-image-4501 alignnone"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/2.-Curso-integrador-Arborización.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-Curso-integrador-Arborización.jpg' ?>"
                               alt="Imagen de servicios universitarios 16" width="363" height="242"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/2.-Curso-integrador-Arborización.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/2.-Curso-integrador-Arborización-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/2.-Curso-integrador-Arborización-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-Curso-integrador-Arborización.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-Curso-integrador-Arborización.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-Curso-integrador-Arborización.jpg' ?> 768w"
                               sizes="auto, (max-width: 363px) 100vw, 363px"></p>
                           <p><br></p>
                           <h3><span style="color: #00b7bd;">Proyección Social</span></h3>
@@ -644,17 +315,17 @@
                             información relevante, se busca concientizar a la población sobre la importancia de cuidar
                             la salud y mantenerse informados sobre los riesgos que existen en esta área.</p>
                           <p><img loading="lazy" decoding="async" class="alignnone wp-image-5148"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/Campana-de-salud-1.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/Campana-de-salud-1.jpg' ?>"
                               alt="Imagen de servicios universitarios 17" width="388" height="250">&nbsp; &nbsp;<img
                               loading="lazy" decoding="async" class="alignnone wp-image-5149"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/Campana-de-salud-2.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/Campana-de-salud-2.jpg' ?>"
                               alt="Imagen de servicios universitarios 18" width="381" height="254"></p>
                           <p><br></p>
                           <p><img loading="lazy" decoding="async" class="alignnone wp-image-5150"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/Campana-de-salud-3.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/Campana-de-salud-3.jpg' ?>"
                               alt="Imagen de servicios universitarios 19" width="390" height="260">&nbsp; &nbsp;<img
                               loading="lazy" decoding="async" class="alignnone wp-image-5151"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/Campana-de-salud-5.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/Campana-de-salud-5.jpg' ?>"
                               alt="Imagen de servicios universitarios 20" width="390" height="260"></p>
                           <p><br></p>
                           <p><br></p>
@@ -743,14 +414,14 @@
                             alianza con la Municipalidad Metropolitana de Lima en el distrito de Villa El Salvador.</p>
                           <p><br></p>
                           <p><img loading="lazy" decoding="async" class="wp-image-4499 alignnone"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/1.-Voluntariado-Nutridesayunos.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-Voluntariado-Nutridesayunos.jpg' ?>"
                               alt="Imagen de servicios universitarios 30" width="487" height="324"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/1.-Voluntariado-Nutridesayunos.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/1.-Voluntariado-Nutridesayunos-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/1.-Voluntariado-Nutridesayunos-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-Voluntariado-Nutridesayunos.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-Voluntariado-Nutridesayunos.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/1.-Voluntariado-Nutridesayunos.jpg' ?> 768w"
                               sizes="auto, (max-width: 487px) 100vw, 487px"> &nbsp;<img loading="lazy" decoding="async"
                               class="wp-image-4505 alignnone"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/2.-Voluntariado-Nutridesayunos.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-Voluntariado-Nutridesayunos.jpg' ?>"
                               alt="Imagen de servicios universitarios 31" width="487" height="324"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2023/06/2.-Voluntariado-Nutridesayunos.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/2.-Voluntariado-Nutridesayunos-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2023/06/2.-Voluntariado-Nutridesayunos-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-Voluntariado-Nutridesayunos.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-Voluntariado-Nutridesayunos.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/2.-Voluntariado-Nutridesayunos.jpg' ?> 768w"
                               sizes="auto, (max-width: 487px) 100vw, 487px"></p>
                           <p><br></p>
                           <blockquote>
@@ -765,13 +436,13 @@
                           </p>
                           <p><br></p>
                           <p><img loading="lazy" decoding="async" class="alignnone wp-image-5154"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/corporativo-1.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/corporativo-1.jpg' ?>"
                               alt="Imagen de servicios universitarios 32" width="426" height="319"> <img loading="lazy"
                               decoding="async" class="alignnone wp-image-5155"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/corporativo-2.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/corporativo-2.jpg' ?>"
                               alt="Imagen de servicios universitarios 33" width="379" height="318"> <img loading="lazy"
                               decoding="async" class="alignnone wp-image-5156"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2022/11/corporativo-3.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/corporativo-3.jpg' ?>"
                               alt="Imagen de servicios universitarios 34" width="477" height="318"></p>
                           <h3></h3>
                           <h3><span style="color: #00b7bd;">Investigación</span></h3>
@@ -790,19 +461,19 @@
                           <p><br></p>
                           <p style="text-align: left;"><img loading="lazy" decoding="async"
                               class="alignleft wp-image-4041"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2022/12/Biocentro-1.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/Biocentro-1.jpg' ?>"
                               alt="Imagen de servicios universitarios 35" width="420" height="280"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2022/12/Biocentro-1.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2022/12/Biocentro-1-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2022/12/Biocentro-1-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/Biocentro-1.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/Biocentro-1.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/Biocentro-1.jpg' ?> 768w"
                               sizes="auto, (max-width: 420px) 100vw, 420px"> <img loading="lazy" decoding="async"
                               class="alignleft wp-image-4042"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2022/12/Biocentro-2.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/Biocentro-2.jpg' ?>"
                               alt="Imagen de servicios universitarios 36" width="420" height="280"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2022/12/Biocentro-2.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2022/12/Biocentro-2-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2022/12/Biocentro-2-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/Biocentro-2.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/Biocentro-2.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/Biocentro-2.jpg' ?> 768w"
                               sizes="auto, (max-width: 420px) 100vw, 420px"> <img loading="lazy" decoding="async"
                               class="alignleft wp-image-4043"
-                              src="https://www.uwiener.edu.pe/wp-content/uploads/2022/12/Biocentro-3.jpg"
+                              src="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/Biocentro-3.jpg' ?>"
                               alt="Imagen de servicios universitarios 37" width="418" height="278"
-                              srcset="https://www.uwiener.edu.pe/wp-content/uploads/2022/12/Biocentro-3.jpg 800w, https://www.uwiener.edu.pe/wp-content/uploads/2022/12/Biocentro-3-300x200.jpg 300w, https://www.uwiener.edu.pe/wp-content/uploads/2022/12/Biocentro-3-768x512.jpg 768w"
+                              srcset="<?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/Biocentro-3.jpg' ?> 800w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/Biocentro-3.jpg' ?> 300w, <?= UPLOAD_MIGRATION_PATH . '/responsabilidad-social/Biocentro-3.jpg' ?> 768w"
                               sizes="auto, (max-width: 418px) 100vw, 418px"></p>
                         </div>
                         <!-- Sección del Post Bienestar Estudiantil y Becas del CPT Bienestar Universitario - Hernán Chira - Parte 3 - INICIO -->
