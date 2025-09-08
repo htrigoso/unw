@@ -148,9 +148,18 @@ class Desktop_Menu_Walker extends Walker_Nav_Menu {
             $title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
 
             $item_output  = $args->before;
-            $item_output .= '<a'. $attributes .'>';
-            $item_output .= $args->link_before . $title . $args->link_after;
-            $item_output .= '</a>';
+
+            // Verificar si el URL es "#" para renderizar como h4
+            if ( $item->url === '#' ) {
+                $item_output .= '<h4'. (isset($atts['class']) ? ' class="' . esc_attr($atts['class']) . '"' : '') .'>';
+                $item_output .= $args->link_before . $title . $args->link_after;
+                $item_output .= '</h4>';
+            } else {
+                $item_output .= '<a'. $attributes .'>';
+                $item_output .= $args->link_before . $title . $args->link_after;
+                $item_output .= '</a>';
+            }
+
             $item_output .= $args->after;
 
             $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
