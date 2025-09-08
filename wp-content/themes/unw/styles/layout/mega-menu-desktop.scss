@@ -55,6 +55,27 @@
     }
   }
 }
+
+.menu-grid-col-2,
+.menu-grid-col-4,
+.menu-grid-col-3 {
+  .sub-menu-parent {
+    display: grid;
+    gap: rem(20);
+    grid-template-columns: repeat(var(--cols), 1fr);
+  }
+}
+
+.menu-grid-col-4 {
+  --cols: 4;
+}
+.menu-grid-col-3 {
+  --cols: 3;
+}
+.menu-grid-col-2 {
+  --cols: 2;
+}
+
 .sub-menu-parent-tab.is-open {
   .main-submenu-wrapper__main {
     .sub-menu-parent {
