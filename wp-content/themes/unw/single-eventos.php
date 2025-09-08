@@ -3,7 +3,6 @@
 <?php get_header(); ?>
 
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
-
 <main>
   <?php
   $sliders_afc = get_field('list_of_files');

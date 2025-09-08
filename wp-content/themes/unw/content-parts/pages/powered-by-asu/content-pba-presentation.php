@@ -6,8 +6,8 @@ $presentation = get_field('presentation');
   <div class="x-container x-container--pad-213">
     <!-- Logos -->
     <div class="pba-presentation__logos">
-      <img src="<?php echo esc_url($presentation['images']['logo_unw']['url']); ?>" alt="UNW Logo" class="lazyload">
-      <img src="<?php echo esc_url($presentation['images']['logo_asu']['url']); ?>" alt="ASU Logo" class="lazyload">
+      <img src="<?php echo esc_url($presentation['images']['logo_unw']['url']); ?>" alt="<?php echo esc_html($presentation['images']['logo_unw']['alt']); ?>" class="lazyload">
+      <img src="<?php echo esc_url($presentation['images']['logo_asu']['url']); ?>" alt="<?php echo esc_html($presentation['images']['logo_unw']['alt']); ?>" class="lazyload">
     </div>
 
     <!-- Descripción -->
@@ -18,7 +18,8 @@ $presentation = get_field('presentation');
 
     <!-- Edificio -->
     <div class="pba-presentation__building">
-      <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($presentation['building_info']['image']['url']); ?>" alt="Building"
+      <img src="<?php echo esc_url($presentation['building_info']['image']['url']); ?>"
+      alt="<?= esc_html($presentation['building_info']['image']['alt']) ?>"
         class="pba-presentation__building--img" class="lazyload" />
       <div class="pba-presentation__building--desc">
         <strong><?php echo $presentation['building_info']['title']; ?></strong>

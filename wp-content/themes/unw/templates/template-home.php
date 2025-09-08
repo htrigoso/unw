@@ -5,14 +5,7 @@
  */
 ?>
 
-<?php
-add_action('wp_head', function () {
-  $hero = get_field('hero');
-  if ($hero && !empty($hero['list'])) {
-    uw_preload_hero_images($hero['list']);
-  }
-});
-?>
+
 
 <?php set_query_var('ASSETS_CHUNK_NAME', 'home'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>

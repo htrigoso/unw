@@ -4,6 +4,7 @@ define('ROOTPATH', __DIR__);
 define('BASE_URL', get_bloginfo('url'));
 define('THEME_PATH', get_template_directory_uri());
 define('UPLOAD_PATH', get_template_directory_uri() . '/upload');
+define('UPLOAD_MIGRATION_PATH', get_template_directory_uri() . '/upload/migration');
 define('IMAGE_DEFAULT', get_template_directory_uri() . '/upload/imagen-defaul.jpg');
 define('ASSETS_PATH', get_template_directory_uri() . '/assets');
 define('ALLOW_UNFILTERED_UPLOADS', true);
@@ -23,10 +24,13 @@ define('ABOUT_US_CONTENT_PATH', 'content-parts/pages/about-us/content');
 define('OUR_HISTORY_CONTENT_PATH', 'content-parts/pages/our-history/content');
 define('QUALITY_POLICY_CONTENT_PATH', 'content-parts/pages/quality-policy/content');
 define('CAREERS_CONTENT_PATH', 'content-parts/pages/careers/content');
+define('THANKS_CONTENT_PATH', 'content-parts/pages/thanks/content');
 
 define('ERROR_CONTENT_PATH', 'content-parts/pages/404/content');
 
 define('GENERAL_CONTENT_PATH', 'content-parts/content');
+define('GENERAL_FORM_CONTACT_PATH', 'content-parts/forms/content');
+
 
 define('CAREERS_TABS_PATH', 'content-parts/pages/careers/tabs/content');
 define('ALL_CAREERS_TABS_PATH', 'content-parts/pages/all-careers/tabs/content');

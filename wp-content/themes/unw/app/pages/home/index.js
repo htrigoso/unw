@@ -4,6 +4,7 @@ import InternationalSwiper from '../../components/InternationalSwiper'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
 import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
 import Page from '../../classes/Page'
+import { ModalManager } from '../../components/Modal'
 
 export default class HomePage extends Page {
   constructor() {
@@ -16,6 +17,8 @@ export default class HomePage extends Page {
   }
 
   create() {
+    new ModalManager()
+
     HeroSwiper('.hero-swiper', {
       autoplay: false,
       allowTouchMove: false

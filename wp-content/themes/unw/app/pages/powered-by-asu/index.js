@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const circle = document.getElementById('switchCircle')
   const switchContainer = document.getElementById('languageSwitch')
 
-  switchContainer.addEventListener('click', () => {
+  switchContainer?.addEventListener('click', () => {
     if (currentLang === 'ES') {
       currentLang = 'EN'
       circle.style.transform = 'translateX(-55%)'

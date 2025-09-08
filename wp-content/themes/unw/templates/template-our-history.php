@@ -5,6 +5,7 @@
  */
 ?>
 
+
 <?php set_query_var('ASSETS_CHUNK_NAME', 'our-history'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php get_header(); ?>
@@ -25,7 +26,7 @@
       [
         'img_desktop' => $hero['images']['desktop']['url'],
         'img_mobile'  => $hero['images']['mobile']['url'],
-        'alt'         => $hero['images']['desktop']['alt'], // puedes cambiar a mobile si prefieres
+        'alt'         => $hero['images']['desktop']['alt'],
         'title'       => $hero['title'],
         'breadcrumbs' => $breadcrumbs,
         'variant'     => 'primary'

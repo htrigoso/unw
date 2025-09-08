@@ -1,5 +1,9 @@
 .footer {
   background-color: var(--color-turquoise-three);
+
+  p, span, li, ul, a {
+    line-height: rem(20) !important;
+  }
 }
 
 .footer__wrapper {
@@ -54,7 +58,8 @@
 .footer__cta--title {
   color: var(--color-white);
   @include title-28;
-  margin-bottom: rem(8);
+  margin-top: 0 !important;
+  margin-bottom: rem(8) !important;
   text-align: center;
 
   @include media(">=phone") {
@@ -65,11 +70,12 @@
 .footer__cta--desc {
   text-align: center;
   color: var(--color-white);
-  margin-bottom: rem(20);
+  margin-bottom: rem(20) !important;
+  font-family: var(--font);
 
   @include media(">=phone") {
     text-align: left;
-    margin-bottom: rem(12);
+    margin-bottom: rem(12) !important;
   }
 }
 
@@ -113,7 +119,13 @@
 
 .footer__menu__list,
 .footer__more__list {
+  ul {
+    margin-bottom: 0 !important;
+  }
+
   > .menu-item {
+    padding-left: 0 !important;
+
     &:not(:last-child) {
       margin-bottom: rem(20);
     }
@@ -129,6 +141,8 @@
     margin-top: rem(20);
 
     .menu-item {
+      padding-left: 0 !important;
+
       &:not(:first-child) {
         margin-top: rem(20);
 
@@ -200,6 +214,10 @@
     align-items: center;
   }
 
+  & > ul {
+    margin-bottom: 0 !important;
+  }
+
   & > span {
     display: block;
     text-align: center;
@@ -215,6 +233,10 @@
   display: flex;
   justify-content: center;
   gap: rem(16);
+}
+
+.footer__bottom__item {
+  padding: 0 !important;
 }
 
 .footer__divider {
@@ -245,7 +267,7 @@
   position: fixed;
   bottom: rem(50);
   right: rem(13);
-  z-index: 1;
+  z-index: 5;
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: rem(999);

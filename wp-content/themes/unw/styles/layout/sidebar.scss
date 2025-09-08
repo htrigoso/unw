@@ -23,6 +23,14 @@
   &.is-active {
     transform: translateX(0);
   }
+
+  li {
+    padding-left: 0 !important;
+  }
+
+  * {
+    line-height: normal !important;
+  }
 }
 
 .sidebar__wrapper {
@@ -65,10 +73,10 @@
     display: block;
     width: 100%;
     text-align: left;
-    padding: rem(16);
+    padding: rem(16) !important;
 
     @include media(">=phone") {
-      padding-inline: rem(24);
+      padding-inline: rem(24) !important;
     }
   }
 
@@ -155,7 +163,6 @@
 .sidebar__submenu-title {
   padding: rem(16);
   display: none;
-  // display: flex;
   align-items: center;
   justify-content: space-between;
   height: rem(74);

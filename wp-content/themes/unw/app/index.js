@@ -1,5 +1,4 @@
 import Menu from './components/Menu'
-import { ModalManager } from './components/Modal'
 import { $element } from './utils/dom'
 import initLazyLoad from './utils/lazyload'
 
@@ -11,11 +10,6 @@ class App {
     this.megaMenuDesktop()
     this.tabMegaMenuDesktop()
     this.hideBackdrop()
-    this.createModal()
-  }
-
-  createModal() {
-    new ModalManager()
   }
 
   createNavbar() {

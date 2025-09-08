@@ -95,7 +95,7 @@ module.exports = (env, options) => {
             { loader: 'style-loader' },
             { loader: 'css-loader', options: { sourceMap: true } },
             { loader: 'postcss-loader', options: { sourceMap: true } },
-            { loader: 'resolve-url-loader', options: { sourceMap: true } },
+            { loader: 'resolve-url-loader', options: { removeCR: true, sourceMap: true } },
             {
               loader: 'sass-loader',
               options: {
@@ -168,7 +168,7 @@ module.exports = (env, options) => {
             { loader: MiniCssExtractPlugin.loader, options: { publicPath: '../' } },
             { loader: 'css-loader', options: { sourceMap: true } },
             { loader: 'postcss-loader', options: { sourceMap: true } },
-            { loader: 'resolve-url-loader', options: { sourceMap: true } },
+            { loader: 'resolve-url-loader', options: { removeCR: true, sourceMap: true } },
             {
               loader: 'sass-loader',
               options: {

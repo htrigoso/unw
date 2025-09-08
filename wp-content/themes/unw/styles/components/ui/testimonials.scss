@@ -1,3 +1,9 @@
+@import "./testimonial-card";
+
+.testimonials__item {
+  display: flex;
+}
+
 .testimonials__title {
   @include title-22;
   margin-bottom: rem(16);

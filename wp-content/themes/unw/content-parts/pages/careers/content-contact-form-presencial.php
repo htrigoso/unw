@@ -81,67 +81,54 @@
   <div class="form-body">
     <div class="form-body__fields">
       <?php if ( $is_form_mixto ): ?>
-      <div class="form-field-radio m-b-24">
-        <fieldset>
-          <div class="radio-option m-b-15">
-            <input type="radio" id="pregrado" name="form_mixto" value="pregrado" checked />
-            <label for="pregrado">Presencial</label>
-          </div>
-
-
-
-
-          <div class="radio-option m-b-15">
-            <input type="radio" id="virtual" name="form_mixto" value="virtual" />
-            <label for="virtual">100% virtual</label>
-          </div>
-        </fieldset>
-      </div>
+      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'radio', [
+          'direction'    => 'flex-col',
+          'option_class' => 'm-b-10'
+      ]);?>
       <?php endif; ?>
 
       <div class="flex justify-between m-b-24" data-html-name="departament">
 
         <div class="f-100" data-html-name="name_first">
-          <div class="form-field">
-            <input name="Name_First" id="name_first" placeholder="" type="text" required />
-            <label for="name_first">Nombres (*)</label>
-            <span class="error-message">Datos inválidos</span>
-          </div>
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+            'name'=> 'Name_First',
+            'label'=> 'Nombres (*)',
+            'type' => 'text',
+          ]);?>
         </div>
       </div>
 
       <div class="flex justify-between m-b-24">
         <div class="f-50">
-          <div class="form-field">
-            <input name="Name_Last" id="name_last" placeholder="" type="text" required />
-            <label for="name_last">Apellidos (*)</label>
-            <span class="error-message">Datos inválidos</span>
-          </div>
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+            'name'=> 'Name_Last',
+            'label'=> 'Apellidos (*)',
+            'type' => 'text',
+          ]);?>
         </div>
         <div class="f-50">
-          <div class="form-field">
-               <input required type="tel" inputmode="numeric" pattern="\d{8}" maxlength="8" name="SingleLine" placeholder=""
-              id="SingleLine" />
-            <label for="singleLine">Número de documento (*)</label>
-            <span class="error-message">Datos inválidos</span>
-          </div>
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+            'name'=> 'SingleLine',
+            'label'=> 'Número de documento (*)',
+            'type' => 'tel',
+          ]);?>
         </div>
       </div>
 
       <div class="flex justify-between <?=!empty($campus_json) ? 'm-b-30': ''?> ">
         <div class="f-50">
-          <div class="form-field">
-            <input name="PhoneNumber_countrycode" placeholder="" id="cellNumber" type="tel" required minlength="9" />
-            <label for="cellNumber">Celular (*)</label>
-            <span class="error-message">Datos inválidos</span>
-          </div>
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+            'name'=> 'PhoneNumber_countrycode',
+            'label'=> 'Celular (*)',
+            'type' => 'tel',
+          ]);?>
         </div>
         <div class="f-50">
-          <div class="form-field">
-            <input name="Email" id="email" type="text" placeholder="" required />
-            <label for="email">Correo electrónico (*)</label>
-            <span class="error-message">Datos inválidos</span>
-          </div>
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+            'name'=> 'Email',
+            'label'=> 'Correo electrónico (*)',
+            'type' => 'email',
+          ]);?>
         </div>
       </div>
 
@@ -170,21 +157,10 @@
       (*) Campos obligatorios
     </p>
     <div class="form-body__terms">
-      <div class="form-field-checkbox">
-        <input type="checkbox" name="DecisionBox1" id="politicas" name="politicas" required checked>
-        <label for="politicas">
-          <span class="custom-checkbox"></span>
-          <span class="text">
-            Declaro expresamente haber leído y aceptado las <a href="#">Políticas de privacidad</a>
-          </span>
-        </label>
-      </div>
+      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox');?>
     </div>
     <div class="form-body__actions">
       <button type="submit" class="btn btn-primary">Enviar</button>
     </div>
   </div>
 </form>
-<!-- Falta el nombre del campus:  SingleLine8 -->
-
-<!-- Falta el nombre del campus:  SingleLine8 -->

@@ -10,6 +10,7 @@ foreach ($menu as $column_key => $column_data):
   <?php foreach ($column_data as $section):
   $link = $section['title'];
 
+  
     ?>
   <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-396">
 

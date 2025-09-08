@@ -33,8 +33,6 @@
     content="Universidad Norbert Wiener, AVANZA+ en tu carrera profesional. Educación de calidad internacional, en alianza con Arizona State University. ¡Postula ya!" />
   <link rel="icon" type="image/png" sizes="32x32" href="<?php echo UPLOAD_PATH; ?>/favicon/favicon.png">
 
-
-
   <?php get_template_part('content-parts/content', 'fonts'); ?>
 
   <!-- Css vars-->
@@ -86,6 +84,9 @@
 
     --color-bg-secondary: #F0EAEE;
 
+    --navbar-height-mobile: 64px;
+    --navbar-height-desktop: 118px;
+
     --swiper-prev-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-left.svg');
     --swiper-next-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-right.svg');
     --white-check: url('<?php echo get_template_directory_uri(); ?>/upload/icons/white-check.svg');
@@ -113,8 +114,6 @@
   <!-- Google Tag Manager -->
 
   <!-- End Google Tag Manager -->
-
-
   <?php wp_head(); ?>
 </head>
 

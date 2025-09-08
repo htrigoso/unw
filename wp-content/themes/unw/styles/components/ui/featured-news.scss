@@ -1,3 +1,6 @@
+@import './see-more-btn';
+@import './entry-card';
+
 .featured-news__title {
   @include title-32;
   margin-bottom: rem(20);

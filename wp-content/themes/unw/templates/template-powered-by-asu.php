@@ -4,20 +4,10 @@
  * Template Name: Powered By ASU Template
  */
 ?>
+
 <?php set_query_var('ASSETS_CHUNK_NAME', 'powered-by-asu'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php get_header(); ?>
-
-
-<?php
-add_action('wp_head', function () {
-  $hero = get_field('slide-hero');
-  vdebug($hero);
-  if ($hero && !empty($hero['list'])) {
-      uw_preload_hero_images($hero['list']);
-  }
-});
-?>
 
 <?php get_template_part(PBA_CONTENT_PATH, 'pba-navbar'); ?>
 <main>

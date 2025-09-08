@@ -11,7 +11,7 @@ $related_posts = $args['related_posts'];
   <div class="related-entries__list">
     <?php foreach ($related_posts as $post) : ?>
       <?php get_template_part(COMMON_CONTENT_PATH, 'entry-card', $post) ?>
-      <?php get_template_part(COMMON_CONTENT_PATH, 'entry-card-compact', $post); ?>
+      <?php get_template_part(BLOG_DETAIL_CONTENT_PATH, 'entry-card-compact', $post); ?>
     <?php endforeach; ?>
   </div>
 </div>

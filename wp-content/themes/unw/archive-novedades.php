@@ -1,10 +1,10 @@
-<?php set_query_var('ASSETS_CHUNK_NAME', 'news'); ?>
-<?php set_query_var('NAVBAR_COLOR', ''); ?>
-<?php get_header(); ?>
+ <?php set_query_var('ASSETS_CHUNK_NAME', 'news'); ?>
+ <?php set_query_var('NAVBAR_COLOR', ''); ?>
+ <?php get_header(); ?>
 
-<?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
-<main>
-  <?php get_template_part(NEWS_CONTENT_PATH, 'news-hero'); ?>
-  <?php get_template_part(NEWS_TABS_PATH, 'tabs'); ?>
-</main>
-<?php get_footer(); ?>
+ <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
+ <main>
+   <?php get_template_part(NEWS_CONTENT_PATH, 'news-hero'); ?>
+   <?php get_template_part(NEWS_TABS_PATH, 'tabs'); ?>
+ </main>
+ <?php get_footer(); ?>

@@ -1,3 +1,6 @@
+@import './see-more-btn';
+@import "./event-card";
+
 .swiper-events__title {
   @include title-28;
   margin-bottom: rem(16);

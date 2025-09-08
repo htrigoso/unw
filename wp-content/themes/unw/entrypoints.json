@@ -2,21 +2,68 @@
   "bundles": {
     "app": ["./app/index.js", "./styles/index.scss"],
     "home": ["./app/pages/home/index.js", "./styles/pages/home/index.scss"],
-    "careers": ["./app/pages/careers/index.js", "./styles/pages/careers/index.scss"],
-    "all-careers": ["./app/pages/all-careers/index.js", "./styles/pages/all-careers/index.scss"],
-    "admission": ["./app/pages/admission/index.js", "./styles/pages/admission/index.scss"],
-    "faculty": ["./app/pages/faculty/index.js", "./styles/pages/faculty/index.scss"],
+    "careers": [
+      "./app/pages/careers/index.js",
+      "./styles/pages/careers/index.scss"
+    ],
+    "all-careers": [
+      "./app/pages/all-careers/index.js",
+      "./styles/pages/all-careers/index.scss"
+    ],
+    "admission": [
+      "./app/pages/admission/index.js",
+      "./styles/pages/admission/index.scss"
+    ],
+    "faculty": [
+      "./app/pages/faculty/index.js",
+      "./styles/pages/faculty/index.scss"
+    ],
     "news": ["./app/pages/news/index.js", "./styles/pages/news/index.scss"],
-    "news-detail": ["./app/pages/news-detail/index.js", "./styles/pages/news-detail/index.scss"],
-    "event-detail": ["./app/pages/event-detail/index.js", "./styles/pages/event-detail/index.scss"],
-    "events": ["./app/pages/events/index.js", "./styles/pages/events/index.scss"],
+    "news-detail": [
+      "./app/pages/news-detail/index.js",
+      "./styles/pages/news-detail/index.scss"
+    ],
+    "event-detail": [
+      "./app/pages/event-detail/index.js",
+      "./styles/pages/event-detail/index.scss"
+    ],
+    "events": [
+      "./app/pages/events/index.js",
+      "./styles/pages/events/index.scss"
+    ],
     "blog": ["./app/pages/blog/index.js", "./styles/pages/blog/index.scss"],
-    "blog-detail": ["./app/pages/blog-detail/index.js", "./styles/pages/blog-detail/index.scss"],
-    "powered-by-asu": ["./app/pages/powered-by-asu/index.js", "./styles/pages/powered-by-asu/index.scss"],
-    "search": ["./app/pages/search/index.js", "./styles/pages/search/index.scss"],
-    "about-us": ["./app/pages/about-us/index.js", "./styles/pages/about-us/index.scss"],
-    "our-history": ["./app/pages/our-history/index.js", "./styles/pages/our-history/index.scss"],
-    "quality-policy": ["./app/pages/quality-policy/index.js", "./styles/pages/quality-policy/index.scss"],
-    "404": ["./app/pages/404/index.js", "./styles/pages/404/index.scss"]
+    "blog-detail": [
+      "./app/pages/blog-detail/index.js",
+      "./styles/pages/blog-detail/index.scss"
+    ],
+    "powered-by-asu": [
+      "./app/pages/powered-by-asu/index.js",
+      "./styles/pages/powered-by-asu/index.scss"
+    ],
+    "search": [
+      "./app/pages/search/index.js",
+      "./styles/pages/search/index.scss"
+    ],
+    "about-us": [
+      "./app/pages/about-us/index.js",
+      "./styles/pages/about-us/index.scss"
+    ],
+    "our-history": [
+      "./app/pages/our-history/index.js",
+      "./styles/pages/our-history/index.scss"
+    ],
+    "quality-policy": [
+      "./app/pages/quality-policy/index.js",
+      "./styles/pages/quality-policy/index.scss"
+    ],
+    "404": ["./app/pages/404/index.js", "./styles/pages/404/index.scss"],
+    "thanks": [
+      "./app/pages/thanks/index.js",
+      "./styles/pages/thanks/index.scss"
+    ],
+    "migration": [
+      "./app/pages/migration/index.js",
+      "./styles/pages/migration/index.scss"
+    ]
   }
 }

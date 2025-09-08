@@ -26,6 +26,7 @@
     "events": "^3.3.0",
     "gsap": "3.10.4",
     "include-media": "1.4.10",
+    "pristinejs": "^1.1.0",
     "scrollmagic": "2.0.8",
     "scrollmagic-plugin-gsap": "1.0.4",
     "smooth-scrollbar": "^8.7.4",

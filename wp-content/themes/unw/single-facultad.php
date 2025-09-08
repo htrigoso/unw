@@ -5,6 +5,8 @@
  */
 ?>
 
+
+
 <?php set_query_var('ASSETS_CHUNK_NAME', 'faculty'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php get_header(); ?>

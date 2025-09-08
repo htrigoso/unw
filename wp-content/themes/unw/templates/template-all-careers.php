@@ -4,7 +4,6 @@
  * Template Name: Todas las Carreras Template
  */
 ?>
-
 <?php set_query_var('ASSETS_CHUNK_NAME', 'all-careers'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php get_header(); ?>
@@ -33,7 +32,6 @@
     }
   }
 
-
   $facultades = get_terms([
     'taxonomy'   => 'facultad',
     'hide_empty' => false,
@@ -49,7 +47,7 @@
 
   if (!is_wp_error($facultades) && !empty($facultades)):
     foreach ($facultades as $facultad):
-       $tabs[] = [
+      $tabs[] = [
         'id' => $facultad->term_id,
         'label'  => $facultad->name,
         'target' => $facultad->slug,
@@ -57,8 +55,6 @@
       ];
     endforeach;
   endif;
-
-
 
   $breadcrumb = [
     ['label' => 'Inicio', 'href' => home_url('/')],
