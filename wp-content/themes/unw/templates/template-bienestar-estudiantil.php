@@ -22,7 +22,7 @@
           srcset="<?= UPLOAD_MIGRATION_PATH . '/bienestar-estudiantil/direccion-bienestar-universitario.png' ?> 500w, <?= UPLOAD_MIGRATION_PATH . '/bienestar-estudiantil/direccion-bienestar-universitario.png' ?> 1920w"
           sizes="100vw" alt="" class="img_cover">
         <div id="presentacion_vf" class="info_cover_page center">
-          <div id="presentacion" class="container">
+          <div  class="container">
             <h2 class="categoria_page serv_uni">Servicios universitarios</h2>
             <h2 class="h1_carreras">Bienestar Estudiantil</h2>
           </div>
@@ -40,22 +40,18 @@
         <div class="page_interna">
           <div class="container full">
             <div class="_2-col">
-              <div class="col-1 top_fixed">
+              <div class="col-1 full">
                 <div class="tabs_menu notab serv_uni secretaria">
-                  <a href="#presentacion" data-w-id="02261821-febb-e71d-e9d9-920de6f6c5b8"
-                    class="link_item_tab scroll large extra anipo mb-ra w-inline-block"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
-                      data-w-id="c6e84752-d069-2d2e-c308-cfadd25fc9ae" style="opacity:1" alt="" class="point_anima">
+                  <a href="#presentacion"
+                    class="link_item_tab w-inline-block">
                     <div>Presentación</div>
                   </a>
 
 
 
                   <!-- Sección del Post Bienestar Estudiantil y Becas del CPT Bienestar Universitario - Hernán Chira - Parte 2 - INICIO -->
-                  <a href="#serviciosu-bienestar-estudiantil" data-w-id="02261821-febb-e71d-e9d9-920de6f6c5be"
-                    class="link_item_tab scroll large extra anipo w-inline-block"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
-                      data-w-id="dd1367ca-db57-1472-a6a5-4d5b16ffa857" style="opacity:0" alt="" class="point_anima">
+                  <a href="#serviciosu-bienestar-estudiantil"
+                    class="link_item_tab w-inline-block">
                     <div>Servicios</div>
                   </a>
                   <!-- Sección del Post Bienestar Estudiantil y Becas del CPT Bienestar Universitario - Hernán Chira - Parte 2 - FIN -->
@@ -73,20 +69,18 @@
                       <div class="info_section full">
 
                         <!-- Sección del Post Bienestar Estudiantil y Becas del CPT Bienestar Universitario - Hernán Chira - Parte 3 - INICIO -->
-                        <div class="clase_para_wordpress richt_text">
+                        <div class="clase_para_wordpress richt_text " id="presentacion">
                           <h2>Presentación</h2>
                           <p>BIENESTAR ESTUDIANTIL está integrada por un equipo multidisciplinario de profesionales,
                             cuyo propósito es promover el bienestar físico, mental y moral de la comunidad
                             universitaria, a través de programas y servicios que estimulan su desempeño y
                             desenvolvimiento personal y académico, contribuyendo al desarrollo integral de su vida
                             universitaria.</p>
-                          <p><br></p>
                           <p>El área de bienestar estudiantil brinda sus servicios a través del Área de Servicios al
                             estudiante (Servicios Médicos y Servicios Psicopedagógicos) y el Área de Vida Universitaria
                             (Promoción del&nbsp;Deporte y Promoción Cultural). Además, organiza y lidera actividades
                             como charlas, talleres,&nbsp;conferencias, conversatorios, shows artísticos y campeonatos
                             deportivos.</p>
-                          <p><br></p>
                           <p>A continuación, te presentamos los servicios de Bienestar Estudiantil, ¡comprometidos con
                             el desarrollo integral de sus alumnos!</p>
                         </div>
@@ -103,7 +97,7 @@
                             </div> -->
 
 
-                            <div id="serviciosu-categoria-bienestar-estudiantil" role="list"
+                            <div id="serviciosu-bienestar-estudiantil" role="list"
                               class="collection_list gilla _3-col w-dyn-items">
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
                                 <a title="Ver más sobre Promoción Cultural"
@@ -111,7 +105,7 @@
                                   class="item_serv_university w-inline-block">
                                   <!-- <div class="tipo_servicio">Bienestar Estudiantil</div> -->
                                   <h4 class="h4_light">Promoción Cultural</h4>
-                                  <div class="btn text">Ver más</div>
+                                  <div class="btn-legacy text">Ver más</div>
                                 </a>
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
@@ -120,7 +114,7 @@
                                   class="item_serv_university w-inline-block">
                                   <!-- <div class="tipo_servicio">Bienestar Estudiantil</div> -->
                                   <h4 class="h4_light">Promoción del deporte</h4>
-                                  <div class="btn text">Ver más</div>
+                                  <div class="btn-legacy text">Ver más</div>
                                 </a>
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
@@ -129,7 +123,7 @@
                                   class="item_serv_university w-inline-block">
                                   <!-- <div class="tipo_servicio">Bienestar Estudiantil</div> -->
                                   <h4 class="h4_light">Servicios psicopedagógicos</h4>
-                                  <div class="btn text">Ver más</div>
+                                  <div class="btn-legacy text">Ver más</div>
                                 </a>
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
@@ -138,7 +132,7 @@
                                   class="item_serv_university w-inline-block">
                                   <!-- <div class="tipo_servicio">Bienestar Estudiantil</div> -->
                                   <h4 class="h4_light">Servicios médicos</h4>
-                                  <div class="btn text">Ver más</div>
+                                  <div class="btn-legacy text">Ver más</div>
                                 </a>
                               </div>
                             </div>

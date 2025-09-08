@@ -10,8 +10,6 @@
   get_header();
 ?>
 
-
-
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar');?>
 <main>
   <div class="main_container">
@@ -23,10 +21,7 @@
           srcset="<?= UPLOAD_MIGRATION_PATH . '/centro-de-idiomas/banner-idiomas.png' ?> 500w, <?= UPLOAD_MIGRATION_PATH . '/centro-de-idiomas/banner-idiomas.png' ?> 1920w"
           sizes="100vw" alt="" class="img_cover">
         <div class="info_cover_page center" id="presentacion_vf">
-          <div class="container" id="presentacion">
-            <!-- <h2 class="categoria_page serv_uni">
-                    Servicios Universitarios
-                </h2> -->
+          <div class="container">
             <h1 class="h1_carreras">
               Centro de Idiomas </h1>
           </div>
@@ -48,22 +43,14 @@
         <div class="page_interna">
           <div class="container full">
             <div class="_2-col">
-              <div class="col-1 top_fixed">
+              <div class="col-1 full">
                 <div class="tabs_menu notab serv_uni secretaria">
-                  <a class="link_item_tab scroll large extra anipo w-inline-block"
-                    data-w-id="8511d6dd-6d1b-ebb8-5839-904f62d78701" href="#presentacion">
-                    <img alt="" class="point_anima" data-w-id="82b7e9b9-8b30-79e5-5dab-78f644308853"
-                      src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
-                      style="opacity: 1;">
+                  <a class="link_item_tab w-inline-block" href="#presentacion">
                     <div>
                       Presentación
                     </div>
                   </a>
-                  <a class="link_item_tab scroll large extra anipo w-inline-block"
-                    data-w-id="8511d6dd-6d1b-ebb8-5839-904f62d78704" href="#idiomas">
-                    <img alt="" class="point_anima" data-w-id="b64035f1-da44-51ce-0707-5a3ce010d610"
-                      src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
-                      style="opacity: 0;">
+                  <a class="link_item_tab w-inline-block" href="#idiomas">
                     <div>
                       Idiomas
                     </div>
@@ -75,7 +62,7 @@
                   <div class="section_tab _2-col">
                     <div class="content_seccion_tab">
                       <div class="info_section full">
-                        <div class="content_section pr">
+                        <div class="content_section pr" id="presentacion">
                           <div class="clase_para_wordpress link_normal richtidiomas w-richtext">
                             <!-- ichtidiomas w-richtext -->
 
@@ -191,13 +178,8 @@
 
                                 <br><br>
                                 <h4> ORIENTADOR EDUCATIVO </h4>
-
-
-
                                 <p>Con nuestro orientador educativo estarás acompañado en todo momento, y te ayudará a:
                                 </p>
-
-
 
                                 <br><br>
                                 <ul>
@@ -207,9 +189,6 @@
 
                                   <li>Resolver tus dudas y consultas sobre el uso de la plataforma.</li>
                                 </ul>
-
-
-
                                 <p></p>
                               </div>
                             </div>
