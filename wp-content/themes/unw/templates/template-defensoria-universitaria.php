@@ -22,7 +22,7 @@
           srcset="<?= UPLOAD_MIGRATION_PATH . '/defensoria-universitaria/defensoria-universitaria.png' ?> 500w, <?= UPLOAD_MIGRATION_PATH . '/defensoria-universitaria/defensoria-universitaria.png' ?> 1920w"
           sizes="100vw" alt="" class="img_cover">
         <div id="presentacion_vf" class="info_cover_page center">
-          <div id="presentacion" class="container">
+          <div class="container">
             <h2 class="categoria_page serv_uni">Servicios universitarios</h2>
             <h2 class="h1_carreras">Defensoría Universitaria</h2>
           </div>
@@ -40,35 +40,22 @@
         <div class="page_interna">
           <div class="container full">
             <div class="_2-col">
-              <div class="col-1 top_fixed">
+              <div class="col-1 full">
                 <div class="tabs_menu notab serv_uni secretaria">
-                  <a href="#presentacion" data-w-id="c1e4d885-b79c-dad6-3d68-7dd2369fb511"
-                    class="link_item_tab scroll large extra anipo w-inline-block"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
-                      data-w-id="5735efde-de9e-70fc-72b5-2e37c2e722c7" style="opacity:1" alt="" class="point_anima">
+                  <a href="#presentacion"
+                    class="link_item_tab w-inline-block">
                     <div>Presentación</div>
                   </a>
-                  <a href="#formularios" data-w-id="c1e4d885-b79c-dad6-3d68-7dd2369fb514"
-                    class="link_item_tab scroll large extra anipo w-inline-block"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
-                      data-w-id="7fef4086-d9bf-f863-9df7-fc172c07af15" style="opacity:0" alt="" class="point_anima">
+                  <a href="#formularios"
+                    class="link_item_tab w-inline-block">
                     <div>Formularios de Atención</div>
                   </a>
-                  <a href="#modalidades" data-w-id="c1e4d885-b79c-dad6-3d68-7dd2369fb517"
-                    class="link_item_tab scroll large extra anipo w-inline-block"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
-                      data-w-id="a2d7b5cb-7924-2d98-b046-1105112fce7d" style="opacity:0" alt="" class="point_anima">
+                  <a href="#modalidades"
+                    class="link_item_tab w-inline-block">
                     <div>Canales de Atención</div>
                   </a>
-
-
                   <!-- Sección del Post Bienestar Estudiantil y Becas del CPT Bienestar Universitario - Hernán Chira - Parte 2 - INICIO -->
                   <!-- Sección del Post Bienestar Estudiantil y Becas del CPT Bienestar Universitario - Hernán Chira - Parte 2 - FIN -->
-
-
-                  <a href="#" class="link_item_tab hide w-inline-block">
-                    <div>Prewiener</div>
-                  </a>
                 </div>
               </div>
               <div class="col-1 full right">
@@ -78,25 +65,21 @@
                       <div class="info_section full">
 
                         <!-- Sección del Post Bienestar Estudiantil y Becas del CPT Bienestar Universitario - Hernán Chira - Parte 3 - INICIO -->
-                        <div class="clase_para_wordpress richt_text">
+                        <div class="clase_para_wordpress richt_text" id="presentacion">
                           <h2>Presentación</h2>
-                          <p><br></p>
                           <p style="text-align: left;">La Defensoría Universitaria es el órgano encargado de la
                             tramitación de reclamos, quejas, sugerencias o consultas relacionadas con la afectación de
                             derechos individuales de los miembros que conforman la comunidad universitaria (estudiantes,
                             docentes y egresados). Atiende los reclamos o quejas relacionadas con la prestación del
                             servicio educativo superior universitario, velando de esta forma por el mantenimiento del
                             principio de autoridad responsable.</p>
-                          <p><br></p>
                           <p style="text-align: left;">El ejercicio de las atribuciones antes señaladas se ejerce
                             siempre que los hechos materia de reclamo o queja no sean de competencia de otro órgano
                             universitario o entidad competente.</p>
-                          <p><br></p>
                           <p style="text-align: left;">El mantenimiento del principio de autoridad responsable
                             considera, por parte de la Defensoría Universitaria, un conjunto de acciones en favor de los
                             miembros de la comunidad universitaria, acordes con la legalidad de las facultades o
                             atribuciones de los órganos universitarios.</p>
-                          <p><br></p>
                           <h3><span style="color: #00b7bd;">Formulario de atención virtual</span></h3>
                           <p><a href="https://formulariovirtualdefensoriauniversitaria.uwiener.edu.pe/" target="_blank"
                               rel="noopener noreferrer" title="Ver formulario">Ver formulario</a></p>
@@ -116,7 +99,7 @@
                                 <div class="box_descargar"><img
                                     src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_download.svg' ?>"
                                     alt="" class="icon paddingright">
-                                  <div class="btn text">Descargar</div>
+                                  <div class="btn-legacy text">Descargar</div>
                                 </div>
                               </a>
                               <a title="Descargar Formulario de atención DU (Reclamo-Queja-Denuncia)"
@@ -126,7 +109,7 @@
                                 <div class="box_descargar"><img
                                     src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_download.svg' ?>"
                                     alt="" class="icon paddingright">
-                                  <div class="btn text">Descargar</div>
+                                  <div class="btn-legacy text">Descargar</div>
                                 </div>
                               </a>
                               <a title="Descargar Formulario de atención DU (Consulta/Sugerencia)"
@@ -136,7 +119,7 @@
                                 <div class="box_descargar"><img
                                     src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_download.svg' ?>"
                                     alt="" class="icon paddingright">
-                                  <div class="btn text">Descargar</div>
+                                  <div class="btn-legacy text">Descargar</div>
                                 </div>
                               </a>
                             </div>
@@ -151,7 +134,7 @@
                                 <div class="box_descargar"><img
                                     src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_download.svg' ?>"
                                     alt="" class="icon paddingright">
-                                  <div class="btn text">Descargar</div>
+                                  <div class="btn-legacy text">Descargar</div>
                                 </div>
                               </a>
                             </div>

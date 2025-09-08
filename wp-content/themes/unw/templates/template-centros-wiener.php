@@ -48,7 +48,7 @@
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Centro de Análisis Clínicos</h4><a
                       href="https://www.uwiener.edu.pe/centros-wiener/centro-de-analisis-clinicos/"
-                      class="btn w-button">+ información</a>
+                      class="btn-legacy w-button">+ información</a>
                   </div>
                 </div>
               </div>
@@ -59,7 +59,7 @@
                       class="img_cover_carreras"></div>
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Centro Odontológico</h4><a
-                      href="https://www.uwiener.edu.pe/centros-wiener/centro-odontologico/" class="btn w-button">+
+                      href="https://www.uwiener.edu.pe/centros-wiener/centro-odontologico/" class="btn-legacy w-button">+
                       información</a>
                   </div>
                 </div>
@@ -72,7 +72,7 @@
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Centro de Terapia Física y Rehabilitación</h4><a
                       href="https://www.uwiener.edu.pe/centros-wiener/centro-de-terapia-fisica-y-rehabilitacion/"
-                      class="btn w-button">+ información</a>
+                      class="btn-legacy w-button">+ información</a>
                   </div>
                 </div>
               </div>

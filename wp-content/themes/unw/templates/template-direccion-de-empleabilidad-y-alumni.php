@@ -23,7 +23,7 @@
           srcset="<?= UPLOAD_MIGRATION_PATH . '/empleabilidad-alumni/empleabilidad-y-Relacionamiento-Empresarial-1.png' ?> 500w, <?= UPLOAD_MIGRATION_PATH . '/empleabilidad-alumni/empleabilidad-y-Relacionamiento-Empresarial-1.png' ?> 1920w"
           sizes="100vw" alt="" class="img_cover">
         <div id="presentacion_vf" class="info_cover_page center">
-          <div id="presentacion" class="container">
+          <div class="container">
             <h2 class="categoria_page serv_uni">Servicios universitarios</h2>
             <h2 class="h1_carreras">Dirección de Empleabilidad y Alumni</h2>
           </div>
@@ -41,27 +41,20 @@
         <div class="page_interna">
           <div class="container full">
             <div class="_2-col">
-              <div class="col-1 top_fixed">
+              <div class="col-1 full">
                 <div class="tabs_menu notab serv_uni secretaria">
-                  <a href="#presentacion" data-w-id="c1e4d885-b79c-dad6-3d68-7dd2369fb511"
-                    class="link_item_tab scroll large extra anipo w-inline-block"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
-                      data-w-id="5735efde-de9e-70fc-72b5-2e37c2e722c7" style="opacity:1" alt="" class="point_anima">
+                  <a href="#presentacion"
+                    class="link_item_tab w-inline-block">
                     <div>Presentación</div>
                   </a>
 
 
                   <!-- Sección del Post Bienestar Estudiantil y Becas del CPT Bienestar Universitario - Hernán Chira - Parte 2 - INICIO -->
                   <!-- Sección del Post Bienestar Estudiantil y Becas del CPT Bienestar Universitario - Hernán Chira - Parte 2 - FIN -->
-
-
-                  <a href="#" class="link_item_tab hide w-inline-block">
-                    <div>Prewiener</div>
-                  </a>
                 </div>
               </div>
               <div class="col-1 full right">
-                <div class="info_content_tab full-right">
+                <div class="info_content_tab full-right" id="presentacion">
                   <div class="section_tab _2-col">
                     <div class="content_seccion_tab">
                       <div class="info_section full">
@@ -69,15 +62,12 @@
                         <!-- Sección del Post Bienestar Estudiantil y Becas del CPT Bienestar Universitario - Hernán Chira - Parte 3 - INICIO -->
                         <div class="clase_para_wordpress richt_text">
                           <h1>Presentación</h1>
-                          <p><br></p>
                           <p style="text-align: justify;">La Dirección de Empleabilidad y&nbsp;Alumni&nbsp;busca
                             fortalecer las competencias y habilidades de nuestros alumnos y egresados para facilitar su
                             inserción laboral y promover su éxito profesional.</p>
-                          <p><br></p>
                           <p style="text-align: justify;">Así mismo, somos el nexo entre el entre nuestra comunidad
                             estudiantil y el mundo laboral, a través de alianzas estratégicas con empresas líderes en el
                             mercado.</p>
-                          <p><br></p>
                           <h3><b>Alcance</b></h3>
                           <ul>
                             <li>Estudiantes Wiener de todas las carreras y ciclos.</li>
@@ -85,7 +75,6 @@
                             <li>Egresados de Postgrado Wiener.</li>
                             <li>Egresados de Segundas Especialidades Wiener.</li>
                           </ul>
-                          <p><br></p>
                           <h3><b>Objetivo</b></h3>
                           <p style="text-align: justify;">El objetivo de la Dirección de Empleabilidad
                             y&nbsp;Alumni&nbsp;es brindar&nbsp;<b>herramientas y oportunidades de
@@ -93,7 +82,6 @@
                               egresados;&nbsp;</b>que les permitan un adecuado&nbsp;<b>desenvolvimiento
                               laboral,&nbsp;</b>una exitosa&nbsp;<b>búsqueda de empleo&nbsp;</b>y&nbsp;<b>crecimiento
                               profesional&nbsp;</b>en el mercado laboral actual.</p>
-                          <p><br></p>
                           <h3><b><span lang="es">Misión</span></b></h3>
                           <ul>
                             <li style="text-align: justify;">Impulsar el crecimiento personal y profesional de nuestra
@@ -120,16 +108,13 @@
                                 con empresas empleadoras y reclutadores para mejorar la calidad de las ofertas laborales
                                 ofrecidas a nuestros estudiantes y egresados.</span></li>
                           </ul>
-                          <p><br></p>
                           <h3><b>Servicios para Empresas – Wiener Empleo</b></h3>
                           <p style="text-align: justify;"><span lang="es">El servicio de Wiener Empleo busca garantizar
                               la visibilidad profesional de sus estudiantes y egresados, a través de alianzas
                               estratégicas con empresas que requieran perfiles alineados a nuestra calidad formativa y
                               programas de estudio; favoreciendo así la inserción laboral de nuestra comunidad
                               académica.</span></p>
-                          <p><br></p>
                           <p><strong><span lang="es">Nuestro servicio de Wiener Empleo, consiste en:</span></strong></p>
-                          <p><br></p>
                           <ul>
                             <li><strong><span lang="es">Recepción del perfil requerido por la empresa.</span></strong>
                             </li>
@@ -149,23 +134,20 @@
                                 lang="es">empleabilidad@uwiener.edu.pe</span></a></p>
                         </div>
                         <!-- Sección del Post Bienestar Estudiantil y Becas del CPT Bienestar Universitario - Hernán Chira - Parte 3 - INICIO -->
-
-
                         <!-- Sección del Post Bienestar Estudiantil y Becas del CPT Bienestar Universitario - Hernán Chira - Parte 4 - INICIO -->
                       </div>
                       <!-- Sección del Post Bienestar Estudiantil y Becas del CPT Bienestar Universitario - Hernán Chira - Parte 4 - FIN -->
-
                       <div id="conocemas" class="content_section pr w-condition-invisiblex">
                         <div class="title_section">
                           <h3 class="h3_interna_title">Conoce más</h3>
                           <div class="line"></div>
                         </div>
-                        <div class="btn_box">
+                        <div class="btn-legacy_box">
                           <a href="https://bolsalaboral.uwiener.edu.pe/" target="_blank"
-                            class="btn icon marginright w-inline-block">
+                            class="btn-legacy icon marginright w-inline-block">
                             <img
                               src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_bt.svg' ?>"
-                              alt="" class="icon_btn big">
+                              alt="" class="icon_btn-legacy big">
                             <div>Bolsa de Trabajo Uwiener Aquí</div>
                           </a>
                         </div>
