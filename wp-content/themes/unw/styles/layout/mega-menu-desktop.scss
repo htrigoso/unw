@@ -13,7 +13,8 @@
 }
 
 .menu-item-has-children.is-open {
-  a.has-link-parent {
+  a.has-link-parent,
+  h4 {
     font-weight: var(--font-semi-bold);
     &::after {
       transform: translateY(-50%) rotate(-135deg);
@@ -34,10 +35,12 @@
     width: 100%;
     background: linear-gradient(171deg, #fff 80.91%, #07c8cc 123.34%);
   }
-  .menu-item-has-children > a {
+  .menu-item-has-children > a,
+  .menu-item-has-children > h4 {
     font-size: rem(18);
     font-weight: var(--font-semi-bold);
     color: var(--color-turquoise-two);
+    cursor: pointer;
   }
   .sub-menu-parent {
     display: flex;

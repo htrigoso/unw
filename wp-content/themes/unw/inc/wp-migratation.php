@@ -45,6 +45,11 @@ if (!is_page_template($template_paths)) {
       'path' => '/assets/js/jquery.min.js',
       'deps' => [],
     ],
+    'js-custom' => [
+      'type' => 'script',
+      'path' => '/assets/js/main.js',
+      'deps' => [],
+    ],
     'webflow-script' => [
       'type' => 'script',
       'path' => '/assets/js/webflow.js',

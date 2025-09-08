@@ -590,7 +590,7 @@
                           </div>
 
                         </div>
-                        <a class="btn w-button" data-ix="openmodalcentros" href="#"
+                        <a class="btn-legacy w-button" data-ix="openmodalcentros" href="#"
                           style="transition: color 0.15s, background-color 0.2s;">
                           Ver todo el Staff
                         </a>

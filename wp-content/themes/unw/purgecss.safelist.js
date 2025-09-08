@@ -24,8 +24,15 @@ module.exports = {
     'menu-grid-col-4',
     'menu-grid-col-3',
     'menu-grid-col-2',
-    'sub-menu-parent'
+    'sub-menu-parent',
 
+    'accordion-item',
+    'accordion-header',
+    'accordion-label',
+    'accordion-content',
+    /^accordion(-item)?(-standard|-filled)?$/,
+    /^accordion-(header|label|content)$/,
+    /^is-open$/
   ],
   greedy: [
     /^main-submenu-wrapper__main(?:--[a-z0-9_-]+)?$/,

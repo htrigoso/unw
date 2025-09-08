@@ -77,8 +77,14 @@
     height: 100%;
   }
 }
+h4.has-link-parent {
+  cursor: pointer;
 
-.navbar__menu > ul > li > a {
+  font-weight: var(--font-regular);
+}
+
+.navbar__menu > ul > li > a,
+.navbar__menu > ul > li > h4 {
   @include media(">=tablet") {
     height: 100%;
     display: flex !important;
@@ -87,11 +93,13 @@
 }
 
 .navbar__menu {
-  a {
+  a,
+  h4 {
     color: var(--color-black);
   }
 
-  .menu-item-has-children > a {
+  .menu-item-has-children > a,
+  .menu-item-has-children > h4 {
     position: relative;
     padding-right: 24px;
   }
@@ -129,9 +137,9 @@
       margin-right: 0;
     }
 
-    & > a {
+    & > a,
+    & > h4 {
       display: inline-block;
-
       text-align: center;
     }
   }
