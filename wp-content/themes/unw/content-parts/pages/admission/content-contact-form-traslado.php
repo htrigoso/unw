@@ -58,66 +58,51 @@ $utms_final = merge_utms($utms_default, $utm_admission);
     <div class="form-body__fields">
       <div class="flex justify-between m-b-24">
         <div class="f-50">
-          <div class="form-field">
-            <input name="Name_First" id="Name_First" placeholder="" type="text" required />
-            <label for="Name_First">Nombres (*)</label>
-            <span class="error-message">Datos inválidos</span>
-          </div>
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+            'name'=> 'Name_First',
+            'label'=> 'Nombres (*)',
+            'type' => 'text',
+          ]);?>
         </div>
         <div class="f-50">
-          <div class="form-field">
-            <input name="Name_Last" id="Name_Last" placeholder="" type="text" />
-            <label for="Name_Last">Apellidos (*)</label>
-            <span class="error-message">Datos inválidos</span>
-          </div>
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+            'name'=> 'Name_Last',
+            'label'=> 'Apellidos (*)',
+            'type' => 'text',
+          ]);?>
         </div>
       </div>
 
       <div class="flex justify-between m-b-24">
         <div class="f-50">
-          <div class="form-field">
-               <input required type="tel" inputmode="numeric" pattern="\d{8}" maxlength="8" name="SingleLine" placeholder=""
-              id="SingleLine" />
-            <label for="SingleLine">Número de documento (*)</label>
-            <span class="error-message">Datos inválidos</span>
-          </div>
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+            'name'=> 'SingleLine',
+            'label'=> 'Número de documento (*)',
+            'type' => 'tel',
+          ]);?>
         </div>
         <div class="f-50">
-          <div class="form-field">
-            <input type="tel" inputmode="numeric" pattern="\d{9}" maxlength="9" name="PhoneNumber_countrycode"
-              id="PhoneNumber_countrycode" placeholder="" required />
-            <label for="PhoneNumber_countrycode">Celular (*)</label>
-            <span class="error-message">Datos inválidos</span>
-          </div>
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+            'name'=> 'PhoneNumber_countrycode',
+            'label'=> 'Celular (*)',
+            'type' => 'tel',
+          ]);?>
         </div>
       </div>
       <div class="flex justify-between m-b-24">
         <div class="f-50">
-          <div class="form-field">
-            <input type="email" name="Email" id="Email" placeholder="" required />
-            <label for="Email">Correo electrónico (*)</label>
-            <span class="error-message">Datos inválidos</span>
-          </div>
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+            'name'=> 'Email',
+            'label'=> 'Correo electrónico (*)',
+            'type' => 'email',
+          ]);?>
         </div>
         <div class="f-50">
-          <div class="form-field form-field-select">
-            <select name="SingleLine3" id="careerSelect" required>
-              <option value="" selected disabled>--Seleccione--</option>
-              <?php foreach ($careers as $career) : ?>
-              <optgroup label="<?= esc_html($career['faculty']); ?>">
-                <?php if (!empty($career['list'])) : ?>
-                <?php foreach ($career['list'] as $item) : ?>
-                <option value="<?= esc_attr($item['value']); ?>">
-                  <?= esc_html($item['name']); ?>
-                </option>
-                <?php endforeach; ?>
-                <?php endif; ?>
-              </optgroup>
-              <?php endforeach; ?>
-            </select>
-            <label for="careerSelect">Escoge tu carrera</label>
-            <span class="error-message">Datos inválidos</span>
-          </div>
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'careers', [
+            'name'=> 'SingleLine3',
+            'label'=> 'Elige tu carrera (*)',
+            'careers' => $careers,
+          ]);?>
         </div>
       </div>
 
@@ -160,15 +145,7 @@ $utms_final = merge_utms($utms_default, $utm_admission);
       (*) Campos obligatorios
     </p>
     <div class="form-body__terms">
-      <div class="form-field-checkbox">
-        <input type="checkbox" name="DecisionBox1" id="politicas" name="politicas" required checked>
-        <label for="politicas">
-          <span class="custom-checkbox"></span>
-          <span class="text">
-            Declaro expresamente haber leído y aceptado las <a href="#">Políticas de privacidad</a>
-          </span>
-        </label>
-      </div>
+      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox');?>
     </div>
     <div class="form-body__actions">
       <button type="submit" class="btn btn-primary">Enviar</button>

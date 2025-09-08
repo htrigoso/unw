@@ -1,5 +1,5 @@
 import Component from '../../classes/Component'
-import { createSelectDepartament, removeSelectDepartament, setClaseName } from './utils'
+import { createHiddenInputs, createSelectDepartament, removeSelectDepartament, setClaseName, updateDepartmentHiddenInput, updateHiddenCareerFields, updateHiddenInputs, validateInputs } from './utils'
 
 // ==========================
 // Constantes de formularios
@@ -21,6 +21,7 @@ export default class FormCrmAdmission extends Component {
   // Inicializadores
   // ==========================
   createListeners() {
+    validateInputs()
     this.handleFormMixtoChange()
     this.handleCarrers()
     this.handleDepartamentChange()
@@ -46,8 +47,9 @@ export default class FormCrmAdmission extends Component {
 
         switch (value) {
           case 'pregrado':
+          case 'work':
             select.setAttribute('name', 'SingleLine3')
-            this.element.action = FORM_ADMISSION_PRESENCIAL
+
             setClaseName('f-100', this.element)
 
             if (departaments.length > 0) {
@@ -58,16 +60,41 @@ export default class FormCrmAdmission extends Component {
             if (select.value) {
               this.updateHiddenFields({ select, hiddenContainer })
             }
-            document.querySelector('input[name="SingleLine1"]').value = 'UNW_Pregrado'
-            document.querySelector('input[name="SingleLine2"]').value = 'Web Admisión I'
+
+            this.element.action = (value === 'work')
+              ? FORM_ADMISSION_VIRTUAL
+              : FORM_ADMISSION_PRESENCIAL
+            if (value === 'work') {
+              // document.querySelector('input[name="SingleLine1"]').value = 'UNW_Pregrado_Distancia'
+              // document.querySelector('input[name="SingleLine2"]').value = 'Web Admisión I - Virtual'
+
+              updateHiddenInputs([
+                { name: 'SingleLine1', value: 'UNW_Pregrado_Distancia' },
+                { name: 'SingleLine2', value: 'Web Admisión I - Virtual' }
+              ])
+            }
+            if (value === 'pregrado') {
+              // document.querySelector('input[name="SingleLine1"]').value = 'UNW_Pregrado'
+              // document.querySelector('input[name="SingleLine2"]').value = 'Web Admisión I'
+
+              updateHiddenInputs([
+                { name: 'SingleLine1', value: 'UNW_Pregrado' },
+                { name: 'SingleLine2', value: 'Web Admisión I' }
+              ])
+            }
+
             break
 
           case 'virtual':
             this.element.action = FORM_ADMISSION_VIRTUAL
             setClaseName('f-50', this.element)
             select.setAttribute('name', 'SingleLine5')
-            document.querySelector('input[name="SingleLine1"]').value = 'UNW_Pregrado_Distancia'
-            document.querySelector('input[name="SingleLine2"]').value = 'Web Admisión I - Virtual'
+            // document.querySelector('input[name="SingleLine1"]').value = 'UNW_Pregrado_Distancia'
+            // document.querySelector('input[name="SingleLine2"]').value = 'Web Admisión I - Virtual'
+            updateHiddenInputs([
+              { name: 'SingleLine1', value: 'UNW_Pregrado_Distancia' },
+              { name: 'SingleLine2', value: 'Web Admisión I - Virtual' }
+            ])
             if (departaments.length > 0) {
               createSelectDepartament({ element: this.element })
             }
@@ -88,17 +115,41 @@ export default class FormCrmAdmission extends Component {
 
   buildHiddenInputs({ facultyName, careerName, type }) {
     if (type === 'pregrado') {
-      return `
-      <input type="hidden" name="SingleLine5" value="${facultyName}">
-      <input type="hidden" name="SingleLine4" value="${careerName}">
-    `
+      //   return `
+      //   <input type="hidden" name="SingleLine5" value="${facultyName}">
+      //   <input type="hidden" name="SingleLine4" value="${careerName}">
+      // `
+      return createHiddenInputs({
+        type,
+        fields: [
+          { name: 'SingleLine5', facultyName },
+          { name: 'SingleLine4', careerName }
+        ]
+      })
     }
 
     if (type === 'virtual') {
-      return `
-      <input type="hidden" name="SingleLine4" value="${facultyName}">
-      <input type="hidden" name="SingleLine6" value="${careerName}">
-    `
+      //   return `
+      //   <input type="hidden" name="SingleLine4" value="${facultyName}">
+      //   <input type="hidden" name="SingleLine6" value="${careerName}">
+      // `
+
+      return createHiddenInputs({
+        type,
+        fields: [
+          { name: 'SingleLine4', facultyName },
+          { name: 'SingleLine6', careerName }
+        ]
+      })
+    }
+    if (type === 'work') {
+      return createHiddenInputs({
+        type,
+        fields: [
+          { name: 'SingleLine4', facultyName },
+          { name: 'SingleLine6', careerName }
+        ]
+      })
     }
 
     return ''
@@ -123,56 +174,63 @@ export default class FormCrmAdmission extends Component {
   }
 
   handleCarrers() {
-    const select = document.getElementById('careerSelect')
-    const form = document.querySelector(`${this.formContainer}`)
-    const hiddenContainer = form.querySelector('.custom-hidden')
+    // const select = document.getElementById('careerSelect')
+    // const form = document.querySelector(`${this.formContainer}`)
+    // const hiddenContainer = form.querySelector('.custom-hidden')
 
-    const boundUpdate = () => {
-      const checked = document.querySelector('input[name="form_mixto"]:checked')
-      const selectedOption = select.options[select.selectedIndex]
+    // const boundUpdate = () => {
+    //   const checked = document.querySelector('input[name="form_mixto"]:checked')
+    //   const selectedOption = select.options[select.selectedIndex]
 
-      if (!selectedOption) return
+    //   if (!selectedOption) return
 
-      const parentOptgroup = selectedOption.parentElement
-      if (!parentOptgroup || parentOptgroup.tagName !== 'OPTGROUP') return
+    //   const parentOptgroup = selectedOption.parentElement
+    //   if (!parentOptgroup || parentOptgroup.tagName !== 'OPTGROUP') return
 
-      const facultyName = parentOptgroup.label
-      const careerName = selectedOption.textContent.trim()
-      if (checked) {
-        // ✅ con radio seleccionado → usa lógica normal
-        this.updateHiddenFields({ select, hiddenContainer })
-      } else {
-        // ✅ sin radio → aún actualiza con datos de carrera/optgroup
-        hiddenContainer.innerHTML = `
-        <input type="hidden" name="SingleLine5" value="${facultyName}">
-        <input type="hidden" name="SingleLine4" value="${careerName}">
-      `
-      }
-    }
+    //   const facultyName = parentOptgroup.label
+    //   const careerName = selectedOption.textContent.trim()
+    //   if (checked) {
+    //     // ✅ con radio seleccionado → usa lógica normal
+    //     this.updateHiddenFields({ select, hiddenContainer })
+    //   } else {
+    //     // ✅ sin radio → aún actualiza con datos de carrera/optgroup
+    //     hiddenContainer.innerHTML = `
+    //     <input type="hidden" name="SingleLine5" value="${facultyName}">
+    //     <input type="hidden" name="SingleLine4" value="${careerName}">
+    //   `
+    //   }
+    // }
 
-    // eventos
-    select.addEventListener('change', boundUpdate)
-    document
-      .querySelectorAll('input[name="form_mixto"]')
-      .forEach(radio => radio.addEventListener('change', boundUpdate))
+    // // eventos
+    // select.addEventListener('change', boundUpdate)
+    // document
+    //   .querySelectorAll('input[name="form_mixto"]')
+    //   .forEach(radio => radio.addEventListener('change', boundUpdate))
 
-    // inicializar al cargar
-    boundUpdate()
+    // // inicializar al cargar
+    // boundUpdate()
+
+    updateHiddenCareerFields({
+      facultyField: 'SingleLine5', careerField: 'SingleLine4', formContainer: this.formContainer
+    })
   }
 
   handleDepartamentChange() {
-    document.addEventListener('change', (event) => {
-      const target = event.target
+    // document.addEventListener('change', (event) => {
+    //   const target = event.target
 
-      if (target && target.matches('#departament')) {
-        const form = target.closest('form')
-        if (!form) return
+    //   if (target && target.matches('#departament')) {
+    //     const form = target.closest('form')
+    //     if (!form) return
 
-        const selectedOption = target.options[target.selectedIndex]
-        const text = selectedOption?.textContent.trim() || ''
+    //     const selectedOption = target.options[target.selectedIndex]
+    //     const text = selectedOption?.textContent.trim() || ''
 
-        document.querySelector('input[name="SingleLine9"]').value = text
-      }
+    //     document.querySelector('input[name="SingleLine9"]').value = text
+    //   }
+    // })
+    updateDepartmentHiddenInput({
+      fieldName: 'SingleLine9'
     })
   }
 }

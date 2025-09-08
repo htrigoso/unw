@@ -29,6 +29,8 @@ define('THANKS_CONTENT_PATH', 'content-parts/pages/thanks/content');
 define('ERROR_CONTENT_PATH', 'content-parts/pages/404/content');
 
 define('GENERAL_CONTENT_PATH', 'content-parts/content');
+define('GENERAL_FORM_CONTACT_PATH', 'content-parts/forms/content');
+
 
 define('CAREERS_TABS_PATH', 'content-parts/pages/careers/tabs/content');
 define('ALL_CAREERS_TABS_PATH', 'content-parts/pages/all-careers/tabs/content');
