@@ -580,15 +580,12 @@
                         <div class="clase_para_wordpress ">
                           <p style="text-align: left;"><strong><span style="color: #00babe;">Paquete de
                                 promociones</span></strong></p>
-                          &nbsp;
                           <ul>
                             <li style="text-align: left;">10% de descuento en paquete de 10 sesiones</li>
                             <li style="text-align: left;">10% de descuento en paquete de 5 sesiones</li>
                           </ul>
-                          &nbsp;
                           <p style="text-align: left;"><strong><span style="color: #00babe;">Agenda una evaluación
                                 Fisioterapéutica*</span></strong></p>
-                          &nbsp;
                           <p style="text-align: left;"><span style="font-weight: 400;">*Es indispensable contar con un
                               previo diagnóstico médico, orden para terapia o con algún diagnóstico por imágenes.</span>
                           </p>
@@ -634,7 +631,7 @@
                             </ul>
                           </div>
                         </div>
-                        <a class="btn w-button" data-ix="openmodalcentros" href="#"
+                        <a class="btn-legacy w-button" data-ix="openmodalcentros" href="#"
                           style="transition: color 0.15s, background-color 0.2s;">
                           Ver todo el Staff
                         </a>
