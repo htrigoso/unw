@@ -36,6 +36,10 @@ if (!is_page_template($template_paths)) {
       'type' => 'style',
       'path' => '/assets/css/style.css',
     ],
+    'webflow-style' => [
+      'type' => 'style',
+      'path' => '/assets/css/webflow.css',
+    ],
     'jquery-custom' => [
       'type' => 'script',
       'path' => '/assets/js/jquery.min.js',
