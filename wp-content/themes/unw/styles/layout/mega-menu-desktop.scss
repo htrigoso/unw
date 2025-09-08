@@ -55,6 +55,8 @@
     }
   }
 }
+
+.menu-grid-col-2,
 .menu-grid-col-4,
 .menu-grid-col-3 {
   .sub-menu-parent {
@@ -69,6 +71,9 @@
 }
 .menu-grid-col-3 {
   --cols: 3;
+}
+.menu-grid-col-2 {
+  --cols: 2;
 }
 
 .sub-menu-parent-tab.is-open {

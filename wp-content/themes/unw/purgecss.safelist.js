@@ -20,7 +20,11 @@ module.exports = {
     'sidebar__submenu-back',
     'sidebar__menu-link',
     'sidebar__submenu-title',
-    'visible'
+    'visible',
+    'menu-grid-col-4',
+    'menu-grid-col-3',
+    'menu-grid-col-2',
+    'sub-menu-parent'
 
   ],
   greedy: [
