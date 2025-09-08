@@ -42,6 +42,7 @@
   .sub-menu-parent {
     display: flex;
     gap: rem(100);
+
     .sub-menu {
       a {
         font-size: rem(16);
@@ -60,7 +61,7 @@
 .menu-grid-col-4,
 .menu-grid-col-3 {
   .sub-menu-parent {
-    display: grid;
+    display: grid !important;
     gap: rem(20);
     grid-template-columns: repeat(var(--cols), 1fr);
   }
