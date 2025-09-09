@@ -39,6 +39,14 @@ function register_post_type_carreras() {
 
 
 
+add_filter('admin_post_thumbnail_html', function($content, $post_id) {
+    if (get_post_type($post_id) === 'carreras') {
+        $content .= '<p><em>Tamaño recomendado: 315×186px</em></p>';
+    }
+    return $content;
+}, 10, 2);
+
+
 //***************** */
 // Metabox con radio buttons para MODALIDAD
 // Metabox con radio buttons para MODALIDAD (SIN opción "Ninguna")
