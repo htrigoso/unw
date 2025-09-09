@@ -31,6 +31,7 @@ module.exports = {
     'accordion-label',
     'accordion-content',
     'menu-heading',
+    'menu-navbar_menu_mobile_1-container',
     /^accordion(-item)?(-standard|-filled)?$/,
     /^accordion-(header|label|content)$/,
     /^is-open$/
