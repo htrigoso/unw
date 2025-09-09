@@ -117,7 +117,7 @@ function custom_carreras_rewrite_rules() {
   add_rewrite_rule('^carreras/([^/]+)/?$', 'index.php?carreras=$matches[1]', 'top');
 
 
-  add_rewrite_rule('^carreras-uwiener/([^/]+)/?$', 'index.php?pagename=carreras-uwiener&facultad_filter=$matches[1]', 'top');
+  // add_rewrite_rule('^carreras-uwiener/([^/]+)/?$', 'index.php?pagename=carreras-uwiener&facultad_filter=$matches[1]', 'top');
 }
 
 
