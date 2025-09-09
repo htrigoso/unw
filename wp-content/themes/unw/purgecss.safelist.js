@@ -32,6 +32,7 @@ module.exports = {
     'accordion-content',
     'menu-heading',
     'menu-navbar_menu_mobile_1-container',
+    'is-home',
     /^accordion(-item)?(-standard|-filled)?$/,
     /^accordion-(header|label|content)$/,
     /^is-open$/

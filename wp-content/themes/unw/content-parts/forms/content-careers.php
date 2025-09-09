@@ -24,5 +24,5 @@ $careers = $input['careers']?? []
     </optgroup>
     <?php endforeach; ?>
   </select>
-  <label for="<?php echo esc_attr($id); ?>"><?php echo esc_html($label); ?></label>
+  <label for="<?php echo esc_attr($input['name']); ?>"><?php echo esc_html($label); ?></label>
 </div>

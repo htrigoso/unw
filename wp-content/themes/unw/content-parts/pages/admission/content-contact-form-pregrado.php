@@ -66,7 +66,7 @@ if($is_departments) {
     <div class="form-body__fields">
 
       <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'radio', [
-          'direction'    => 'flex-col gap-10'
+          'direction'    => 'flex-col justify-between',
       ]);?>
 
       <div class="flex justify-between m-b-24">
