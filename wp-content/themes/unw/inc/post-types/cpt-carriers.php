@@ -107,6 +107,13 @@ function custom_carrera_permalink_by_tax($post_link, $post) {
   return $post_link;
 }
 
+add_filter('query_vars', function ($vars) {
+  $vars[] = 'facultad';   // filtro por tax facultad
+  $vars[] = 'modalidad';  // (opcional) filtro por tax modalidad
+  return $vars;
+});
+
+
 // REWRITE RULES
 add_action('init', 'custom_carreras_rewrite_rules');
 function custom_carreras_rewrite_rules() {
@@ -117,7 +124,11 @@ function custom_carreras_rewrite_rules() {
   add_rewrite_rule('^carreras/([^/]+)/?$', 'index.php?carreras=$matches[1]', 'top');
 
 
-  // add_rewrite_rule('^carreras-uwiener/([^/]+)/?$', 'index.php?pagename=carreras-uwiener&facultad_filter=$matches[1]', 'top');
+  // Listado por facultad
+  add_rewrite_rule('^carreras/facultad/([^/]+)/?$', 'index.php?pagename=carreras&facultad=$matches[1]', 'top');
+
+  // (Opcional) listado por modalidad
+  add_rewrite_rule('^carreras/modalidad/([^/]+)/?$', 'index.php?pagename=carreras&modalidad=$matches[1]', 'top');
 }
 
 
@@ -232,8 +243,8 @@ function get_current_facultad_filter() {
 }
 
 // Función para generar URL de filtro por facultad
-function get_carreras_filter_url($facultad_slug, $base_page = 'carreras-uwiener') {
-    return home_url("/{$base_page}/{$facultad_slug}/");
+function get_carreras_filter_url($facultad_slug, $base_page = 'carreras') {
+  return home_url("/{$base_page}/facultad/{$facultad_slug}/");
 }
 
 // Función para obtener carreras filtradas por facultad
@@ -305,12 +316,12 @@ function get_current_term_id() {
 
 // Función para obtener el slug de facultad actual
 function get_current_facultad_slug() {
-    return get_query_var('facultad_filter');
+    return get_query_var('facultad');
 }
 
 // Función para obtener el slug de modalidad actual
 function get_current_modalidad_slug() {
-    return get_query_var('modalidad_filter');
+    return get_query_var('modalidad');
 }
 
 
