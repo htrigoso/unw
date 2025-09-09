@@ -37,7 +37,13 @@ function register_post_type_carreras() {
   register_post_type('carreras', $args);
 }
 
-
+add_filter( 'wp_unique_post_slug', function( $slug, $post_ID, $post_status, $post_type, $post_parent, $original_slug ) {
+    if ( $post_type === 'carreras' ) {
+        // No alteres el slug, aunque exista duplicado
+        return $original_slug;
+    }
+    return $slug;
+}, 10, 6 );
 
 add_filter('admin_post_thumbnail_html', function($content, $post_id) {
     if (get_post_type($post_id) === 'carreras') {
