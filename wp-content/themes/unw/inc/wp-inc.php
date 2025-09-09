@@ -33,6 +33,7 @@ require_once dirname(__FILE__) . '/taxonomies/taxonomy-news.php';
 // require menu walkers
 // require head
 require_once dirname(__FILE__) . '/functions/include-menu-desktop.php';
+require_once dirname(__FILE__) . '/functions/include-menu-footer.php';
 require_once dirname(__FILE__) . '/functions/include-menu-mobile.php';
 
 // require globe
