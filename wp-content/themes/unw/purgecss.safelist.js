@@ -30,6 +30,7 @@ module.exports = {
     'accordion-header',
     'accordion-label',
     'accordion-content',
+    'menu-heading',
     /^accordion(-item)?(-standard|-filled)?$/,
     /^accordion-(header|label|content)$/,
     /^is-open$/
