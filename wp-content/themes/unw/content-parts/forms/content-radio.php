@@ -3,10 +3,11 @@ $input = $args ?? [];
 
 // default classes
 $directionClass = !empty($input['direction']) ? $input['direction'] : ''; // solo si se pasa
-$optionClass    = $input['option_class'] ?? 'm-b-10';  // por defecto margen abajo
+$optionClass    = $input['option_class'] ?? 'm-b-10';
+$location    = $input['location'] ?? '';
 ?>
 
-<div class="form-field-radio m-b-24">
+<div class="form-field-radio m-b-24 <?=esc_attr($location);?>">
   <fieldset class="flex <?php echo esc_attr($directionClass); ?>">
     <div class="radio-option <?php echo esc_attr($optionClass); ?>">
       <input type="radio" id="pregrado" name="form_mixto" value="pregrado" checked />

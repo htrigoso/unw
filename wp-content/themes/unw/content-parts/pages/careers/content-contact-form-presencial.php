@@ -82,8 +82,7 @@
     <div class="form-body__fields">
       <?php if ( $is_form_mixto ): ?>
       <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'radio', [
-          'direction'    => 'flex-col',
-          'option_class' => 'm-b-10'
+        'direction'    => 'flex-col justify-between',
       ]);?>
       <?php endif; ?>
 

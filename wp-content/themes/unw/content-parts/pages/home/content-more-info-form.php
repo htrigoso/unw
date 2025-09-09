@@ -61,7 +61,7 @@ $list_departaments = $form_crm_option['list_departaments'];
     <div class="form-body__fields">
       <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'radio', [
          'direction'    => 'justify-between',
-
+         'location'      => 'is-home'
       ]);?>
       <div class="flex justify-between m-b-24">
         <div class="f-50">
