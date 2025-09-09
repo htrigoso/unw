@@ -31,6 +31,7 @@ $tabs = [
             case 'presentacion':
 
               $presentation = get_field('presentation', get_the_ID());
+
               $testimonials_info = $presentation['testimonials_info'] ?? null;
 
               $testimonials = [];
