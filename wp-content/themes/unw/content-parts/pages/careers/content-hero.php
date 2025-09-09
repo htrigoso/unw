@@ -12,10 +12,11 @@ if (isset($sliders['list_of_files']) && is_array($sliders['list_of_files'])) {
     }
   }
 }
+$name_tax = get_facultad_taxonomy_name();
 
 $base_breadcrumbs = [
   ['label' => 'Inicio', 'href' => home_url('/')],
-  ['label' => 'Ciencias de la Salud', 'href' => '']
+  ['label' => $name_tax, 'href' => '/']
 ];
 ?>
 <div class="careers-hero">
