@@ -11,10 +11,6 @@
   height: rem(140);
   width: 100%;
   object-fit: cover;
-
-  @include media(">=phone") {
-    height: rem(122);
-  }
 }
 
 .program-card--content {
