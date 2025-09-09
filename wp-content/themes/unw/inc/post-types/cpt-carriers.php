@@ -366,3 +366,77 @@ function get_current_page_title() {
 
     return '';
 }
+
+//////////
+// 1) Reemplaza la columna automática por una personalizada "Facultades"
+add_filter('manage_edit-carreras_columns', function ($cols) {
+  if (isset($cols['taxonomy-facultad'])) {
+    unset($cols['taxonomy-facultad']); // quitar la generada por WP
+  }
+  // Inserta nuestra columna en una posición razonable (después del título)
+  $new = [];
+  foreach ($cols as $k => $v) {
+    $new[$k] = $v;
+    if ($k === 'title') {
+      $new['facultad_col'] = 'Facultades';
+    }
+  }
+  return $new;
+});
+
+// 2) Contenido de la columna: enlaces que filtran con taxonomy=facultad&term=<slug>
+add_action('manage_carreras_posts_custom_column', function ($col, $post_id) {
+  if ($col !== 'facultad_col') return;
+
+  $terms = get_the_terms($post_id, 'facultad');
+  if (empty($terms) || is_wp_error($terms)) {
+    echo '<span style="opacity:.6">—</span>';
+    return;
+  }
+
+  $links = [];
+  foreach ($terms as $t) {
+    $url = add_query_arg(
+      [
+        'post_type' => 'carreras',
+        'taxonomy'  => 'facultad',
+        'term'      => $t->slug,
+      ],
+      admin_url('edit.php')
+    );
+    $links[] = sprintf('<a href="%s">%s</a>', esc_url($url), esc_html($t->name));
+  }
+  echo implode(', ', $links);
+}, 10, 2);
+
+// 3) (Opcional pero útil) Aceptar &facultad=slug y también taxonomy/term al listar
+add_action('parse_query', function ($query) {
+  if (!is_admin()) return;
+  global $pagenow;
+  if ($pagenow !== 'edit.php') return;
+  if ($query->get('post_type') !== 'carreras') return;
+
+  // Soporta ?facultad=slug
+  if (!empty($_GET['facultad'])) {
+    $slug = sanitize_text_field(wp_unslash($_GET['facultad']));
+    $tax_query = (array) $query->get('tax_query');
+    $tax_query[] = [
+      'taxonomy' => 'facultad',
+      'field'    => 'slug',
+      'terms'    => $slug,
+    ];
+    $query->set('tax_query', $tax_query);
+  }
+
+  // Soporta ?taxonomy=facultad&term=slug (lo que generan nuestros enlaces)
+  if (!empty($_GET['taxonomy']) && $_GET['taxonomy'] === 'facultad' && !empty($_GET['term'])) {
+    $slug = sanitize_text_field(wp_unslash($_GET['term']));
+    $tax_query = (array) $query->get('tax_query');
+    $tax_query[] = [
+      'taxonomy' => 'facultad',
+      'field'    => 'slug',
+      'terms'    => $slug,
+    ];
+    $query->set('tax_query', $tax_query);
+  }
+});
