@@ -76,16 +76,6 @@ import FormCrmCareer from '../../components/FormCRM/FormCrmCareer'
       }
     })
   }
-  document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('form')
-    form.addEventListener('submit', function (e) {
-      if (typeof dataLayer !== 'undefined') {
-        window.dataLayer.push({
-          event: 'gtm.formSubmit'
-        })
-      }
-    })
-  })
 
   new FormCrmCareer({
     element: 'form'

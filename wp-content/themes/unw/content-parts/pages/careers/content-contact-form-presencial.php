@@ -93,6 +93,7 @@
             'name'=> 'Name_First',
             'label'=> 'Nombres (*)',
             'type' => 'text',
+            'max_length' => 30
           ]);?>
         </div>
       </div>
@@ -103,6 +104,7 @@
             'name'=> 'Name_Last',
             'label'=> 'Apellidos (*)',
             'type' => 'text',
+            'max_length' => 60
           ]);?>
         </div>
         <div class="f-50">

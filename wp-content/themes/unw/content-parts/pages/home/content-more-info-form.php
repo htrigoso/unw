@@ -9,8 +9,9 @@ $formUrl           = "https://forms.zohopublic.com/adminzoho11/form/WebPreWiener
 $careers = $form_crm_option['careers'];
 $list_departaments = $form_crm_option['list_departaments'];
 ?>
-<form id="form-general" class="more-form" data-departaments="<?= esc_attr(wp_json_encode( $list_departaments))?>"
-  method="POST" accept-charset="UTF-8" enctype="multipart/form-data" action="<?=$formUrl?>">
+<form id="form-general" data-form="zoho" class="more-form"
+  data-departaments="<?= esc_attr(wp_json_encode( $list_departaments))?>" method="POST" accept-charset="UTF-8"
+  enctype="multipart/form-data" action="<?=$formUrl?>">
   <div class="form-header more-form__header">
     <i>
       <svg width="52" height="52">
@@ -69,6 +70,7 @@ $list_departaments = $form_crm_option['list_departaments'];
             'name'=> 'Name_First',
             'label'=> 'Nombres (*)',
             'type' => 'text',
+            'max_length' => 30
           ]);?>
         </div>
         <div class="f-50">
@@ -76,6 +78,7 @@ $list_departaments = $form_crm_option['list_departaments'];
             'name'=> 'Name_Last',
             'label'=> 'Apellidos (*)',
             'type' => 'text',
+            'max_length' => 60
           ]);?>
         </div>
       </div>

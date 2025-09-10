@@ -62,6 +62,7 @@ $utms_final = merge_utms($utms_default, $utm_admission);
             'name'=> 'Name_First',
             'label'=> 'Nombres (*)',
             'type' => 'text',
+            'max_length' => 30
           ]);?>
         </div>
         <div class="f-50">
@@ -69,6 +70,7 @@ $utms_final = merge_utms($utms_default, $utm_admission);
             'name'=> 'Name_Last',
             'label'=> 'Apellidos (*)',
             'type' => 'text',
+            'max_length' => 60
           ]);?>
         </div>
       </div>

@@ -248,6 +248,8 @@ export function updateHiddenInputs(fields = []) {
   })
 }
 export function updateHiddenCareerFields({ facultyField = 'SingleLine3', careerField = 'SingleLine6', formContainer } = {}) {
+  console.log(formContainer)
+
   if (!formContainer) return
   const form = document.querySelector(`${formContainer}`)
   if (!form) return
@@ -267,7 +269,7 @@ export function updateHiddenCareerFields({ facultyField = 'SingleLine3', careerF
     const facultyName = parentOptgroup.label
     const careerName = selectedOption.textContent.trim()
     if (checked) {
-      this.updateHiddenFields({ select, hiddenContainer })
+      updateHiddenFields({ select, hiddenContainer })
     } else {
       hiddenContainer.innerHTML = `
           <input type="hidden" name="${facultyField}" value="${facultyName}">
@@ -300,4 +302,22 @@ export function updateDepartmentHiddenInput({ fieldName = 'SingleLine9' } = {}) 
       document.querySelector(`input[name="${fieldName}"]`).value = text
     }
   })
+}
+
+export function updateHiddenFields({ select, hiddenContainer }) {
+  const checked = document.querySelector('input[name="form_mixto"]:checked')
+  const selectedOption = select.options[select.selectedIndex]
+  const parentOptgroup = selectedOption.parentElement
+  const careerName = selectedOption.textContent.trim()
+
+  if (parentOptgroup.tagName !== 'OPTGROUP') return
+
+  const facultyName = parentOptgroup.label
+  const html = this.buildHiddenInputs({
+    facultyName,
+    careerName,
+    type: checked.value
+  })
+
+  hiddenContainer.innerHTML = html
 }

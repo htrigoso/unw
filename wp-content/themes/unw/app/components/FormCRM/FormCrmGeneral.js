@@ -113,7 +113,6 @@ export default class FormCrmGeneral extends Component {
   }
 
   buildHiddenInputs({ facultyName, careerName, type }) {
-    createHiddenInputs()
     if (type === 'pregrado') {
       // return `
       //   <input type="hidden" name="SingleLine3" value="${facultyName}">

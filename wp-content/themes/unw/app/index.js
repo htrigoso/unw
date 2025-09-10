@@ -10,6 +10,7 @@ class App {
     this.megaMenuDesktop()
     this.tabMegaMenuDesktop()
     this.hideBackdrop()
+    this.handleOnSubmitForm()
   }
 
   createNavbar() {
@@ -142,6 +143,42 @@ class App {
     openItems.forEach((item) => item.classList.remove('is-open'))
 
     document.documentElement.style.overflow = ''
+  }
+
+  handleOnSubmitForm() {
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.querySelector('[data-form="zoho"]')
+      if (!form) return
+
+      form.addEventListener('submit', function (e) {
+        const button = form.querySelector('button')
+        const inputEmail = form.querySelector('#Eamil') // 👈 corregí para que use el form y no document entero
+
+        // 📌 Regex estricto: solo letras/números y TLD de 2 a 4 caracteres
+        const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+
+        if (inputEmail && !emailRegex.test(inputEmail.value.trim())) {
+          e.preventDefault() // detener el envío
+          alert('Por favor ingresa un correo válido.')
+          inputEmail.focus()
+          return
+        }
+
+        // ✅ Bloquea el botón al enviar
+        if (button) {
+          button.disabled = true
+          button.innerText = 'Enviando...' // feedback opcional
+        }
+
+        // ✅ Push a dataLayer
+        if (typeof dataLayer !== 'undefined') {
+          window.dataLayer.push({
+            event: 'gtm.formSubmit',
+            formId: form.id
+          })
+        }
+      })
+    })
   }
 }
 
