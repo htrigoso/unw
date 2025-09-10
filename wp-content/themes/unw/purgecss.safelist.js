@@ -35,7 +35,10 @@ module.exports = {
     'is-home',
     /^accordion(-item)?(-standard|-filled)?$/,
     /^accordion-(header|label|content)$/,
-    /^is-open$/
+    /^is-open$/,
+    /::-webkit-scrollbar/,
+    /::-webkit-scrollbar-thumb/,
+    /::-webkit-scrollbar-track/
   ],
   greedy: [
     /^main-submenu-wrapper__main(?:--[a-z0-9_-]+)?$/,
