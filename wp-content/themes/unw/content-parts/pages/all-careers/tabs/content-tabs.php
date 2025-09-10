@@ -170,8 +170,8 @@ $carreras_query = new WP_Query([
   'post_status'    => 'publish',
   'posts_per_page' => -1,
   'tax_query'      => $tax_query,
-  'orderby'        => 'date',
-  'order'          => 'DESC',
+  'orderby' => 'date',
+  'order'          => 'DESC'
 ]);
 
 $carreras_posts = !empty($carreras_query->posts) ? $carreras_query->posts : [];
