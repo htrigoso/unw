@@ -53,7 +53,7 @@
                       <h4 class="h4_admin">1. Misión y visión.<br></h4>
                     </a>
                     <div class="icon_box admin"><img
-                        src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg" alt=""
+                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
@@ -71,7 +71,7 @@
                       <h4 class="h4_admin">2. Reglamentos institucionales.<br></h4>
                     </a>
                     <div class="icon_box admin"><img
-                        src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg" alt=""
+                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
@@ -244,7 +244,7 @@
                       <h4 class="h4_admin">3. Información financiera.<br></h4>
                     </a>
                     <div class="icon_box admin"><img
-                        src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg" alt=""
+                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
@@ -305,7 +305,7 @@
                       <h4 class="h4_admin">4. Pensiones y tarifas.<br></h4>
                     </a>
                     <div class="icon_box admin"><img
-                        src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg" alt=""
+                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
@@ -342,7 +342,7 @@
                       <h4 class="h4_admin">5. Programa de becas.<br></h4>
                     </a>
                     <div class="icon_box admin"><img
-                        src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg" alt=""
+                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
@@ -382,7 +382,7 @@
                       <h4 class="h4_admin">6. Información académica.<br></h4>
                     </a>
                     <div class="icon_box admin"><img
-                        src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg" alt=""
+                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
@@ -1295,7 +1295,7 @@
                       <h4 class="h4_admin">7. Número de alumnos por facultades y programas de estudios.<br></h4>
                     </a>
                     <div class="icon_box admin"><img
-                        src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg" alt=""
+                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
@@ -2030,7 +2030,7 @@
                       <h4 class="h4_admin">8. Plana docente.<br></h4>
                     </a>
                     <div class="icon_box admin"><img
-                        src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg" alt=""
+                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
@@ -2146,7 +2146,7 @@
                       <h4 class="h4_admin"> 9. Vicerrectorado de investigación.<br></h4>
                     </a>
                     <div class="icon_box admin"><img
-                        src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg" alt=""
+                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
@@ -2283,7 +2283,7 @@
                       <h4 class="h4_admin">10. Vida Estudiantil<br></h4>
                     </a>
                     <div class="icon_box admin"><img
-                        src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg" alt=""
+                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
@@ -2306,7 +2306,7 @@
                       <h4 class="h4_admin">11. Concurso público de selección docente<br></h4>
                     </a>
                     <div class="icon_box admin"><img
-                        src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/select.svg" alt=""
+                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">

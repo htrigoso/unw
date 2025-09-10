@@ -61,7 +61,7 @@
               <div role="listitem" class="w-dyn-item">
                 <div class="item_grilla mw vertical carreras interna">
                   <div class="img-carrera-box"><img
-                      src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/Biblioteca.png" alt=""
+                      src="<?= UPLOAD_MIGRATION_PATH . '/servicios-universitarios/biblioteca.png' ?>" alt=""
                       class="img_cover_carreras"></div>
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Biblioteca</h4><a
