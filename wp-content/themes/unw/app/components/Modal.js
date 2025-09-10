@@ -35,7 +35,11 @@ export class ModalManager {
     if (!modal) return
 
     modal.classList.remove('visible')
-    document.body.style.overflow = ''
+
+    const visibleModals = document.querySelectorAll('.modal.visible')
+    if (visibleModals.length === 0) {
+      document.body.style.overflow = ''
+    }
 
     setTimeout(() => {
       modal.classList.remove('active')

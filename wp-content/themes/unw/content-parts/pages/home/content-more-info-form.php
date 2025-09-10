@@ -42,10 +42,7 @@ $list_campus = get_carreras_campus_indexado();
   <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
 
   <input type="hidden" name="Radio" value="No"> <!--  Soy padre de familia -->
-
-
-
-
+  
 
   <input type="hidden" name="SingleLine1" value="UNW_Pregrado"> <!-- Unidad de negocio -->
   <input type="hidden" name="SingleLine2" value="Web Solicita Información"> <!-- Fuente de origen -->
