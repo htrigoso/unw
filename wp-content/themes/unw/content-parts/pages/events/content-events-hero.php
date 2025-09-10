@@ -1,5 +1,6 @@
 <?php
 $events = get_field('hero-events', 'option');
+vdebug($events);
 ?>
 
 <?php if (!empty($events)) : ?>
