@@ -545,3 +545,14 @@ add_action('template_redirect', function () {
     }
   }
 });
+
+
+add_action('pre_get_posts', function ($query) {
+  global $pagenow;
+
+  // Solo aplicar en admin, listado principal de carreras
+  if (is_admin() && $pagenow === 'edit.php' && $query->get('post_type') === 'carreras' && !$query->get('orderby')) {
+    $query->set('orderby', 'date');
+    $query->set('order', 'DESC');
+  }
+});
