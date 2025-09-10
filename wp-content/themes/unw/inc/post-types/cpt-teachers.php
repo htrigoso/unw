@@ -28,3 +28,14 @@ function register_post_type_docentes() {
     register_post_type('docentes', $args);
 }
 add_action('init', 'register_post_type_docentes');
+
+
+
+function teacher_featured_image_notice($content) {
+    global $post;
+    if ($post->post_type === 'docentes') {
+        $content .= '<p><em>Recomendación: Sube una imagen de <strong>305x305 píxeles</strong></em></p>';
+    }
+    return $content;
+}
+add_filter('admin_post_thumbnail_html', 'teacher_featured_image_notice');
