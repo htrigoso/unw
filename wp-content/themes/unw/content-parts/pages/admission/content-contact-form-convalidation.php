@@ -76,6 +76,7 @@ if($is_departments) {
             'name'=> 'Name_First',
             'label'=> 'Nombres (*)',
             'type' => 'text',
+            'max_length' => 30
           ]);?>
         </div>
         <div class="f-50">
@@ -83,6 +84,7 @@ if($is_departments) {
             'name'=> 'Name_Last',
             'label'=> 'Apellidos (*)',
             'type' => 'text',
+            'max_length' => 60
           ]);?>
         </div>
       </div>
