@@ -142,6 +142,7 @@
     > a,
     .menu-heading {
       @include title-22;
+      margin: 0 !important;
       color: var(--color-white);
       text-transform: capitalize;
     }
@@ -213,6 +214,10 @@
   line-height: rem(24);
   text-align: center;
   font-family: var(--font-inter);
+
+  @include media(">=phone") {
+    text-align: left;
+  }
 }
 
 .footer__bottom__social {
@@ -235,6 +240,7 @@
 
     @include media(">=phone") {
       margin-bottom: 0;
+      text-align: left;
     }
   }
 }

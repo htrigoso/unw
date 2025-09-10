@@ -287,7 +287,7 @@
                       <div class="contact_name"></div>
                       <div class="contact_cargo">Registros Académicos</div>
                       <div class="item_contact last">
-                        <img src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/icon_mail.svg"
+                        <img src="<?= UPLOAD_MIGRATION_PATH . '/shared/arroba_black.svg' ?>"
                           alt="" class="icon_contact">
                         <div>registrosacademicos@uwiener.edu.pe</div>
                       </div>
