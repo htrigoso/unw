@@ -6,11 +6,14 @@ $utm_admission      = $crm_carriers['list_utms'] ?? [];
 $utms_final = merge_utms($utms_default, $utm_admission);
 $form_crm_option   = get_field('form_crm', 'option');
 $formUrl           = "https://forms.zohopublic.com/adminzoho11/form/WebPreWiener/formperma/l1wwdmdtbCUdnHXBKB4zGg2X1eb12Fnp-VgoBjOAEmA/htmlRecords/submit";
-$careers = $form_crm_option['careers'];
+$careers = get_carreras_para_select();
+
 $list_departaments = $form_crm_option['list_departaments'];
+$list_campus = get_carreras_campus_indexado();
 ?>
 <form id="form-general" data-form="zoho" class="more-form"
-  data-departaments="<?= esc_attr(wp_json_encode( $list_departaments))?>" method="POST" accept-charset="UTF-8"
+  data-departaments="<?= esc_attr(wp_json_encode( $list_departaments))?>"
+  data-campus="<?= esc_attr(wp_json_encode( $list_campus))?>" method="POST" accept-charset="UTF-8"
   enctype="multipart/form-data" action="<?=$formUrl?>">
   <div class="form-header more-form__header">
     <i>
@@ -28,6 +31,8 @@ $list_departaments = $form_crm_option['list_departaments'];
   <?php endforeach; ?>
 
   <div class="custom-hidden"></div>
+
+  <div class="custom-hidden-campus"></div>
 
   <!-- Enviar Campos vacios -->
   <input type="hidden" name="Name_Middle" value="">
@@ -53,8 +58,7 @@ $list_departaments = $form_crm_option['list_departaments'];
 
   <input type="hidden" name="Dropdown4" value="Activo"> <!-- Estado de período -->
   <input type="hidden" name="Website" value="<?=get_current_page_url()?>"> <!-- Url de Trakeo -->
-  <input type="hidden" name="SingleLine10" value=""> <!-- Escoge tu sede - Text -->
-  <input type="hidden" name="SingleLine11" value=""> <!-- Escoge tu sede - Valor -->
+
 
 
   <div class="form-body more-form-body">
@@ -113,6 +117,13 @@ $list_departaments = $form_crm_option['list_departaments'];
             'name'=> 'SingleLine5',
             'label'=> 'Elige tu carrera (*)',
             'careers' => $careers,
+          ]);?>
+        </div>
+        <div class="f-50" data-html-name="campus">
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'campus', [
+            'name'=> 'SingleLine9',
+            'label'=> 'Elige tu campus (*)',
+            'careers' => [],
           ]);?>
         </div>
       </div>

@@ -556,3 +556,78 @@ add_action('pre_get_posts', function ($query) {
     $query->set('order', 'DESC');
   }
 });
+
+
+
+
+function get_carreras_para_select() {
+    $carreras = get_posts([
+        'post_type'              => 'carreras',
+        'posts_per_page'         => -1,
+        'post_status'            => 'publish',
+        'orderby'                => 'title',
+        'order'                  => 'ASC',
+        'fields'                 => 'ids',
+        'no_found_rows'          => true,
+        'update_post_term_cache' => false,
+        'update_post_meta_cache' => false,
+    ]);
+
+    $result = [];
+
+    foreach ($carreras as $id) {
+        $title = get_the_title($id);
+        $slug  = get_post_field('post_name', $id); // slug del CPT
+
+        // Taxonomía facultad
+        $facultades = get_the_terms($id, 'facultad');
+        $facultad   = ($facultades && !is_wp_error($facultades))
+            ? $facultades[0]->name
+            : 'Sin facultad';
+
+        // Campo ACF crm_code
+        $code = get_post_meta($id, 'crm_code', true);
+
+        $result[$facultad][] = [
+            'id'    => $id,
+            'slug'  => $slug,
+            'title' => $title,
+            'code'  => $code ?: ''
+        ];
+    }
+
+    return $result;
+}
+
+
+function get_carreras_campus_indexado() {
+    $carreras = get_posts([
+        'post_type'              => 'carreras',
+        'posts_per_page'         => -1,
+        'post_status'            => 'publish',
+        'fields'                 => 'ids',        // ⚡ solo IDs
+        'no_found_rows'          => true,
+        'update_post_term_cache' => false,
+        'update_post_meta_cache' => false,
+    ]);
+
+    $result = [];
+
+    foreach ($carreras as $id) {
+        $slug   = get_post_field('post_name', $id);
+        $terms  = get_the_terms($id, 'campus');
+
+        if ($terms && !is_wp_error($terms)) {
+            foreach ($terms as $term) {
+                $result[$slug][] = [
+                    'id'     => $term->term_id, // 👈 solo ID del término (campus)
+                    'campus' => $term->name,
+                ];
+            }
+        } else {
+            $result[$slug] = [];
+        }
+    }
+
+    return $result;
+}
