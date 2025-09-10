@@ -34,7 +34,7 @@ add_action('init', 'register_post_type_eventos');
 function eventos_featured_image_notice($content) {
     global $post;
     if ($post->post_type === 'eventos') {
-        $content .= '<p><em>Recomendación: Sube una imagen de <strong>305x305 píxeles</strong></em></p>';
+        $content .= '<p><em>Recomendación: Sube una imagen de <strong>280x150 píxeles</strong></em></p>';
     }
     return $content;
 }

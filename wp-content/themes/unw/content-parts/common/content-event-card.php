@@ -30,7 +30,7 @@ $url            = $args['url'];
     <?php
      if($url && is_array($url)):
     ?>
-    <a href=" <?=$url['url']?>" target=" <?=$url['target']?>"
+    <a href=" <?=$url['url']?>"
       class="btn btn-sm btn-secondary-one-outline event-card--cta">
       <?=$url['title']?>
       <i>
