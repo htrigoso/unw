@@ -23,7 +23,9 @@ if ($input['name'] === 'PhoneNumber_countrycode') {
 if ($input['name'] === 'Email') {
     // Forzamos type email y un regex estricto
     $type = 'email';
-    $extra_attrs .= ' pattern="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$"';
+     $extra_attrs .= ' pattern="^[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\.[a-zA-Z]{2,}$"';
+
+
 }
 
 // Si pasas un length dinámico en $args

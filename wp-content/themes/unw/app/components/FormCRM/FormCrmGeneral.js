@@ -172,62 +172,56 @@ export default class FormCrmGeneral extends Component {
   }
 
   handleCarrers() {
-    // const form = document.querySelector(`${this.formContainer}`)
-    // if (!form) return
-    // const select = document.getElementById('careerSelect')
+    const form = document.querySelector(`${this.formContainer}`)
+    if (!form) return
+    const select = document.getElementById('careerSelect')
 
-    // const hiddenContainer = form.querySelector('.custom-hidden')
+    const hiddenContainer = form.querySelector('.custom-hidden')
 
-    // const boundUpdate = () => {
-    //   const checked = document.querySelector('input[name="form_mixto"]:checked')
-    //   const selectedOption = select.options[select.selectedIndex]
+    const boundUpdate = () => {
+      const checked = document.querySelector('input[name="form_mixto"]:checked')
+      const selectedOption = select.options[select.selectedIndex]
 
-    //   if (!selectedOption) return
+      if (!selectedOption) return
 
-    //   const parentOptgroup = selectedOption.parentElement
-    //   if (!parentOptgroup || parentOptgroup.tagName !== 'OPTGROUP') return
+      const parentOptgroup = selectedOption.parentElement
+      if (!parentOptgroup || parentOptgroup.tagName !== 'OPTGROUP') return
 
-    //   const facultyName = parentOptgroup.label
-    //   const careerName = selectedOption.textContent.trim()
-    //   if (checked) {
-    //     this.updateHiddenFields({ select, hiddenContainer })
-    //   } else {
-    //     hiddenContainer.innerHTML = `
-    //       <input type="hidden" name="SingleLine3" value="${facultyName}">
-    //       <input type="hidden" name="SingleLine6" value="${careerName}">
-    //     `
-    //   }
-    // }
+      const facultyName = parentOptgroup.label
+      const careerName = selectedOption.textContent.trim()
+      if (checked) {
+        this.updateHiddenFields({ select, hiddenContainer })
+      } else {
+        hiddenContainer.innerHTML = `
+          <input type="hidden" name="SingleLine3" value="${facultyName}">
+          <input type="hidden" name="SingleLine6" value="${careerName}">
+        `
+      }
+    }
 
-    // // eventos
-    // select.addEventListener('change', boundUpdate)
-    // document
-    //   .querySelectorAll('input[name="form_mixto"]')
-    //   .forEach(radio => radio.addEventListener('change', boundUpdate))
+    // eventos
+    select.addEventListener('change', boundUpdate)
+    document
+      .querySelectorAll('input[name="form_mixto"]')
+      .forEach(radio => radio.addEventListener('change', boundUpdate))
 
-    // // inicializar al cargar
-    // boundUpdate()
-    updateHiddenCareerFields({
-      facultyField: 'SingleLine3', careerField: 'SingleLine6', formContainer: this.formContainer
-    })
+    // inicializar al cargar
+    boundUpdate()
   }
 
   handleDepartamentChange() {
-    // document.addEventListener('change', (event) => {
-    //   const target = event.target
+    document.addEventListener('change', (event) => {
+      const target = event.target
 
-    //   if (target && target.matches('#departament')) {
-    //     const form = target.closest('form')
-    //     if (!form) return
+      if (target && target.matches('#departament')) {
+        const form = target.closest('form')
+        if (!form) return
 
-    //     const selectedOption = target.options[target.selectedIndex]
-    //     const text = selectedOption?.textContent.trim() || ''
+        const selectedOption = target.options[target.selectedIndex]
+        const text = selectedOption?.textContent.trim() || ''
 
-    //     document.querySelector('input[name="SingleLine9"]').value = text
-    //   }
-    // })
-    updateDepartmentHiddenInput({
-      fieldName: 'SingleLine9'
+        document.querySelector('input[name="SingleLine9"]').value = text
+      }
     })
   }
 }
