@@ -28,3 +28,14 @@ function register_post_type_eventos() {
     register_post_type('eventos', $args);
 }
 add_action('init', 'register_post_type_eventos');
+
+
+
+function eventos_featured_image_notice($content) {
+    global $post;
+    if ($post->post_type === 'eventos') {
+        $content .= '<p><em>Recomendación: Sube una imagen de <strong>305x305 píxeles</strong></em></p>';
+    }
+    return $content;
+}
+add_filter('admin_post_thumbnail_html', 'eventos_featured_image_notice');
