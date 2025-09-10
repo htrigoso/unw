@@ -284,7 +284,7 @@ export default class FormCrmAdmission extends Component {
   setNameAttributeCampus() {
     const select = this.element.querySelector('#campusSelect')
     if (select) {
-      select.setAttribute('name', 'SingleLine7')
+      select.setAttribute('name', 'SingleLine8')
       select.setAttribute('required', true)
     }
   }
