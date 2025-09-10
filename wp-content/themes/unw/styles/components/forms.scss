@@ -8,9 +8,12 @@
     margin: -1px;
 
     white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
     border: 0;
     transition: all 0.3s ease;
     pointer-events: none;
+    text-overflow: ellipsis;
 
     color: var(--color-asu-grey);
   }
@@ -232,9 +235,10 @@
   }
 
   label .text {
-    a {
+    button {
       color: var(--color-turquoise-three);
       text-decoration: underline;
+      cursor: pointer;
     }
   }
 }

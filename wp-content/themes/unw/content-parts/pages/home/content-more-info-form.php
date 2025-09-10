@@ -37,10 +37,7 @@ $list_departaments = $form_crm_option['list_departaments'];
   <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
 
   <input type="hidden" name="Radio" value="No"> <!--  Soy padre de familia -->
-
-
-
-
+  
 
   <input type="hidden" name="SingleLine1" value="UNW_Pregrado"> <!-- Unidad de negocio -->
   <input type="hidden" name="SingleLine2" value="Web Solicita Información"> <!-- Fuente de origen -->

@@ -10,6 +10,8 @@
 
 .testimonial__card--img {
   width: 100%;
+  height: rem(180);
+  object-fit: cover;
 }
 
 .testimonial__card--content {
