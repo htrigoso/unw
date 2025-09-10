@@ -173,10 +173,15 @@ $carreras_query = new WP_Query([
   'orderby' => 'date',
   'order'          => 'DESC',
    'ignore_sticky_posts' => true,
+
 ]);
 
 $carreras_posts = !empty($carreras_query->posts) ? $carreras_query->posts : [];
-
+if (!empty($carreras_posts)) {
+  usort($carreras_posts, function($a, $b) {
+    return strcmp($b->post_date, $a->post_date); // más nuevos primero
+  });
+}
 ?>
 
 <div class="all-careers-tabs">
