@@ -202,3 +202,4 @@ function get_value_or_default($value,$escape_function = false, $default = 'Por d
 function wp_is_nonempty_array( $value ) {
     return ( is_array( $value ) && ! empty( $value ) );
 }
+

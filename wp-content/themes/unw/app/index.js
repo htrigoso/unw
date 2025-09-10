@@ -152,17 +152,6 @@ class App {
 
       form.addEventListener('submit', function (e) {
         const button = form.querySelector('button')
-        const inputEmail = form.querySelector('#Eamil') // 👈 corregí para que use el form y no document entero
-
-        // 📌 Regex estricto: solo letras/números y TLD de 2 a 4 caracteres
-        const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-
-        if (inputEmail && !emailRegex.test(inputEmail.value.trim())) {
-          e.preventDefault() // detener el envío
-          alert('Por favor ingresa un correo válido.')
-          inputEmail.focus()
-          return
-        }
 
         // ✅ Bloquea el botón al enviar
         if (button) {

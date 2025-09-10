@@ -303,21 +303,3 @@ export function updateDepartmentHiddenInput({ fieldName = 'SingleLine9' } = {}) 
     }
   })
 }
-
-export function updateHiddenFields({ select, hiddenContainer }) {
-  const checked = document.querySelector('input[name="form_mixto"]:checked')
-  const selectedOption = select.options[select.selectedIndex]
-  const parentOptgroup = selectedOption.parentElement
-  const careerName = selectedOption.textContent.trim()
-
-  if (parentOptgroup.tagName !== 'OPTGROUP') return
-
-  const facultyName = parentOptgroup.label
-  const html = this.buildHiddenInputs({
-    facultyName,
-    careerName,
-    type: checked.value
-  })
-
-  hiddenContainer.innerHTML = html
-}
