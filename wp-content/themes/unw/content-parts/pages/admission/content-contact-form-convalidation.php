@@ -1,13 +1,13 @@
 <?php
 $crm_ad      = get_field('crm');
-$careers = $crm_ad['careers'];
+$careers = get_carreras_para_select();
 $utms_default      = get_field('list_utms', 'option');
 $utm_admission      = $crm_carriers['list_utms'] ?? [];
 $utms_final = merge_utms($utms_default, $utm_admission);
 $form_crm_option   = get_field('form_crm', 'option');
 $list_departaments = $form_crm_option['list_departaments'];
 $is_departments = $crm_ad['is_departments'];
-
+$list_campus = get_carreras_campus_indexado();
 $departments_json =  [] ;
 
 if($is_departments) {
@@ -15,6 +15,7 @@ if($is_departments) {
 }
 ?>
 <form class="contact-form formAdmision" data-departaments="<?= esc_attr(wp_json_encode( $departments_json))?>"
+ data-campus="<?= esc_attr(wp_json_encode( $list_campus))?>"
   method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
   action="https://forms.zohopublic.com/adminzoho11/form/Admisin/formperma/qazbrVloDUNKCisJII7v7HMG2gMsSkD30FMV9GEJM4E/htmlRecords/submit">
   <div class="form-header">
