@@ -70,13 +70,14 @@ body.sidebar-open {
 }
 [data-content="paragraph"] {
   p {
-    margin-bottom: rem(10);
+    margin-bottom: rem(15);
   }
   ul {
     margin-left: rem(17);
     li {
       list-style-type: disc;
     }
+    margin-bottom: rem(15);
   }
   a {
     font-weight: var(--font-medium);
