@@ -276,8 +276,8 @@ export default class FormCrmAdmission extends Component {
 
   updateHiddenFieldCampus(text, value) {
     this.element.querySelector('.custom-hidden-campus').innerHTML = `
-            <input type="hidden" name="SingleLine8" value="${text}">
-              <input type="hidden" name="SingleLine9" value="${value}">
+            <input type="hidden" name="SingleLine7" value="${text}">
+              <input type="hidden" name="SingleLine8" value="${value}">
                 `
   }
 
