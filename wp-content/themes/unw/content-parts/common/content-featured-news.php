@@ -1,4 +1,6 @@
 <?php
+$hide_see_more = $args['hide_see_more'] ?? false;
+
 // Query dinámico para destacadas
 $args = [
   'post_type'      => 'novedades',
@@ -52,6 +54,7 @@ $destacadas = new WP_Query($args);
           </div>
         </div>
 
+        <?php if (!$hide_see_more): ?>
         <div class="featured-news__see-more-btn">
           <?php
           get_template_part(COMMON_CONTENT_PATH, 'see-more-btn', [
@@ -60,6 +63,7 @@ $destacadas = new WP_Query($args);
           ]);
           ?>
         </div>
+        <?php endif ?>
       </div>
     </div>
   </div>
