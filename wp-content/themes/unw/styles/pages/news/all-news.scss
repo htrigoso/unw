@@ -1,0 +1,15 @@
+.all-news__title {
+  @include title-32;
+  margin-bottom: rem(42);
+
+  @include media(">=tablet") {
+    @include title-28;
+    margin-bottom: rem(24);
+  }
+}
+
+.all-news__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(rem(260), 1fr));
+  gap: rem(24);
+}
