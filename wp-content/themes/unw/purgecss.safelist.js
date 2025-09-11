@@ -8,6 +8,11 @@ module.exports = {
     'swiper-slide-active',
     'swiper-slide-next',
     'swiper-slide-prev',
+    'swiper-counter',
+    'swiper-pagination-total',
+    'swiper-pagination-current',
+    'swiper-pagination',
+    'swiper-pagination-fraction',
 
     'main-submenu-wrapper__main',
     'main-submenu-wrapper__content',

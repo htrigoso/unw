@@ -9,7 +9,6 @@ if (!empty($slides)) :
   <section class="hero-swiper <?php echo esc_attr($extra_class); ?>">
     <div class="swiper-container is-draggable">
       <div class="swiper-wrapper swiper-hero__wrapper">
-
         <?php foreach ($slides as $slide) :
           $desktop  = $slide['images']['desktop']['url'] ?? '';
           $mobile   = $slide['images']['mobile']['url'] ?? '';

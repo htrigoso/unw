@@ -6,12 +6,12 @@ $utm_admission      = $crm_carriers['list_utms'] ?? [];
 $utms_final = merge_utms($utms_default, $utm_admission);
 $form_crm_option   = get_field('form_crm', 'option');
 $formUrl           = "https://forms.zohopublic.com/adminzoho11/form/WebPreWiener/formperma/l1wwdmdtbCUdnHXBKB4zGg2X1eb12Fnp-VgoBjOAEmA/htmlRecords/submit";
-$careers = get_carreras_para_select();
+$careers = get_carreras();
 
 $list_departaments = $form_crm_option['list_departaments'];
-$list_campus = get_carreras_campus_indexado();
+$list_campus = get_carreras_campus_modalidad();
 ?>
-<form id="form-general" data-form="zoho" class="more-form"
+<form id="form-general" data-form="zoho" class="more-form" data-careers="<?= esc_attr(wp_json_encode( $careers))?>"
   data-departaments="<?= esc_attr(wp_json_encode( $list_departaments))?>"
   data-campus="<?= esc_attr(wp_json_encode( $list_campus))?>" method="POST" accept-charset="UTF-8"
   enctype="multipart/form-data" action="<?=$formUrl?>">
@@ -42,9 +42,6 @@ $list_campus = get_carreras_campus_indexado();
   <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
 
   <input type="hidden" name="Radio" value="No"> <!--  Soy padre de familia -->
-
-
-
 
 
   <input type="hidden" name="SingleLine1" value="UNW_Pregrado"> <!-- Unidad de negocio -->
@@ -116,7 +113,7 @@ $list_campus = get_carreras_campus_indexado();
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'careers', [
             'name'=> 'SingleLine5',
             'label'=> 'Elige tu carrera (*)',
-            'careers' => $careers,
+            'careers' => $careers['pregrado'],
           ]);?>
         </div>
         <div class="f-50" data-html-name="campus">
@@ -136,7 +133,7 @@ $list_campus = get_carreras_campus_indexado();
     </div>
 
     <div class="form-body__actions more-form-body__actions">
-      <button type="submit" class="btn btn-primary">Enviar</button>
+      <button type="submit" class="btn btn-primary" id="button-send">Enviar</button>
     </div>
   </div>
 </form>

@@ -557,16 +557,11 @@ add_action('pre_get_posts', function ($query) {
   }
 });
 
-
-
-
-function get_carreras_para_select() {
+function get_carreras_campus_modalidad() {
     $carreras = get_posts([
         'post_type'              => 'carreras',
         'posts_per_page'         => -1,
         'post_status'            => 'publish',
-        'orderby'                => 'title',
-        'order'                  => 'ASC',
         'fields'                 => 'ids',
         'no_found_rows'          => true,
         'update_post_term_cache' => false,
@@ -576,57 +571,95 @@ function get_carreras_para_select() {
     $result = [];
 
     foreach ($carreras as $id) {
-        $title = get_the_title($id);
-        $slug  = get_post_field('post_name', $id); // slug del CPT
+        $slug = get_post_field('post_name', $id);
 
-        // Taxonomía facultad
-        $facultades = get_the_terms($id, 'facultad');
-        $facultad   = ($facultades && !is_wp_error($facultades))
-            ? $facultades[0]->name
-            : 'Sin facultad';
+        // Modalidad
+        $modalidades = get_the_terms($id, 'modalidad');
+        $modalidad   = ($modalidades && !is_wp_error($modalidades))
+            ? sanitize_title($modalidades[0]->slug)
+            : 'sin-modalidad';
 
-        // Campo ACF crm_code
-        $code = get_post_meta($id, 'crm_code', true);
+        // 👇 Renombrar presencial → pregrado
+        if ($modalidad === 'presencial') {
+            $modalidad = 'pregrado';
+        }
 
-        $result[$facultad][] = [
-            'id'    => $id,
-            'slug'  => $slug,
-            'title' => $title,
-            'code'  => $code ?: ''
-        ];
+        // Campus
+        $terms = get_the_terms($id, 'campus');
+
+        if ($terms && !is_wp_error($terms)) {
+            foreach ($terms as $term) {
+                $result[$slug][$modalidad][] = [
+                    'code'   => $term->description ?: '',
+                    'campus' => $term->name,
+                ];
+            }
+        } else {
+             if (!isset($result[$slug][$modalidad])) {
+                $result[$slug][$modalidad] = [];
+            }
+        }
     }
 
     return $result;
 }
 
 
-function get_carreras_campus_indexado() {
+function get_carreras() {
     $carreras = get_posts([
         'post_type'              => 'carreras',
         'posts_per_page'         => -1,
         'post_status'            => 'publish',
-        'fields'                 => 'ids',        // ⚡ solo IDs
+        'orderby'                => 'title',
+        'order'                  => 'ASC',
+        'fields'                 => 'ids',
         'no_found_rows'          => true,
-        'update_post_term_cache' => false,
+        'update_post_term_cache' => true,
         'update_post_meta_cache' => false,
     ]);
 
-    $result = [];
+    $result = [
+        'pregrado' => [],
+        'virtual'  => [],
+    ];
 
     foreach ($carreras as $id) {
-        $slug   = get_post_field('post_name', $id);
-        $terms  = get_the_terms($id, 'campus');
+        $title = get_the_title($id);
+        $slug  = get_post_field('post_name', $id);
 
-        if ($terms && !is_wp_error($terms)) {
-            foreach ($terms as $term) {
-                $result[$slug][] = [
-                    'id'     => $term->term_id, // 👈 solo ID del término (campus)
-                    'campus' => $term->name,
-                ];
-            }
-        } else {
-            $result[$slug] = [];
+        // Facultad
+        $facultades = get_the_terms($id, 'facultad');
+        $facultad   = ($facultades && !is_wp_error($facultades))
+            ? $facultades[0]->name
+            : 'Sin facultad';
+
+        // Modalidad
+        $modalidades = get_the_terms($id, 'modalidad');
+        $modalidad   = ($modalidades && !is_wp_error($modalidades))
+            ? $modalidades[0]->slug
+            : 'sin-modalidad';
+
+        // Renombrar presencial → pregrado
+        if ($modalidad === 'presencial') {
+            $modalidad = 'pregrado';
         }
+
+        // Si no es una modalidad esperada, lo mandamos a 'pregrado' por defecto
+        if (!in_array($modalidad, ['pregrado', 'virtual'], true)) {
+            $modalidad = 'pregrado';
+        }
+
+        // Campo ACF crm_code
+        $code = get_post_meta($id, 'crm_code', true);
+
+        // Agrupación: modalidad > facultad > carreras
+        $result[$modalidad][$facultad][] = [
+            'id'        => $id,
+            'slug'      => $slug,
+            'title'     => $title,
+            'code'      => $code ?: '',
+            'modalidad' => $modalidad,
+        ];
     }
 
     return $result;
