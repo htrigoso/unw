@@ -2,18 +2,26 @@ import Accordion from '../../components/Accordion'
 import FormCrmAdmission from '../../components/FormCRM/FormCrmAdmission'
 import FormCrmAdmissionTraslado from '../../components/FormCRM/FormCrmAdmissionTraslado'
 import { ModalManager } from '../../components/Modal'
+import { $element } from '../../utils/dom'
 (function () {
   document.querySelectorAll('.dynamic-accordion').forEach(element => {
     new Accordion({ element, allowMultiple: true })
   })
 
   new ModalManager()
-  new FormCrmAdmission({
-    element: '.form-admission-2-desktop',
-    container: '.form-admission-1-desktop'
-  })
-  new FormCrmAdmissionTraslado({
-    element: '.form-admission-2-desktop',
-    container: '.form-admission-2-desktop'
-  })
+
+  const formAdmission = $element('[data-form-type="previ-desktop"]')
+  if (formAdmission) {
+    new FormCrmAdmission({
+      element: formAdmission,
+      container: '.formAdmision'
+    })
+  }
+  const formAdmissionTraslado = $element('[data-form-type="traslado-desktop"]')
+  if (formAdmissionTraslado) {
+    new FormCrmAdmissionTraslado({
+      element: formAdmissionTraslado,
+      container: '.formAdmision'
+    })
+  }
 })()

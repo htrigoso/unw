@@ -1,5 +1,5 @@
 import Component from '../../classes/Component'
-import { buildOptionsCampus, buildOptionsCampusCareers, createSelectCampus, createSelectDepartament, FORMS, removeSelectCampus, removeSelectDepartament, sanitizeForInput, setClaseName, validateInputs } from './utils'
+import { buildOptionsCampusCareers, createSelectCampus, createSelectDepartament, FORMS, removeSelectCampus, removeSelectDepartament, sanitizeForInput, setClaseName, validateInputs } from './utils'
 
 // ==========================
 // Constantes de formularios

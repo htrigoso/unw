@@ -11,8 +11,8 @@ $code_carrier     = $crm_carriers['code'];
 // ---- Fusionar UTMs ----
 $utms_final = merge_utms($utms_default, $utm_carriers);
 ?>
-<form id="form" class="contact-form formCarrera" method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
-  action="<?=$formUrl?>">
+<form id="form" data-form-type="virtual-desktop" class="contact-form formCarrera" method="POST" accept-charset="UTF-8"
+  enctype="multipart/form-data" action="<?=$formUrl?>">
   <div class="form-header">
     <i>
       <svg width="52" height="52">

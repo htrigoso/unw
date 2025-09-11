@@ -46,7 +46,8 @@
     }
   }
 ?>
-<form id="form" data-form="zoho" data-departaments=" <?= esc_attr(wp_json_encode( $departments_json)) ?>"
+<form id="form" data-form="zoho" data-form-type="pregrado-desktop"
+  data-departaments=" <?= esc_attr(wp_json_encode( $departments_json)) ?>"
   data-campus="<?= esc_attr(wp_json_encode( $campus_json)) ?>" data-mixto="<?=esc_attr(trim($is_form_mixto))?>"
   class="contact-form formCarrera" method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
   action="<?=$formUrl?>">

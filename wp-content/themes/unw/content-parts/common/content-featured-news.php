@@ -28,7 +28,7 @@ $destacadas = new WP_Query($args);
         <?php while ($destacadas->have_posts()) : $destacadas->the_post(); ?>
         <?php
               $slide = [
-                'image'   => get_the_post_thumbnail_url(get_the_ID(), 'large'),
+                'image'   => uw_get_first_slider_image(get_the_ID() ),
                 'title'   => get_the_title(),
                 'content' => get_the_excerpt(),
                 'href'    => get_permalink(),

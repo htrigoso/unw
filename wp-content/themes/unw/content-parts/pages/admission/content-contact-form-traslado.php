@@ -7,9 +7,10 @@ $utms_final = merge_utms($utms_default, $utm_admission);
 $careers = get_carreras();
 $list_campus = get_carreras_campus_modalidad();
 ?>
-<form data-form="zoho" id="form-traslado" data-careers="<?= esc_attr(wp_json_encode( $careers))?>"
-  data-campus="<?= esc_attr(wp_json_encode( $list_campus))?>" class="contact-form formAdmision form-admission-2-desktop"
-  method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
+<form data-form="zoho" data-form-type="traslado-desktop" id="form-traslado"
+  data-careers="<?= esc_attr(wp_json_encode( $careers))?>" data-campus="<?= esc_attr(wp_json_encode( $list_campus))?>"
+  class="contact-form formAdmision form-admission-2-desktop" method="POST" accept-charset="UTF-8"
+  enctype="multipart/form-data"
   action="https://forms.zohopublic.com/adminzoho11/form/AdmisinII/formperma/_m8BugFNCHb9CoXtj6nhvLnp7I_JAlphigAw3SovFkI/htmlRecords/submit">
   <div class="form-header">
     <i>

@@ -14,7 +14,6 @@ export default class FormCrmAdmission extends Component {
   constructor({ element, container, onCompleted }) {
     super({ element, elements: {} })
     this.formContainer = container
-    console.log('Form Ad 1 ......')
 
     this.createListeners()
   }
