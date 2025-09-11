@@ -12,7 +12,9 @@
 
 <main>
   <?php get_template_part(ADMISSION_CONTENT_PATH,'shared-admission', [
-      'form' => 'contact-form-pregrado'
+      'form' => 'contact-form-pregrado',
+      'type' => 'pregrado',
+      'data-form-type' => 'pregrado-desktop'
   ]);?>
 
 </main>

@@ -12,8 +12,9 @@ if($is_departments) {
   $departments_json =  $list_departaments;
 }
 $list_campus = get_carreras_campus_modalidad();
+$data_form_type = $args['data_form_type'] ?? '';
 ?>
-<form id="form-pregrado" data-form="zoho" data-form-type="previ-desktop"
+<form id="form-pregrado" data-form="zoho" data-form-type="<?=$data_form_type;?>"
   class="contact-form formAdmision form-admission-1-desktop" data-careers="<?= esc_attr(wp_json_encode( $careers))?>"
   data-departaments="<?= esc_attr(wp_json_encode( $departments_json))?>"
   data-campus="<?= esc_attr(wp_json_encode( $list_campus))?>" method="POST" accept-charset="UTF-8"

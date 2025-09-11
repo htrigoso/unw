@@ -1,5 +1,5 @@
 import Component from '../../classes/Component'
-import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, removeNameAttributeCampus, removeSelectDepartament, resetCustomHidden, setClaseName, setNameAttributeCampus, showCampusSelect, updateHiddenFieldCampus, updateHiddenFieldCampusTraslado, updateHiddenInputs, updateOptionsCareers, validateInputs } from './utils'
+import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, removeNameAttributeCampus, removeSelectDepartament, resetCustomHidden, setClaseName, setNameAttributeCampus, showCampusSelect, updateHiddenFieldCampusTraslado, updateHiddenInputs, updateOptionsCareers, validateInputs } from './utils'
 
 // ==========================
 // Constantes de formularios

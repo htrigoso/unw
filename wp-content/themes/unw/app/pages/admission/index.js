@@ -10,7 +10,8 @@ import { $element } from '../../utils/dom'
 
   new ModalManager()
 
-  const formAdmission = $element('[data-form-type="previ-desktop"]')
+  const formAdmission = $element('[data-form-type="pregrado-desktop"]')
+
   if (formAdmission) {
     new FormCrmAdmission({
       element: formAdmission,

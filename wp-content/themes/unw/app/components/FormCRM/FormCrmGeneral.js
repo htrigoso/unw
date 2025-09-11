@@ -79,20 +79,25 @@ export default class FormCrmGeneral extends Component {
           case FORMS.VIRTUAL:
             this.element.action = FORM_GENERAL_VIRTUAL
 
-            removeNameAttributeCampus({ element: this.element })
+            if (value === FORMS.WORK) {
+              removeNameAttributeCampus({ element: this.element })
+              removeSelectDepartament(this.element)
+            }
 
             resetCustomHidden({ element: this.element })
             hideCampusSelect({ value, element: this.element })
             this.element.action = FORM_GENERAL_VIRTUAL
             setClaseName('f-50', this.element)
             select.setAttribute('name', 'SingleLine5')
-            removeNameAttributeCampus({ element: this.element })
+
             updateHiddenInputs([
               { name: 'SingleLine1', value: 'UNW_Pregrado_Distancia' },
               { name: 'SingleLine2', value: 'Web Admisión I - Virtual' }
             ])
-            if (departaments.length > 0) {
-              createSelectDepartament({ element: this.element })
+            if (value === FORMS.VIRTUAL) {
+              if (departaments.length > 0) {
+                createSelectDepartament({ element: this.element })
+              }
             }
 
             if (select.value) {

@@ -24,7 +24,7 @@ endif;
 ?>
   <div class="x-container admission-hero__form__wrapper">
     <div class="admission-hero__form">
-      <?php get_template_part(ADMISSION_CONTENT_PATH, $args['form']) ?>
+      <?php get_template_part(ADMISSION_CONTENT_PATH, $args['form'], $args['id']) ?>
     </div>
   </div>
 </div>
@@ -60,6 +60,18 @@ if ($admission && is_array($admission)) :
   </div>
 </section>
 <?php endif; ?>
+
+<section class="m-b-40">
+  <div class="x-container x-container--pad-213">
+    <?php
+      if($args['type'] === 'pregrado') {
+        get_template_part(ADMISSION_CONTENT_PATH, $args['form'], [
+          'data_form_type' =>'pregrado-mobile'
+        ]);
+      }
+    ?>
+  </div>
+</section>
 
 
 <?php

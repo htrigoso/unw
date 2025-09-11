@@ -13,7 +13,9 @@
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 <main>
   <?php get_template_part(ADMISSION_CONTENT_PATH,'shared-admission', [
-      'form' => 'contact-form-traslado'
+      'form' => 'contact-form-traslado',
+      'type' => 'traslado',
+       'id' => 'traslado-desktop'
   ]);?>
 </main>
 

@@ -5,10 +5,10 @@ import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS,
 // Constantes de formularios
 // ==========================
 const FORM_ADMISSION_PRESENCIAL =
-  'https://forms.zohopublic.com/adminzoho11/form/Admisin/formperma/qazbrVloDUNKCisJII7v7HMG2gMsSkD30FMV9GEJM4E/htmlRecords/submit'
+  'https://forms.zohopublic.com/adminzoho11/form/AdmisinII/formperma/_m8BugFNCHb9CoXtj6nhvLnp7I_JAlphigAw3SovFkI/htmlRecords/submit'
 
 const FORM_ADMISSION_VIRTUAL =
-  'https://forms.zohopublic.com/adminzoho11/form/WebAdmisinIVirtual/formperma/pQcbclF2i7Gt1QAKd0zl3Ow5bT3dxSrcE3-ybtsYQoE/htmlRecords/submit'
+  'https://forms.zohopublic.com/adminzoho11/form/WebAdmisinIIVirtual/formperma/qU7Tnn7L1O7U0now8oMZlZtoXgR5ygGX8VvtZnLzjAE/htmlRecords/submit'
 
 export default class FormCrmAdmission extends Component {
   constructor({ element, container, onCompleted }) {
@@ -80,8 +80,9 @@ export default class FormCrmAdmission extends Component {
           case FORMS.VIRTUAL:
             if (value === FORMS.WORK) {
               select.setAttribute('name', 'SingleLine5')
+              removeSelectDepartament(this.element)
+              removeNameAttributeCampus({ element: this.element })
             }
-            removeNameAttributeCampus({ element: this.element })
 
             resetCustomHidden({ element: this.element })
             hideCampusSelect({ value, element: this.element })
@@ -94,8 +95,10 @@ export default class FormCrmAdmission extends Component {
               { name: 'SingleLine1', value: 'UNW_Pregrado_Distancia' },
               { name: 'SingleLine2', value: 'Web Admisión I - Virtual' }
             ])
-            if (departaments.length > 0) {
-              createSelectDepartament({ element: this.element })
+            if (value === FORMS.VIRTUAL) {
+              if (departaments.length > 0) {
+                createSelectDepartament({ element: this.element })
+              }
             }
 
             if (select.value) {
