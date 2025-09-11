@@ -63,15 +63,13 @@ export default class FormCrmGeneral extends Component {
               this.updateHiddenFields({ select, hiddenContainer })
             }
 
-            if (value === FORMS.PREGRADO) {
-              updateHiddenInputs([
-                { name: 'SingleLine1', value: 'UNW_Pregrado' },
-                { name: 'SingleLine2', value: 'Web Admisión I' }
-              ])
-              setNameAttributeCampus({ element: this.element })
+            updateHiddenInputs([
+              { name: 'SingleLine1', value: 'UNW_Pregrado' },
+              { name: 'SingleLine2', value: 'Web Admisión I' }
+            ])
+            setNameAttributeCampus({ element: this.element })
 
-              updateOptionsCareers({ element: this.element, careers, value })
-            }
+            updateOptionsCareers({ element: this.element, careers, value })
 
             showCampusSelect({ element: this.element })
 

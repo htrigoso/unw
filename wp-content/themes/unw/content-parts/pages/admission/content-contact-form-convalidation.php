@@ -1,22 +1,23 @@
 <?php
 $crm_ad      = get_field('crm');
-$careers = get_carreras_para_select();
+$careers = get_carreras();
 $utms_default      = get_field('list_utms', 'option');
 $utm_admission      = $crm_carriers['list_utms'] ?? [];
 $utms_final = merge_utms($utms_default, $utm_admission);
 $form_crm_option   = get_field('form_crm', 'option');
 $list_departaments = $form_crm_option['list_departaments'];
 $is_departments = $crm_ad['is_departments'];
-$list_campus = get_carreras_campus_indexado();
+$list_campus = get_carreras_campus_modalidad();
 $departments_json =  [] ;
 
 if($is_departments) {
   $departments_json =  $list_departaments;
 }
 ?>
-<form class="contact-form formAdmision" data-departaments="<?= esc_attr(wp_json_encode( $departments_json))?>"
- data-campus="<?= esc_attr(wp_json_encode( $list_campus))?>"
-  method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
+<form data-form="zoho" class="contact-form formAdmision" data-careers="<?= esc_attr(wp_json_encode( $careers))?>"
+  data-departaments="<?= esc_attr(wp_json_encode( $departments_json))?>"
+  data-campus="<?= esc_attr(wp_json_encode( $list_campus))?>" method="POST" accept-charset="UTF-8"
+  enctype="multipart/form-data"
   action="https://forms.zohopublic.com/adminzoho11/form/Admisin/formperma/qazbrVloDUNKCisJII7v7HMG2gMsSkD30FMV9GEJM4E/htmlRecords/submit">
   <div class="form-header">
     <i>
@@ -30,6 +31,7 @@ if($is_departments) {
   </div>
 
   <div class="custom-hidden"></div>
+  <div class="custom-hidden-campus"></div>
 
   <?php foreach ($utms_final as $utm): ?>
   <input type="hidden" name="<?= esc_attr($utm['name']); ?>" value="<?= esc_attr($utm['value']); ?>">
@@ -121,7 +123,14 @@ if($is_departments) {
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'careers', [
             'name'=> 'SingleLine3',
             'label'=> 'Elige tu carrera (*)',
-            'careers' => $careers,
+             'careers' => $careers['pregrado'],
+          ]);?>
+        </div>
+        <div class="f-50" data-html-name="campus">
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'campus', [
+            'name'=> 'SingleLine9',
+            'label'=> 'Elige tu campus (*)',
+            'careers' => [],
           ]);?>
         </div>
       </div>
@@ -133,7 +142,7 @@ if($is_departments) {
       <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox');?>
     </div>
     <div class="form-body__actions">
-      <button type="submit" class="btn btn-primary">Enviar</button>
+      <button type="submit" class="btn btn-primary" id="button-send">Enviar</button>
     </div>
   </div>
 </form>

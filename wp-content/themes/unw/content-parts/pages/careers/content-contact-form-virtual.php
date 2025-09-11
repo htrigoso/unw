@@ -78,7 +78,7 @@ $utms_final = merge_utms($utms_default, $utm_carriers);
           ]);?>
         </div>
         <div class="f-50">
-           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
             'name'=> 'SingleLine',
             'label'=> 'Número de documento (*)',
             'type' => 'tel',
@@ -107,10 +107,10 @@ $utms_final = merge_utms($utms_default, $utm_carriers);
       (*) Campos obligatorios
     </p>
     <div class="form-body__terms">
-       <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox');?>
+      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox');?>
     </div>
     <div class="form-body__actions">
-      <button type="submit" class="btn btn-primary">Enviar</button>
+      <button type="submit" class="btn btn-primary" id="button-send">Enviar</button>
     </div>
   </div>
 </form>

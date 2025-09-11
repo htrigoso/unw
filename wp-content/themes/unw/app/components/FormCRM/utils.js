@@ -310,7 +310,7 @@ export function buildOptionsCampus({ campus, slugCareers, modalidad, element }) 
   const campusList = careerData?.[modalidad] || []
   removeHiddenFieldCampus({ element })
 
-  select.innerHTML = '<option value="" selected disabled>--Seleccione--</option>'
+  select.innerHTML = '<option value="" selected>--Seleccione--</option>'
 
   if (campusList.length) {
     campusList.forEach(item => {
@@ -321,6 +321,26 @@ export function buildOptionsCampus({ campus, slugCareers, modalidad, element }) 
     })
   }
 }
+
+export function buildOptionsCampusCareers({ campus, element }) {
+  if (!element) return
+  console.log(campus)
+
+  const select = element.querySelector('#campus')
+  if (!select) return
+  select.innerHTML = '<option value="" selected>--Seleccione--</option>'
+  if (campus.length > 0) {
+    campus.forEach(item => {
+      console.log(item)
+
+      const opt = document.createElement('option')
+      opt.value = item.code
+      opt.textContent = item.campus
+      select.appendChild(opt)
+    })
+  }
+}
+
 export function updateHiddenFieldCampus({ text, value, element }) {
   if (!element) return
   element.querySelector('.custom-hidden-campus').innerHTML = `
@@ -345,7 +365,7 @@ export function updateOptionsCareers({ element = null, careers = {}, value = '' 
   if (!select) return
 
   // limpiar el select
-  select.innerHTML = '<option value="" selected disabled>--Seleccione--</option>'
+  select.innerHTML = '<option value="" selected>--Seleccione--</option>'
 
   // Si viene value, filtra; si no, usa todo
   const data = value ? careers?.[value] || {} : careers

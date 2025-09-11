@@ -1,11 +1,11 @@
 <?php
 $crm_ad      = get_field('crm');
-$careers = $crm_ad['careers'];
+$careers = get_carreras();
 $utms_default      = get_field('list_utms', 'option');
 $utm_admission      = $crm_carriers['list_utms'] ?? [];
 $utms_final = merge_utms($utms_default, $utm_admission);
 ?>
-<form id="form-traslado" class="contact-form formAdmision" method="POST" accept-charset="UTF-8"
+<form data-form="zoho" id="form-traslado" class="contact-form formAdmision" method="POST" accept-charset="UTF-8"
   enctype="multipart/form-data"
   action="https://forms.zohopublic.com/adminzoho11/form/AdmisinII/formperma/_m8BugFNCHb9CoXtj6nhvLnp7I_JAlphigAw3SovFkI/htmlRecords/submit">
   <div class="form-header">
@@ -103,7 +103,7 @@ $utms_final = merge_utms($utms_default, $utm_admission);
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'careers', [
             'name'=> 'SingleLine3',
             'label'=> 'Elige tu carrera (*)',
-            'careers' => $careers,
+            'careers' => $careers['pregrado'],
           ]);?>
         </div>
       </div>
@@ -150,7 +150,7 @@ $utms_final = merge_utms($utms_default, $utm_admission);
       <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox');?>
     </div>
     <div class="form-body__actions">
-      <button type="submit" class="btn btn-primary">Enviar</button>
+      <button type="submit" class="btn btn-primary" id="button-send">Enviar</button>
     </div>
   </div>
 </form>

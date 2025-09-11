@@ -664,3 +664,25 @@ function get_carreras() {
 
     return $result;
 }
+
+
+function get_campus_by_carrera_id($carrera_id) {
+    if (empty($carrera_id) || !is_numeric($carrera_id)) {
+        return [];
+    }
+
+    $terms = get_the_terms($carrera_id, 'campus');
+    if (!$terms || is_wp_error($terms)) {
+        return [];
+    }
+
+    $result = [];
+    foreach ($terms as $term) {
+        $result[] = [
+            'code'   => $term->description ?: '',
+            'campus' => $term->name,
+        ];
+    }
+
+    return $result;
+}
