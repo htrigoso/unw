@@ -4,6 +4,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .entry-card__image {
@@ -21,15 +22,14 @@
 }
 
 .entry-card__title {
-  @include title-22;
-  margin-bottom: rem(16);
+  @include title-18;
 }
 
 .entry-card__tags {
+  margin-top: rem(16);
   display: inline-flex;
   gap: rem(8);
   flex-wrap: wrap;
-  margin-bottom: rem(16);
 }
 
 .entry-card__tags--tag {
@@ -41,18 +41,22 @@
 }
 
 .entry-card__date {
+  margin-top: rem(16);
   display: inline-block;
   font-size: rem(14);
   color: var(--color-asu-grey);
-  margin-bottom: rem(16);
 }
 
 .entry-card__desc {
-  margin-bottom: rem(12);
+  margin-top: rem(16);
+}
+
+.entry-card__button--container {
+  margin-top: auto;
 }
 
 .entry-card__button {
-  margin-top: auto;
+  margin-top: rem(12);
   width: fit-content;
   padding: rem(7) rem(15) rem(7) rem(0);
   justify-content: space-between;
