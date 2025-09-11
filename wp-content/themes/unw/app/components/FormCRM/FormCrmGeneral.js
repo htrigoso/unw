@@ -1,5 +1,5 @@
 import Component from '../../classes/Component'
-import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeHiddenFieldCampus, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenFieldCampus, updateHiddenInputs, updateOptionsCareers, validateInputs } from './utils'
+import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenFieldCampus, updateHiddenInputs, updateOptionsCareers, validateInputs, showCampusSelect } from './utils'
 
 // ==========================
 // Constantes de formularios
@@ -51,7 +51,7 @@ export default class FormCrmGeneral extends Component {
 
         switch (value) {
           case FORMS.PREGRADO:
-          case FORMS.WORK:
+            this.element.action = FORM_GENERAL_PRESENCIAL
             resetCustomHidden({ element: this.element })
             setClaseName('f-100', this.element)
 
@@ -63,10 +63,6 @@ export default class FormCrmGeneral extends Component {
               this.updateHiddenFields({ select, hiddenContainer })
             }
 
-            this.element.action = (value === FORMS.WORK)
-              ? FORM_GENERAL_VIRTUAL
-              : FORM_GENERAL_PRESENCIAL
-
             if (value === FORMS.PREGRADO) {
               updateHiddenInputs([
                 { name: 'SingleLine1', value: 'UNW_Pregrado' },
@@ -77,20 +73,16 @@ export default class FormCrmGeneral extends Component {
               updateOptionsCareers({ element: this.element, careers, value })
             }
 
-            if (value === FORMS.WORK) {
-              updateHiddenInputs([
-                { name: 'SingleLine1', value: 'UNW_Pregrado_Distancia' },
-                { name: 'SingleLine2', value: 'Web Admisión I - Virtual' }
-              ])
-              removeNameAttributeCampus({ element: this.element })
-              updateOptionsCareers({ element: this.element, careers, value: 'virtual' })
-            }
-
-            hideCampusSelect({ value, element: this.element })
+            showCampusSelect({ element: this.element })
 
             break
 
+          case FORMS.WORK:
           case FORMS.VIRTUAL:
+            this.element.action = FORM_GENERAL_VIRTUAL
+
+            removeNameAttributeCampus({ element: this.element })
+
             resetCustomHidden({ element: this.element })
             hideCampusSelect({ value, element: this.element })
             this.element.action = FORM_GENERAL_VIRTUAL
@@ -108,7 +100,7 @@ export default class FormCrmGeneral extends Component {
             if (select.value) {
               this.updateHiddenFields({ select, hiddenContainer })
             }
-            updateOptionsCareers({ element: this.element, careers, value })
+            updateOptionsCareers({ element: this.element, careers, value: 'virtual' })
             break
 
           default:
@@ -120,8 +112,6 @@ export default class FormCrmGeneral extends Component {
   }
 
   buildHiddenInputs({ facultyName, careerName, type }) {
-    console.log(type)
-
     if (type === FORMS.PREGRADO) {
       return createHiddenInputs({
         type,

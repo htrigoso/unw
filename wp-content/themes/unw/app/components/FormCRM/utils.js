@@ -288,9 +288,16 @@ export function hideCampusSelect({ element, value }) {
   if (radios.includes(value)) {
     campusField.style.display = 'none'
     removeNameAttributeCampus({ element })
-  } else {
-    campusField.style.display = ''
   }
+}
+
+export function showCampusSelect({ element }) {
+  if (!element) return
+
+  const campusField = element.querySelector('[data-html-name="campus"]')
+  if (!campusField) return
+
+  campusField.style.display = ''
 }
 
 export function buildOptionsCampus({ campus, slugCareers, modalidad, element }) {
