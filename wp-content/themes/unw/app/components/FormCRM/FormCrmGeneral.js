@@ -199,6 +199,7 @@ export default class FormCrmGeneral extends Component {
 
         this.buildOptionsCampus(campus, slugCareers)
       } else {
+        alert('0okkk')
         hiddenContainer.innerHTML = `
         < input type = "hidden" name = "SingleLine3" value = "${facultyName}" >
           <input type="hidden" name="SingleLine6" value="${careerName}">
