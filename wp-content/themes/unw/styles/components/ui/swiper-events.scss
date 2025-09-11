@@ -10,6 +10,12 @@
   }
 }
 
+.swiper-events__card {
+  .event-card {
+    width: rem(280);
+  }
+}
+
 .swiper-events__swiper-navigation {
   display: flex;
   justify-content: space-between;

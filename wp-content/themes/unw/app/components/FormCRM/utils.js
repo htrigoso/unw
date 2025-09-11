@@ -1,3 +1,8 @@
+export const FORMS = Object.freeze({
+  PREGRADO: 'pregrado',
+  VIRTUAL: 'virtual',
+  WORK: 'work'
+})
 export function validateInputs() {
   const rules = {
     letters: /[^A-Za-zÁÉÍÓÚáéíóúÑñ\s]/g, // solo letras y espacios
@@ -14,7 +19,6 @@ export function validateInputs() {
 
   const sanitizeValue = (input, regex) => {
     const before = input.value
-    const posStart = input.selectionStart
     const posEnd = input.selectionEnd
 
     const cleaned = before.replace(regex, '')
@@ -120,6 +124,19 @@ export function removeSelectDepartament(element) {
 export function removeSelectCampus(element) {
   removeSelect('[data-html-name="campus"]', '#campus', element)
 }
+export function resetCustomHidden({ element }) {
+  if (!element) return
+  element.querySelector('.custom-hidden').innerHTML = ''
+  element.querySelector('.custom-hidden-campus').innerHTML = ''
+  const careers = element.querySelector('#careerSelect')
+  if (careers) {
+    careers.selectedIndex = 0
+  }
+  const campus = element.querySelector('#campusSelect')
+  if (campus) {
+    campus.selectedIndex = 0
+  }
+}
 
 export function removeSelect(containerSelector, selectId, element) {
   const containerHtml = element.querySelector(containerSelector)
@@ -208,7 +225,7 @@ export function createSelectCampus(element, name = 'SingleLine7') {
 }
 
 export function createHiddenInputs({ type, fields }) {
-  const validTypes = ['pregrado', 'virtual', 'work']
+  const validTypes = [FORMS.PREGRADO, FORMS.VIRTUAL, FORMS.WORK]
   if (!validTypes.includes(type)) {
     throw new Error(
       `[buildHiddenInputs] Invalid type "${type}". Must be one of: ${validTypes.join(', ')}`
@@ -247,59 +264,101 @@ export function updateHiddenInputs(fields = []) {
     }
   })
 }
-export function updateHiddenCareerFields({ facultyField = 'SingleLine3', careerField = 'SingleLine6', formContainer } = {}) {
-  console.log(formContainer)
 
-  if (!formContainer) return
-  const form = document.querySelector(`${formContainer}`)
-  if (!form) return
-  const select = document.getElementById('careerSelect')
-
-  const hiddenContainer = form.querySelector('.custom-hidden')
-
-  const boundUpdate = () => {
-    const checked = document.querySelector('input[name="form_mixto"]:checked')
-    const selectedOption = select.options[select.selectedIndex]
-
-    if (!selectedOption) return
-
-    const parentOptgroup = selectedOption.parentElement
-    if (!parentOptgroup || parentOptgroup.tagName !== 'OPTGROUP') return
-
-    const facultyName = parentOptgroup.label
-    const careerName = selectedOption.textContent.trim()
-    if (checked) {
-      updateHiddenFields({ select, hiddenContainer })
-    } else {
-      hiddenContainer.innerHTML = `
-          <input type="hidden" name="${facultyField}" value="${facultyName}">
-          <input type="hidden" name="${careerField}" value="${careerName}">
-        `
-    }
-  }
-
-  // eventos
-  select.addEventListener('change', boundUpdate)
-  document
-    .querySelectorAll('input[name="form_mixto"]')
-    .forEach(radio => radio.addEventListener('change', boundUpdate))
-
-  // inicializar al cargar
-  boundUpdate()
+export function removeHiddenFieldCampus({ element }) {
+  if (!element.element) return
+  element.querySelector('.custom-hidden-campus').innerHTML = ''
 }
 
-export function updateDepartmentHiddenInput({ fieldName = 'SingleLine9' } = {}) {
-  document.addEventListener('change', (event) => {
-    const target = event.target
+export function removeNameAttributeCampus({ element }) {
+  if (!element) return
+  const select = element.querySelector('#campusSelect')
+  if (select) {
+    select.removeAttribute('name')
+    select.removeAttribute('required')
+  }
+}
+export function hideCampusSelect({ element, value }) {
+  if (!element) return
+  const radios = [FORMS.WORK, FORMS.VIRTUAL]
+  const campusField = element.querySelector('[data-html-name="campus"]')
 
-    if (target && target.matches('#departament')) {
-      const form = target.closest('form')
-      if (!form) return
+  if (!campusField) return
 
-      const selectedOption = target.options[target.selectedIndex]
-      const text = selectedOption?.textContent.trim() || ''
+  if (radios.includes(value)) {
+    campusField.style.display = 'none'
+    removeNameAttributeCampus({ element })
+  } else {
+    campusField.style.display = ''
+  }
+}
 
-      document.querySelector(`input[name="${fieldName}"]`).value = text
-    }
+export function buildOptionsCampus({ campus, slugCareers, modalidad, element }) {
+  if (!element) return
+
+  const select = element.querySelector('#campusSelect')
+
+  if (!select) return
+  const careerData = campus?.[slugCareers]
+  const campusList = careerData?.[modalidad] || []
+  removeHiddenFieldCampus({ element })
+
+  select.innerHTML = '<option value="" selected disabled>--Seleccione--</option>'
+
+  if (campusList.length) {
+    campusList.forEach(item => {
+      const opt = document.createElement('option')
+      opt.value = item.code
+      opt.textContent = item.campus
+      select.appendChild(opt)
+    })
+  }
+}
+export function updateHiddenFieldCampus({ text, value, element }) {
+  if (!element) return
+  element.querySelector('.custom-hidden-campus').innerHTML = `
+            <input type="hidden" name="SingleLine8" value="${text}">
+              <input type="hidden" name="SingleLine9" value="${value}">
+                `
+}
+
+export function setNameAttributeCampus({ element }) {
+  if (!element) return
+  const select = element.querySelector('#campusSelect')
+  if (select) {
+    select.setAttribute('name', 'SingleLine9')
+    select.setAttribute('required', true)
+  }
+}
+
+export function updateOptionsCareers({ element = null, careers = {}, value = '' } = {}) {
+  if (!element) return
+
+  const select = element.querySelector('#careerSelect')
+  if (!select) return
+
+  // limpiar el select
+  select.innerHTML = '<option value="" selected disabled>--Seleccione--</option>'
+
+  // Si viene value, filtra; si no, usa todo
+  const data = value ? careers?.[value] || {} : careers
+
+  // recorrer facultades
+  Object.entries(data).forEach(([facultad, items]) => {
+    if (!Array.isArray(items) || items.length === 0) return
+
+    const optgroup = document.createElement('optgroup')
+    optgroup.label = facultad
+
+    items.forEach(item => {
+      const option = document.createElement('option')
+      option.value = item.code || ''
+      option.textContent = item.title || ''
+      option.dataset.key = item.slug || ''
+      option.dataset.mode = item.modalidad || ''
+      optgroup.appendChild(option)
+    })
+
+    select.appendChild(optgroup)
   })
 }

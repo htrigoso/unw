@@ -80,7 +80,7 @@ if ($all_events_query->have_posts()) {
           'events' => $feature_events['events'] ?? [],
           'link' => $feature_events['link'] ?? false,
         ],
-        "swiper_class" => 'featured-events-swiper post-swiper-desktop',
+        "swiper_class" => 'featured-events-swiper post-swiper',
       ]);
       ?>
     </div>
@@ -100,7 +100,7 @@ if ($all_events_query->have_posts()) {
           'events' => $all_events['events'] ?? [],
           'link' => $all_events['link'] ?? false,
         ],
-        "swiper_class" => 'all-events-swiper post-swiper',
+        "swiper_class" => 'all-events-swiper post-swiper-mobile',
       ]);
       ?>
     </div>

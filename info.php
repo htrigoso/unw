@@ -1,4 +1,6 @@
 <?php
 require __DIR__ . '/wp-load.php';
+print '<pre>';
 
-vdebug(get_carreras_campus_indexado());
+
+print_r(get_carreras());

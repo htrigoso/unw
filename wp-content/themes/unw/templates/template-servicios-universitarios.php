@@ -65,7 +65,7 @@
                       class="img_cover_carreras"></div>
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Biblioteca</h4><a
-                      href="https://intranet.uwiener.edu.pe/univwiener/biblioteca/biblioteca.asp" class="btn w-button"
+                      href="https://intranet.uwiener.edu.pe/univwiener/biblioteca/biblioteca.asp" class="btn-legacy w-button"
                       target="_blank">+ información</a>
                   </div>
                 </div>
@@ -77,7 +77,7 @@
                       class="img_cover_carreras"></div>
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Jefatura de Becas</h4><a
-                      href="https://www.uwiener.edu.pe/servicios-universitarios/becas/" class="btn w-button">+
+                      href="https://www.uwiener.edu.pe/servicios-universitarios/becas/" class="btn-legacy w-button">+
                       información</a>
                   </div>
                 </div>
@@ -90,7 +90,7 @@
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Responsabilidad Social</h4><a
                       href="https://www.uwiener.edu.pe/servicios-universitarios/responsabilidad-social/"
-                      class="btn w-button">+ información</a>
+                      class="btn-legacy w-button">+ información</a>
                   </div>
                 </div>
               </div>
@@ -102,7 +102,7 @@
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Registros Académicos</h4><a
                       href="https://www.uwiener.edu.pe/servicios-universitarios/registros-academicos/"
-                      class="btn w-button">+ información</a>
+                      class="btn-legacy w-button">+ información</a>
                   </div>
                 </div>
               </div>
@@ -114,7 +114,7 @@
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Secretaría General</h4><a
                       href="https://www.uwiener.edu.pe/servicios-universitarios/secretaria-general/"
-                      class="btn w-button">+ información</a>
+                      class="btn-legacy w-button">+ información</a>
                   </div>
                 </div>
               </div>
@@ -126,7 +126,7 @@
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Bienestar Estudiantil</h4><a
                       href="https://www.uwiener.edu.pe/servicios-universitarios/bienestar-estudiantil/"
-                      class="btn w-button">+ información</a>
+                      class="btn-legacy w-button">+ información</a>
                   </div>
                 </div>
               </div>
@@ -138,7 +138,7 @@
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Dirección de Empleabilidad y Alumni</h4><a
                       href="https://www.uwiener.edu.pe/servicios-universitarios/direccion-de-empleabilidad-y-alumni/"
-                      class="btn w-button">+ información</a>
+                      class="btn-legacy w-button">+ información</a>
                   </div>
                 </div>
               </div>
@@ -150,7 +150,7 @@
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Defensoría Universitaria</h4><a
                       href="https://www.uwiener.edu.pe/servicios-universitarios/defensoria-universitaria/"
-                      class="btn w-button">+ información</a>
+                      class="btn-legacy w-button">+ información</a>
                   </div>
                 </div>
               </div>

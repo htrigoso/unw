@@ -1,5 +1,5 @@
 import Component from '../../classes/Component'
-import { createHiddenInputs, createSelectDepartament, removeSelectDepartament, setClaseName, updateDepartmentHiddenInput, updateHiddenCareerFields, updateHiddenInputs, validateInputs } from './utils'
+import { createHiddenInputs, createSelectDepartament, removeSelectDepartament, setClaseName, updateHiddenInputs, validateInputs } from './utils'
 
 // ==========================
 // Constantes de formularios

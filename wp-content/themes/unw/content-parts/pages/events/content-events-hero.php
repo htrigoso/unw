@@ -49,6 +49,7 @@ $events = get_field('hero-events', 'option');
       </div>
       <?php endforeach; ?>
     </div>
+    <div class="swiper-pagination"></div>
   </div>
 </section>
 <?php endif; ?>

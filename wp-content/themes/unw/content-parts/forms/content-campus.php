@@ -10,7 +10,7 @@ $req    = array_key_exists('required', $input) ? (bool) $input['required'] : tru
 
 <div class="form-field form-field-select">
   <select id="campusSelect" <?php echo $req ? 'required' : ''; ?>>
-    <option value="" selected disabled>--Seleccione--</option>
+    <option value="" selected>--Seleccione--</option>
   </select>
   <label for="<?php echo esc_attr($id); ?>">
     <?php echo esc_html($label); ?>

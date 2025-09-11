@@ -151,7 +151,7 @@ class App {
       if (!form) return
 
       form.addEventListener('submit', function (e) {
-        const button = form.querySelector('button')
+        const button = form.querySelector('#button-send')
 
         // ✅ Bloquea el botón al enviar
         if (button) {
