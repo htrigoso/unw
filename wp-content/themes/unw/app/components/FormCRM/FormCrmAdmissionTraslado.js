@@ -1,5 +1,5 @@
 import Component from '../../classes/Component'
-import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, removeNameAttributeCampus, removeSelectDepartament, resetCustomHidden, setClaseName, setNameAttributeCampus, showCampusSelect, updateHiddenFieldCampus, updateHiddenInputs, updateOptionsCareers, validateInputs } from './utils'
+import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, removeNameAttributeCampus, removeSelectDepartament, resetCustomHidden, setClaseName, setNameAttributeCampus, showCampusSelect, updateHiddenFieldCampus, updateHiddenFieldCampusTraslado, updateHiddenInputs, updateOptionsCareers, validateInputs } from './utils'
 
 // ==========================
 // Constantes de formularios
@@ -10,11 +10,11 @@ const FORM_ADMISSION_PRESENCIAL =
 const FORM_ADMISSION_VIRTUAL =
   'https://forms.zohopublic.com/adminzoho11/form/WebAdmisinIVirtual/formperma/pQcbclF2i7Gt1QAKd0zl3Ow5bT3dxSrcE3-ybtsYQoE/htmlRecords/submit'
 
-export default class FormCrmAdmission extends Component {
+export default class FormCrmAdmissionTraslado extends Component {
   constructor({ element, container, onCompleted }) {
     super({ element, elements: {} })
     this.formContainer = container
-    console.log('Form Ad 1 ......')
+    console.log('Form Ad 2 ......')
 
     this.createListeners()
   }
@@ -171,18 +171,12 @@ export default class FormCrmAdmission extends Component {
 
       const parentOptgroup = selectedOption.parentElement
       if (!parentOptgroup || parentOptgroup.tagName !== 'OPTGROUP') return
-      const facultyName = parentOptgroup.label
-      const careerName = selectedOption.textContent.trim()
+
       if (checked) {
         this.updateHiddenFields({ select, hiddenContainer })
         const slugCareers = selectedOption.dataset.key
         const modalidad = selectedOption.dataset.mode
         buildOptionsCampus({ campus, slugCareers, modalidad, element: this.element })
-      } else {
-        // Cuando no exist el check
-        hiddenContainer.innerHTML = `
-        <input type="hidden" name="SingleLine5" value="${facultyName}">
-        <input type="hidden" name="SingleLine4" value="${careerName}">`
       }
     }
 
@@ -203,7 +197,7 @@ export default class FormCrmAdmission extends Component {
       const text = selectedOption.textContent.trim()
       const value = selectedOption.value
       if (value) {
-        updateHiddenFieldCampus({ text, value, element: this.element })
+        updateHiddenFieldCampusTraslado({ text, value, element: this.element })
       }
     })
   }

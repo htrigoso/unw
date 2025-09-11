@@ -39,6 +39,8 @@ module.exports = {
     'menu-navbar_menu_mobile_1-container',
     'is-home',
     'blocked',
+    'current-lang',
+    'language-switcher',
     /^accordion(-item)?(-standard|-filled)?$/,
     /^accordion-(header|label|content)$/,
     /^is-open$/,

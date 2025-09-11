@@ -48,11 +48,6 @@ $list_campus = get_carreras_campus_modalidad();
   <input type="hidden" name="SingleLine2" value="Web Solicita Información"> <!-- Fuente de origen -->
 
 
-  <input type="hidden" name="Dropdown500" value=""> <!-- Escoge Instituto / Universidad -->
-  <input type="hidden" name="SingleLine6" value=""> <!-- Escoge instituto universitario Grupo -->
-  <input type="hidden" name="SingleLine7" value=""> <!-- Escoge instituto universitario Valor -->
-  <input type="hidden" name="SingleLine9" value="">
-
   <input type="hidden" name="Dropdown4" value="Activo"> <!-- Estado de período -->
   <input type="hidden" name="Website" value="<?=get_current_page_url()?>"> <!-- Url de Trakeo -->
 

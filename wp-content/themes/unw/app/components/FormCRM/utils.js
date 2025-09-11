@@ -349,6 +349,14 @@ export function updateHiddenFieldCampus({ text, value, element }) {
                 `
 }
 
+export function updateHiddenFieldCampusTraslado({ text, value, element }) {
+  if (!element) return
+  element.querySelector('.custom-hidden-campus').innerHTML = `
+            <input type="hidden" name="SingleLine10" value="${text}">
+              <input type="hidden" name="SingleLine11" value="${value}">
+                `
+}
+
 export function setNameAttributeCampus({ element }) {
   if (!element) return
   const select = element.querySelector('#campusSelect')

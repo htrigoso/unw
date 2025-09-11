@@ -4,9 +4,12 @@ $careers = get_carreras();
 $utms_default      = get_field('list_utms', 'option');
 $utm_admission      = $crm_carriers['list_utms'] ?? [];
 $utms_final = merge_utms($utms_default, $utm_admission);
+$careers = get_carreras();
+$list_campus = get_carreras_campus_modalidad();
 ?>
-<form data-form="zoho" id="form-traslado" class="contact-form formAdmision" method="POST" accept-charset="UTF-8"
-  enctype="multipart/form-data"
+<form data-form="zoho" id="form-traslado" data-careers="<?= esc_attr(wp_json_encode( $careers))?>"
+  data-campus="<?= esc_attr(wp_json_encode( $list_campus))?>" class="contact-form formAdmision form-admission-2-desktop"
+  method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
   action="https://forms.zohopublic.com/adminzoho11/form/AdmisinII/formperma/_m8BugFNCHb9CoXtj6nhvLnp7I_JAlphigAw3SovFkI/htmlRecords/submit">
   <div class="form-header">
     <i>
@@ -36,6 +39,7 @@ $utms_final = merge_utms($utms_default, $utm_admission);
 
   <!--Facultad) Falta -->
   <div class="custom-hidden"></div>
+  <div class="custom-hidden-campus"></div>
   <!--Facultad) Falta -->
   <input type="hidden" name="SingleLine1" value="UNW_Pregrado"> <!-- Unidad de negocio -->
   <input type="hidden" name="SingleLine2" value="Web Admisión II"> <!-- Fuente de origen -->
@@ -56,6 +60,9 @@ $utms_final = merge_utms($utms_default, $utm_admission);
 
   <div class="form-body">
     <div class="form-body__fields">
+      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'radio', [
+          'direction'    => 'flex-col justify-between',
+      ]);?>
       <div class="flex justify-between m-b-24">
         <div class="f-50">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
@@ -91,19 +98,27 @@ $utms_final = merge_utms($utms_default, $utm_admission);
           ]);?>
         </div>
       </div>
-      <div class="flex justify-between m-b-24">
-        <div class="f-50">
-          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+      <div class="m-b-24">
+
+        <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
             'name'=> 'Email',
             'label'=> 'Correo electrónico (*)',
             'type' => 'email',
           ]);?>
-        </div>
+      </div>
+      <div class="flex justify-between m-b-24">
         <div class="f-50">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'careers', [
             'name'=> 'SingleLine3',
             'label'=> 'Elige tu carrera (*)',
             'careers' => $careers['pregrado'],
+          ]);?>
+        </div>
+        <div class="f-50" data-html-name="campus">
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'campus', [
+            'name'=> 'SingleLine11',
+            'label'=> 'Elige tu campus (*)',
+            'careers' => [],
           ]);?>
         </div>
       </div>
@@ -154,5 +169,3 @@ $utms_final = merge_utms($utms_default, $utm_admission);
     </div>
   </div>
 </form>
-<?php
-// vdebug($crm_ad);

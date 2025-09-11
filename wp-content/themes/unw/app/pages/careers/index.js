@@ -6,7 +6,7 @@ import InternationalSwiper from '../../components/InternationalSwiper'
 import { updateSwipers } from '../../utils/swiper'
 import Accordion from '../../components/Accordion'
 import FormCrmCareer from '../../components/FormCRM/FormCrmCareer'
-
+import { ModalManager } from '../../components/Modal'
 (function () {
   HeroSwiper('.hero-swiper', {
     autoplay: {
@@ -15,6 +15,7 @@ import FormCrmCareer from '../../components/FormCRM/FormCrmCareer'
     }
   })
 
+  new ModalManager()
   PostSwiper('.testimonials-swiper', {
     pagination: {
       el: '.testimonials-swiper .swiper-pagination',

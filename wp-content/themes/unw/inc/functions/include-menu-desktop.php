@@ -32,9 +32,17 @@ class Desktop_Menu_Walker extends Walker_Nav_Menu {
             $super_tab_content = '';
             if ( $this->parent_item && in_array( 'sub-menu-parent-tab', $this->parent_item->classes ) ) {
                 $super_tab_content .= "$indent\t\t\t<div class=\"submenu-tab has-active\">\n";
-                foreach ( $this->child_titles as $index => $button_title ) {
+                foreach ( $this->child_titles as $index => $child ) {
+
+                    $title = esc_html( $child['title'] ?? '' );
+                    $url   = esc_url( $child['url'] ?? '#' );
                     $active_class = ($index === 0) ? 'is-active' : '';
-                    $super_tab_content .= "$indent\t\t\t\t<button class=\"$active_class\" data-id=\"{$index}\">{$button_title}</button>\n";
+                    if($index === 2) {
+                      $super_tab_content .= "$indent\t\t\t\t<a href=\"{$url}\" target=\"_blank\" class=\"$active_class\" data-id=\"{$index}\">{$title}</a>\n";
+                    }else {
+                      $super_tab_content .= "$indent\t\t\t\t<button class=\"$active_class\" data-id=\"{$index}\">{$title}</button>\n";
+                    }
+
                 }
                 $super_tab_content .= "$indent\t\t\t</div>\n";
             }
@@ -69,7 +77,11 @@ class Desktop_Menu_Walker extends Walker_Nav_Menu {
         }
 
         if ( $depth === 1 && $this->parent_item && in_array( 'sub-menu-parent-tab', $this->parent_item->classes ) ) {
-            $this->child_titles[] = $item->title;
+            $this->child_titles[] =
+            [
+                'title' => $item->title,
+                'url'   => $item->url,
+            ];
         }
 
         // Skip processing children when skip_children is true and depth >= 2
