@@ -46,7 +46,7 @@ export default class Tabs extends Component {
       )
     }
 
-    const targetId = tabToActivate.dataset.target
+    const targetId = tabToActivate?.dataset?.target || 0
     this.currentTabId = targetId
 
     this.setActiveTab(tabToActivate)

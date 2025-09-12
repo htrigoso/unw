@@ -13,7 +13,11 @@
 
 <main>
   <?php get_template_part(ADMISSION_CONTENT_PATH,'shared-admission', [
-      'form' => 'contact-form-convalidation'
+      'form' => 'contact-form-convalidation',
+      'data-form' => [
+        'desktop'=> 'pregrado-desktop',
+        'mobile'=> 'pregrado-mobile'
+      ]
   ]);?>
 </main>
 

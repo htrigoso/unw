@@ -20,7 +20,7 @@
 }
 
 .career-tabs__faq {
-  padding-top: rem(64);
+  padding-top: rem(24);
   padding-bottom: rem(70);
 }
 
@@ -34,4 +34,16 @@
       padding-bottom: rem(96);
     }
   }
+}
+
+.contact-form-careers {
+  display: block;
+  @include media(">=desktop-s") {
+    display: none;
+  }
+}
+
+.contact-form-careers__wrapper {
+  padding-top: rem(24);
+  padding-bottom: rem(24);
 }

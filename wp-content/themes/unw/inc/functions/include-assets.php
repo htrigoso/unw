@@ -202,3 +202,84 @@ function get_value_or_default($value,$escape_function = false, $default = 'Por d
 function wp_is_nonempty_array( $value ) {
     return ( is_array( $value ) && ! empty( $value ) );
 }
+
+
+
+function uw_get_lang_urls() {
+    if ( !is_singular() ) return null;
+
+    global $post;
+    if ( ! $post instanceof WP_Post ) return null;
+
+    // ¿Estoy en la versión EN? (página hija con slug 'en')
+    $is_en = ( $post->post_parent > 0 && $post->post_name === 'en' );
+
+    if ( $is_en ) {
+        // EN actual → el padre es ES
+        $es_post = get_post( $post->post_parent );
+        if ( ! $es_post ) return null;
+
+        $es_url = get_permalink( $es_post );
+        $en_url = get_permalink( $post );
+        $current = 'en';
+
+    } else {
+        // ES actual → buscar hijo 'en'
+        $es_post = $post;
+        $es_url  = get_permalink( $es_post );
+
+        // Busca un hijo con slug EXACTO 'en'
+        $en_child = get_children([
+            'post_parent' => $es_post->ID,
+            'post_type'   => 'page',
+            'name'        => 'en',
+            'numberposts' => 1,
+            'post_status' => 'publish',
+        ]);
+
+        if ( ! empty($en_child) ) {
+            $en_page = array_shift($en_child);
+            $en_url  = get_permalink( $en_page );
+        } else {
+            // Fallback: construye /en sin depender de barra final
+            $en_url = trailingslashit( $es_url ) . 'en';
+        }
+
+        $current = 'es';
+    }
+
+    return [
+        'es'      => $es_url,
+        'en'      => $en_url,
+        'current' => $current, // 'es' o 'en'
+    ];
+}
+// http://unw.loc/powered-by-asu/en
+// es
+
+function uw_output_lang_switcher() {
+    $urls = uw_get_lang_urls();
+    if ( ! $urls ) return;
+
+    $is_es = ($urls['current'] === 'es');
+    $is_en = ($urls['current'] === 'en');
+
+    echo '<nav class="language-switcher">';
+    echo '<a href="' . esc_url($urls['es']) . '" class="' . ($is_es ? 'current-lang' : '') . '">ES</a>';
+    echo '<a href="' . esc_url($urls['en']) . '" class="' . ($is_en ? 'current-lang' : '') . '">EN</a>';
+    echo '</nav>';
+}
+
+add_action('wp_head', function() {
+  if ( !is_singular() ) return;
+
+  $urls = uw_get_lang_urls(); // devuelve ['es' => ..., 'en' => ..., 'current' => 'es'|'en']
+  if ( empty($urls['es']) || empty($urls['en']) ) return;
+
+  // Español (principal)
+  echo '<link rel="alternate" hreflang="es" href="' . esc_url($urls['es']) . '">' . "\n";
+  // Inglés
+  echo '<link rel="alternate" hreflang="en" href="' . esc_url($urls['en']) . '">' . "\n";
+  // Versión por defecto (tu canon es ES)
+  echo '<link rel="alternate" hreflang="x-default" href="' . esc_url($urls['es']) . '">' . "\n";
+}, 5);

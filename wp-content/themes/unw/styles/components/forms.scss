@@ -191,7 +191,10 @@
   align-items: center;
 
   input[type="checkbox"] {
-    display: none;
+    opacity: 0;
+    width: rem(16);
+    height: rem(16);
+    position: absolute;
   }
 
   label {
