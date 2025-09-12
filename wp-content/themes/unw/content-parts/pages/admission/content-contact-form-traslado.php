@@ -1,11 +1,16 @@
 <?php
 $crm_ad      = get_field('crm');
-$careers = $crm_ad['careers'];
+$careers = get_carreras();
 $utms_default      = get_field('list_utms', 'option');
 $utm_admission      = $crm_carriers['list_utms'] ?? [];
 $utms_final = merge_utms($utms_default, $utm_admission);
+$careers = get_carreras();
+$list_campus = get_carreras_campus_modalidad();
+$data_form_type = $args['data_form_type'] ?? '';
 ?>
-<form id="form-traslado" class="contact-form formAdmision" method="POST" accept-charset="UTF-8"
+<form id="<?=$data_form_type;?>" data-form="zoho" data-form-type="<?=$data_form_type;?>"
+  data-careers="<?= esc_attr(wp_json_encode( $careers))?>" data-campus="<?= esc_attr(wp_json_encode( $list_campus))?>"
+  class="contact-form formAdmision form-admission-2-desktop" method="POST" accept-charset="UTF-8"
   enctype="multipart/form-data"
   action="https://forms.zohopublic.com/adminzoho11/form/AdmisinII/formperma/_m8BugFNCHb9CoXtj6nhvLnp7I_JAlphigAw3SovFkI/htmlRecords/submit">
   <div class="form-header">
@@ -36,6 +41,7 @@ $utms_final = merge_utms($utms_default, $utm_admission);
 
   <!--Facultad) Falta -->
   <div class="custom-hidden"></div>
+  <div class="custom-hidden-campus"></div>
   <!--Facultad) Falta -->
   <input type="hidden" name="SingleLine1" value="UNW_Pregrado"> <!-- Unidad de negocio -->
   <input type="hidden" name="SingleLine2" value="Web Admisión II"> <!-- Fuente de origen -->
@@ -56,12 +62,17 @@ $utms_final = merge_utms($utms_default, $utm_admission);
 
   <div class="form-body">
     <div class="form-body__fields">
+      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'radio', [
+          'direction'    => 'flex-col justify-between',
+          'form_type'=> $data_form_type,
+      ]);?>
       <div class="flex justify-between m-b-24">
         <div class="f-50">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
             'name'=> 'Name_First',
             'label'=> 'Nombres (*)',
             'type' => 'text',
+            'max_length' => 30
           ]);?>
         </div>
         <div class="f-50">
@@ -69,6 +80,7 @@ $utms_final = merge_utms($utms_default, $utm_admission);
             'name'=> 'Name_Last',
             'label'=> 'Apellidos (*)',
             'type' => 'text',
+            'max_length' => 60
           ]);?>
         </div>
       </div>
@@ -89,19 +101,27 @@ $utms_final = merge_utms($utms_default, $utm_admission);
           ]);?>
         </div>
       </div>
-      <div class="flex justify-between m-b-24">
-        <div class="f-50">
-          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+      <div class="m-b-24">
+
+        <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
             'name'=> 'Email',
             'label'=> 'Correo electrónico (*)',
             'type' => 'email',
           ]);?>
-        </div>
+      </div>
+      <div class="flex justify-between m-b-24">
         <div class="f-50">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'careers', [
             'name'=> 'SingleLine3',
             'label'=> 'Elige tu carrera (*)',
-            'careers' => $careers,
+            'careers' => $careers['pregrado'],
+          ]);?>
+        </div>
+        <div class="f-50" data-html-name="campus">
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'campus', [
+            'name'=> 'SingleLine11',
+            'label'=> 'Elige tu campus (*)',
+            'careers' => [],
           ]);?>
         </div>
       </div>
@@ -113,12 +133,12 @@ $utms_final = merge_utms($utms_default, $utm_admission);
           <legend>¿Perteneces a las Fuerzas Armadas o PNP?* </legend>
           <div class="flex">
             <div class="radio-option">
-              <input type="radio" id="pregrado" name="Radio1" value="Sí" checked />
-              <label for="pregrado">Sí</label>
+              <input type="radio" id="1-r-<?=$data_form_type?>" name="Radio1" value="Sí" checked />
+              <label for="1-r-<?=$data_form_type?>">Sí</label>
             </div>
             <div class="radio-option m-l-15">
-              <input type="radio" id="gente-trabaja" name="Radio1" value="No" />
-              <label for="gente-trabaja">No</label>
+              <input type="radio" id="2-r-<?=$data_form_type?>" name="Radio1" value="No" />
+              <label for="2-r-<?=$data_form_type?>">No</label>
             </div>
           </div>
         </fieldset>
@@ -129,28 +149,28 @@ $utms_final = merge_utms($utms_default, $utm_admission);
           <legend>¿Eres egresado de Instituto o estudiante de Universidad?* </legend>
           <div class="flex">
             <div class="radio-option">
-              <input type="radio" id="pregrado1" name="Radio" value="Sí" checked />
-              <label for="pregrado1">Sí</label>
+              <input type="radio" id="3-r-<?=$data_form_type?>" name="Radio" value="Sí" checked />
+              <label for="3-r-<?=$data_form_type?>">Sí</label>
             </div>
             <div class="radio-option m-l-15">
-              <input type="radio" id="gente-trabaja1" name="Radio" value="No" />
-              <label for="gente-trabaja1">No</label>
+              <input type="radio" id="4-r-<?=$data_form_type?>" name="Radio" value="No" />
+              <label for="4-r-<?=$data_form_type?>">No</label>
             </div>
           </div>
         </fieldset>
       </div>
 
     </div>
-    <p class="form-body__hint">
+    <p class=" form-body__hint">
       (*) Campos obligatorios
     </p>
     <div class="form-body__terms">
-      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox');?>
+      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox', [
+                    'form_type' => $data_form_type
+                  ]);?>
     </div>
     <div class="form-body__actions">
-      <button type="submit" class="btn btn-primary">Enviar</button>
+      <button type="submit" class="btn btn-primary" id="button-send">Enviar</button>
     </div>
   </div>
 </form>
-<?php
-// vdebug($crm_ad);

@@ -1,6 +1,6 @@
 .admission__wrapper {
   padding-top: rem(28);
-  padding-bottom: rem(64);
+  padding-bottom: rem(28);
 
   @include media(">=tablet") {
     padding-top: rem(63);
@@ -24,4 +24,15 @@
 
 .admission__cta__wrapper {
   padding-bottom: rem(64);
+}
+
+.contact-form-admission {
+  display: block;
+  @include media(">=desktop-s") {
+    display: none;
+  }
+}
+
+.contact-form-admission__wrapper {
+  padding-bottom: rem(48);
 }

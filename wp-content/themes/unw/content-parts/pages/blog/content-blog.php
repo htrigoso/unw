@@ -21,14 +21,23 @@ $wp_query = new WP_Query([
           <?php if ($wp_query->have_posts()) : ?>
           <?php while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
           <?php
-              // Construir array con formato esperado por tu tarjeta
+              // Obtener tags del post
+              $tags = get_the_tags(get_the_ID());
+              $tag_names = [];
+
+              if ($tags && !is_wp_error($tags)) {
+                foreach ($tags as $tag) {
+                  $tag_names[] = $tag->name;
+                }
+              }
+
               $result = [
                 'image'   => get_the_post_thumbnail_url(get_the_ID(), 'medium_large') ?: UPLOAD_PATH . '/default-image.jpg',
                 'title'   => get_the_title(),
                 'date'    => get_the_date('F j, Y'),
                 'content' => get_the_excerpt(),
                 'href'    => get_permalink(),
-                'tags'    => ['Proceso de Admisión', 'Vida Universitaria']
+                'tags'    => $tag_names,
               ];
               get_template_part(COMMON_CONTENT_PATH, 'entry-card', $result);
               ?>

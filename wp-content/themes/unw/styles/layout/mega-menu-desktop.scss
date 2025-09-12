@@ -13,7 +13,8 @@
 }
 
 .menu-item-has-children.is-open {
-  a.has-link-parent {
+  a.has-link-parent,
+  h4 {
     font-weight: var(--font-semi-bold);
     &::after {
       transform: translateY(-50%) rotate(-135deg);
@@ -34,14 +35,17 @@
     width: 100%;
     background: linear-gradient(171deg, #fff 80.91%, #07c8cc 123.34%);
   }
-  .menu-item-has-children > a {
+  .menu-item-has-children > a,
+  .menu-item-has-children > h4 {
     font-size: rem(18);
     font-weight: var(--font-semi-bold);
     color: var(--color-turquoise-two);
+    cursor: pointer;
   }
   .sub-menu-parent {
     display: flex;
     gap: rem(100);
+
     .sub-menu {
       a {
         font-size: rem(16);
@@ -55,6 +59,27 @@
     }
   }
 }
+
+.menu-grid-col-2,
+.menu-grid-col-4,
+.menu-grid-col-3 {
+  .sub-menu-parent {
+    display: grid !important;
+    gap: rem(20);
+    grid-template-columns: repeat(var(--cols), 1fr);
+  }
+}
+
+.menu-grid-col-4 {
+  --cols: 4;
+}
+.menu-grid-col-3 {
+  --cols: 3;
+}
+.menu-grid-col-2 {
+  --cols: 2;
+}
+
 .sub-menu-parent-tab.is-open {
   .main-submenu-wrapper__main {
     .sub-menu-parent {

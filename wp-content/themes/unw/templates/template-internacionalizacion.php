@@ -37,40 +37,30 @@
         <div class="page_interna">
           <div class="container full">
             <div class="_2-col">
-              <div class="col-1 inter">
+              <div class="col-1 full">
                 <div class="tabs_menu notab serv_uni inter">
-                  <a href="#sec-1" data-w-id="ca4b06c9-bf07-10ad-b570-05b753135480"
-                    class="link_item_tab nocurrent inter anipo w-inline-block"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
-                      data-w-id="a2a2df0b-d4f8-6d6e-a81a-2fede10b929b" style="opacity: 1;" alt="" class="point_anima">
+                  <a href="#sec-1"
+                    class="link_item_tab w-inline-block">
                     <div>Presentación</div>
                   </a>
-                  <a href="#sec-2" data-w-id="ca4b06c9-bf07-10ad-b570-05b753135483"
-                    class="link_item_tab nocurrent inter anipo w-inline-block"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
-                      data-w-id="ff95ca6e-f39d-9d53-1322-235ec178b9e1" style="opacity: 0;" alt="" class="point_anima">
+                  <a href="#sec-2"
+                    class="link_item_tab w-inline-block">
                     <div>¿Qué tipo de movilidad puedo hacer?</div>
                   </a>
 
 
-                  <a href="#sec-4" data-w-id="ca4b06c9-bf07-10ad-b570-05b753135486"
-                    class="link_item_tab nocurrent inter anipo w-inline-block"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
-                      data-w-id="60950086-41ab-0774-5ef2-48380dd7d625" style="opacity: 0;" alt="" class="point_anima">
+                  <a href="#sec-4"
+                    class="link_item_tab w-inline-block">
                     <div>Requisitos para postular</div>
                   </a>
 
-                  <a href="#sec-5" data-w-id="ca4b06c9-bf07-10ad-b570-05b753135486"
-                    class="link_item_tab nocurrent inter anipo w-inline-block"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
-                      data-w-id="60950086-41ab-0774-5ef2-48380dd7d625" style="opacity: 0;" alt="" class="point_anima">
+                  <a href="#sec-5"
+                    class="link_item_tab w-inline-block">
                     <div>Pasos de Aplicación </div>
                   </a>
 
-                  <a href="#sec-6" data-w-id="fa2fef97-2446-4fd6-de66-283f6f9509a3"
-                    class="link_item_tab nocurrent inter anipo w-inline-block"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
-                      data-w-id="ab328130-3f16-e07d-2c61-afc55090ecd6" style="opacity: 0;" alt="" class="point_anima">
+                  <a href="#sec-6"
+                    class="link_item_tab w-inline-block">
                     <div>Ver Convenios Internacionales</div>
                   </a>
                 </div>

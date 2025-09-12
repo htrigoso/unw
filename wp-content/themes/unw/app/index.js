@@ -10,6 +10,7 @@ class App {
     this.megaMenuDesktop()
     this.tabMegaMenuDesktop()
     this.hideBackdrop()
+    this.handleOnSubmitForm()
   }
 
   createNavbar() {
@@ -142,6 +143,35 @@ class App {
     openItems.forEach((item) => item.classList.remove('is-open'))
 
     document.documentElement.style.overflow = ''
+  }
+
+  handleOnSubmitForm() {
+    document.addEventListener('DOMContentLoaded', () => {
+      const forms = document.querySelectorAll('[data-form="zoho"]')
+      if (!forms.length) return
+
+      forms.forEach((form) => {
+        form.addEventListener('submit', (e) => {
+          const button = form.querySelector('#button-send')
+
+          if (button) {
+            button.disabled = true
+            button.dataset.originalText = button.innerText
+            button.innerText = 'Enviando...'
+          }
+
+          if (window.dataLayer && Array.isArray(window.dataLayer)) {
+            window.dataLayer.push({
+              event: 'gtm.formSubmit',
+              formId: form.id || null,
+              formType: form.dataset.formType || null
+            })
+          } else {
+            console.warn('⚠️ dataLayer no está definido')
+          }
+        })
+      })
+    })
   }
 }
 

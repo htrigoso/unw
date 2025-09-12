@@ -1,5 +1,5 @@
 import Component from '../../classes/Component'
-import { createSelectCampus, createSelectDepartament, removeSelectCampus, removeSelectDepartament, sanitizeForInput, setClaseName, validateInputs } from './utils'
+import { buildOptionsCampusCareers, createSelectCampus, createSelectDepartament, FORMS, removeSelectCampus, removeSelectDepartament, sanitizeForInput, setClaseName, validateInputs, validatePhone } from './utils'
 
 // ==========================
 // Constantes de formularios
@@ -21,6 +21,7 @@ export default class FormCrmCareer extends Component {
   // ==========================
   createListeners() {
     validateInputs()
+    validatePhone()
     this.handleDepartmentChange()
     this.handleFormMixtoChange()
     this.handleDepartamentChange()
@@ -55,7 +56,7 @@ export default class FormCrmCareer extends Component {
         const value = radio.value.trim().toLowerCase()
 
         switch (value) {
-          case 'pregrado':
+          case FORMS.PREGRADO:
             this.element.action = FORM_CARRIERS_PRESENCIAL
             setClaseName('f-100', this.element)
             removeSelectDepartament(this.element)
@@ -64,9 +65,10 @@ export default class FormCrmCareer extends Component {
               createSelectCampus(this.element, 'SingleLine8')
             }
 
+            buildOptionsCampusCareers({ campus, element: this.element })
             break
 
-          case 'virtual':
+          case FORMS.VIRTUAL:
             this.element.action = FORM_CARRIERS_VIRTUAL
             setClaseName('f-50', this.element)
             createSelectDepartament({
@@ -79,7 +81,7 @@ export default class FormCrmCareer extends Component {
               removeSelectCampus(this.element)
             }
             break
-          case 'work':
+          case FORMS.WORK:
             this.element.action = FORM_CARRIERS_VIRTUAL
             removeSelectCampus(this.element)
             setClaseName('f-100', this.element)
@@ -106,7 +108,7 @@ export default class FormCrmCareer extends Component {
       const hiddenContainer = this.element.querySelector('.custom-hidden')
       if (!hiddenContainer) return
 
-      const checked = document.querySelector('input[name="form_mixto"]:checked')
+      const checked = this.element.querySelector('input[name="form_mixto"]:checked')
       if (!checked) return
 
       const map = {

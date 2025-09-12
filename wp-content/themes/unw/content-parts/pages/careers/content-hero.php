@@ -12,10 +12,11 @@ if (isset($sliders['list_of_files']) && is_array($sliders['list_of_files'])) {
     }
   }
 }
+$name_tax = get_facultad_taxonomy_name();
 
 $base_breadcrumbs = [
   ['label' => 'Inicio', 'href' => home_url('/')],
-  ['label' => 'Ciencias de la Salud', 'href' => '']
+  ['label' => $name_tax, 'href' => '/']
 ];
 ?>
 <div class="careers-hero">
@@ -40,9 +41,14 @@ $base_breadcrumbs = [
         $slugs = wp_list_pluck($terms, 'slug');
 
         if (in_array('presencial', $slugs)) {
-          get_template_part(CAREERS_CONTENT_PATH, 'contact-form-presencial');
+          get_template_part(CAREERS_CONTENT_PATH, 'contact-form-presencial', [
+            'data_form_type' =>$args['data-form']['desktop']
+          ]
+          );
         } else {
-          get_template_part(CAREERS_CONTENT_PATH, 'contact-form-virtual');
+          get_template_part(CAREERS_CONTENT_PATH, 'contact-form-virtual', [
+            'data_form_type' =>$args['data-form']['desktop']
+          ]);
         }
       }
       ?>

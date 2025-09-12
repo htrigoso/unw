@@ -346,9 +346,8 @@
     </div>
     <div class="cover_img_page center fijo">
       <div class="overlay"></div>
-      <img src="" srcset="https://www.uwiener.edu.pe/wp-content/uploads/2024/10/pixel-0410.png" sizes="100vw" alt=""
+      <img src="" srcset="<?= UPLOAD_MIGRATION_PATH . '/shared/pixel.png' ?>" sizes="100vw" alt=""
         class="img_cover">
-      <!--<img src="" srcset=" 500w,  1920w" sizes="100vw" alt="" class="img_cover">-->
       <div class="info_cover_page center">
         <div class="container">
           <h2 class="categoria_page hide">Regresar</h2>

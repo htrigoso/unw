@@ -8,9 +8,12 @@
     margin: -1px;
 
     white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
     border: 0;
     transition: all 0.3s ease;
     pointer-events: none;
+    text-overflow: ellipsis;
 
     color: var(--color-asu-grey);
   }
@@ -116,9 +119,13 @@
     padding: 0;
     margin: 0;
     border: 0;
-    flex-direction: column;
-    @include media(">=desktop-s") {
-      flex-direction: row;
+  }
+  &.is-home {
+    fieldset {
+      flex-direction: column;
+      @include media(">=desktop-s") {
+        flex-direction: row;
+      }
     }
   }
 
@@ -184,7 +191,10 @@
   align-items: center;
 
   input[type="checkbox"] {
-    display: none;
+    opacity: 0;
+    width: rem(16);
+    height: rem(16);
+    position: absolute;
   }
 
   label {
@@ -228,9 +238,10 @@
   }
 
   label .text {
-    a {
+    button {
       color: var(--color-turquoise-three);
       text-decoration: underline;
+      cursor: pointer;
     }
   }
 }
@@ -241,4 +252,19 @@
   font-size: rem(12);
   color: var(--color-error);
   pointer-events: none;
+}
+.form-field-select.blocked {
+  pointer-events: none;
+  select,
+  label {
+    opacity: 0.85;
+    color: var(--color-light-grey);
+  }
+  select {
+    border-bottom: 1px solid var(--color-light-grey);
+    &::after {
+      opacity: 0.85;
+      color: var(--color-light-grey);
+    }
+  }
 }

@@ -5,44 +5,6 @@
     margin-top: rem(52);
   }
 
-  .swiper-events__cards {
-    @include media("<phone") {
-      display: grid !important;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: rem(42);
-    }
-  }
-
-  .swiper-events__title {
-    @include title-32;
-    margin-bottom: rem(32);
-
-    @include media(">=tablet") {
-      @include title-28;
-      margin-bottom: rem(24);
-    }
-  }
-
-  .event-card {
-    width: 100%;
-    @include media(">=phone") {
-      width: rem(280);
-    }
-  }
-
-  .swiper-events__swiper-navigation {
-    display: none;
-  }
-}
-
-.all-events__wrapper {
-  margin-top: rem(42);
-  margin-bottom: rem(36);
-
-  @include media(">=tablet") {
-    margin-bottom: rem(42);
-  }
-
   .swiper-events__title {
     @include title-32;
     margin-bottom: rem(32);
@@ -55,5 +17,46 @@
 
   .swiper-events__swiper-navigation {
     margin-top: rem(42);
+  }
+}
+
+.all-events__wrapper {
+  margin-top: rem(42);
+  margin-bottom: rem(36);
+
+  @include media(">=phone") {
+    margin-bottom: rem(42);
+  }
+
+  .swiper-events__title {
+    @include title-32;
+    margin-bottom: rem(32);
+
+    @include media(">=phone") {
+      @include title-28;
+      margin-bottom: rem(24);
+    }
+  }
+
+  .swiper-events__cards {
+    @include media(">=phone") {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: rem(24);
+    }
+
+    .event-card {
+      @include media(">=phone") {
+        width: auto;
+      }
+    }
+  }
+
+  .swiper-events__swiper-navigation {
+    margin-top: rem(42);
+
+    @include media(">=phone") {
+      display: none;
+    }
   }
 }

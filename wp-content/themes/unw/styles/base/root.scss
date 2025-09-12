@@ -29,7 +29,7 @@ section {
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-primary);
-  border-radius: 3px;
+  border-radius: rem(6);
   cursor: pointer;
 }
 ::-webkit-scrollbar-track {
@@ -37,8 +37,8 @@ section {
 }
 
 ::-webkit-scrollbar {
-  width: 3px;
-  height: 1px;
+  width: rem(8);
+  height: rem(8);
 }
 
 body.sidebar-open {
@@ -70,13 +70,14 @@ body.sidebar-open {
 }
 [data-content="paragraph"] {
   p {
-    margin-bottom: rem(10);
+    margin-bottom: rem(15);
   }
   ul {
     margin-left: rem(17);
     li {
       list-style-type: disc;
     }
+    margin-bottom: rem(15);
   }
   a {
     font-weight: var(--font-medium);

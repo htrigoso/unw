@@ -10,9 +10,10 @@ $page_title        = get_current_page_title();
 $code_carrier     = $crm_carriers['code'];
 // ---- Fusionar UTMs ----
 $utms_final = merge_utms($utms_default, $utm_carriers);
+$data_form_type = $args['data_form_type'] ?? '';
 ?>
-<form id="form" class="contact-form formCarrera" method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
-  action="<?=$formUrl?>">
+<form id="<?=$data_form_type;?>" data-form-type="<?=$data_form_type;?>" class="contact-form formCarrera" method="POST"
+  accept-charset="UTF-8" enctype="multipart/form-data" action="<?=$formUrl?>">
   <div class="form-header">
     <i>
       <svg width="52" height="52">
@@ -63,6 +64,7 @@ $utms_final = merge_utms($utms_default, $utm_carriers);
             'name'=> 'Name_First',
             'label'=> 'Nombres (*)',
             'type' => 'text',
+            'max_length' => 30
           ]);?>
         </div>
       </div>
@@ -73,10 +75,11 @@ $utms_final = merge_utms($utms_default, $utm_carriers);
             'name'=> 'Name_Last',
             'label'=> 'Apellidos (*)',
             'type' => 'text',
+            'max_length' => 60
           ]);?>
         </div>
         <div class="f-50">
-           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
             'name'=> 'SingleLine',
             'label'=> 'Número de documento (*)',
             'type' => 'tel',
@@ -105,10 +108,12 @@ $utms_final = merge_utms($utms_default, $utm_carriers);
       (*) Campos obligatorios
     </p>
     <div class="form-body__terms">
-       <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox');?>
+      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox', [
+        'form_type'=> $data_form_type,
+      ]);?>
     </div>
     <div class="form-body__actions">
-      <button type="submit" class="btn btn-primary">Enviar</button>
+      <button type="submit" class="btn btn-primary" id="button-send">Enviar</button>
     </div>
   </div>
 </form>
