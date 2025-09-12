@@ -139,7 +139,9 @@ $data_form_type = $args['data_form_type'] ?? '';
       (*) Campos obligatorios
     </p>
     <div class="form-body__terms">
-      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox');?>
+      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox', [
+         'form_type'=>$data_form_type
+      ]);?>
     </div>
     <div class="form-body__actions">
       <button type="submit" class="btn btn-primary" id="button-send">Enviar</button>

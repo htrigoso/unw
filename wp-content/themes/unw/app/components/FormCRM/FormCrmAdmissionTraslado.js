@@ -81,9 +81,7 @@ export default class FormCrmAdmissionTraslado extends Component {
 
           case FORMS.WORK:
           case FORMS.VIRTUAL:
-            if (value === FORMS.WORK) {
-              select.setAttribute('name', 'SingleLine5')
-            }
+
             removeNameAttributeCampus({ element: this.element })
 
             resetCustomHidden({ element: this.element })
@@ -91,11 +89,9 @@ export default class FormCrmAdmissionTraslado extends Component {
             this.element.action = FORM_ADMISSION_VIRTUAL
             setClaseName('f-50', this.element)
 
-            select.setAttribute('name', 'SingleLine5')
-
             updateHiddenInputs([
               { name: 'SingleLine1', value: 'UNW_Pregrado_Distancia' },
-              { name: 'SingleLine2', value: 'Web Admisión I - Virtual' }
+              { name: 'SingleLine2', value: 'Web Admisión II - Virtual' }
             ])
             if (departaments.length > 0) {
               createSelectDepartament({ element: this.element })
@@ -130,8 +126,8 @@ export default class FormCrmAdmissionTraslado extends Component {
       return createHiddenInputs({
         type,
         fields: [
-          { name: 'SingleLine4', facultyName },
-          { name: 'SingleLine6', careerName }
+          { name: 'SingleLine5', facultyName },
+          { name: 'SingleLine4', careerName }
         ]
       })
     }
