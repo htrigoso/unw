@@ -1,10 +1,10 @@
 .infrastructure__wrapper {
   padding-top: rem(40);
-  padding-bottom: rem(120);
+  padding-bottom: rem(74);
 
   @include media(">=tablet") {
     padding-top: rem(88);
-    padding-bottom: rem(90);
+    padding-bottom: rem(62);
   }
 }
 
@@ -12,7 +12,7 @@
   margin-bottom: rem(24);
 
   @include media(">=tablet") {
-    margin-bottom: rem(45);
+    margin-bottom: rem(83);
   }
 }
 
@@ -25,10 +25,6 @@
   }
 }
 
-.infrastructure__description {
-  max-width: rem(390);
-}
-
 .infrastructure__list {
   @include media("<phone") {
     display: grid !important;
@@ -37,33 +33,14 @@
   }
 }
 
-.infrastructure-card {
-  border-radius: rem(20);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: hidden;
+.infrastructure__item {
+  .infra-card {
+    @include media(">=phone") {
+      width: rem(305);
+    }
 
-  @include media(">=phone") {
-    width: rem(305);
+    @include media(">=tablet") {
+      width: auto;
+    }
   }
-}
-
-.infrastructure-card__image {
-  img {
-    width: 100%;
-    height: rem(200);
-    object-fit: cover;
-  }
-}
-
-.infrastructure-card__body {
-  flex-grow: 1;
-  background-color: var(--color-light-turquoise);
-  padding: rem(24) rem(16);
-}
-
-.infrastructure-card__name {
-  @include title-18;
-  margin-bottom: rem(8);
 }

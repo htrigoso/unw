@@ -23,6 +23,13 @@
   letter-spacing: 0.5px;
 }
 
+@mixin title-24 {
+  font-size: rem(24);
+  font-weight: var(--font-bold);
+  line-height: normal;
+  letter-spacing: 0.5px;
+}
+
 @mixin title-28 {
   font-size: rem(28);
   font-weight: var(--font-bold);
@@ -44,10 +51,44 @@
   letter-spacing: 0.5px;
 }
 
+@mixin title-40 {
+  font-size: rem(40);
+  font-weight: var(--font-bold);
+  line-height: normal;
+  letter-spacing: 0.5px;
+}
+
+@mixin title-42 {
+  font-size: rem(42);
+  font-weight: var(--font-bold);
+  line-height: normal;
+  letter-spacing: 0.5px;
+}
+
+@mixin title-56 {
+  font-size: rem(56);
+  font-weight: var(--font-bold);
+  line-height: normal;
+  letter-spacing: 0.5px;
+}
+
 @mixin title-60 {
   font-size: rem(60);
   font-weight: var(--font-bold);
   line-height: normal;
+  letter-spacing: 0.5px;
+}
+
+@mixin title-62 {
+  font-size: rem(62);
+  font-weight: var(--font-bold);
+  line-height: normal;
+  letter-spacing: 0.5px;
+}
+
+@mixin title-56 {
+  font-size: rem(56);
+  font-weight: var(--font-bold);
   letter-spacing: 0.5px;
 }
 
@@ -58,9 +99,10 @@
   letter-spacing: 0.5px;
 }
 
-@mixin title-56 {
-  font-size: rem(56);
+@mixin title-200 {
+  font-size: rem(200);
   font-weight: var(--font-bold);
+  line-height: rem(58.4);
   letter-spacing: 0.5px;
 }
 

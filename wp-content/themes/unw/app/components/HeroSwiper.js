@@ -1,14 +1,17 @@
-import Swiper from 'swiper/bundle'
+import { createSwiper } from './createSwiper'
 
-const HeroSwiper = (sectionEl = '.hero') => {
-  return new Swiper(`${sectionEl} .swiper-container`, {
+const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
+  const defaultConfig = {
     loop: true,
     slidesPerView: 1,
     centeredSlides: false,
     spaceBetween: 0,
-    speed: 1500,
+    speed: 500,
     lazy: false,
-    autoplay: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
     effect: 'fade',
     fadeEffect: {
       crossFade: true
@@ -18,7 +21,9 @@ const HeroSwiper = (sectionEl = '.hero') => {
       el: `${sectionEl} .swiper-pagination`,
       clickable: true
     }
-  })
+  }
+
+  return createSwiper(sectionEl, config, defaultConfig)
 }
 
 export default HeroSwiper

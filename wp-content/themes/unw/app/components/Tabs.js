@@ -1,7 +1,7 @@
 import Component from '../classes/Component'
 
 export default class Tabs extends Component {
-  constructor({ element }) {
+  constructor({ element, preventDefault = false, onTabChange = null }) {
     super({
       element,
       elements: {
@@ -9,14 +9,15 @@ export default class Tabs extends Component {
         tabContents: '.tab__content'
       }
     })
-
+    this.preventDefault = preventDefault
     this.currentTabId = null
+    this.onTabChange = onTabChange
 
     this.init()
   }
 
   init() {
-    this.activateFirstTab()
+    this.activeTabFromUrl()
     this.bindTabEvents()
     window.addEventListener('resize', this.handleResize.bind(this))
   }
@@ -30,18 +31,39 @@ export default class Tabs extends Component {
     }
   }
 
-  activateFirstTab() {
-    const firstTab = this.elements.tabItems[0]
-    if (!firstTab) return
+  activeTabFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search)
+    const tabId = urlParams.get('tab')
+    let tabToActivate = null
 
-    const targetId = firstTab.dataset.target
+    if (tabId) {
+      tabToActivate = [...this.elements.tabItems].find(tab => tab.dataset.target === tabId)
+    }
+
+    if (!tabToActivate) {
+      tabToActivate = [...this.elements.tabItems].find(tab =>
+        tab.classList.contains('is-active')
+      )
+    }
+
+    const targetId = tabToActivate?.dataset?.target || 0
     this.currentTabId = targetId
 
-    this.setActiveTab(firstTab)
+    this.setActiveTab(tabToActivate)
     this.showTabContent(targetId)
+    this.scrollToTab(tabToActivate)
+
+    // Callback para notificar el cambio de tab inicial
+    if (typeof this.onTabChange === 'function') {
+      const targetContent = document.getElementById(targetId)
+      const tabIndex = this.getTabIndex(tabToActivate)
+      this.onTabChange(tabToActivate, targetContent, tabIndex)
+    }
   }
 
   bindTabEvents() {
+    if (this.preventDefault) return
+
     this.elements.tabItems?.forEach(tab => {
       tab.addEventListener('click', event => this.handleTabClick(event, tab))
     })
@@ -61,16 +83,23 @@ export default class Tabs extends Component {
     this.showTabContent(targetId)
     this.scrollToContent(targetContent)
     this.scrollToTab(tab)
+    this.updateUrl(targetId)
 
-    // Update Swiper instances to prevent layout issues
-    setTimeout(() => {
-      const swipers = targetContent.querySelectorAll('.swiper-container')
-      swipers.forEach(container => {
-        if (container.swiper && typeof container.swiper.update === 'function') {
-          container.swiper.update()
-        }
-      })
-    }, 100)
+    // Callback para notificar el cambio de tab
+    if (typeof this.onTabChange === 'function') {
+      const tabIndex = this.getTabIndex(tab)
+      this.onTabChange(tab, targetContent, tabIndex)
+    }
+  }
+
+  getTabIndex(tab) {
+    return [...this.elements.tabItems].indexOf(tab)
+  }
+
+  updateUrl(targetId) {
+    const url = new URL(window.location)
+    url.searchParams.set('tab', targetId)
+    window.history.replaceState({}, '', url)
   }
 
   setActiveTab(activeTab) {
@@ -81,14 +110,16 @@ export default class Tabs extends Component {
   }
 
   showTabContent(targetId) {
-    this.elements.tabContents.forEach(content => {
+    if (this.preventDefault) return
+
+    this.elements.tabContents?.forEach(content => {
       content.style.display = content.id === targetId ? 'block' : 'none'
     })
   }
 
   scrollToContent(targetContent) {
     requestAnimationFrame(() => {
-      const offset = 130
+      const offset = 200
       const top =
         targetContent.getBoundingClientRect().top +
         window.pageYOffset -

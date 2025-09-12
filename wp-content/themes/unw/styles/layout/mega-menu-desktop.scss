@@ -1,0 +1,116 @@
+.main-submenu-wrapper {
+  position: fixed;
+  left: 0%;
+  top: rem(116);
+  right: 0%;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  background: rgba(67, 72, 76, 0.8);
+}
+.main-submenu-wrapper__content {
+  padding-top: rem(20);
+}
+
+.menu-item-has-children.is-open {
+  a.has-link-parent,
+  h4 {
+    font-weight: var(--font-semi-bold);
+    &::after {
+      transform: translateY(-50%) rotate(-135deg);
+    }
+  }
+}
+
+.menu-item-has-children.is-open {
+  .main-submenu-wrapper {
+    display: flex;
+  }
+
+  .main-submenu-wrapper__main {
+    position: relative;
+    padding: rem(20) rem(24);
+    border-radius: rem(12);
+    max-width: rem(1066);
+    width: 100%;
+    background: linear-gradient(171deg, #fff 80.91%, #07c8cc 123.34%);
+  }
+  .menu-item-has-children > a,
+  .menu-item-has-children > h4 {
+    font-size: rem(18);
+    font-weight: var(--font-semi-bold);
+    color: var(--color-turquoise-two);
+    cursor: pointer;
+  }
+  .sub-menu-parent {
+    display: flex;
+    gap: rem(100);
+
+    .sub-menu {
+      a {
+        font-size: rem(16);
+        padding: rem(6) 0;
+        display: block;
+        transition: font-weight 0.2s ease;
+        &:hover {
+          font-weight: var(--font-semi-bold);
+        }
+      }
+    }
+  }
+}
+
+.menu-grid-col-2,
+.menu-grid-col-4,
+.menu-grid-col-3 {
+  .sub-menu-parent {
+    display: grid !important;
+    gap: rem(20);
+    grid-template-columns: repeat(var(--cols), 1fr);
+  }
+}
+
+.menu-grid-col-4 {
+  --cols: 4;
+}
+.menu-grid-col-3 {
+  --cols: 3;
+}
+.menu-grid-col-2 {
+  --cols: 2;
+}
+
+.sub-menu-parent-tab.is-open {
+  .main-submenu-wrapper__main {
+    .sub-menu-parent {
+      width: 100%;
+      padding-top: rem(15);
+      > li {
+        display: none;
+        width: 100%;
+
+        &.is-active {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: rem(100);
+        }
+      }
+    }
+  }
+}
+.submenu-tab {
+  &.has-active {
+    padding-bottom: rem(20);
+    border-bottom: 1px solid var(--color-secondary-grey);
+  }
+  button {
+    font-size: rem(18);
+    cursor: pointer;
+    &.is-active {
+      font-weight: var(--font-semi-bold);
+    }
+    &:not(:last-child) {
+      margin-right: rem(48);
+    }
+  }
+}

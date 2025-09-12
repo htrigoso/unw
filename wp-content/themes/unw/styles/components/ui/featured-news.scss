@@ -1,0 +1,45 @@
+@import './see-more-btn';
+@import './entry-card';
+
+.featured-news__title {
+  @include title-32;
+  margin-bottom: rem(20);
+
+  @include media(">=tablet") {
+    @include title-28;
+    margin-bottom: rem(24);
+  }
+}
+
+.featured-news__list {
+  .entry-card {
+    width: rem(288);
+  }
+}
+
+.featured-news__swiper-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: rem(28);
+
+  @include media(">=tablet") {
+    margin-top: rem(24);
+  }
+
+  .swiper-navigation {
+    margin-top: 0 !important;
+  }
+}
+
+.featured-news__see-more-btn {
+  display: none;
+
+  @include media(">=phone") {
+    display: flex;
+    justify-content: center;
+  }
+
+  @include media(">=tablet") {
+    margin-top: 0;
+  }
+}

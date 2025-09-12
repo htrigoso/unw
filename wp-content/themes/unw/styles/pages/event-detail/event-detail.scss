@@ -1,0 +1,65 @@
+@import "./../../components/ui/body-w-list.scss";
+.event-detail__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: rem(44);
+  margin-top: rem(44);
+
+  @include media(">=tablet") {
+    margin-top: rem(78);
+    margin-bottom: rem(124);
+  }
+
+  @include media(">=desktop-s") {
+    flex-direction: row;
+    gap: rem(128);
+  }
+}
+
+.event-detail__content {
+  @include media(">=desktop-s") {
+    width: 50%;
+  }
+}
+
+.event-detail__subtitle {
+  @include title-32;
+  margin-bottom: rem(24);
+
+  @include media(">=tablet") {
+    display: none;
+  }
+}
+
+.event-detail__title {
+  @include title-18;
+  margin-bottom: rem(42);
+
+  @include media(">=tablet") {
+    @include title-28;
+    margin-bottom: rem(24);
+  }
+}
+
+.event-detail__description {
+  margin-bottom: rem(42);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(24);
+  }
+  p {
+    margin: rem(15) 0;
+  }
+}
+
+.event-detail__video {
+  margin-bottom: rem(42);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(24);
+  }
+}
+
+.event-detail__form {
+  flex: 1;
+}

@@ -1,0 +1,39 @@
+.simple-events {
+  margin-top: rem(66);
+}
+
+.simple-events__title {
+  @include title-28;
+  margin-bottom: rem(16);
+}
+
+.simple-events-swiper {
+  .event-card {
+    max-width: rem(280);
+  }
+}
+
+.simple-events__see-more {
+  margin-top: rem(16);
+  display: flex;
+  justify-content: center;
+
+  @include media(">=tablet") {
+    margin-top: rem(40);
+  }
+}
+
+.simple-events__see-more-btn {
+  padding: rem(7) rem(15);
+  justify-content: space-between;
+  max-width: rem(296);
+  width: 100%;
+
+  @include media(">=tablet") {
+    max-width: rem(328);
+  }
+
+  .icon--arrow {
+    padding: rem(4);
+  }
+}

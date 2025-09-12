@@ -1,0 +1,49 @@
+.career-tabs__container {
+  display: flex;
+  flex-direction: column;
+  margin-top: rem(20);
+
+  .nav-tabs {
+    padding-inline: rem(16);
+    margin-inline: rem(-16);
+
+    @include media(">=phone") {
+      padding-inline: rem(24);
+      margin-inline: rem(-24);
+    }
+  }
+
+  @include media(">=tablet") {
+    padding-inline: rem(81);
+    margin-top: rem(63);
+  }
+}
+
+.career-tabs__faq {
+  padding-top: rem(24);
+  padding-bottom: rem(70);
+}
+
+.career-tabs__internationalization {
+  .internationalization__wrapper {
+    padding-top: rem(44);
+    padding-bottom: rem(96);
+
+    @include media(">=tablet") {
+      padding-top: rem(88);
+      padding-bottom: rem(96);
+    }
+  }
+}
+
+.contact-form-careers {
+  display: block;
+  @include media(">=desktop-s") {
+    display: none;
+  }
+}
+
+.contact-form-careers__wrapper {
+  padding-top: rem(24);
+  padding-bottom: rem(24);
+}

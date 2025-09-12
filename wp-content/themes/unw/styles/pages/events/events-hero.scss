@@ -1,0 +1,85 @@
+.swiper-events-hero__wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.event-slide {
+  position: relative;
+  overflow: hidden;
+}
+
+.event-slide__picture--img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  aspect-ratio: 10/9;
+  max-height: rem(500);
+
+  @include media(">=tablet") {
+    aspect-ratio: 1/2;
+    max-height: rem(769);
+  }
+}
+
+.event-slide__wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+}
+
+.event-slide__container {
+  margin-top: auto;
+  padding-bottom: rem(24);
+
+  @include media(">=phone") {
+    padding-bottom: rem(50);
+  }
+}
+
+.event-slide__content {
+  max-width: rem(600);
+}
+
+.event-slide__content--title {
+  @include title-28;
+  color: var(--color-white);
+  margin-bottom: rem(21);
+
+  @include media(">=tablet") {
+    @include title-56;
+  }
+}
+
+.event-slide__content--date {
+  display: flex;
+  align-items: center;
+  gap: rem(12);
+  margin-bottom: rem(20);
+
+  span {
+    display: inline-block;
+    color: var(--color-white);
+
+    @include media(">=tablet") {
+      font-size: rem(32);
+    }
+  }
+}
+
+.event-slide__content--cta {
+  font-size: rem(16);
+  white-space: nowrap;
+  font-weight: var(--font-semi-bold);
+  color: var(--color-white);
+  height: rem(51);
+
+  @include media(">=tablet") {
+    min-width: rem(242);
+  }
+}

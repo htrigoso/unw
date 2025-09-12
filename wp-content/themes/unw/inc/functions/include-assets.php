@@ -1,5 +1,10 @@
 <?php
 
+
+
+
+add_filter( 'big_image_size_threshold', '__return_false' );
+
 add_action('wp_footer', 'include_the_json_settings');
 function include_the_json_settings()
 {
@@ -16,7 +21,95 @@ function include_the_json_settings()
 }
 
 
+
+
+
+add_filter('clean_url', 'addAttrs', 11, 1);
+function addAttrs($url)
+{
+  if (false === strpos($url, '.js')) {
+    return $url;
+  }
+
+   return $url ;
+}
+
+
+
+
+if (!function_exists('vdebug')) {
+    function vdebug($hero) {
+        static $vdebug_id = 0;
+        $vdebug_id++;
+
+        $output = print_r($hero, true); // Captura el contenido en string
+
+        echo '
+        <div style="position:relative; margin:10px 0; border:1px solid #ccc; border-radius:8px; background:#f9f9f9;">
+            <button onclick="vdebugCopy(\'vdebug-' . $vdebug_id . '\')"
+                style="position:absolute; top:5px; right:5px; padding:4px 8px; font-size:12px; cursor:pointer; border:none; border-radius:4px; background:#0073aa; color:#fff;">
+                📋 Copiar
+            </button>
+            <pre id="vdebug-' . $vdebug_id . '" style="margin:0; padding:10px; overflow:auto; max-height:400px;">' . esc_html($output) . '</pre>
+        </div>
+        <script>
+        function vdebugCopy(id) {
+            var el = document.getElementById(id);
+            var range = document.createRange();
+            range.selectNode(el);
+            var sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+            try {
+                document.execCommand("copy");
+             } catch(e) {
+                alert("❌ No se pudo copiar");
+            }
+            sel.removeAllRanges();
+        }
+        </script>';
+    }
+}
+
+
+function get_current_page_url() {
+    global $wp;
+
+    // URL base según contexto
+    if (is_front_page()) {
+        $url = home_url('/');
+    } elseif (is_home()) {
+        $url = get_permalink(get_option('page_for_posts'));
+    } elseif (is_single() || is_page()) {
+        $url = get_permalink();
+    } elseif (is_category()) {
+        $url = get_category_link(get_query_var('cat'));
+    } elseif (is_tag()) {
+        $url = get_tag_link(get_query_var('tag_id'));
+    } elseif (is_author()) {
+        $url = get_author_posts_url(get_query_var('author'));
+    } else {
+        $url = home_url(add_query_arg(array(), $wp->request));
+    }
+
+    // 🔹 Agregar parámetros de la URL actual (UTMs, etc.)
+    if (!empty($_GET)) {
+        $url = add_query_arg($_GET, $url);
+    }
+
+    return esc_url($url);
+}
+
+
+function placeholder() {
+  echo 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAECAYAAABGM/VAAAAABHNCSVQICAgIfAhkiAAAAF1JREFUCFtjvP/m1n8GIPj64TzD5f+GDJ8+/WBgrDp767+DKAOD1K/zDEpShgxbH/xhYFx+59Z/LW5Ghg9//zMoMd5mePJZiYHxxMsH2w6+BhnAwJAo9pvh5GcmBgCRxSUqb+IRJgAAAABJRU5ErkJggg==';
+}
+
+function get_placeholder() {
+  return 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAECAYAAABGM/VAAAAABHNCSVQICAgIfAhkiAAAAF1JREFUCFtjvP/m1n8GIPj64TzD5f+GDJ8+/WBgrDp767+DKAOD1K/zDEpShgxbH/xhYFx+59Z/LW5Ghg9//zMoMd5mePJZiYHxxMsH2w6+BhnAwJAo9pvh5GcmBgCRxSUqb+IRJgAAAABJRU5ErkJggg==';
+}
 add_action('wp_enqueue_scripts', 'include_assets');
+
 function include_assets()
 {
   global $wp_query;
@@ -35,15 +128,9 @@ function include_assets()
     $env = $assets['env'];
     unset($assets['env']);
   }
-  if ($env === 'production') {
-    // $plyr_style = $themePath . '/build/plyr/plyr.min.css';
-    if (ALLOW_GZIP) {
-      // $plyr_style = $themePath . '/build/plyr/plyr.min.css.gz';
-    }
-    if (is_page_template('page-about_us.php') || is_front_page() || is_home() || is_singular(['post', 'project'])) {
-      //wp_enqueue_style('plyr', $plyr_style);
-    }
-  }
+
+
+
   if (!empty($assets)) {
     foreach ($assets as $key => $val) {
       switch ($key) {
@@ -58,6 +145,12 @@ function include_assets()
               }
 
               if ($env === 'production') {
+                // Aquí se agrega la acción para precargar el CSS.
+                add_action('wp_head', function() use ($style_url) {
+                  echo '<link rel="preload" href="' . esc_url($style_url) . '" as="style">';
+                }, 1);
+
+                // Luego, encolamos el estilo de forma normal para que se aplique.
                 wp_enqueue_style($key, $style_url);
               }
 
@@ -82,7 +175,6 @@ function include_assets()
 
               wp_enqueue_script($key, $script_url, ['app'], '', true);
             }
-
           }
           break;
       }
@@ -91,21 +183,113 @@ function include_assets()
 }
 
 
-add_filter('clean_url', 'addAttrs', 11, 1);
-function addAttrs($url)
-{
-  if (false === strpos($url, '.js')) {
-    return $url;
-  }
 
-  return "$url' defer";
+
+function get_value_or_default($value,$escape_function = false, $default = 'Por definir') {
+    // Verificar si es null, vacío o contiene solo espacios en blanco
+    if ($value === null || $value === '' || trim($value) === '') {
+        $result = $default;
+    } else {
+        $result = $value;
+    }
+
+    // Aplicar función de escape si se solicita
+    if ($escape_function) {
+        // Si es true, usar esc_html por defecto
+        if ($escape_function === true) {
+            $escape_function = 'esc_html';
+        }
+
+        // Verificar que la función existe y aplicarla
+        if (is_string($escape_function) && function_exists($escape_function)) {
+            return $escape_function($result);
+        }
+    }
+
+    return $result;
+}
+
+function wp_is_nonempty_array( $value ) {
+    return ( is_array( $value ) && ! empty( $value ) );
 }
 
 
-function placeholder() {
-  echo 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAECAYAAABGM/VAAAAABHNCSVQICAgIfAhkiAAAAF1JREFUCFtjvP/m1n8GIPj64TzD5f+GDJ8+/WBgrDp767+DKAOD1K/zDEpShgxbH/xhYFx+59Z/LW5Ghg9//zMoMd5mePJZiYHxxMsH2w6+BhnAwJAo9pvh5GcmBgCRxSUqb+IRJgAAAABJRU5ErkJggg==';
+
+function uw_get_lang_urls() {
+    if ( !is_singular() ) return null;
+
+    global $post;
+    if ( ! $post instanceof WP_Post ) return null;
+
+    // ¿Estoy en la versión EN? (página hija con slug 'en')
+    $is_en = ( $post->post_parent > 0 && $post->post_name === 'en' );
+
+    if ( $is_en ) {
+        // EN actual → el padre es ES
+        $es_post = get_post( $post->post_parent );
+        if ( ! $es_post ) return null;
+
+        $es_url = get_permalink( $es_post );
+        $en_url = get_permalink( $post );
+        $current = 'en';
+
+    } else {
+        // ES actual → buscar hijo 'en'
+        $es_post = $post;
+        $es_url  = get_permalink( $es_post );
+
+        // Busca un hijo con slug EXACTO 'en'
+        $en_child = get_children([
+            'post_parent' => $es_post->ID,
+            'post_type'   => 'page',
+            'name'        => 'en',
+            'numberposts' => 1,
+            'post_status' => 'publish',
+        ]);
+
+        if ( ! empty($en_child) ) {
+            $en_page = array_shift($en_child);
+            $en_url  = get_permalink( $en_page );
+        } else {
+            // Fallback: construye /en sin depender de barra final
+            $en_url = trailingslashit( $es_url ) . 'en';
+        }
+
+        $current = 'es';
+    }
+
+    return [
+        'es'      => $es_url,
+        'en'      => $en_url,
+        'current' => $current, // 'es' o 'en'
+    ];
+}
+// http://unw.loc/powered-by-asu/en
+// es
+
+function uw_output_lang_switcher() {
+    $urls = uw_get_lang_urls();
+    if ( ! $urls ) return;
+
+    $is_es = ($urls['current'] === 'es');
+    $is_en = ($urls['current'] === 'en');
+
+    echo '<nav class="language-switcher">';
+    echo '<a href="' . esc_url($urls['es']) . '" class="' . ($is_es ? 'current-lang' : '') . '">ES</a>';
+    echo '<a href="' . esc_url($urls['en']) . '" class="' . ($is_en ? 'current-lang' : '') . '">EN</a>';
+    echo '</nav>';
 }
 
-function get_placeholder() {
-  return 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAECAYAAABGM/VAAAAABHNCSVQICAgIfAhkiAAAAF1JREFUCFtjvP/m1n8GIPj64TzD5f+GDJ8+/WBgrDp767+DKAOD1K/zDEpShgxbH/xhYFx+59Z/LW5Ghg9//zMoMd5mePJZiYHxxMsH2w6+BhnAwJAo9pvh5GcmBgCRxSUqb+IRJgAAAABJRU5ErkJggg==';
-}
+add_action('wp_head', function() {
+  if ( !is_singular() ) return;
+
+  $urls = uw_get_lang_urls(); // devuelve ['es' => ..., 'en' => ..., 'current' => 'es'|'en']
+  if ( empty($urls['es']) || empty($urls['en']) ) return;
+
+  // Español (principal)
+  echo '<link rel="alternate" hreflang="es" href="' . esc_url($urls['es']) . '">' . "\n";
+  // Inglés
+  echo '<link rel="alternate" hreflang="en" href="' . esc_url($urls['en']) . '">' . "\n";
+  // Versión por defecto (tu canon es ES)
+  echo '<link rel="alternate" hreflang="x-default" href="' . esc_url($urls['es']) . '">' . "\n";
+}, 5);

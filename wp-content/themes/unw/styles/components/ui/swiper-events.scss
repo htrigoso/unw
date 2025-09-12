@@ -1,0 +1,44 @@
+@import "./see-more-btn";
+@import "./event-card";
+
+.swiper-events__title {
+  @include title-28;
+  margin-bottom: rem(16);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(24);
+  }
+}
+
+.swiper-events__card {
+  .event-card {
+    width: rem(280);
+  }
+}
+
+.swiper-events__swiper-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: rem(16);
+
+  @include media(">=tablet") {
+    margin-top: rem(24);
+  }
+
+  .swiper-navigation {
+    margin-top: 0 !important;
+  }
+}
+
+.swiper-events__see-more-btn {
+  display: none;
+
+  @include media(">=phone") {
+    display: flex;
+    justify-content: center;
+  }
+
+  @include media(">=tablet") {
+    margin-top: 0;
+  }
+}

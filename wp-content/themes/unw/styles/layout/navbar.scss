@@ -2,7 +2,8 @@
   position: sticky;
   top: 0;
   background: #fff;
-  z-index: 2;
+  z-index: 10;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .navbar__wrapper {
@@ -17,6 +18,9 @@
 
   @include media(">=tablet") {
     height: rem(64);
+    padding-top: 0;
+    padding-bottom: 0;
+    align-items: stretch;
   }
 }
 
@@ -33,7 +37,7 @@
     height: auto;
 
     @include media(">=tablet") {
-      width: rem(101);
+      width: rem(192);
     }
   }
 }
@@ -43,28 +47,68 @@
   align-items: center;
   justify-content: flex-end;
   pointer-events: all;
+
+  @include media(">=tablet") {
+    height: 100%;
+  }
+
+  li {
+    padding-left: 0 !important;
+  }
+
+  * {
+    line-height: normal !important;
+  }
 }
 
 .navbar__menu-wrapper {
-  @include media("<tablet") {
-    display: none;
+  display: none;
+
+  @include media(">=tablet") {
+    height: 100%;
+    display: block;
+  }
+}
+
+.navbar__menu,
+.navbar__menu > ul,
+.navbar__menu > ul > li {
+  @include media(">=tablet") {
+    height: 100%;
+  }
+}
+h4.has-link-parent {
+  cursor: pointer;
+
+  font-weight: var(--font-regular);
+}
+
+.navbar__menu > ul > li > a,
+.navbar__menu > ul > li > h4 {
+  @include media(">=tablet") {
+    height: 100%;
+    display: flex !important;
+    align-items: center;
   }
 }
 
 .navbar__menu {
-  a {
+  a,
+  h4 {
     color: var(--color-black);
   }
 
-  .menu-item-has-children > a {
+  .menu-item-has-children > a,
+  .menu-item-has-children > h4 {
     position: relative;
     padding-right: 24px;
-
+  }
+  .has-link-parent {
     &::after {
       content: "";
       position: absolute;
-      right: 4px;
       top: 50%;
+      right: 4px;
       transform: translateY(-50%) rotate(45deg);
       width: 8px;
       height: 8px;
@@ -73,10 +117,12 @@
       border-radius: 2px;
       display: inline-block;
       pointer-events: none;
+      transform-origin: bottom bottom;
+      transition: transform 0.3s ease;
     }
   }
 
-  .menu-item-object-page {
+  .menu-item-parent-page {
     margin-inline: rem(12);
 
     @include media(">=desktop-s") {
@@ -91,17 +137,18 @@
       margin-right: 0;
     }
 
-    & > a {
+    & > a,
+    & > h4 {
       display: inline-block;
-      max-width: rem(125);
       text-align: center;
     }
   }
+  .menu-item {
+    position: relative;
+  }
 
-  .menu-item-has-children {
-    .sub-menu {
-      display: none;
-    }
+  .main-submenu-wrapper {
+    display: none;
   }
 }
 

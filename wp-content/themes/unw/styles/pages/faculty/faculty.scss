@@ -1,0 +1,46 @@
+.faculty__header {
+  padding-top: rem(42);
+  padding-bottom: rem(35);
+
+  @include media(">=tablet") {
+    padding-top: rem(40);
+    padding-bottom: rem(30);
+  }
+}
+
+.faculty__header--title {
+  @include title-32;
+
+  @include media(">=tablet") {
+    @include title-62;
+  }
+
+  span {
+    color: var(--color-primary);
+  }
+}
+
+.faculty__testimonials {
+  padding-top: rem(74);
+
+  .testimonial__title {
+    @include title-28;
+    margin-bottom: rem(24);
+  }
+}
+
+.faculty__internationalization {
+  margin-top: rem(80);
+  margin-bottom: rem(83);
+
+  @include media(">=tablet") {
+    margin-top: rem(54);
+    margin-bottom: rem(68);
+  }
+
+  .internationalization__header {
+    @include media(">=tablet") {
+      margin-bottom: rem(32);
+    }
+  }
+}

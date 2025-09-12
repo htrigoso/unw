@@ -11,8 +11,14 @@
 
   @include media(">=tablet") {
     background-color: transparent;
-    color: var(--color-primary);
+    color: var(--color-turquoise-three);
     border: 1px solid transparent;
+
+    &:hover,
+    &:focus {
+      background-color: rgba(7, 200, 204, 0.1);
+      border-color: transparent;
+    }
   }
 
   .icon--arrow {

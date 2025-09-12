@@ -1,0 +1,42 @@
+.news-tabs__container {
+  display: flex;
+  flex-direction: column;
+  margin-top: rem(24);
+
+  .nav-tabs {
+    padding-inline: rem(16);
+    margin-inline: rem(-16);
+
+    @include media(">=phone") {
+      padding-inline: rem(24);
+      margin-inline: rem(-24);
+    }
+
+    @include media(">=tablet") {
+      padding-inline: rem(16);
+      margin-inline: 0;
+    }
+  }
+
+  @include media(">=tablet") {
+    margin-top: rem(52);
+  }
+}
+
+.news {
+  padding-top: rem(32);
+  padding-bottom: rem(42);
+
+  @include media(">=tablet") {
+    padding-top: rem(42);
+    padding-bottom: rem(104);
+  }
+}
+
+.all-news-container {
+  padding-top: rem(36);
+
+  @include media(">=tablet") {
+    padding-top: rem(42);
+  }
+}

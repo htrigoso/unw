@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="es_PE">
+<html lang="es">
 
 <head>
   <title><?php the_title() ?></title>
   <base href="/">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="Cache-control" content="public">
   <meta name="keywords" content="unw">
@@ -23,21 +23,23 @@
   <meta property="og:url" content="<?php echo home_url() ?>" />
   <meta property="og:site_name" content="Universidad Norbert Wiener: Educación de Clase Mundial
 " />
+  <meta name="description"
+    content="Universidad Norbert Wiener, AVANZA+ en tu carrera profesional. Educación de calidad internacional, en alianza con Arizona State University. ¡Postula ya!">
   <meta property="og:locale" content="es_ES">
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:domain" content="<?php echo home_url() ?>" />
   <meta name="twitter:title" property="og:title" itemprop="name" content="<?php the_title() ?>" />
   <meta name="twitter:description" property="og:description" itemprop="description"
     content="Universidad Norbert Wiener, AVANZA+ en tu carrera profesional. Educación de calidad internacional, en alianza con Arizona State University. ¡Postula ya!" />
-
   <link rel="icon" type="image/png" sizes="32x32" href="<?php echo UPLOAD_PATH; ?>/favicon/favicon.png">
-  <!-- <link rel="manifest" href="<?php echo UPLOAD_PATH; ?>/favicon/site.webmanifest">
-    <link rel="mask-icon" href="<?php echo UPLOAD_PATH; ?>/favicon/safari-pinned-tab.svg" color="#5bbad5"> -->
+
+  <?php get_template_part('content-parts/content', 'fonts'); ?>
 
   <!-- Css vars-->
   <style type="text/css">
   :root {
     --font: "Founders Grotesk", sans-serif;
+    --font-inter: "Inter", sans-serif;
     --font-size: 16px;
     --font-thin: 100;
     --font-extra-light: 200;
@@ -64,45 +66,43 @@
     --color-asu-gold: #FFC627;
     --color-asu-grey: #747474;
 
+    --color-error: #FF5050;
     --color-black: #000000;
     --color-danger: #ee3f28;
     --color-gray: #f2f1ed;
+    --color-light-gray: #eeeeee;
     --color-mercury: #e8e8e8;
     --color-white: #ffffff;
-    --color-purple: #BB4E8E;
+    --color-purple: #7458EC;
     --color-dove-gray: #616161;
     --color-dodger-blue: #1C92F4;
     --color-burnt-sienna: #E67E3F;
     --color-tory-blue: #0F56A8;
+    --color-olive-green: #5E9440;
+    --color-gold: #F6BD23;
+    --color-pink: #BB4E8E;
+
+    --color-bg-secondary: #F0EAEE;
+
+    --navbar-height-mobile: 64px;
+    --navbar-height-desktop: 118px;
 
     --swiper-prev-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-left.svg');
-  --swiper-next-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-right.svg');
+    --swiper-next-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-right.svg');
+    --white-check: url('<?php echo get_template_directory_uri(); ?>/upload/icons/white-check.svg');
   }
   </style>
 
   <!-- Load fonts-->
-  <!-- Load Founders Grotesk fonts -->
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Bold.woff2" rel="preload" as="font" type="font/woff2"
-    crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-BoldItalic.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Semibold.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-SemiboldItalic.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Medium.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-MediumItalic.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Regular.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-RegularItalic.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-Light.woff2" rel="preload" as="font" type="font/woff2"
-    crossorigin>
-  <link href="/wp-content/themes/unw/assets/fonts/FoundersGrotesk-LightItalic.woff2" rel="preload" as="font"
-    type="font/woff2" crossorigin>
+
+
+
   <script>
+  window.appConfigUnw = {
+    themeUrl: "<?= get_template_directory_uri(); ?>",
+    uploadUrl: "<?= get_template_directory_uri(); ?>/upload"
+  };
+
   let doc = document.documentElement;
 
   function calcVh() {
@@ -111,8 +111,31 @@
   window.addEventListener('resize', calcVh);
   calcVh();
   </script>
+  <!-- Google Tag Manager -->
+  <script>
+  (function(w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+      'gtm.start': new Date().getTime(),
+      event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s),
+      dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+      'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', 'GTM-W8DNW8B');
+  </script>
+  <!-- End Google Tag Manager -->
   <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W8DNW8B" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <?php include get_template_directory() . '/upload/icons/sprite.svg'; ?>

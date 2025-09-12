@@ -4,15 +4,45 @@ define('ROOTPATH', __DIR__);
 define('BASE_URL', get_bloginfo('url'));
 define('THEME_PATH', get_template_directory_uri());
 define('UPLOAD_PATH', get_template_directory_uri() . '/upload');
+define('UPLOAD_MIGRATION_PATH', get_template_directory_uri() . '/upload/migration');
+define('IMAGE_DEFAULT', get_template_directory_uri() . '/upload/imagen-defaul.jpg');
 define('ASSETS_PATH', get_template_directory_uri() . '/assets');
 define('ALLOW_UNFILTERED_UPLOADS', true);
 define('ALLOW_GZIP', false);
 define('COMMON_CONTENT_PATH', 'content-parts/common/content');
 define('HOME_CONTENT_PATH', 'content-parts/pages/home/content');
+define('NEWS_CONTENT_PATH', 'content-parts/pages/news/content');
+define('NEWS_DETAIL_CONTENT_PATH', 'content-parts/pages/news-detail/content');
+define('EVENT_DETAIL_CONTENT_PATH', 'content-parts/pages/event-detail/content');
+define('EVENTS_CONTENT_PATH', 'content-parts/pages/events/content');
+define('BLOG_CONTENT_PATH', 'content-parts/pages/blog/content');
+define('BLOG_DETAIL_CONTENT_PATH', 'content-parts/pages/blog-detail/content');
+define('PBA_CONTENT_PATH', 'content-parts/pages/powered-by-asu/content');
+define('SEARCH_CONTENT_PATH', 'content-parts/pages/search/content');
+define('ADMISSION_CONTENT_PATH', 'content-parts/pages/admission/content');
+define('ABOUT_US_CONTENT_PATH', 'content-parts/pages/about-us/content');
+define('OUR_HISTORY_CONTENT_PATH', 'content-parts/pages/our-history/content');
+define('QUALITY_POLICY_CONTENT_PATH', 'content-parts/pages/quality-policy/content');
+define('CAREERS_CONTENT_PATH', 'content-parts/pages/careers/content');
+define('THANKS_CONTENT_PATH', 'content-parts/pages/thanks/content');
+
+define('ERROR_CONTENT_PATH', 'content-parts/pages/404/content');
+
 define('GENERAL_CONTENT_PATH', 'content-parts/content');
-define('CAREERS_HERO_CONTENT_PATH', 'content-parts/pages/careers/hero/content');
+define('GENERAL_FORM_CONTACT_PATH', 'content-parts/forms/content');
+
+
 define('CAREERS_TABS_PATH', 'content-parts/pages/careers/tabs/content');
+define('ALL_CAREERS_TABS_PATH', 'content-parts/pages/all-careers/tabs/content');
+define('ADMISSION_TABS_PATH', 'content-parts/pages/admission/tabs/content');
+define('FACULTY_TABS_PATH', 'content-parts/pages/faculty/tabs/content');
+define('NEWS_TABS_PATH', 'content-parts/pages/news/tabs/content');
+
+define('CAREERS_HERO_CONTENT_PATH', 'content-parts/pages/careers/hero/content');
 define('CAREERS_CONTENT_TAB_PATH', 'content-parts/pages/careers/tabs/');
+define('ADMISSION_CONTENT_TAB_PATH', 'content-parts/pages/admission/tabs/');
+define('FACULTY_CONTENT_TAB_PATH', 'content-parts/pages/faculty/tabs/');
+define('NEWS_CONTENT_TAB_PATH', 'content-parts/pages/news/tabs/');
 
 set_query_var( 'NAVBAR_COLOR', false );
 set_query_var( 'MENU_COLOR', false );
@@ -179,20 +209,6 @@ function cc_mime_types($mimes) {
 }
 
 
-/**
- * google map API KEY for Admin
- */
-add_filter( 'acf/settings/google_api_key', 'set_acf_fields_google_map_key' );
-function set_acf_fields_google_map_key() {
-    return 'AIzaSyC2dSaHMoRmFncykyFghoLozdWO_MNq1wM';
-}
-
-add_filter( 'acf/fields/google_map/api', 'set_acf_fields_google_map_lang' );
-function set_acf_fields_google_map_lang($api) {
-    $api['language'] = 'es';
-    return $api;
-}
-
 
 /**
  * add admin style
@@ -250,3 +266,50 @@ function custom_pre_get_posts( $query ) {
 
     return $query;
 }
+
+function custom_acf_accordion_styles() {
+    echo '<style>
+        .acf-field.acf-accordion .acf-label.acf-accordion-title {
+            background-color: #07c8cc;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .acf-field.acf-accordion .acf-label.acf-accordion-title:hover {
+            background-color: #05b0b4;
+        }
+    </style>';
+}
+add_action('admin_head', 'custom_acf_accordion_styles');
+
+
+function desactivar_editor_en_paginas($post) {
+  // ID de la página a ocultar el editor (cámbialo por el tuyo)
+  $id_pagina = 602;
+
+  if ($post->ID === $id_pagina) {
+    remove_post_type_support('page', 'editor');
+  }
+}
+add_action('edit_form_after_title', 'desactivar_editor_en_paginas');
+
+
+
+
+add_action('init', function() {
+  remove_post_type_support('post', 'editor');
+});
+
+
+function unw_remove_editor_from_specific_page() {
+  // Reemplaza 42 con el ID de tu página
+  $page_id = 16;
+
+  if (isset($_GET['post']) || isset($_POST['post'])) {
+    $post_id = $_GET['post'] ?? $_POST['post'];
+    if ($post_id == $page_id) {
+      remove_post_type_support('page', 'editor');
+    }
+  }
+}
+add_action('admin_init', 'unw_remove_editor_from_specific_page');

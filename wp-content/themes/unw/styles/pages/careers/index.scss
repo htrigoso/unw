@@ -1,5 +1,13 @@
-@import "./hero";
-@import "./testimonial";
+@import "./../../components/ui/swiper-hero.scss";
+@import "./../../components/ui/internationalization";
+@import "./../../components/ui/accordion";
+@import "./../../components/ui/nav-tabs";
+@import "./../../components/ui/faq-section";
+@import "./../../components/ui/infra-card";
+@import "./../../components/ui/testimonials";
+@import "./../../components/forms";
+@import "./../../components/ui/rich-text-modal";
+@import "./career-tabs";
 @import "./career-intro";
 @import "./benefits";
 @import "./career-field";
@@ -8,4 +16,4 @@
 @import "./teaching-staff";
 @import "./infrastructure";
 @import "./admission";
-@import "./internationalization";
+@import "./hero";

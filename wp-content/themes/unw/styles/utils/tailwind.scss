@@ -112,6 +112,7 @@
   flex: 1 1 100%;
   max-width: calc(40% - 5px);
 }
+
 .f-60 {
   flex: 1 1 100%;
   max-width: calc(60% - 5px);
@@ -133,7 +134,7 @@
   flex: 1 1 100%;
 }
 .f-50 {
-  max-width: calc(50% - 5px);
+  max-width: calc(50% - 8px);
   flex: 1 1 100%;
 }
 .f-50-10 {
@@ -187,6 +188,9 @@
 .m-b-10 {
   margin-bottom: rem(10);
 }
+.m-b-12 {
+  margin-bottom: rem(12);
+}
 .m-b-15 {
   margin-bottom: rem(15);
 }
@@ -209,7 +213,10 @@
   margin-bottom: rem(30);
 }
 .m-b-32 {
-  margin-bottom: 32px;
+  margin-bottom: rem(32);
+}
+.m-b-40 {
+  margin-bottom: rem(40);
 }
 .m-b-45 {
   margin-bottom: rem(45);
@@ -266,6 +273,14 @@
 .m-x-15 {
   margin-left: 15px;
   margin-right: 15px;
+}
+
+/**
+* Gap
+*/
+
+.gap-10 {
+  gap: 10px;
 }
 
 /**
@@ -488,16 +503,8 @@
   min-height: rem(14);
   margin: rem(1);
   display: block;
-  background-color: var(--color-black);
   border-radius: 999px;
-}
-
-.dot--purple {
-  background-color: var(--color-purple);
-}
-
-.dot--gray {
-  background-color: var(--color-dove-gray);
+  background-color: var(--color-black);
 }
 
 .dot--blue {
@@ -508,6 +515,59 @@
   background-color: var(--color-burnt-sienna);
 }
 
-.dot--dark-blue {
+.dot--gray {
+  background-color: var(--color-dove-gray);
+}
+
+.dot--purple {
+  background-color: var(--color-purple);
+}
+
+.dot--green {
+  background-color: var(--color-olive-green);
+}
+
+.dot--blue-dark {
   background-color: var(--color-tory-blue);
+}
+
+.dot--yellow {
+  background-color: var(--color-gold);
+}
+
+.dot--pink {
+  background-color: var(--color-pink);
+}
+
+@mixin line-clamp($lines) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+@for $i from 1 through 5 {
+  .line-clamp-#{$i} {
+    @include line-clamp($i);
+  }
+}
+
+.list-primary {
+  & > li {
+    display: flex;
+    gap: rem(12);
+
+    &:before {
+      content: "";
+      width: rem(13);
+      min-width: rem(13);
+      height: rem(13);
+      border-radius: rem(999);
+      display: inline-block;
+      margin: rem(3.5);
+      background-color: var(--color-primary);
+    }
+  }
 }

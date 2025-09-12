@@ -1,48 +1,51 @@
-import Swiper from 'swiper/bundle'
-
-let swiperInstance = null
+import { createSwiper } from './createSwiper'
 
 const isTablet = () => window.innerWidth >= 768
 
-const PostSwiperDesktop = (sectionEl = '.post-swiper-desktop') => {
-  const selector = `${sectionEl} .swiper-container`
+const instances = new Map()
 
-  const init = () => {
-    if (isTablet() && !swiperInstance) {
-      swiperInstance = new Swiper(selector, {
-        loop: false,
+const PostSwiperDesktop = (sectionEl = '.post-swiper-desktop', config = {}) => {
+  const defaultConfig = {
+    loop: false,
+    slidesPerView: 'auto',
+    spaceBetween: 8,
+    pagination: {
+      el: `${sectionEl} .swiper-pagination`
+    },
+    navigation: {
+      nextEl: `${sectionEl} .swiper-primary-button-next`,
+      prevEl: `${sectionEl} .swiper-primary-button-prev`
+    },
+    breakpoints: {
+      576: {
         slidesPerView: 'auto',
-        spaceBetween: 8,
-        grabCursor: true,
-        pagination: {
-          el: `${sectionEl} .swiper-pagination`,
-          clickable: true
-        },
-        navigation: {
-          nextEl: `${sectionEl} .post-swiper-button-next`,
-          prevEl: `${sectionEl} .post-swiper-button-prev`
-        },
-        breakpoints: {
-          576: {
-            slidesPerView: 'auto',
-            spaceBetween: 16
-          },
-          1024: {
-            slidesPerView: 'auto',
-            spaceBetween: 24
-          }
-        }
-      })
-    } else if (!isTablet() && swiperInstance) {
-      swiperInstance.destroy(true, true)
-      swiperInstance = null
+        spaceBetween: 16
+      },
+      1024: {
+        slidesPerView: 'auto',
+        spaceBetween: 24
+      }
     }
   }
 
-  init()
+  function handleResize() {
+    let swiperInstance = instances.get(sectionEl)
+    if (isTablet() && !swiperInstance) {
+      swiperInstance = createSwiper(sectionEl, config, defaultConfig)
+      instances.set(sectionEl, swiperInstance)
+    } else if (!isTablet() && swiperInstance) {
+      swiperInstance.destroy(true, true)
+      instances.delete(sectionEl)
+    }
+  }
 
-  window.removeEventListener('resize', init)
-  window.addEventListener('resize', init)
+  handleResize()
+
+  const resizeKey = `__postSwiperDesktopResize_${sectionEl}`
+  if (!window[resizeKey]) {
+    window.addEventListener('resize', handleResize)
+    window[resizeKey] = true
+  }
 }
 
 export default PostSwiperDesktop

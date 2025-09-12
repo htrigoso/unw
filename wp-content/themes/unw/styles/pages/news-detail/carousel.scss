@@ -1,0 +1,51 @@
+.carousel__content--image {
+  aspect-ratio: 41/22;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.carousel__content--description {
+  margin-top: rem(12);
+
+  @include media(">=tablet") {
+    margin-top: rem(24);
+  }
+}
+
+.carousel__swiper-navigation {
+  .swiper-navigation {
+    @include media("<phone") {
+      margin-top: rem(28) !important;
+      gap: rem(0) !important;
+    }
+
+    .swiper-primary-button-prev,
+    .swiper-primary-button-next {
+      &::before {
+        @include media("<phone") {
+          width: rem(26);
+          height: rem(26);
+        }
+      }
+    }
+
+    .swiper-primary-button-next {
+      @include media("<phone") {
+        margin-left: rem(7.68);
+      }
+    }
+
+    .swiper-counter {
+      @include media("<phone") {
+        margin-left: rem(16);
+      }
+
+      .swiper-pagination {
+        @include media("<phone") {
+          font-size: rem(20);
+        }
+      }
+    }
+  }
+}

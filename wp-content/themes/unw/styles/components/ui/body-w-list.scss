@@ -1,0 +1,14 @@
+.body-w-list,
+.body-w-list__list {
+  & > *:not(:last-child) {
+    margin-bottom: rem(12);
+  }
+}
+
+.body-w-list__title {
+  @include title-22;
+}
+
+.body-w-list__hint {
+  color: var(--color-asu-grey);
+}

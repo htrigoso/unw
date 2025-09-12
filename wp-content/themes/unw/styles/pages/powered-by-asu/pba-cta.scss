@@ -1,0 +1,33 @@
+.pba-cta__wrapper {
+  padding-top: rem(42);
+  padding-bottom: rem(42);
+
+  @include media(">=tablet") {
+    padding-top: rem(0);
+    padding-bottom: rem(96);
+  }
+}
+
+.pba-cta__other {
+  display: flex;
+  flex-direction: column;
+  gap: rem(12);
+  padding-top: rem(24);
+
+  @include media(">=phone-576") {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  @include media(">=tablet") {
+    padding-top: rem(46);
+  }
+
+  a {
+    width: 100%;
+
+    @include media(">=phone-576") {
+      max-width: rem(328);
+    }
+  }
+}

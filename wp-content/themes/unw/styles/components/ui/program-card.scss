@@ -1,0 +1,36 @@
+.program-card {
+  border: 1px solid var(--color-light-grey);
+  border-radius: rem(16);
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.program-card--img {
+  height: rem(140);
+  width: 100%;
+  object-fit: cover;
+}
+
+.program-card--content {
+  padding: rem(24) rem(16) rem(16) rem(16);
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.program-card--content__title {
+  @include title-22;
+  margin-bottom: auto;
+}
+
+.program-card--content__description {
+  margin-top: rem(8);
+  margin-bottom: auto;
+}
+
+.program-card--content__cta {
+  margin-top: rem(24);
+}

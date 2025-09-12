@@ -1,76 +1,72 @@
+<?php
+$curriculum_legend = $args['curriculum_legend'] ?? null;
+
+$default_dot_colors = [
+  'blue',
+  'orange',
+  'gray',
+  'purple',
+  'green',
+  'blue-dark',
+  'yellow',
+  'pink',
+];
+
+?>
+
+<?php if (!empty($curriculum_legend)): ?>
 <section class="curriculum-legend" aria-labelledby="curriculum-legend-title">
   <div class="curriculum-legend__wrapper">
     <div class="curriculum-legend__header">
-      <h2 id="curriculum-legend-title" class="curriculum-legend__title">Leyenda de Malla Curricular</h2>
+      <h2 id="curriculum-legend-title" class="curriculum-legend__title">
+        <?php echo esc_html($curriculum_legend['title'] ?? 'Leyenda de Malla Curricular'); ?>
+      </h2>
       <div class="curriculum-legend__description">
-        <img class="curriculum-legend__logo"
-          src="<?php echo get_template_directory_uri(); ?>/upload/careers/icon-uni.png" alt="" />
+        <?php if (!empty($curriculum_legend['icon']['url'])): ?>
+        <img class="curriculum-legend__logo lazyload" src="<?php echo esc_url($curriculum_legend['icon']['url']); ?>"
+          src="<?php echo esc_url($curriculum_legend['icon']['alt']); ?>" />
+        <?php endif; ?>
+        <?php if (!empty($curriculum_legend['description'])): ?>
         <p class="curriculum-legend__paragraph">
-          Courses with class materials and practical cases extracted directly from the <strong>Arizona State
-            University</strong> academic plan.
+          <?php echo $curriculum_legend['description']; ?>
         </p>
+        <?php endif; ?>
       </div>
     </div>
-    <div class="curriculum-legend__content">
-      <ul class="curriculum-legend__list">
-        <li class="curriculum-legend__item">
-          <div class="curriculum-legend__dot">
-            <span class="dot dot--blue"></span>
-          </div>
-          Biological Foundations
-        </li>
-        <li class="curriculum-legend__item">
-          <div class="curriculum-legend__dot">
-            <span class="dot dot--orange"></span>
-          </div>
-          Structure and Function
-        </li>
-        <li class="curriculum-legend__item">
-          <div class="curriculum-legend__dot">
-            <span class="dot dot--gray"></span>
-          </div>
-          General Studies
-        </li>
-        <li class="curriculum-legend__item">
-          <div class="curriculum-legend__dot">
-            <span class="dot dot--purple"></span>
-          </div>
-          Innovation and Health Trends
-        </li>
-        <li class="curriculum-legend__item">
-          <div class="curriculum-legend__dot">
-            <span class="dot dot--green"></span>
-          </div>
-          Internships
-        </li>
-        <li class="curriculum-legend__item">
-          <div class="curriculum-legend__dot">
-            <span class="dot dot--blue-dark"></span>
-          </div>
-          Clinical and Professional Practices
-        </li>
-        <li class="curriculum-legend__item">
-          <div class="curriculum-legend__dot">
-            <span class="dot dot--yellow"></span>
-          </div>
-          Public Health and Management
-        </li>
-        <li class="curriculum-legend__item">
-          <div class="curriculum-legend__dot">
-            <span class="dot dot--pink"></span>
-          </div>
-          Behavior and Society
-        </li>
-      </ul>
 
-      <ul class="curriculum-legend__notes">
-        <li class="curriculum-legend__note">
-          Para la condición de egreso se debe aprobar los cursos de la malla curricular, las prácticas preprofesionales y los créditos correspondientes a actividades extracurriculares.
+    <div class="curriculum-legend__content">
+      <?php if (!empty($curriculum_legend['options'])): ?>
+      <ul class="curriculum-legend__list">
+        <?php foreach ($curriculum_legend['options'] as $i => $option): ?>
+        <?php
+              $title = $option['title'] ?? '';
+              $color_hex = '';
+
+
+              if (!empty($option['color_faculty_hex']) && is_object($option['color_faculty_hex']) && !empty($option['color_faculty_hex']->ID)) {
+                $color_hex = get_the_excerpt($option['color_faculty_hex']->ID);
+              }
+            ?>
+        <li class="curriculum-legend__item">
+          <div class="curriculum-legend__dot">
+            <span class="dot" style="background-color:<?= esc_attr($color_hex) ?>"></span>
+          </div>
+          <?php echo esc_html($title); ?>
         </li>
-        <li class="curriculum-legend__note">
-          La malla curricular puede ser actualizada o modificada conforme a ley y previa comunicación a los estudiantes.
-        </li>
+        <?php endforeach; ?>
       </ul>
+      <?php endif; ?>
+
+      <?php if (!empty($curriculum_legend['notes'])): ?>
+      <ul class="curriculum-legend__notes">
+        <?php foreach ($curriculum_legend['notes'] as $note): ?>
+        <li class="curriculum-legend__note">
+          <?php echo esc_html($note['content'] ?? ''); ?>
+        </li>
+        <?php endforeach; ?>
+      </ul>
+      <?php endif; ?>
     </div>
   </div>
 </section>
+<?php endif; ?>

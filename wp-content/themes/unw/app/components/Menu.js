@@ -4,12 +4,14 @@ export default class Menu extends Component {
   constructor({ element, navbar }) {
     super({
       element,
-      elements: {}
+      elements: {
+      }
     })
 
     this.navbar = navbar
     this.createListeners()
     this.handleResize = this.handleResize.bind(this)
+    this.searchModalForm = document.querySelector('.search-modal__wrapper')
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
   }
@@ -24,10 +26,14 @@ export default class Menu extends Component {
     this.menuLinks = this.element.querySelectorAll('.sidebar__menu-link')
     this.submenuBackButtons = this.element.querySelectorAll('.sidebar__submenu-back')
 
+    this.buttonsOpenSearchModal = document.querySelectorAll('[data-open-modal="search-modal"]')
+    this.buttonsCloseSearchModal = document.querySelectorAll('[data-close-modal="search-modal"]')
+
     this.handleOpen()
     this.handleClose()
     this.handleSubmenuOpen()
     this.handleSubmenuBack()
+    this.handleOpenSearchModal()
   }
 
   handleResize() {
@@ -55,10 +61,12 @@ export default class Menu extends Component {
 
     this.menuLinks.forEach((link) => {
       link.addEventListener('click', (e) => {
-        e.preventDefault()
         const parent = link.closest('.sidebar__menu-item')
         const submenu = parent?.querySelector('.sidebar__submenu')
-        submenu?.classList.add('is-active')
+        if (submenu) {
+          e.preventDefault()
+          submenu.classList.add('is-active')
+        }
       })
     })
   }
@@ -72,6 +80,31 @@ export default class Menu extends Component {
         const parent = btn.closest('.sidebar__menu-item')
         const submenu = parent?.querySelector('.sidebar__submenu')
         submenu?.classList.remove('is-active')
+      })
+    })
+  }
+
+  handleOpenSearchModal() {
+    if (this.buttonsOpenSearchModal.length === 0 || this.buttonsCloseSearchModal.length === 0) {
+      return
+    }
+    this.buttonsOpenSearchModal.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault()
+        this.searchModalForm.classList.add('is-ready')
+        setTimeout(() => {
+          this.searchModalForm.classList.add('is-active')
+        }, 10)
+      })
+    })
+
+    this.buttonsCloseSearchModal.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault()
+        this.searchModalForm.classList.remove('is-active')
+        setTimeout(() => {
+          this.searchModalForm.classList.remove('is-ready')
+        }, 350)
       })
     })
   }

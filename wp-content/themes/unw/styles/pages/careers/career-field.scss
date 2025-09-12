@@ -19,11 +19,18 @@
 }
 
 .career-field__description {
-  max-width: rem(390);
+  padding-bottom: rem(24);
+
+  @include media(">=tablet") {
+    padding-bottom: rem(60);
+  }
+
+  p:not(:last-child) {
+    margin-bottom: rem(24);
+  }
 }
 
 .career-field__list {
-  padding-top: rem(24);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(rem(154), 1fr));
   gap: rem(16);
@@ -33,9 +40,7 @@
   }
 
   @include media(">=tablet") {
-    column-gap: rem(92);
-    row-gap: rem(85);
-    padding-top: rem(84);
+    gap: rem(92);
   }
 }
 
