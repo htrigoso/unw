@@ -41,9 +41,14 @@ $base_breadcrumbs = [
         $slugs = wp_list_pluck($terms, 'slug');
 
         if (in_array('presencial', $slugs)) {
-          get_template_part(CAREERS_CONTENT_PATH, 'contact-form-presencial');
+          get_template_part(CAREERS_CONTENT_PATH, 'contact-form-presencial', [
+            'data_form_type' =>$args['data-form']['desktop']
+          ]
+          );
         } else {
-          get_template_part(CAREERS_CONTENT_PATH, 'contact-form-virtual');
+          get_template_part(CAREERS_CONTENT_PATH, 'contact-form-virtual', [
+            'data_form_type' =>$args['data-form']['desktop']
+          ]);
         }
       }
       ?>

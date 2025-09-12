@@ -78,14 +78,14 @@ import { $element } from '../../utils/dom'
       }
     })
   }
-  const formDesktoPregrado = $element('[data-form-type="pregrado-desktop"]')
+  const formDesktoPregrado = $element('[data-form-type="careers-desktop"]')
 
   if (formDesktoPregrado) {
     new FormCrmCareer({
       element: formDesktoPregrado
     })
   }
-  const formDesktoVirtual = $element('[data-form-type="virtual-desktop"]')
+  const formDesktoVirtual = $element('[data-form-type="careers-mobile"]')
 
   if (formDesktoVirtual) {
     new FormCrmCareer({

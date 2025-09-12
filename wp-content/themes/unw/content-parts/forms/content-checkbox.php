@@ -1,6 +1,10 @@
+<?php
+$input = $args ?? [];
+$id = $input['form_type'] ?? 'none'
+?>
 <div class="form-field-checkbox">
-  <input type="checkbox" name="DecisionBox1" id="DecisionBox1" checked required>
-  <label for="DecisionBox1">
+  <input type="checkbox" name="DecisionBox1" id="checkbox-<?=$id?>" required>
+  <label for="checkbox-<?=$id?>">
     <span class="custom-checkbox"></span>
     <span class="text">
       Declaro expresamente haber leído y aceptado las <button type="button" data-modal-target="politics-modal">Políticas

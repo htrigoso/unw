@@ -3,6 +3,7 @@
   global $post;
   $page_id = $post->ID;
 
+
   $crm_carriers      = get_field('crm');
   $form_mixto = $crm_carriers['form_mixto'];
   $form_normal = $crm_carriers['form_normal'];
@@ -45,8 +46,10 @@
       $campus_json = $list_campus_default;
     }
   }
+
+$data_form_type = $args['data_form_type'] ?? '';
 ?>
-<form id="form" data-form="zoho" data-form-type="pregrado-desktop"
+<form id="<?=$data_form_type;?>" data-form="zoho" data-form-type="<?=$data_form_type;?>"
   data-departaments=" <?= esc_attr(wp_json_encode( $departments_json)) ?>"
   data-campus="<?= esc_attr(wp_json_encode( $campus_json)) ?>" data-mixto="<?=esc_attr(trim($is_form_mixto))?>"
   class="contact-form formCarrera" method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
@@ -90,6 +93,7 @@
       <?php if ( $is_form_mixto ): ?>
       <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'radio', [
         'direction'    => 'flex-col justify-between',
+         'form_type'=> $data_form_type,
       ]);?>
       <?php endif; ?>
 
@@ -165,7 +169,9 @@
       (*) Campos obligatorios
     </p>
     <div class="form-body__terms">
-      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox');?>
+      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox', [
+        'form_type'=> $data_form_type,
+      ]);?>
     </div>
     <div class="form-body__actions">
       <button type="submit" class="btn btn-primary">Enviar</button>

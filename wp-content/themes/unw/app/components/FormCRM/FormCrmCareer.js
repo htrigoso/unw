@@ -107,7 +107,7 @@ export default class FormCrmCareer extends Component {
       const hiddenContainer = this.element.querySelector('.custom-hidden')
       if (!hiddenContainer) return
 
-      const checked = document.querySelector('input[name="form_mixto"]:checked')
+      const checked = this.element.querySelector('input[name="form_mixto"]:checked')
       if (!checked) return
 
       const map = {
