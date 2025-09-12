@@ -1,6 +1,8 @@
 <div class="admission-hero">
   <?php
+
   $hero = get_field('Hero');
+
   $breadcrumbs = [
     ['label' => 'Inicio', 'href' => home_url('/')],
     ['label' => 'Admisión', 'href' => ''],
@@ -24,7 +26,11 @@ endif;
 ?>
   <div class="x-container admission-hero__form__wrapper">
     <div class="admission-hero__form">
-      <?php get_template_part(ADMISSION_CONTENT_PATH, $args['form'], $args['id']) ?>
+      <?php
+      get_template_part(ADMISSION_CONTENT_PATH, $args['form'], [
+        'data_form_type' =>$args['data-form']['desktop']
+      ])
+       ?>
     </div>
   </div>
 </div>
@@ -61,14 +67,14 @@ if ($admission && is_array($admission)) :
 </section>
 <?php endif; ?>
 
-<section class="m-b-40">
-  <div class="x-container x-container--pad-213">
+<section class="contact-form-admission">
+  <div class="x-container x-container--pad-213 contact-form-admission__wrapper">
     <?php
-      if($args['type'] === 'pregrado') {
-        get_template_part(ADMISSION_CONTENT_PATH, $args['form'], [
-          'data_form_type' =>'pregrado-mobile'
-        ]);
-      }
+
+      get_template_part(ADMISSION_CONTENT_PATH, $args['form'], [
+          'data_form_type' =>$args['data-form']['mobile']
+      ]);
+
     ?>
   </div>
 </section>

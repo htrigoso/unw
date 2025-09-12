@@ -146,26 +146,30 @@ class App {
   }
 
   handleOnSubmitForm() {
-    document.addEventListener('DOMContentLoaded', function () {
-      const form = document.querySelector('[data-form="zoho"]')
-      if (!form) return
+    document.addEventListener('DOMContentLoaded', () => {
+      const forms = document.querySelectorAll('[data-form="zoho"]')
+      if (!forms.length) return
 
-      form.addEventListener('submit', function (e) {
-        const button = form.querySelector('#button-send')
+      forms.forEach((form) => {
+        form.addEventListener('submit', (e) => {
+          const button = form.querySelector('#button-send')
 
-        // ✅ Bloquea el botón al enviar
-        if (button) {
-          button.disabled = true
-          button.innerText = 'Enviando...' // feedback opcional
-        }
+          if (button) {
+            button.disabled = true
+            button.dataset.originalText = button.innerText
+            button.innerText = 'Enviando...'
+          }
 
-        // ✅ Push a dataLayer
-        if (typeof dataLayer !== 'undefined') {
-          window.dataLayer.push({
-            event: 'gtm.formSubmit',
-            formId: form.id
-          })
-        }
+          if (window.dataLayer && Array.isArray(window.dataLayer)) {
+            window.dataLayer.push({
+              event: 'gtm.formSubmit',
+              formId: form.id || null,
+              formType: form.dataset.formType || null
+            })
+          } else {
+            console.warn('⚠️ dataLayer no está definido')
+          }
+        })
       })
     })
   }

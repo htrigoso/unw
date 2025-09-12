@@ -14,8 +14,10 @@
 <main>
   <?php get_template_part(ADMISSION_CONTENT_PATH,'shared-admission', [
       'form' => 'contact-form-traslado',
-      'type' => 'traslado',
-       'id' => 'traslado-desktop'
+      'data-form' => [
+        'desktop'=> 'traslado-desktop',
+        'mobile'=> 'traslado-mobile'
+      ]
   ]);?>
 </main>
 

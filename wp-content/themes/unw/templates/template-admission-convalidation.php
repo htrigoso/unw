@@ -14,8 +14,10 @@
 <main>
   <?php get_template_part(ADMISSION_CONTENT_PATH,'shared-admission', [
       'form' => 'contact-form-convalidation',
-        'type' => 'pregrado',
-       'id' => 'pregrado-desktop'
+      'data-form' => [
+        'desktop'=> 'pregrado-desktop',
+        'mobile'=> 'pregrado-mobile'
+      ]
   ]);?>
 </main>
 

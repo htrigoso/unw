@@ -10,18 +10,33 @@ import { $element } from '../../utils/dom'
 
   new ModalManager()
 
-  const formAdmission = $element('[data-form-type="pregrado-desktop"]')
+  const formAdmissionDesktop = $element('[data-form-type="pregrado-desktop"]')
 
-  if (formAdmission) {
+  if (formAdmissionDesktop) {
     new FormCrmAdmission({
-      element: formAdmission,
+      element: formAdmissionDesktop,
       container: '.formAdmision'
     })
   }
-  const formAdmissionTraslado = $element('[data-form-type="traslado-desktop"]')
-  if (formAdmissionTraslado) {
+  const formAdmissionMobile = $element('[data-form-type="pregrado-mobile"]')
+
+  if (formAdmissionMobile) {
+    new FormCrmAdmission({
+      element: formAdmissionMobile,
+      container: '.formAdmision'
+    })
+  }
+  const formAdmissionTrasladoDesktop = $element('[data-form-type="traslado-desktop"]')
+  if (formAdmissionTrasladoDesktop) {
     new FormCrmAdmissionTraslado({
-      element: formAdmissionTraslado,
+      element: formAdmissionTrasladoDesktop,
+      container: '.formAdmision'
+    })
+  }
+  const formAdmissionTrasladoMobile = $element('[data-form-type="traslado-mobile"]')
+  if (formAdmissionTrasladoMobile) {
+    new FormCrmAdmissionTraslado({
+      element: formAdmissionTrasladoMobile,
       container: '.formAdmision'
     })
   }

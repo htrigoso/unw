@@ -4,11 +4,12 @@ import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS,
 // ==========================
 // Constantes de formularios
 // ==========================
+
 const FORM_ADMISSION_PRESENCIAL =
-  'https://forms.zohopublic.com/adminzoho11/form/Admisin/formperma/qazbrVloDUNKCisJII7v7HMG2gMsSkD30FMV9GEJM4E/htmlRecords/submit'
+  'https://forms.zohopublic.com/adminzoho11/form/AdmisinII/formperma/_m8BugFNCHb9CoXtj6nhvLnp7I_JAlphigAw3SovFkI/htmlRecords/submit'
 
 const FORM_ADMISSION_VIRTUAL =
-  'https://forms.zohopublic.com/adminzoho11/form/WebAdmisinIVirtual/formperma/pQcbclF2i7Gt1QAKd0zl3Ow5bT3dxSrcE3-ybtsYQoE/htmlRecords/submit'
+  'https://forms.zohopublic.com/adminzoho11/form/WebAdmisinIIVirtual/formperma/qU7Tnn7L1O7U0now8oMZlZtoXgR5ygGX8VvtZnLzjAE/htmlRecords/submit'
 
 export default class FormCrmAdmissionTraslado extends Component {
   constructor({ element, container, onCompleted }) {
@@ -35,6 +36,7 @@ export default class FormCrmAdmissionTraslado extends Component {
   // ==========================
 
   handleFormMixtoChange() {
+    if (!this.element) return
     const radios = this.element.querySelectorAll('input[name="form_mixto"]')
     if (!radios.length) return
     const departaments = JSON.parse(this.element.dataset.departaments || '[]')
@@ -138,7 +140,7 @@ export default class FormCrmAdmissionTraslado extends Component {
   }
 
   updateHiddenFields({ select, hiddenContainer }) {
-    const checked = document.querySelector('input[name="form_mixto"]:checked')
+    const checked = this.element.querySelector('input[name="form_mixto"]:checked')
     const selectedOption = select.options[select.selectedIndex]
     const parentOptgroup = selectedOption.parentElement
     const careerName = selectedOption.textContent.trim()
@@ -156,15 +158,16 @@ export default class FormCrmAdmissionTraslado extends Component {
   }
 
   handleCarrersChange() {
-    const form = document.querySelector(`${this.formContainer}`)
+    const form = this.element
     if (!form) return
-    const select = document.getElementById('careerSelect')
+
+    const select = form.querySelector('#careerSelect')
     const campus = JSON.parse(this.element.dataset.campus || '[]')
 
     const hiddenContainer = form.querySelector('.custom-hidden')
 
     const boundUpdate = () => {
-      const checked = document.querySelector('input[name="form_mixto"]:checked')
+      const checked = form.querySelector('input[name="form_mixto"]:checked')
       const selectedOption = select.options[select.selectedIndex]
 
       if (!selectedOption) return
@@ -181,7 +184,7 @@ export default class FormCrmAdmissionTraslado extends Component {
     }
 
     select.addEventListener('change', boundUpdate)
-    document
+    this.element
       .querySelectorAll('input[name="form_mixto"]')
       .forEach(radio => radio.addEventListener('change', boundUpdate))
 
@@ -203,7 +206,7 @@ export default class FormCrmAdmissionTraslado extends Component {
   }
 
   handleDepartamentChange() {
-    document.addEventListener('change', (event) => {
+    this.element.addEventListener('change', (event) => {
       const target = event.target
 
       if (target && target.matches('#departament')) {
@@ -213,7 +216,7 @@ export default class FormCrmAdmissionTraslado extends Component {
         const selectedOption = target.options[target.selectedIndex]
         const text = selectedOption?.textContent.trim() || ''
 
-        document.querySelector('input[name="SingleLine9"]').value = text
+        this.element.querySelector('input[name="SingleLine9"]').value = text
       }
     })
   }
