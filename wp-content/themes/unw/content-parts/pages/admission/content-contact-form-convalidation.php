@@ -52,8 +52,8 @@ $data_form_type = $args['data_form_type'] ?? '';
 
 
 
-  <input type="hidden" name="SingleLine1" value=""> <!-- Unidad de negocio -->
-  <input type="hidden" name="SingleLine2" value=""> <!-- Fuente de origen -->
+  <input type="hidden" name="SingleLine1" value="UNW_Pregrado"> <!-- Unidad de negocio -->
+  <input type="hidden" name="SingleLine2" value="Web Admisión I"> <!-- Fuente de origen -->
 
 
   <input type="hidden" name="Dropdown500" value=""> <!-- Escoge Instituto / Universidad -->

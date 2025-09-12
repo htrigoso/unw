@@ -1,5 +1,5 @@
 import Component from '../../classes/Component'
-import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, removeNameAttributeCampus, removeSelectDepartament, resetCustomHidden, setClaseName, setNameAttributeCampus, showCampusSelect, updateHiddenFieldCampus, updateHiddenInputs, updateOptionsCareers, validateInputs } from './utils'
+import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, removeNameAttributeCampus, removeSelectDepartament, resetCustomHidden, setClaseName, setNameAttributeCampus, showCampusSelect, updateHiddenInputs, updateOptionsCareers, validateInputs, validatePhone } from './utils'
 
 // ==========================
 // Constantes de formularios
@@ -22,6 +22,7 @@ export default class FormCrmAdmission extends Component {
   // ==========================
   createListeners() {
     validateInputs()
+    validatePhone()
     this.handleFormMixtoChange()
     this.handleCarrersChange()
     this.handleDepartamentChange()
@@ -67,7 +68,7 @@ export default class FormCrmAdmission extends Component {
             updateHiddenInputs([
               { name: 'SingleLine1', value: 'UNW_Pregrado' },
               { name: 'SingleLine2', value: 'Web Admisión I' }
-            ])
+            ], this.element)
 
             setNameAttributeCampus({ element: this.element })
 
@@ -95,7 +96,7 @@ export default class FormCrmAdmission extends Component {
             updateHiddenInputs([
               { name: 'SingleLine1', value: 'UNW_Pregrado_Distancia' },
               { name: 'SingleLine2', value: 'Web Admisión I - Virtual' }
-            ])
+            ], this.element)
             if (value === FORMS.VIRTUAL) {
               if (departaments.length > 0) {
                 createSelectDepartament({ element: this.element })
@@ -207,7 +208,10 @@ export default class FormCrmAdmission extends Component {
       const text = selectedOption.textContent.trim()
       const value = selectedOption.value
       if (value) {
-        updateHiddenFieldCampus({ text, value, element: this.element })
+        this.element.querySelector('.custom-hidden-campus').innerHTML = `
+            <input type="hidden" name="SingleLine7" value="${text}">
+              <input type="hidden" name="SingleLine8" value="${value}">
+                `
       }
     })
   }

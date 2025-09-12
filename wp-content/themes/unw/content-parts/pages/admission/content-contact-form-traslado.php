@@ -133,12 +133,12 @@ $data_form_type = $args['data_form_type'] ?? '';
           <legend>¿Perteneces a las Fuerzas Armadas o PNP?* </legend>
           <div class="flex">
             <div class="radio-option">
-              <input type="radio" id="1-pnp-<?=$data_form_type?>" name="Radio1" value="Sí" checked />
-              <label for="1-pnp-<?=$data_form_type?>">Sí</label>
+              <input type="radio" id="1-r-<?=$data_form_type?>" name="Radio1" value="Sí" checked />
+              <label for="1-r-<?=$data_form_type?>">Sí</label>
             </div>
             <div class="radio-option m-l-15">
-              <input type="radio" id="2-pnp-<?=$data_form_type?>" name="Radio1" value="No" />
-              <label for="2-pnp-<?=$data_form_type?>">No</label>
+              <input type="radio" id="2-r-<?=$data_form_type?>" name="Radio1" value="No" />
+              <label for="2-r-<?=$data_form_type?>">No</label>
             </div>
           </div>
         </fieldset>
@@ -149,12 +149,12 @@ $data_form_type = $args['data_form_type'] ?? '';
           <legend>¿Eres egresado de Instituto o estudiante de Universidad?* </legend>
           <div class="flex">
             <div class="radio-option">
-              <input type="radio" id="3-uni-<?=$data_form_type?>" name="Radio" value="Sí" checked />
-              <label for="3-uni-<?=$data_form_type?>">Sí</label>
+              <input type="radio" id="3-r-<?=$data_form_type?>" name="Radio" value="Sí" checked />
+              <label for="3-r-<?=$data_form_type?>">Sí</label>
             </div>
             <div class="radio-option m-l-15">
-              <input type="radio" id="4-uni-<?=$data_form_type?>"" name=" Radio" value="No" />
-              <label for="4-uni-<?=$data_form_type?>"">No</label>
+              <input type="radio" id="4-r-<?=$data_form_type?>" name="Radio" value="No" />
+              <label for="4-r-<?=$data_form_type?>">No</label>
             </div>
           </div>
         </fieldset>
@@ -162,15 +162,15 @@ $data_form_type = $args['data_form_type'] ?? '';
 
     </div>
     <p class=" form-body__hint">
-                (*) Campos obligatorios
-                </p>
-                <div class="form-body__terms">
-                  <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox', [
+      (*) Campos obligatorios
+    </p>
+    <div class="form-body__terms">
+      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox', [
                     'form_type' => $data_form_type
                   ]);?>
-                </div>
-                <div class="form-body__actions">
-                  <button type="submit" class="btn btn-primary" id="button-send">Enviar</button>
-                </div>
-            </div>
+    </div>
+    <div class="form-body__actions">
+      <button type="submit" class="btn btn-primary" id="button-send">Enviar</button>
+    </div>
+  </div>
 </form>

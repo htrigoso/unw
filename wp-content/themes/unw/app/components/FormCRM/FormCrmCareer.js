@@ -1,5 +1,5 @@
 import Component from '../../classes/Component'
-import { buildOptionsCampusCareers, createSelectCampus, createSelectDepartament, FORMS, removeSelectCampus, removeSelectDepartament, sanitizeForInput, setClaseName, validateInputs } from './utils'
+import { buildOptionsCampusCareers, createSelectCampus, createSelectDepartament, FORMS, removeSelectCampus, removeSelectDepartament, sanitizeForInput, setClaseName, validateInputs, validatePhone } from './utils'
 
 // ==========================
 // Constantes de formularios
@@ -21,6 +21,7 @@ export default class FormCrmCareer extends Component {
   // ==========================
   createListeners() {
     validateInputs()
+    validatePhone()
     this.handleDepartmentChange()
     this.handleFormMixtoChange()
     this.handleDepartamentChange()

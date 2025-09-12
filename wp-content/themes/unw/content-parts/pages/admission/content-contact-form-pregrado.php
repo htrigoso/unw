@@ -35,7 +35,12 @@ $data_form_type = $args['data_form_type'] ?? '';
   <div class="custom-hidden"></div>
   <div class="custom-hidden-campus"></div>
 
-  <?php foreach ($utms_final as $utm): ?>
+  <?php
+
+
+    foreach ($utms_final as $utm):
+
+  ?>
   <input type="hidden" name="<?= esc_attr($utm['name']); ?>" value="<?= esc_attr($utm['value']); ?>">
   <?php endforeach; ?>
 
@@ -59,7 +64,7 @@ $data_form_type = $args['data_form_type'] ?? '';
   <input type="hidden" name="Dropdown500" value=""> <!-- Escoge Instituto / Universidad -->
   <input type="hidden" name="SingleLine6" value=""> <!-- Escoge instituto universitario Grupo -->
   <input type="hidden" name="SingleLine7" value=""> <!-- Escoge instituto universitario Valor -->
-  <input type="hidden" name="SingleLine9" value="">
+
 
   <input type="hidden" name="Dropdown4" value="Activo"> <!-- Estado de período -->
   <input type="hidden" name="Website" value="<?=get_current_page_url()?>"> <!-- Url de Trakeo -->
