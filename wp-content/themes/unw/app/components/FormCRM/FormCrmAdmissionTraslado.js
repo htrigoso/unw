@@ -1,5 +1,5 @@
 import Component from '../../classes/Component'
-import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, removeNameAttributeCampus, removeSelectDepartament, resetCustomHidden, setClaseName, setNameAttributeCampus, showCampusSelect, updateHiddenFieldCampusTraslado, updateHiddenInputs, updateOptionsCareers, validateInputs } from './utils'
+import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, removeNameAttributeCampus, removeSelectDepartament, resetCustomHidden, setClaseName, setNameAttributeCampus, showCampusSelect, updateHiddenFieldCampusTraslado, updateHiddenInputs, updateOptionsCareers, validateInputs, validatePhone } from './utils'
 
 // ==========================
 // Constantes de formularios
@@ -25,6 +25,7 @@ export default class FormCrmAdmissionTraslado extends Component {
   // ==========================
   createListeners() {
     validateInputs()
+    validatePhone()
     this.handleFormMixtoChange()
     this.handleCarrersChange()
     this.handleDepartamentChange()
@@ -69,7 +70,7 @@ export default class FormCrmAdmissionTraslado extends Component {
             updateHiddenInputs([
               { name: 'SingleLine1', value: 'UNW_Pregrado' },
               { name: 'SingleLine2', value: 'Web Admisión I' }
-            ])
+            ], this.element)
 
             setNameAttributeCampus({ element: this.element })
 
@@ -92,7 +93,7 @@ export default class FormCrmAdmissionTraslado extends Component {
             updateHiddenInputs([
               { name: 'SingleLine1', value: 'UNW_Pregrado_Distancia' },
               { name: 'SingleLine2', value: 'Web Admisión II - Virtual' }
-            ])
+            ], this.element)
             if (departaments.length > 0) {
               createSelectDepartament({ element: this.element })
             }

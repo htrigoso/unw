@@ -251,12 +251,13 @@ export function createHiddenInputs({ type, fields }) {
     })
     .join('\n')
 }
-export function updateHiddenInputs(fields = []) {
+export function updateHiddenInputs(fields = [], element) {
   if (!Array.isArray(fields)) return
+  console.log(fields, element)
 
   fields.forEach(({ name, value }) => {
     if (!name) return
-    const input = document.querySelector(`input[name="${name}"]`)
+    const input = element.querySelector(`input[name="${name}"]`)
     if (input) {
       input.value = value ?? ''
     } else {
@@ -395,5 +396,30 @@ export function updateOptionsCareers({ element = null, careers = {}, value = '' 
     })
 
     select.appendChild(optgroup)
+  })
+}
+
+export function validatePhone() {
+  const inputs = document.querySelectorAll('input[name="PhoneNumber_countrycode"]')
+  if (!inputs.length) return
+  inputs.forEach(input => {
+    input.addEventListener('input', e => {
+      let value = e.target.value
+
+      // Solo números
+      value = value.replace(/\D/g, '')
+
+      // Bloquear si no empieza con 9
+      if (value.length > 0 && value[0] !== '9') {
+        value = '9' + value.replace(/^9*/, '')
+      }
+
+      // Limitar a 9 dígitos
+      if (value.length > 9) {
+        value = value.slice(0, 9)
+      }
+
+      e.target.value = value
+    })
   })
 }

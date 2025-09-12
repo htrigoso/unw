@@ -1,5 +1,5 @@
 import Component from '../../classes/Component'
-import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenFieldCampus, updateHiddenInputs, updateOptionsCareers, validateInputs, showCampusSelect } from './utils'
+import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenFieldCampus, updateHiddenInputs, updateOptionsCareers, validateInputs, showCampusSelect, validatePhone } from './utils'
 
 // ==========================
 // Constantes de formularios
@@ -23,6 +23,7 @@ export default class FormCrmGeneral extends Component {
   // ==========================
   createListeners() {
     validateInputs()
+    validatePhone()
     this.handleFormMixtoChange()
     this.handleCarrersChange()
     this.handleDepartamentChange()
@@ -66,7 +67,7 @@ export default class FormCrmGeneral extends Component {
             updateHiddenInputs([
               { name: 'SingleLine1', value: 'UNW_Pregrado' },
               { name: 'SingleLine2', value: 'Web Admisión I' }
-            ])
+            ], this.element)
             setNameAttributeCampus({ element: this.element })
 
             updateOptionsCareers({ element: this.element, careers, value })
@@ -93,7 +94,7 @@ export default class FormCrmGeneral extends Component {
             updateHiddenInputs([
               { name: 'SingleLine1', value: 'UNW_Pregrado_Distancia' },
               { name: 'SingleLine2', value: 'Web Solicita Información – Virtual' }
-            ])
+            ], this.element)
             if (value === FORMS.VIRTUAL) {
               if (departaments.length > 0) {
                 createSelectDepartament({ element: this.element })

@@ -73,21 +73,31 @@ if (!function_exists('vdebug')) {
 
 
 function get_current_page_url() {
+    global $wp;
+
+    // URL base según contexto
     if (is_front_page()) {
-        return home_url('/');
+        $url = home_url('/');
     } elseif (is_home()) {
-        return get_permalink(get_option('page_for_posts'));
+        $url = get_permalink(get_option('page_for_posts'));
     } elseif (is_single() || is_page()) {
-        return get_permalink();
+        $url = get_permalink();
     } elseif (is_category()) {
-        return get_category_link(get_query_var('cat'));
+        $url = get_category_link(get_query_var('cat'));
     } elseif (is_tag()) {
-        return get_tag_link(get_query_var('tag_id'));
+        $url = get_tag_link(get_query_var('tag_id'));
     } elseif (is_author()) {
-        return get_author_posts_url(get_query_var('author'));
+        $url = get_author_posts_url(get_query_var('author'));
     } else {
-        return home_url(add_query_arg(array()));
+        $url = home_url(add_query_arg(array(), $wp->request));
     }
+
+    // 🔹 Agregar parámetros de la URL actual (UTMs, etc.)
+    if (!empty($_GET)) {
+        $url = add_query_arg($_GET, $url);
+    }
+
+    return esc_url($url);
 }
 
 
