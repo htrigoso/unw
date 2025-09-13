@@ -22,6 +22,7 @@ function register_cpt_cursos() {
     'menu_icon'          => 'dashicons-editor-alignleft',
     'has_archive'        => false,
     'show_in_rest'       => true, // Gutenberg + REST API
+    'exclude_from_search' => true,
     'rewrite'            => array('slug' => 'cursos'),
     'supports'           => array('title',  'thumbnail', 'excerpt'),
   );

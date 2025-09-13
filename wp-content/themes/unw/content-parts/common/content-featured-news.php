@@ -59,7 +59,7 @@ $destacadas = new WP_Query($args);
           <?php
           get_template_part(COMMON_CONTENT_PATH, 'see-more-btn', [
             'text' => 'Ver todas las noticias',
-            'href' => '/novedades',
+            'href' => home_url('/novedades/')
           ]);
           ?>
         </div>

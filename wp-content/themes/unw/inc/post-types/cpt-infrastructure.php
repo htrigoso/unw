@@ -23,6 +23,8 @@ function register_post_type_infraestructura() {
         'menu_icon' => 'dashicons-building',
         'supports' => array('title', 'editor', 'excerpt', 'thumbnail'),
         'show_in_rest' => true,
+        'exclude_from_search' => true,
+
     );
 
     register_post_type('infraestructura', $args);

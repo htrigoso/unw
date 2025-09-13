@@ -24,6 +24,8 @@ function register_post_type_testimonios() {
         'has_archive' => true,
         'rewrite' => array('slug' => 'testimonios'),
         'show_in_rest' => true,
+        'exclude_from_search' => true,
+
     );
 
     register_post_type('testimonios', $args);

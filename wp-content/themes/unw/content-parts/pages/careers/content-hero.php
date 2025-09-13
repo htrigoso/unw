@@ -12,11 +12,16 @@ if (isset($sliders['list_of_files']) && is_array($sliders['list_of_files'])) {
     }
   }
 }
-$name_tax = get_facultad_taxonomy_name();
+
+$modality_slug = 'virtual';
+
+$modality_info = get_carrera_modality_info_from_slug($modality_slug);
+
 
 $base_breadcrumbs = [
   ['label' => 'Inicio', 'href' => home_url('/')],
-  ['label' => $name_tax, 'href' => '/']
+     ['label' => $modality_info['label'], 'href' => $modality_info['url']],
+
 ];
 ?>
 <div class="careers-hero">

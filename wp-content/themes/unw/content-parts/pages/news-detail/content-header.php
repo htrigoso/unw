@@ -9,7 +9,7 @@
           get_template_part(COMMON_CONTENT_PATH, 'breadcrumb', [
             'breadcrumb' => [
               ['label' => 'Inicio', 'href' => home_url('/')],
-              ['label' => 'Novedades', 'href' => site_url('/novedades')], // Ajusta al slug real
+              ['label' => 'Noticias', 'href' => site_url('/noticias/')], // Ajusta al slug real
               ['label' => get_the_title()]
             ]
           ]);

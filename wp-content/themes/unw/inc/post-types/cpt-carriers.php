@@ -131,35 +131,42 @@ add_filter('query_vars', function ($vars) {
 // REWRITE RULES
 add_action('init', 'custom_carreras_rewrite_rules');
 function custom_carreras_rewrite_rules() {
-
-
+  // SINGLE carrera presencial
   add_rewrite_rule(
     '^carreras/([^/]+)/?$',
     'index.php?post_type=carreras&carrera_slug=$matches[1]&modalidad_slug=presencial',
     'top'
   );
 
+  // SINGLE carrera virtual
   add_rewrite_rule(
     '^carreras-a-distancia/([^/]+)/?$',
     'index.php?post_type=carreras&carrera_slug=$matches[1]&modalidad_slug=virtual',
     'top'
   );
 
+  // LISTADO por facultad presencial
+  add_rewrite_rule(
+    '^carreras/facultad/([^/]+)/?$',
+    'index.php?pagename=carreras&facultad=$matches[1]&modalidad_slug=presencial',
+    'top'
+  );
+
+  // LISTADO por facultad virtual
+  add_rewrite_rule(
+    '^carreras-a-distancia/facultad/([^/]+)/?$',
+    'index.php?pagename=carreras&facultad=$matches[1]&modalidad_slug=virtual',
+    'top'
+  );
+
+  // Añadir query_vars
   add_filter('query_vars', function ($vars) {
     $vars[] = 'carrera_slug';
     $vars[] = 'modalidad_slug';
+    $vars[] = 'facultad';
     return $vars;
   });
-
-
-
-  // Listado por facultad
-  add_rewrite_rule('^carreras/facultad/([^/]+)/?$', 'index.php?pagename=carreras&facultad=$matches[1]', 'top');
-
-  // (Opcional) listado por modalidad
-  add_rewrite_rule('^carreras/modalidad/([^/]+)/?$', 'index.php?pagename=carreras&modalidad=$matches[1]', 'top');
 }
-
 
 
 // FUNCIÓN HELPER para obtener carreras por modalidad y categoría(s)
@@ -685,4 +692,222 @@ function get_campus_by_carrera_id($carrera_id) {
     }
 
     return $result;
+}
+
+function get_carrera_modality_info($post_id = null) {
+    if (!$post_id) {
+        $post_id = get_the_ID();
+    }
+
+    $terms = get_the_terms($post_id, 'modalidad');
+
+    if ($terms && !is_wp_error($terms)) {
+        $slugs = wp_list_pluck($terms, 'slug');
+
+        if (in_array('virtual', $slugs, true)) {
+            return [
+                'label' => 'Carreras a distancia',
+                'url'   => home_url('/carreras-a-distancia/'),
+            ];
+        }
+
+        if (in_array('presencial', $slugs, true)) {
+            return [
+                'label' => 'Carreras',
+                'url'   => home_url('/carreras/'),
+            ];
+        }
+    }
+
+    // Fallback por defecto
+    return [
+        'label' => 'Carreras',
+        'url'   => home_url('/carreras/'),
+    ];
+}
+/**
+ * Construye la URL de listado de carreras por facultad
+ *
+ * @param string $faculty_slug    Slug de la facultad (ej: 'ingenieria')
+ * @param string $modality_slug   Slug de la modalidad ('presencial' | 'virtual')
+ * @return string URL final
+ */
+function _carreras_url_facultad($faculty_slug, $modality_slug = 'presencial') {
+    if ($modality_slug === 'virtual') {
+        return home_url("/carreras-a-distancia/facultad/{$faculty_slug}/");
+    }
+    return home_url("/carreras/facultad/{$faculty_slug}/");
+}
+
+
+/**
+ * Devuelve info de modalidad: label + url
+ *
+ * @param string|null $slug Slug de modalidad (presencial | virtual)
+ * @return array {label, url}
+ */
+function get_carrera_modality_info_from_slug($slug = null) {
+    if ($slug === 'virtual') {
+        return [
+            'label' => 'Carreras a distancia',
+            'url'   => home_url('/carreras-a-distancia/'),
+        ];
+    }
+
+    // fallback = presencial
+    return [
+        'label' => 'Carreras',
+        'url'   => home_url('/carreras/'),
+    ];
+}
+
+function render_careers_tabs_by_modality($modality_slug = 'presencial') {
+    // =========================
+    // Detectar facultad activa desde query var
+    // =========================
+    $current_faculty_id   = 0;
+    $current_faculty_slug = get_query_var('facultad');
+
+    if ($current_faculty_slug) {
+        $term_obj = get_term_by('slug', $current_faculty_slug, 'facultad');
+        if ($term_obj && !is_wp_error($term_obj)) {
+            $current_faculty_id = (int) $term_obj->term_id;
+        }
+    }
+
+    // =========================
+    // Detectar modalidad desde query_var si existe
+    // =========================
+    $qv_modality = get_query_var('modalidad_slug');
+    if (!empty($qv_modality)) {
+        $modality_slug = $qv_modality;
+    }
+
+    // =========================
+    // Helper para URLs limpias
+    // =========================
+    $build_faculty_url = function($faculty_slug, $modality_slug) {
+        if ($modality_slug === 'virtual') {
+            return home_url("/carreras-a-distancia/facultad/{$faculty_slug}/");
+        }
+        return home_url("/carreras/facultad/{$faculty_slug}/");
+    };
+
+    // =========================
+    // Construcción de Tabs
+    // =========================
+    $tabs = [
+        [
+            'id'     => 0,
+            'label'  => 'Todas las carreras',
+            'target' => 'todas-las-carreras',
+            'url'    => ($modality_slug === 'virtual')
+                          ? home_url('/carreras-a-distancia/')
+                          : home_url('/carreras/'),
+        ],
+    ];
+
+    // 1. Obtener carreras de la modalidad
+    $career_ids = get_posts([
+        'post_type'      => 'carreras',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'fields'         => 'ids',
+        'tax_query'      => [[
+            'taxonomy' => 'modalidad',
+            'field'    => 'slug',
+            'terms'    => $modality_slug,
+        ]],
+    ]);
+
+    // 2. Obtener facultades asociadas a esas carreras
+    $faculties = [];
+    if (!empty($career_ids)) {
+        $faculties = wp_get_object_terms($career_ids, 'facultad', ['hide_empty' => true]);
+    }
+
+    if (!is_wp_error($faculties) && !empty($faculties)) {
+        foreach ($faculties as $f) {
+            $tabs[] = [
+                'id'     => (int) $f->term_id,
+                'label'  => $f->name,
+                'target' => $f->slug,
+                'url'    => $build_faculty_url($f->slug, $modality_slug),
+            ];
+        }
+    }
+
+    // =========================
+    // Query de carreras por modalidad + facultad (si aplica)
+    // =========================
+    $tax_query = [
+        [
+            'taxonomy' => 'modalidad',
+            'field'    => 'slug',
+            'terms'    => $modality_slug,
+        ],
+        [
+            'taxonomy' => 'facultad',
+            'operator' => 'EXISTS',
+        ],
+    ];
+
+    if ($current_faculty_slug) {
+        $tax_query[] = [
+            'taxonomy' => 'facultad',
+            'field'    => 'slug',
+            'terms'    => $current_faculty_slug,
+        ];
+    }
+
+    $careers_query = new WP_Query([
+        'post_type'           => 'carreras',
+        'post_status'         => 'publish',
+        'posts_per_page'      => -1,
+        'orderby'             => 'date',
+        'order'               => 'DESC',
+        'ignore_sticky_posts' => true,
+        'tax_query'           => $tax_query,
+    ]);
+
+    $careers_posts = $careers_query->posts;
+
+    // =========================
+    // Render HTML
+    // =========================
+    ?>
+<div class="all-careers-tabs">
+  <div class="x-container all-careers-tabs__container">
+    <?php
+        get_template_part(COMMON_CONTENT_PATH, 'nav-tabs', [
+            'nav_tabs'  => $tabs,
+            'is_url'    => true,
+            'active_id' => $current_faculty_id,
+        ]);
+        ?>
+  </div>
+
+  <div class="x-container x-container--pad-213">
+    <div class="all-careers-tabs__content">
+      <div class="tab__content" role="tabpanel" aria-labelledby="tab">
+        <?php
+            $cards = [];
+            foreach ($careers_posts as $career) {
+                $img = get_the_post_thumbnail_url($career->ID, 'full');
+                $cards[] = [
+                    'image'       => $img,
+                    'image_alt'   => $career->post_title,
+                    'title'       => $career->post_title,
+                    'link'        => get_permalink($career->ID),
+                    'link_title'  => 'Ver carrera',
+                    'link_target' => '_blank',
+                ];
+            }
+            get_template_part(ALL_CAREERS_TABS_PATH, 'body', ['cards' => $cards]);
+            ?>
+      </div>
+    </div>
+  </div>
+</div>
+<?php
 }
