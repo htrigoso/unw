@@ -267,6 +267,8 @@ function custom_pre_get_posts( $query ) {
     return $query;
 }
 
+
+
 function custom_acf_accordion_styles() {
     echo '<style>
         .acf-field.acf-accordion .acf-label.acf-accordion-title {

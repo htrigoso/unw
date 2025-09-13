@@ -13,7 +13,7 @@ $variant = $args['variant'] ?? 'standard'; // 'filled' o 'standard'
       </svg>
     </i>
   </div>
-  <div class="accordion-content">
-    <?= $content ?>
+  <div class="accordion-content" data-content="paragraph">
+    <?= wp_kses_post( $content ); ?>
   </div>
 </div>

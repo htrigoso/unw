@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Todas las Carreras Template
+ * Template Name: Todas las Carreras Virtuales Template
  */
 ?>
 <?php set_query_var('ASSETS_CHUNK_NAME', 'all-careers'); ?>
@@ -72,12 +72,9 @@
     endforeach;
   endif;
 
-  $modality_slug = get_query_var('modalidad_slug') ?: 'presencial';
-
-  $modality = get_carrera_modality_info_from_slug($modality_slug);
   $breadcrumb = [
     ['label' => 'Inicio',   'href' => home_url('/')],
-    ['label' => $modality['label'], 'href' =>$modality['url']],
+    ['label' => 'Carreras a Distancia', 'href' => home_url('/carreras/')],
   ];
   if ($current_id_term > 0) {
   $breadcrumb[] = [
@@ -98,7 +95,7 @@
 
   <?php get_template_part(ALL_CAREERS_TABS_PATH, 'tabs', [
     'tabs' => $tabs,
-     'mode' => 'presencial'
+    'mode' => 'virtual'
   ]); ?>
 </main>
 <?php get_footer(); ?>
