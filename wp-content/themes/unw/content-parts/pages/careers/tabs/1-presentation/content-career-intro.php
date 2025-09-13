@@ -57,7 +57,7 @@ $detailText  = $presentation['detail'];
 
   <?php if (!empty($detailText)): ?>
   <div class="career-intro__detail">
-    <h4 class="career-intro__detail-title">Detalle</h4>
+    <h3 class="career-intro__detail-title">Detalle</h3>
     <div class="career-intro__detail-content" data-content="paragraph">
       <?=wpautop(wp_kses_post($detailText)); ?>
     </div>

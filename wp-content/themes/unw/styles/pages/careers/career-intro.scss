@@ -39,15 +39,11 @@
 
 .career-intro__visual--img {
   width: 100%;
-  height: rem(328);
+
   object-fit: cover;
 
   @include media(">=phone") {
     flex-direction: 59%;
-  }
-
-  @include media(">=tablet") {
-    height: rem(416);
   }
 }
 
