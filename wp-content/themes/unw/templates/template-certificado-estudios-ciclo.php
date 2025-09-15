@@ -17,8 +17,10 @@ get_header();
     <div class="info_page">
       <div class="cover_img_page center">
         <div class="overlay"></div>
-        <img src="https://www.uwiener.edu.pe/wp-content/uploads/2020/09/libro_reclamaciones.jpg" srcset="https://www.uwiener.edu.pe/wp-content/uploads/2020/09/centro-de-Terapia-Fisica-y-Rehabilitacion-p-500.png 500w, https://www.uwiener.edu.pe/wp-content/uploads/2020/09/libro_reclamaciones.jpg 1920w" sizes="100vw" alt="" class="img_cover">
-        <div id="section-1" class="info_cover_page center">
+       <img
+          src="<?= UPLOAD_MIGRATION_PATH . '/constancia-promedio-ponderado/libro_reclamaciones.jpg' ?>"
+          srcset="<?= UPLOAD_MIGRATION_PATH . '/constancia-promedio-ponderado/libro_reclamaciones-p-500.jpeg' ?> 500w, <?= UPLOAD_MIGRATION_PATH . '/constancia-promedio-ponderado/libro_reclamaciones.jpg' ?> 1920w"
+          sizes="100vw" alt="" class="img_cover">
           <div id="sec-1" class="container">
             <h2 class="categoria_page serv_uni">Registros Académicos</h2>
             <h1 class="h1_carreras">Certificado de estudios por ciclo</h1>
