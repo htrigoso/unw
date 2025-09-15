@@ -40,7 +40,22 @@ add_action('wp_enqueue_scripts', function () {
     'template-historial-academico.php',
     'template-certificado-estudios-ciclo.php',
     'template-modificacion-datos-sistema-foto.php',
-    'template-traslado-interno.php'
+    'template-traslado-interno.php',
+    'template-usuario-clave.php',
+    'template-reserva-matricula.php',
+    'template-reserva-matricula-dos.php',
+    'template-anulacion-matricula.php',
+    'template-retiro-curso.php',
+    'template-certificado-aprendizaje-habilidades.php',
+    'template-record-notas.php',
+    'template-plan-estudios.php',
+    'template-constancia-quinto.php',
+    'template-constancia-tercio.php',
+    'template-constancia-estudiante-exterior.php',
+    'template-constancia-matricula.php',
+    'template-tramite-sustentacion-ii.php',
+    'template-duplicado-carnet-universitario.php',
+    'template-carne-medio-pasaje.php'
   ];
 
   $template_paths = array_map(fn($tpl) => 'templates/' . $tpl, $templates);
