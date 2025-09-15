@@ -19,6 +19,27 @@ add_action('wp_enqueue_scripts', function () {
     'template-internacionalizacion.php',
     'template-trasparencia.php',
     'template-politicas-de-privacidad.php',
+
+    'template-promocion-cultural.php',
+    'template-promocion-deporte.php',
+    'template-servicios-psicopedagogicos.php',
+    'template-servicios-medicos.php',
+    'template-autenticacion-documentos.php',
+    'template-autenticacion-silabos.php',
+    'template-duplicado-documentos.php',
+    'template-fedateo-documentos.php',
+    'template-fedateo-documentos.php',
+    'template-constancia-grado-academico-otros.php',
+    'template-duplicado-grado-academico.php',
+    'template-expedicion-diploma-grado-academico.php',
+    'template-cronograma-sustentaciones.php',
+    'template-constancia-promedio-ponderado.php',
+    'template-duplicado-record-notas.php',
+    'template-constancia-estudios.php',
+    'template-constancia-horas-curso.php',
+    'template-historial-academico.php',
+    'template-certificado-estudios-ciclo.php',
+    'template-modificacion-datos-sistema-foto.php'
   ];
 
   $template_paths = array_map(fn($tpl) => 'templates/' . $tpl, $templates);
@@ -32,13 +53,13 @@ if (!is_page_template($template_paths)) {
 
   // Archivos a cargar
   $assets = [
-    'stylemain-style' => [
-      'type' => 'style',
-      'path' => '/assets/css/style.css',
-    ],
     'webflow-style' => [
       'type' => 'style',
       'path' => '/assets/css/webflow.css',
+    ],
+    'stylemain-style' => [
+      'type' => 'style',
+      'path' => '/assets/css/style.css',
     ],
     'jquery-custom' => [
       'type' => 'script',

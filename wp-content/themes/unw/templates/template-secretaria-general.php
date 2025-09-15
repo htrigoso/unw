@@ -11,8 +11,6 @@
 get_header();
 ?>
 
-
-
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 <main>
   <div class="main_container">

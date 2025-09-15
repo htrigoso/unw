@@ -160,7 +160,7 @@
                                   href="https://www.uwiener.edu.pe/bienestar-universitario/becas-y-creditos-pronabec/"
                                   class="item_serv_university w-inline-block">
                                   <h4 class="h4_light">Becas y Créditos Pronabec</h4>
-                                  <div class="btn text">Ver más</div>
+                                  <div class="btn-legacy text">Ver más</div>
                                 </a>
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
@@ -169,7 +169,7 @@
                                   class="item_serv_university w-inline-block">
                                   <!-- <div class="tipo_servicio">Becas Externas</div> -->
                                   <h4 class="h4_light">Becas Fondo Empleo</h4>
-                                  <div class="btn text">Ver más</div>
+                                  <div class="btn-legacy text">Ver más</div>
                                 </a>
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
@@ -178,7 +178,7 @@
                                   class="item_serv_university w-inline-block">
                                   <!-- <div class="tipo_servicio">Becas Externas</div> -->
                                   <h4 class="h4_light">Crédito Escalo</h4>
-                                  <div class="btn text">Ver más</div>
+                                  <div class="btn-legacy text">Ver más</div>
                                 </a>
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
@@ -187,7 +187,7 @@
                                   class="item_serv_university w-inline-block">
                                   <!-- <div class="tipo_servicio">Becas Externas</div> -->
                                   <h4 class="h4_light">Fondo Perpetuo para la Educación – ASPERSUD</h4>
-                                  <div class="btn text">Ver más</div>
+                                  <div class="btn-legacy text">Ver más</div>
                                 </a>
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
@@ -196,7 +196,7 @@
                                   class="item_serv_university w-inline-block">
                                   <!-- <div class="tipo_servicio">Becas Externas</div> -->
                                   <h4 class="h4_light">Fundación Hipólito Unanue – FIHU</h4>
-                                  <div class="btn text">Ver más</div>
+                                  <div class="btn-legacy text">Ver más</div>
                                 </a>
                               </div>
                             </div>
