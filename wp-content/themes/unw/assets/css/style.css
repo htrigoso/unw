@@ -6258,7 +6258,7 @@ li {
 .contact_box {
   position: -webkit-sticky;
   position: sticky;
-  top: 20px;
+  top: calc(var(--navbar-height) + 20px);
   width: auto;
   max-width: none;
   margin-top: 20px;
@@ -6272,10 +6272,6 @@ li {
   background-color: #e1f4f4;
 }
 
-.contact_box.registrosacademicos {
-  top: 120px;
-}
-
 .contact_box.contact {
   max-width: none;
 }
@@ -6283,10 +6279,6 @@ li {
 .contact_box.auto {
   overflow: auto;
   height: 600px;
-}
-
-.contact_box.servicioswiener {
-  top: 135px;
 }
 
 .contact_box.hide-all {

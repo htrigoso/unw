@@ -39,7 +39,8 @@ add_action('wp_enqueue_scripts', function () {
     'template-constancia-horas-curso.php',
     'template-historial-academico.php',
     'template-certificado-estudios-ciclo.php',
-    'template-modificacion-datos-sistema-foto.php'
+    'template-modificacion-datos-sistema-foto.php',
+    'template-traslado-interno.php'
   ];
 
   $template_paths = array_map(fn($tpl) => 'templates/' . $tpl, $templates);
