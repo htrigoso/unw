@@ -55,7 +55,12 @@ add_action('wp_enqueue_scripts', function () {
     'template-constancia-matricula.php',
     'template-tramite-sustentacion-ii.php',
     'template-duplicado-carnet-universitario.php',
-    'template-carne-medio-pasaje.php'
+    'template-carne-medio-pasaje.php',
+    'template-becas-credito.php',
+    'template-becas-fondo-empleo.php',
+    'template-credito-escalo.php',
+    'template-fondo-perpetuo.php',
+    'template-fundacion-hipolito.php'
   ];
 
   $template_paths = array_map(fn($tpl) => 'templates/' . $tpl, $templates);
