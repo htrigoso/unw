@@ -44,9 +44,9 @@ add_action('wp_enqueue_scripts', function () {
 
   $template_paths = array_map(fn($tpl) => 'templates/' . $tpl, $templates);
 
-if (!is_page_template($template_paths)) {
-  return;
-}
+  if (!is_page_template($template_paths)) {
+    return;
+  }
 
   $base_dir = get_stylesheet_directory();
   $base_url = get_stylesheet_directory_uri();
@@ -60,6 +60,10 @@ if (!is_page_template($template_paths)) {
     'stylemain-style' => [
       'type' => 'style',
       'path' => '/assets/css/style.css',
+    ],
+    'wiener-style' => [
+      'type' => 'style',
+      'path' => '/assets/css/wiener-webmaster.css',
     ],
     'jquery-custom' => [
       'type' => 'script',

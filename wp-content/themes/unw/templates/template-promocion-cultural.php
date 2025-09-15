@@ -17,7 +17,9 @@ get_header();
     <div class="info_page">
       <div class="cover_img_page center">
         <div class="overlay"></div>
-        <img src="https://www.uwiener.edu.pe/wp-content/uploads/2020/09/DBU.png" srcset="https://www.uwiener.edu.pe/wp-content/uploads/2020/09/DBUp-500.png 500w, https://www.uwiener.edu.pe/wp-content/uploads/2020/09/DBU.png 1920w" sizes="100vw" alt="" class="img_cover">
+        <img src="<?= UPLOAD_MIGRATION_PATH . '/promocion-cultural/DBU.png' ?>"
+          srcset="<?= UPLOAD_MIGRATION_PATH . '/promocion-cultural/DBUp-500.png' ?> 500w, <?= UPLOAD_MIGRATION_PATH . '/promocion-cultural/DBU.png' ?> 1920w"
+          sizes="100vw" alt="" class="img_cover">
         <div class="info_cover_page center">
           <div id="presenta_vf" class="container">
             <h2 class="categoria_page serv_uni">Bienestar Estudiantil</h2>
@@ -44,12 +46,12 @@ get_header();
         <div class="page_interna">
           <div class="container full">
             <div class="_2-col">
-              <div class="col-1 top_fixed centrosuniversitarios _0sticky">
+              <div class="col-1 full">
                 <div class="tabs_menu notab serv_uni secretaria ">
-                  <a href="#presenta_vf" data-w-id="c5ef7b79-b214-6624-2e01-b6c207b8dcf9" class="link_item_tab scroll large extra anipo w-inline-block"><img src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/icon_current_tab.svg" data-w-id="46f2eba9-4ca6-fbba-81d5-0b3e7be1a572" style="opacity:1" alt="" class="point_anima">
+                  <a href="#presenta_vf" class="link_item_tab w-inline-block">
                     <div>Presentación</div>
                   </a>
-                  <a href="#horarios_vf" data-w-id="95d7b19d-3e88-b190-6c89-bc9a5e51180c" class="link_item_tab scroll large extra anipo w-inline-block"><img src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/icon_current_tab.svg" data-w-id="17005bb7-be04-b3bc-e3a2-e42273130d59" style="opacity:0" alt="" class="point_anima">
+                  <a href="#horarios_vf" class="link_item_tab w-inline-block">
                     <div>Horarios de Atención</div>
                   </a>
                   <a href="#" class="link_item_tab hide w-inline-block">
@@ -120,7 +122,7 @@ get_header();
                             </div>
                             <h4 class="h4_verde"><strong>Informes</strong></h4>
                             <div class="item_user_contacto informes">
-                              <div class="item_contact"><img src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/icon_mail.svg" alt="" class="icon_contact">
+                              <div class="item_contact"><img src="<?= UPLOAD_MIGRATION_PATH . '/shared/arroba_black.svg' ?>" alt="" class="icon_contact">
                                 <div>vida.universitaria@uwiener.edu.pe</div>
                               </div>
                             </div>
