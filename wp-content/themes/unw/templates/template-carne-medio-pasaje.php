@@ -17,7 +17,10 @@ get_header();
     <div class="info_page">
       <div class="cover_img_page center">
         <div class="overlay"></div>
-        <img src="https://www.uwiener.edu.pe/wp-content/uploads/2020/09/libro_reclamaciones.jpg" srcset="https://www.uwiener.edu.pe/wp-content/uploads/2020/09/libro_reclamaciones-p-500.jpeg 500w, https://www.uwiener.edu.pe/wp-content/uploads/2020/09/libro_reclamaciones.jpg 1920w" sizes="100vw" alt="" class="img_cover">
+        <img
+          src="<?= UPLOAD_MIGRATION_PATH . '/constancia-promedio-ponderado/libro_reclamaciones.jpg' ?>"
+          srcset="<?= UPLOAD_MIGRATION_PATH . '/constancia-promedio-ponderado/libro_reclamaciones-p-500.jpeg' ?> 500w, <?= UPLOAD_MIGRATION_PATH . '/constancia-promedio-ponderado/libro_reclamaciones.jpg' ?> 1920w"
+          sizes="100vw" alt="" class="img_cover">
         <div id="section-1" class="info_cover_page center">
           <div id="sec-1" class="container">
             <h2 class="categoria_page serv_uni">Registros Académicos</h2>
@@ -34,18 +37,18 @@ get_header();
         <div class="page_interna">
           <div class="container full">
             <div class="_2-col">
-              <div class="col-1 top_fixed">
+              <div class="col-1 full">
                 <div class="tabs_menu notab serv_uni">
-                  <a href="#sec-1" data-w-id="3ef52d6c-1954-6cc6-c293-604099689d68" class="link_item_tab scroll large extra anipo mb-ra w-inline-block"><img src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/icon_current_tab.svg" data-w-id="080658f3-a780-9331-134e-82cd3700462c" style="opacity: 1;" alt="" class="point_anima">
+                  <a href="#sec-1" data-w-id="3ef52d6c-1954-6cc6-c293-604099689d68" class="link_item_tab w-inline-block">
                     <div>Presentación</div>
                   </a>
-                  <a href="#sec-2" data-w-id="3ef52d6c-1954-6cc6-c293-604099689d6b" class="link_item_tab scroll large extra anipo w-inline-block w--current"><img src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/icon_current_tab.svg" data-w-id="e2587c16-cd82-2fc1-ef34-a1fd2bc5f68a" style="opacity: 0;" alt="" class="point_anima">
+                  <a href="#sec-2" data-w-id="3ef52d6c-1954-6cc6-c293-604099689d6b" class="link_item_tab w-inline-block">
                     <div>¿Cuáles son los requisitos que debo cumplir?</div>
                   </a>
-                  <a href="#sec-3" data-w-id="3ef52d6c-1954-6cc6-c293-604099689d6e" class="link_item_tab scroll large extra anipo w-inline-block"><img src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/icon_current_tab.svg" data-w-id="c498e365-7995-4629-1e8a-2f3832c58df2" style="opacity: 0;" alt="" class="point_anima">
+                  <a href="#sec-3" data-w-id="3ef52d6c-1954-6cc6-c293-604099689d6e" class="link_item_tab w-inline-block">
                     <div>¿Cuáles son los pasos para realizar el trámite?</div>
                   </a>
-                  <a href="#sec-4" data-w-id="407f327b-cad9-a3c9-40e4-c92f25d4de02" class="link_item_tab scroll large extra anipo w-inline-block"><img src="https://www.uwiener.edu.pe/wp-content/themes/uwienerwp/assets/images/icon_current_tab.svg" data-w-id="60d7e7e6-2f7f-861a-7e2f-f8e06f937bc3" style="opacity: 0;" alt="" class="point_anima">
+                  <a href="#sec-4" data-w-id="407f327b-cad9-a3c9-40e4-c92f25d4de02" class="link_item_tab w-inline-block">
                     <div>¿Cuánto demora el trámite?</div>
                   </a>
                 </div>
@@ -115,168 +118,168 @@ get_header();
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/constancia-de-promedio-ponderado/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Constancia de promedio ponderado</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/duplicado-de-record-de-notas-historico/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Duplicado de record de notas histórico</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/constancia-de-estudios/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Constancia de estudios</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/constancia-de-horas-por-curso/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Constancia de horas por curso</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/historial-academico/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Historial académico</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/certificado-de-estudios-por-ciclo/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Certificado de estudios por ciclo</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/modificacion-de-sus-datos-en-el-sistema-y-o-foto/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Modificación de sus datos en el sistema y/o foto</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/traslado-interno/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Traslado interno</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/usuario-clave/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Usuario clave</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/reserva-de-matricula-2/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Reserva de matrícula</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/reserva-de-matricula/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Reserva de matrícula</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/anulacion-de-matricula/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Anulación de matrícula</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/retiro-de-cursos/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Retiro de cursos</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/certificacion-de-aprendizaje-habilidades-y-conocimiento-ingles-informatica/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Certificación de aprendizaje, habilidades y conocimiento – Inglés/Informática</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/constancia-de-ingreso/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Constancia de ingreso</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/record-de-notas/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Record de notas</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/plan-de-estudios/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Plan de estudios</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/constancia-de-quinto-superior/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Constancia de quinto superior</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/constancia-de-tercio-superior/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Constancia de tercio superior</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/constancia-para-estudiante-del-exterior/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Constancia para estudiante del exterior</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/constancia-de-matricula/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Constancia de matrícula</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/tramite-para-realizar-el-proceso-de-sustentacion-parte-ii/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Trámite para realizar el proceso de sustentación – Parte II</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/duplicado-carne-universitario/" class="item_serv_university w-inline-block ">
                                 <h4 class="h4_light">Duplicado carné universitario</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
 
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a href="https://www.uwiener.edu.pe/registros-academicos/carne-de-medio-pasaje/" class="item_serv_university w-inline-block w--current">
                                 <h4 class="h4_light">Carné de medio pasaje</h4>
-                                <div class="btn text">Ver más</div>
+                                <div class="btn-legacy text">Ver más</div>
                               </a>
                             </div>
                           </div>
