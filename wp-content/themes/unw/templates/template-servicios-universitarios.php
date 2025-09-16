@@ -28,7 +28,7 @@
       </div>
       <div class="miga_de_pan">
         <div class="container">
-          <div class="content_links_miga"><a href="https://www.uwiener.edu.pe/" class="link miga">Inicio /</a><a
+          <div class="content_links_miga"><a href="<?= home_url("/") ?>" class="link miga">Inicio /</a><a
               href="#" aria-current="page" class="link miga w--current">Servicios universitarios</a></div>
         </div>
       </div>
@@ -77,7 +77,7 @@
                       class="img_cover_carreras"></div>
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Jefatura de Becas</h4><a
-                      href="https://www.uwiener.edu.pe/servicios-universitarios/becas/" class="btn-legacy w-button">+
+                      href="<?= home_url("/servicios-universitarios/becas/") ?>" class="btn-legacy w-button">+
                       información</a>
                   </div>
                 </div>
@@ -89,7 +89,7 @@
                       alt="" class="img_cover_carreras"></div>
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Responsabilidad Social</h4><a
-                      href="https://www.uwiener.edu.pe/servicios-universitarios/responsabilidad-social/"
+                      href="<?= home_url("/servicios-universitarios/responsabilidad-social/") ?>"
                       class="btn-legacy w-button">+ información</a>
                   </div>
                 </div>
@@ -101,7 +101,7 @@
                       class="img_cover_carreras"></div>
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Registros Académicos</h4><a
-                      href="https://www.uwiener.edu.pe/servicios-universitarios/registros-academicos/"
+                      href="<?= home_url("/servicios-universitarios/registros-academicos/") ?>"
                       class="btn-legacy w-button">+ información</a>
                   </div>
                 </div>
@@ -113,7 +113,7 @@
                       class="img_cover_carreras"></div>
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Secretaría General</h4><a
-                      href="https://www.uwiener.edu.pe/servicios-universitarios/secretaria-general/"
+                      href="<?= home_url("/servicios-universitarios/secretaria-general/") ?>"
                       class="btn-legacy w-button">+ información</a>
                   </div>
                 </div>
@@ -125,7 +125,7 @@
                       alt="" class="img_cover_carreras"></div>
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Bienestar Estudiantil</h4><a
-                      href="https://www.uwiener.edu.pe/servicios-universitarios/bienestar-estudiantil/"
+                      href="<?= home_url("/servicios-universitarios/bienestar-estudiantil/") ?>"
                       class="btn-legacy w-button">+ información</a>
                   </div>
                 </div>
@@ -137,7 +137,7 @@
                       alt="" class="img_cover_carreras"></div>
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Dirección de Empleabilidad y Alumni</h4><a
-                      href="https://www.uwiener.edu.pe/servicios-universitarios/direccion-de-empleabilidad-y-alumni/"
+                      href="<?= home_url("/servicios-universitarios/direccion-de-empleabilidad-y-alumni/") ?>"
                       class="btn-legacy w-button">+ información</a>
                   </div>
                 </div>
@@ -149,7 +149,7 @@
                       class="img_cover_carreras"></div>
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Defensoría Universitaria</h4><a
-                      href="https://www.uwiener.edu.pe/servicios-universitarios/defensoria-universitaria/"
+                      href="<?= home_url("/servicios-universitarios/defensoria-universitaria/") ?>"
                       class="btn-legacy w-button">+ información</a>
                   </div>
                 </div>

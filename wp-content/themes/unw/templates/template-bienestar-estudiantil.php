@@ -29,8 +29,8 @@
         </div>
         <div class="miga_de_pan">
           <div class="container">
-            <div class="content_links_miga"><a href="https://www.uwiener.edu.pe/" class="link miga">Inicio /</a><a
-                href="https://www.uwiener.edu.pe/servicios-universitarios/" class="link miga">Servicios
+            <div class="content_links_miga"><a href="<?= home_url("/") ?>" class="link miga">Inicio /</a><a
+                href="<?= home_url("/servicios-universitarios/") ?>" class="link miga">Servicios
                 universitarios&nbsp;/</a><a href="#" aria-current="page" class="link miga w--current">Bienestar
                 Estudiantil</a></div>
           </div>
@@ -101,7 +101,7 @@
                               class="collection_list gilla _3-col w-dyn-items">
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
                                 <a title="Ver más sobre Promoción Cultural"
-                                  href="https://www.uwiener.edu.pe/bienestar-universitario/promocion-cultural/"
+                                  href="<?= home_url("/bienestar-universitario/promocion-cultural/") ?>"
                                   class="item_serv_university w-inline-block">
                                   <!-- <div class="tipo_servicio">Bienestar Estudiantil</div> -->
                                   <h4 class="h4_light">Promoción Cultural</h4>
@@ -110,7 +110,7 @@
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
                                 <a title="Ver más sobre Promoción del deporte"
-                                  href="https://www.uwiener.edu.pe/bienestar-universitario/promocion-del-deporte/"
+                                  href="<?= home_url("/bienestar-universitario/promocion-del-deporte/") ?>"
                                   class="item_serv_university w-inline-block">
                                   <!-- <div class="tipo_servicio">Bienestar Estudiantil</div> -->
                                   <h4 class="h4_light">Promoción del deporte</h4>
@@ -119,7 +119,7 @@
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
                                 <a title="Ver más sobre Servicios psicopedagógicos"
-                                  href="https://www.uwiener.edu.pe/bienestar-universitario/servicios-psicopedagogicos/"
+                                  href="<?= home_url("/bienestar-universitario/servicios-psicopedagogicos/") ?>"
                                   class="item_serv_university w-inline-block">
                                   <!-- <div class="tipo_servicio">Bienestar Estudiantil</div> -->
                                   <h4 class="h4_light">Servicios psicopedagógicos</h4>
@@ -128,7 +128,7 @@
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
                                 <a title="Ver más sobre Servicios médicos"
-                                  href="https://www.uwiener.edu.pe/bienestar-universitario/servicios-medicos/"
+                                  href="<?= home_url("/bienestar-universitario/servicios-medicos/") ?>"
                                   class="item_serv_university w-inline-block">
                                   <!-- <div class="tipo_servicio">Bienestar Estudiantil</div> -->
                                   <h4 class="h4_light">Servicios médicos</h4>
