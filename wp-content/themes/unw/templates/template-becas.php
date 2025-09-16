@@ -38,38 +38,28 @@
         <div class="page_interna">
           <div class="container full">
             <div class="_2-col">
-              <div class="col-1 top_fixed">
+              <div class="col-1 full">
                 <div class="tabs_menu notab serv_uni secretaria">
-                  <a href="#presentacion" class="link_item_tab scroll large extra anipo w-inline-block active">
-                    <img src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
-                      class="point_anima" alt="Rombo activo">
+                  <a href="#presentacion" class="link_item_tab w-inline-block">
                     <div>Presentación</div>
                   </a>
 
                   <a href="#serviciosu-becas-internas"
-                    class="link_item_tab scroll large extra anipo w-inline-block inactive">
-                    <img src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
-                      class="point_anima" alt="Rombo inactivo">
+                    class="link_item_tab w-inline-block">
                     <div>Programa de Becas Internas</div>
                   </a>
 
                   <a href="#serviciosu-becas-externas"
-                    class="link_item_tab scroll large extra anipo w-inline-block inactive">
-                    <img src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
-                      class="point_anima" alt="Rombo inactivo">
+                    class="link_item_tab w-inline-block">
                     <div>Programa de Financiamiento Externo</div>
                   </a>
 
                   <a href="#serviciosu-preguntas-frecuentes"
-                    class="link_item_tab scroll large extra anipo w-inline-block inactive">
-                    <img src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
-                      class="point_anima" alt="Rombo inactivo">
+                    class="link_item_tab w-inline-block">
                     <div>Preguntas Frecuentes</div>
                   </a>
 
-                  <a href="#serviciosu-contacto" class="link_item_tab scroll large extra anipo w-inline-block inactive">
-                    <img src="<?= UPLOAD_MIGRATION_PATH . '/shared/icon_current_tab.svg' ?>"
-                      class="point_anima" alt="Rombo inactivo">
+                  <a href="#serviciosu-contacto" class="link_item_tab w-inline-block">
                     <div>Contáctanos</div>
                   </a>
 
