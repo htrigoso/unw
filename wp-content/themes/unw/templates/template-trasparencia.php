@@ -59,7 +59,7 @@
                   <div style="height: 0px;" class="content_acordeon">
                     <div class="clase_para_wordpress transparencia">
                       <ul>
-                        <li><a href="https://www.uwiener.edu.pe/nosotros/" rel="noopener noreferrer" target="_blank">1.
+                        <li><a href="<?= home_url("/nosotros/") ?>" rel="noopener noreferrer" target="_blank">1.
                             Misión y visión</a></li>
                       </ul>
                     </div>
