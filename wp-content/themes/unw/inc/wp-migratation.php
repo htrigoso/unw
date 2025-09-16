@@ -50,6 +50,7 @@ add_action('wp_enqueue_scripts', function () {
     'template-record-notas.php',
     'template-plan-estudios.php',
     'template-constancia-quinto.php',
+    'template-constancia-ingreso.php',
     'template-constancia-tercio.php',
     'template-constancia-estudiante-exterior.php',
     'template-constancia-matricula.php',
