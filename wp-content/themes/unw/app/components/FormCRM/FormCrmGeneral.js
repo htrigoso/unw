@@ -214,8 +214,10 @@ export default class FormCrmGeneral extends Component {
 
         const selectedOption = target.options[target.selectedIndex]
         const text = selectedOption?.textContent.trim() || ''
-
-        document.querySelector('input[name="SingleLine9"]').value = text
+        const input = document.querySelector('input[name="SingleLine9"]')
+        if (input) {
+          input.value = text
+        }
       }
     })
   }

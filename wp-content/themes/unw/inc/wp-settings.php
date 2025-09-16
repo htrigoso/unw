@@ -171,6 +171,8 @@ add_action( 'after_setup_theme', 'theme_setting' );
 function theme_setting() {
     add_theme_support('post-thumbnails');
     add_image_size( 'category-thumb', 160, 157, true );
+    add_theme_support('title-tag');
+
     register_nav_menus( array(
         'navbar_menu' => __( 'Navbar Menu', 'navbar_menu' ),
         'mobile_menu' => __( 'Mobile Menu', 'mobile_menu' ),

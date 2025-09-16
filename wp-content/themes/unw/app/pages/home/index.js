@@ -13,7 +13,42 @@ export default class HomePage extends Page {
       element: '.home-page'
     })
     this.create()
-    // super.create()
+  }
+
+  handleOnSubmitForm() {
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.querySelector('#form-general')
+      if (!form) return
+
+      let isSubmitting = false
+
+      form.addEventListener('submit', (e) => {
+        if (isSubmitting) {
+          e.preventDefault()
+          return
+        }
+
+        alert('Enviando formulario')
+        isSubmitting = true
+
+        const button = form.querySelector('#button-send')
+
+        if (button) {
+          button.disabled = true
+          button.innerText = 'Enviando...'
+        }
+
+        if (window.dataLayer && Array.isArray(window.dataLayer)) {
+          window.dataLayer.push({
+            event: 'gtm.formSubmit',
+            formId: form.id || null,
+            formType: form.dataset.formType || null
+          })
+        } else {
+          console.warn('⚠️ dataLayer no está definido')
+        }
+      })
+    })
   }
 
   create() {
@@ -40,6 +75,7 @@ export default class HomePage extends Page {
       element: '#form-general',
       container: '.more-form'
     })
+    this.handleOnSubmitForm()
   }
 }
 new HomePage()
