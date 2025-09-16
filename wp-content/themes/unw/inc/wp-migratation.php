@@ -61,7 +61,9 @@ add_action('wp_enqueue_scripts', function () {
     'template-becas-fondo-empleo.php',
     'template-credito-escalo.php',
     'template-fondo-perpetuo.php',
-    'template-fundacion-hipolito.php'
+    'template-fundacion-hipolito.php',
+    'template-admision-beca18.php',
+    'template-admision-examen-admision.php'
   ];
 
   $template_paths = array_map(fn($tpl) => 'templates/' . $tpl, $templates);
