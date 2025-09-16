@@ -27,8 +27,8 @@
         </div>
         <div class="miga_de_pan">
           <div class="container">
-            <div class="content_links_miga"><a href="https://www.uwiener.edu.pe/" class="link miga">Inicio /</a><a
-                href="https://www.uwiener.edu.pe/servicios-universitarios/" class="link miga">Servicios
+            <div class="content_links_miga"><a href="<?= home_url("/") ?>" class="link miga">Inicio /</a><a
+                href="<?= home_url("/servicios-universitarios/") ?>" class="link miga">Servicios
                 universitarios&nbsp;/</a><a href="#" aria-current="page" class="link miga w--current">Jefatura de
                 Becas</a></div>
           </div>
@@ -157,7 +157,7 @@
                               class="collection_list gilla _3-col w-dyn-items">
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
                                 <a title="Ver más sobre Becas y Créditos Pronabec"
-                                  href="https://www.uwiener.edu.pe/bienestar-universitario/becas-y-creditos-pronabec/"
+                                  href="<?= home_url("/bienestar-universitario/becas-y-creditos-pronabec/") ?>"
                                   class="item_serv_university w-inline-block">
                                   <h4 class="h4_light">Becas y Créditos Pronabec</h4>
                                   <div class="btn-legacy text">Ver más</div>
@@ -165,7 +165,7 @@
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
                                 <a title="Ver más sobre Becas Fondo Empleo"
-                                  href="https://www.uwiener.edu.pe/bienestar-universitario/becas-fondo-empleo/"
+                                  href="<?= home_url("/bienestar-universitario/becas-fondo-empleo/") ?>"
                                   class="item_serv_university w-inline-block">
                                   <!-- <div class="tipo_servicio">Becas Externas</div> -->
                                   <h4 class="h4_light">Becas Fondo Empleo</h4>
@@ -174,7 +174,7 @@
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
                                 <a title="Ver más sobre Crédito Escalo"
-                                  href="https://www.uwiener.edu.pe/bienestar-universitario/credito-escalo/"
+                                  href="<?= home_url("/bienestar-universitario/credito-escalo/") ?>"
                                   class="item_serv_university w-inline-block">
                                   <!-- <div class="tipo_servicio">Becas Externas</div> -->
                                   <h4 class="h4_light">Crédito Escalo</h4>
@@ -183,7 +183,7 @@
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
                                 <a title="Ver más sobre Fondo Perpetuo para la Educación – ASPERSUD"
-                                  href="https://www.uwiener.edu.pe/bienestar-universitario/fondo-perpetuo-para-la-educacion-aspersud/"
+                                  href="<?= home_url("/bienestar-universitario/fondo-perpetuo-para-la-educacion-aspersud/") ?>"
                                   class="item_serv_university w-inline-block">
                                   <!-- <div class="tipo_servicio">Becas Externas</div> -->
                                   <h4 class="h4_light">Fondo Perpetuo para la Educación – ASPERSUD</h4>
@@ -192,7 +192,7 @@
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
                                 <a title="Ver más sobre Fundación Hipólito Unanue – FIHU"
-                                  href="https://www.uwiener.edu.pe/bienestar-universitario/fundacion-hipolito-unanue-fihu/"
+                                  href="<?= home_url("/bienestar-universitario/fundacion-hipolito-unanue-fihu/") ?>"
                                   class="item_serv_university w-inline-block">
                                   <!-- <div class="tipo_servicio">Becas Externas</div> -->
                                   <h4 class="h4_light">Fundación Hipólito Unanue – FIHU</h4>

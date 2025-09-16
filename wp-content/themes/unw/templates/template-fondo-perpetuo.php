@@ -30,8 +30,8 @@ get_header();
         <div class="miga_de_pan">
           <div class="container">
             <div class="content_links_miga">
-              <a href="https://www.uwiener.edu.pe/" class="link miga">Inicio /</a>
-              <a href="https://www.uwiener.edu.pe/servicios-universitarios/becas/" class="link miga">Becas / </a>
+              <a href="<?= home_url("/") ?>" class="link miga">Inicio /</a>
+              <a href="<?= home_url("/servicios-universitarios/becas/") ?>" class="link miga">Becas / </a>
               <a href="#" aria-current="page" class="link miga w--current">Fondo Perpetuo para la Educación – ASPERSUD</a>
             </div>
           </div>

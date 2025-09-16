@@ -32,8 +32,8 @@ get_header();
         <div class="miga_de_pan">
           <div class="container">
             <div class="content_links_miga">
-              <a href="https://www.uwiener.edu.pe/" class="link miga">Inicio /</a>
-              <a href="https://www.uwiener.edu.pe/servicios-universitarios/bienestar-estudiantil/" class="link miga">Bienestar Estudiantil / </a>
+              <a href="<?= home_url("/") ?>" class="link miga">Inicio /</a>
+              <a href="<?= home_url("/servicios-universitarios/bienestar-estudiantil/") ?>" class="link miga">Bienestar Estudiantil / </a>
               <a href="#" aria-current="page" class="link miga w--current">Promoción del deporte</a>
             </div>
           </div>

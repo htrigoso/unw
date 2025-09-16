@@ -33,10 +33,10 @@
       <div class="miga_de_pan">
         <div class="container">
           <div class="content_links_miga">
-            <a class="link miga" href="https://www.uwiener.edu.pe/">
+            <a class="link miga" href="<?= home_url("/") ?>">
               Inicio /
             </a>
-            <a class="link miga" href="https://www.uwiener.edu.pe/centros-wiener/">
+            <a class="link miga" href="<?= home_url("/centros-wiener/") ?>">
               Centros Wiener /
             </a>
             <a class="link miga w--current" href="#">
@@ -191,7 +191,7 @@
                             Niño).</p>
                           <p style="text-align: left;">Nuestros residentes de segundas especialidades realizan prácticas
                             clínicas en el Centro Odontológico durante todos los ciclos que comprenda su formación.</p>
-                          <p style="text-align: left;"><a href="https://www.uwiener.edu.pe/carreras/odontologia/">Ver
+                          <p style="text-align: left;"><a href="<?= home_url("/carreras/odontologia/") ?>">Ver
                               carrera</a></p>
                           &nbsp;
                         </div>

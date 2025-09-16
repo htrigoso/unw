@@ -29,8 +29,8 @@
         </div>
         <div class="miga_de_pan">
           <div class="container">
-            <div class="content_links_miga"><a href="https://www.uwiener.edu.pe/" class="link miga">Inicio /</a><a
-                href="https://www.uwiener.edu.pe/servicios-universitarios/" class="link miga">Servicios
+            <div class="content_links_miga"><a href="<?= home_url("/") ?>" class="link miga">Inicio /</a><a
+                href="<?= home_url("/servicios-universitarios/") ?>" class="link miga">Servicios
                 universitarios&nbsp;/</a><a href="#" aria-current="page" class="link miga w--current">Defensoría
                 Universitaria</a></div>
           </div>

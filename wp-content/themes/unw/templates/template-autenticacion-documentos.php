@@ -29,7 +29,7 @@ get_header();
         </div>
         <div class="miga_de_pan">
           <div class="container">
-            <div class="content_links_miga"><a href="/" class="link miga">Inicio /</a><a href="https://www.uwiener.edu.pe/servicios-universitarios/secretaria-general/" class="link miga ">Secretaria General&nbsp;/</a><a href="#" aria-current="page" class="link miga w--current">Autenticación de documentos</a></div>
+            <div class="content_links_miga"><a href="/" class="link miga">Inicio /</a><a href="<?= home_url("/servicios-universitarios/secretaria-general/") ?>" class="link miga ">Secretaria General&nbsp;/</a><a href="#" aria-current="page" class="link miga w--current">Autenticación de documentos</a></div>
           </div>
         </div>
       </div>
@@ -172,49 +172,49 @@ get_header();
                           <div class="wrapper_collection mt auto w-dyn-list">
                             <div role="list" class="collection_list gilla _3-col w-dyn-items">
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
-                                <a href="https://www.uwiener.edu.pe/secretaria-general/autenticacion-de-documentos/" class="item_serv_university w-inline-block w--current">
+                                <a href="<?= home_url("/secretaria-general/autenticacion-de-documentos/") ?>" class="item_serv_university w-inline-block w--current">
                                   <h4 class="h4_light">Autenticación de documentos</h4>
                                   <div class="btn-legacy text">Ver más</div>
                                 </a>
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
-                                <a href="https://www.uwiener.edu.pe/secretaria-general/autenticacion-de-silabos/" class="item_serv_university w-inline-block ">
+                                <a href="<?= home_url("/secretaria-general/autenticacion-de-silabos/") ?>" class="item_serv_university w-inline-block ">
                                   <h4 class="h4_light">Autenticación de sílabos</h4>
                                   <div class="btn-legacy text">Ver más</div>
                                 </a>
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
-                                <a href="https://www.uwiener.edu.pe/secretaria-general/duplicado-de-documentos/" class="item_serv_university w-inline-block ">
+                                <a href="<?= home_url("/secretaria-general/duplicado-de-documentos/") ?>" class="item_serv_university w-inline-block ">
                                   <h4 class="h4_light">Duplicado de documentos</h4>
                                   <div class="btn-legacy text">Ver más</div>
                                 </a>
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
-                                <a href="https://www.uwiener.edu.pe/secretaria-general/fedateo-de-documentos/" class="item_serv_university w-inline-block ">
+                                <a href="<?= home_url("/secretaria-general/fedateo-de-documentos/") ?>" class="item_serv_university w-inline-block ">
                                   <h4 class="h4_light">Fedateo de documentos</h4>
                                   <div class="btn-legacy text">Ver más</div>
                                 </a>
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
-                                <a href="https://www.uwiener.edu.pe/secretaria-general/constancia-de-grado-academico-titulo-profesional-u-otros/" class="item_serv_university w-inline-block ">
+                                <a href="<?= home_url("/secretaria-general/constancia-de-grado-academico-titulo-profesional-u-otros/") ?>" class="item_serv_university w-inline-block ">
                                   <h4 class="h4_light">Constancia de grado académico, título profesional u otros</h4>
                                   <div class="btn-legacy text">Ver más</div>
                                 </a>
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
-                                <a href="https://www.uwiener.edu.pe/secretaria-general/duplicado-de-grado-academico-titulo-profesional/" class="item_serv_university w-inline-block ">
+                                <a href="<?= home_url("/secretaria-general/duplicado-de-grado-academico-titulo-profesional/") ?>" class="item_serv_university w-inline-block ">
                                   <h4 class="h4_light">Duplicado de grado académico/título profesional</h4>
                                   <div class="btn-legacy text">Ver más</div>
                                 </a>
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
-                                <a href="https://www.uwiener.edu.pe/secretaria-general/expedicion-de-diploma-de-grado-academico-titulo-profesional/" class="item_serv_university w-inline-block ">
+                                <a href="<?= home_url("/secretaria-general/expedicion-de-diploma-de-grado-academico-titulo-profesional/") ?>" class="item_serv_university w-inline-block ">
                                   <h4 class="h4_light">Expedición de diploma de grado académico/título profesional</h4>
                                   <div class="btn-legacy text">Ver más</div>
                                 </a>
                               </div>
                               <div role="listitem" class="collection_item serv_univer w-dyn-item">
-                                <a href="https://www.uwiener.edu.pe/secretaria-general/cronograma-de-sustentaciones/" class="item_serv_university w-inline-block ">
+                                <a href="<?= home_url("/secretaria-general/cronograma-de-sustentaciones/") ?>" class="item_serv_university w-inline-block ">
                                   <h4 class="h4_light">Cronograma de sustentaciones</h4>
                                   <div class="btn-legacy text">Ver más</div>
                                 </a>
