@@ -1,4 +1,3 @@
-import Component from '../../classes/Component'
 import { buildOptionsCampusCareers, createSelectCampus, createSelectDepartament, FORMS, removeSelectCampus, removeSelectDepartament, sanitizeForInput, setClaseName, validateInputs, validatePhone } from './utils'
 
 // ==========================
@@ -10,9 +9,9 @@ const FORM_CARRIERS_PRESENCIAL =
 const FORM_CARRIERS_VIRTUAL =
   'https://forms.zohopublic.com/adminzoho11/form/WebCarrerasVirtual/formperma/f1PqvMaVQ3bdPj9ELVT4XJWYy_eHSjrAECWfWqSB_uE/htmlRecords/submit'
 
-export default class FormCrmCareer extends Component {
-  constructor({ element, container, onCompleted }) {
-    super({ element, elements: {} })
+export default class FormCrmCareer {
+  constructor({ element }) {
+    this.element = element
     this.createListeners()
   }
 

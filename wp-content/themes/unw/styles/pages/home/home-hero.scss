@@ -1,5 +1,7 @@
 .hero {
-  height: 85vh;
+  @include media(">=tablet") {
+    height: 85vh;
+  }
 }
 .swiper-container {
   width: 100%;

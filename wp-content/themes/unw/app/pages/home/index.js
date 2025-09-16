@@ -2,53 +2,13 @@ import HeroSwiper from '../../components/HeroSwiper'
 import PostSwiper from '../../components/PostSwiper'
 import InternationalSwiper from '../../components/InternationalSwiper'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
-import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
-import Page from '../../classes/Page'
 import { ModalManager } from '../../components/Modal'
+import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
+import { $element } from '../../utils/dom'
 
-export default class HomePage extends Page {
+export default class HomePage {
   constructor() {
-    super({
-      id: 'home-page',
-      element: '.home-page'
-    })
     this.create()
-  }
-
-  handleOnSubmitForm() {
-    document.addEventListener('DOMContentLoaded', () => {
-      const form = document.querySelector('#form-general')
-      if (!form) return
-
-      let isSubmitting = false
-
-      form.addEventListener('submit', (e) => {
-        if (isSubmitting) {
-          e.preventDefault()
-          return
-        }
-
-        alert('Enviando formulario')
-        isSubmitting = true
-
-        const button = form.querySelector('#button-send')
-
-        if (button) {
-          button.disabled = true
-          button.innerText = 'Enviando...'
-        }
-
-        if (window.dataLayer && Array.isArray(window.dataLayer)) {
-          window.dataLayer.push({
-            event: 'gtm.formSubmit',
-            formId: form.id || null,
-            formType: form.dataset.formType || null
-          })
-        } else {
-          console.warn('⚠️ dataLayer no está definido')
-        }
-      })
-    })
   }
 
   create() {
@@ -70,12 +30,15 @@ export default class HomePage extends Page {
     })
     PostSwiperDesktop()
     InternationalSwiper()
+    this.initFormGeneral()
+  }
 
-    new FormCrmGeneral({
-      element: '#form-general',
+  initFormGeneral() {
+    const form = new FormCrmGeneral({
+      element: $element('#form-general'),
       container: '.more-form'
     })
-    this.handleOnSubmitForm()
+    console.log(form)
   }
 }
 new HomePage()

@@ -21,7 +21,6 @@ require_once dirname(__FILE__) . '/post-types/cpt-teachers.php';
 require_once dirname(__FILE__) . '/post-types/cpt-courses.php';
 require_once dirname(__FILE__) . '/post-types/cpt-infrastructure.php';
 require_once dirname(__FILE__) . '/post-types/cpt-admission-process.php';
-require_once dirname(__FILE__) . '/post-types/cpt-faculties.php';
 require_once dirname(__FILE__) . '/post-types/ctp-colores.php';
 
 // require custom taxonomies

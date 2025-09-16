@@ -1,4 +1,4 @@
-import Component from '../../classes/Component'
+
 import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, removeNameAttributeCampus, removeSelectDepartament, resetCustomHidden, setClaseName, setNameAttributeCampus, showCampusSelect, updateHiddenInputs, updateOptionsCareers, validateInputs, validatePhone } from './utils'
 
 // ==========================
@@ -10,9 +10,9 @@ const FORM_ADMISSION_PRESENCIAL =
 const FORM_ADMISSION_VIRTUAL =
   'https://forms.zohopublic.com/adminzoho11/form/WebAdmisinIVirtual/formperma/pQcbclF2i7Gt1QAKd0zl3Ow5bT3dxSrcE3-ybtsYQoE/htmlRecords/submit'
 
-export default class FormCrmAdmission extends Component {
-  constructor({ element, container, onCompleted }) {
-    super({ element, elements: {} })
+export default class FormCrmAdmission {
+  constructor({ element, container }) {
+    this.element = element
     this.formContainer = container
     this.createListeners()
   }
