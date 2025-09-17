@@ -28,6 +28,7 @@ foreach ($acf_careers as $key => $value) {
     get_template_part(COMMON_CONTENT_PATH, 'nav-tabs', [
       'nav_tabs' => $tabs
     ]);
+
     ?>
   </div>
 
@@ -41,7 +42,7 @@ foreach ($acf_careers as $key => $value) {
             case 'presentacion':
 
               $presentation = get_field('presentation', get_the_ID());
-              if(!$presentation['status']) {
+
 
               $testimonials_info = $presentation['testimonials_info'] ?? null;
 
@@ -102,7 +103,6 @@ foreach ($acf_careers as $key => $value) {
                 ?>
         </section>
         <?php
-        }
               break;
 
             case 'beneficios':
@@ -112,7 +112,7 @@ foreach ($acf_careers as $key => $value) {
               ]);
               break;
 
-            case 'malla':
+            case 'malla-curricular':
               $malla_curricular = get_field('malla_curricular', get_the_ID());
               get_template_part(CAREERS_CONTENT_TAB_PATH . '3-curriculum-map/content-program-curriculum', null, [
                 'malla_curricular' => $malla_curricular
@@ -130,7 +130,7 @@ foreach ($acf_careers as $key => $value) {
               ]);
               break;
 
-            case 'teaching-staff':
+            case 'plana-docente':
               $teaching_staff = get_field('teaching_staff', get_the_ID());
               get_template_part(CAREERS_CONTENT_TAB_PATH . '5-teaching-staff/content-teaching-staff', null, [
                 'teaching_staff' => $teaching_staff

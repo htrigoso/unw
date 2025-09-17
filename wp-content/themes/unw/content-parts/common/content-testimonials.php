@@ -10,7 +10,6 @@ if(wp_is_nonempty_array($testimonial_posts)){
       <?php echo get_value_or_default($title, 'wp_kses_post', 'Titulo para testimonios'); ?>
     </h2>
     <div class="testimonials-swiper post-swiper switch-pagination-navigation" data-width="compact">
-
       <div class="swiper-container">
         <ul class="swiper-wrapper">
           <?php

@@ -14,10 +14,7 @@ export default class HomePage {
   create() {
     new ModalManager()
 
-    HeroSwiper('.hero-swiper', {
-      autoplay: false,
-      allowTouchMove: false
-    })
+    HeroSwiper('.hero-swiper')
     PostSwiper('.testimonial-swiper')
     PostSwiper('.last-news-swiper', {
       pagination: {

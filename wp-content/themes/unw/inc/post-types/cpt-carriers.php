@@ -162,6 +162,7 @@ function custom_carrera_permalink_by_tax($post_link, $post) {
 add_filter('query_vars', function ($vars) {
   $vars[] = 'carrera_slug';
    $vars[] = 'facultad';
+    $vars[] = 'modalidad_slug';
   return $vars;
 });
 
@@ -191,12 +192,6 @@ function custom_carreras_rewrite_rules() {
     'top'
   );
 
-  // LISTADO por facultad virtual
-  add_rewrite_rule(
-    '^carreras-a-distancia/([^/]+)/?$',
-    'index.php?pagename=carreras-a-distancia&facultad=$matches[1]&modalidad_slug=virtual',
-    'top'
-  );
 
   }
 
@@ -563,8 +558,10 @@ function get_carrera_id_by_slug_and_modalidad($slug, $modalidad_slug) {
 }
 
 add_action('template_redirect', function () {
+
     $post_type    = get_query_var('post_type');
     $carrera_slug = get_query_var('carrera_slug');
+    $modalidad_slug = get_query_var('modalidad_slug');
 
     if ($post_type === 'carreras' && $carrera_slug) {
 
@@ -574,20 +571,19 @@ add_action('template_redirect', function () {
             'name'           => $carrera_slug,
             'post_status'    => 'publish',
             'posts_per_page' => 1,
-            'fields'         => 'ids'
+            'fields'         => 'ids',
+            'tax_query'      => [[
+                'taxonomy' => 'modalidad',
+                'field'    => 'slug',
+                'terms'    => $modalidad_slug,
+            ]]
         ]);
+
 
 
         if ($query->have_posts()) {
             $post_id   = $query->posts[0];
             $canonical = get_permalink($post_id);
-
-
-            // // Redirección canónica si hace falta
-            // if (trailingslashit($canonical) !== trailingslashit(home_url($_SERVER['REQUEST_URI']))) {
-            //     wp_safe_redirect($canonical, 301);
-            //     exit;
-            // }
 
             // Forzar single-carreras.php
             global $wp_query, $post;
@@ -614,39 +610,58 @@ add_action('template_redirect', function () {
         $term = get_term_by('slug', $carrera_slug, 'facultad');
 
 
+
         if ($term && !is_wp_error($term)) {
-          global $wp_query;
+            // ✅ ES UNA FACULTAD - Mostrar listado filtrado
 
-          $tax_query = [
-              [
-                  'taxonomy' => 'facultad',
-                  'field'    => 'slug',
-                  'terms'    => $term->slug,
-              ]
-          ];
+            // Configurar variables globales para el template
+            global $wp_query, $post;
 
-          $modalidad = get_query_var('modalidad_filter');
-          if ($modalidad) {
-              $tax_query[] = [
-                  'taxonomy' => 'modalidad',
-                  'field'    => 'slug',
-                  'terms'    => $modalidad,
-              ];
-          }
+            // Crear un post dummy completo usando WP_Post
+            $post_data = [
+                'ID' => 0,
+                'post_title' => $term->name,
+                'post_name' => $term->slug,
+                'post_type' => 'page',
+                'post_status' => 'publish',
+                'post_author' => 1,
+                'post_date' => current_time('mysql'),
+                'post_date_gmt' => current_time('mysql', 1),
+                'post_content' => '',
+                'post_excerpt' => '',
+                'post_parent' => 0,
+                'menu_order' => 0,
+                'post_mime_type' => '',
+                'comment_count' => 0,
+                'filter' => 'raw'
+            ];
 
-          $careers = new WP_Query([
-              'post_type'      => 'carreras',
-              'post_status'    => 'publish',
-              'posts_per_page' => -1,
-              'orderby'        => 'title',
-              'order'          => 'ASC',
-              'tax_query'      => $tax_query,
-          ]);
+            $post = new WP_Post((object) $post_data);
 
-          set_query_var('facultad_term', $term);
-          set_query_var('careers_query', $careers);
+            // Configurar query vars que usa tu template
+            set_query_var('facultad', $term->slug);
+            set_query_var('modalidad_slug', $modalidad_slug);
 
-          return;
+            // Configurar WP_Query para que el template piense que está en una página
+            $wp_query->is_page = true;
+            $wp_query->is_singular = true;
+            $wp_query->queried_object = $post;
+            $wp_query->queried_object_id = 0;
+            $wp_query->post = $post;
+            $wp_query->posts = [$post];
+            $wp_query->post_count = 1;
+            $wp_query->found_posts = 1;
+
+            // Cargar template de carreras virtuales
+
+            $template_path = get_template_directory() . '/templates/template-careers-for-working-people.php';
+
+
+            if (file_exists($template_path)) {
+                include $template_path;
+                exit;
+            }
+            return;
 
         }
 
@@ -914,6 +929,7 @@ function render_careers_tabs_by_modality($modality_slug = 'presencial') {
             'id'     => 0,
             'label'  => 'Todas las carreras',
             'target' => 'todas-las-carreras',
+             'status' => true,
             'url'    => ($modality_slug === 'virtual')
                           ? home_url('/carreras-a-distancia/')
                           : home_url('/carreras-uwiener/'),
@@ -944,6 +960,7 @@ function render_careers_tabs_by_modality($modality_slug = 'presencial') {
             $tabs[] = [
                 'id'     => (int) $f->term_id,
                 'label'  => $f->name,
+                 'status' => true,
                 'target' => $f->slug,
                 'url'    => $build_faculty_url($f->slug, $modality_slug),
             ];
@@ -991,7 +1008,9 @@ function render_careers_tabs_by_modality($modality_slug = 'presencial') {
         get_template_part(COMMON_CONTENT_PATH, 'nav-tabs', [
             'nav_tabs'  => $tabs,
             'is_url'    => true,
+
             'active_id' => $current_faculty_id,
+            'show_controls' => true
         ]);
         ?>
   </div>
