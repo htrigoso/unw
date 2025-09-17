@@ -3,7 +3,7 @@
   <div class="x-container x-container--pad-64 navbar__wrapper">
 
     <a class="navbar__logo pointer" aria-label="Logo del menú" href="<?php echo home_url('/'); ?>">
-      <img width="101" height="40" src="<?php echo get_template_directory_uri(); ?>/upload/logo-unw.svg" alt="">
+      <img src="<?php echo get_template_directory_uri(); ?>/upload/logo-uwiener-2.svg" alt="">
     </a>
 
 

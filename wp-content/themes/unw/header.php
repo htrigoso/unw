@@ -9,28 +9,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="Cache-control" content="public">
-  <meta name="keywords" content="unw">
   <meta name="format-detection" content="telephone=no">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Universidad Norbert Wiener: Educación de Clase Mundial
-">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#03033f">
   <meta name="msapplication-TileColor" content="#92dce5">
   <meta name="msapplication-navbutton-color" content="#f7f9fb">
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="<?php echo home_url() ?>" />
-  <meta property="og:site_name" content="Universidad Norbert Wiener: Educación de Clase Mundial
-" />
-  <meta name="description"
-    content="Universidad Norbert Wiener, AVANZA+ en tu carrera profesional. Educación de calidad internacional, en alianza con Arizona State University. ¡Postula ya!">
-  <meta property="og:locale" content="es_ES">
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:domain" content="<?php echo home_url() ?>" />
-  <meta name="twitter:title" property="og:title" itemprop="name" content="<?php the_title() ?>" />
-  <meta name="twitter:description" property="og:description" itemprop="description"
-    content="Universidad Norbert Wiener, AVANZA+ en tu carrera profesional. Educación de calidad internacional, en alianza con Arizona State University. ¡Postula ya!" />
   <link rel="icon" type="image/png" sizes="32x32" href="<?php echo UPLOAD_PATH; ?>/favicon/favicon.png">
 
   <?php get_template_part('content-parts/content', 'fonts'); ?>
