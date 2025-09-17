@@ -5,6 +5,10 @@ const InternationalSwiper = (sectionEl = '.international-agreements') => {
     slidesPerView: 'auto',
     spaceBetween: 12,
     grabCursor: true,
+    navigation: {
+      nextEl: `${sectionEl} .swiper-primary-button-next`,
+      prevEl: `${sectionEl} .swiper-primary-button-prev`
+    },
     breakpoints: {
       576: {
         slidesPerView: 'auto',

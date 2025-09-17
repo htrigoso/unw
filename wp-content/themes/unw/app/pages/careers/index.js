@@ -8,6 +8,7 @@ import Accordion from '../../components/Accordion'
 import FormCrmCareer from '../../components/FormCRM/FormCrmCareer'
 import { ModalManager } from '../../components/Modal'
 import { $element } from '../../utils/dom'
+
 (function () {
   HeroSwiper('.hero-swiper', {
     autoplay: {

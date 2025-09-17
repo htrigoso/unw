@@ -1,12 +1,12 @@
-.hero {
-  @include media(">=tablet") {
-    height: 85vh;
-  }
+.hero-swiper {
+  background-color: var(--color-light-turquoise);
 }
+
 .swiper-container {
   width: 100%;
   height: 100%;
 }
+
 .swiper-hero__wrapper {
   position: relative;
   width: 100%;
@@ -16,6 +16,10 @@
 .swiper-hero__slide {
   position: relative;
   overflow: hidden;
+
+  @include media(">=tablet") {
+    height: 85vh;
+  }
 }
 
 .swiper-hero__picture {
@@ -63,7 +67,6 @@
 
   @include media(">=tablet") {
     @include title-80;
-    height: rem(137);
   }
 }
 

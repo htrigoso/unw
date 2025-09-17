@@ -2,7 +2,7 @@ import { createSwiper } from './createSwiper'
 
 const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
   const defaultConfig = {
-    loop: true,
+    loop: false,
     slidesPerView: 1,
     centeredSlides: false,
     spaceBetween: 0,
