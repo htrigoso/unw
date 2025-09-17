@@ -1,10 +1,18 @@
 <header class="navbar" id="navbar">
-  <?php get_template_part(GENERAL_CONTENT_PATH, 'top-bar'); ?>
-  <div class="x-container x-container--pad-64 navbar__wrapper">
+  <?php
+    if(isset($args['hide_top_bar_power_asu'])):
+      get_template_part(PBA_CONTENT_PATH, 'pba-navbar');
 
+    else:
+ get_template_part(GENERAL_CONTENT_PATH, 'top-bar');
+    endif;
+  ?>
+  <div class="x-container x-container--pad-64 navbar__wrapper">
+    <?php  ?>
     <a class="navbar__logo pointer" aria-label="Logo del menú" href="<?php echo home_url('/'); ?>">
       <img src="<?php echo get_template_directory_uri(); ?>/upload/logo-uwiener-2.svg" alt="">
     </a>
+
 
 
     <div class="navbar__content">

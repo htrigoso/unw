@@ -47,12 +47,12 @@ get_header();
                       </a>
                     </div>
                     <div role="listitem" class="collection-item w-dyn-item">
-                      <a href="<?= home_url("/admision/graduado-titulado-universidad/") ?>" aria-current="page" class="link_item_tab w-inline-block">
+                      <a href="<?= home_url("/admision/convalidacion/") ?>" aria-current="page" class="link_item_tab w-inline-block">
                         <div>Graduado / Titulado Universidad</div>
                       </a>
                     </div>
                     <div role="listitem" class="collection-item w-dyn-item">
-                      <a href="<?= home_url("/admision/exoneracion/") ?>" aria-current="page" class="link_item_tab w-inline-block">
+                      <a href="<?= home_url("/") ?>" aria-current="page" class="link_item_tab w-inline-block">
                         <div>Extraordinaria</div>
                       </a>
                     </div>

@@ -7,6 +7,7 @@ $breadcrumbs = $args['breadcrumbs'] ?? [];
 $type = $args['type'] ?? 'Imagen';
 $variant = $args['variant'] ?? 'standard';
 $index = $args['index'] ?? 0;
+
 ?>
 
 <div class="hero-slide" data-variant="<?php echo esc_attr($variant); ?>">
@@ -32,11 +33,11 @@ $index = $args['index'] ?? 0;
       <article class="hero-slide__content">
         <?php if($index === 0){ ?>
         <h1 class="hero-slide__content--title">
-          <?php echo esc_html($title); ?>
+          <?php echo nl2br(esc_html($title)); ?>
         </h1>
         <?php }else { ?>
         <h2 class="hero-slide__content--title">
-          <?php echo esc_html($title); ?>
+          <?php echo nl2br(esc_html($title)); ?>
         </h2>
         <?php } ?>
         <?php

@@ -50,7 +50,7 @@
 
         // Título del hero → usar el nombre del término si aún no se definió
         if ( empty( $hero_title ) && ! empty( $term_obj->name ) ) {
-            $hero_title = $term_obj->name;
+            $hero_title = $term_obj->description;
         }
     }
   }
@@ -87,10 +87,11 @@
   $breadcrumb = [
     ['label' => 'Inicio',   'href' => home_url('/')],
     ['label' => $modality['label'], 'href' =>$modality['url']],
+
   ];
   if ($current_id_term > 0) {
   $breadcrumb[] = [
-    'label' => get_the_title(),
+    'label' => $term_obj->description,
     'href'  => '',
   ];
 }

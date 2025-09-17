@@ -1,14 +1,19 @@
 <?php
 $sliders = get_field('sliders', get_the_ID());
-$default_title = get_the_title();
+$title_sec = get_field('title_sec', get_the_ID());
+
+if(empty($title_sec)) {
+  $title_sec = get_the_title();
+}
+
 
 if (isset($sliders['list_of_files']) && is_array($sliders['list_of_files'])) {
   foreach ($sliders['list_of_files'] as $i => $slide) {
     if (!isset($sliders['list_of_files'][$i]['title'])) {
-      $sliders['list_of_files'][$i]['title'] = $default_title;
+      $sliders['list_of_files'][$i]['title'] = $title_sec;
     }
     if (!isset($sliders['list_of_files'][$i]['label'])) {
-      $sliders['list_of_files'][$i]['label'] = $default_title;
+      $sliders['list_of_files'][$i]['label'] = $title_sec;
     }
   }
 }
@@ -20,8 +25,9 @@ $modality_info = get_carrera_modality_info_from_slug($modality_slug);
 
 $base_breadcrumbs = [
   ['label' => 'Inicio', 'href' => home_url('/')],
-     ['label' => $modality_info['label'], 'href' => $modality_info['url']],
-
+  ['label' => $modality_info['label'],
+    'href' => $modality_info['url']
+  ]
 ];
 ?>
 <div class="careers-hero">
@@ -31,7 +37,8 @@ $base_breadcrumbs = [
     'swiper-hero',
     [
       'sliders' => $sliders,
-      'base_breadcrumbs' => $base_breadcrumbs
+      'base_breadcrumbs' => $base_breadcrumbs,
+      'title_sec' => $title_sec
     ]
   );
 

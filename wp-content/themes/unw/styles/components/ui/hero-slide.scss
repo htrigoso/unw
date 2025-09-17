@@ -47,13 +47,12 @@
 .hero-slide__content--title {
   @include title-28;
   color: var(--color-white);
-  max-width: rem(545);
+
   margin-bottom: rem(8);
 
   @include media(">=tablet") {
     @include title-56;
     margin-bottom: rem(85);
-    min-height: rem(132);
   }
 }
 

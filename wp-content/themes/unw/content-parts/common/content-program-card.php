@@ -14,7 +14,7 @@ $link_title = $args['link_title'];
     class="program-card--img lazyload" />
   <?php endif; ?>
   <div class="program-card--content">
-    <h3 class="program-card--content__title" data-animation="paragraph"><?php echo esc_html($title_item); ?></h3>
+    <h2 class="program-card--content__title" data-animation="paragraph"><?php echo esc_html($title_item); ?></h2>
     <?php if (!empty($desc)) : ?>
     <div class="program-card--content__paragraph" data-animation="paragraph">
       <p class="program-card--content__description"><?php echo esc_html($desc); ?></p>

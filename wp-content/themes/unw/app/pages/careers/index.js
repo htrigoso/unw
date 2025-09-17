@@ -11,9 +11,10 @@ import { $element } from '../../utils/dom'
 (function () {
   HeroSwiper('.hero-swiper', {
     autoplay: {
-      delay: 15000,
+      delay: 2500,
       disableOnInteraction: false
-    }
+    },
+    loop: false
   })
 
   new ModalManager()
