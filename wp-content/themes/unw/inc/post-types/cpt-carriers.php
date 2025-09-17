@@ -992,6 +992,7 @@ function render_careers_tabs_by_modality($modality_slug = 'presencial') {
             'nav_tabs'  => $tabs,
             'is_url'    => true,
             'active_id' => $current_faculty_id,
+            'show_controls' => true
         ]);
         ?>
   </div>
