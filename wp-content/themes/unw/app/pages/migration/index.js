@@ -2,12 +2,8 @@ import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
 import Page from '../../classes/Page'
 import { ModalManager } from '../../components/Modal'
 
-export default class BackupPage extends Page {
+export default class BackupPage {
   constructor() {
-    super({
-      id: 'home-page',
-      element: '.home-page'
-    })
     this.create()
     // super.create()
   }

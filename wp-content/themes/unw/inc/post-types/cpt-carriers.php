@@ -37,6 +37,44 @@ function register_post_type_carreras() {
   register_post_type('carreras', $args);
 }
 
+
+function unw_get_faculty_term() {
+    $facultad_slug = get_query_var('facultad');
+    if ( ! $facultad_slug ) {
+        return null;
+    }
+    $term = get_term_by('slug', $facultad_slug, 'facultad');
+    return ($term && ! is_wp_error($term)) ? $term : null;
+}
+
+add_filter( 'rank_math/frontend/title', function( $title ) {
+    $term = unw_get_faculty_term();
+    if ( $term ) {
+        $custom_title = get_term_meta( $term->term_id, 'rank_math_title', true );
+        if ( $custom_title ) {
+            return $custom_title;
+        }
+        return $term->name . ' | UNW';
+    }
+    return $title;
+});
+
+add_filter( 'rank_math/frontend/description', function( $desc ) {
+    $term = unw_get_faculty_term();
+    if ( $term ) {
+        $custom_desc = get_term_meta( $term->term_id, 'rank_math_description', true );
+        if ( $custom_desc ) {
+            return $custom_desc;
+        }
+        if ( ! empty( $term->description ) ) {
+            return $term->description;
+        }
+        return 'Descubre todas las carreras de la facultad de ' . $term->name . ' en UNW.';
+    }
+    return $desc;
+});
+
+
 add_filter( 'wp_unique_post_slug', function( $slug, $post_ID, $post_status, $post_type, $post_parent, $original_slug ) {
     if ( $post_type === 'carreras' ) {
         // No alteres el slug, aunque exista duplicado
@@ -122,8 +160,8 @@ function custom_carrera_permalink_by_tax($post_link, $post) {
 }
 
 add_filter('query_vars', function ($vars) {
-  $vars[] = 'facultad';   // filtro por tax facultad
-  $vars[] = 'modalidad';  // (opcional) filtro por tax modalidad
+  $vars[] = 'carrera_slug';
+   $vars[] = 'facultad';
   return $vars;
 });
 
@@ -131,35 +169,36 @@ add_filter('query_vars', function ($vars) {
 // REWRITE RULES
 add_action('init', 'custom_carreras_rewrite_rules');
 function custom_carreras_rewrite_rules() {
-
-
+  // SINGLE carrera presencial
   add_rewrite_rule(
     '^carreras/([^/]+)/?$',
     'index.php?post_type=carreras&carrera_slug=$matches[1]&modalidad_slug=presencial',
     'top'
   );
 
+  // SINGLE carrera virtual
   add_rewrite_rule(
     '^carreras-a-distancia/([^/]+)/?$',
     'index.php?post_type=carreras&carrera_slug=$matches[1]&modalidad_slug=virtual',
     'top'
   );
 
-  add_filter('query_vars', function ($vars) {
-    $vars[] = 'carrera_slug';
-    $vars[] = 'modalidad_slug';
-    return $vars;
-  });
 
+  // LISTADO por facultad presencial
+  add_rewrite_rule(
+    '^carreras-uwiener/([^/]+)/?$',
+    'index.php?pagename=carreras-uwiener&facultad=$matches[1]&modalidad_slug=presencial',
+    'top'
+  );
 
+  // LISTADO por facultad virtual
+  add_rewrite_rule(
+    '^carreras-a-distancia/([^/]+)/?$',
+    'index.php?pagename=carreras-a-distancia&facultad=$matches[1]&modalidad_slug=virtual',
+    'top'
+  );
 
-  // Listado por facultad
-  add_rewrite_rule('^carreras/facultad/([^/]+)/?$', 'index.php?pagename=carreras&facultad=$matches[1]', 'top');
-
-  // (Opcional) listado por modalidad
-  add_rewrite_rule('^carreras/modalidad/([^/]+)/?$', 'index.php?pagename=carreras&modalidad=$matches[1]', 'top');
-}
-
+  }
 
 
 // FUNCIÓN HELPER para obtener carreras por modalidad y categoría(s)
@@ -273,7 +312,7 @@ function get_current_facultad_filter() {
 
 // Función para generar URL de filtro por facultad
 function get_carreras_filter_url($facultad_slug, $base_page = 'carreras') {
-  return home_url("/{$base_page}/facultad/{$facultad_slug}/");
+  return home_url("/{$base_page}/{$facultad_slug}/");
 }
 
 // Función para obtener carreras filtradas por facultad
@@ -483,6 +522,21 @@ add_action('parse_query', function ($query) {
 
 ////////
 
+
+function get_carrera_id_by_slug($slug) {
+    if (empty($slug)) return 0;
+
+    $query = new WP_Query([
+        'post_type'      => 'carreras',
+        'post_status'    => 'publish',
+        'name'           => $slug,
+        'posts_per_page' => 1,
+        'fields'         => 'ids'
+    ]);
+
+    return $query->have_posts() ? $query->posts[0] : 0;
+}
+
 function get_carrera_id_by_slug_and_modalidad($slug, $modalidad_slug) {
   if (empty($slug) || empty($modalidad_slug)) return 0;
 
@@ -509,43 +563,109 @@ function get_carrera_id_by_slug_and_modalidad($slug, $modalidad_slug) {
 }
 
 add_action('template_redirect', function () {
-  if (get_query_var('post_type') === 'carreras' && get_query_var('carrera_slug')) {
-    $slug_carrera = get_query_var('carrera_slug');
-    $modalidad = get_query_var('modalidad_slug') ?: 'presencial';
+    $post_type    = get_query_var('post_type');
+    $carrera_slug = get_query_var('carrera_slug');
 
-    $post_id = get_carrera_id_by_slug_and_modalidad($slug_carrera, $modalidad);
+    if ($post_type === 'carreras' && $carrera_slug) {
 
-    if ($post_id) {
-      global $wp_query, $post;
+        // 1) Buscar si existe carrera con ese slug
+        $query = new WP_Query([
+            'post_type'      => 'carreras',
+            'name'           => $carrera_slug,
+            'post_status'    => 'publish',
+            'posts_per_page' => 1,
+            'fields'         => 'ids'
+        ]);
 
-      $post = get_post($post_id);
-      setup_postdata($post);
 
-      $wp_query->is_single        = true;
-      $wp_query->is_singular      = true;
-      $wp_query->is_page          = false;
-      $wp_query->is_home          = false;
-      $wp_query->queried_object   = $post;
-      $wp_query->queried_object_id = $post_id;
-      $wp_query->post             = $post;
-      $wp_query->posts            = [$post];
-      $wp_query->post_count       = 1;
-      $wp_query->found_posts      = 1;
+        if ($query->have_posts()) {
+            $post_id   = $query->posts[0];
+            $canonical = get_permalink($post_id);
 
-      // Forzar uso del template single-carreras.php
-      include get_single_template();
-      exit;
-    } else {
-      global $wp_query;
-      $wp_query->set_404();
-      status_header(404);
-      nocache_headers();
-      include get_404_template();
-      exit;
+
+            // // Redirección canónica si hace falta
+            // if (trailingslashit($canonical) !== trailingslashit(home_url($_SERVER['REQUEST_URI']))) {
+            //     wp_safe_redirect($canonical, 301);
+            //     exit;
+            // }
+
+            // Forzar single-carreras.php
+            global $wp_query, $post;
+            $post = get_post($post_id);
+            setup_postdata($post);
+
+            $wp_query->is_single         = true;
+            $wp_query->is_singular       = true;
+            $wp_query->queried_object    = $post;
+            $wp_query->queried_object_id = $post_id;
+            $wp_query->post              = $post;
+            $wp_query->posts             = [$post];
+            $wp_query->post_count        = 1;
+            $wp_query->found_posts       = 1;
+
+            $template = get_single_template();
+            if ($template) {
+                include $template;
+                exit;
+            }
+        }
+
+        // 2) Si no es carrera, probar como facultad
+        $term = get_term_by('slug', $carrera_slug, 'facultad');
+
+
+        if ($term && !is_wp_error($term)) {
+          global $wp_query;
+
+          $tax_query = [
+              [
+                  'taxonomy' => 'facultad',
+                  'field'    => 'slug',
+                  'terms'    => $term->slug,
+              ]
+          ];
+
+          $modalidad = get_query_var('modalidad_filter');
+          if ($modalidad) {
+              $tax_query[] = [
+                  'taxonomy' => 'modalidad',
+                  'field'    => 'slug',
+                  'terms'    => $modalidad,
+              ];
+          }
+
+          $careers = new WP_Query([
+              'post_type'      => 'carreras',
+              'post_status'    => 'publish',
+              'posts_per_page' => -1,
+              'orderby'        => 'title',
+              'order'          => 'ASC',
+              'tax_query'      => $tax_query,
+          ]);
+
+          set_query_var('facultad_term', $term);
+          set_query_var('careers_query', $careers);
+
+          return;
+
+        }
+
+        // 3) Ni carrera ni facultad -> 404 con fallbacks
+        global $wp_query;
+        $wp_query->set_404();
+        status_header(404);
+        nocache_headers();
+
+        $template = get_404_template();
+        if (!$template) {
+            $template = locate_template(['404.php','index.php']);
+        }
+        if ($template) {
+            include $template;
+            exit;
+        }
     }
-  }
 });
-
 
 add_action('pre_get_posts', function ($query) {
   global $pagenow;
@@ -685,4 +805,218 @@ function get_campus_by_carrera_id($carrera_id) {
     }
 
     return $result;
+}
+
+function get_carrera_modality_info($post_id = null) {
+    if (!$post_id) {
+        $post_id = get_the_ID();
+    }
+
+    $terms = get_the_terms($post_id, 'modalidad');
+
+    if ($terms && !is_wp_error($terms)) {
+        $slugs = wp_list_pluck($terms, 'slug');
+
+        if (in_array('virtual', $slugs, true)) {
+            return [
+                'label' => 'Carreras a distancia',
+                'url'   => home_url('/carreras-a-distancia/'),
+            ];
+        }
+
+        if (in_array('presencial', $slugs, true)) {
+            return [
+                'label' => 'Carreras',
+                'url'   => home_url('/carreras-uwiener/'),
+            ];
+        }
+    }
+
+    // Fallback por defecto
+    return [
+        'label' => 'Carreras',
+        'url'   => home_url('/carreras-uwiener/'),
+    ];
+}
+/**
+ * Construye la URL de listado de carreras por facultad
+ *
+ * @param string $faculty_slug    Slug de la facultad (ej: 'ingenieria')
+ * @param string $modality_slug   Slug de la modalidad ('presencial' | 'virtual')
+ * @return string URL final
+ */
+function _carreras_url_facultad($faculty_slug, $modality_slug = 'presencial') {
+    if ($modality_slug === 'virtual') {
+        return home_url("/carreras-a-distancia/{$faculty_slug}/");
+    }
+    return home_url("/carreras-uwiener/{$faculty_slug}/");
+}
+
+
+/**
+ * Devuelve info de modalidad: label + url
+ *
+ * @param string|null $slug Slug de modalidad (presencial | virtual)
+ * @return array {label, url}
+ */
+function get_carrera_modality_info_from_slug($slug = null) {
+    if ($slug === 'virtual') {
+        return [
+            'label' => 'Carreras a distancia',
+            'url'   => home_url('/carreras-a-distancia/'),
+        ];
+    }
+
+    // fallback = presencial
+    return [
+        'label' => 'Carreras',
+        'url'   => home_url('/carreras/'),
+    ];
+}
+
+function render_careers_tabs_by_modality($modality_slug = 'presencial') {
+    // =========================
+    // Detectar facultad activa desde query var
+    // =========================
+    $current_faculty_id   = 0;
+    $current_faculty_slug = get_query_var('facultad');
+
+    if ($current_faculty_slug) {
+        $term_obj = get_term_by('slug', $current_faculty_slug, 'facultad');
+        if ($term_obj && !is_wp_error($term_obj)) {
+            $current_faculty_id = (int) $term_obj->term_id;
+        }
+    }
+
+    // =========================
+    // Detectar modalidad desde query_var si existe
+    // =========================
+    $qv_modality = get_query_var('modalidad_slug');
+    if (!empty($qv_modality)) {
+        $modality_slug = $qv_modality;
+    }
+
+    // =========================
+    // Helper para URLs limpias
+    // =========================
+    $build_faculty_url = function($faculty_slug, $modality_slug) {
+        if ($modality_slug === 'virtual') {
+            return home_url("/carreras-a-distancia/{$faculty_slug}/");
+        }
+        return home_url("/carreras-uwiener/{$faculty_slug}/");
+    };
+
+    // =========================
+    // Construcción de Tabs
+    // =========================
+    $tabs = [
+        [
+            'id'     => 0,
+            'label'  => 'Todas las carreras',
+            'target' => 'todas-las-carreras',
+            'url'    => ($modality_slug === 'virtual')
+                          ? home_url('/carreras-a-distancia/')
+                          : home_url('/carreras-uwiener/'),
+        ],
+    ];
+
+    // 1. Obtener carreras de la modalidad
+    $career_ids = get_posts([
+        'post_type'      => 'carreras',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'fields'         => 'ids',
+        'tax_query'      => [[
+            'taxonomy' => 'modalidad',
+            'field'    => 'slug',
+            'terms'    => $modality_slug,
+        ]],
+    ]);
+
+    // 2. Obtener facultades asociadas a esas carreras
+    $faculties = [];
+    if (!empty($career_ids)) {
+        $faculties = wp_get_object_terms($career_ids, 'facultad', ['hide_empty' => true]);
+    }
+
+    if (!is_wp_error($faculties) && !empty($faculties)) {
+        foreach ($faculties as $f) {
+            $tabs[] = [
+                'id'     => (int) $f->term_id,
+                'label'  => $f->name,
+                'target' => $f->slug,
+                'url'    => $build_faculty_url($f->slug, $modality_slug),
+            ];
+        }
+    }
+
+    // =========================
+    // Query de carreras por modalidad + facultad (si aplica)
+    // =========================
+    $tax_query = [
+        [
+            'taxonomy' => 'modalidad',
+            'field'    => 'slug',
+            'terms'    => $modality_slug,
+        ],
+        [
+            'taxonomy' => 'facultad',
+            'operator' => 'EXISTS',
+        ],
+    ];
+
+    if ($current_faculty_slug) {
+        $tax_query[] = [
+            'taxonomy' => 'facultad',
+            'field'    => 'slug',
+            'terms'    => $current_faculty_slug,
+        ];
+    }
+
+    $careers_query = new WP_Query([
+        'post_type'           => 'carreras',
+        'post_status'         => 'publish',
+        'posts_per_page'      => -1,
+        'orderby'             => 'date',
+        'order'               => 'DESC',
+        'ignore_sticky_posts' => true,
+        'tax_query'           => $tax_query,
+    ]);
+
+    $careers_posts = $careers_query->posts;
+    ?>
+<div class="all-careers-tabs">
+  <div class="x-container all-careers-tabs__container">
+    <?php
+        get_template_part(COMMON_CONTENT_PATH, 'nav-tabs', [
+            'nav_tabs'  => $tabs,
+            'is_url'    => true,
+            'active_id' => $current_faculty_id,
+        ]);
+        ?>
+  </div>
+
+  <div class="x-container x-container--pad-213">
+    <div class="all-careers-tabs__content">
+      <div class="tab__content" role="tabpanel" aria-labelledby="tab">
+        <?php
+            $cards = [];
+            foreach ($careers_posts as $career) {
+                $img = get_the_post_thumbnail_url($career->ID, 'full');
+                $cards[] = [
+                    'image'       => $img,
+                    'image_alt'   => $career->post_title,
+                    'title'       => $career->post_title,
+                    'link'        => get_permalink($career->ID),
+                    'link_title'  => 'Ver carrera',
+                    'link_target' => '_blank',
+                ];
+            }
+            get_template_part(ALL_CAREERS_TABS_PATH, 'body', ['cards' => $cards]);
+            ?>
+      </div>
+    </div>
+  </div>
+</div>
+<?php
 }

@@ -43,21 +43,39 @@ $card_items = $infrastructure['list'];
         <div class="laboratories-modal__content">
           <div class="laboratories-modal-swiper post-swiper">
             <div class="swiper-container">
+
+              <?php if (!empty($slides) && is_array($slides)) : ?>
               <ul class="swiper-wrapper laboratories-modal__list">
-                <?php foreach ($slides as $slide) { ?>
+                <?php foreach ($slides as $slide) : ?>
                 <li class="swiper-slide">
                   <article class="laboratories-modal__card">
+                    <?php if (!empty($slide['image']['url'])) : ?>
                     <img src="<?php echo esc_url($slide['image']['url']); ?>"
-                      alt="<?php echo esc_url($slide['image']['alt']); ?>" class="laboratories-modal__card--img" />
-                    <p class="laboratories-modal__card--desc"><?= esc_html($slide['title']) ?></p>
+                      alt="<?php echo esc_attr($slide['image']['alt'] ?? ''); ?>"
+                      class="laboratories-modal__card--img" />
+                    <?php endif; ?>
+
+                    <?php if (!empty($slide['title'])) : ?>
+                    <p class="laboratories-modal__card--desc">
+                      <?php echo esc_html($slide['title']); ?>
+                    </p>
+                    <?php endif; ?>
                   </article>
                 </li>
-                <?php } ?>
+                <?php endforeach; ?>
               </ul>
+
               <div class="swiper-navigation" data-size="responsive">
                 <div class="swiper-primary-button-prev" data-size="responsive"></div>
                 <div class="swiper-primary-button-next" data-size="responsive"></div>
               </div>
+
+              <?php else : ?>
+              <div class="laboratories-modal__empty">
+                <p>No hay laboratorios disponibles en este momento.</p>
+              </div>
+              <?php endif; ?>
+
             </div>
           </div>
         </div>

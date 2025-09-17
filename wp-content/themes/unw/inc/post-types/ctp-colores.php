@@ -23,6 +23,7 @@ function register_cpt_color_facultad() {
     'menu_icon'          => 'dashicons-art', // 🎨 icono de color
     'has_archive'        => false,
     'show_in_rest'       => true, // Gutenberg + REST API
+    'exclude_from_search' => true,
     'rewrite'            => array('slug' => 'color-facultad'),
     'supports'           => array('title', 'excerpt'), // puedes añadir 'custom-fields' si necesitas guardar HEX
   );

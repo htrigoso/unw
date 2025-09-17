@@ -356,7 +356,7 @@
       </div>
       <div class="miga_de_pan">
         <div class="container">
-          <div class="content_links_miga"><a href="https://www.uwiener.edu.pe/" class="link miga">Inicio /</a><a
+          <div class="content_links_miga"><a href="<?= home_url("/") ?>" class="link miga">Inicio /</a><a
               href="#" aria-current="page" class="link miga w--current">Políticas de privacidad</a></div>
         </div>
       </div>

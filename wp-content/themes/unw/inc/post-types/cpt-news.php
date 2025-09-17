@@ -1,27 +1,24 @@
 <?php
 function register_post_type_novedades() {
     $labels = array(
-        'name' => 'Novedades',
-        'singular_name' => 'Novedad',
-        'menu_name' => 'Novedades',
-        'name_admin_bar' => 'Novedad',
-        'add_new' => 'Añadir nueva',
-        'add_new_item' => 'Añadir nueva novedad',
-        'new_item' => 'Nueva novedad',
-        'edit_item' => 'Editar novedad',
-        'view_item' => 'Ver novedad',
-        'all_items' => 'Todas las novedades',
-        'search_items' => 'Buscar novedades',
-        'not_found' => 'No se encontraron novedades.',
+        'name'          => 'Noticias',
+        'singular_name' => 'Noticia',
+        'menu_name'     => 'Noticias',
+        'add_new_item'  => 'Añadir nueva noticia',
+        'edit_item'     => 'Editar noticia',
+        'view_item'     => 'Ver noticia',
+        'all_items'     => 'Todas las noticias',
+        'search_items'  => 'Buscar noticias',
+        'not_found'     => 'No se encontraron noticias.',
     );
 
     $args = array(
-        'labels' => $labels,
-        'public' => true,
-        'has_archive' => true,
-        'rewrite' => array('slug' => 'novedades'),
-        'menu_icon' => 'dashicons-megaphone',
-        'supports' => array('title','thumbnail'),
+        'labels'       => $labels,
+        'public'       => true,
+        'has_archive'  => true,
+        'rewrite'      => array('slug' => 'noticias'),
+        'menu_icon'    => 'dashicons-megaphone',
+        'supports'     => array('title','thumbnail'),
         'show_in_rest' => true,
     );
 
@@ -55,3 +52,32 @@ function uw_get_first_slider_image($post_id = null, $size = 'full') {
     // Si no, intenta la URL completa
     return !empty($image['url']) ? $image['url'] : '';
 }
+
+
+
+add_action('template_redirect', function () {
+    global $wp;
+
+    $current_url = home_url(add_query_arg([], $wp->request));
+
+    // Redirigir single de novedades solo si URL contiene /novedades/
+    if (is_singular('novedades') && strpos($current_url, '/novedades/') !== false) {
+        $new_url = str_replace('/novedades/', '/noticias/', $current_url);
+        wp_redirect($new_url, 301);
+        exit;
+    }
+
+    // Redirigir archivo de novedades → noticias
+    if (is_post_type_archive('novedades') && strpos($current_url, '/novedades') !== false) {
+        $new_url = str_replace('/novedades', '/noticias', $current_url);
+        wp_redirect($new_url, 301);
+        exit;
+    }
+
+    // Redirigir taxonomía categoria_novedad → categoria-noticia
+    if (is_tax('categoria_novedad') && strpos($current_url, '/categoria-novedad/') !== false) {
+        $new_url = str_replace('/categoria-novedad/', '/categoria-noticia/', $current_url);
+        wp_redirect($new_url, 301);
+        exit;
+    }
+});

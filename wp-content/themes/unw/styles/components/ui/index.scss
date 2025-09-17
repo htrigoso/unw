@@ -1,3 +1,4 @@
 @import "./search-input";
 @import "./accordion";
 @import "./contact-form";
+@import "./nav-tabs"; // In the current build nav-tabs is loaded before app. To fix this, I need to import it here.

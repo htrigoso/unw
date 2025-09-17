@@ -22,7 +22,9 @@ function register_post_type_docentes() {
         'rewrite' => array('slug' => 'docentes'),
         'menu_icon' => 'dashicons-admin-users',
         'supports' => array('title', 'thumbnail'),
-        'show_in_rest' => true, // Gutenberg + API REST
+        'show_in_rest' => true,
+        'exclude_from_search' => true,
+
     );
 
     register_post_type('docentes', $args);

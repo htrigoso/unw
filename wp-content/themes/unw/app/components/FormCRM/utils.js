@@ -253,7 +253,6 @@ export function createHiddenInputs({ type, fields }) {
 }
 export function updateHiddenInputs(fields = [], element) {
   if (!Array.isArray(fields)) return
-  console.log(fields, element)
 
   fields.forEach(({ name, value }) => {
     if (!name) return

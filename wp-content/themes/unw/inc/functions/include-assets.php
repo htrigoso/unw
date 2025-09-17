@@ -293,3 +293,29 @@ add_action('wp_head', function() {
   // Versión por defecto (tu canon es ES)
   echo '<link rel="alternate" hreflang="x-default" href="' . esc_url($urls['es']) . '">' . "\n";
 }, 5);
+
+
+/**
+ * Devuelve un extracto del contenido del post con un límite de palabras.
+ *
+ * @param int $post_id  ID del post
+ * @param int $limit    Número máximo de palabras
+ * @return string
+ */
+function get_trimmed_content($post_id, $limit = 40) {
+    $content = get_post_field('post_content', $post_id);
+
+    if (empty($content)) {
+        return '';
+    }
+
+    // Limpiar HTML y shortcodes
+    $content = strip_shortcodes(strip_tags($content));
+    $words   = preg_split('/\s+/', $content);
+
+    if (count($words) > $limit) {
+        $content = implode(' ', array_slice($words, 0, $limit)) . '...';
+    }
+
+    return trim($content);
+}

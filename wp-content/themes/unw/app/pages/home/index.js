@@ -2,18 +2,13 @@ import HeroSwiper from '../../components/HeroSwiper'
 import PostSwiper from '../../components/PostSwiper'
 import InternationalSwiper from '../../components/InternationalSwiper'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
-import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
-import Page from '../../classes/Page'
 import { ModalManager } from '../../components/Modal'
+import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
+import { $element } from '../../utils/dom'
 
-export default class HomePage extends Page {
+export default class HomePage {
   constructor() {
-    super({
-      id: 'home-page',
-      element: '.home-page'
-    })
     this.create()
-    // super.create()
   }
 
   create() {
@@ -35,11 +30,15 @@ export default class HomePage extends Page {
     })
     PostSwiperDesktop()
     InternationalSwiper()
+    this.initFormGeneral()
+  }
 
-    new FormCrmGeneral({
-      element: '#form-general',
+  initFormGeneral() {
+    const form = new FormCrmGeneral({
+      element: $element('#form-general'),
       container: '.more-form'
     })
+    console.log(form)
   }
 }
 new HomePage()

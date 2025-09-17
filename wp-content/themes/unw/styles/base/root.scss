@@ -69,15 +69,22 @@ body.sidebar-open {
   }
 }
 [data-content="paragraph"] {
-  p {
+  p,
+  > div {
     margin-bottom: rem(15);
   }
-  ul {
+  ul,
+  ol {
     margin-left: rem(17);
     li {
       list-style-type: disc;
     }
     margin-bottom: rem(15);
+  }
+  ol {
+    li {
+      list-style-type: auto;
+    }
   }
   a {
     font-weight: var(--font-medium);

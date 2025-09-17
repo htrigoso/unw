@@ -12,8 +12,9 @@ $code_carrier     = $crm_carriers['code'];
 $utms_final = merge_utms($utms_default, $utm_carriers);
 $data_form_type = $args['data_form_type'] ?? '';
 ?>
-<form id="<?=$data_form_type;?>" data-form-type="<?=$data_form_type;?>" class="contact-form formCarrera" method="POST"
-  accept-charset="UTF-8" enctype="multipart/form-data" action="<?=$formUrl?>">
+<form id="<?=$data_form_type;?>" data-form="zoho" data-form-type="<?=$data_form_type;?>"
+  class="contact-form formCarrera" method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
+  action="<?=$formUrl?>">
   <div class="form-header">
     <i>
       <svg width="52" height="52">

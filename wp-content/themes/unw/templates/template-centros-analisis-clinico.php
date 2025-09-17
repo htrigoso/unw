@@ -33,10 +33,10 @@
       <div class="miga_de_pan">
         <div class="container">
           <div class="content_links_miga">
-            <a class="link miga" href="https://www.uwiener.edu.pe/">
+            <a class="link miga" href="<?= home_url("/") ?>">
               Inicio /
             </a>
-            <a class="link miga" href="https://www.uwiener.edu.pe/centros-wiener/">
+            <a class="link miga" href="<?= home_url("/centros-wiener/") ?>">
               Centros Wiener /
             </a>
             <a class="link miga w--current" href="#">
@@ -119,7 +119,7 @@
                             humanista y científico que desarrollan pruebas biológicas y biofísicas que ayudan a
                             analizar, diagnosticar, prevenir y tratar diversas enfermedades.</p>
                           <a
-                            href="https://www.uwiener.edu.pe/carreras/tecnologia-medica-en-laboratorio-clinico-y-anatomia-patologica">Ver
+                            href="<?= home_url("/carreras/tecnologia-medica-en-laboratorio-clinico-y-anatomia-patologica") ?>">Ver
                             Carrera</a>
                         </div>
                       </div>

@@ -24,6 +24,8 @@ function register_post_type_paises() {
     'has_archive' => true,
     'rewrite' => array('slug' => 'paises'),
     'show_in_rest' => true,
+    'exclude_from_search' => true,
+
   );
 
   register_post_type('paises', $args);
