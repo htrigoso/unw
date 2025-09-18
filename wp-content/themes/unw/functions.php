@@ -17,6 +17,9 @@ require_once dirname(__FILE__) . '/inc/wp-blog.php';
 // require form
 require_once dirname(__FILE__) . '/inc/wp-form.php';
 
+// require Rank Math configuration
+require_once dirname(__FILE__) . '/inc/wp-rankmath.php';
+
 // require theme functions
 require_once dirname(__FILE__) . '/inc/wp-inc.php';
 

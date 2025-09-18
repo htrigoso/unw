@@ -83,6 +83,8 @@ export default class Tabs extends Component {
 
     if (tabId) {
       tabToActivate = [...this.elements.tabItems].find(tab => tab.dataset.target === tabId)
+    } else {
+      tabToActivate = [...this.elements.tabItems][0]
     }
 
     if (!tabToActivate) {

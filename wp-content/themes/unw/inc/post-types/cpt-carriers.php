@@ -31,7 +31,8 @@ function register_post_type_carreras() {
     'hierarchical'       => false,
     'menu_position'      => 5,
     'menu_icon'          => 'dashicons-book',
-    'supports'           => ['title',  'thumbnail']
+    'supports'           => ['title', 'editor', 'excerpt', 'thumbnail'],
+    'show_in_rest'       => true
   ];
 
   register_post_type('carreras', $args);
