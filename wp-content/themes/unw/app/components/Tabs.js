@@ -151,6 +151,9 @@ export default class Tabs extends Component {
     this.elements.tabItems.forEach(tab =>
       tab.classList.remove('is-active')
     )
+
+    if (!activeTab) return
+
     activeTab.classList.add('is-active')
   }
 
@@ -177,6 +180,8 @@ export default class Tabs extends Component {
   scrollToTab(tab) {
     requestAnimationFrame(() => {
       const isWide = window.innerWidth >= 1440
+      if (!tab) return
+
       tab.scrollIntoView({
         behavior: 'smooth',
         inline: isWide ? 'nearest' : 'center',
