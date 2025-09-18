@@ -83,6 +83,25 @@ function get_novedad_description($post) {
     return false;
 }
 
+// Funciones para Eventos
+function get_evento_description($post) {
+    // Primero verificar si hay descripción personalizada en Rank Math
+    $rank_math_description = get_post_meta($post->ID, 'rank_math_description', true);
+    if (!empty($rank_math_description)) {
+        return \RankMath\Helper::replace_vars($rank_math_description, $post);
+    }
+
+    // Si no hay descripción en Rank Math, usar el campo ACF event_content
+    $content = get_field('event_content', $post->ID);
+
+    if (!empty($content['content'])) {
+        $clean_content = wp_strip_all_tags($content['content']);
+        return substr($clean_content, 0, 157) . '...';
+    }
+
+    return false;
+}
+
 // Funciones Principales
 function custom_rank_math_title($title) {
     if (is_singular('carreras')) {
@@ -129,6 +148,14 @@ function custom_rank_math_description($description) {
         $novedad_desc = get_novedad_description($post);
         if ($novedad_desc) {
             return $novedad_desc;
+        }
+    }
+
+    // Manejar eventos
+    if (is_singular('eventos')) {
+        $evento_desc = get_evento_description($post);
+        if ($evento_desc) {
+            return $evento_desc;
         }
     }
 
