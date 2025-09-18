@@ -1,6 +1,34 @@
 <?php
 
+add_filter('the_posts', function($posts, $query) {
+    if ( $query->is_search() && $query->is_main_query() ) {
 
+        // Palabras clave que deben mostrar el libro
+        $keywords = ['libro', 'reclamaciones', 'queja'];
+
+        foreach ( $keywords as $kw ) {
+            if ( stripos( $query->query_vars['s'], $kw ) !== false ) {
+
+                // Crear un "post falso"
+                $fake_post = new stdClass();
+                $fake_post->ID = -9999; // ID ficticio
+                $fake_post->post_title = 'Libro de Reclamaciones';
+                $fake_post->post_excerpt = 'Accede a nuestro Libro de Reclamaciones en línea.';
+                $fake_post->post_content = '';
+                $fake_post->post_status = 'publish';
+                $fake_post->post_type = 'custom';
+                $fake_post->filter = 'raw';
+                $fake_post->guid = 'https://librodereclamaciones.uwiener.edu.pe/?_gl=1*jxf9yi*_gcl_au*MjU3MzU1MTk5LjE3NTc0NTc3MzI.';
+
+                // Inyectar al inicio
+                array_unshift($posts, $fake_post);
+
+                break;
+            }
+        }
+    }
+    return $posts;
+}, 10, 2);
 
 
 add_filter( 'big_image_size_threshold', '__return_false' );
