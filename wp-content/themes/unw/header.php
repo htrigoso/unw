@@ -2,7 +2,6 @@
 <html lang="es">
 
 <head>
-  <title><?php echo wp_get_document_title(); ?></title>
   <base href="/">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
