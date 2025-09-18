@@ -117,20 +117,6 @@
   }
 }
 
-.switch-pagination-navigation {
-  .swiper-pagination.swiper-pagination-bullets {
-    @include media(">=phone") {
-      display: none;
-    }
-  }
-
-  .swiper-navigation {
-    @include media("<phone") {
-      display: none;
-    }
-  }
-}
-
 /**
  * Swiper types
  * Variants
@@ -290,4 +276,18 @@
   }
 
   @extend %swiper-primary-navigation;
+}
+
+.switch-pagination-navigation {
+  .swiper-pagination.swiper-pagination-bullets {
+    @include media(">=phone") {
+      display: none;
+    }
+  }
+
+  .swiper-navigation {
+    @include media("<phone") {
+      display: none;
+    }
+  }
 }

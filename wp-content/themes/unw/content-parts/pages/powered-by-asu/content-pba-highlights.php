@@ -6,7 +6,7 @@ $highlights = get_field('highlights');
   <div class="x-container x-container--pad-213 pba-highlights__wrapper">
     <h2 class="pba-highlights__title"><?= $highlights['title']; ?></h2>
 
-    <div class="highlight-swiper post-swiper-desktop switch-pagination-navigation" data-width="wide">
+    <div class="highlight-swiper post-swiper-desktop switch-pagination-navigation" data-width="compact">
       <div class="swiper-container">
         <ul class="swiper-wrapper pba-highlights__list">
           <?php foreach ($highlights['list'] as $i => $highlight): ?>
