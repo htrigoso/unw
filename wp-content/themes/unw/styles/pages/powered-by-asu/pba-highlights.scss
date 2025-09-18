@@ -82,6 +82,10 @@
   border-radius: rem(20);
   border: 6px solid var(--color-light-turquoise);
   box-shadow: 0 4px 16px 4px rgba(0, 0, 0, 0.25);
+
+  @include media('>=phone') {
+    aspect-ratio: 1.37;
+  }
 }
 
 .pba-highlights__card-video-btn {
