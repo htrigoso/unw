@@ -136,7 +136,7 @@ function placeholder() {
 function get_placeholder() {
   return 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAECAYAAABGM/VAAAAABHNCSVQICAgIfAhkiAAAAF1JREFUCFtjvP/m1n8GIPj64TzD5f+GDJ8+/WBgrDp767+DKAOD1K/zDEpShgxbH/xhYFx+59Z/LW5Ghg9//zMoMd5mePJZiYHxxMsH2w6+BhnAwJAo9pvh5GcmBgCRxSUqb+IRJgAAAABJRU5ErkJggg==';
 }
-add_action('wp_enqueue_scripts', 'include_assets');
+add_action('wp_enqueue_scripts', 'include_assets', 20);
 
 function include_assets()
 {

@@ -31,11 +31,13 @@ export default class HomePage {
   }
 
   initFormGeneral() {
-    const form = new FormCrmGeneral({
-      element: $element('#form-general'),
-      container: '.more-form'
-    })
-    console.log(form)
+    const form = $element('#form-general')
+    if (form) {
+      new FormCrmGeneral({
+        element: form,
+        container: '.more-form'
+      })
+    }
   }
 }
 new HomePage()
