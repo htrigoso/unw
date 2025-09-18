@@ -61,18 +61,25 @@
 }
 
 .hero__content--title {
-  @include title-28;
-  color: var(--color-white);
-  margin-bottom: rem(12);
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include title-28;
+    color: var(--color-white);
 
-  @include media(">=tablet") {
-    @include title-80;
+    @include media(">=tablet") {
+      @include title-80;
+    }
   }
+  margin-bottom: rem(30);
 }
 
 .hero__content--body {
   color: var(--color-white);
-  margin-bottom: rem(12);
+  margin-bottom: rem(30);
   max-width: rem(477);
 
   @include media(">=tablet") {

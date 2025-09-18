@@ -46,7 +46,9 @@ if (!empty($slides)) :
       </div>
       <?php endforeach; ?>
     </div>
+    <?php if (count($slides) > 1) : ?>
     <div class="swiper-pagination"></div>
+    <?php endif; ?>
   </div>
 </section>
 <?php endif; ?>

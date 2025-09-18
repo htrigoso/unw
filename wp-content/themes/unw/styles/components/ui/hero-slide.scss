@@ -49,7 +49,6 @@
   color: var(--color-white);
 
   margin-bottom: rem(8);
-
   @include media(">=tablet") {
     @include title-56;
     margin-bottom: rem(85);
@@ -59,10 +58,9 @@
 .hero-slide[data-variant="primary"] {
   .hero-slide__content--title {
     @include title-40;
-
     @include media(">=tablet") {
       @include title-56;
-      margin-bottom: rem(39);
+      margin-bottom: rem(85);
     }
   }
 

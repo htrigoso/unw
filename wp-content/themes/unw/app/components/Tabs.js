@@ -98,7 +98,7 @@ export default class Tabs extends Component {
 
     this.setActiveTab(tabToActivate)
     this.showTabContent(targetId)
-    this.scrollToTab(tabToActivate)
+    // this.scrollToTab(tabToActivate)
 
     // Callback para notificar el cambio de tab inicial
     if (typeof this.onTabChange === 'function') {
@@ -182,6 +182,7 @@ export default class Tabs extends Component {
   scrollToTab(tab) {
     requestAnimationFrame(() => {
       const isWide = window.innerWidth >= 1440
+
       if (!tab) return
 
       tab.scrollIntoView({

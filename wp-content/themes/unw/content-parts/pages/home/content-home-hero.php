@@ -61,11 +61,18 @@ if (!empty($slides)):
           <div class="x-container hero__container">
             <article class="hero__content">
               <?php if (!empty($hero_title)): ?>
-              <h1 class="hero__content--title"><?php echo esc_html($hero_title); ?></h1>
+              <div class="hero__content--title"><?php echo wp_kses_post($hero_title, [
+                'h1' => [],
+                'h2' => [],
+                'h3' => [],
+                'h4' => [],
+                'h5' => [],
+                'h6' => [],
+              ]); ?></div>
               <?php endif; ?>
 
               <?php if (!empty($hero_description)): ?>
-              <p class="hero__content--body"><?php echo wp_kses_post($hero_description); ?></p>
+              <div class="hero__content--body"><?php echo wp_kses_post($hero_description); ?></div>
               <?php endif; ?>
 
               <?php if (!empty($link_one) || !empty($link_two)): ?>
@@ -109,7 +116,9 @@ if (!empty($slides)):
       <?php endforeach; ?>
 
     </div>
+    <?php if(count($slides)>1) : ?>
     <div class="swiper-pagination"></div>
+    <?php endif ?>
   </div>
 </section>
 

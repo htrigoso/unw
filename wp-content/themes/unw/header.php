@@ -97,20 +97,30 @@
   </script>
   <!-- Google Tag Manager -->
   <script>
-  (function(w, d, s, l, i) {
-    w[l] = w[l] || [];
-    w[l].push({
+  // Inicializar dataLayer
+  window.dataLayer = window.dataLayer || [];
+  </script>
+  <script defer>
+  // Cargar GTM de forma optimizada
+  function loadGTM() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.defer = true;
+    script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-W8DNW8B';
+    document.head.appendChild(script);
+
+    window.dataLayer.push({
       'gtm.start': new Date().getTime(),
-      event: 'gtm.js'
+      'event': 'gtm.js'
     });
-    var f = d.getElementsByTagName(s)[0],
-      j = d.createElement(s),
-      dl = l != 'dataLayer' ? '&l=' + l : '';
-    j.async = true;
-    j.src =
-      'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-    f.parentNode.insertBefore(j, f);
-  })(window, document, 'script', 'dataLayer', 'GTM-W8DNW8B');
+  }
+
+  // Cargar GTM después de que la página esté lista
+  if (window.addEventListener) {
+    window.addEventListener('load', loadGTM, false);
+  } else if (window.attachEvent) {
+    window.attachEvent('onload', loadGTM);
+  }
   </script>
   <!-- End Google Tag Manager -->
   <?php wp_head(); ?>
