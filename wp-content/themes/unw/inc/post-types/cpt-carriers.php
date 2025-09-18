@@ -31,7 +31,7 @@ function register_post_type_carreras() {
     'hierarchical'       => false,
     'menu_position'      => 5,
     'menu_icon'          => 'dashicons-book',
-    'supports'           => ['title', 'editor', 'excerpt', 'thumbnail'],
+    'supports'           => ['title', 'excerpt', 'thumbnail'],
     'show_in_rest'       => true
   ];
 
@@ -48,86 +48,75 @@ function unw_get_faculty_term() {
     return ($term && ! is_wp_error($term)) ? $term : null;
 }
 
-add_filter( 'rank_math/frontend/title', function( $title ) {
-    global $post;
+// add_filter( 'rank_math/frontend/title', function( $title ) {
+//     global $post;
 
-    // Solo procesar si estamos en una entrada/página individual
-    if ( ! is_singular() || ! $post ) {
-        return $title;
-    }
+//     // Solo procesar si estamos en una entrada/página individual
+//     if ( ! is_singular() || ! $post ) {
+//         return $title;
+//     }
 
-    // 1. Verificar si hay título manual en Rank Math
-    $manual_title = get_post_meta( $post->ID, 'rank_math_title', true );
-    if ( ! empty( $manual_title ) ) {
-        // Si hay título manual, aplicar las variables de Rank Math
-        return \RankMath\Helper::replace_vars( $manual_title, $post );
-    }
+//     // 1. Verificar si hay título manual en Rank Math
+//     $manual_title = get_post_meta( $post->ID, 'rank_math_title', true );
+//     if ( ! empty( $manual_title ) ) {
+//         // Si hay título manual, aplicar las variables de Rank Math
+//         return \RankMath\Helper::replace_vars( $manual_title, $post );
+//     }
 
-    // 2. Si no hay título manual, usar plantilla personalizada
-    $template = '%title% %sep% %sitename%';
+//     // 2. Si no hay título manual, usar plantilla personalizada
+//     $template = '%title% %sep% %sitename%';
 
-    // Verificar que la clase Helper existe antes de usarla
-    if ( class_exists( '\RankMath\Helper' ) ) {
-        return \RankMath\Helper::replace_vars( $template, $post );
-    }
+//     // Verificar que la clase Helper existe antes de usarla
+//     if ( class_exists( '\RankMath\Helper' ) ) {
+//         return \RankMath\Helper::replace_vars( $template, $post );
+//     }
 
-    // 3. Fallback manual si Helper no está disponible
-    $site_title = get_bloginfo( 'name' );
-    $separator = '|'; // o el separador que uses
-    $post_title = get_the_title( $post->ID );
+//     // 3. Fallback manual si Helper no está disponible
+//     $site_title = get_bloginfo( 'name' );
+//     $separator = '|'; // o el separador que uses
+//     $post_title = get_the_title( $post->ID );
 
-    return $post_title . ' ' . $separator . ' ' . $site_title;
-}, 10, 1 );
+//     return $post_title . ' ' . $separator . ' ' . $site_title;
+// }, 10, 1 );
 
-add_filter( 'rank_math/frontend/description', function( $desc ) {
-    global $post;
+// add_filter( 'rank_math/frontend/description', function( $desc ) {
+//     global $post;
 
-    // --- 1) Si es página/post/CPT ---
-    if ( $post && is_singular( get_post_types( [ 'public' => true ] ) ) ) {
-        // 1. Meta description manual escrita en Rank Math
-        $manual_desc = get_post_meta( $post->ID, 'rank_math_description', true );
-        if ( ! empty( $manual_desc ) ) {
-            return $manual_desc;
-        }
+//     // --- 1) Si es página/post/CPT ---
+//     if ( $post && is_singular( get_post_types( [ 'public' => true ] ) ) ) {
+//         // 1. Meta description manual escrita en Rank Math
+//         $manual_desc = get_post_meta( $post->ID, 'rank_math_description', true );
+//         if ( ! empty( $manual_desc ) ) {
+//             return $manual_desc;
+//         }
 
-        // 2. Excerpt si existe
-        if ( has_excerpt( $post->ID ) ) {
-            return get_the_excerpt( $post->ID );
-        }
+//         // 2. Excerpt si existe
+//         if ( has_excerpt( $post->ID ) ) {
+//             return get_the_excerpt( $post->ID );
+//         }
 
-        // 3. Fallback genérico
-        return $desc;
-    }
+//         // 3. Fallback genérico
+//         return $desc;
+//     }
 
 
-    // --- 2) Si es taxonomía (ej. facultad) ---
-    $term = unw_get_faculty_term();
-    if ( $term ) {
-        $custom_desc = get_term_meta( $term->term_id, 'rank_math_description', true );
-        if ( $custom_desc ) {
-            return $custom_desc;
-        }
-        if ( ! empty( $term->description ) ) {
-            return $term->description;
-        }
-        return 'Descubre todas las carreras de la facultad de ' . $term->name . ' en UNW.';
-    }
+//     // --- 2) Si es taxonomía (ej. facultad) ---
+//     $term = unw_get_faculty_term();
+//     if ( $term ) {
+//         $custom_desc = get_term_meta( $term->term_id, 'rank_math_description', true );
+//         if ( $custom_desc ) {
+//             return $custom_desc;
+//         }
+//         if ( ! empty( $term->description ) ) {
+//             return $term->description;
+//         }
+//         return 'Descubre todas las carreras de la facultad de ' . $term->name . ' en UNW.';
+//     }
 
-    // --- 3) Si nada aplica, devolver lo que Rank Math ya traía ---
-    return $desc;
-});
+//     // --- 3) Si nada aplica, devolver lo que Rank Math ya traía ---
+//     return $desc;
+// });
 
-add_filter( 'rank_math/frontend/canonical', function( $canonical ) {
-    global $post;
-
-    if ( $post ) {
-        // Siempre devolver la URL real del post/página/CPT
-        return get_permalink( $post->ID );
-    }
-
-    // Si no hay post en contexto, dejar lo que Rank Math defina
-    return $canonical;
-});
 
 add_filter( 'wp_unique_post_slug', function( $slug, $post_ID, $post_status, $post_type, $post_parent, $original_slug ) {
     if ( $post_type === 'carreras' ) {
