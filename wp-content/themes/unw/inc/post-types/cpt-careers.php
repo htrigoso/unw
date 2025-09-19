@@ -25,7 +25,10 @@ function register_post_type_carreras() {
     'show_ui'            => true,
     'show_in_menu'       => true,
     'query_var'          => true,
-    'rewrite'            => false, // manejamos nosotros la URL
+    'rewrite'            => array(
+        'slug' => 'carrera',
+        'with_front' => false
+    ),
     'capability_type'    => 'post',
     'has_archive'        => false,
     'hierarchical'       => false,
@@ -166,27 +169,24 @@ add_filter('query_vars', function ($vars) {
 // REWRITE RULES
 add_action('init', 'custom_carreras_rewrite_rules');
 function custom_carreras_rewrite_rules() {
-  // SINGLE carrera presencial
-  add_rewrite_rule(
-    '^carreras/([^/]+)/?$',
-    'index.php?post_type=carreras&carrera_slug=$matches[1]&modalidad_slug=presencial',
-    'top'
-  );
-
-  // SINGLE carrera virtual
-  add_rewrite_rule(
-    '^carreras-a-distancia/([^/]+)/?$',
-    'index.php?post_type=carreras&carrera_slug=$matches[1]&modalidad_slug=virtual',
-    'top'
-  );
 
 
-  // LISTADO por facultad presencial
+
+
+   // LISTADO por facultad presencial
   add_rewrite_rule(
     '^carreras-uwiener/([^/]+)/?$',
     'index.php?pagename=carreras-uwiener&facultad=$matches[1]&modalidad_slug=presencial',
     'top'
   );
+
+  add_rewrite_rule(
+    '^carreras-a-distancia/([^/]+)/?$',
+    'index.php?pagename=carreras-a-distancia&facultad=$matches[1]&modalidad_slug=virtual',
+    'top'
+  );
+
+
 
 
   }

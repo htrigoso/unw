@@ -33,6 +33,8 @@ function register_taxonomy_facultad_presencial() {
 
 // Taxonomía "Facultad" para Carreras a Distancia
 add_action('init', 'register_taxonomy_facultad_distancia');
+
+
 function register_taxonomy_facultad_distancia() {
   $labels = [
     'name'              => 'Facultades',
@@ -58,6 +60,7 @@ function register_taxonomy_facultad_distancia() {
     'show_tagcloud'     => false,
     'show_in_rest'      => true,
     'rewrite'           => false,
+    'query_var' => 'facultad',
   ];
 
   // 👉 slug único para distancia

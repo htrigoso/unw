@@ -25,7 +25,10 @@ function register_post_type_carreras_a_distancia() {
     'show_ui'            => true,
     'show_in_menu'       => true,
     'query_var'          => true,
-    'rewrite'            => false, // manejamos nosotros la URL
+     'rewrite'            => array(
+        'slug' => 'carrera-a-distancia',
+        'with_front' => false
+    ),
     'capability_type'    => 'post',
     'has_archive'        => false,
     'hierarchical'       => false,
