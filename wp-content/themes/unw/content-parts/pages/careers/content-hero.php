@@ -1,7 +1,9 @@
 <?php
 $sliders = get_field('sliders', get_the_ID());
 $title_sec = get_field('title_sec', get_the_ID());
-
+$mode = $args['mode'] ?? '';
+$title = $args['title'] ?? '';
+$url = $args['url'] ?? '#';
 if(empty($title_sec)) {
   $title_sec = get_the_title();
 }
@@ -18,15 +20,12 @@ if (isset($sliders['list_of_files']) && is_array($sliders['list_of_files'])) {
   }
 }
 
-$modality_slug = 'virtual';
-
-$modality_info = get_carrera_modality_info_from_slug($modality_slug);
 
 
 $base_breadcrumbs = [
   ['label' => 'Inicio', 'href' => home_url('/')],
-  ['label' => $modality_info['label'],
-    'href' => $modality_info['url']
+  ['label' => $title,
+    'href' => $url
   ]
 ];
 ?>
@@ -49,10 +48,7 @@ $base_breadcrumbs = [
   <div class="x-container careers-hero__form__wrapper">
     <div class="careers-hero__form">
       <?php
-      if ($terms && !is_wp_error($terms)) {
-        $slugs = wp_list_pluck($terms, 'slug');
-
-        if (in_array('presencial', $slugs)) {
+        if ($mode ==='presencial') {
           get_template_part(CAREERS_CONTENT_PATH, 'contact-form-presencial', [
             'data_form_type' =>$args['data-form']['desktop']
           ]
@@ -62,7 +58,6 @@ $base_breadcrumbs = [
             'data_form_type' =>$args['data-form']['desktop']
           ]);
         }
-      }
       ?>
     </div>
   </div>

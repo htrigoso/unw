@@ -128,3 +128,38 @@ function render_html_all_careers($args = []) {
         'careers_posts'     => $careers_query->posts,
     ]);
 }
+
+
+
+function render_only_careers($args = []) {
+    // Valores por defecto
+    $defaults = [
+        'mode'         => 'presencial',
+        'title_global' => 'Carreras Uwiener',
+        'base_url'     => home_url('/carreras-uwiener/'),
+        'data_form'    => [
+            'desktop' => 'careers-desktop',
+            'mobile'  => 'careers-mobile'
+        ],
+    ];
+
+    // Mezclar defaults con lo recibido
+    $args = wp_parse_args($args, $defaults);
+    extract($args);
+
+    // Hero
+    get_template_part(CAREERS_CONTENT_PATH, 'hero', [
+        'data-form' => $data_form,
+        'mode'      => $mode,
+        'title'     => $title_global,
+        'url'       => $base_url,
+    ]);
+
+    // Tabs
+    get_template_part(CAREERS_TABS_PATH, 'tabs', [
+        'data-form' => $data_form,
+        'mode'      => $mode,
+        'title'     => $title_global,
+        'url'       => $base_url,
+    ]);
+}
