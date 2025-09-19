@@ -7,6 +7,7 @@ $form_crm_option   = get_field('form_crm', 'option');
 $list_departaments = $form_crm_option['list_departaments'];
 $is_departments = $crm_ad['is_departments'];
 $careers = get_carreras();
+
 $departments_json =  [] ;
 if($is_departments) {
   $departments_json =  $list_departaments;

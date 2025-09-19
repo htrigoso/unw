@@ -26,7 +26,7 @@ function register_post_type_carreras_a_distancia() {
     'show_in_menu'       => true,
     'query_var'          => true,
      'rewrite'            => array(
-        'slug' => 'carrera-a-distancia',
+        'slug' => 'carreras-a-distancia',
         'with_front' => false
     ),
     'capability_type'    => 'post',

@@ -163,3 +163,111 @@ function render_only_careers($args = []) {
         'url'       => $base_url,
     ]);
 }
+
+
+function get_carreras() {
+    // Traemos todos los posts de ambos CPT
+    $all_carreras = get_posts([
+        'post_type'              => ['carreras', 'carreras-a-distancia'],
+        'posts_per_page'         => -1,
+        'post_status'            => 'publish',
+        'orderby'                => 'title',
+        'order'                  => 'ASC',
+        'fields'                 => 'ids',
+        'no_found_rows'          => true,
+        'update_post_term_cache' => true,
+        'update_post_meta_cache' => false,
+    ]);
+
+    $result = [
+        'pregrado' => [], // carreras presenciales
+        'virtual'  => [], // carreras a distancia
+    ];
+
+    foreach ($all_carreras as $id) {
+        $title = get_the_title($id);
+        $slug  = get_post_field('post_name', $id);
+        $post_type = get_post_type($id);
+
+        // Modalidad según el CPT
+        $modalidad = $post_type === 'carreras-a-distancia' ? 'virtual' : 'pregrado';
+
+        // Taxonomía correspondiente
+        $taxonomy = $modalidad === 'virtual' ? 'categoria-carrera-distancia' : 'categoria-carrera';
+
+        // Facultad
+        $facultades = get_the_terms($id, $taxonomy);
+        $facultad   = ($facultades && !is_wp_error($facultades))
+            ? $facultades[0]->name
+            : 'Sin facultad';
+
+        // Código CRM (ACF/meta)
+        $code = get_post_meta($id, 'crm_code', true);
+
+        // Agrupar en el array final
+        $result[$modalidad][$facultad][] = [
+            'id'        => $id,
+            'slug'      => $slug,
+            'title'     => $title,
+            'modalidad' => $modalidad,
+            'code'      => $code ?: '',
+        ];
+    }
+
+    return $result;
+}
+
+
+
+function get_carreras_campus_modalidad() {
+      $carreras = get_posts([
+        'post_type'              => ['carreras', 'carreras-a-distancia'],
+        'posts_per_page'         => -1,
+        'post_status'            => 'publish',
+        'fields'                 => 'ids',
+        'no_found_rows'          => true,
+        'update_post_term_cache' => true,
+        'update_post_meta_cache' => false,
+    ]);
+
+    $result = [];
+
+    foreach ($carreras as $id) {
+        $slug      = get_post_field('post_name', $id);
+        $post_type = get_post_type($id);
+
+        // Modalidad según CPT
+        $modalidad = ($post_type === 'carreras-a-distancia') ? 'virtual' : 'pregrado';
+
+        // Campus (taxonomía compartida)
+        $campus_terms = get_the_terms($id, 'campus');
+
+        if ($campus_terms && !is_wp_error($campus_terms)) {
+            foreach ($campus_terms as $term) {
+                $result[$slug][$modalidad][] = [
+                    'code'   => $term->description ?: '',
+                    'campus' => $term->name,
+                ];
+            }
+        } else {
+            if (!isset($result[$slug][$modalidad])) {
+                $result[$slug][$modalidad] = [];
+            }
+        }
+    }
+
+    return $result;
+}
+
+add_action('wp_head', function () {
+    $careers             = get_carreras();
+    $careers_campus_mode = get_carreras_campus_modalidad();
+    ?>
+<script>
+window.forms = window.forms || {};
+window.forms.careers = <?php echo wp_json_encode($careers, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>;
+window.forms.careersCampus =
+  <?php echo wp_json_encode($careers_campus_mode, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>;
+</script>
+<?php
+});

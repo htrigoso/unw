@@ -179,6 +179,16 @@ add_action('wp_head', function () {
         ]];
     }
 
+    function get_current_term_id() {
+      $obj = get_queried_object();
+
+        if ($obj && isset($obj->term_id)) {
+            return (int) $obj->term_id;
+        }
+
+        return 0; // 0 si no estamos en una página de taxonomía
+    }
+
     /**
      * Handle special case for template-all-careers.
      * @return array Array of preload images.

@@ -83,8 +83,8 @@
 
   <script>
   window.appConfigUnw = {
-    themeUrl: "<?= get_template_directory_uri(); ?>",
-    uploadUrl: "<?= get_template_directory_uri(); ?>/upload"
+    themeUrl: "<?php echo esc_url(get_template_directory_uri()); ?>",
+    uploadUrl: "<?php echo esc_url(get_template_directory_uri()); ?>/upload",
   };
 
   let doc = document.documentElement;
