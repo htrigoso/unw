@@ -8,6 +8,7 @@ $wp_query = new WP_Query([
   's'              => $search_term,
   'paged'          => $paged,
 ]);
+$cta = get_field('cta');
 ?>
 
 <section class="blog">
@@ -54,14 +55,20 @@ $wp_query = new WP_Query([
         ]);?>
 
         <div class="blog-newsletter">
-          <a class="btn btn-primary-one btn-sm blog-newsletter__btn">
-            Suscríbete a nuestro Newsletter
-            <i>
-              <svg class="icon" width="32" height="32">
-                <use xlink:href="#arrow-right"></use>
-              </svg>
-            </i>
-          </a>
+          <?php if (!empty($cta['link'])) :
+              $link = $cta['link'];
+          ?>
+            <a href="<?php echo esc_url($link['url']); ?>"
+              class="btn btn-primary-one btn-sm blog-newsletter__btn"
+              target="<?php echo esc_attr($link['target']); ?>">
+              <?php echo esc_html($link['title']); ?>
+              <i>
+                <svg class="icon" width="32" height="32">
+                  <use xlink:href="#arrow-right"></use>
+                </svg>
+              </i>
+            </a>
+          <?php endif; ?>
         </div>
       </div>
     </div>

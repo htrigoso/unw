@@ -43,8 +43,9 @@ function render_html_all_careers($args = []) {
             }
 
             $term_obj = get_term($current_faculty_id, $taxonomy);
+
             if (empty($hero_title) && $term_obj && !is_wp_error($term_obj)) {
-                $hero_title = $term_obj->name;
+                $hero_title = $term_obj->description;
             }
         }
     }
@@ -258,16 +259,3 @@ function get_carreras_campus_modalidad() {
 
     return $result;
 }
-
-add_action('wp_head', function () {
-    $careers             = get_carreras();
-    $careers_campus_mode = get_carreras_campus_modalidad();
-    ?>
-<script>
-window.forms = window.forms || {};
-window.forms.careers = <?php echo wp_json_encode($careers, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>;
-window.forms.careersCampus =
-  <?php echo wp_json_encode($careers_campus_mode, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>;
-</script>
-<?php
-});

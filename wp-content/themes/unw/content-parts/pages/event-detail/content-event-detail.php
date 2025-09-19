@@ -55,7 +55,9 @@ $event = get_field('event_content');
       </article>
 
       <article class="event-detail__form">
-        <?php get_template_part(EVENT_DETAIL_CONTENT_PATH, 'contact-form') ?>
+        <?php
+          // get_template_part(EVENT_DETAIL_CONTENT_PATH, 'contact-form')
+        ?>
       </article>
     </section>
   </div>
