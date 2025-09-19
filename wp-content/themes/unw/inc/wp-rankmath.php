@@ -3,6 +3,7 @@
  * Funciones para el manejo de SEO con RankMath
  */
 
+
 // Funciones para Carreras
 function get_carrera_seo_data($carrera_slug, $modalidad_slug) {
     // Obtener el ID correcto para esta combinación de slug y modalidad
@@ -45,6 +46,27 @@ function get_carrera_description($post) {
 }
 
 // Funciones para Facultades
+function get_faculty_title($term) {
+    if (!$term) {
+        return false;
+    }
+
+    // Intentar obtener título personalizado de Rank Math
+    $custom_title = get_term_meta($term->term_id, 'rank_math_title', true);
+    if (!empty($custom_title)) {
+        if (class_exists('\RankMath\Helper')) {
+            return \RankMath\Helper::replace_vars($custom_title, $term);
+        }
+        return $custom_title;
+    }
+
+    // Título por defecto
+    return sprintf('Facultad de %s | %s',
+        $term->name,
+        get_bloginfo('name')
+    );
+}
+
 function get_faculty_description($term) {
     if (!$term) {
         return false;
@@ -104,6 +126,16 @@ function get_evento_description($post) {
 
 // Funciones Principales
 function custom_rank_math_title($title) {
+    // Manejar taxonomía de facultad
+    $term = unw_get_faculty_term();
+    if ($term) {
+        $faculty_title = get_faculty_title($term);
+        if ($faculty_title) {
+            return $faculty_title;
+        }
+    }
+
+    // Manejar carreras
     if (is_singular('carreras')) {
         $carrera_slug = get_query_var('carrera_slug');
         $modalidad_slug = get_query_var('modalidad_slug');
@@ -161,6 +193,36 @@ function custom_rank_math_description($description) {
 
     return $description;
 }
+
+
+function add_custom_schema_data($data) {
+    global $post;
+
+    // Solo aplicar el tratamiento especial para carreras
+    if (is_singular('carreras')) {
+        $carrera_slug = get_query_var('carrera_slug');
+        $modalidad_slug = get_query_var('modalidad_slug');
+        $post = get_carrera_seo_data($carrera_slug, $modalidad_slug);
+
+        if ($post) {
+            // Actualizar cada esquema existente con el título y descripción correctos
+            foreach ($data as $key => $schema) {
+                if (is_array($schema)) {
+                    $data[$key]['name'] = get_carrera_title($post);
+                    $carrera_desc = get_carrera_description($post);
+                    if ($carrera_desc) {
+                        $data[$key]['description'] = $carrera_desc;
+                    }
+                }
+            }
+            return $data;
+        }
+    }
+
+    // Para cualquier otro tipo de post, devolver los datos sin modificar
+    return $data;
+}
+add_filter('rank_math/json_ld', 'add_custom_schema_data', 10, 1);
 
 // Hooks
 add_filter('rank_math/frontend/title', 'custom_rank_math_title', 10, 1);

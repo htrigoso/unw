@@ -34,7 +34,7 @@
 
   $base_breadcrumbs = [
     ['label' => 'Inicio', 'href' => home_url('/')],
-    ['label' => 'Eventos', 'href' => '/eventos']
+    ['label' => 'Eventos', 'href' => home_url('/eventos')]
   ];
 
   get_template_part(

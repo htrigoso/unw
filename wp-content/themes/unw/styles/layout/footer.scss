@@ -279,11 +279,15 @@
   }
 }
 
-.whatsapp-link {
+.whatsapp-link,
+.book-link {
   position: fixed;
+  z-index: 5;
+}
+
+.whatsapp-link {
   bottom: rem(50);
   right: rem(13);
-  z-index: 5;
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: rem(999);
@@ -294,7 +298,6 @@
       0 2px 8px rgba(0, 0, 0, 0.1);
     background: rgba(37, 211, 102, 0.1);
   }
-
   @include media(">=tablet") {
     bottom: rem(16);
     right: rem(64);
@@ -308,4 +311,17 @@
 .whatsapp-link__icon {
   width: rem(56);
   height: rem(56);
+}
+.book-link {
+  bottom: rem(120);
+  right: rem(13);
+  cursor: pointer;
+  @include media(">=tablet") {
+    right: rem(64);
+  }
+
+  @include media(">=desktop") {
+    right: rem(132);
+    bottom: rem(90);
+  }
 }
