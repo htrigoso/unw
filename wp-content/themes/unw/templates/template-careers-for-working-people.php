@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Todas las Carreras Template
+ * Template Name: Todas las Carreras (Distancia) Template
  */
 ?>
 <?php set_query_var('ASSETS_CHUNK_NAME', 'all-careers'); ?>
