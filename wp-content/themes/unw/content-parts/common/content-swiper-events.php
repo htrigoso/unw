@@ -21,6 +21,7 @@ if (!function_exists('unw_get_event_data')) {
       $url      = $info['register_url'] ?? '';
       $image_url = get_the_post_thumbnail_url($post->ID, 'full') ?: get_template_directory_uri() . '/upload/default.jpg';
       $image_alt = $title;
+      $status = $info['status'] ?? false;
 
     return [
       'title' => $title,
@@ -28,6 +29,7 @@ if (!function_exists('unw_get_event_data')) {
       'location' => $location,
       'date' => $formatted_day,
       'url' => $url,
+      'status' =>  $status,
       'image_url' => $image_url,
       'image_alt' => $image_alt,
     ];

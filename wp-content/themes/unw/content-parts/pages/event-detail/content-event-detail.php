@@ -35,18 +35,21 @@ $event = get_field('event_content');
         <div class="event-detail__data">
           <?php
             $event_info = get_field('event_info');
-            get_template_part(COMMON_CONTENT_PATH, 'body-w-list', [
-              'title' => 'Fecha y plataforma',
-              'blocks' => [
-                [
-                  'list' => [
-                    $event_info['date'] ?? '',
-                    $event_info['time'] ?? '',
-                    $event_info['location'] ?? '',
-                  ],
-                ]
-              ],
-            ]);
+
+            if(!$event_info['status']){
+              get_template_part(COMMON_CONTENT_PATH, 'body-w-list', [
+                'title' => 'Fecha y plataforma',
+                'blocks' => [
+                  [
+                    'list' => [
+                      $event_info['date'] ?? '',
+                      $event_info['time'] ?? '',
+                      $event_info['location'] ?? '',
+                    ],
+                  ]
+                ],
+              ]);
+            }
             ?>
         </div>
       </article>
