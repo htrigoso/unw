@@ -22,7 +22,7 @@ $link_title = $args['link_title'];
 
     <?php endif; ?>
     <?php if (!empty($link)): ?>
-    <a href="<?php echo esc_url($link); ?>" target="<?php echo esc_attr($link_target); ?>"
+    <a href="<?php echo esc_url($link); ?>"
       class="btn btn-primary program-card--content__cta">
       <?php echo esc_html($link_title); ?>
     </a>

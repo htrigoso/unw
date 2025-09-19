@@ -2,7 +2,7 @@
 $mode = $args['mode'] ?? null;
 $tabs = $args['tabs'] ?? [];
 $current_faculty_id = $args['current_faculty_id'] ?? 0;
-$careers_posts = $args['tabs'] ?? [];
+$careers_posts = $args['careers_posts'] ?? [];
 ?>
 <div class="all-careers-tabs">
   <div class="x-container all-careers-tabs__container">

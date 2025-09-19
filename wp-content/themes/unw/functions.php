@@ -28,3 +28,5 @@ require_once dirname(__FILE__) . '/inc/wp-inc.php';
 require_once dirname(__FILE__) . '/inc/wp-seo.php';
 
 require_once dirname(__FILE__) . '/inc/wp-migratation.php';
+
+require_once dirname(__FILE__) . '/inc/wp-careers.php';

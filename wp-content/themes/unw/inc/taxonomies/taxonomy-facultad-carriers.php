@@ -26,6 +26,11 @@ function register_taxonomy_facultad_presencial() {
     'show_in_rest'      => true,
     'public'       => true,
     'rewrite'           => false,
+    'rewrite'           => [
+        'slug'         => 'carreras-uwiener',
+        'with_front'   => false,
+        'hierarchical' => true
+    ],
   ];
 
   register_taxonomy('categoria-carrera', ['carreras'], $args);
@@ -59,7 +64,11 @@ function register_taxonomy_facultad_distancia() {
     'show_in_nav_menus' => true,
     'show_tagcloud'     => false,
     'show_in_rest'      => true,
-    'rewrite'           => false,
+    'rewrite'           => [
+        'slug'         => 'carreras-a-distancia', // 👈 base de la URL
+        'with_front'   => false,
+        'hierarchical' => true
+    ],
     'query_var' => 'facultad',
   ];
 

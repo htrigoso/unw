@@ -166,31 +166,6 @@ add_filter('query_vars', function ($vars) {
 });
 
 
-// REWRITE RULES
-add_action('init', 'custom_carreras_rewrite_rules');
-function custom_carreras_rewrite_rules() {
-
-
-
-
-   // LISTADO por facultad presencial
-  add_rewrite_rule(
-    '^carreras-uwiener/([^/]+)/?$',
-    'index.php?pagename=carreras-uwiener&facultad=$matches[1]&modalidad_slug=presencial',
-    'top'
-  );
-
-  add_rewrite_rule(
-    '^carreras-a-distancia/([^/]+)/?$',
-    'index.php?pagename=carreras-a-distancia&facultad=$matches[1]&modalidad_slug=virtual',
-    'top'
-  );
-
-
-
-
-  }
-
 
 // FUNCIÓN HELPER para obtener carreras por modalidad y categoría(s)
 function get_carreras_by_filters($modalidad = '', $categorias = []) {
