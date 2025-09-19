@@ -11,8 +11,6 @@
 get_header();
 ?>
 
-
-
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 <main>
   <div class="main_container">
@@ -30,8 +28,8 @@ get_header();
         </div>
         <div class="miga_de_pan">
           <div class="container">
-            <div class="content_links_miga"><a href="https://www.uwiener.edu.pe/" class="link miga">Inicio /</a><a
-                href="https://www.uwiener.edu.pe/servicios-universitarios/" class="link miga">Servicios
+            <div class="content_links_miga"><a href="<?= home_url("/") ?>" class="link miga">Inicio /</a><a
+                href="<?= home_url("/servicios-universitarios/") ?>" class="link miga">Servicios
                 universitarios&nbsp;/</a><a href="#" aria-current="page" class="link miga w--current">Secretaría
                 General</a></div>
           </div>
@@ -91,7 +89,7 @@ get_header();
                           <div role="list" class="collection_list gilla _3-col w-dyn-items">
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a title="Ver más sobre Autenticación de documentos"
-                                href="https://www.uwiener.edu.pe/secretaria-general/autenticacion-de-documentos/"
+                                href="<?= home_url("/secretaria-general/autenticacion-de-documentos/") ?>"
                                 class="item_serv_university w-inline-block">
                                 <h4 class="h4_light">Autenticación de documentos</h4>
                                 <div class="btn-legacy text">Ver más</div>
@@ -99,7 +97,7 @@ get_header();
                             </div>
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a title="Ver más sobre Autenticación de sílabos"
-                                href="https://www.uwiener.edu.pe/secretaria-general/autenticacion-de-silabos/"
+                                href="<?= home_url("/secretaria-general/autenticacion-de-silabos/") ?>"
                                 class="item_serv_university w-inline-block">
                                 <h4 class="h4_light">Autenticación de sílabos</h4>
                                 <div class="btn-legacy text">Ver más</div>
@@ -107,7 +105,7 @@ get_header();
                             </div>
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a title="Ver más sobre Duplicado de documentos"
-                                href="https://www.uwiener.edu.pe/secretaria-general/duplicado-de-documentos/"
+                                href="<?= home_url("/secretaria-general/duplicado-de-documentos/") ?>"
                                 class="item_serv_university w-inline-block">
                                 <h4 class="h4_light">Duplicado de documentos</h4>
                                 <div class="btn-legacy text">Ver más</div>
@@ -115,7 +113,7 @@ get_header();
                             </div>
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a title="Ver más sobre Fedateo de documentos"
-                                href="https://www.uwiener.edu.pe/secretaria-general/fedateo-de-documentos/"
+                                href="<?= home_url("/secretaria-general/fedateo-de-documentos/") ?>"
                                 class="item_serv_university w-inline-block">
                                 <h4 class="h4_light">Fedateo de documentos</h4>
                                 <div class="btn-legacy text">Ver más</div>
@@ -123,7 +121,7 @@ get_header();
                             </div>
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a title="Ver más sobre Constancia de grado académico, título profesional u otros"
-                                href="https://www.uwiener.edu.pe/secretaria-general/constancia-de-grado-academico-titulo-profesional-u-otros/"
+                                href="<?= home_url("/secretaria-general/constancia-de-grado-academico-titulo-profesional-u-otros/") ?>"
                                 class="item_serv_university w-inline-block">
                                 <h4 class="h4_light">Constancia de grado académico, título profesional u otros</h4>
                                 <div class="btn-legacy text">Ver más</div>
@@ -131,7 +129,7 @@ get_header();
                             </div>
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a title="Ver más sobre Duplicado de grado académico/título profesional"
-                                href="https://www.uwiener.edu.pe/secretaria-general/duplicado-de-grado-academico-titulo-profesional/"
+                                href="<?= home_url("/secretaria-general/duplicado-de-grado-academico-titulo-profesional/") ?>"
                                 class="item_serv_university w-inline-block">
                                 <h4 class="h4_light">Duplicado de grado académico/título profesional</h4>
                                 <div class="btn-legacy text">Ver más</div>
@@ -139,7 +137,7 @@ get_header();
                             </div>
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a title="Ver más sobre Expedición de diploma de grado académico/título profesional"
-                                href="https://www.uwiener.edu.pe/secretaria-general/expedicion-de-diploma-de-grado-academico-titulo-profesional/"
+                                href="<?= home_url("/secretaria-general/expedicion-de-diploma-de-grado-academico-titulo-profesional/") ?>"
                                 class="item_serv_university w-inline-block">
                                 <h4 class="h4_light">Expedición de diploma de grado académico/título profesional</h4>
                                 <div class="btn-legacy text">Ver más</div>
@@ -147,7 +145,7 @@ get_header();
                             </div>
                             <div role="listitem" class="collection_item serv_univer w-dyn-item">
                               <a title="Ver más sobre Cronograma de sustentaciones"
-                                href="https://www.uwiener.edu.pe/secretaria-general/cronograma-de-sustentaciones/"
+                                href="<?= home_url("/secretaria-general/cronograma-de-sustentaciones/") ?>"
                                 class="item_serv_university w-inline-block">
                                 <h4 class="h4_light">Cronograma de sustentaciones</h4>
                                 <div class="btn-legacy text">Ver más</div>
@@ -170,4 +168,9 @@ get_header();
     </div>
   </div>
 </main>
+<?php get_template_part(HOME_CONTENT_PATH, 'more-info-form'); ?>
+<a class="book-link" href="javascript:void(0);" data-modal-target="modal-more-info">
+  <img src="<?= placeholder() ?>" class="book-link__icon lazyload"
+    data-src="<?php echo UPLOAD_PATH . '/migration/solicitar.svg'; ?>" alt="Formulario General">
+</a>
 <?php get_footer(); ?>

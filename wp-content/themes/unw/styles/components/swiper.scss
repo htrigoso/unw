@@ -42,18 +42,6 @@
     position: relative;
     cursor: pointer;
 
-    &[data-size="responsive"] {
-      &::before {
-        width: 27px;
-        height: 27px;
-
-        @include media(">=tablet") {
-          width: 43px;
-          height: 43px;
-        }
-      }
-    }
-
     &::before {
       margin: rem(5);
       content: "";
@@ -84,6 +72,36 @@
 
       &::before {
         background-color: var(--color-turquoise-two);
+      }
+    }
+  }
+
+  .swiper-primary-button-prev[data-color="asu"],
+  .swiper-primary-button-next[data-color="asu"] {
+    border: 1px solid var(--color-asu-brown);
+
+    &::before {
+      background-color: var(--color-asu-brown);
+    }
+
+    &:not([aria-disabled="true"]):hover {
+      border-color: var(--color-asu-brown);
+
+      &::before {
+        background-color: var(--color-asu-brown);
+      }
+    }
+  }
+
+  .swiper-primary-button-prev[data-size="responsive"],
+  .swiper-primary-button-next[data-size="responsive"] {
+    &::before {
+      width: 27px;
+      height: 27px;
+
+      @include media(">=tablet") {
+        width: 43px;
+        height: 43px;
       }
     }
   }
@@ -242,6 +260,22 @@
       padding: rem(6) 0;
     }
   }
+
+  .swiper-navigation {
+    display: flex;
+    gap: rem(16);
+    margin-top: rem(24);
+
+    &[data-size="responsive"] {
+      gap: rem(10);
+
+      @include media(">=tablet") {
+        gap: rem(16);
+      }
+    }
+  }
+
+  @extend %swiper-primary-navigation;
 }
 
 .switch-pagination-navigation {

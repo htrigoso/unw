@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="miga_de_pan">
-          <div class="container flex"><a href="https://www.uwiener.edu.pe/" class="link miga">Inicio /</a><a href="#"
+          <div class="container flex"><a href="<?= home_url("/") ?>" class="link miga">Inicio /</a><a href="#"
               aria-current="page" class="link miga w--current">Internacionalización</a></div>
         </div>
       </div>
@@ -380,4 +380,9 @@
     </div>
   </div>
 </main>
+<?php get_template_part(HOME_CONTENT_PATH, 'more-info-form'); ?>
+<a class="book-link" href="javascript:void(0);" data-modal-target="modal-more-info">
+  <img src="<?= placeholder() ?>" class="book-link__icon lazyload"
+    data-src="<?php echo UPLOAD_PATH . '/migration/solicitar.svg'; ?>" alt="Formulario General">
+</a>
 <?php get_footer(); ?>

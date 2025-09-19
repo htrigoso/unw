@@ -9,7 +9,10 @@
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php get_header(); ?>
 
-<?php get_template_part(PBA_CONTENT_PATH, 'pba-navbar'); ?>
+
+<?php get_template_part(GENERAL_CONTENT_PATH, 'navbar' , [
+  'hide_top_bar_power_asu'=> true
+]); ?>
 <main>
   <?php
   $slide_hero = get_field('slide-hero');

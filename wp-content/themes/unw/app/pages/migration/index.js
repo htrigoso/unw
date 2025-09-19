@@ -1,24 +1,27 @@
 import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
 import Page from '../../classes/Page'
 import { ModalManager } from '../../components/Modal'
+import { $element } from '../../utils/dom'
 
-export default class BackupPage extends Page {
+export default class BackupPage {
   constructor() {
-    super({
-      id: 'home-page',
-      element: '.home-page'
-    })
     this.create()
     // super.create()
   }
 
   create() {
+    this.initFormGeneral()
     new ModalManager()
+  }
 
-    new FormCrmGeneral({
-      element: '#form-general',
-      container: '.more-form'
-    })
+  initFormGeneral() {
+    const form = $element('#form-general')
+    if (form) {
+      new FormCrmGeneral({
+        element: form,
+        container: '.more-form'
+      })
+    }
   }
 }
 new BackupPage()

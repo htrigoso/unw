@@ -1,3 +1,12 @@
+.hero-swiper {
+  background-color: var(--color-light-turquoise);
+}
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
 .swiper-hero__wrapper {
   position: relative;
   width: 100%;
@@ -7,6 +16,10 @@
 .swiper-hero__slide {
   position: relative;
   overflow: hidden;
+
+  @include media(">=tablet") {
+    height: 85vh;
+  }
 }
 
 .swiper-hero__picture {
@@ -15,15 +28,9 @@
 
 .swiper-hero__picture--img {
   width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
-  aspect-ratio: 10/9;
-  max-height: rem(500);
-
-  @include media(">=tablet") {
-    aspect-ratio: 1/2;
-    max-height: rem(769);
-  }
 }
 
 .hero__wrapper {
@@ -54,19 +61,25 @@
 }
 
 .hero__content--title {
-  @include title-28;
-  color: var(--color-white);
-  margin-bottom: rem(12);
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include title-28;
+    color: var(--color-white);
 
-  @include media(">=tablet") {
-    @include title-80;
-    height: rem(137);
+    @include media(">=tablet") {
+      @include title-80;
+    }
   }
+  margin-bottom: rem(30);
 }
 
 .hero__content--body {
   color: var(--color-white);
-  margin-bottom: rem(12);
+  margin-bottom: rem(30);
   max-width: rem(477);
 
   @include media(">=tablet") {

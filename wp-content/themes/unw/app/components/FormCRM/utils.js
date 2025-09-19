@@ -253,7 +253,6 @@ export function createHiddenInputs({ type, fields }) {
 }
 export function updateHiddenInputs(fields = [], element) {
   if (!Array.isArray(fields)) return
-  console.log(fields, element)
 
   fields.forEach(({ name, value }) => {
     if (!name) return
@@ -307,6 +306,10 @@ export function buildOptionsCampus({ campus, slugCareers, modalidad, element }) 
   const select = element.querySelector('#campusSelect')
 
   if (!select) return
+  console.log(campus)
+  console.log(slugCareers)
+  console.log(modalidad)
+
   const careerData = campus?.[slugCareers]
   const campusList = careerData?.[modalidad] || []
   removeHiddenFieldCampus({ element })

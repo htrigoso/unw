@@ -41,6 +41,7 @@ module.exports = {
     'blocked',
     'current-lang',
     'language-switcher',
+    'all-careers-tabs__container',
     /^accordion(-item)?(-standard|-filled)?$/,
     /^accordion-(header|label|content)$/,
     /^is-open$/,

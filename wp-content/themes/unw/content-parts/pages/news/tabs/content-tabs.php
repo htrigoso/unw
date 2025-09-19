@@ -16,6 +16,7 @@ if (!empty($terms) && !is_wp_error($terms)) {
       'id' => $term->term_id,
       'label'  => $term->name,
       'url'    => get_term_link($term),
+      'status' => true,
       'target' => '', // o '_blank' si quieres nueva pestaña
     ];
   }

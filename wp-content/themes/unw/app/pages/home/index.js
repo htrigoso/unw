@@ -2,27 +2,19 @@ import HeroSwiper from '../../components/HeroSwiper'
 import PostSwiper from '../../components/PostSwiper'
 import InternationalSwiper from '../../components/InternationalSwiper'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
-import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
-import Page from '../../classes/Page'
 import { ModalManager } from '../../components/Modal'
+import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
+import { $element } from '../../utils/dom'
 
-export default class HomePage extends Page {
+export default class HomePage {
   constructor() {
-    super({
-      id: 'home-page',
-      element: '.home-page'
-    })
     this.create()
-    // super.create()
   }
 
   create() {
     new ModalManager()
 
-    HeroSwiper('.hero-swiper', {
-      autoplay: false,
-      allowTouchMove: false
-    })
+    HeroSwiper('.hero-swiper')
     PostSwiper('.testimonial-swiper')
     PostSwiper('.last-news-swiper', {
       pagination: {
@@ -35,11 +27,17 @@ export default class HomePage extends Page {
     })
     PostSwiperDesktop()
     InternationalSwiper()
+    this.initFormGeneral()
+  }
 
-    new FormCrmGeneral({
-      element: '#form-general',
-      container: '.more-form'
-    })
+  initFormGeneral() {
+    const form = $element('#form-general')
+    if (form) {
+      new FormCrmGeneral({
+        element: form,
+        container: '.more-form'
+      })
+    }
   }
 }
 new HomePage()

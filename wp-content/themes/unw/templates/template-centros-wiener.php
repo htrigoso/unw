@@ -28,7 +28,7 @@
       </div>
       <div class="miga_de_pan">
         <div class="container">
-          <div class="content_links_miga"><a href="https://www.uwiener.edu.pe/" class="link miga">Inicio /</a><a
+          <div class="content_links_miga"><a href="<?= home_url("/") ?>" class="link miga">Inicio /</a><a
               href="#" aria-current="page" class="link miga w--current">Centros Wiener</a></div>
         </div>
       </div>
@@ -47,7 +47,7 @@
                       class="img_cover_carreras"></div>
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Centro de Análisis Clínicos</h4><a
-                      href="https://www.uwiener.edu.pe/centros-wiener/centro-de-analisis-clinicos/"
+                      href="<?= home_url("/centros-wiener/centro-de-analisis-clinicos/") ?>"
                       class="btn-legacy w-button">+ información</a>
                   </div>
                 </div>
@@ -59,7 +59,7 @@
                       class="img_cover_carreras"></div>
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Centro Odontológico</h4><a
-                      href="https://www.uwiener.edu.pe/centros-wiener/centro-odontologico/" class="btn-legacy w-button">+
+                      href="<?= home_url("/centros-wiener/centro-odontologico/") ?>" class="btn-legacy w-button">+
                       información</a>
                   </div>
                 </div>
@@ -71,7 +71,7 @@
                       alt="" class="img_cover_carreras"></div>
                   <div class="info-carrera">
                     <h4 class="h4_carreras dark marginright">Centro de Terapia Física y Rehabilitación</h4><a
-                      href="https://www.uwiener.edu.pe/centros-wiener/centro-de-terapia-fisica-y-rehabilitacion/"
+                      href="<?= home_url("/centros-wiener/centro-de-terapia-fisica-y-rehabilitacion/") ?>"
                       class="btn-legacy w-button">+ información</a>
                   </div>
                 </div>
@@ -83,4 +83,9 @@
     </div>
   </div>
 </main>
+<?php get_template_part(HOME_CONTENT_PATH, 'more-info-form'); ?>
+<a class="book-link" href="javascript:void(0);" data-modal-target="modal-more-info">
+  <img src="<?= placeholder() ?>" class="book-link__icon lazyload"
+    data-src="<?php echo UPLOAD_PATH . '/migration/solicitar.svg'; ?>" alt="Formulario General">
+</a>
 <?php get_footer(); ?>

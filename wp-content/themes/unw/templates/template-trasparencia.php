@@ -52,14 +52,13 @@
                       class="linktransparencia w-inline-block"><img src="images/icon_link.svg" alt="" class="icon_link">
                       <h4 class="h4_admin">1. Misión y visión.<br></h4>
                     </a>
-                    <div class="icon_box admin"><img
-                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
+                    <div class="icon_box admin"><img src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
                     <div class="clase_para_wordpress transparencia">
                       <ul>
-                        <li><a href="https://www.uwiener.edu.pe/nosotros/" rel="noopener noreferrer" target="_blank">1.
+                        <li><a href="<?= home_url("/nosotros/") ?>" rel="noopener noreferrer" target="_blank">1.
                             Misión y visión</a></li>
                       </ul>
                     </div>
@@ -70,8 +69,7 @@
                       class="linktransparencia w-inline-block"><img src="images/icon_link.svg" alt="" class="icon_link">
                       <h4 class="h4_admin">2. Reglamentos institucionales.<br></h4>
                     </a>
-                    <div class="icon_box admin"><img
-                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
+                    <div class="icon_box admin"><img src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
@@ -143,19 +141,17 @@
                         <li><a
                             href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/UPNW-GCI-REG-001-Reglamento-de-Biblioteca-V04.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">2.12 Reglamento de la Biblioteca.</a></li>
-                        <li><a
-                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/Reglamento-del-Docente-V.04.pdf' ?>"
+                        <li><a href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/Reglamento-del-Docente-V.04.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">2.13 Reglamento del docente.</a></li>
                         <li><a
                             href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/reglamento_regimen_docentes_ordinarios_V1_2019-1.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">2.14 Reglamento del régimen de docentes ordinarios
                             V.1-2019.</a></li>
-                        <li><a
-                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/PGC-2024-2028-publicacion-v2.pdf' ?>"
+                        <li><a href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/PGC-2024-2028-publicacion-v2.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">2.15 Plan de Gestión de Calidad de la UPNW
                             2024-2028.</a></li>
                         <li><a
-                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/UPNW-EES-POL-002_V.02Politica-de-Responsabilidad-Social.pdf' ?>"
+                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/UPNW-EES-POL-002-Politica-de-Responsabilidad-Social-v3.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">2.16 Política de Responsabilidad Social.</a></li>
                         <li><a
                             href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/Poli_tica_de_Proteccio_n_Ambiental_v.02_2020.pdf' ?>"
@@ -173,8 +169,7 @@
                             href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/UPNW-EES-REG-002-Reglamento-de-disciplina-del-estudiante-V3.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">2.20. Reglamento de Disciplina del Estudiante.</a>
                         </li>
-                        <li><a
-                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/REGLAMENTO-DE-PPP-DE-LA-FCS.pdf' ?>"
+                        <li><a href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/REGLAMENTO-DE-PPP-DE-LA-FCS.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">2.21. Reglamento de Prácticas Preprofesionales de
                             la Facultad de Ciencias de la Salud.</a></li>
                         <li><a
@@ -243,8 +238,7 @@
                       class="linktransparencia w-inline-block"><img src="images/icon_link.svg" alt="" class="icon_link">
                       <h4 class="h4_admin">3. Información financiera.<br></h4>
                     </a>
-                    <div class="icon_box admin"><img
-                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
+                    <div class="icon_box admin"><img src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
@@ -304,15 +298,13 @@
                       class="linktransparencia w-inline-block"><img src="images/icon_link.svg" alt="" class="icon_link">
                       <h4 class="h4_admin">4. Pensiones y tarifas.<br></h4>
                     </a>
-                    <div class="icon_box admin"><img
-                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
+                    <div class="icon_box admin"><img src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
                     <div class="clase_para_wordpress transparencia">
                       <ul>
-                        <li><a
-                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/Resolucion-GG-035-2023-VF-1.pdf' ?>"
+                        <li><a href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/Resolucion-GG-035-2023-VF-1.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">RESOLUCIÓN DE GERENCIA GENERAL N°
                             035-2023-GG-UPNW</a></li>
                         <li><a
@@ -321,8 +313,7 @@
                         <li><a
                             href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/LISTA-DE-PRECIOS-POSGRADO-V5_08042025_Transparencia.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">4.2 Lista de Precios Posgrado.</a></li>
-                        <li><a
-                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/Lista_Precios_Centro_Idiomas.pdf' ?>"
+                        <li><a href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/Lista_Precios_Centro_Idiomas.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">4.4 Lista de Precios del Centro de Idiomas.</a>
                         </li>
                         <li><a href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/ista_Precios_PreWiener.pdf' ?>"
@@ -341,19 +332,16 @@
                       class="linktransparencia w-inline-block"><img src="images/icon_link.svg" alt="" class="icon_link">
                       <h4 class="h4_admin">5. Programa de becas.<br></h4>
                     </a>
-                    <div class="icon_box admin"><img
-                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
+                    <div class="icon_box admin"><img src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
                     <div class="clase_para_wordpress transparencia">
                       <ul>
-                        <li><a
-                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/COMUNICADO-PROGRAMA-DE-BECAS.pdf' ?>"
+                        <li><a href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/COMUNICADO-PROGRAMA-DE-BECAS.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">5.1 Comunicado Sobre el Programa de Becas.</a>
                         </li>
-                        <li><a
-                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/COMUNICADO-CREDITOS-EDUCATIVOS.pdf' ?>"
+                        <li><a href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/COMUNICADO-CREDITOS-EDUCATIVOS.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">5.2 Comunicados de Créditos Educativos.</a></li>
                         <li><a
                             href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/COMUNICADO-BECAS-POSGRADO-SEGUNDAS-ESPECIALIDADES.pdf' ?>"
@@ -381,8 +369,7 @@
                       class="linktransparencia w-inline-block"><img src="images/icon_link.svg" alt="" class="icon_link">
                       <h4 class="h4_admin">6. Información académica.<br></h4>
                     </a>
-                    <div class="icon_box admin"><img
-                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
+                    <div class="icon_box admin"><img src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
@@ -843,6 +830,30 @@
                         <li class="ql-indent-2"><a
                             href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/RR-N-149-2024-R-UPNWvf.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">Maestría en Derecho Procesal Penal</a></li>
+                        <li class="ql-indent-2"><a
+                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/Brochure-Psicologia-Educativa-y-Neuroeducacion.pdf' ?>"
+                            rel="noopener noreferrer" target="_blank">Maestría en Psicología educativa y
+                            Neuroeducación</a></li>
+                        <li class="ql-indent-2"><a
+                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/Brochure-Direccion-de-Operaciones-y-Logistica-Global.pdf' ?>"
+                            rel="noopener noreferrer" target="_blank">Maestría en Dirección de Operaciones y Logística
+                            Global</a></li>
+                        <li class="ql-indent-2"><a
+                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/Brochure-Gestion-del-Talento-Humano-y-Liderazgo-Organizacional.pdf' ?>"
+                            rel="noopener noreferrer" target="_blank">Maestría en Gestión del Talento Humano y Liderazgo
+                            Organizacional</a></li>
+                        <li class="ql-indent-2"><a
+                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/Brochure-Salud-Ocupacional.pdf' ?>"
+                            rel="noopener noreferrer" target="_blank">Maestría en Gestión de la Salud Ocupacional y
+                            Prevención del Riesgo Laboral</a></li>
+                        <li class="ql-indent-2"><a
+                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/Brochure-Gestion-de-la-Calidad-y-Acreditacion-en-Salud.pdf' ?>"
+                            rel="noopener noreferrer" target="_blank">Maestría en Gestión de la Calidad y Acreditación
+                            en Salud</a></li>
+                        <li class="ql-indent-2"><a
+                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/Brochure-Gestion-educativa.pdf' ?>"
+                            rel="noopener noreferrer" target="_blank">Maestría en Gestión Educativa con Enfoque en
+                            Innovación y Calidad</a></li>
                         <li class="ql-indent-1">Planes curriculares Segunda Especialidad - Modalidad Presencial</li>
                         <li class="ql-indent-2">Carrera Profesional de Farmacia y Bioquímica</li>
                         <li class="ql-indent-3"><a
@@ -1029,8 +1040,7 @@
                             rel="noopener noreferrer" target="_blank">Segunda Especialidad en Farmacia Hospitalaria</a>
                         </li>
                         <li class="ql-indent-2">Carrera Profesional de Enfermería</li>
-                        <li class="ql-indent-3"><a
-                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/ABSTRA1.pdf' ?>"
+                        <li class="ql-indent-3"><a href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/ABSTRA1.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">Segunda Especialidad en Cuidado Enfermero en
                             Paciente Clínico Quirúrgico</a></li>
                         <li class="ql-indent-3"><a
@@ -1053,8 +1063,7 @@
                             href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/Abstract-Enfermeria-en-Salud-Ocupacional.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">Segunda Especialidad de Enfermería en Salud
                             Ocupacional</a></li>
-                        <li class="ql-indent-3"><a
-                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/ABSTRA2.pdf' ?>"
+                        <li class="ql-indent-3"><a href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/ABSTRA2.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">Segunda Especialidad en Cuidado Enfermero en
                             Cardiología y Cardiovascular</a></li>
                         <li class="ql-indent-3"><a
@@ -1062,7 +1071,7 @@
                             rel="noopener noreferrer" target="_blank">Segunda Especialidad en Gestión de Servicios de
                             Salud y Enfermería</a></li>
                         <li class="ql-indent-3"><a
-                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/Abstract-Gestion-en-Central-de-Esterilizacion.pdf' ?>"
+                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/Abstract-Gestion-en-Central-de-Esterilizacion-1.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">Segunda Especialidad en Gestión de Central de
                             Esterilización</a></li>
                         <li class="ql-indent-3"><a
@@ -1089,12 +1098,10 @@
                             href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/Abstract-Enfermeria-en-Nefrologia.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">Segunda Especialidad en Enfermería en
                             Nefrología</a></li>
-                        <li class="ql-indent-3"><a
-                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/ABF0E71.pdf' ?>"
+                        <li class="ql-indent-3"><a href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/ABF0E71.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">Segunda Especialidad en Enfermería en Cuidados
                             Quirúrgicos: Mención en Tratamiento Avanzado en Heridas y Ostomías</a></li>
-                        <li class="ql-indent-3"><a
-                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/AB67A11.pdf' ?>"
+                        <li class="ql-indent-3"><a href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/AB67A11.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">Segunda Especialidad en Enfermería en Salud y
                             Desarrollo Integral Infantil: Control de Crecimiento y Desarrollo e Inmunizaciones</a></li>
                         <li class="ql-indent-3"><a
@@ -1294,8 +1301,7 @@
                       class="linktransparencia w-inline-block"><img src="images/icon_link.svg" alt="" class="icon_link">
                       <h4 class="h4_admin">7. Número de alumnos por facultades y programas de estudios.<br></h4>
                     </a>
-                    <div class="icon_box admin"><img
-                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
+                    <div class="icon_box admin"><img src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
@@ -2029,8 +2035,7 @@
                       class="linktransparencia w-inline-block"><img src="images/icon_link.svg" alt="" class="icon_link">
                       <h4 class="h4_admin">8. Plana docente.<br></h4>
                     </a>
-                    <div class="icon_box admin"><img
-                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
+                    <div class="icon_box admin"><img src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
@@ -2042,8 +2047,7 @@
                             href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/C9-2025-1-11.04-transparencia.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">2025-I</a></li>
                         <li class="ql-indent-1">2024.</li>
-                        <li class="ql-indent-2"><a
-                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/C9-2024-2.pdf' ?>"
+                        <li class="ql-indent-2"><a href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/C9-2024-2.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">2024-II</a></li>
                         <li class="ql-indent-2"><a
                             href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/C9-UPNW-2024-1.pdf' ?>"
@@ -2052,15 +2056,12 @@
                         <li class="ql-indent-2"><a
                             href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/C9-UPNW-2023-II-1-1.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">2023-II</a></li>
-                        <li class="ql-indent-2"><a
-                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/C9-2023-I.pdf' ?>"
+                        <li class="ql-indent-2"><a href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/C9-2023-I.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">2023-I</a></li>
                         <li class="ql-indent-1">2022.</li>
-                        <li class="ql-indent-2"><a
-                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/C9-2022-II.pdf' ?>"
+                        <li class="ql-indent-2"><a href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/C9-2022-II.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">2022-II.</a></li>
-                        <li class="ql-indent-2"><a
-                            href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/C9-2022-I.pdf' ?>"
+                        <li class="ql-indent-2"><a href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/C9-2022-I.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">2022-I.</a></li>
                         <li class="ql-indent-1">2021.</li>
                         <li class="ql-indent-2"><a href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/C9.pdf' ?>"
@@ -2145,8 +2146,7 @@
                       class="linktransparencia w-inline-block"><img src="images/icon_link.svg" alt="" class="icon_link">
                       <h4 class="h4_admin"> 9. Vicerrectorado de investigación.<br></h4>
                     </a>
-                    <div class="icon_box admin"><img
-                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
+                    <div class="icon_box admin"><img src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
@@ -2282,8 +2282,7 @@
                       class="linktransparencia w-inline-block"><img src="images/icon_link.svg" alt="" class="icon_link">
                       <h4 class="h4_admin">10. Vida Estudiantil<br></h4>
                     </a>
-                    <div class="icon_box admin"><img
-                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
+                    <div class="icon_box admin"><img src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
@@ -2305,8 +2304,7 @@
                       class="linktransparencia w-inline-block"><img src="images/icon_link.svg" alt="" class="icon_link">
                       <h4 class="h4_admin">11. Concurso público de selección docente<br></h4>
                     </a>
-                    <div class="icon_box admin"><img
-                        src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
+                    <div class="icon_box admin"><img src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>" alt=""
                         class="arrow_down"></div>
                   </div>
                   <div style="height: 0px;" class="content_acordeon">
@@ -2452,4 +2450,10 @@
     </div>
   </div>
 </main>
+<?php get_template_part(HOME_CONTENT_PATH, 'more-info-form'); ?>
+<a class="book-link" href="javascript:void(0);" data-modal-target="modal-more-info">
+  <img src="<?= placeholder() ?>" class="book-link__icon lazyload"
+    data-src="<?php echo UPLOAD_PATH . '/migration/solicitar.svg'; ?>" alt="Formulario General">
+</a>
+
 <?php get_footer(); ?>

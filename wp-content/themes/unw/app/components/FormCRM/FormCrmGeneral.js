@@ -1,4 +1,3 @@
-import Component from '../../classes/Component'
 import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenFieldCampus, updateHiddenInputs, updateOptionsCareers, validateInputs, showCampusSelect, validatePhone } from './utils'
 
 // ==========================
@@ -10,9 +9,9 @@ const FORM_GENERAL_PRESENCIAL =
 const FORM_GENERAL_VIRTUAL =
   'https://forms.zohopublic.com/adminzoho11/form/WebSolicitaInformacinVirtual/formperma/kEghJarUi7QiD6-qDLpQpVMV_uW8uH0m1XlinN5KPls/htmlRecords/submit'
 
-export default class FormCrmGeneral extends Component {
-  constructor({ element, container, onCompleted }) {
-    super({ element, elements: {} })
+export default class FormCrmGeneral {
+  constructor({ element, container }) {
+    this.element = element
 
     this.formContainer = container
     this.createListeners()
@@ -214,8 +213,10 @@ export default class FormCrmGeneral extends Component {
 
         const selectedOption = target.options[target.selectedIndex]
         const text = selectedOption?.textContent.trim() || ''
-
-        document.querySelector('input[name="SingleLine9"]').value = text
+        const input = document.querySelector('input[name="SingleLine9"]')
+        if (input) {
+          input.value = text
+        }
       }
     })
   }

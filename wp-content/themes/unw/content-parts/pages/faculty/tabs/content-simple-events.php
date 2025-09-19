@@ -38,6 +38,7 @@ $link = $acf_data['link'] ?? null;
                 'url' => $url,
                 'image_url' => $image_url,
                 'image_alt' => $image_alt,
+                'status'=> $info['status'] ?? false,
               ]);
               ?>
         </li>

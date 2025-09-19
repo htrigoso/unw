@@ -6,7 +6,7 @@
     left: 0;
     padding: 0;
     margin: -1px;
-
+    display: inline-block;
     white-space: nowrap;
     max-width: 100%;
     overflow: hidden;
@@ -14,7 +14,7 @@
     transition: all 0.3s ease;
     pointer-events: none;
     text-overflow: ellipsis;
-
+    font-weight: var(--font-regular);
     color: var(--color-asu-grey);
   }
 
@@ -145,6 +145,7 @@
     color: var(--color-black);
     position: relative;
     cursor: pointer;
+    font-weight: var(--font-regular);
   }
 
   .radio-option label::before {

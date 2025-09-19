@@ -1,10 +1,11 @@
 <?php
-$postID = $args['id'];
+$term_id = $args['id'];
+$term_key = 'facultad_' . $term_id;
 ?>
 
 <div class="faculty">
   <?php
-    $title = get_field('description', $postID);
+    $title = get_field('description', $term_key);
   ?>
   <div class="faculty__header">
     <h1 class="faculty__header--title">
@@ -12,7 +13,7 @@ $postID = $args['id'];
     </h1>
   </div>
   <?php
-  $biography = get_field('biography',$postID);
+  $biography = get_field('biography',$term_key);
 
   get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-quote', null, [
     "quote" => $biography['quote'],
@@ -23,18 +24,18 @@ $postID = $args['id'];
 
 
     get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-laboratories', null, [
-      'id'=>$postID
+      'id'=>$term_key
     ]); ?>
 
   <div class="faculty__testimonials">
     <?php
-    $testimonials = get_field('testimonials', $postID);
+    $testimonials = get_field('testimonials', $term_key);
     $list = $testimonials['testimonials'];
 
     $items = [];
     foreach ($testimonials['testimonials'] as $post) {
       $post_id = $post->ID;
-      $info= get_field('info-testimonio', $post_id);
+      $info= get_field('info-testimonio', $term_key);
       $items[] = [
         'name' => get_the_title($post_id),
         'title' => $info['program_name'],
@@ -52,16 +53,16 @@ $postID = $args['id'];
   </div>
   <div class="faculty__internationalization">
     <?php get_template_part(COMMON_CONTENT_PATH, 'internationalization',  [
-       'id'=>$postID
+       'id'=>$term_key
     ]); ?>
   </div>
   <?php get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-majors', null, [
-      'id'=>$postID
+      'id'=>$term_key
   ]); ?>
   <?php get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-simple-events', null, [
-      'id'=>$postID
+      'id'=>$term_key
   ]); ?>
   <?php get_template_part(FACULTY_CONTENT_TAB_PATH . 'content-recognitions', null, [
-      'id'=>$postID
+      'id'=>$term_key
   ]); ?>
 </div>

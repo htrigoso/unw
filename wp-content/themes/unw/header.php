@@ -2,35 +2,19 @@
 <html lang="es">
 
 <head>
-  <title><?php the_title() ?></title>
   <base href="/">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="Cache-control" content="public">
-  <meta name="keywords" content="unw">
   <meta name="format-detection" content="telephone=no">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Universidad Norbert Wiener: Educación de Clase Mundial
-">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#03033f">
   <meta name="msapplication-TileColor" content="#92dce5">
   <meta name="msapplication-navbutton-color" content="#f7f9fb">
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="<?php echo home_url() ?>" />
-  <meta property="og:site_name" content="Universidad Norbert Wiener: Educación de Clase Mundial
-" />
-  <meta name="description"
-    content="Universidad Norbert Wiener, AVANZA+ en tu carrera profesional. Educación de calidad internacional, en alianza con Arizona State University. ¡Postula ya!">
-  <meta property="og:locale" content="es_ES">
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:domain" content="<?php echo home_url() ?>" />
-  <meta name="twitter:title" property="og:title" itemprop="name" content="<?php the_title() ?>" />
-  <meta name="twitter:description" property="og:description" itemprop="description"
-    content="Universidad Norbert Wiener, AVANZA+ en tu carrera profesional. Educación de calidad internacional, en alianza con Arizona State University. ¡Postula ya!" />
   <link rel="icon" type="image/png" sizes="32x32" href="<?php echo UPLOAD_PATH; ?>/favicon/favicon.png">
 
   <?php get_template_part('content-parts/content', 'fonts'); ?>
@@ -99,8 +83,8 @@
 
   <script>
   window.appConfigUnw = {
-    themeUrl: "<?= get_template_directory_uri(); ?>",
-    uploadUrl: "<?= get_template_directory_uri(); ?>/upload"
+    themeUrl: "<?php echo esc_url(get_template_directory_uri()); ?>",
+    uploadUrl: "<?php echo esc_url(get_template_directory_uri()); ?>/upload",
   };
 
   let doc = document.documentElement;
@@ -113,20 +97,30 @@
   </script>
   <!-- Google Tag Manager -->
   <script>
-  (function(w, d, s, l, i) {
-    w[l] = w[l] || [];
-    w[l].push({
+  // Inicializar dataLayer
+  window.dataLayer = window.dataLayer || [];
+  </script>
+  <script defer>
+  // Cargar GTM de forma optimizada
+  function loadGTM() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.defer = true;
+    script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-W8DNW8B';
+    document.head.appendChild(script);
+
+    window.dataLayer.push({
       'gtm.start': new Date().getTime(),
-      event: 'gtm.js'
+      'event': 'gtm.js'
     });
-    var f = d.getElementsByTagName(s)[0],
-      j = d.createElement(s),
-      dl = l != 'dataLayer' ? '&l=' + l : '';
-    j.async = true;
-    j.src =
-      'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-    f.parentNode.insertBefore(j, f);
-  })(window, document, 'script', 'dataLayer', 'GTM-W8DNW8B');
+  }
+
+  // Cargar GTM después de que la página esté lista
+  if (window.addEventListener) {
+    window.addEventListener('load', loadGTM, false);
+  } else if (window.attachEvent) {
+    window.attachEvent('onload', loadGTM);
+  }
   </script>
   <!-- End Google Tag Manager -->
   <?php wp_head(); ?>

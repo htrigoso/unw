@@ -1,15 +1,25 @@
 <?php
-$tabs = [
-  ['label' => 'Presentación',         'target' => 'presentacion'],
-  ['label' => 'Beneficios',           'target' => 'beneficios'],
-  ['label' => 'Malla Curricular',     'target' => 'malla'],
-  ['label' => 'Campo Laboral',        'target' => 'campo-laboral'],
-  ['label' => 'Plana Docente',        'target' => 'teaching-staff'],
-  ['label' => 'Infraestructura',      'target' => 'infraestructura'],
-  ['label' => 'Admisión',             'target' => 'admision'],
-  ['label' => 'Internacionalización', 'target' => 'internacionalizacion'],
-];
-  $terms = get_the_terms(get_the_ID(), 'modalidad');
+$tabs = [];
+$acf_careers = get_fields(get_the_ID());
+$excluir = ['sliders', 'crm', 'title_sec', 'curriculum_legend'];
+$tabs = [];
+$mode = $args['mode'] ?? '';
+
+foreach ($acf_careers as $key => $value) {
+  if (in_array($key, $excluir, true)) {
+    continue;
+  }
+  $tabs[] = [
+    'label'  => $value['tab']['label'],
+    'status' => $value['status'],
+    'target' => sanitize_title($value['tab']['label'])
+  ];
+}
+ $tabs[] = [
+    'label' => 'Internacionalización',
+    'status' => true,
+    'target' => 'internacionalizacion'
+ ];
 ?>
 
 <div class="career-tabs">
@@ -18,6 +28,7 @@ $tabs = [
     get_template_part(COMMON_CONTENT_PATH, 'nav-tabs', [
       'nav_tabs' => $tabs
     ]);
+
     ?>
   </div>
 
@@ -31,6 +42,7 @@ $tabs = [
             case 'presentacion':
 
               $presentation = get_field('presentation', get_the_ID());
+
 
               $testimonials_info = $presentation['testimonials_info'] ?? null;
 
@@ -66,19 +78,17 @@ $tabs = [
         <section class="contact-form-careers">
           <div class="x-container x-container--pad-213 contact-form-careers__wrapper">
             <?php
-                  if ($terms && !is_wp_error($terms)) {
-                    $slugs = wp_list_pluck($terms, 'slug');
-                    if (in_array('presencial', $slugs)) {
-                      get_template_part(CAREERS_CONTENT_PATH, 'contact-form-presencial',[
-                         'data_form_type' =>$args['data-form']['mobile']
-                      ]);
-                    } else {
-                      get_template_part(CAREERS_CONTENT_PATH, 'contact-form-virtual',[
-                         'data_form_type' =>$args['data-form']['mobile']
-                      ]);
-                    }
-                  }
-                  ?>
+
+              if ($mode==='presencial') {
+                get_template_part(CAREERS_CONTENT_PATH, 'contact-form-presencial',[
+                    'data_form_type' =>$args['data-form']['mobile']
+                ]);
+              } else {
+                get_template_part(CAREERS_CONTENT_PATH, 'contact-form-virtual',[
+                    'data_form_type' =>$args['data-form']['mobile']
+                ]);
+              }
+            ?>
           </div>
         </section>
         <section class="career-tabs__faq">
@@ -100,7 +110,7 @@ $tabs = [
               ]);
               break;
 
-            case 'malla':
+            case 'malla-curricular':
               $malla_curricular = get_field('malla_curricular', get_the_ID());
               get_template_part(CAREERS_CONTENT_TAB_PATH . '3-curriculum-map/content-program-curriculum', null, [
                 'malla_curricular' => $malla_curricular
@@ -118,7 +128,7 @@ $tabs = [
               ]);
               break;
 
-            case 'teaching-staff':
+            case 'plana-docente':
               $teaching_staff = get_field('teaching_staff', get_the_ID());
               get_template_part(CAREERS_CONTENT_TAB_PATH . '5-teaching-staff/content-teaching-staff', null, [
                 'teaching_staff' => $teaching_staff

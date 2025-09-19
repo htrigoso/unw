@@ -148,3 +148,4 @@ $libro_reclamaciones_html = ob_get_clean();
     class="whatsapp-link__icon lazyload" />
 </a>
 <?php endif; ?>
+
