@@ -18,6 +18,8 @@
       'taxonomy'           => 'categoria-carrera-distancia',
       'title_global'       => 'Carreras a Distancia',
    ]);
+
+
 ?>
 </main>
 <?php get_footer(); ?>
