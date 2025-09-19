@@ -12,6 +12,7 @@ function render_html_all_careers($args = []) {
     // Mezclamos defaults con los valores recibidos
     $args = wp_parse_args($args, $defaults);
 
+
     extract($args);
     // Ahora tienes disponibles:
     // $current_faculty_id, $post_type, $taxonomy, $title_global

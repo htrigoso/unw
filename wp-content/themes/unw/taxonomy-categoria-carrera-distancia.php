@@ -1,8 +1,3 @@
-<?php
-/**
- * Template Name: Todas las Carreras Template
- */
-?>
 <?php set_query_var('ASSETS_CHUNK_NAME', 'all-careers'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php get_header(); ?>
