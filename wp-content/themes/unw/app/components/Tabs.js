@@ -6,10 +6,7 @@ export default class Tabs extends Component {
       element,
       elements: {
         tabItems: '.tab__item',
-        tabContents: '.tab__content',
-        prevButton: '.nav-tabs--prev',
-        nextButton: '.nav-tabs--next',
-        tabList: '.nav-tabs__list'
+        tabContents: '.tab__content'
       }
     })
     this.preventDefault = preventDefault
@@ -22,7 +19,6 @@ export default class Tabs extends Component {
   init() {
     this.activeTabFromUrl()
     this.bindTabEvents()
-    this.initScrollButtons()
     window.addEventListener('resize', this.handleResize.bind(this))
   }
 
@@ -33,47 +29,6 @@ export default class Tabs extends Component {
     if (activeTab) {
       this.scrollToTab(activeTab)
     }
-
-    this.updateScrollButtonStates()
-  }
-
-  initScrollButtons() {
-    if (!this.elements.prevButton || !this.elements.nextButton || !this.elements.tabList) {
-      return
-    }
-
-    const SCROLL_AMOUNT = 250
-
-    this.elements.nextButton.addEventListener('click', () => {
-      this.elements.tabList.scrollBy({
-        left: SCROLL_AMOUNT,
-        behavior: 'smooth'
-      })
-    })
-
-    this.elements.prevButton.addEventListener('click', () => {
-      this.elements.tabList.scrollBy({
-        left: -SCROLL_AMOUNT,
-        behavior: 'smooth'
-      })
-    })
-
-    this.elements.tabList.addEventListener('scroll', this.updateScrollButtonStates.bind(this))
-    this.updateScrollButtonStates()
-  }
-
-  updateScrollButtonStates() {
-    if (!this.elements.prevButton || !this.elements.nextButton || !this.elements.tabList) {
-      return
-    }
-
-    const { tabList, prevButton, nextButton } = this.elements
-
-    const isAtStart = tabList.scrollLeft <= 0
-    prevButton.setAttribute('aria-disabled', isAtStart)
-
-    const isAtEnd = tabList.scrollLeft + tabList.clientWidth >= tabList.scrollWidth - 1
-    nextButton.setAttribute('aria-disabled', isAtEnd)
   }
 
   activeTabFromUrl() {
