@@ -1,5 +1,4 @@
 <?php
-
 // require vendor packages autoload
 // require_once dirname(__FILE__) . '/vendor/autoload.php';
 
@@ -18,7 +17,7 @@ require_once dirname(__FILE__) . '/inc/wp-blog.php';
 require_once dirname(__FILE__) . '/inc/wp-form.php';
 
 // require Rank Math configuration
-require_once dirname(__FILE__) . '/inc/wp-rankmath.php';
+require_once dirname(__FILE__) . '/inc/wp-cs.php';
 
 // require theme functions
 require_once dirname(__FILE__) . '/inc/wp-inc.php';
