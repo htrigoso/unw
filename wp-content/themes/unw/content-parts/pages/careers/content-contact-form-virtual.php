@@ -7,7 +7,7 @@ $utm_carriers      = $crm_carriers['list_utms'] ?? [];
 $list_departaments = $form_crm_option['list_departaments'];
 $term              = get_facultad_taxonomy_name(get_the_ID());
 $page_title        = get_current_page_title();
-$code_carrier     = $crm_carriers['code'];
+$code_carrier     = $crm_carriers['code_virtual'];
 // ---- Fusionar UTMs ----
 $utms_final = merge_utms($utms_default, $utm_carriers);
 $data_form_type = $args['data_form_type'] ?? '';
