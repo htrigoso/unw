@@ -75,7 +75,7 @@ export default class FormCrmAdmission {
             updateOptionsCareers({ element: this.element, careers, value })
 
             showCampusSelect({ element: this.element })
-
+            this.removeCustomHiddenDepartament()
             break
 
           case FORMS.WORK:
@@ -107,6 +107,7 @@ export default class FormCrmAdmission {
               this.updateHiddenFields({ select, hiddenContainer })
             }
             updateOptionsCareers({ element: this.element, careers, value: 'virtual' })
+            this.removeCustomHiddenDepartament()
             break
 
           default:
@@ -218,6 +219,13 @@ export default class FormCrmAdmission {
     })
   }
 
+  removeCustomHiddenDepartament() {
+    const customDepartament = this.element.querySelector('.custom-hidden-departament')
+    if (customDepartament) {
+      customDepartament.innerHTML = ''
+    }
+  }
+
   handleDepartamentChange() {
     this.element.addEventListener('change', (event) => {
       const target = event.target
@@ -229,7 +237,10 @@ export default class FormCrmAdmission {
         const selectedOption = target.options[target.selectedIndex]
         const text = selectedOption?.textContent.trim() || ''
 
-        this.element.querySelector('input[name="SingleLine9"]').value = text
+        const customDepartament = this.element.querySelector('.custom-hidden-departament')
+        if (customDepartament) {
+          customDepartament.innerHTML = `<input type="hidden" name="SingleLine9" value="${text}">`
+        }
       }
     })
   }

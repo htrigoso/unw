@@ -34,6 +34,7 @@ $data_form_type = $args['data_form_type'] ?? '';
 
   <div class="custom-hidden"></div>
   <div class="custom-hidden-campus"></div>
+  <div class="custom-hidden-departament"></div>
 
   <?php foreach ($utms_final as $utm): ?>
   <input type="hidden" name="<?= esc_attr($utm['name']); ?>" value="<?= esc_attr($utm['value']); ?>">

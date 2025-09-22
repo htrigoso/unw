@@ -102,7 +102,7 @@ export function createSelectDepartament({ position = 'append', name = 'SingleLin
   const wrapperDiv = buildSelectWrapper({
     id: 'departament',
     name,
-    label: 'Departamento de procedencia',
+    label: 'Departamento de procedencia (*)',
     options: departaments
   })
 

@@ -35,7 +35,7 @@ $data_form_type = $args['data_form_type'] ?? '';
 
   <div class="custom-hidden"></div>
   <div class="custom-hidden-campus"></div>
-
+  <div class="custom-hidden-departament"></div>
   <?php
 
 
