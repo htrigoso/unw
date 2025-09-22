@@ -179,10 +179,12 @@ export default class FormCrmAdmission {
       if (!parentOptgroup || parentOptgroup.tagName !== 'OPTGROUP') return
       const facultyName = parentOptgroup.label
       const careerName = selectedOption.textContent.trim()
+
       if (checked) {
         this.updateHiddenFields({ select, hiddenContainer })
         const slugCareers = selectedOption.dataset.key
         const modalidad = selectedOption.dataset.mode
+
         buildOptionsCampus({ campus, slugCareers, modalidad, element: this.element })
       } else {
         // Cuando no exist el check

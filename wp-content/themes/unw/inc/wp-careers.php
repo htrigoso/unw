@@ -191,6 +191,7 @@ function get_carreras() {
         $slug  = get_post_field('post_name', $id);
         $post_type = get_post_type($id);
 
+
         // Modalidad según el CPT
         $modalidad = $post_type === 'carreras-a-distancia' ? 'virtual' : 'pregrado';
 
@@ -204,7 +205,9 @@ function get_carreras() {
             : 'Sin facultad';
 
         // Código CRM (ACF/meta)
-        $code = get_post_meta($id, 'crm_code', true);
+        $code_pre = get_post_meta($id, 'crm_code', true);
+        $code_vir = get_post_meta($id, 'crm_code_virtual', true);
+
 
         // Agrupar en el array final
         $result[$modalidad][$facultad][] = [
@@ -212,7 +215,7 @@ function get_carreras() {
             'slug'      => $slug,
             'title'     => $title,
             'modalidad' => $modalidad,
-            'code'      => $code ?: '',
+            'code'      => $modalidad === 'pregrado' ? $code_pre : $code_vir,
         ];
     }
 

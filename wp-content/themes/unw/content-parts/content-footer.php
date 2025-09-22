@@ -143,9 +143,7 @@ $libro_reclamaciones_html = ob_get_clean();
 <a href="<?= esc_url($url) ?>"
   <?= !empty($wg['link']['target']) ? 'target="'.esc_attr($wg['link']['target']).'"' : '' ?> class="whatsapp-link"
   rel="noopener" <?= !empty($wg['link']['title']) ? 'aria-label="'.esc_attr($wg['link']['title']).'"' : '' ?>>
-  <img src="<?= placeholder() ?>" data-src="<?= esc_url($img) ?>" width="auto" height="auto"
-    alt="<?= !empty($wg['image']['alt']) ? esc_attr($wg['image']['alt']) : '' ?>"
-    class="whatsapp-link__icon lazyload" />
+  <img src="<?= esc_url($img) ?>" width="auto" height="auto"
+    alt="<?= !empty($wg['image']['alt']) ? esc_attr($wg['image']['alt']) : '' ?>" class="whatsapp-link__icon" />
 </a>
 <?php endif; ?>
-

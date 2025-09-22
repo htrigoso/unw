@@ -24,6 +24,7 @@ export default class FormCrmCareer {
     this.handleDepartmentChange()
     this.handleFormMixtoChange()
     this.handleDepartamentChange()
+    this.handleCampusChange()
   }
 
   // ==========================
@@ -45,7 +46,8 @@ export default class FormCrmCareer {
     const radios = this.element.querySelectorAll('input[name="form_mixto"]')
     const campus = JSON.parse(this.element.dataset.campus || '[]')
     const isMixto = JSON.parse(this.element.dataset.mixto || 0)
-
+    const codePre = this.element.dataset.codePre || ''
+    const codeVir = this.element.dataset.codeVir || ''
     if (!radios.length) return
 
     radios.forEach(radio => {
@@ -65,6 +67,8 @@ export default class FormCrmCareer {
             }
 
             buildOptionsCampusCareers({ campus, element: this.element })
+
+            this.setCodeTypeCareer(codePre)
             break
 
           case FORMS.VIRTUAL:
@@ -79,12 +83,14 @@ export default class FormCrmCareer {
             if (isMixto && campus.length > 0) {
               removeSelectCampus(this.element)
             }
+            this.setCodeTypeCareer(codeVir)
             break
           case FORMS.WORK:
             this.element.action = FORM_CARRIERS_VIRTUAL
             removeSelectCampus(this.element)
             setClaseName('f-100', this.element)
             removeSelectDepartament(this.element)
+            this.setCodeTypeCareer(codeVir)
             break
 
           default:
@@ -93,6 +99,13 @@ export default class FormCrmCareer {
         }
       })
     })
+  }
+
+  setCodeTypeCareer(value) {
+    const codeInput = this.element.querySelector('input[name="SingleLine4"]')
+    if (!codeInput) return
+
+    codeInput.value = value
   }
 
   handleDepartamentChange() {
@@ -118,6 +131,23 @@ export default class FormCrmCareer {
       const hiddenName = map[checked.value]?.[target.id]
       if (hiddenName) {
         hiddenContainer.innerHTML = `<input type="hidden" name="${hiddenName}" value="${text}">`
+      }
+    })
+  }
+
+  handleCampusChange() {
+    const select = this.element.querySelector('#campus')
+    if (!select) return
+
+    select.addEventListener('change', (event) => {
+      const selectedOption = event.target.options[event.target.selectedIndex]
+      const text = selectedOption.textContent.trim()
+      const value = selectedOption.value
+      if (value) {
+        console.log('ok')
+
+        this.element.querySelector('.custom-hidden-campus').innerHTML = `
+            <input type="hidden" name="SingleLine7" value="${text}">`
       }
     })
   }

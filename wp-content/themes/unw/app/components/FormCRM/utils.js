@@ -306,9 +306,6 @@ export function buildOptionsCampus({ campus, slugCareers, modalidad, element }) 
   const select = element.querySelector('#campusSelect')
 
   if (!select) return
-  console.log(campus)
-  console.log(slugCareers)
-  console.log(modalidad)
 
   const careerData = campus?.[slugCareers]
   const campusList = careerData?.[modalidad] || []
