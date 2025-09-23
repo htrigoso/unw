@@ -246,6 +246,9 @@
                       <ul>
                         <li>3.1 Estados financieros</li>
                         <li class="ql-indent-1"><a
+                            href="https://www.uwiener.edu.pe/wp-content/themes/unw/upload/migration/transparencia/Universidad-Privada-Norbert-Wiener-S.A.-_2023_EY-3.pdf"
+                            rel="noopener noreferrer" target="_blank">2024.</a></li>
+                        <li class="ql-indent-1"><a
                             href="<?= UPLOAD_MIGRATION_PATH . '/transparencia/Universidad-Privada-Norbert-Wiener-S.A.-_2023_EY-3.pdf' ?>"
                             rel="noopener noreferrer" target="_blank">2023.</a></li>
                         <li class="ql-indent-1"><a
