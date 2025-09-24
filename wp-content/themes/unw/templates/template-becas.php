@@ -18,6 +18,7 @@ $parent_id = wp_get_post_parent_id( $post->ID );
 
   $acf_faq = get_field('faq');
   $acf_sidebar = get_field('sidebar_items');
+
   get_template_part(GENERAL_CONTENT_PATH, 'navbar');
 
 ?>
