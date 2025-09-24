@@ -9,8 +9,6 @@
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php
 get_header();
- global $post;
-  $parent_id = wp_get_post_parent_id( $post->ID );
   $acf_sidebar = get_field('sidebar');
   $acf_cards = get_field('items');
 ?>
