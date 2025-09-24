@@ -25,36 +25,9 @@ $parent_id = wp_get_post_parent_id( $post->ID );
 <main>
   <div class="main_container">
     <div class="info_page">
-      <div class="cover_img_page center">
-        <div class="overlay"></div>
-        <?php if ( has_post_thumbnail() ) : ?>
-        <?php the_post_thumbnail( 'full', [ 'class' => 'img_cover' ] ); ?>
-        <?php endif; ?>
-        <div id="presentacion_vf" class="info_cover_page center">
-          <div id="presentacion" class="container">
-            <h2 class="categoria_page serv_uni">
-              <?php
-              if ( $parent_id ) {
-                  echo get_the_title( $parent_id );
-                }
-              ?>
-            </h2>
-            <h2 class="h1_carreras"><?= get_the_title(); ?></h2>
-          </div>
-        </div>
-        <div class="miga_de_pan">
-          <div class="container">
-            <div class="content_links_miga"><a href="<?= home_url("/") ?>" class="link miga">Inicio /</a><a
-                href="<?= home_url("/servicios-universitarios/") ?>" class="link miga">
-                <?php
-              if ( $parent_id ) {
-                  echo get_the_title( $parent_id );
-                }
-              ?>
-                /</a><a href="#" aria-current="page" class="link miga w--current"><?= get_the_title(); ?></a></div>
-          </div>
-        </div>
-      </div>
+      <?php
+          get_template_part('content-parts/components/info-cover');
+        ?>
       <div class="main_page">
         <div class="page_interna">
           <div class="container full">
