@@ -325,3 +325,12 @@
     bottom: rem(90);
   }
 }
+
+.footer__numbers {
+  margin-top: rem(15);
+  color: var(--color-white);
+  font-weight: var(--font-medium);
+  a {
+    margin-bottom: rem(10);
+  }
+}

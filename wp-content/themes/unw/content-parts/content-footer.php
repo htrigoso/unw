@@ -90,6 +90,18 @@ $libro_reclamaciones_html = ob_get_clean();
           ]);
           ?>
           <div class="footer__short-divider"></div>
+          <div class="footer__numbers">
+            <div class="footer__phone_number">
+              Central Telefónica: <a href="tel:01 706-5555">01 706-5555</a>
+            </div>
+            <div class="footer__phone_number">
+              Pregrado - Postulantes: <a href="tel:0 800 26212">0 800-26212</a>
+            </div>
+            <div class="footer__phone_number">
+              Posgrado Postulantes: <a href="tel:01 706-5555">01 706-5555 (Opción 2-2-1)</a>
+            </div>
+          </div>
+
           <div class="footer__book--mobile">
             <?= $libro_reclamaciones_html ?>
           </div>
