@@ -308,19 +308,7 @@ function uw_output_lang_switcher() {
     echo '</nav>';
 }
 
-add_action('wp_head', function() {
-  if ( !is_singular() ) return;
 
-  $urls = uw_get_lang_urls(); // devuelve ['es' => ..., 'en' => ..., 'current' => 'es'|'en']
-  if ( empty($urls['es']) || empty($urls['en']) ) return;
-
-  // Español (principal)
-  echo '<link rel="alternate" hreflang="es" href="' . esc_url($urls['es']) . '">' . "\n";
-  // Inglés
-  echo '<link rel="alternate" hreflang="en" href="' . esc_url($urls['en']) . '">' . "\n";
-  // Versión por defecto (tu canon es ES)
-  echo '<link rel="alternate" hreflang="x-default" href="' . esc_url($urls['es']) . '">' . "\n";
-}, 5);
 
 
 /**

@@ -1,5 +1,7 @@
 <?php
 $accordion = $args['accordion'] ?? [];
+$class_faq = $args['class_faq'] ?? '';
+
 if ($accordion): ?>
 <?php foreach ($accordion as $i => $item):
     $data_id = 'accordion-' . md5($item['accordion_title'] . $i . uniqid('', true));
@@ -8,7 +10,7 @@ if ($accordion): ?>
   <div data-w-id="<?php echo esc_attr($data_id); ?>" class="trigger_acordeon">
     <a href="#" class="linktransparencia w-inline-block">
       <img src="images/icon_link.svg" alt="" class="icon_link">
-      <h4 class="h4_admin">
+      <h4 class="<?= esc_attr($class_faq) ? $class_faq : 'h4_admin' ?>">
         <?php echo ($i + 1) . '. ' . esc_html($item['accordion_title']); ?>
         <br>
       </h4>
