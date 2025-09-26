@@ -7,6 +7,7 @@ $parent_id = wp_get_post_parent_id( $post->ID );
 // Obtener título y enlace del padre (si existe)
 $parent_title = $parent_id ? get_the_title( $parent_id ) : '';
 $parent_url   = $parent_id ? get_permalink( $parent_id ) : '';
+$title_extra = $args['title_extra'] ?? '';
 ?>
 
 <div class="cover_img_page center">
@@ -19,11 +20,13 @@ $parent_url   = $parent_id ? get_permalink( $parent_id ) : '';
   <div id="presentacion_vf" class="info_cover_page center">
     <div id="presentacion" class="container">
 
-      <?php if ( $parent_title ) : ?>
-      <h2 class="categoria_page serv_uni"><?= esc_html( $parent_title ); ?></h2>
-      <?php endif; ?>
+      <?php
+         $categoria_title = $title_extra ? $title_extra : $parent_title;
+        ?>
 
+      <h2 class="categoria_page serv_uni"><?= esc_html( $categoria_title ); ?></h2>
       <h2 class="h1_carreras"><?= esc_html( get_the_title() ); ?></h2>
+
     </div>
   </div>
 
