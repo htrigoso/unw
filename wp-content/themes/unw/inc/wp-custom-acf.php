@@ -43,5 +43,20 @@ add_action('acf/init', function() {
         'mode'  => false,
       ]
     ]);
+
+    // Bloque Sidebar
+    acf_register_block_type([
+      'name'            => 'contact',
+      'title'           => __('Contacto'),
+      'description'     => __('Bloque de Contacto personalizado con ACF'),
+      'render_template' => 'template-parts/components/contact.php',
+      'category'        => 'layout',
+      'icon'            => 'columns',
+      'keywords'        => ['contact', 'form', 'information'],
+      'supports'        => [
+        'align' => false,
+        'mode'  => false,
+      ]
+    ]);
   }
 });
