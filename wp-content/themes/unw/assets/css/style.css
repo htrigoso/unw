@@ -10284,6 +10284,20 @@ li {
   -ms-grid-rows: auto;
   grid-template-rows: auto;
 }
+.centro_coordinadores-new {
+  ul {
+      display: -ms-grid;
+  display: grid;
+  margin-bottom: 24px;
+  grid-auto-columns: 1fr;
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  -ms-grid-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: auto;
+  grid-template-rows: auto;
+  }
+}
 
 .coordinador_bio {
   color: rgba(51, 51, 51, 0.6);
@@ -20994,4 +21008,11 @@ img.emoji {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+.page-template-template-centro-de-terapia-fisica-y-rehabilitacion {
+  .col-item.title{
+   p {
+     margin-bottom: 0 !important;
+   }
+  }
 }
