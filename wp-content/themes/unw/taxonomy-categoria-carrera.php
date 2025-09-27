@@ -9,7 +9,7 @@
   $current_faculty_id = $term->term_id;
   render_html_all_careers([
       'current_faculty_id' => $current_faculty_id,
-      'title_global'       => 'Carreras Presenciales',
+      'title_global'       => 'Carreras',
   ]);
   ?>
 </main>

@@ -46,9 +46,9 @@ $teaching_staff = $args['teaching_staff'] ?? null;
                   <div class="teacher-card__role"><?php echo esc_html($role); ?></div>
 
 
-                  <div class="teacher-card__details">
+                  <div class="teacher-card__details" data-content="paragraph">
                     <?php
-                    echo $bio;
+                    echo wp_kses_post($bio);
                   ?>
                   </div>
 

@@ -12,7 +12,7 @@
   <?php
   render_html_all_careers([
       'current_faculty_id' => 0,
-      'title_global'       => 'Carreras Presenciales',
+      'title_global'       => 'Carreras',
       'post_type'          => 'carreras',
       'taxonomy'           => 'categoria-carrera',
   ]);

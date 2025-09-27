@@ -17,7 +17,7 @@ $event = get_field('event_content');
         <?php endif; ?>
 
         <?php if (!empty($event['content'])) : ?>
-        <div class="event-detail__description">
+        <div class="event-detail__description" data-content="paragraph">
           <?= wp_kses_post(wpautop($event['content'])); ?>
         </div>
         <?php endif; ?>

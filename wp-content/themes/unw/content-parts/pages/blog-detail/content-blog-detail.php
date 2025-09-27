@@ -65,7 +65,7 @@ endif;
       <?php get_template_part(BLOG_DETAIL_CONTENT_PATH, 'entry-meta'); ?>
 
       <div class="x-container blog-detail__content">
-        <div class="blog-detail__text">
+        <div class="blog-detail__text" data-content="paragraph">
           <?php
           $contenido = get_field('content');
           if ($contenido) {
