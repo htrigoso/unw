@@ -19,6 +19,7 @@
 <link href="<?=THEME_PATH; ?>/assets/fonts/FoundersGrotesk-LightItalic.woff2" rel="preload" as="font" type="font/woff2"
   crossorigin>
 
+
 <style>
 @font-face {
   font-family: "Founders Grotesk";

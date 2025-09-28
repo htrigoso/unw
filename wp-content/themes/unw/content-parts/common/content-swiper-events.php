@@ -63,12 +63,13 @@ if (!function_exists('unw_get_event_data')) {
         <?php
           $link = $acf_data['link'] ?? null;
           if ($link):
+
           ?>
         <div class="swiper-events__see-more-btn">
           <?php
               get_template_part(COMMON_CONTENT_PATH, 'see-more-btn', array(
-                'text' => $acf_data['see_more_text'],
-                'href' => $acf_data['see_more_url'],
+                'text' => $link['title'],
+                'href' => $link['url'],
               ));
               ?>
         </div>

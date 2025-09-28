@@ -30,14 +30,14 @@ function uw_preload_responsive_images( array $image_sets = [], bool $echo = true
 
 		if ($img_mobile) {
 			$output .= sprintf(
-				'<link rel="preload" as="image" href="%s" imagesizes="100vw" fetchpriority="high">' . "\n",
+				'<link rel="preload" as="image" href="%s" imagesizes="100vw" fetchpriority="high" type="image/webp">' . "\n",
 				esc_url($img_mobile)
 			);
 		}
 
 		if ( $img_desktop ) {
 			$output .= sprintf(
-				'<link rel="preload" as="image" href="%s" imagesizes="100vw" media="(min-width: 768px)">' . "\n",
+				'<link rel="preload" as="image" href="%s" imagesizes="100vw" media="(min-width: 768px)" type="image/webp">' . "\n",
 				esc_url($img_desktop)
 			);
 		}

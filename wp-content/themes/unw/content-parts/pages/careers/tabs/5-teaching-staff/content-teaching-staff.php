@@ -21,7 +21,7 @@ $teaching_staff = $args['teaching_staff'] ?? null;
     <div class="teaching-staff__content">
       <div class="staff-swiper post-swiper switch-pagination-navigation" data-width="compact">
         <div class="swiper-container">
-          <ul class="swiper-wrapper">
+          <div class="swiper-wrapper">
             <?php foreach ($teaching_staff['staff'] as $teacher): ?>
             <?php
                 $id = $teacher->ID;
@@ -31,7 +31,7 @@ $teaching_staff = $args['teaching_staff'] ?? null;
                 $role = $profile['academic_title'] ?? '';
                 $bio = $profile['academic_profile'] ?? null;
                 ?>
-            <li class="swiper-slide">
+            <div class="swiper-slide">
               <article class="teacher-card">
                 <div class="teacher-card__header">
                   <?php
@@ -46,17 +46,17 @@ $teaching_staff = $args['teaching_staff'] ?? null;
                   <div class="teacher-card__role"><?php echo esc_html($role); ?></div>
 
 
-                  <div class="teacher-card__details">
+                  <div class="teacher-card__details" data-content="paragraph">
                     <?php
-                    echo $bio;
+                    echo wp_kses_post($bio);
                   ?>
                   </div>
 
                 </div>
               </article>
-            </li>
+            </div>
             <?php endforeach; ?>
-          </ul>
+          </div>
           <div class="swiper-navigation">
             <div class="swiper-primary-button-prev"></div>
             <div class="swiper-primary-button-next"></div>

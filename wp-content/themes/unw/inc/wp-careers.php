@@ -137,7 +137,7 @@ function render_only_careers($args = []) {
     // Valores por defecto
     $defaults = [
         'mode'         => 'presencial',
-        'title_global' => 'Carreras Uwiener',
+        'title_global' => 'Carreras',
         'base_url'     => home_url('/carreras-uwiener/'),
         'data_form'    => [
             'desktop' => 'careers-desktop',

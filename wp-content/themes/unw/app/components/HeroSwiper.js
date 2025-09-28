@@ -7,7 +7,10 @@ const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
     centeredSlides: false,
     spaceBetween: 0,
     speed: 500,
-    lazy: false,
+    lazy: {
+      loadPrevNext: true,
+      loadOnTransitionStart: true
+    },
     autoplay: {
       delay: 5000,
       disableOnInteraction: false

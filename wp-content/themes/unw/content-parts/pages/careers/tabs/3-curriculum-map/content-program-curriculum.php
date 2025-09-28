@@ -21,11 +21,11 @@ if(wp_is_nonempty_array($lists)) {
     <div class="program-curriculum__content" aria-label="Listado de cursos por ciclo">
       <div class="program-swiper post-swiper switch-pagination-navigation" data-width="compact">
         <div class="swiper-container">
-          <ul class="swiper-wrapper program-curriculum__cycles-list">
+          <div class="swiper-wrapper program-curriculum__cycles-list">
             <?php
 
             foreach ($lists as $list): ?>
-            <li class="swiper-slide">
+            <div class="swiper-slide">
               <article class="program-curriculum__cycles-item">
                 <div class="cycle-card">
                   <div class="cycle-card__wrapper">
@@ -65,9 +65,9 @@ if(wp_is_nonempty_array($lists)) {
                   </div>
                 </div>
               </article>
-            </li>
+            </div>
             <?php endforeach; ?>
-          </ul>
+          </div>
           <div class="swiper-navigation">
             <div class="swiper-primary-button-prev"></div>
             <div class="swiper-primary-button-next"></div>

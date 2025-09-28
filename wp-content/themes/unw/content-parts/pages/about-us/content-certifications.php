@@ -14,12 +14,13 @@ $certifications = get_field('certifications');
     </h3>
     <div class="certifications-swiper post-swiper">
       <div class="swiper-container">
-        <ul class="swiper-wrapper certifications-swiper__list">
+        <div class="swiper-wrapper certifications-swiper__list">
           <?php foreach ($certifications['list'] as $group) : ?>
-          <li class="swiper-slide certifications-swiper__item">
-            <ul class="certifications-card">
+          <div class="swiper-slide certifications-swiper__item">
+
+            <div class="certifications-card">
               <?php foreach ($group as $item) : ?>
-              <li class="certifications-card__item">
+              <div class="certifications-card__item">
                 <div class="certifications-card__header">
                   <img src="<?= esc_url($item['icon']['url']); ?>" alt="<?= esc_attr($item['icon']['alt']); ?>"
                     aria-hidden="true" class="certifications-card__icon lazyload" />
@@ -27,12 +28,13 @@ $certifications = get_field('certifications');
                 <p class="certifications-card__desc">
                   <?= esc_html($item['description']); ?>
                 </p>
-              </li>
+              </div>
               <?php endforeach; ?>
-            </ul>
-          </li>
+            </div>
+
+          </div>
           <?php endforeach; ?>
-        </ul>
+        </div>
       </div>
     </div>
   </div>

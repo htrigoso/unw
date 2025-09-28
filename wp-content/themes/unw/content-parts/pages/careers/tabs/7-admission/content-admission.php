@@ -45,7 +45,7 @@ $admission_items = $admission_info['process'] ?? [];
     <div class="admission__content">
       <div class="admission-swiper post-swiper-desktop switch-pagination-navigation" data-width="compact">
         <div class="swiper-container">
-          <ul class="swiper-wrapper admission__list">
+          <div class="swiper-wrapper admission__list">
             <?php
               global $post;
               $original_post = $post;
@@ -63,7 +63,7 @@ $admission_items = $admission_info['process'] ?? [];
                 $button_url = $link['url'] ?? '#';
                 $button_target = $link['target'] ?? '_self';
               ?>
-            <li class="swiper-slide admission__item">
+            <div class="swiper-slide admission__item">
               <article class="admission-card">
                 <div class="admission-card__content">
                   <div class="admission-card__header">
@@ -87,13 +87,13 @@ $admission_items = $admission_info['process'] ?? [];
                   <?php endif; ?>
                 </div>
               </article>
-            </li>
+            </div>
             <?php endforeach;
 
               wp_reset_postdata();
               $post = $original_post;
               ?>
-          </ul>
+          </div>
           <div class="swiper-navigation">
             <div class="swiper-primary-button-prev"></div>
             <div class="swiper-primary-button-next"></div>

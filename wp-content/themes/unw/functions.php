@@ -30,3 +30,5 @@ require_once dirname(__FILE__) . '/inc/wp-seo.php';
 require_once dirname(__FILE__) . '/inc/wp-migratation.php';
 
 require_once dirname(__FILE__) . '/inc/wp-careers.php';
+
+require_once dirname(__FILE__) . '/inc/functions/tpl-noticias.php';

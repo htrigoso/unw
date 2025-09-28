@@ -12,7 +12,7 @@ function register_taxonomy_categoria_novedad() {
     'show_ui'           => true,
     'show_admin_column' => true,
     'query_var'         => true,
-    'rewrite'           => ['slug' => 'categoria-noticia'], // 🔹 URL será /categoria-noticia/
+    'rewrite'           => ['slug' => 'noticias'], // 🔹 URL será /categoria-noticia/
   ];
 
   register_taxonomy('categoria_novedad', ['novedades'], $args);

@@ -10,7 +10,7 @@ $career_field = $args['career_field'] ?? null;
   <?php endif; ?>
 
   <?php if (!empty($career_field['description'])): ?>
-  <div class="career-field__description">
+  <div class="career-field__description" data-content="paragraph">
     <?php echo wp_kses_post(wpautop($career_field['description'])); ?>
   </div>
   <?php endif; ?>

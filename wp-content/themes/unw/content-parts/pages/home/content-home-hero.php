@@ -2,21 +2,38 @@
 $hero = get_field('hero');
 $slides = $hero['list'] ?? [];
 if (!empty($slides)):
+  $first_slide = $slides[0];
+  $first_images = $first_slide['images'] ?? null;
+  $img_desktop_url = $first_images['desktop']['url'] ?? '';
+  $img_desktop_alt = $first_images['desktop']['alt'] ?? '';
+  $img_mobile_url = $first_images['mobile']['url'] ?? '';
+  $img_mobile_alt = $first_images['mobile']['alt'] ?? $img_desktop_alt;
 ?>
+
+
 
 <section class="hero hero-swiper">
   <div class="swiper-container is-draggable">
     <div class="swiper-wrapper swiper-hero__wrapper">
 
-      <?php foreach ($slides as $slide):
+      <?php
+      $slide_index = 0;
+      foreach ($slides as $slide):
           $images = $slide['images'] ?? null;
           $img_desktop_url = $images['desktop']['url'] ?? '';
           $img_desktop_alt = $images['desktop']['alt'] ?? '';
           $img_mobile_url = $images['mobile']['url'] ?? '';
           $img_mobile_alt = $images['mobile']['alt'] ?? $img_desktop_alt;
 
+          $img_attrs = 'decoding="async"';
+          if ($slide_index === 0) {
+            $img_attrs .= ' fetchpriority="high" loading="eager"';
+          } else {
+            $img_attrs .= ' loading="lazy"';
+          }
         ?>
       <div class="swiper-slide swiper-hero__slide">
+        <div class="swiper-lazy-preloader"></div>
         <?php if (!empty($slide['type'])): ?>
         <?php
               $link_simple = $slide['link'] ?? null;
@@ -26,7 +43,7 @@ if (!empty($slides)):
               $final_href = esc_url($link_simple_url);
               $data_attr = '';
               if ($link_simple_url === '#modal-informacion') {
-                $final_href = 'javascript:void(0);';
+                $final_href = '#modal-more-info';
                 $data_attr = 'data-modal-target="modal-more-info"';
               }
               ?>
@@ -37,8 +54,7 @@ if (!empty($slides)):
             <source srcset="<?php echo esc_url($img_desktop_url); ?>" width="1920" height="754"
               media="(min-width: 768px)" />
             <img alt="<?php echo esc_attr($img_mobile_alt); ?>" src="<?php echo esc_url($img_mobile_url); ?>"
-              class="swiper-hero__picture--img" width="768" height="500" fetchpriority="high" decoding="async"
-              loading="eager" />
+              class="swiper-hero__picture--img swiper-lazy" width="768" height="500" <?php echo $img_attrs; ?> />
           </picture>
         </a>
         <?php else:
@@ -53,8 +69,7 @@ if (!empty($slides)):
           <source srcset="<?php echo esc_url($img_desktop_url); ?>" width="1920" height="754"
             media="(min-width: 768px)" />
           <img alt="<?php echo esc_attr($img_mobile_alt); ?>" src="<?php echo esc_url($img_mobile_url); ?>"
-            class="swiper-hero__picture--img" width="768" height="500" fetchpriority="high" decoding="async"
-            loading="eager" />
+            class="swiper-hero__picture--img" width="768" height="500" <?php echo $img_attrs; ?> />
         </picture>
 
         <div class="hero__wrapper">
@@ -82,7 +97,7 @@ if (!empty($slides)):
                           $href_one = esc_url($link_one_url);
                           $data_attr_one = '';
                           if ($link_one_url === '#modal-informacion') {
-                            $href_one = 'javascript:void(0);';
+                            $href_one = '#modal-more-info';
                             $data_attr_one = 'data-modal-target="modal-more-info"';
                           }
                         ?>
@@ -97,7 +112,7 @@ if (!empty($slides)):
                           $href_two = esc_url($link_two_url);
                           $data_attr_two = '';
                           if ($link_two_url === '#modal-informacion') {
-                            $href_two = 'javascript:void(0);';
+                            $href_two = '#modal-more-info';
                             $data_attr_two = 'data-modal-target="modal-more-info"';
                           }
                         ?>
@@ -113,7 +128,9 @@ if (!empty($slides)):
         </div>
         <?php endif; ?>
       </div>
-      <?php endforeach; ?>
+      <?php
+      $slide_index++;
+      endforeach; ?>
 
     </div>
     <?php if(count($slides)>1) : ?>
