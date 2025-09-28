@@ -282,13 +282,13 @@ a.btn.icon.w-inline-block {
 }
 
 /** Enlaces Web Color Wiener en Campos Editor Wordpress en Servicios Universitarios - Hernán Chira **/
-.section_tab a,
+.content_seccion_tab a,
 .content_section .contenido-becas a,
 .content_seccion_tab .contenido-becas a {
   color: #00b7bd;
 }
 
-.section_tab a:hover,
+.content_seccion_tab a:hover,
 .content_section .contenido-becas a:hover,
 .content_seccion_tab .contenido-becas a:hover {
   color: #068284;
