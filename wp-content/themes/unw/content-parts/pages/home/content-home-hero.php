@@ -16,15 +16,24 @@ if (!empty($slides)):
   <div class="swiper-container is-draggable">
     <div class="swiper-wrapper swiper-hero__wrapper">
 
-      <?php foreach ($slides as $slide):
+      <?php
+      $slide_index = 0;
+      foreach ($slides as $slide):
           $images = $slide['images'] ?? null;
           $img_desktop_url = $images['desktop']['url'] ?? '';
           $img_desktop_alt = $images['desktop']['alt'] ?? '';
           $img_mobile_url = $images['mobile']['url'] ?? '';
           $img_mobile_alt = $images['mobile']['alt'] ?? $img_desktop_alt;
 
+          $img_attrs = 'decoding="async"';
+          if ($slide_index === 0) {
+            $img_attrs .= ' fetchpriority="high" loading="eager"';
+          } else {
+            $img_attrs .= ' loading="lazy"';
+          }
         ?>
       <div class="swiper-slide swiper-hero__slide">
+        <div class="swiper-lazy-preloader"></div>
         <?php if (!empty($slide['type'])): ?>
         <?php
               $link_simple = $slide['link'] ?? null;
@@ -45,8 +54,7 @@ if (!empty($slides)):
             <source srcset="<?php echo esc_url($img_desktop_url); ?>" width="1920" height="754"
               media="(min-width: 768px)" />
             <img alt="<?php echo esc_attr($img_mobile_alt); ?>" src="<?php echo esc_url($img_mobile_url); ?>"
-              class="swiper-hero__picture--img" width="768" height="500" fetchpriority="high" decoding="async"
-              loading="eager" />
+              class="swiper-hero__picture--img swiper-lazy" width="768" height="500" <?php echo $img_attrs; ?> />
           </picture>
         </a>
         <?php else:
@@ -61,8 +69,7 @@ if (!empty($slides)):
           <source srcset="<?php echo esc_url($img_desktop_url); ?>" width="1920" height="754"
             media="(min-width: 768px)" />
           <img alt="<?php echo esc_attr($img_mobile_alt); ?>" src="<?php echo esc_url($img_mobile_url); ?>"
-            class="swiper-hero__picture--img" width="768" height="500" fetchpriority="high" decoding="async"
-            loading="eager" />
+            class="swiper-hero__picture--img" width="768" height="500" <?php echo $img_attrs; ?> />
         </picture>
 
         <div class="hero__wrapper">
@@ -121,7 +128,9 @@ if (!empty($slides)):
         </div>
         <?php endif; ?>
       </div>
-      <?php endforeach; ?>
+      <?php
+      $slide_index++;
+      endforeach; ?>
 
     </div>
     <?php if(count($slides)>1) : ?>

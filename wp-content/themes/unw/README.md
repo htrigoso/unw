@@ -42,3 +42,16 @@ f.parentNode.insertBefore(j, f);
   </noscript> -->
 
 V1
+
+<!-- const heroEl = document.querySelector('.hero-swiper')
+if (heroEl) {
+  const observer = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      import('./HeroSwiper').then(({ default: HeroSwiper }) => {
+        HeroSwiper()
+      });
+      observer.disconnect();
+    }
+  });
+  observer.observe(heroEl);
+} -->
