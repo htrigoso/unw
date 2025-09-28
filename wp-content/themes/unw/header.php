@@ -23,7 +23,8 @@
   <!-- Css vars-->
   <style type="text/css">
   :root {
-    --font: "NHaas Grotesk DS Pro", "Founders Grotesk", sans-serif;
+    --font: "Founders Grotesk", sans-serif;
+    --font-old: "NHaas Grotesk DS Pro", sans-serif;
     --font-inter: "Inter", sans-serif;
     --font-size: 16px;
     --font-thin: 100;
