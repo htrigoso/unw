@@ -30,9 +30,10 @@ $destacadas = new WP_Query($args);
               $slide = [
                 'image'   => uw_get_first_slider_image(get_the_ID() ),
                 'title'   => get_the_title(),
-                'date'    => 'dsd',
+                'date'    => get_the_date('j') . ' de ' . get_the_date('F') . ' del ' . get_the_date('Y'),
                 'content' => get_the_excerpt(),
                 'href'    => get_permalink(),
+                'date_before' => true,
               ];
             ?>
         <div class="swiper-slide featured-news__item">
