@@ -16216,7 +16216,6 @@ li {
   }
 
   .contact_box {
-    width: 100%;
     margin-right: 20px;
   }
 
@@ -16229,6 +16228,10 @@ li {
     width: 100%;
     height: auto;
     margin-right: 20px;
+  }
+
+  .contact_box.servicioswiener {
+    margin: 0;
   }
 
   .contact_box.servicioswiener.nomargintop {
