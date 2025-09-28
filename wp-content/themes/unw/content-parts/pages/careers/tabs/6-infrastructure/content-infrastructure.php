@@ -23,7 +23,7 @@ $infra_items = $infrastructure['list'] ?? [];
     <div class="infrastructure__content">
       <div class="infra-swiper post-swiper-desktop switch-pagination-navigation" data-width="compact">
         <div class="swiper-container">
-          <ul class="swiper-wrapper infrastructure__list">
+          <div class="swiper-wrapper infrastructure__list">
             <?php
               global $post;
               $original_post = $post;
@@ -38,7 +38,7 @@ $infra_items = $infrastructure['list'] ?? [];
                 $photo = get_the_post_thumbnail_url(null, 'full') ?: get_template_directory_uri() . '/upload/careers/infra/default.jpg';
                 $excerpt = get_the_excerpt();
               ?>
-            <li class="swiper-slide infrastructure__item">
+            <div class="swiper-slide infrastructure__item">
               <?php
                   get_template_part(COMMON_CONTENT_PATH, 'infra-card', [
                     'title' => $title,
@@ -46,7 +46,7 @@ $infra_items = $infrastructure['list'] ?? [];
                     'photo' => $photo,
                   ]);
                   ?>
-            </li>
+            </div>
             <?php endforeach;
 
               wp_reset_postdata();

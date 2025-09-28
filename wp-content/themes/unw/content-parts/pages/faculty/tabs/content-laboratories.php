@@ -14,7 +14,7 @@ $card_items = $infrastructure['list'];
 
   <div class="laboratories-swiper post-swiper-desktop switch-pagination-navigation" data-width="compact">
     <div class="swiper-container">
-      <ul class="swiper-wrapper laboratories__list">
+      <div class="swiper-wrapper laboratories__list">
         <?php
         if ($card_items) :
           foreach ($card_items as $i => $item) :
@@ -27,7 +27,7 @@ $card_items = $infrastructure['list'];
 
             $modal_id = 'laboratories-modal-' . $i
         ?>
-        <li class="swiper-slide laboratories__item" data-modal-target="<?= $modal_id ?>">
+        <div class="swiper-slide laboratories__item" data-modal-target="<?= $modal_id ?>">
           <?php
               get_template_part(COMMON_CONTENT_PATH, 'infra-card', [
                 'title' => esc_html($title),
@@ -35,7 +35,7 @@ $card_items = $infrastructure['list'];
                 'photo' => esc_url($photo),
               ]);
               ?>
-        </li>
+        </div>
 
         <?php
             ob_start();
@@ -45,9 +45,9 @@ $card_items = $infrastructure['list'];
             <div class="swiper-container">
 
               <?php if (!empty($slides) && is_array($slides)) : ?>
-              <ul class="swiper-wrapper laboratories-modal__list">
+              <div class="swiper-wrapper laboratories-modal__list">
                 <?php foreach ($slides as $slide) : ?>
-                <li class="swiper-slide">
+                <div class="swiper-slide">
                   <article class="laboratories-modal__card">
                     <?php if (!empty($slide['image']['url'])) : ?>
                     <img src="<?php echo esc_url($slide['image']['url']); ?>"
@@ -61,9 +61,9 @@ $card_items = $infrastructure['list'];
                     </p>
                     <?php endif; ?>
                   </article>
-                </li>
+                </div>
                 <?php endforeach; ?>
-              </ul>
+              </div>
 
               <div class="swiper-navigation" data-size="responsive">
                 <div class="swiper-primary-button-prev" data-size="responsive"></div>
@@ -93,7 +93,7 @@ $card_items = $infrastructure['list'];
           endforeach;
         endif;
         ?>
-      </ul>
+      </div>
     </div>
     <div class="swiper-navigation">
       <div class="swiper-primary-button-prev"></div>

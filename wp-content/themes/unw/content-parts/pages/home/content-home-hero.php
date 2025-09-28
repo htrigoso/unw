@@ -43,7 +43,7 @@ if (!empty($slides)):
               $final_href = esc_url($link_simple_url);
               $data_attr = '';
               if ($link_simple_url === '#modal-informacion') {
-                $final_href = 'javascript:void(0);';
+                $final_href = '#modal-more-info';
                 $data_attr = 'data-modal-target="modal-more-info"';
               }
               ?>
@@ -97,7 +97,7 @@ if (!empty($slides)):
                           $href_one = esc_url($link_one_url);
                           $data_attr_one = '';
                           if ($link_one_url === '#modal-informacion') {
-                            $href_one = 'javascript:void(0);';
+                            $href_one = '#modal-more-info';
                             $data_attr_one = 'data-modal-target="modal-more-info"';
                           }
                         ?>
@@ -112,7 +112,7 @@ if (!empty($slides)):
                           $href_two = esc_url($link_two_url);
                           $data_attr_two = '';
                           if ($link_two_url === '#modal-informacion') {
-                            $href_two = 'javascript:void(0);';
+                            $href_two = '#modal-more-info';
                             $data_attr_two = 'data-modal-target="modal-more-info"';
                           }
                         ?>

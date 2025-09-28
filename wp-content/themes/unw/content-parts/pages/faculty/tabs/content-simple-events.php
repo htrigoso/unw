@@ -12,7 +12,7 @@ $link = $acf_data['link'] ?? null;
 
   <div class="post-swiper simple-events-swiper" data-width="compact">
     <div class="swiper-container">
-      <ul class="swiper-wrapper">
+      <div class="swiper-wrapper">
         <?php foreach ($featured_events as $post): ?>
         <?php
               $info = get_field('event_info', $post->ID);
@@ -28,7 +28,7 @@ $link = $acf_data['link'] ?? null;
               $image_url = get_the_post_thumbnail_url($post->ID, 'full') ?: get_template_directory_uri() . '/upload/default-event.jpg';
               $image_alt = $title;
             ?>
-        <li class="swiper-slide simple-events__slide">
+        <div class="swiper-slide simple-events__slide">
           <?php
               get_template_part(COMMON_CONTENT_PATH, 'event-card', [
                 'title' => $title,
@@ -41,9 +41,9 @@ $link = $acf_data['link'] ?? null;
                 'status'=> $info['status'] ?? false,
               ]);
               ?>
-        </li>
+        </div>
         <?php endforeach; ?>
-      </ul>
+      </div>
     </div>
   </div>
 

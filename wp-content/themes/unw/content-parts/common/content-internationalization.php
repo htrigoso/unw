@@ -59,18 +59,18 @@ $paises           = $inter['paises']; // array de WP_Post
         <!-- Lista de países -->
         <div class="international-agreements">
           <div class="swiper-container internationalization-swiper">
-            <ul class="swiper-wrapper">
+            <div class="swiper-wrapper">
               <?php foreach ($paises as $pais):
                 $country = [
                   'name' => $pais->post_title,
                   'file' => get_the_post_thumbnail_url($pais->ID, 'full'),
                 ];
               ?>
-                <li class="swiper-slide internationalization__country-item">
-                  <?php get_template_part(COMMON_CONTENT_PATH, 'country-card', ['country' => $country]); ?>
-                </li>
+              <div class="swiper-slide internationalization__country-item">
+                <?php get_template_part(COMMON_CONTENT_PATH, 'country-card', ['country' => $country]); ?>
+              </div>
               <?php endforeach; ?>
-            </ul>
+            </div>
             <div class="swiper-navigation">
               <div class="swiper-primary-button-prev" data-color="asu"></div>
               <div class="swiper-primary-button-next" data-color="asu"></div>

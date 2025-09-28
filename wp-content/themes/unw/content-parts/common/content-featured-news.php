@@ -23,7 +23,7 @@ $destacadas = new WP_Query($args);
 
   <div class="featured-news-swiper post-swiper" data-width="compact">
     <div class="swiper-container">
-      <ul class="swiper-wrapper featured-news__list">
+      <div class="swiper-wrapper featured-news__list">
         <?php if ($destacadas->have_posts()) : ?>
         <?php while ($destacadas->have_posts()) : $destacadas->the_post(); ?>
         <?php
@@ -34,16 +34,16 @@ $destacadas = new WP_Query($args);
                 'href'    => get_permalink(),
               ];
             ?>
-        <li class="swiper-slide featured-news__item">
+        <div class="swiper-slide featured-news__item">
           <?php get_template_part(COMMON_CONTENT_PATH, 'entry-card', $slide); ?>
-        </li>
+        </div>
         <?php endwhile; wp_reset_postdata(); ?>
         <?php else : ?>
-        <li class="swiper-slide featured-news__item">
+        <div class="swiper-slide featured-news__item">
           <p>No hay noticias destacadas por ahora.</p>
-        </li>
+        </div>
         <?php endif; ?>
-      </ul>
+      </div>
 
       <div class="featured-news__swiper-navigation">
         <div class="swiper-navigation">

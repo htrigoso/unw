@@ -9,7 +9,7 @@ $titulo = $why_wiener['titulo'] ?? '¿Por qué U. Wiener?';
 <section class="why-wiener">
   <div class="x-container x-container--pad-213">
     <div class="why-wiener__wrapper">
-      <h2 class="why-wiener__title" data-animation="paragraph"><?php echo esc_html($titulo); ?></h2>
+      <h2 class="why-wiener__title"><?php echo esc_html($titulo); ?></h2>
       <div class="why-wiener__items">
         <?php foreach ($options as $item):
 
@@ -29,10 +29,10 @@ $titulo = $why_wiener['titulo'] ?? '¿Por qué U. Wiener?';
             class="why-wiener__icon">
           <?php endif; ?>
           <?php if ($title): ?>
-          <h3 class="why-wiener__subtitle" data-animation="paragraph"><?php echo esc_html($title); ?></h3>
+          <h3 class="why-wiener__subtitle"><?php echo esc_html($title); ?></h3>
           <?php endif; ?>
           <?php if ($desc): ?>
-          <div class="why-wiener__description" data-animation="paragraph">
+          <div class="why-wiener__description">
             <p><?php echo esc_html($desc); ?></p>
           </div>
           <?php endif; ?>

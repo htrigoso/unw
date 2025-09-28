@@ -9,13 +9,13 @@ if ( $authorities && is_array($authorities) ) :
     </h3>
     <div class="authorities-swiper post-swiper" data-width="compact">
       <div class="swiper-container">
-        <ul class="swiper-wrapper authorities-swiper__list">
+        <div class="swiper-wrapper authorities-swiper__list">
           <?php foreach ($authorities['list'] as $card) : ?>
-          <li class="swiper-slide authorities-swiper__item">
+          <div class="swiper-slide authorities-swiper__item">
             <article class="authorities-card">
               <div class="authorities-card__header">
-                <img src="<?=placeholder() ?>" data-src="<?= esc_url($card['image']['url']); ?>" alt="<?= esc_attr($card['image']['alt']); ?>"
-                  class="authorities-card__img lazyload" />
+                <img src="<?=placeholder() ?>" data-src="<?= esc_url($card['image']['url']); ?>"
+                  alt="<?= esc_attr($card['image']['alt']); ?>" class="authorities-card__img lazyload" />
               </div>
               <div class="authorities-card__body">
                 <h4 class="authorities-card__body--name"><?= esc_html($card['name']); ?></h4>
@@ -23,9 +23,9 @@ if ( $authorities && is_array($authorities) ) :
                 <p class="authorities-card__body--desc"><?= esc_html($card['description']); ?></p>
               </div>
             </article>
-          </li>
+          </div>
           <?php endforeach; ?>
-        </ul>
+        </div>
         <div class="authorities-swiper__navigation">
           <div class="swiper-navigation">
             <div class="swiper-primary-button-prev"></div>

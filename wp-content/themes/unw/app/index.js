@@ -12,6 +12,7 @@ class App {
     this.hideBackdrop()
 
     this.handleOnSubmitForm()
+    this.blockedClickButtonModal()
   }
 
   createNavbar() {
@@ -179,6 +180,14 @@ class App {
             console.warn('⚠️ dataLayer no está definido')
           }
         })
+      })
+    })
+  }
+
+  blockedClickButtonModal() {
+    document.querySelectorAll('[data-modal-target]').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault() // evita scroll
       })
     })
   }

@@ -8,7 +8,7 @@
 <section class="impact-results">
   <div class="x-container x-container--pad-213">
     <div class="impact-results__wrapper">
-      <h2 class="impact-results__title" data-animation="paragraph"><?php echo esc_html($title); ?></h2>
+      <h2 class="impact-results__title"><?php echo esc_html($title); ?></h2>
       <div class="impact-results__items">
         <?php foreach ($options as $option):
           $subtitle = $option['title'] ?? '';
@@ -17,7 +17,7 @@
         ?>
         <article class="impact-results__item">
           <?php if (!empty($subtitle)): ?>
-          <h3 class="impact-results__subtitle" data-animation="paragraph"><?php echo esc_html($subtitle); ?></h3>
+          <h3 class="impact-results__subtitle"><?php echo esc_html($subtitle); ?></h3>
           <?php endif; ?>
         </article>
         <?php endforeach; ?>
