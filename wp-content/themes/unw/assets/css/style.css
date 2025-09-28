@@ -7390,6 +7390,7 @@ li {
   -ms-flex-align: center;
   align-items: center;
   text-align: left;
+  padding: 1.5625rem 2.75rem 1.5625rem 1.5625rem;
 }
 
 .h3nomargen {
@@ -7430,7 +7431,7 @@ li {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  padding: 12px;
+  padding: 10px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -7442,7 +7443,7 @@ li {
   border-bottom-left-radius: 8px;
   background-color: #068284;
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .item_user_contacto {
@@ -16215,7 +16216,6 @@ li {
   }
 
   .contact_box {
-    width: 100%;
     margin-right: 20px;
   }
 
@@ -16228,6 +16228,10 @@ li {
     width: 100%;
     height: auto;
     margin-right: 20px;
+  }
+
+  .contact_box.servicioswiener {
+    margin: 0;
   }
 
   .contact_box.servicioswiener.nomargintop {

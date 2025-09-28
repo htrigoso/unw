@@ -32,6 +32,10 @@ import PostSwiper from '../../components/PostSwiper'
       0: { slidesPerView: 'auto', spaceBetween: 32 },
       576: { slidesPerView: 'auto', spaceBetween: 32 },
       1024: { slidesPerView: 'auto', spaceBetween: 32 }
+    },
+    pagination: {
+      el: '.certifications-swiper .swiper-pagination',
+      type: 'fraction'
     }
   })
 })()

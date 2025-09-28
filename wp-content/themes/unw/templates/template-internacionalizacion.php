@@ -237,7 +237,7 @@
                     </div>
                     <div class="content_section">
                       <div class="w-layout-grid grid-3 center">
-                        <div class="item_inter outline padding20 flexhorizontal"><img
+                        <div class="item_inter outline padding20 flexhorizontal internacionalizacion-card"><img
                             src="<?= UPLOAD_MIGRATION_PATH . '/internacionalizacion/paso1.svg' ?>"
                             alt="" class="icon paddingright">
                           <p>Ser alumno regular de la UPNW en el período en el que se solicita la postulación y durante
@@ -246,7 +246,7 @@
                             <div>01</div>
                           </div>
                         </div>
-                        <div class="item_inter outline padding20 flexhorizontal"><img
+                        <div class="item_inter outline padding20 flexhorizontal internacionalizacion-card"><img
                             src="<?= UPLOAD_MIGRATION_PATH . '/internacionalizacion/paso2.svg' ?>"
                             alt="" class="icon paddingright">
                           <p>Haber culminado el IV ciclo. </p>
@@ -254,7 +254,7 @@
                             <div>02</div>
                           </div>
                         </div>
-                        <div class="item_inter outline padding20 flexhorizontal"><img
+                        <div class="item_inter outline padding20 flexhorizontal internacionalizacion-card"><img
                             src="<?= UPLOAD_MIGRATION_PATH . '/internacionalizacion/paso3.svg' ?>"
                             alt="" class="icon paddingright">
                           <p>Tener un promedio aprobado (mínimo 14) al momento de la postulación</p>
@@ -262,7 +262,7 @@
                             <div>03</div>
                           </div>
                         </div>
-                        <div class="item_inter outline padding20 flexhorizontal"><img
+                        <div class="item_inter outline padding20 flexhorizontal internacionalizacion-card"><img
                             src="<?= UPLOAD_MIGRATION_PATH . '/internacionalizacion/paso4.svg' ?>"
                             alt="" class="icon paddingright">
                           <p>No tener una asignatura desaprobada por tercera vez al momento de la postulación</p>
@@ -270,7 +270,7 @@
                             <div>04</div>
                           </div>
                         </div>
-                        <div class="item_inter outline padding20 flexhorizontal"><img
+                        <div class="item_inter outline padding20 flexhorizontal internacionalizacion-card"><img
                             src="<?= UPLOAD_MIGRATION_PATH . '/internacionalizacion/paso5.svg' ?>"
                             alt="" class="icon paddingright">
                           <p>No tener sanción disciplinaria, según lo dispuesto en el Reglamento de Conducta</p>
@@ -278,7 +278,7 @@
                             <div>05</div>
                           </div>
                         </div>
-                        <div class="item_inter outline padding20 flexhorizontal"><img
+                        <div class="item_inter outline padding20 flexhorizontal internacionalizacion-card"><img
                             src="<?= UPLOAD_MIGRATION_PATH . '/internacionalizacion/5.svg' ?>" alt=""
                             class="icon paddingright">
                           <p>Acreditar el nivel del idioma requerido por la universidad de destino (si aplica)</p>
@@ -286,7 +286,7 @@
                             <div>06</div>
                           </div>
                         </div>
-                        <div class="item_inter outline padding20 flexhorizontal"><img
+                        <div class="item_inter outline padding20 flexhorizontal internacionalizacion-card"><img
                             src="<?= UPLOAD_MIGRATION_PATH . '/internacionalizacion/paso7.svg' ?>"
                             alt="" class="icon paddingright">
                           <p>No mantener deudas pendientes con la UPNW al momento de la postulación</p>
@@ -294,7 +294,7 @@
                             <div>07</div>
                           </div>
                         </div>
-                        <div class="item_inter outline padding20 flexhorizontal"><img
+                        <div class="item_inter outline padding20 flexhorizontal internacionalizacion-card"><img
                             src="<?= UPLOAD_MIGRATION_PATH . '/internacionalizacion/paso8.svg' ?>"
                             alt="" class="icon paddingright">
                           <p>El alumno es responsable del trámite de visa y pasaporte.</p>
@@ -302,7 +302,7 @@
                             <div>08</div>
                           </div>
                         </div>
-                        <div class="item_inter outline padding20 flexhorizontal"><img
+                        <div class="item_inter outline padding20 flexhorizontal internacionalizacion-card"><img
                             src="<?= UPLOAD_MIGRATION_PATH . '/internacionalizacion/paso9.svg' ?>"
                             alt="" class="icon paddingright">
                           <p>El alumno es responsable de financiar la movilidad, pasajes aéreos, seguro internacional,
@@ -322,14 +322,14 @@
                     </div>
                     <div class="content_section">
                       <div class="w-layout-grid grid-3 center">
-                        <div class="item_inter outline padding20 flexhorizontal"><img src="" alt=""
+                        <div class="item_inter outline padding20 flexhorizontal internacionalizacion-card"><img src="" alt=""
                             class="icon paddingright">
                           <p>Elige la universidad y la modalidad de estudio (presencial, mixto o virtual)</p>
                           <div class="number_list">
                             <div>01</div>
                           </div>
                         </div>
-                        <div class="item_inter outline padding20 flexhorizontal"><img src="" alt=""
+                        <div class="item_inter outline padding20 flexhorizontal internacionalizacion-card"><img src="" alt=""
                             class="icon paddingright">
                           <p>Escoge los cursos a estudiar en base a la oferta académica de la universidad de destino
                           </p>
@@ -337,7 +337,7 @@
                             <div>02</div>
                           </div>
                         </div>
-                        <div class="item_inter outline padding20 flexhorizontal"><img src="" alt=""
+                        <div class="item_inter outline padding20 flexhorizontal internacionalizacion-card"><img src="" alt=""
                             class="icon paddingright">
                           <p>Deberás completar los documentos de la UPNW y aplicar según la modalidad que la universidad
                             de destino requiera</p>
@@ -345,14 +345,14 @@
                             <div>03</div>
                           </div>
                         </div>
-                        <div class="item_inter outline padding20 flexhorizontal"><img src="" alt=""
+                        <div class="item_inter outline padding20 flexhorizontal internacionalizacion-card"><img src="" alt=""
                             class="icon paddingright">
                           <p>Completar y firmar el Acuerdo Académico con la Dirección de tu carrera</p>
                           <div class="number_list">
                             <div>04</div>
                           </div>
                         </div>
-                        <div class="item_inter outline padding20 flexhorizontal"><img src="" alt=""
+                        <div class="item_inter outline padding20 flexhorizontal internacionalizacion-card"><img src="" alt=""
                             class="icon paddingright">
                           <p>Finalmente, completar el proceso de aplicación según los documentos que la universidad de
                             destino requiera</p>
@@ -360,7 +360,7 @@
                             <div>05</div>
                           </div>
                         </div>
-                        <div class="item_inter outline padding20 flexhorizontal"><img src="" alt=""
+                        <div class="item_inter outline padding20 flexhorizontal internacionalizacion-card"><img src="" alt=""
                             class="icon paddingright">
                           <p>¡Inicia tus cursos en el extranjero!</p>
                           <div class="number_list">

@@ -24,8 +24,10 @@ $wp_query = new WP_Query($args);
          $slide = array(
           'image'   => uw_get_first_slider_image(get_the_ID() ),
           'title'   => get_the_title(),
+          'date'    => get_the_date('j') . ' de ' . get_the_date('F') . ' del ' . get_the_date('Y'),
           'content' => get_the_excerpt(),
           'href'    => get_permalink(),
+          'date_before' => true,
         );
 
         ?>

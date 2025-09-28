@@ -17,8 +17,6 @@ import { $element } from '../../utils/dom'
     },
     loop: false
   })
-
-  new ModalManager()
   PostSwiper('.testimonials-swiper', {
     pagination: {
       el: '.testimonials-swiper .swiper-pagination',
@@ -94,4 +92,24 @@ import { $element } from '../../utils/dom'
       element: formDesktoVirtual
     })
   }
+
+  new ModalManager({
+    onOpen: (modal) => {
+      const swiperElement = modal.querySelector('.infra-modal-swiper')
+
+      if (swiperElement) {
+        if (swiperElement.swiper) {
+          swiperElement.swiper.update()
+        } else {
+          PostSwiper('.infra-modal-swiper', {
+            slidesPerView: 1,
+            breakpoints: {
+              576: { slidesPerView: 1, spaceBetween: 8 },
+              1024: { slidesPerView: 1, spaceBetween: 8 }
+            }
+          })
+        }
+      }
+    }
+  })
 })()
