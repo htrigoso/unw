@@ -30,6 +30,7 @@ $destacadas = new WP_Query($args);
               $slide = [
                 'image'   => uw_get_first_slider_image(get_the_ID() ),
                 'title'   => get_the_title(),
+                'date'    => 'dsd',
                 'content' => get_the_excerpt(),
                 'href'    => get_permalink(),
               ];

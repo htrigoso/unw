@@ -4,7 +4,7 @@ define('ROOTPATH', __DIR__);
 define('BASE_URL', get_bloginfo('url'));
 define('THEME_PATH', get_template_directory_uri());
 define('UPLOAD_PATH', get_template_directory_uri() . '/upload');
-define('UPLOAD_MIGRATION_PATH', get_template_directory_uri() . '/upload');
+define('UPLOAD_MIGRATION_PATH', get_template_directory_uri() . '/upload/migration');
 define('IMAGE_DEFAULT', get_template_directory_uri() . '/upload/imagen-defaul.jpg');
 define('ASSETS_PATH', get_template_directory_uri() . '/assets');
 define('ALLOW_UNFILTERED_UPLOADS', true);
