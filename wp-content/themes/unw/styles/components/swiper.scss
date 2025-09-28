@@ -148,6 +148,11 @@
     }
 
     @include media(">=tablet") {
+      padding-inline: rem(52);
+      margin-inline: rem(-52);
+    }
+
+    @include media(">=desktop-s") {
       padding-inline: rem(213);
       margin-inline: rem(-213);
     }

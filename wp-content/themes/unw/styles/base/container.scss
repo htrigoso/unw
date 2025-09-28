@@ -12,17 +12,21 @@
   }
 
   @include media(">=tablet") {
+    padding-inline: rem(52);
+  }
+
+  @include media(">=desktop-s") {
     padding-inline: rem(111);
   }
 }
 
 .x-container--pad-64 {
-  @include media(">=tablet") {
+  @include media(">=desktop-s") {
     padding-inline: rem(64);
   }
 }
 .x-container--pad-213 {
-  @include media(">=tablet") {
+  @include media(">=desktop-s") {
     padding-inline: rem(213);
   }
 }
