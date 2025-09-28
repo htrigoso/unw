@@ -76,7 +76,7 @@ foreach ($acf_careers as $key => $value) {
               ]);
               ?>
         <section class="contact-form-careers">
-          <div class="x-container x-container--pad-213 contact-form-careers__wrapper">
+          <div class="x-container--pad-213 contact-form-careers__wrapper">
             <?php
 
               if ($mode==='presencial') {
