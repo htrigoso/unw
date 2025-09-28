@@ -2,6 +2,14 @@ import { createSwiper } from './createSwiper'
 
 const PostSwiper = (sectionEl = '.post-swiper', config = {}) => {
   const defaultConfig = {
+    // ✅ Evita observadores automáticos que disparan reflows
+    observer: false,
+    observeParents: false,
+
+    // ✅ Desactiva tracking continuo de progresos/dimensiones
+    watchSlidesProgress: false,
+    watchOverflow: true, // Mantener para evitar render innecesario si hay solo un slide
+    updateOnWindowResize: false,
     loop: false,
     slidesPerView: 'auto',
     spaceBetween: 8,

@@ -2,7 +2,15 @@
 $hero = get_field('hero');
 $slides = $hero['list'] ?? [];
 if (!empty($slides)):
+  $first_slide = $slides[0];
+  $first_images = $first_slide['images'] ?? null;
+  $img_desktop_url = $first_images['desktop']['url'] ?? '';
+  $img_desktop_alt = $first_images['desktop']['alt'] ?? '';
+  $img_mobile_url = $first_images['mobile']['url'] ?? '';
+  $img_mobile_alt = $first_images['mobile']['alt'] ?? $img_desktop_alt;
 ?>
+
+
 
 <section class="hero hero-swiper">
   <div class="swiper-container is-draggable">

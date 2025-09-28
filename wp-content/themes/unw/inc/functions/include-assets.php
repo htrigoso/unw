@@ -136,6 +136,18 @@ function placeholder() {
 function get_placeholder() {
   return 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAECAYAAABGM/VAAAAABHNCSVQICAgIfAhkiAAAAF1JREFUCFtjvP/m1n8GIPj64TzD5f+GDJ8+/WBgrDp767+DKAOD1K/zDEpShgxbH/xhYFx+59Z/LW5Ghg9//zMoMd5mePJZiYHxxMsH2w6+BhnAwJAo9pvh5GcmBgCRxSUqb+IRJgAAAABJRU5ErkJggg==';
 }
+
+
+function add_defer_to_script($handle) {
+  add_filter('script_loader_tag', function($tag, $script_handle, $src) use ($handle) {
+    if ($script_handle === $handle) {
+      // Buscar la posición del id y colocar defer antes
+      return str_replace(' id=', ' defer id=', $tag);
+    }
+    return $tag;
+  }, 10, 3);
+}
+
 add_action('wp_enqueue_scripts', 'include_assets', 20);
 
 function include_assets()
@@ -158,6 +170,8 @@ function include_assets()
   }
 
 
+ $preload_styles = [];
+  $preload_scripts = [];
 
   if (!empty($assets)) {
     foreach ($assets as $key => $val) {
@@ -172,17 +186,17 @@ function include_assets()
                 $script_url = $script_url . '.gz';
               }
 
-              if ($env === 'production') {
-                // Aquí se agrega la acción para precargar el CSS.
-                add_action('wp_head', function() use ($style_url) {
-                  echo '<link rel="preload" href="' . esc_url($style_url) . '" as="style">';
-                }, 1);
+              if ($env === 'production' && $style_url) {
 
-                // Luego, encolamos el estilo de forma normal para que se aplique.
+                 $preload_styles[] = $style_url;
                 wp_enqueue_style($key, $style_url);
               }
 
+               $preload_scripts[] = $script_url;
               wp_enqueue_script($key, $script_url, [], '', true);
+
+              // Agregar defer al script
+              add_defer_to_script($key);
             }
           }
           break;
@@ -197,16 +211,34 @@ function include_assets()
                 $script_url = $script_url . '.gz';
               }
 
-              if ($env === 'production') {
+              if ($env === 'production' && $style_url) {
+                $preload_styles[] = $style_url;
                 wp_enqueue_style($key, $style_url);
               }
-
+               $preload_scripts[] = $script_url;
               wp_enqueue_script($key, $script_url, ['app'], '', true);
+
+              // Agregar defer al script
+              add_defer_to_script($key);
             }
           }
           break;
       }
     }
+  }
+
+  // Preload CSS
+  if (!empty($preload_styles)) {
+      foreach ($preload_styles as $css_url) {
+        echo '<link rel="preload" href="' . esc_url($css_url) . '" as="style">' . "\n";
+      }
+  }
+
+  // Preload Scripts
+  if (!empty($preload_scripts)) {
+      foreach ($preload_scripts as $js_url) {
+        echo '<link rel="preload" href="' . esc_url($js_url) . '" as="script">' . "\n";
+      }
   }
 }
 

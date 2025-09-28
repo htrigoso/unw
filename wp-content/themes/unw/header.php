@@ -95,45 +95,9 @@
   window.addEventListener('resize', calcVh);
   calcVh();
   </script>
-  <!-- Google Tag Manager -->
-  <script>
-  // Inicializar dataLayer
-  window.dataLayer = window.dataLayer || [];
-  </script>
-  <script defer>
-  // Cargar GTM de forma optimizada
-  function loadGTM() {
-    // Inicializar dataLayer y Consent Mode v2 antes de cargar GTM
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
 
-    gtag('consent', 'default', {
-      'ad_storage': 'denied',
-      'analytics_storage': 'denied',
-      'ad_user_data': 'denied',
-      'ad_personalization': 'denied'
-    });
+  <?php get_template_part('content-parts/content', 'gtm'); ?>
 
-    window.dataLayer.push({
-      'gtm.start': new Date().getTime(),
-      'event': 'gtm.js'
-    });
-
-    var script = document.createElement('script');
-    script.async = true;
-    script.defer = true;
-    script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-W8DNW8B';
-    document.head.appendChild(script);
-  }
-
-  // Cargar GTM después de que la página esté lista
-  if (window.addEventListener) {
-    window.addEventListener('load', loadGTM, false);
-  } else if (window.attachEvent) {
-    window.attachEvent('onload', loadGTM);
-  }
-</script>
-  <!-- End Google Tag Manager -->
   <?php wp_head(); ?>
 </head>
 
