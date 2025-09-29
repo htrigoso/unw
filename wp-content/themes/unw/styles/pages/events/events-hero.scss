@@ -18,7 +18,7 @@
 
   @include media(">=tablet") {
     aspect-ratio: 1/2;
-    max-height: rem(769);
+    max-height: var(--full-hero-height);
   }
 }
 

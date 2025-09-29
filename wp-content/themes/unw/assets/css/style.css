@@ -1,13 +1,6 @@
 :root {
   --icon-tab: url("data:image/svg+xml,%3csvg width='9' height='9' viewBox='0 0 9 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='4.24268' width='6' height='6' transform='rotate(45 4.24268 0)' fill='white'/%3e%3c/svg%3e");
   --icon-check: url("data:image/svg+xml,%3csvg width='16' height='17' viewBox='0 0 16 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M14.6364 12.25L7.81818 16L1 12.25V4.75L7.81818 1L14.6364 4.75V12.25Z' stroke='%2300B7BD' stroke-width='1.5'/%3e%3cpath d='M4.06836 8.49973L7.13654 11.227L11.5684 5.77246' stroke='%2300B7BD' stroke-width='1.5'/%3e%3c/svg%3e");
-  --navbar-height: var(--navbar-height-mobile);
-}
-
-@media (min-width: 1200px) {
-  :root {
-    --navbar-height: var(--navbar-height-desktop);
-  }
 }
 
 .w-layout-grid {

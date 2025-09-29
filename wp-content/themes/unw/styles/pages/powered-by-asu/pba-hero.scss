@@ -14,7 +14,7 @@
   max-height: rem(420);
 
   @include media(">=tablet") {
-    max-height: rem(824);
+    max-height: var(--full-hero-height);
   }
 }
 
