@@ -17,10 +17,10 @@ $acf_sidebar = get_field('sidebar');
   <div class="main_container">
     <div class="info_page">
       <?php
-          get_template_part('content-parts/components/info-cover', null, [
-            'title_extra'=> 'Becas Externas'
-          ]);
-        ?>
+      get_template_part('content-parts/components/info-cover', null, [
+        'title_extra' => 'Becas Externas'
+      ]);
+      ?>
       <div class="main_page">
         <div class="page_interna">
           <div class="container full">
@@ -29,7 +29,7 @@ $acf_sidebar = get_field('sidebar');
                 <div class="tabs_menu notab serv_uni secretaria">
 
                   <?php
-                    get_template_part('content-parts/components/sidebar', null, ['sidebar' => $acf_sidebar['sidebar_items']]);
+                  get_template_part('content-parts/components/sidebar', null, ['sidebar' => $acf_sidebar['sidebar_items']]);
                   ?>
 
                 </div>
@@ -40,8 +40,8 @@ $acf_sidebar = get_field('sidebar');
                     <div class="content_seccion_tab">
                       <div class="info_section">
                         <?php
-                              the_content();
-                      ?>
+                        the_content();
+                        ?>
                       </div>
                     </div>
                   </div>
