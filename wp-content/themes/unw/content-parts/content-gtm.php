@@ -1,11 +1,6 @@
 <script>
 (function() {
-  let gtmLoaded = false;
-
   function loadGTM() {
-    if (gtmLoaded) return;
-    gtmLoaded = true;
-
     window.dataLayer = window.dataLayer || [];
 
     function gtag() {
@@ -25,22 +20,17 @@
     });
 
     const script = document.createElement('script');
-    script.async = true;
     script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-W8DNW8B';
+    script.async = true;
+    script.defer = true;
     document.head.appendChild(script);
   }
 
-  window.addEventListener('load', function() {
-    if ('requestIdleCallback' in window) {
-      setTimeout(function() {
-        requestIdleCallback(loadGTM, {
-          timeout: 3000
-        });
-      }, 5000);
-
-    } else {
-      setTimeout(loadGTM, 5000); // como en tu versión original
-    }
-  });
+  // Cargar justo después de que el DOM esté listo (no bloquea render)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadGTM);
+  } else {
+    loadGTM();
+  }
 })();
 </script>
