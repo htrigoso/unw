@@ -2,7 +2,7 @@
 $image_hero = get_field('banner-image');
 
 $titulo = get_the_title();
-$fecha = get_the_date('j') . ' de ' . get_the_date('F') . ' del ' . get_the_date('Y');
+$fecha = get_the_date('j') . ' de ' . ucfirst(get_the_date('F')) . ' del ' . get_the_date('Y');
 $autor = get_the_author();
 $author_id = get_the_author_meta('ID');
 
