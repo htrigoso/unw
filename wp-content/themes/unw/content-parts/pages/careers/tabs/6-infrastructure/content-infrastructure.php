@@ -21,12 +21,14 @@ $infra_items = $infrastructure['list'] ?? [];
 
       <!-- Content -->
       <div class="infrastructure__content">
-        <div class="infra-swiper post-swiper-desktop switch-pagination-navigation" data-width="compact">
+        <div class="infra-swiper post-swiper" data-width="compact">
           <div class="swiper-container">
             <div class="swiper-wrapper infrastructure__list">
               <?php
               global $post;
               $original_post = $post;
+              $modal_slides = [];
+              $modal_id = 'infra-details-modal';
 
               foreach ($infra_items as $i => $item):
                 if (!($item instanceof WP_Post)) continue;
@@ -38,9 +40,13 @@ $infra_items = $infrastructure['list'] ?? [];
                 $photo = get_the_post_thumbnail_url(null, 'full') ?: get_template_directory_uri() . '/upload/careers/infra/default.jpg';
                 $excerpt = get_the_excerpt();
 
-                $modal_id = 'infra-modal-' . $i;
+                $modal_slides[] = [
+                  'image' => $photo,
+                  'alt' => esc_attr($title),
+                  'title' => $title,
+                ];
               ?>
-                <div class="swiper-slide infrastructure__item" data-modal-target="<?= $modal_id ?>">
+                <div class="swiper-slide infrastructure__item" data-modal-target="<?= $modal_id ?>" data-slide-index="<?= esc_attr($i) ?>">
                   <?php
                   get_template_part(COMMON_CONTENT_PATH, 'infra-card', [
                     'title' => $title,
@@ -49,14 +55,6 @@ $infra_items = $infrastructure['list'] ?? [];
                   ]);
                   ?>
                 </div>
-
-                <?php
-                get_template_part(COMMON_CONTENT_PATH, 'details-modal', [
-                  'id' => $modal_id,
-                  'slides' => [['image' => $photo, 'alt' => '', 'title' => $title]],
-                  'swiper_id' => 'infra-modal-swiper'
-                ]);
-                ?>
               <?php endforeach;
 
               wp_reset_postdata();
@@ -75,4 +73,12 @@ $infra_items = $infrastructure['list'] ?? [];
         </div>
       </div>
   </section>
+
+  <?php
+  get_template_part(COMMON_CONTENT_PATH, 'details-modal', [
+    'id' => $modal_id,
+    'slides' => $modal_slides,
+    'swiper_id' => 'infra-modal-swiper'
+  ]);
+  ?>
 <?php endif; ?>

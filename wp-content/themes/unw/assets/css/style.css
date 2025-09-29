@@ -4774,7 +4774,7 @@ li {
 .tabs_menu {
   position: -webkit-sticky;
   position: sticky;
-  top: var(--navbar-height-desktop) !important;
+  top: var(--navbar-height) !important;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -6080,6 +6080,10 @@ li {
   -webkit-transition: border-color 200ms ease, padding 200ms ease;
   transition: border-color 200ms ease, padding 200ms ease;
   cursor: pointer;
+}
+
+.trigger_acordeon:not(:last-child) {
+  margin-bottom: 0;
 }
 
 .trigger_acordeon:hover {
