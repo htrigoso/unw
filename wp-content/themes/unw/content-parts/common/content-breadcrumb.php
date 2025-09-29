@@ -4,12 +4,13 @@ if (empty($args['breadcrumb']) || !is_array($args['breadcrumb'])) {
 }
 
 $items = $args['breadcrumb'];
+$color = $args['color'] ?? 'white'; // white, black
 
 
 $lastIndex = count($items) - 1;
 ?>
 
-<div class="breadcrumb">
+<div class="breadcrumb <?= $color ?>">
   <?php foreach ($items as $index => $item): ?>
   <?php if ($index > 0): ?>
   <i class="separator">
