@@ -69,7 +69,7 @@
       --color-bg-secondary: #F0EAEE;
 
       --navbar-height-mobile: 83px;
-      --navbar-height-desktop: 132px;
+      --navbar-height-desktop: 118px;
       --navbar-height: var(--navbar-height-mobile);
       --full-hero-height: calc(100dvh - var(--navbar-height) - 12px);
 
