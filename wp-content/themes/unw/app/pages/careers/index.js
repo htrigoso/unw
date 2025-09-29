@@ -1,7 +1,6 @@
 import HeroSwiper from '../../components/HeroSwiper'
 import Tabs from '../../components/Tabs'
 import PostSwiper from '../../components/PostSwiper'
-import PostSwiperDesktop from '../../components/PostSwiperDesktop'
 import InternationalSwiper from '../../components/InternationalSwiper'
 import { updateSwipers } from '../../utils/swiper'
 import Accordion from '../../components/Accordion'
@@ -25,7 +24,9 @@ import { $element } from '../../utils/dom'
   })
   PostSwiper('.program-swiper', {
     breakpoints: {
-      1024: { slidesPerView: 2 },
+      0: { slidesPerView: 'auto', spaceBetween: 8 },
+      576: { slidesPerView: 'auto', spaceBetween: 16 },
+      1024: { slidesPerView: 'auto' },
       1200: { slidesPerView: 3, spaceBetween: 52 }
     },
     pagination: {
@@ -35,7 +36,9 @@ import { $element } from '../../utils/dom'
   })
   PostSwiper('.staff-swiper', {
     breakpoints: {
-      1024: { slidesPerView: 2 },
+      0: { slidesPerView: 'auto', spaceBetween: 8 },
+      576: { slidesPerView: 'auto', spaceBetween: 16 },
+      1024: { slidesPerView: 'auto' },
       1200: { slidesPerView: 3, spaceBetween: 46 }
     },
     pagination: {
@@ -43,9 +46,11 @@ import { $element } from '../../utils/dom'
       type: 'fraction'
     }
   })
-  PostSwiperDesktop('.infra-swiper', {
+  PostSwiper('.infra-swiper', {
     breakpoints: {
-      1024: { slidesPerView: 2 },
+      0: { slidesPerView: 'auto', spaceBetween: 8 },
+      576: { slidesPerView: 'auto', spaceBetween: 16 },
+      1024: { slidesPerView: 'auto' },
       1200: { slidesPerView: 3, spaceBetween: 42 }
     },
     pagination: {
@@ -53,9 +58,11 @@ import { $element } from '../../utils/dom'
       type: 'fraction'
     }
   })
-  PostSwiperDesktop('.admission-swiper', {
+  PostSwiper('.admission-swiper', {
     breakpoints: {
-      1024: { slidesPerView: 2 },
+      0: { slidesPerView: 'auto', spaceBetween: 8 },
+      576: { slidesPerView: 'auto', spaceBetween: 16 },
+      1024: { slidesPerView: 'auto' },
       1200: { slidesPerView: 3, spaceBetween: 40 }
     },
     pagination: {
@@ -94,20 +101,26 @@ import { $element } from '../../utils/dom'
   }
 
   new ModalManager({
-    onOpen: (modal) => {
+    onOpen: (modal, trigger) => {
       const swiperElement = modal.querySelector('.infra-modal-swiper')
 
       if (swiperElement) {
-        if (swiperElement.swiper) {
-          swiperElement.swiper.update()
-        } else {
-          PostSwiper('.infra-modal-swiper', {
+        let swiperInstance = swiperElement.swiper
+
+        if (!swiperInstance) {
+          swiperInstance = PostSwiper('.infra-modal-swiper', {
             slidesPerView: 1,
             breakpoints: {
               576: { slidesPerView: 1, spaceBetween: 8 },
               1024: { slidesPerView: 1, spaceBetween: 8 }
             }
           })
+        }
+        const slideIndex = trigger?.dataset?.slideIndex
+
+        if (swiperInstance && slideIndex !== undefined) {
+          swiperInstance.slideTo(parseInt(slideIndex, 10), 0)
+          swiperInstance.update()
         }
       }
     }

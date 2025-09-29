@@ -18,7 +18,7 @@ $countries = $international['countries'] ?? [];
           </p>
         <?php endif; ?>
 
-        <div class="swiper-container swiper-agreements">
+        <div class="swiper-container swiper-agreements" style="width: auto;">
           <div class="swiper-wrapper international-agreements__items">
             <?php foreach ($countries as $country_post) : ?>
               <?php

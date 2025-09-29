@@ -18,7 +18,7 @@
 
   @include media(">=tablet") {
     aspect-ratio: 1/2;
-    max-height: rem(769);
+    max-height: var(--full-hero-height);
   }
 }
 
@@ -82,4 +82,8 @@
   @include media(">=tablet") {
     min-width: rem(242);
   }
+}
+
+.event-slide__content--breadcrumb {
+  padding-top: rem(16);
 }

@@ -13,7 +13,7 @@ $tags = $args['tags'] ?? [];
   <img src="<?= placeholder() ?>" data-src="<?php echo $image; ?>" alt="<?php echo esc_attr($title); ?>" class="entry-card__image lazyload">
   <div class="entry-card__content">
     <?php if (!empty($date) && $date_before) : ?>
-      <span class="entry-card__date" style="margin-bottom: 16px;"><?php echo esc_html($date); ?></span>
+      <span class="entry-card__date" style="margin-bottom: 12px;"><?php echo esc_html($date); ?></span>
     <?php endif; ?>
     <h3 class="entry-card__title"><?php echo esc_html($title); ?></h3>
     <?php
@@ -31,7 +31,7 @@ $tags = $args['tags'] ?? [];
     endif;
     ?>
     <?php if (!empty($date) && !$date_before) : ?>
-      <span class="entry-card__date" style="margin-top: 16px;"><?php echo esc_html($date); ?></span>
+      <span class="entry-card__date" style="margin-top: 12px;"><?php echo esc_html($date); ?></span>
     <?php endif; ?>
     <?php if (!empty($content)) : ?>
       <p class="entry-card__desc line-clamp-2" title="<?php echo esc_attr($content); ?>"><?php echo esc_html($content); ?></p>

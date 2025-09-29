@@ -38,7 +38,7 @@ $event = get_field('event_content');
 
             if(!$event_info['status']){
               get_template_part(COMMON_CONTENT_PATH, 'body-w-list', [
-                'title' => 'Fecha y plataforma',
+                'title' => 'Fecha y lugar',
                 'blocks' => [
                   [
                     'list' => [
