@@ -78,6 +78,10 @@
     @include media(">=phone") {
       padding-inline: rem(24) !important;
     }
+
+    @include media(">=tablet") {
+      padding-inline: rem(52) !important;
+    }
   }
 
   .menu-item-has-children > a,

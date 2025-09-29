@@ -10,7 +10,7 @@
   get_header();
   $acf_forms = get_field('forms');
   $acf_canal = get_field('canal');
-
+$acf_sidebar = get_field('sidebar');
 ?>
 
 
@@ -82,40 +82,40 @@
                         </div>
                         <?php endforeach; ?>
                       </div>
-                       <?php
+                      <?php
 
 
                         if ($acf_canal): ?>
-                        <div class="content_section pr">
-                          <div id="modalidades" class="seccion_defensoriauni">
+                      <div class="content_section pr">
+                        <div id="modalidades" class="seccion_defensoriauni">
 
-                            <!-- Título -->
-                            <div class="title_section">
-                              <h3 class="h3_interna_title"><?= esc_html($acf_canal['title']); ?><br></h3>
-                              <div class="line"></div>
-                            </div>
-
-                            <!-- Descripción -->
-                            <?php if (!empty($acf_canal['description'])): ?>
-                              <div class="richt_text">
-                                <?= wp_kses_post($acf_canal['description']); ?>
-                              </div>
-                            <?php endif; ?>
-
-                            <!-- Lista de canales -->
-                            <div class="w-layout-grid grilla margintop defensoriauni">
-                              <?php if (!empty($acf_canal['lists'])): ?>
-                                <?php foreach ($acf_canal['lists'] as $item): ?>
-                                  <div class="item_serv_university flextop fondoverde">
-                                    <?= wp_kses_post($item['content']); ?>
-                                  </div>
-                                <?php endforeach; ?>
-                              <?php endif; ?>
-                            </div>
-
+                          <!-- Título -->
+                          <div class="title_section">
+                            <h3 class="h3_interna_title"><?= esc_html($acf_canal['title']); ?><br></h3>
+                            <div class="line"></div>
                           </div>
+
+                          <!-- Descripción -->
+                          <?php if (!empty($acf_canal['description'])): ?>
+                          <div class="richt_text">
+                            <?= wp_kses_post($acf_canal['description']); ?>
+                          </div>
+                          <?php endif; ?>
+
+                          <!-- Lista de canales -->
+                          <div class="w-layout-grid grilla margintop defensoriauni">
+                            <?php if (!empty($acf_canal['lists'])): ?>
+                            <?php foreach ($acf_canal['lists'] as $item): ?>
+                            <div class="item_serv_university flextop fondoverde">
+                              <?= wp_kses_post($item['content']); ?>
+                            </div>
+                            <?php endforeach; ?>
+                            <?php endif; ?>
+                          </div>
+
                         </div>
-                        <?php endif; ?>
+                      </div>
+                      <?php endif; ?>
 
                       <!-- Sección del Post Bienestar Estudiantil y Becas del CPT Bienestar Universitario - Hernán Chira - Parte 4 - INICIO -->
                     </div>

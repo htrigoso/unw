@@ -1,7 +1,7 @@
 .top-bar {
   display: none;
 
-  @include media(">=tablet") {
+  @include media(">=desktop-s") {
     background-color: var(--color-primary);
     display: block;
   }

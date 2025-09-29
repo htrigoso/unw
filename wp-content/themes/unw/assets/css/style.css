@@ -10285,18 +10285,19 @@ li {
   -ms-grid-rows: auto;
   grid-template-rows: auto;
 }
+
 .centro_coordinadores-new {
   ul {
-      display: -ms-grid;
-  display: grid;
-  margin-bottom: 24px;
-  grid-auto-columns: 1fr;
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
-  -ms-grid-columns: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
-  -ms-grid-rows: auto;
-  grid-template-rows: auto;
+    display: -ms-grid;
+    display: grid;
+    margin-bottom: 24px;
+    grid-auto-columns: 1fr;
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: auto;
+    grid-template-rows: auto;
   }
 }
 
@@ -16221,17 +16222,13 @@ li {
 
   .contact_box.contact {
     width: 100%;
-    margin-right: 20px;
+    margin-right: 0px;
   }
 
   .contact_box.auto {
     width: 100%;
     height: auto;
     margin-right: 20px;
-  }
-
-  .contact_box.servicioswiener {
-    margin: 0;
   }
 
   .contact_box.servicioswiener.nomargintop {
@@ -17512,6 +17509,13 @@ li {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
+  }
+
+  .contact_box.servicioswiener {
+    width: auto;
+    margin: 0px;
+    margin-right: 20px;
+    margin-bottom: 32px;
   }
 }
 
@@ -21013,10 +21017,11 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
 .page-template-template-centro-de-terapia-fisica-y-rehabilitacion {
-  .col-item.title{
-   p {
-     margin-bottom: 0 !important;
-   }
+  .col-item.title {
+    p {
+      margin-bottom: 0 !important;
+    }
   }
 }

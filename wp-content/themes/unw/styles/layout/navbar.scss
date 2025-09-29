@@ -14,7 +14,7 @@
   padding-bottom: rem(12);
   gap: rem(32);
 
-  @include media(">=tablet") {
+  @include media(">=desktop-s") {
     padding-top: 0;
     padding-bottom: 0;
   }
@@ -27,15 +27,11 @@
   padding-bottom: rem(15);
   pointer-events: all;
 
-  @include media(">=tablet", "<desktop-s") {
-    display: none;
-  }
-
   img {
     width: rem(144);
     height: auto;
 
-    @include media(">=tablet") {
+    @include media(">=desktop-s") {
       width: rem(240);
     }
   }
@@ -59,7 +55,7 @@
 .navbar__menu-wrapper {
   display: none;
 
-  @include media(">=tablet") {
+  @include media(">=desktop-s") {
     display: block;
   }
 }
@@ -136,7 +132,7 @@ h4.has-link-parent {
   display: flex;
   gap: rem(12);
 
-  @include media(">=tablet") {
+  @include media(">=desktop-s") {
     display: none;
   }
 }
