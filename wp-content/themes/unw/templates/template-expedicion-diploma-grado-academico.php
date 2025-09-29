@@ -10,6 +10,7 @@
 <?php
 get_header();
 $acf_sidebar = get_field('sidebar');
+$acf_faq = get_field('faq');
 $acf_services = get_field('services');
 $acf_content = get_field('content');
 ?>
@@ -45,21 +46,20 @@ $acf_content = get_field('content');
 
                         <div id="sec-5" class="content_section paddinright">
                           <div class="title_section mb">
-                            <h3 class="h3_interna_title"><?= esc_html($services['title']) ?></h3>
+                            <h3 class="h3_interna_title"><?= esc_html($acf_faq['title']) ?></h3>
                             <div class="line"></div>
                           </div>
                           <div class="w-dyn-list">
                             <div role="list" class="w-dyn-items">
                               <?php
-                                  get_template_part('content-parts/components/accordion', null, ['accordion' => $services['accordion_items'], 'class_faq'=>'h4_faq']);
+                                  get_template_part('content-parts/components/accordion', null, ['accordion' => $acf_faq['accordion_items'], 'class_faq'=>'h4_faq']);
                                 ?>
-
                             </div>
                           </div>
                         </div>
                         <div id="section_faq" class="content_section">
                           <div class="title_section mb">
-                            <h3 class="h3_interna_title">Otros servicios</h3>
+                            <h3 class="h3_interna_title"><?= esc_html($acf_services['title'] ?? "Otros servicios") ?></h3>
                             <div class="line"></div>
                           </div>
                           <div class="wrapper_collection mt auto w-dyn-list">
