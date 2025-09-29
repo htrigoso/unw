@@ -64,7 +64,7 @@
 
                     </div>
                   </div>
-                  <div class="contact_box contact">
+                  <div class="contact_box contact" style="margin-bottom: 40px;">
                     <?php
                      echo wp_kses_post( $acf_schedule );
                     ?>

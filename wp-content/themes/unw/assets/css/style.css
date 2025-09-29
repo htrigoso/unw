@@ -4,7 +4,7 @@
   --navbar-height: var(--navbar-height-mobile);
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   :root {
     --navbar-height: var(--navbar-height-desktop);
   }
@@ -7447,8 +7447,8 @@ li {
 }
 
 .item_user_contacto {
-  margin-bottom: 20px;
-  padding-bottom: 20px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
   border-bottom: 1px dashed #068284;
 }
 
