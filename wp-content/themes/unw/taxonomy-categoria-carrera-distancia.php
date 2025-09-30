@@ -7,6 +7,7 @@
   <?php
   $term_obj = get_queried_object();
   $current_faculty_id = $term_obj->term_id;
+
    render_html_all_careers([
      'current_faculty_id' => $current_faculty_id,
       'post_type'          => 'carreras-a-distancia',

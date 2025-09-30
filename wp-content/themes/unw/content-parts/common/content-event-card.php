@@ -8,15 +8,24 @@ $hour           = $args['hour'] ?? '';
 $location       = $args['location'] ?? '';
 $url            = $args['url'];
 $status         = $args['status'] ?? false;
+$customStyle    = $args['customStyle'] ?? '';
 
 ?>
 
 <article class="event-card">
-  <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($image_alt); ?>"
-    class="event-card--img lazyload" />
+  <?php if ($status): ?>
+  <div class="event-card-ribbon--wrap">
+    <span class="event-card-ribbon--inner"
+      style="--ribbon-bg: <?= esc_attr($customStyle['back_color']); ?>; --ribbon-text: <?= esc_attr($customStyle['text_color']); ?>">
+      <?= esc_html($customStyle['title']); ?>
+    </span>
+  </div>
+  <?php endif; ?>
+  <img src="<?= placeholder() ?>" data-src="<?php echo esc_url($image_url); ?>"
+    alt="<?php echo esc_attr($image_alt); ?>" class="event-card--img lazyload" />
   <div class="event-card--content">
     <h3 class="event-card--title"><?php echo esc_html($title); ?></h3>
-    <?php if(!$status): ?>
+    <?php if (!$status): ?>
     <div class="event-card--row">
       <div class="event-card--info">
         <span class="event-card--info--title">Fecha</span>
@@ -33,10 +42,10 @@ $status         = $args['status'] ?? false;
     </div>
     <?php endif; ?>
     <?php
-     if($url && is_array($url)):
+    if ($url && is_array($url)):
     ?>
-    <a href=" <?=$url['url']?>" class="btn btn-sm btn-secondary-one-outline event-card--cta">
-      <?=$url['title']?>
+    <a href=" <?= $url['url'] ?>" class="btn btn-sm btn-secondary-one-outline event-card--cta">
+      <?= $url['title'] ?>
       <i>
         <svg class="icon icon--arrow" width="32" height="32">
           <use xlink:href="#arrow-right"></use>
@@ -44,7 +53,7 @@ $status         = $args['status'] ?? false;
       </i>
     </a>
     <?php
-      endif;
+    endif;
     ?>
   </div>
 </article>

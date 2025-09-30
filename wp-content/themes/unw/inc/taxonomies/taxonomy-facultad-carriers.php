@@ -25,7 +25,6 @@ function register_taxonomy_facultad_presencial() {
     'show_tagcloud'     => false,
     'show_in_rest'      => true,
     'public'       => true,
-    'rewrite'           => false,
     'rewrite'           => [
         'slug'         => 'carreras-uwiener',
         'with_front'   => true,
@@ -36,7 +35,7 @@ function register_taxonomy_facultad_presencial() {
 }
 
 // Taxonomía "Facultad" para Carreras a Distancia
-add_action('init', 'register_taxonomy_facultad_distancia');
+add_action('init', 'register_taxonomy_facultad_distancia', 9);
 
 
 function register_taxonomy_facultad_distancia() {
@@ -66,7 +65,7 @@ function register_taxonomy_facultad_distancia() {
     'rewrite'           => [
         'slug'         => 'carreras-a-distancia',
         'with_front'   => false,
-        'hierarchical' => true,
+        'hierarchical' => false,
     ],
   ];
 
