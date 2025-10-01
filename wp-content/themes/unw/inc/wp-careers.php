@@ -4,8 +4,8 @@ function uw_get_modalities_options() {
     return [
         '' => '--Seleccione--',
         'presencial' => 'Presencial',
-        'semipresencial' => 'Semipresencial',
-        'presencial_semipresencial' => 'Presencial y Semipresencial',
+        'semipresencial' => '100% virtual',
+        'presencial_semipresencial' => 'Presencial y 100% virtual',
     ];
 }
 
