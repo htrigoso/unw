@@ -14,7 +14,16 @@ export default class HomePage {
   create() {
     new ModalManager()
 
-    HeroSwiper('.hero-swiper')
+    HeroSwiper('.hero-swiper', {
+      pagination: {
+        el: '.hero-swiper .home-hero-pagination',
+        type: 'bullets'
+      },
+      navigation: {
+        nextEl: '.hero-swiper .home-hero-button-next',
+        prevEl: '.hero-swiper .home-hero-button-prev'
+      }
+    })
     PostSwiper('.testimonial-swiper')
     PostSwiper('.last-news-swiper', {
       pagination: {
