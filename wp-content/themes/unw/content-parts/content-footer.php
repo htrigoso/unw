@@ -23,7 +23,7 @@ ob_start();
 if ($book_url && $book_title) : ?>
 <a href="<?= esc_url($book_url) ?>" <?= $book_target ? 'target="'.esc_attr($book_target).'"' : '' ?>
   class="footer__book">
-  <?= esc_html($book_title) ?>
+
   <?php if ($book_img): ?>
   <img class="lazyload" src="<?=placeholder()?>" data-src="<?= esc_url($book_img) ?>" width="151" height="85" alt=""
     aria-hidden="true" />
@@ -75,7 +75,7 @@ $libro_reclamaciones_html = ob_get_clean();
           ]);
           ?>
           <div class="footer__book--desktop">
-            <img src="" alt="">
+
             <?php
             echo $libro_reclamaciones_html;
             ?>
