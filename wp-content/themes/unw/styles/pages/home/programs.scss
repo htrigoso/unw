@@ -19,10 +19,14 @@
     grid-template-columns: repeat(auto-fill, minmax(rem(280), 1fr));
     gap: rem(24);
   }
+}
 
-  .program-card {
-    @include media(">=phone") {
-      width: rem(300);
-    }
+.programs__card {
+  @include media(">=phone", "<desktop-s") {
+    width: rem(300) !important;
+  }
+
+  @include media(">=desktop-s") {
+    width: auto;
   }
 }

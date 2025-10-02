@@ -24,7 +24,7 @@ $news_items = $news_data['news'] ?? [];
                 $image = get_the_post_thumbnail_url($news_post->ID, 'medium') ?: get_template_directory_uri() . '/upload/home/last-news/default.jpg';
                 $content = get_field('extract', $news_post->ID);
               ?>
-            <div class="swiper-slide">
+            <div class="swiper-slide last-news__swiper--slide">
               <article class="last-news__card">
                 <a class="last-news__card--img" href="<?php echo esc_url(get_permalink($news_post)); ?>">
                   <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($image); ?>"
@@ -43,11 +43,11 @@ $news_items = $news_data['news'] ?? [];
         </div>
 
         <div class="last-news__swiper-navigation">
-          <div class="swiper-navigation">
-            <div class="swiper-primary-button-prev"></div>
-            <div class="swiper-primary-button-next"></div>
-            <div class="swiper-counter">
-              <div class="swiper-pagination"></div>
+          <div class="swiper-navigation" data-size="absolute">
+            <div class="swiper-primary-button-prev" data-size="absolute"></div>
+            <div class="swiper-primary-button-next" data-size="absolute"></div>
+            <div class="swiper-counter" data-size="absolute">
+              <div class="swiper-pagination" data-size="absolute"></div>
             </div>
           </div>
 

@@ -5,14 +5,14 @@ $lists = $programs['lists'] ?? [];
 ?>
 
 <?php if (!empty($programs) && is_array($programs)): ?>
-<section class="programs">
-  <div class="x-container x-container--pad-213 programs__wrapper">
-    <h2 class="programs__title"><?php echo esc_html($title); ?></h2>
+  <section class="programs">
+    <div class="x-container x-container--pad-213 programs__wrapper">
+      <h2 class="programs__title"><?php echo esc_html($title); ?></h2>
 
-    <div class="post-swiper-desktop switch-pagination-navigation" data-width="compact">
-      <div class="swiper-container">
-        <div class="swiper-wrapper programs__cards">
-          <?php foreach ($lists as $program):
+      <div class="post-swiper-desktop switch-pagination-navigation" data-width="compact">
+        <div class="swiper-container">
+          <div class="swiper-wrapper programs__cards">
+            <?php foreach ($lists as $program):
               $image = $program['image']['url'] ?? '';
               $alt = $program['image']['alt'] ?? $program['title'] ?? '';
               $title_item = $program['title'] ?? '';
@@ -21,8 +21,8 @@ $lists = $programs['lists'] ?? [];
               $link_title = $program['link']['title'] ?? 'Ver carreras';
               $link_target = $program['link']['target'] ?? '_self';
             ?>
-          <div class="swiper-slide">
-            <?php
+              <div class="swiper-slide programs__card">
+                <?php
                 get_template_part(COMMON_CONTENT_PATH, 'program-card', array(
                   'image' => $image,
                   'image_alt' => $alt,
@@ -33,15 +33,18 @@ $lists = $programs['lists'] ?? [];
                   'link_target' => $link_target
                 ));
                 ?>
+              </div>
+            <?php endforeach; ?>
           </div>
-          <?php endforeach; ?>
+        </div>
+        <div class="swiper-navigation" data-size="absolute">
+          <div class="swiper-primary-button-prev" data-size="absolute"></div>
+          <div class="swiper-primary-button-next" data-size="absolute"></div>
+          <div class="swiper-counter" data-size="absolute">
+            <div class="swiper-pagination" data-size="absolute"></div>
+          </div>
         </div>
       </div>
-      <div class="swiper-navigation">
-        <div class="swiper-primary-button-prev"></div>
-        <div class="swiper-primary-button-next"></div>
-      </div>
     </div>
-  </div>
-</section>
+  </section>
 <?php endif; ?>

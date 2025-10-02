@@ -97,7 +97,11 @@
   @include title-22;
 }
 
-.admission__list {
+.admission__item {
+  @include media('<desktop-s') {
+    width: rem(305) !important;
+  }
+  width: auto;
 }
 
 .admission-card {
@@ -106,7 +110,6 @@
   flex-direction: column;
   height: 100%;
   background-color: var(--color-light-turquoise);
-  width: rem(305);
   min-height: rem(264);
 
   @include media(">=tablet") {
