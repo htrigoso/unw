@@ -1,6 +1,22 @@
 <?php
 
 
+function uw_show_post_categories($post_id = null, $class = 'entry-meta__category') {
+    $post_id = $post_id ?: get_the_ID();
+    $categories = get_the_category($post_id);
+
+    if (!empty($categories) && !is_wp_error($categories)) {
+        foreach ($categories as $category) {
+            printf(
+                '<a href="%s" class="%s">%s</a>',
+                esc_url(get_category_link($category->term_id)),
+                esc_attr($class),
+                esc_html($category->name)
+            );
+        }
+    }
+}
+
 add_filter('request', function($vars) {
     global $wp;
 
