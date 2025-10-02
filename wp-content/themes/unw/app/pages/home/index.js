@@ -36,12 +36,12 @@ export default class HomePage {
     })
     PostSwiper('.last-news-swiper', {
       breakpoints: {
-        1360: { slidesPerView: 3, spaceBetween: 72 }
+        1360: { slidesPerView: 3, spaceBetween: 50 }
       }
     })
     PostSwiper('.featured-events-swiper', {
       breakpoints: {
-        1360: { slidesPerView: 3, spaceBetween: 72 }
+        1360: { slidesPerView: 3, spaceBetween: 50 }
       }
     })
     InternationalSwiper()

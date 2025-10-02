@@ -1,5 +1,5 @@
-@import './see-more-btn';
-@import './entry-card';
+@import "./see-more-btn";
+@import "./entry-card";
 
 .featured-news__title {
   @include title-32;
@@ -11,10 +11,11 @@
   }
 }
 
-.featured-news__list {
-  .entry-card {
-    width: rem(288);
+.featured-news__item {
+  @include media("<desktop-s") {
+    width: rem(288) !important;
   }
+  width: auto;
 }
 
 .featured-news__swiper-navigation {

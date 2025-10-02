@@ -163,9 +163,16 @@
     gap: rem(64);
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+.pba-network-modal__content--card {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   img {
-    width: rem(209);
-    height: auto;
+    height: rem(60);
+    width: auto;
   }
 }
