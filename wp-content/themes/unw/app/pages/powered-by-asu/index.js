@@ -21,9 +21,11 @@ window.addEventListener('DOMContentLoaded', () => {
   })
 
   PostSwiperDesktop('.highlight-swiper', {
-    pagination: {
-      el: '.highlight-swiper .swiper-pagination',
-      type: 'fraction'
+    breakpoints: {
+      0: { slidesPerView: 1, spaceBetween: 8 },
+      576: { slidesPerView: 1, spaceBetween: 8 },
+      1024: { slidesPerView: 1, spaceBetween: 8 },
+      1200: { slidesPerView: 1, spaceBetween: 8 }
     }
   })
 

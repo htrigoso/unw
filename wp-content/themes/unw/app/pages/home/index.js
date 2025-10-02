@@ -14,18 +14,20 @@ export default class HomePage {
   create() {
     new ModalManager()
 
-    HeroSwiper('.hero-swiper')
-    PostSwiper('.testimonial-swiper')
-    PostSwiper('.last-news-swiper', {
+    HeroSwiper('.hero-swiper', {
       pagination: {
-        el: '.last-news-swiper .swiper-pagination',
-        type: 'fraction'
+        el: '.hero-swiper .home-hero-pagination',
+        type: 'bullets'
+      },
+      navigation: {
+        nextEl: '.hero-swiper .home-hero-button-next',
+        prevEl: '.hero-swiper .home-hero-button-prev'
       }
     })
-    PostSwiper('.featured-events-swiper', {
-      pagination: false
-    })
-    PostSwiperDesktop()
+    PostSwiperDesktop('.post-swiper-desktop')
+    PostSwiper('.testimonial-swiper')
+    PostSwiper('.last-news-swiper')
+    PostSwiper('.featured-events-swiper')
     InternationalSwiper()
     this.initFormGeneral()
   }

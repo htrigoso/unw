@@ -63,11 +63,11 @@ $infra_items = $infrastructure['list'] ?? [];
               </ul>
             </div>
           </div>
-          <div class="swiper-navigation">
-            <div class="swiper-primary-button-prev"></div>
-            <div class="swiper-primary-button-next"></div>
-            <div class="swiper-counter">
-              <div class="swiper-pagination"></div>
+          <div class="swiper-navigation" data-size="absolute">
+            <div class="swiper-primary-button-prev" data-size="absolute"></div>
+            <div class="swiper-primary-button-next" data-size="absolute"></div>
+            <div class="swiper-counter" data-size="absolute">
+              <div class="swiper-pagination" data-size="absolute"></div>
             </div>
           </div>
         </div>

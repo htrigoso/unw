@@ -26,7 +26,7 @@ $testimonial_posts = $testimonial_data['testimonials'] ?? [];
                   'image'       => get_the_post_thumbnail_url($testimonial_post->ID, 'full') ?: '',
                 ];
               ?>
-                <div class="swiper-slide">
+                <div class="swiper-slide testimonial-swiper-card">
                   <?php get_template_part(COMMON_CONTENT_PATH, 'testimonial-card', [
                     'testimonial' => $testimonial_data
                   ]); ?>
@@ -34,9 +34,12 @@ $testimonial_posts = $testimonial_data['testimonials'] ?? [];
               <?php endforeach; ?>
             </div>
           </div>
-          <div class="swiper-navigation">
-            <div class="swiper-primary-button-prev"></div>
-            <div class="swiper-primary-button-next"></div>
+          <div class="swiper-navigation" data-size="absolute">
+            <div class="swiper-primary-button-prev" data-size="absolute"></div>
+            <div class="swiper-primary-button-next" data-size="absolute"></div>
+            <div class="swiper-counter" data-size="absolute">
+              <div class="swiper-pagination" data-size="absolute"></div>
+            </div>
           </div>
         </div>
       </div>

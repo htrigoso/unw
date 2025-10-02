@@ -20,6 +20,14 @@
   }
 }
 
+.featured-events-swiper {
+  .swiper-events__swiper-navigation {
+    @include media(">=desktop-s") {
+      margin-top: rem(12);
+    }
+  }
+}
+
 .all-events__wrapper {
   margin-top: rem(42);
   margin-bottom: rem(36);
