@@ -35,13 +35,11 @@ export default class HomePage {
       }
     })
     PostSwiper('.last-news-swiper', {
-      pagination: {
-        el: '.last-news-swiper .swiper-pagination',
-        type: 'fraction'
+      breakpoints: {
+        1360: { slidesPerView: 3, spaceBetween: 72 }
       }
     })
     PostSwiper('.featured-events-swiper', {
-      pagination: false,
       breakpoints: {
         1360: { slidesPerView: 3, spaceBetween: 72 }
       }

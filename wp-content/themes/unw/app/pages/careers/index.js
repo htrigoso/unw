@@ -17,57 +17,28 @@ import { $element } from '../../utils/dom'
     loop: false
   })
   PostSwiper('.testimonials-swiper', {
-    pagination: {
-      el: '.testimonials-swiper .swiper-pagination',
-      type: 'fraction'
+    breakpoints: {
+      1360: { slidesPerView: 3, spaceBetween: 50 }
     }
   })
   PostSwiper('.program-swiper', {
     breakpoints: {
-      0: { slidesPerView: 'auto', spaceBetween: 8 },
-      576: { slidesPerView: 'auto', spaceBetween: 16 },
-      1024: { slidesPerView: 'auto' },
-      1200: { slidesPerView: 3, spaceBetween: 52 }
-    },
-    pagination: {
-      el: '.program-swiper .swiper-pagination',
-      type: 'fraction'
+      1360: { slidesPerView: 3, spaceBetween: 52 }
     }
   })
   PostSwiper('.staff-swiper', {
     breakpoints: {
-      0: { slidesPerView: 'auto', spaceBetween: 8 },
-      576: { slidesPerView: 'auto', spaceBetween: 16 },
-      1024: { slidesPerView: 'auto' },
-      1200: { slidesPerView: 3, spaceBetween: 46 }
-    },
-    pagination: {
-      el: '.staff-swiper .swiper-pagination',
-      type: 'fraction'
+      1360: { slidesPerView: 3, spaceBetween: 46 }
     }
   })
   PostSwiper('.infra-swiper', {
     breakpoints: {
-      0: { slidesPerView: 'auto', spaceBetween: 8 },
-      576: { slidesPerView: 'auto', spaceBetween: 16 },
-      1024: { slidesPerView: 'auto' },
-      1200: { slidesPerView: 3, spaceBetween: 42 }
-    },
-    pagination: {
-      el: '.infra-swiper .swiper-pagination',
-      type: 'fraction'
+      1360: { slidesPerView: 3, spaceBetween: 42 }
     }
   })
   PostSwiper('.admission-swiper', {
     breakpoints: {
-      0: { slidesPerView: 'auto', spaceBetween: 8 },
-      576: { slidesPerView: 'auto', spaceBetween: 16 },
-      1024: { slidesPerView: 'auto' },
-      1200: { slidesPerView: 3, spaceBetween: 40 }
-    },
-    pagination: {
-      el: '.admission-swiper .swiper-pagination',
-      type: 'fraction'
+      1360: { slidesPerView: 3, spaceBetween: 40 }
     }
   })
   InternationalSwiper('.internationalization')
@@ -111,8 +82,10 @@ import { $element } from '../../utils/dom'
           swiperInstance = PostSwiper('.infra-modal-swiper', {
             slidesPerView: 1,
             breakpoints: {
+              0: { slidesPerView: 1, spaceBetween: 8 },
               576: { slidesPerView: 1, spaceBetween: 8 },
-              1024: { slidesPerView: 1, spaceBetween: 8 }
+              1024: { slidesPerView: 1, spaceBetween: 8 },
+              1200: { slidesPerView: 1, spaceBetween: 8 }
             }
           })
         }

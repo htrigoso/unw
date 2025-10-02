@@ -39,6 +39,15 @@
       font-weight: var(--font-semi-bold);
     }
   }
+
+  &[data-size="responsive"] {
+    @include media("<tablet") {
+      font-size: rem(18);
+      font-weight: var(--font-semi-bold);
+      height: rem(17);
+      margin-left: rem(8);
+    }
+  }
 }
 
 %swiper-primary-navigation {

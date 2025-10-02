@@ -36,6 +36,9 @@ ob_start();
         <div class="swiper-navigation" data-size="responsive">
           <div class="swiper-primary-button-prev" data-size="responsive"></div>
           <div class="swiper-primary-button-next" data-size="responsive"></div>
+          <div class="swiper-counter" data-size="responsive">
+            <div class="swiper-pagination" data-size="responsive"></div>
+          </div>
         </div>
 
       <?php else : ?>

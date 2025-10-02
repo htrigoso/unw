@@ -25,15 +25,9 @@
   }
 }
 
-.infrastructure__list {
-}
-
 .infrastructure__item {
-  .infra-card {
+  @include media("<desktop-s") {
     width: rem(305);
-
-    @include media(">=tablet") {
-      width: auto;
-    }
   }
+  width: auto;
 }
