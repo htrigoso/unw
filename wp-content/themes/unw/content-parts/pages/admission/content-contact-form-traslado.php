@@ -7,6 +7,7 @@ $utms_final = merge_utms($utms_default, $utm_admission);
 $careers = get_carreras();
 $list_campus = get_carreras_campus_modalidad();
 $data_form_type = $args['data_form_type'] ?? '';
+$deactivate = $crm_ad['deactivate'];
 ?>
 <form id="<?=$data_form_type;?>" data-form="zoho" data-form-type="<?=$data_form_type;?>"
   data-careers="<?= esc_attr(wp_json_encode( $careers))?>" data-campus="<?= esc_attr(wp_json_encode( $list_campus))?>"
@@ -65,6 +66,7 @@ $data_form_type = $args['data_form_type'] ?? '';
       <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'radio', [
           'direction'    => 'flex-col justify-between',
           'form_type'=> $data_form_type,
+          'deactivate'=> $deactivate
       ]);?>
       <div class="flex justify-between m-b-24">
         <div class="f-50">

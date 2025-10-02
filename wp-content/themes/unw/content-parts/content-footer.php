@@ -23,9 +23,9 @@ ob_start();
 if ($book_url && $book_title) : ?>
 <a href="<?= esc_url($book_url) ?>" <?= $book_target ? 'target="'.esc_attr($book_target).'"' : '' ?>
   class="footer__book">
-  <?= esc_html($book_title) ?>
+
   <?php if ($book_img): ?>
-  <img class="lazyload" src="<?=placeholder()?>" data-src="<?= esc_url($book_img) ?>" width="40" height="40" alt=""
+  <img class="lazyload" src="<?=placeholder()?>" data-src="<?= esc_url($book_img) ?>" width="151" height="85" alt=""
     aria-hidden="true" />
   <?php endif; ?>
 </a>
@@ -75,7 +75,10 @@ $libro_reclamaciones_html = ob_get_clean();
           ]);
           ?>
           <div class="footer__book--desktop">
-            <?= $libro_reclamaciones_html ?>
+
+            <?php
+            echo $libro_reclamaciones_html;
+            ?>
           </div>
         </div>
 
@@ -157,13 +160,14 @@ $libro_reclamaciones_html = ob_get_clean();
   rel="noopener" <?= !empty($wg['link']['title']) ? 'aria-label="'.esc_attr($wg['link']['title']).'"' : '' ?>>
   <img src="<?= esc_url($img) ?>" width="auto" height="auto" aria-hidden="true"
     alt="<?= !empty($wg['image']['alt']) ? esc_attr($wg['image']['alt']) : '' ?>" class="whatsapp-link__icon" />
-    <span class="sr-only">Habla con nosotros por WhatsApp</span>
+  <span class="sr-only">Habla con nosotros por WhatsApp</span>
 </a>
 <?php endif; ?>
 <style>
-  .sr-only {
+.sr-only {
   position: absolute !important;
-  height: 1px; width: 1px;
+  height: 1px;
+  width: 1px;
   overflow: hidden;
   clip: rect(1px, 1px, 1px, 1px);
   white-space: nowrap;

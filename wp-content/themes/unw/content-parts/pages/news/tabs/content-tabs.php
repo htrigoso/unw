@@ -21,19 +21,23 @@ if (!empty($terms) && !is_wp_error($terms)) {
     ];
   }
 }
+$hide_cat = get_field('hero-news_hide_cat', 'options');
 
 ?>
 
 <div class="news-tabs">
+  <?php if(!$hide_cat) : ?>
   <div class="x-container x-container--pad-213 news-tabs__container">
     <?php
     get_template_part(COMMON_CONTENT_PATH, 'nav-tabs', [
       'nav_tabs' => $tabs,
       'is_url' => true,
       'active_id' => $current_id,
+      'show_controls' => true
     ]);
     ?>
   </div>
+  <?php endif ?>
   <div class="x-container x-container--pad-213 news-tabs__content">
     <div class="news">
       <?php get_template_part(COMMON_CONTENT_PATH, 'featured-news', [

@@ -51,6 +51,18 @@ $detailText  = $presentation['detail'];
           <strong>Título Profesional</strong>
           <span class="career-intro__highlight"><?=get_value_or_default($resumen['professional_title'], true); ?></span>
         </div>
+        <?php if(isset($resumen['modalities']) && !empty($resumen['modalities'])): ?>
+        <div class="career-intro__item">
+          <strong>Modalidades</strong>
+          <span class="career-intro__highlight"><?=esc_html($resumen['modalities']); ?></span>
+        </div>
+        <?php endif; ?>
+        <?php if(isset($resumen['campus']) && !empty($resumen['campus'])): ?>
+        <div class="career-intro__item">
+          <strong>Campus</strong>
+          <span class="career-intro__highlight"><?=esc_html(uw_terms_to_string($resumen['campus'])); ?></span>
+        </div>
+        <?php endif; ?>
       </div>
     </div>
   </div>

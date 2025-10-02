@@ -1,6 +1,6 @@
 <?php
 
-add_action('init', 'register_post_type_carreras_a_distancia');
+add_action('init', 'register_post_type_carreras_a_distancia', 10);
 function register_post_type_carreras_a_distancia() {
   $labels = [
     'name'               => 'Carreras a Distancia',
@@ -25,10 +25,10 @@ function register_post_type_carreras_a_distancia() {
     'show_ui'            => true,
     'show_in_menu'       => true,
     'query_var'          => true,
-    'rewrite'            => [
-        'slug' => 'carrera-a-distancia',
-        'with_front' => false
-    ],
+    'rewrite'           => [
+       'slug'         => 'carreras-a-distancia', // 👈 AGREGADO /carrera
+      'with_front'   => false,
+     ],
     'capability_type'    => 'post',
     'has_archive'        => false,
     'hierarchical'       => false,
@@ -40,3 +40,46 @@ function register_post_type_carreras_a_distancia() {
 
   register_post_type('carreras-a-distancia', $args);
 }
+
+
+
+
+// 👇 CUSTOM REWRITE RULES para manejar el conflicto
+add_action('init', 'custom_carreras_distancia_rewrite_rules', 11);
+
+function custom_carreras_distancia_rewrite_rules() {
+  // Primero: intentar matching con términos de taxonomía existentes
+  $terms = get_terms([
+    'taxonomy'   => 'categoria-carrera-distancia',
+    'hide_empty' => false,
+  ]);
+
+  if (!is_wp_error($terms) && !empty($terms)) {
+    foreach ($terms as $term) {
+      add_rewrite_rule(
+        '^carreras-a-distancia/' . $term->slug . '/?$',
+        'index.php?categoria-carrera-distancia=' . $term->slug,
+        'top'
+      );
+
+      // Paginación para términos
+      add_rewrite_rule(
+        '^carreras-a-distancia/' . $term->slug . '/page/?([0-9]{1,})/?$',
+        'index.php?categoria-carrera-distancia=' . $term->slug . '&paged=$matches[1]',
+        'top'
+      );
+    }
+  }
+
+  // Segundo: cualquier otra cosa bajo carreras-a-distancia/ es un post
+  add_rewrite_rule(
+    '^carreras-a-distancia/([^/]+)/?$',
+    'index.php?carreras-a-distancia=$matches[1]',
+    'top'
+  );
+}
+
+// 👇 Regenerar reglas cuando se crea/actualiza un término
+add_action('created_categoria-carrera-distancia', 'flush_rewrite_rules');
+add_action('edited_categoria-carrera-distancia', 'flush_rewrite_rules');
+add_action('delete_categoria-carrera-distancia', 'flush_rewrite_rules');

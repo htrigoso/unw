@@ -34,7 +34,7 @@ if ($length) {
 }
 ?>
 <div class="form-field">
-  <input autocomplete="off" data-input-type="<?php echo esc_attr($input['name']); ?>"
+  <input title="Campo requerido" autocomplete="off" data-input-type="<?php echo esc_attr($input['name']); ?>"
     type="<?php echo esc_attr($type); ?>" class="<?php echo esc_attr($input['name']); ?>"
     name="<?php echo esc_attr($input['name']); ?>" id="<?php echo esc_attr($id); ?>" placeholder=""
     <?php echo $req ? 'required' : ''; ?> <?php echo $extra_attrs; ?><?php echo $maxlength; ?> />

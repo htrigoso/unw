@@ -21,72 +21,71 @@
 
   <!-- Css vars-->
   <style type="text/css">
+  :root {
+    --font: "Founders Grotesk", sans-serif;
+    --font-inter: "Inter", sans-serif;
+    --font-size: 16px;
+    --font-thin: 100;
+    --font-extra-light: 200;
+    --font-light: 300;
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-semi-bold: 600;
+    --font-bold: 700;
+    --font-extra-bold: 800;
+    --font-extra-black: 900;
+    --color-primary: #07C8CC;
+    --color-secondary: #07C8CC26;
+    --color-turquoise-one: #08E1E6;
+    --color-turquoise-two: #07C8CC;
+    --color-turquoise-three: #00877D;
+    --color-light-turquoise: #DAF7F7;
+
+    --color-light-grey: #EEEEEE;
+    --color-secondary-grey: #D2D3D5;
+    --color-engineering: #FAC93D;
+    --color-cp: #00669E;
+
+    --color-asu-brown: #8C1D43;
+    --color-asu-gold: #FFC627;
+    --color-asu-grey: #747474;
+
+    --color-error: #FF5050;
+    --color-black: #000000;
+    --color-danger: #ee3f28;
+    --color-gray: #f2f1ed;
+    --color-light-gray: #eeeeee;
+    --color-mercury: #e8e8e8;
+    --color-white: #ffffff;
+    --color-purple: #7458EC;
+    --color-dove-gray: #616161;
+    --color-dodger-blue: #1C92F4;
+    --color-burnt-sienna: #E67E3F;
+    --color-tory-blue: #0F56A8;
+    --color-olive-green: #5E9440;
+    --color-gold: #F6BD23;
+    --color-pink: #BB4E8E;
+
+    --color-bg-secondary: #F0EAEE;
+
+    --navbar-height-mobile: 83px;
+    --navbar-height-desktop: 132px;
+    --navbar-height: var(--navbar-height-mobile);
+    --full-hero-height: calc(100dvh - var(--navbar-height) - 12px);
+    -swiper-prev-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-left.svg');
+    --swiper-next-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-right.svg');
+    --chevron-right-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/chevron-right.svg');
+    --chevron-left-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/chevron-left.svg');
+    --chevron-right-two-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/chevron-right-two.svg');
+    --chevron-left-two-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/chevron-left-two.svg');
+    --white-check: url('<?php echo get_template_directory_uri(); ?>/upload/icons/white-check.svg');
+  }
+
+  @media (min-width: 1200px) {
     :root {
-      --font: "Founders Grotesk", sans-serif;
-      --font-inter: "Inter", sans-serif;
-      --font-size: 16px;
-      --font-thin: 100;
-      --font-extra-light: 200;
-      --font-light: 300;
-      --font-regular: 400;
-      --font-medium: 500;
-      --font-semi-bold: 600;
-      --font-bold: 700;
-      --font-extra-bold: 800;
-      --font-extra-black: 900;
-      --color-primary: #07C8CC;
-      --color-secondary: #07C8CC26;
-      --color-turquoise-one: #08E1E6;
-      --color-turquoise-two: #07C8CC;
-      --color-turquoise-three: #00877D;
-      --color-light-turquoise: #DAF7F7;
-
-      --color-light-grey: #EEEEEE;
-      --color-secondary-grey: #D2D3D5;
-      --color-engineering: #FAC93D;
-      --color-cp: #00669E;
-
-      --color-asu-brown: #8C1D43;
-      --color-asu-gold: #FFC627;
-      --color-asu-grey: #747474;
-
-      --color-error: #FF5050;
-      --color-black: #000000;
-      --color-danger: #ee3f28;
-      --color-gray: #f2f1ed;
-      --color-light-gray: #eeeeee;
-      --color-mercury: #e8e8e8;
-      --color-white: #ffffff;
-      --color-purple: #7458EC;
-      --color-dove-gray: #616161;
-      --color-dodger-blue: #1C92F4;
-      --color-burnt-sienna: #E67E3F;
-      --color-tory-blue: #0F56A8;
-      --color-olive-green: #5E9440;
-      --color-gold: #F6BD23;
-      --color-pink: #BB4E8E;
-
-      --color-bg-secondary: #F0EAEE;
-
-      --navbar-height-mobile: 83px;
-      --navbar-height-desktop: 118px;
-      --navbar-height: var(--navbar-height-mobile);
-      --full-hero-height: calc(100dvh - var(--navbar-height) - 12px);
-
-      --swiper-prev-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-left.svg');
-      --swiper-next-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-right.svg');
-      --chevron-right-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/chevron-right.svg');
-      --chevron-left-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/chevron-left.svg');
-      --chevron-right-two-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/chevron-right-two.svg');
-      --chevron-left-two-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/chevron-left-two.svg');
-      --white-check: url('<?php echo get_template_directory_uri(); ?>/upload/icons/white-check.svg');
+      --navbar-height: var(--navbar-height-desktop);
     }
-
-    @media (min-width: 1200px) {
-      :root {
-        --navbar-height: var(--navbar-height-desktop);
-      }
-    }
+  }
   </style>
 
   <!-- Load fonts-->
@@ -94,18 +93,18 @@
 
 
   <script>
-    window.appConfigUnw = {
-      themeUrl: "<?php echo esc_url(get_template_directory_uri()); ?>",
-      uploadUrl: "<?php echo esc_url(get_template_directory_uri()); ?>/upload",
-    };
+  window.appConfigUnw = {
+    themeUrl: "<?php echo esc_url(get_template_directory_uri()); ?>",
+    uploadUrl: "<?php echo esc_url(get_template_directory_uri()); ?>/upload",
+  };
 
-    let doc = document.documentElement;
+  let doc = document.documentElement;
 
-    function calcVh() {
-      doc.style.setProperty('--vh', window.innerHeight + 'px');
-    }
-    window.addEventListener('resize', calcVh);
-    calcVh();
+  function calcVh() {
+    doc.style.setProperty('--vh', window.innerHeight + 'px');
+  }
+  window.addEventListener('resize', calcVh);
+  calcVh();
   </script>
 
   <?php get_template_part('content-parts/content', 'gtm'); ?>

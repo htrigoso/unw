@@ -5,10 +5,11 @@ $input = $args ?? [];
 $directionClass = !empty($input['direction']) ? $input['direction'] : ''; // solo si se pasa
 $optionClass    = $input['option_class'] ?? 'm-b-10';
 $location    = $input['location'] ?? '';
-$id = $input['form_type'] ?? 'none'
+$id = $input['form_type'] ?? 'none';
+$deactivate = $input['deactivate'] ?? 0;
 ?>
 
-<div class="form-field-radio m-b-24 <?=esc_attr($location);?>">
+<div class="form-field-radio m-b-24 <?=esc_attr($location);?>" data-deactivate="<?=esc_attr($deactivate);?>">
   <fieldset class="flex <?php echo esc_attr($directionClass); ?>">
     <div class="radio-option <?php echo esc_attr($optionClass); ?>">
       <input type="radio" id="1-<?=$id?>" name="form_mixto" value="pregrado" checked />

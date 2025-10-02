@@ -1,4 +1,43 @@
 <?php
+
+function uw_get_modalities_options() {
+    return [
+        '' => '--Seleccione--',
+        'presencial' => 'Presencial',
+        'semipresencial' => '100% virtual',
+        'presencial_semipresencial' => 'Presencial y 100% virtual',
+    ];
+}
+
+add_filter('acf/load_field/name=modalities', function($field) {
+    $field['choices'] = uw_get_modalities_options();
+    return $field;
+});
+
+function uw_terms_to_string($terms) {
+    if (empty($terms) || !is_array($terms)) {
+        return '';
+    }
+
+    // Extraer solo los nombres
+    $names = wp_list_pluck($terms, 'name');
+
+    // Contar términos
+    $count = count($names);
+
+    if ($count === 1) {
+        return $names[0];
+    }
+
+    if ($count === 2) {
+        return $names[0] . ' y ' . $names[1];
+    }
+
+    // Para 3 o más → unir con comas y 'y' al final
+    $last = array_pop($names);
+    return implode(', ', $names) . ' y ' . $last;
+}
+
 function render_html_all_careers($args = []) {
 
     // Valores por defecto
@@ -99,7 +138,7 @@ function render_html_all_careers($args = []) {
     // 👉 Breadcrumb
     $breadcrumb = [
         ['label' => 'Inicio', 'href' => home_url('/')],
-        ['label' => $title_global, 'href' => home_url("/$post_type/")],
+        ['label' => $title_global, 'href' => $base_url],
     ];
 
     if ($current_faculty_id > 0) {

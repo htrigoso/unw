@@ -168,6 +168,7 @@ h4 {
   font-size: 20px;
   line-height: 24px;
   font-weight: bold;
+  color: #333;
 }
 
 h5 {
@@ -3913,6 +3914,8 @@ li {
   h4 {
     margin-top: 10px !important;
     margin-bottom: 10px !important;
+            font-weight: 500;
+        color: #333;
   }
 }
 
@@ -6065,7 +6068,7 @@ li {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 20px !important;
   padding: 10px 16px;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
@@ -8402,9 +8405,21 @@ li {
 }
 
 .img-carrera-box {
-  height: 150px;
-}
+  width: 100%;
 
+}
+.img-carrera-box img {
+
+    height: 310px;
+    width: 100%;
+    object-position: center;
+    object-fit: cover;
+}
+@media screen and (max-width: 1024px){
+  .img-carrera-box img {
+    height: 210px;
+  }
+}
 .info-carrera {
   display: -webkit-box;
   display: -webkit-flex;

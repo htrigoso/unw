@@ -47,6 +47,12 @@
       fill="currentColor" />
   </symbol>
 
+  <symbol id="remove" viewBox="0 0 12 12">
+    <path
+      d="M12 1.12305L7.10254 6.03809L11.9229 10.877L10.8037 12L5.9834 7.16113L1.19629 11.9678L0.0771484 10.8447L4.86426 6.03809L0 1.15527L1.11914 0.0322266L5.9834 4.91504L10.8809 0L12 1.12305Z"
+      fill="currentColor" />
+  </symbol>
+
   <!-- Back -->
   <symbol id="back" viewBox="0 0 24 24">
     <path d="M14.985 6L9.01492 12L14.985 18" stroke="#07C8CC" stroke-width="3" stroke-linecap="square" fill="none" />

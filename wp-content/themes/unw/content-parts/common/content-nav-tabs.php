@@ -3,6 +3,7 @@ $nav_tabs = $args['nav_tabs'];
 $active_id = isset($args['active_id']) ? $args['active_id'] : null;
 $is_url = isset($args['is_url']) ? $args['is_url'] : false;
 $show_controls = $args['show_controls'] ?? false;
+$show_icon_remove = $args['show_icon_remove'] ?? false;
 ?>
 <nav data-id="<?php echo $active_id ?>" class="nav-tabs" aria-label="Secciones del contenido">
   <div class="nav-tabs__wrapper">
@@ -19,13 +20,19 @@ $show_controls = $args['show_controls'] ?? false;
           if ($is_url) {
             $active = $active_id === $tab['id'] ? ' is-active' : '';
            }
+           $link_url = ($show_icon_remove && $active) ? home_url('/blog/') : $url;
         ?>
-        <a href="<?php echo esc_url($url); ?>" class="btn tab__item<?php echo $active; ?>" role="tab"
+        <a href="<?php echo esc_url($link_url); ?>" class="btn tab__item<?php echo $active; ?>" role="tab"
           data-target="<?php echo esc_attr($tab['target']); ?>"
           aria-selected="<?php echo $i === 0 ? 'true' : 'false'; ?>"
           aria-controls="<?php echo esc_attr($tab['target']); ?>" id="tab-<?php echo esc_attr($tab['target']); ?>"
           data-name="<?php echo esc_attr($tab['label']); ?>">
           <?php echo esc_html($tab['label']); ?>
+          <?php if($show_icon_remove && $active): ?>
+          <svg width="12" height="12" aria-hidden="true">
+            <use xlink:href="#remove"></use>
+          </svg>
+          <?php endif; ?>
         </a>
       </li>
       <?php
