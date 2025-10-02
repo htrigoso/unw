@@ -85,10 +85,20 @@
   background-color: var(--color-light-turquoise);
 
   overflow-x: auto;
-  scrollbar-width: none;
+  scrollbar-width: thin;
 
   &::-webkit-scrollbar {
-    display: none;
+    width: rem(8);
+    height: rem(8);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-turquoise-three);
+    border-radius: rem(4);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-turquoise-two);
   }
 }
 

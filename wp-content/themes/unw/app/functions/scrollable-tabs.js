@@ -55,13 +55,23 @@ export function initializeScrollableTabs(containerElement, options = {}, onInit)
 }
 
 function scrollToTab(tab) {
-  const isWide = window.innerWidth >= 1440
-
   if (!tab) return
 
-  tab.scrollIntoView({
-    behavior: 'smooth',
-    inline: isWide ? 'nearest' : 'center',
-    block: 'nearest'
-  })
+  const container = tab.closest('.nav-tabs__list')
+  const tabLeft = tab.offsetLeft
+  const tabRight = tabLeft + tab.offsetWidth
+  const containerLeft = container.scrollLeft
+  const containerRight = containerLeft + container.clientWidth
+
+  if (tabLeft < containerLeft) {
+    container.scrollTo({
+      left: tabLeft,
+      behavior: 'smooth'
+    })
+  } else if (tabRight > containerRight) {
+    container.scrollTo({
+      left: tabRight - container.clientWidth,
+      behavior: 'smooth'
+    })
+  }
 }

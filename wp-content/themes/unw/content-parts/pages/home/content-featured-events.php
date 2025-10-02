@@ -1,4 +1,7 @@
-<?php $acf_data = get_field('featured-events'); ?>
+<?php $acf_data = get_field('featured-events');
+
+
+?>
 
 <section class="featured-events">
   <div class="x-container x-container--pad-213">

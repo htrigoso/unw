@@ -25,7 +25,6 @@ $customStyle    = $args['customStyle'] ?? '';
     alt="<?php echo esc_attr($image_alt); ?>" class="event-card--img lazyload" />
   <div class="event-card--content">
     <h3 class="event-card--title"><?php echo esc_html($title); ?></h3>
-    <?php if (!$status): ?>
     <div class="event-card--row">
       <div class="event-card--info">
         <span class="event-card--info--title">Fecha</span>
@@ -40,7 +39,7 @@ $customStyle    = $args['customStyle'] ?? '';
       <span class="event-card--info--title">Lugar</span>
       <span class="event-card--info--desc"><?php echo esc_html($location); ?></span>
     </div>
-    <?php endif; ?>
+
     <?php
     if ($url && is_array($url)):
     ?>
