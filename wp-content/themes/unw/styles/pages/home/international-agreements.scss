@@ -11,7 +11,7 @@
 
   @include media(">=tablet") {
     padding-top: rem(52);
-    padding-bottom: rem(69);
+    padding-bottom: rem(52);
   }
 }
 
@@ -25,8 +25,13 @@
   }
 
   @include media(">=tablet") {
-    padding-inline: rem(0);
-    margin-inline: rem(-5);
+    padding-inline: rem(52);
+    margin-inline: rem(-52);
+  }
+
+  @include media(">=desktop-s") {
+    padding-inline: 0;
+    margin-inline: 0;
   }
 }
 

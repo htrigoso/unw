@@ -10,13 +10,16 @@ const PostSwiperDesktop = (sectionEl = '.post-swiper-desktop', config = {}) => {
     slidesPerView: 'auto',
     spaceBetween: 8,
     pagination: {
-      el: `${sectionEl} .swiper-pagination`
+      el: `${sectionEl} .swiper-pagination`,
+      type: 'fraction',
+      clickable: true
     },
     navigation: {
       nextEl: `${sectionEl} .swiper-primary-button-next`,
       prevEl: `${sectionEl} .swiper-primary-button-prev`
     },
     breakpoints: {
+      0: { slidesPerView: 'auto', spaceBetween: 8 },
       576: {
         slidesPerView: 'auto',
         spaceBetween: 16
@@ -24,7 +27,8 @@ const PostSwiperDesktop = (sectionEl = '.post-swiper-desktop', config = {}) => {
       1024: {
         slidesPerView: 'auto',
         spaceBetween: 24
-      }
+      },
+      1200: { slidesPerView: 3, spaceBetween: 24 }
     }
   }
 

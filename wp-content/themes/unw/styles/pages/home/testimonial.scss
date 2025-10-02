@@ -13,7 +13,9 @@
 }
 
 .testimonial-swiper-card {
-  width: rem(305) !important;
+  @include media("<desktop-s") {
+    width: rem(305) !important;
+  }
 
   @include media(">=desktop-s") {
     width: auto;
