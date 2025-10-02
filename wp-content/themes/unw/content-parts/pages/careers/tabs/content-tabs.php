@@ -26,7 +26,7 @@ foreach ($acf_careers as $key => $value) {
   <div class="x-container career-tabs__container">
     <?php
     get_template_part(COMMON_CONTENT_PATH, 'nav-tabs', [
-      'nav_tabs' => $tabs
+      'nav_tabs' => $tabs,
     ]);
 
     ?>

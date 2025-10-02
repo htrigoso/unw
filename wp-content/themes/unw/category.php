@@ -12,7 +12,9 @@
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar');?>
 <main>
   <?php
-  $acf_hero = get_field('hero-slide');
+  $acf_hero = get_field('hero-slide', 602);
+
+
   $img_desktop = $acf_hero['images']['desktop']['url'] ?? '';
   $img_mobile = $acf_hero['images']['mobile']['url'] ?? '';
   $alt = $acf_hero['images']['desktop']['alt'] ?? '';

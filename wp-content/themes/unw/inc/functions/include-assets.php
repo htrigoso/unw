@@ -1,5 +1,4 @@
 <?php
-
 add_filter('the_posts', function($posts, $query) {
     if ( $query->is_search() && $query->is_main_query() ) {
 

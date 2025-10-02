@@ -33,6 +33,7 @@ $hide_cat = get_field('hero-news_hide_cat', 'options');
       'nav_tabs' => $tabs,
       'is_url' => true,
       'active_id' => $current_id,
+      'show_controls' => true
     ]);
     ?>
   </div>
