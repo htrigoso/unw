@@ -1,5 +1,4 @@
 import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
-import Page from '../../classes/Page'
 import { ModalManager } from '../../components/Modal'
 import { $element } from '../../utils/dom'
 

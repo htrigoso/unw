@@ -24,26 +24,10 @@ export default class HomePage {
         prevEl: '.hero-swiper .home-hero-button-prev'
       }
     })
-    PostSwiperDesktop('.post-swiper-desktop', {
-      breakpoints: {
-        1360: { slidesPerView: 3, spaceBetween: 57 }
-      }
-    })
-    PostSwiper('.testimonial-swiper', {
-      breakpoints: {
-        1360: { slidesPerView: 3, spaceBetween: 50 }
-      }
-    })
-    PostSwiper('.last-news-swiper', {
-      breakpoints: {
-        1360: { slidesPerView: 3, spaceBetween: 50 }
-      }
-    })
-    PostSwiper('.featured-events-swiper', {
-      breakpoints: {
-        1360: { slidesPerView: 3, spaceBetween: 50 }
-      }
-    })
+    PostSwiperDesktop('.post-swiper-desktop')
+    PostSwiper('.testimonial-swiper')
+    PostSwiper('.last-news-swiper')
+    PostSwiper('.featured-events-swiper')
     InternationalSwiper()
     this.initFormGeneral()
   }

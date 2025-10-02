@@ -16,31 +16,11 @@ import { $element } from '../../utils/dom'
     },
     loop: false
   })
-  PostSwiper('.testimonials-swiper', {
-    breakpoints: {
-      1360: { slidesPerView: 3, spaceBetween: 50 }
-    }
-  })
-  PostSwiper('.program-swiper', {
-    breakpoints: {
-      1360: { slidesPerView: 3, spaceBetween: 52 }
-    }
-  })
-  PostSwiper('.staff-swiper', {
-    breakpoints: {
-      1360: { slidesPerView: 3, spaceBetween: 46 }
-    }
-  })
-  PostSwiper('.infra-swiper', {
-    breakpoints: {
-      1360: { slidesPerView: 3, spaceBetween: 42 }
-    }
-  })
-  PostSwiper('.admission-swiper', {
-    breakpoints: {
-      1360: { slidesPerView: 3, spaceBetween: 40 }
-    }
-  })
+  PostSwiper('.testimonials-swiper')
+  PostSwiper('.program-swiper')
+  PostSwiper('.staff-swiper')
+  PostSwiper('.infra-swiper')
+  PostSwiper('.admission-swiper')
   InternationalSwiper('.internationalization')
 
   document.querySelectorAll('.dynamic-accordion').forEach(element => {

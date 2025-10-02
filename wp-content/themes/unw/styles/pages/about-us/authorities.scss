@@ -10,8 +10,14 @@
   margin-bottom: rem(27);
 }
 
+.authorities-swiper__item {
+  @include media("<desktop-s") {
+    width: rem(305) !important;
+  }
+  width: auto;
+}
+
 .authorities-card {
-  width: rem(305);
   border: 1px solid var(--color-turquoise-two);
   border-radius: rem(12);
   overflow: hidden;
