@@ -22,7 +22,8 @@ export default class HomePage {
       navigation: {
         nextEl: '.hero-swiper .home-hero-button-next',
         prevEl: '.hero-swiper .home-hero-button-prev'
-      }
+      },
+      loop: true
     })
     PostSwiperDesktop('.post-swiper-desktop')
     PostSwiper('.testimonial-swiper')
