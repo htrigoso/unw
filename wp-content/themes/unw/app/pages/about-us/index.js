@@ -22,10 +22,9 @@ import PostSwiper from '../../components/PostSwiper'
 
   PostSwiper('.certifications-swiper', {
     breakpoints: {
-      0: { slidesPerView: 'auto', spaceBetween: 32 },
-      576: { slidesPerView: 'auto', spaceBetween: 32 },
-      1024: { slidesPerView: 'auto', spaceBetween: 32 },
-      1200: { slidesPerView: 'auto', spaceBetween: 32 }
+      0: { slidesPerView: 'auto', spaceBetween: 24 },
+      576: { slidesPerView: 'auto', spaceBetween: 24 },
+      1024: { slidesPerView: 'auto', spaceBetween: 24 }
     }
   })
 })()
