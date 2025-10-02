@@ -69,7 +69,7 @@ endif;
           <?php
           $contenido = get_field('content');
           if ($contenido) {
-            echo $contenido;
+            echo wp_kses_post($contenido);
           }
           ?>
         </div>
@@ -78,7 +78,11 @@ endif;
           <?php if (!empty($tags)) : ?>
           <div class="blog-detail__tags">
             <?php foreach ($tags as $tag) : ?>
-            <span class="blog-detail__tag"><?php echo esc_html($tag->name); ?></span>
+            <a href="<?php echo esc_url(get_tag_link($tag->term_id)); ?>">
+              <span class="blog-detail__tag">
+                <?php echo esc_html($tag->name); ?>
+              </span>
+            </a>
             <?php endforeach; ?>
           </div>
           <?php endif; ?>

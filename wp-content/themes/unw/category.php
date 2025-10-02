@@ -14,6 +14,7 @@
   <?php
   $acf_hero = get_field('hero-slide', 602);
 
+$current_category = get_queried_object();
 
   $img_desktop = $acf_hero['images']['desktop']['url'] ?? '';
   $img_mobile = $acf_hero['images']['mobile']['url'] ?? '';
@@ -27,6 +28,10 @@
     [
       'label' => 'Blog',
       'href'  => home_url('/blog/'),
+    ],
+    [
+      'label' => $current_category->name,
+      'href'  => get_category_link($current_category->term_id),
     ],
   ];
 

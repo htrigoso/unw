@@ -62,6 +62,7 @@ $cta      = get_field('cta');
             'is_url'           => true,
             'active_id'        => $term_id,
             'show_icon_remove' => true,
+            'show_controls'=>true
           ]);
           ?>
       </div>

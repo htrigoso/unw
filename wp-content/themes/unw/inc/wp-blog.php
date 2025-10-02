@@ -2,24 +2,29 @@
 
 
 add_filter('request', function($vars) {
-    if (isset($vars['name']) && !empty($vars['name'])) {
+    global $wp;
+
+    // Obtener la ruta actual (sin dominio)
+    $current_path = $wp->request ?? '';
+
+    // Solo aplicar si empieza con "blog/"
+    if (strpos($current_path, 'blog/') === 0 && isset($vars['name']) && !empty($vars['name'])) {
         $slug = $vars['name'];
 
-        // Verificar primero si es categoría
+        // Verificar si es categoría
         if (term_exists($slug, 'category')) {
             unset($vars['name']); // no es post
             $vars['category_name'] = $slug; // forzar categoría
         }
-        // Si no es categoría pero sí existe como tag
+        // Verificar si es tag
         elseif (term_exists($slug, 'post_tag')) {
             unset($vars['name']); // no es post
-            $vars['tag'] = $slug; // forzar etiqueta
+            $vars['tag'] = $slug; // forzar tag
         }
-        // Si no es categoría ni tag → se queda como post normal
     }
+
     return $vars;
 });
-
 
 //////******No tocas */
 
