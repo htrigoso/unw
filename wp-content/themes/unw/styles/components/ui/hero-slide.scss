@@ -19,8 +19,7 @@
   object-position: center;
 
   @include media(">=tablet") {
-    min-height: var(--full-hero-height);
-    max-height: var(--full-hero-height);
+    max-height: 100vh;
   }
 }
 

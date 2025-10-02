@@ -283,6 +283,8 @@
 .book-link {
   position: fixed;
   z-index: 5;
+  display: flex;
+  align-items: center;
 }
 
 .whatsapp-link {
@@ -292,12 +294,6 @@
     box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: rem(999);
 
-  &:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 16px 4px rgba(37, 211, 102, 0.45),
-      0 2px 8px rgba(0, 0, 0, 0.1);
-    background: rgba(37, 211, 102, 0.1);
-  }
   @include media(">=tablet") {
     bottom: rem(16);
     right: rem(64);
@@ -305,6 +301,26 @@
 
   @include media(">=desktop") {
     right: rem(132);
+  }
+  .sr-only {
+    background: white;
+    padding: 10px 15px;
+    box-shadow: 0 3px 15px #00000026;
+    margin-right: 24px;
+    border-radius: 5px;
+    font-weight: var(--font-semi-bold);
+    &::before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-color: transparent transparent transparent var(--color-white);
+      border-left: rem(10) solid var(--color-white);
+      border-bottom: rem(10) solid transparent;
+      border-right: 0 solid transparent;
+      border-top: rem(10) solid transparent;
+      right: rem(70);
+    }
   }
 }
 

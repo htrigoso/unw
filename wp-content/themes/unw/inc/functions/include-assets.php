@@ -366,31 +366,3 @@ function get_trimmed_content($post_id, $limit = 40) {
 
     return trim($content);
 }
-
-
-add_filter('acf/fields/flexible_content/layout_title/name=sections', function($title, $field, $layout, $i) {
-
-    $preview_images = [
-        'section-hero'   => 'https://www.faststone.org/Images/FSViewer.png',
-        'section-titulo'   => 'https://www.faststone.org/Images/FSViewer.png',
-    ];
-
-     if (isset($preview_images[$layout['name']])) {
-        $img_url = esc_url($preview_images[$layout['name']]);
-
-        $preview = '
-        <span class="acf-layout-preview">
-            <img class="thumbnail" src="' . $img_url . '" />
-            <span class="acf-tooltip-img">
-                <img src="' . $img_url . '" />
-            </span>
-        </span> ' . $title;
-    }
-
-    return $preview;
-}, 10, 4);
-
-
-add_action('admin_enqueue_scripts', function() {
-    wp_enqueue_style('acf-layout-preview', get_template_directory_uri() . '/assets/css/acf-layout-preview.css');
-});
