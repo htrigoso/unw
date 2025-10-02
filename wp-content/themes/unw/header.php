@@ -77,6 +77,8 @@
       --swiper-next-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-right.svg');
       --chevron-right-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/chevron-right.svg');
       --chevron-left-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/chevron-left.svg');
+      --chevron-right-two-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/chevron-right-two.svg');
+      --chevron-left-two-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/chevron-left-two.svg');
       --white-check: url('<?php echo get_template_directory_uri(); ?>/upload/icons/white-check.svg');
     }
 

@@ -11,3 +11,11 @@
   @include title-28;
   margin-bottom: rem(24);
 }
+
+.testimonial-swiper-card {
+  width: rem(305) !important;
+
+  @include media(">=desktop-s") {
+    width: auto;
+  }
+}

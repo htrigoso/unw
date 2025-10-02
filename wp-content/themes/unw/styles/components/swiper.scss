@@ -32,6 +32,13 @@
   position: static;
   @include title-20;
   color: var(--color-asu-grey);
+
+  &[data-size="absolute"] {
+    @include media(">=desktop-s") {
+      font-size: rem(16);
+      font-weight: var(--font-semi-bold);
+    }
+  }
 }
 
 %swiper-primary-navigation {
@@ -72,6 +79,16 @@
 
       &::before {
         background-color: var(--color-turquoise-two);
+      }
+    }
+
+    &[data-size="absolute"] {
+      border: none;
+
+      &::before {
+        margin: 0;
+        width: rem(15);
+        height: rem(33);
       }
     }
   }
@@ -115,15 +132,41 @@
     mask-image: var(--swiper-next-icon);
     -webkit-mask-image: var(--swiper-next-icon);
   }
+
+  .swiper-primary-button-prev[data-size="absolute"] {
+    position: absolute;
+    left: rem(-40);
+    top: 50%;
+    transform: translateY(-50%);
+
+    &::before {
+      mask-image: var(--chevron-left-two-icon);
+      -webkit-mask-image: var(--chevron-left-two-icon);
+    }
+  }
+
+  .swiper-primary-button-next[data-size="absolute"] {
+    position: absolute;
+    right: rem(-40);
+    top: 50%;
+    transform: translateY(-50%);
+
+    &::before {
+      mask-image: var(--chevron-right-two-icon);
+      -webkit-mask-image: var(--chevron-right-two-icon);
+    }
+  }
 }
 
 /**
  * Swiper types
  * Variants
-  * - [data-width="wide"] - Full width swiper
-  * - [data-width="compact"] - Full width swiper below tablet screen size
+  * - [data-width="wide"] - Full screen width swiper
+  * - [data-width="compact"] - Full screen width swiper below tablet desktop size
  */
 .post-swiper {
+  position: relative;
+
   &[data-width="compact"] .swiper-container {
     padding-inline: rem(16);
     margin-inline: rem(-16);
@@ -133,6 +176,10 @@
       margin-inline: rem(-24);
     }
     @include media(">=tablet") {
+      padding-inline: rem(52);
+      margin-inline: rem(-52);
+    }
+    @include media(">=desktop-s") {
       padding-inline: 0;
       margin-inline: 0;
     }
@@ -164,8 +211,6 @@
   }
 
   .swiper-container {
-    width: auto;
-
     .swiper-slide {
       width: auto;
       height: auto;
@@ -174,19 +219,6 @@
         margin-inline: auto;
       }
     }
-  }
-
-  .swiper-counter {
-    display: flex;
-    align-items: center;
-  }
-
-  .swiper-pagination.swiper-pagination-bullets {
-    @extend %swiper-pagination-bullets;
-  }
-
-  .swiper-pagination.swiper-pagination-fraction {
-    @extend %swiper-pagination-fraction;
   }
 
   .swiper-navigation {
@@ -201,9 +233,28 @@
         gap: rem(16);
       }
     }
+
+    &[data-size="absolute"] {
+      @include media(">=desktop-s") {
+        margin-top: rem(12);
+      }
+    }
   }
 
   @extend %swiper-primary-navigation;
+
+  .swiper-counter {
+    display: flex;
+    align-items: center;
+  }
+
+  .swiper-pagination.swiper-pagination-bullets {
+    @extend %swiper-pagination-bullets;
+  }
+
+  .swiper-pagination.swiper-pagination-fraction {
+    @extend %swiper-pagination-fraction;
+  }
 }
 
 .post-swiper-desktop {

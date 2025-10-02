@@ -24,7 +24,11 @@ export default class HomePage {
         prevEl: '.hero-swiper .home-hero-button-prev'
       }
     })
-    PostSwiper('.testimonial-swiper')
+    PostSwiper('.testimonial-swiper', {
+      breakpoints: {
+        1360: { slidesPerView: 3, spaceBetween: 50 }
+      }
+    })
     PostSwiper('.last-news-swiper', {
       pagination: {
         el: '.last-news-swiper .swiper-pagination',
