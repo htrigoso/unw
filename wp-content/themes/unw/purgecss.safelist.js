@@ -13,6 +13,10 @@ module.exports = {
     'swiper-pagination-current',
     'swiper-pagination',
     'swiper-pagination-fraction',
+    'swiper-container-fade',
+    'swiper-container-initialized',
+    'swiper-container-horizontal',
+    'swiper-container-pointer-events',
 
     'main-submenu-wrapper__main',
     'main-submenu-wrapper__content',

@@ -148,7 +148,7 @@
     }
 
     &::before {
-      left: rem(-51);
+      left: rem(-50);
       mask-image: radial-gradient(
         circle at 0 0,
         transparent 0,
@@ -164,7 +164,7 @@
     }
 
     &::after {
-      right: rem(-51);
+      right: rem(-50);
       mask-image: radial-gradient(
         circle at 100% 0,
         transparent 0,
