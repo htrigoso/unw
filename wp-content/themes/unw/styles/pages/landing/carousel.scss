@@ -1,0 +1,32 @@
+.landing-carousel-description {
+  padding-top: rem(24);
+  padding-bottom: rem(24);
+
+  @include media(">=tablet") {
+    padding-top: rem(55);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include title-20;
+
+    @include media(">=tablet") {
+      @include title-28;
+    }
+
+    margin-bottom: rem(24);
+  }
+}
+
+.landing-carousel-gallery {
+  padding-top: rem(24);
+  padding-bottom: rem(24);
+
+  @include media(">=tablet") {
+    padding-top: rem(64);
+  }
+}

@@ -42,7 +42,7 @@
 
 .program-curriculum__cycles-slide {
   @include media("<desktop-s") {
-    width: rem(266);
+    width: rem(266) !important;
   }
   width: 100%;
 }

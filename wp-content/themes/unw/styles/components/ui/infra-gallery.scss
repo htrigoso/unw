@@ -1,0 +1,9 @@
+@import "./infra-card.scss";
+@import "./details-modal.scss";
+
+.infra-gallery__item {
+  @include media("<desktop-s") {
+    width: rem(305) !important;
+  }
+  width: auto;
+}

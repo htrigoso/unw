@@ -38,7 +38,7 @@ $card_items = $infrastructure['list'];
               <?php
               get_template_part(COMMON_CONTENT_PATH, 'infra-card', [
                 'title' => esc_html($title),
-                'excerpt' => esc_html($excerpt),
+                'description' => esc_html($excerpt),
                 'photo' => esc_url($photo),
               ]);
               ?>
