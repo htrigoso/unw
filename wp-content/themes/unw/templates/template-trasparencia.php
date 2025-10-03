@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: Trasparencia
  */
@@ -7,17 +8,17 @@
 <?php set_query_var('ASSETS_CHUNK_NAME', 'migration'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php
-  get_header();
+get_header();
 ?>
 
-<?php get_template_part(GENERAL_CONTENT_PATH, 'navbar');?>
+<?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 <main>
   <div class="main_container">
     <div class="cover_img_page center fijo">
       <div class="overlay"></div>
 
-      <?php if ( has_post_thumbnail() ) : ?>
-      <?php the_post_thumbnail( 'full', [ 'class' => 'img_cover' ] ); ?>
+      <?php if (has_post_thumbnail()) : ?>
+        <?php the_post_thumbnail('full', ['class' => 'img_cover']); ?>
       <?php endif; ?>
 
       <div class="info_cover_page center">
@@ -28,8 +29,8 @@
       </div>
       <div class="miga_de_pan">
         <div class="container">
-          <div class="content_links_miga"><a href="<?=home_url('/')?>" class="link miga">Inicio /</a><a
-              href="<?=home_url('/transparencia/')?>" aria-current="page" class="link miga"><?= get_the_title(); ?></a>
+          <div class="content_links_miga"><a href="<?= home_url('/') ?>" class="link miga">Inicio /</a><a
+              href="<?= home_url('/transparencia/') ?>" aria-current="page" class="link miga"><?= get_the_title(); ?></a>
           </div>
         </div>
       </div>
@@ -42,7 +43,7 @@
               <div class="clase_para_wordpress transparencia">
                 <?php
                 the_content();
-              ?>
+                ?>
               </div>
             </div>
             <div class="section">
@@ -59,10 +60,8 @@
     </div>
   </div>
 </main>
-<?php get_template_part(HOME_CONTENT_PATH, 'more-info-form'); ?>
-<a class="book-link" href="javascript:void(0);" data-modal-target="modal-more-info">
-  <img src="<?= placeholder() ?>" class="book-link__icon lazyload"
-    data-src="<?php echo UPLOAD_PATH . '/migration/solicitar.svg'; ?>" alt="Formulario General">
-</a>
+<?php
+add_filter('show_book_link', '__return_true');
 
-<?php get_footer(); ?>
+get_footer();
+?>

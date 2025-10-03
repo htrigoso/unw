@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: Responsabilidad Social
  */
@@ -7,22 +8,22 @@
 <?php set_query_var('ASSETS_CHUNK_NAME', 'migration'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php
-  get_header();
-  global $post;
-  $parent_id = wp_get_post_parent_id( $post->ID );
-  $acf_sidebar = get_field('sidebar');
-  $acf_cards = get_field('items');
+get_header();
+global $post;
+$parent_id = wp_get_post_parent_id($post->ID);
+$acf_sidebar = get_field('sidebar');
+$acf_cards = get_field('items');
 ?>
 
 
 
-<?php get_template_part(GENERAL_CONTENT_PATH, 'navbar');?>
+<?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 <main>
   <div class="main_container">
     <div class="info_page">
       <?php
-          get_template_part('content-parts/components/info-cover');
-        ?>
+      get_template_part('content-parts/components/info-cover');
+      ?>
       <div class="main_page">
         <div class="page_interna">
           <div class="container full">
@@ -30,7 +31,7 @@
               <div class="col-1 full">
                 <div class="tabs_menu notab serv_uni secretaria">
                   <?php
-                    get_template_part('content-parts/components/sidebar', null, ['sidebar' => $acf_sidebar['sidebar_items']]);
+                  get_template_part('content-parts/components/sidebar', null, ['sidebar' => $acf_sidebar['sidebar_items']]);
                   ?>
 
                 </div>
@@ -42,8 +43,8 @@
                       <div class="info_section full" id="presentacion">
                         <div class="clase_para_wordpress richt_text">
                           <?php
-                              the_content();
-                            ?>
+                          the_content();
+                          ?>
                         </div>
                       </div>
 
@@ -52,8 +53,8 @@
                         <div class="wrapper_collection mt auto w-dyn-list">
                           <div role="list" class="collection_list gilla _3-col w-dyn-items">
                             <?php
-                                get_template_part('content-parts/components/cards', null, ['cards' => $acf_cards['cards']]);
-                              ?>
+                            get_template_part('content-parts/components/cards', null, ['cards' => $acf_cards['cards']]);
+                            ?>
                           </div>
                         </div>
                       </div>
@@ -68,9 +69,7 @@
     </div>
   </div>
 </main>
-<?php get_template_part(HOME_CONTENT_PATH, 'more-info-form'); ?>
-<a class="book-link" href="javascript:void(0);" data-modal-target="modal-more-info">
-  <img src="<?= placeholder() ?>" class="book-link__icon lazyload"
-    data-src="<?php echo UPLOAD_PATH . '/migration/solicitar.svg'; ?>" alt="Formulario General">
-</a>
-<?php get_footer(); ?>
+<?php
+add_filter('show_book_link', '__return_true');
+get_footer();
+?>
