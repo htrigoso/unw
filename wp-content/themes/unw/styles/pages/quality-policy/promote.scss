@@ -24,7 +24,7 @@
 
 .promote-swiper__item {
   @include media("<desktop-s") {
-    width: rem(284);
+    width: rem(284) !important;
   }
   width: auto;
 }

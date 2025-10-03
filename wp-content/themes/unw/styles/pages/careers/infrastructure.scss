@@ -27,7 +27,7 @@
 
 .infrastructure__item {
   @include media("<desktop-s") {
-    width: rem(305);
+    width: rem(305) !important;
   }
   width: auto;
 }
