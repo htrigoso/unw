@@ -1,4 +1,4 @@
-.pba-benefits {
+.grid-benefits {
   background-color: var(--color-primary);
   padding-top: rem(42);
   padding-bottom: rem(42);
@@ -8,15 +8,16 @@
   }
 }
 
-.pba-benefits__wrapper {
+.grid-benefits__wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
-.pba-benefits__title {
+.grid-benefits__title {
   @include title-28;
   margin-bottom: rem(42);
+  color: var(--color-white);
 
   @include media(">=phone") {
     text-align: center;
@@ -25,11 +26,10 @@
 
   @include media(">=tablet") {
     margin-bottom: rem(56);
-    color: var(--color-white);
   }
 }
 
-.pba-benefits__grid {
+.grid-benefits__grid {
   columns: 2;
   column-gap: rem(16);
 
@@ -42,7 +42,7 @@
   }
 }
 
-.pba-benefits__item--container {
+.grid-benefits__item--container {
   &[data-padded="1"] {
     padding-top: rem(126);
   }
@@ -56,7 +56,7 @@
   }
 }
 
-.pba-benefits__item {
+.grid-benefits__item {
   border: 1px solid var(--color-turquoise-one);
   break-inside: avoid;
   background-color: var(--color-white);
@@ -69,7 +69,7 @@
   }
 }
 
-.pba-benefits__icon {
+.grid-benefits__icon {
   width: rem(52);
   height: rem(52);
   margin-bottom: rem(8);

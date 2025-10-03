@@ -1,16 +1,16 @@
 <?php
-$benefits = get_field('benefits');
+$benefits = $args['benefits'] ?? [];
 $options = $benefits['options'] ?? [];
-$title = $benefits['title'] ?? 'Beneficios para nuestros estudiantes';
+$title = $benefits['title'] ?? '';
 ?>
 
 <?php if (!empty($options)): ?>
-  <section class="pba-benefits">
-    <div class="x-container x-container--pad-213 pba-benefits__wrapper">
+  <section class="grid-benefits">
+    <div class="x-container x-container--pad-213 grid-benefits__wrapper">
 
-      <h2 class="pba-benefits__title"><?php echo esc_html($title); ?></h2>
+      <h2 class="grid-benefits__title"><?php echo esc_html($title); ?></h2>
 
-      <ul class="pba-benefits__grid">
+      <ul class="grid-benefits__grid">
         <?php
         $count = count($options);
         $is_odd = $count % 2 === 1;
@@ -22,11 +22,11 @@ $title = $benefits['title'] ?? 'Beneficios para nuestros estudiantes';
           $should_pad = ($is_odd && ($i == $pad_index));
         ?>
           <?php if ($icon && $text): ?>
-            <li class="pba-benefits__item--container" <?php if ($should_pad) echo ' data-padded="1"'; ?>>
-              <div class="pba-benefits__item">
+            <li class="grid-benefits__item--container" <?php if ($should_pad) echo ' data-padded="1"'; ?>>
+              <div class="grid-benefits__item">
                 <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($icon); ?>" alt="<?php echo esc_attr($alt); ?>" aria-hidden="true" loading="lazy"
-                  class="pba-benefits__icon lazyload" />
-                <p class="pba-benefits__text"><?php echo $text; ?></p>
+                  class="grid-benefits__icon lazyload" />
+                <p class="grid-benefits__text"><?php echo $text; ?></p>
               </div>
             </li>
           <?php endif; ?>

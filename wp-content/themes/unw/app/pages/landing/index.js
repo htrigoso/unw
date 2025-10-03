@@ -1,3 +1,11 @@
+import HeroSwiper from '../../components/HeroSwiper'
+
 (function () {
-  // alert('ok')
+  HeroSwiper('.hero-swiper', {
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false
+    },
+    loop: false
+  })
 })()
