@@ -11,6 +11,7 @@ function arr_get($arr, $path) {
 
 $footer_acf = get_field('footer', 'options');
 $wa_general = get_field('wa_general', 'options');
+$central = get_field('central_numbers', 'options');
 
 
 // === LIBRO DE RECLAMACIONES ===
@@ -94,15 +95,22 @@ $libro_reclamaciones_html = ob_get_clean();
           ?>
           <div class="footer__short-divider"></div>
           <div class="footer__numbers">
+            <?php if (!empty($central)) : ?>
+            <?php foreach ($central as $phone) : ?>
+            <?php
+        $title  = $phone['title'] ?? '';
+        $number = $phone['number'] ?? '';
+        // Para href: dejamos solo dígitos
+        $tel = preg_replace('/\D+/', '', $number);
+      ?>
             <div class="footer__phone_number">
-              Central Telefónica: <a href="tel:01 706-5555">01 706-5555</a>
+              <?= esc_html($title) ?>
+              <?php if ($number) : ?>
+              <a href="tel:<?= esc_attr($tel) ?>"><?= esc_html($number) ?></a>
+              <?php endif; ?>
             </div>
-            <div class="footer__phone_number">
-              Pregrado - Postulantes: <a href="tel:0 800 26212">0 800-26212</a>
-            </div>
-            <div class="footer__phone_number">
-              Posgrado Postulantes: <a href="tel:01 706-5555">01 706-5555 (Opción 2-2-1)</a>
-            </div>
+            <?php endforeach; ?>
+            <?php endif; ?>
           </div>
 
           <div class="footer__book--mobile">
