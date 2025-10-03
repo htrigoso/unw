@@ -4934,10 +4934,10 @@ li {
 }
 
 .link_item_tab.scroll.w--current {
-  background-image: none;
-  background-position: 0px 0px;
+
   background-size: auto;
-  background-repeat: repeat;
+  background-image: var(--icon-tab);
+    background-position: 3% 50%;
 }
 
 .link_item_tab.scroll.large.extra.w--current {
@@ -15499,7 +15499,6 @@ li {
     background-color: #068284;
     background-image: none;
     background-size: auto;
-    background-repeat: repeat;
     color: #fff;
   }
 
@@ -21037,3 +21036,17 @@ table {
     }
   }
 }
+.tabla-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 80vw;
+}
+@media screen and (max-width: 800px) {
+  .tabla-scroll td {
+    border: 1px solid #ddd !important;
+     text-align: left !important;
+     width: 30%;
+  }
+}
+
+
