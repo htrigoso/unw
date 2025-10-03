@@ -64,6 +64,10 @@
     "migration": [
       "./app/pages/migration/index.js",
       "./styles/pages/migration/index.scss"
+    ],
+    "landing": [
+      "./app/pages/landing/index.js",
+      "./styles/pages/landing/index.scss"
     ]
   }
 }

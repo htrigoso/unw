@@ -66,8 +66,14 @@ add_action('acf/init', function() {
 add_filter('acf/fields/flexible_content/layout_title/name=sections', function($title, $field, $layout, $i) {
 
     $preview_images = [
-        'section-hero'   => 'https://www.faststone.org/Images/FSViewer.png',
-        'section-content'   => 'https://www.faststone.org/Images/FSViewer.png',
+        'section-hero'   => get_template_directory_uri() . '/assets/images/sections/section-1.png',
+        'section-content'   => get_template_directory_uri() .'/assets/images/sections/section-2.png',
+        'section-grid-card'   => get_template_directory_uri() . '/assets/images/sections/section-3.png',
+        'section-carousel'   => get_template_directory_uri() . '/assets/images/sections/section-4.png',
+        'section-image'      => get_template_directory_uri() . '/assets/images/sections/section-5.png',
+        'section-grid-card-v2'      => get_template_directory_uri() . '/assets/images/sections/section-6.png',
+        'section-grid-card-v3'      => get_template_directory_uri() . '/assets/images/sections/section-7.png',
+
     ];
 
      if (isset($preview_images[$layout['name']])) {

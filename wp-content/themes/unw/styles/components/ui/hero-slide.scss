@@ -19,7 +19,8 @@
   object-position: center;
 
   @include media(">=tablet") {
-    max-height: 100vh;
+    min-height: calc(100vh - var(--navbar-height-desktop));
+    max-height: calc(100vh - var(--navbar-height-desktop));
   }
 }
 
