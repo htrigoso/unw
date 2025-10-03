@@ -18,6 +18,7 @@ import { $element } from '../../utils/dom'
   })
   PostSwiper('.testimonials-swiper')
   PostSwiper('.program-swiper')
+  PostSwiper('.program-committee-swiper')
   PostSwiper('.staff-swiper')
   PostSwiper('.infra-swiper')
   PostSwiper('.admission-swiper')

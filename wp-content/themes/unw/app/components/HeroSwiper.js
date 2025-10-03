@@ -6,14 +6,14 @@ const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
     slidesPerView: 1,
     centeredSlides: false,
     spaceBetween: 0,
-    speed: 500,
+    speed: 1500,
     lazy: {
       loadPrevNext: true,
       loadOnTransitionStart: true
     },
     autoplay: {
       delay: 5000,
-      disableOnInteraction: false
+      disableOnInteraction: true
     },
     effect: 'fade',
     fadeEffect: {
