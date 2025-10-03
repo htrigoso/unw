@@ -1,7 +1,7 @@
 <?php
 $photo = $args['photo'];
 $title = $args['title'];
-$excerpt = $args['excerpt'];
+$description = $args['description'];
 ?>
 
 <article class="infra-card">
@@ -10,10 +10,12 @@ $excerpt = $args['excerpt'];
       alt="Foto de <?php echo esc_attr($title); ?>" class="lazyload" />
   </div>
   <div class="infra-card__body">
+    <?php if (!empty($title)): ?>
     <h3 class="infra-card__name"><?php echo esc_html($title); ?></h3>
-    <?php if (!empty($excerpt)): ?>
+    <?php endif; ?>
+    <?php if (!empty($description)): ?>
     <div class="infra-card__description" data-content="paragraph" >
-      <?php the_content()?>
+      <?= wp_kses_post($description)?>
     </div>
     <?php endif; ?>
   </div>

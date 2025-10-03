@@ -20,9 +20,10 @@ $cta = $data['cta'] ?? [];
             <article class="grid-cards-v3__item">
               <?php if ($icon) : ?>
                 <img
-                  src="<?php echo esc_url($icon['url']); ?>"
+                  src="<?= placeholder() ?>"
+                  data-src="<?php echo esc_url($icon['url']); ?>"
                   alt="<?php echo esc_attr($icon['alt']); ?>"
-                  class="grid-cards-v3__icon"
+                  class="lazyload grid-cards-v3__icon"
                   loading="lazy"
                   width="auto"
                   height="42" />
