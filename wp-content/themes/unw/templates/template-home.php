@@ -17,7 +17,9 @@
   <?php get_template_part(HOME_CONTENT_PATH, 'home-hero'); ?>
   <?php get_template_part(HOME_CONTENT_PATH, 'why-wiener'); ?>
   <?php get_template_part(HOME_CONTENT_PATH, 'programs'); ?>
-  <?php get_template_part(HOME_CONTENT_PATH, 'impact-results'); ?>
+  <?php get_template_part(COMMON_CONTENT_PATH, 'impact-results', [
+    'content' => get_field('impact_results')
+  ]); ?>
   <?php get_template_part(HOME_CONTENT_PATH, 'testimonial'); ?>
   <?php get_template_part(HOME_CONTENT_PATH, 'guidance-steps'); ?>
   <?php get_template_part(HOME_CONTENT_PATH, 'international-agreements'); ?>

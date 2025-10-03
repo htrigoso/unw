@@ -40,7 +40,7 @@ if (!empty($slides)) :
               'breadcrumbs' => $slide_breadcrumbs,
               'type'        => $type,
               'variant'     => $variant,
-              'index'       =>$index
+              'index'       => $index
             ]);
         ?>
       </div>

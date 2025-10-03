@@ -12,7 +12,7 @@ if ($certifications && is_array($certifications)) :
       <h3 class="us-certifications__title">
         <?= esc_html($certifications['subtitle']); ?>
       </h3>
-      <div class="certifications-swiper post-swiper">
+      <div class="certifications-swiper post-swiper" data-width="compact">
         <div class="swiper-container">
           <div class="swiper-wrapper certifications-swiper__list">
             <?php foreach ($certifications['list'] as $group) : ?>

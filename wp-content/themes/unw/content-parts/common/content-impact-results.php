@@ -1,6 +1,6 @@
 <?php
-  $impact_results = get_field('impact_results');
-  $title = $impact_results['title'] ?? 'Crecemos con resultados que inspiran.';
+  $impact_results = $args['content'];
+  $title = $impact_results['title'] ?? '';
   $options = $impact_results['options'] ?? [];
 ?>
 
@@ -17,7 +17,7 @@
         ?>
         <article class="impact-results__item">
           <?php if (!empty($subtitle)): ?>
-          <h3 class="impact-results__subtitle"><?php echo esc_html($subtitle); ?></h3>
+          <p class="impact-results__subtitle"><?php echo esc_html($subtitle); ?></p>
           <?php endif; ?>
         </article>
         <?php endforeach; ?>

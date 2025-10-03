@@ -1,0 +1,67 @@
+.grid-cards-v3 {
+  background-color: var(--color-light-turquoise);
+}
+
+.grid-cards-v3__wrapper {
+  padding-top: rem(32);
+  padding-bottom: rem(32);
+
+  @include media(">=tablet") {
+    padding-top: rem(100);
+    padding-bottom: rem(80);
+  }
+}
+
+.grid-cards-v3__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: rem(24);
+
+  @include media(">=tablet") {
+    gap: rem(32);
+  }
+}
+
+.grid-cards-v3__title {
+  font-size: rem(36);
+  font-weight: var(--font-bold);
+  line-height: normal;
+  letter-spacing: 0.5px;
+  margin-bottom: rem(24);
+
+  @include media(">=tablet") {
+    margin-bottom: rem(32);
+  }
+}
+
+.grid-cards-v3__icon {
+  margin-bottom: rem(8);
+}
+
+.grid-cards-v3__description {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-size: rem(22);
+    margin-bottom: rem(8);
+  }
+}
+
+.grid-cards-v3__cta-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: rem(32);
+
+  @include media(">=tablet") {
+    margin-top: rem(62);
+  }
+}
+
+.grid-cards-v3__cta-btn {
+  width: 100%;
+
+  @include media(">=phone") {
+    width: auto;
+  }
+}

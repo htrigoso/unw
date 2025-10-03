@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: Landing Template
  */
@@ -12,8 +13,8 @@ get_template_part(GENERAL_CONTENT_PATH, 'navbar');
 
 <main>
   <?php if (have_rows('sections')): ?>
-  <?php while (have_rows('sections')): the_row(); ?>
-  <?php
+    <?php while (have_rows('sections')): the_row(); ?>
+      <?php
       // Detecta el layout actual
       $layout = get_row_layout();
       $data = get_row(true); // Obtener toda la data del repeater actual
@@ -41,8 +42,10 @@ get_template_part(GENERAL_CONTENT_PATH, 'navbar');
         }
       }
       ?>
-  <?php endwhile; ?>
+    <?php endwhile; ?>
   <?php endif; ?>
 </main>
-
-<?php get_footer(); ?>
+<?php
+add_filter('show_book_link', '__return_true');
+get_footer();
+?>

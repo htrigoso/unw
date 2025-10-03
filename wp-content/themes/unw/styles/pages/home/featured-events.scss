@@ -1,5 +1,7 @@
 .featured-events {
-  background-color: var(--color-light-turquoise);
+  @include media(">=tablet") {
+    background-color: var(--color-light-turquoise);
+  }
 }
 
 .featured-events__wrapper {

@@ -51,9 +51,7 @@ $acf_sidebar = get_field('sidebar');
     </div>
   </div>
 </main>
-<?php get_template_part(HOME_CONTENT_PATH, 'more-info-form'); ?>
-<a class="book-link" href="javascript:void(0);" data-modal-target="modal-more-info">
-  <img src="<?= placeholder() ?>" class="book-link__icon lazyload"
-    data-src="<?php echo UPLOAD_PATH . '/migration/solicitar.svg'; ?>" alt="Formulario General">
-</a>
-<?php get_footer(); ?>
+<?php
+add_filter('show_book_link', '__return_true');
+get_footer();
+?>
