@@ -16,10 +16,6 @@
 .swiper-hero__slide {
   position: relative;
   overflow: hidden;
-
-  @include media(">=tablet") {
-    height: 85vh;
-  }
 }
 
 .swiper-hero__picture {
@@ -31,6 +27,13 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
+
+  @include media(">=tablet") {
+    min-height: var(--full-hero-min-height);
+    height: var(--full-hero-height);
+    max-height: var(--full-hero-max-height);
+    aspect-ratio: var(--full-hero-aspect-ratio);
+  }
 }
 
 .hero__wrapper {
@@ -141,9 +144,7 @@
       bottom: 0;
       width: rem(51);
       height: rem(51);
-      background-color: var(
-        --color-light-turquoise
-      );
+      background-color: var(--color-light-turquoise);
     }
 
     &::before {

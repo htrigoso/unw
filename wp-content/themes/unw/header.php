@@ -71,7 +71,12 @@
     --navbar-height-mobile: 83px;
     --navbar-height-desktop: 132px;
     --navbar-height: var(--navbar-height-mobile);
+
     --full-hero-height: calc(100dvh - var(--navbar-height) - 12px);
+    --full-hero-min-height: var(--full-hero-height);
+    --full-hero-max-height: var(--full-hero-height);
+    --full-hero-aspect-ratio: unset;
+
     --swiper-prev-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-left.svg');
     --swiper-next-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-right.svg');
     --chevron-right-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/chevron-right.svg');
