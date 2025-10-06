@@ -12,7 +12,7 @@ const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
       loadOnTransitionStart: true
     },
     autoplay: {
-      delay: 5000,
+      delay: 2500,
       disableOnInteraction: true
     },
     effect: 'fade',

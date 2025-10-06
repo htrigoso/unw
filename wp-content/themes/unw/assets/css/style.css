@@ -600,6 +600,7 @@ li {
 .container.full {
   width: 95%;
   padding-left: 0px;
+  padding-bottom: 20px;
 }
 
 .container.full.noauto {
@@ -13540,8 +13541,10 @@ li {
 
   .container.full {
     width: 100%;
-    padding-right: 0px;
     padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+
   }
 
   .container.full.marginright {
@@ -21036,17 +21039,25 @@ table {
     }
   }
 }
+
 .tabla-scroll {
+  width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  max-width: 80vw;
-}
-@media screen and (max-width: 800px) {
-  .tabla-scroll td {
-    border: 1px solid #ddd !important;
-     text-align: left !important;
-     width: 30%;
-  }
+  max-width: calc(100% - 10px);
 }
 
+.tabla-scroll table {
+  width: 100%;        /* se adapta al contenedor */
+  table-layout: fixed; /* distribuye equitativamente las columnas */
+  border-collapse: collapse;
+}
+
+.tabla-scroll th,
+.tabla-scroll td {
+  word-wrap: break-word; /* corta texto largo */
+  white-space: normal;   /* permite salto de línea */
+  padding: 8px;
+  text-align: left;
+}
 

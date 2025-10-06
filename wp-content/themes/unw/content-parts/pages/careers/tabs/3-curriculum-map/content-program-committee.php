@@ -1,63 +1,52 @@
 <?php
-$content = "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>";
+$acf_comite = $args['comite'] ?? null;
+if (empty($acf_comite)) return;
 
-$commmittees = [
-  [
-    'img' => UPLOAD_PATH . '/checker-bg.svg',
-    'title' => 'Nombre Apellido',
-    'position' => 'Cargo',
-    'extract' => '<p>Extracto corto sobre experiencia profesional. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>'
-  ],
-  [
-    'img' => UPLOAD_PATH . '/checker-bg.svg',
-    'title' => 'Nombre Apellido',
-    'position' => 'Cargo',
-    'extract' => '<p>Extracto corto sobre experiencia profesional. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>'
-  ],
-  [
-    'img' => UPLOAD_PATH . '/checker-bg.svg',
-    'title' => 'Nombre Apellido',
-    'position' => 'Cargo',
-    'extract' => '<p>Extracto corto sobre experiencia profesional. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>'
-  ],
-  [
-    'img' => UPLOAD_PATH . '/checker-bg.svg',
-    'title' => 'Nombre Apellido',
-    'position' => 'Cargo',
-    'extract' => '<p>Extracto corto sobre experiencia profesional. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>'
-  ],
-  [
-    'img' => UPLOAD_PATH . '/checker-bg.svg',
-    'title' => 'Nombre Apellido',
-    'position' => 'Cargo',
-    'extract' => '<p>Extracto corto sobre experiencia profesional. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>'
-  ]
-]
+$title = $acf_comite['title'] ?? '';
+$description = $acf_comite['description'] ?? '';
+$lists = $acf_comite['lists'] ?? [];
 
 ?>
 <section class="program-committee">
-  <h3 class="program-committee__title">Comité Consultivo</h3>
+  <?php if (!empty($title)): ?>
+  <h3 class="program-committee__title"><?= esc_html($title); ?></h3>
+  <?php endif; ?>
+
+  <?php if (!empty($description)): ?>
   <div class="program-committee__content" data-content="paragraph">
-    <?php echo wp_kses_post($content); ?>
+    <?= wp_kses_post($description); ?>
   </div>
+  <?php endif; ?>
+
+  <?php if (!empty($lists)):
+    ?>
   <div class="program-committee__slides">
     <div class="program-committee-swiper post-swiper" data-width="compact">
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <?php foreach ($commmittees as $commmittee): ?>
-            <?php ?>
-            <div class="swiper-slide program-committee-swiper__slide">
-              <div class="program-committee__card">
-                <img src="<?= $commmittee['img'] ?>" alt="" class="program-committee__card--img" />
-                <div class="program-committee__card__content">
-                  <h4 class="program-committee__card--title"><?= $commmittee['title'] ?></h4>
-                  <span class="program-committee__card--position"><?= $commmittee['position'] ?></span>
-                  <div class="program-committee__card--extract" data-content="paragraph">
-                    <?php echo wp_kses_post($commmittee['extract']); ?>
-                  </div>
+          <?php foreach ($lists as $member): ?>
+          <?php
+              $id = $member->ID;
+              $info = get_field('info-comite', $id);
+
+              $img = get_the_post_thumbnail_url($id);
+              $name = get_the_title($id);
+              $position = $info['charge'] ?? '';
+              $description = $info['description'] ?? '';
+
+              ?>
+          <div class="swiper-slide program-committee-swiper__slide">
+            <div class="program-committee__card">
+              <img src="<?= esc_url($img); ?>" alt="<?= esc_attr($name); ?>" class="program-committee__card--img" />
+              <div class="program-committee__card__content">
+                <h4 class="program-committee__card--title"><?= esc_html($name); ?></h4>
+                <span class="program-committee__card--position"><?= esc_html($position); ?></span>
+                <div class="program-committee__card--extract" data-content="paragraph">
+                  <?= wp_kses_post($description); ?>
                 </div>
               </div>
             </div>
+          </div>
           <?php endforeach; ?>
         </div>
       </div>
@@ -70,4 +59,5 @@ $commmittees = [
       </div>
     </div>
   </div>
+  <?php endif; ?>
 </section>

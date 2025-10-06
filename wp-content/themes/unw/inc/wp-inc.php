@@ -16,6 +16,7 @@ require_once dirname(__FILE__) . '/post-types/cpt-careers.php';
 require_once dirname(__FILE__) . '/post-types/cpt-careers-distance.php';
 require_once dirname(__FILE__) . '/post-types/cpt-countries.php';
 require_once dirname(__FILE__) . '/post-types/cpt-testimonials.php';
+require_once dirname(__FILE__) . '/post-types/cpt-comite.php';
 require_once dirname(__FILE__) . '/post-types/cpt-news.php';
 require_once dirname(__FILE__) . '/post-types/cpt-events.php';
 require_once dirname(__FILE__) . '/post-types/cpt-teachers.php';
