@@ -3,7 +3,7 @@ $header = $args['header'] ?? '';
 $content = $args['content'] ?? '';
 $id = $args['id'] ?? '';
 $class = $args['class'] ?? '';
-$variant = $args['variant'] ?? 'default'; // Variants: Default | Float
+$variant = $args['variant'] ?? 'default'; // Variants: default | float
 $preloaded = $args['preloaded'] ?? false; // TRUE: Always loaded, FALSE: conditional load
 
 if (!function_exists('render_modal_content')) {

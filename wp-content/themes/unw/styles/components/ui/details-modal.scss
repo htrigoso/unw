@@ -3,6 +3,11 @@
     max-width: rem(760);
   }
 
+  .modal-close {
+    top: rem(-30) !important;
+    right: rem(-14) !important;
+  }
+
   .modal-header {
     @include media(">=tablet") {
       padding: rem(24) rem(24) 0;
@@ -17,7 +22,7 @@
   }
 
   .modal-body {
-    padding: rem(24) rem(16);
+    padding: rem(16);
 
     @include media(">=tablet") {
       padding: rem(24);
@@ -62,4 +67,8 @@
     border-radius: rem(12);
     padding-inline: rem(12);
   }
+}
+
+.details-modal__navigation {
+  margin-top: rem(10) !important;
 }

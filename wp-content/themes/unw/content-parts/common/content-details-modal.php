@@ -33,7 +33,7 @@ ob_start();
           <?php endforeach; ?>
         </div>
 
-        <div class="swiper-navigation" data-size="responsive">
+        <div class="swiper-navigation details-modal__navigation" data-size="responsive">
           <div class="swiper-primary-button-prev" data-size="responsive"></div>
           <div class="swiper-primary-button-next" data-size="responsive"></div>
           <div class="swiper-counter" data-size="responsive">
@@ -57,6 +57,7 @@ $content = ob_get_clean();
 get_template_part(COMMON_CONTENT_PATH, 'modal', [
   'content' => $content,
   'id' => $modal_id,
-  'class' => 'details-modal'
+  'class' => 'details-modal',
+  'variant' => 'float'
 ]);
 ?>
