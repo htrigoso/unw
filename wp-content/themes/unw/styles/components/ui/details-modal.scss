@@ -9,10 +9,6 @@
   }
 
   .modal-header {
-    @include media(">=tablet") {
-      padding: rem(24) rem(24) 0;
-    }
-
     svg {
       @include media(">=tablet") {
         width: rem(32);
@@ -23,10 +19,6 @@
 
   .modal-body {
     padding: rem(16);
-
-    @include media(">=tablet") {
-      padding: rem(24);
-    }
   }
 }
 
