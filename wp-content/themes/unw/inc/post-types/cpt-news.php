@@ -18,7 +18,7 @@ function register_post_type_novedades() {
         'has_archive'  => true,
         'rewrite'      => array('slug' => 'noticias'),
         'menu_icon'    => 'dashicons-megaphone',
-        'supports'     => array('title','thumbnail'),
+        'supports'     => array('title','thumbnail', 'editor'),
         'show_in_rest' => true,
     );
 

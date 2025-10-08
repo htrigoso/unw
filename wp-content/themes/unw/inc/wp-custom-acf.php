@@ -95,3 +95,28 @@ add_filter('acf/fields/flexible_content/layout_title/name=sections', function($t
 add_action('admin_enqueue_scripts', function() {
     wp_enqueue_style('acf-layout-preview', get_template_directory_uri() . '/assets/css/acf-layout-preview.css');
 });
+
+
+/**
+ * Oculta el campo "Contenido completo" y su acordeón padre "Contenido"
+ * solo en el post type 'novedades'
+ */
+add_action('acf/input/admin_head', function() {
+    global $post;
+
+    if (isset($post) && $post->post_type === 'novedades') {
+        ?>
+        <style>
+            /* Oculta el acordeón con name="contenido" */
+            [data-name="contenido"] {
+                display: none !important;
+            }
+
+            /* Por si el campo 'content' queda fuera del acordeón */
+            [data-name="content"] {
+                display: none !important;
+            }
+        </style>
+        <?php
+    }
+});

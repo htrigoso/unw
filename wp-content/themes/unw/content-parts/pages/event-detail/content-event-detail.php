@@ -6,21 +6,10 @@ $event = get_field('event_content');
   <div class="x-container x-container--pad-213">
     <section class="event-detail__wrapper">
       <article class="event-detail__content">
-        <h2 class="event-detail__subtitle">
-          Detalle del evento
-        </h2>
-
-        <?php if (!empty($event['title'])) : ?>
-        <h1 class="event-detail__title">
-          <?= esc_html($event['title']); ?>
-        </h1>
-        <?php endif; ?>
-
-        <?php if (!empty($event['content'])) : ?>
         <div class="event-detail__description" data-content="paragraph">
-          <?= wp_kses_post(wpautop($event['content'])); ?>
+          <?php the_content(); ?>
         </div>
-        <?php endif; ?>
+
 
         <div class="event-detail__video">
           <?php

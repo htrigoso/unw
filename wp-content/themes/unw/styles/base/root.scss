@@ -10,6 +10,7 @@ body {
 body {
   font-family: var(--font);
   font-weight: var(--font-regular);
+  font-optical-sizing: auto;
   color: var(--color-black);
   counter-reset: section;
   min-height: 100dvh;

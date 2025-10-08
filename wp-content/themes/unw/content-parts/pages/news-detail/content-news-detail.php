@@ -4,11 +4,8 @@
       <?php get_template_part(NEWS_DETAIL_CONTENT_PATH, "carousel"); ?>
       <div class="news-detail__body--content" data-content="paragraph">
         <?php
-        $content = get_field('content');
-        if (!empty($content)) :
-      ?>
-        <?php echo wp_kses_post($content); ?>
-        <?php endif; ?>
+        the_content();
+        ?>
       </div>
     </section>
     <div class="news-detail__featured">

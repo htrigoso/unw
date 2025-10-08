@@ -22,7 +22,7 @@
   <!-- Css vars-->
   <style type="text/css">
   :root {
-    --font: "Founders Grotesk", sans-serif;
+    --font: "Hanken Grotesk", sans-serif;
     --font-inter: "Inter", sans-serif;
     --font-size: 16px;
     --font-thin: 100;
