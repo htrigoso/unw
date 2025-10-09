@@ -120,3 +120,24 @@ add_action('acf/input/admin_head', function() {
         <?php
     }
 });
+
+
+function is_whatsapp_blocked($wa_config) {
+    global $post;
+
+    if (!($post instanceof WP_Post)) {
+        return false;
+    }
+
+    $blocked_pages = $wa_config['block_pages'] ?? [];
+
+    if (!empty($blocked_pages) && is_array($blocked_pages)) {
+        foreach ($blocked_pages as $blocked_page) {
+            if ($blocked_page instanceof WP_Post && $blocked_page->ID === $post->ID) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
