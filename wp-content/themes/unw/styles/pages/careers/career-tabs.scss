@@ -15,7 +15,6 @@
 
   @include media(">=tablet") {
     padding-inline: rem(81);
-    margin-top: rem(63);
   }
 }
 
@@ -46,4 +45,8 @@
 .contact-form-careers__wrapper {
   padding-top: rem(24);
   padding-bottom: rem(24);
+
+  @include media(">=tablet") {
+    padding-top: rem(48);
+  }
 }

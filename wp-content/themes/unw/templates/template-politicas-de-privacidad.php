@@ -16,23 +16,9 @@
 <main>
   <div class="main_container">
 
-    <div class="cover_img_page center fijo">
-      <div class="overlay"></div>
-      <img src="" srcset="<?= UPLOAD_MIGRATION_PATH . '/migration/shared/pixel.png' ?>" sizes="100vw" alt=""
-        class="img_cover">
-      <div class="info_cover_page center">
-        <div class="container">
-          <h2 class="categoria_page hide">Regresar</h2>
-          <h1 class="h1_carreras"><?= get_the_title(); ?></h1>
-        </div>
-      </div>
-      <div class="miga_de_pan">
-        <div class="container">
-          <div class="content_links_miga"><a href="<?= home_url("/") ?>" class="link miga">Inicio /</a><a href="#"
-              aria-current="page" class="link miga w--current"><?= get_the_title(); ?></a></div>
-        </div>
-      </div>
-    </div>
+    <?php
+      get_template_part('content-parts/components/info-cover');
+    ?>
     <div class="main_page">
       <div class="page_interna">
         <div class="section_container nopaddingbotttom">

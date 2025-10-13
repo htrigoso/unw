@@ -22,6 +22,22 @@ foreach ($acf_careers as $key => $value) {
  ];
 ?>
 
+<section class="contact-form-careers">
+  <div class="x-container x-container--pad-213 contact-form-careers__wrapper">
+    <?php
+      if ($mode==='presencial') {
+        get_template_part(CAREERS_CONTENT_PATH, 'contact-form-presencial',[
+            'data_form_type' =>$args['data-form']['mobile']
+        ]);
+      } else {
+        get_template_part(CAREERS_CONTENT_PATH, 'contact-form-virtual',[
+            'data_form_type' =>$args['data-form']['mobile']
+        ]);
+      }
+    ?>
+  </div>
+</section>
+
 <div class="career-tabs">
   <div class="x-container career-tabs__container">
     <?php
@@ -75,22 +91,7 @@ foreach ($acf_careers as $key => $value) {
                 'testimonials' => $testimonials
               ]);
               ?>
-        <section class="contact-form-careers">
-          <div class="x-container--pad-213 contact-form-careers__wrapper">
-            <?php
 
-              if ($mode==='presencial') {
-                get_template_part(CAREERS_CONTENT_PATH, 'contact-form-presencial',[
-                    'data_form_type' =>$args['data-form']['mobile']
-                ]);
-              } else {
-                get_template_part(CAREERS_CONTENT_PATH, 'contact-form-virtual',[
-                    'data_form_type' =>$args['data-form']['mobile']
-                ]);
-              }
-            ?>
-          </div>
-        </section>
         <section class="career-tabs__faq">
           <?php
               $faqs = $presentation['faqs'];

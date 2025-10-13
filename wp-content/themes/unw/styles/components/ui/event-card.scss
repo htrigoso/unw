@@ -76,12 +76,7 @@
 
 .event-card--row {
   display: flex;
-  justify-content: space-between;
-  gap: rem(16);
-
-  &:first-child {
-    flex: 1;
-  }
+  gap: rem(24);
 }
 
 .event-card--info--title {
@@ -92,8 +87,10 @@
 
 .event-card--info--desc {
   display: block;
-  @include title-22;
   color: var(--color-primary);
+  font-size: rem(22);
+  line-height: normal;
+  letter-spacing: 0.5px;
 }
 
 .event-card--cta {
