@@ -1,5 +1,6 @@
 <?php
-function arr_get($arr, $path) {
+function arr_get($arr, $path)
+{
   if (!is_array($arr)) return null;
   $ref = $arr;
   foreach ($path as $k) {
@@ -11,21 +12,22 @@ function arr_get($arr, $path) {
 
 $footer_acf = get_field('footer', 'options');
 $wa_general = get_field('wa_general', 'options');
+$central = get_field('central_numbers', 'options');
 
 
 // === LIBRO DE RECLAMACIONES ===
-$book_url    = arr_get($footer_acf, ['Book','link','url']);
-$book_title  = arr_get($footer_acf, ['Book','link','title']);
-$book_target = arr_get($footer_acf, ['Book','link','target']);
-$book_img    = arr_get($footer_acf, ['Book','image','url']);
+$book_url    = arr_get($footer_acf, ['Book', 'link', 'url']);
+$book_title  = arr_get($footer_acf, ['Book', 'link', 'title']);
+$book_target = arr_get($footer_acf, ['Book', 'link', 'target']);
+$book_img    = arr_get($footer_acf, ['Book', 'image', 'url']);
 
 ob_start();
 if ($book_url && $book_title) : ?>
-<a href="<?= esc_url($book_url) ?>" <?= $book_target ? 'target="'.esc_attr($book_target).'"' : '' ?>
+<a href="<?= esc_url($book_url) ?>" <?= $book_target ? 'target="' . esc_attr($book_target) . '"' : '' ?>
   class="footer__book">
-  <?= esc_html($book_title) ?>
+
   <?php if ($book_img): ?>
-  <img class="lazyload" src="<?=placeholder()?>" data-src="<?= esc_url($book_img) ?>" width="40" height="40" alt=""
+  <img class="lazyload" src="<?= placeholder() ?>" data-src="<?= esc_url($book_img) ?>" width="240" height="135" alt=""
     aria-hidden="true" />
   <?php endif; ?>
 </a>
@@ -38,9 +40,9 @@ $libro_reclamaciones_html = ob_get_clean();
 
     <div class="footer__upper">
       <div class="footer__left">
-        <?php if ($logo_url = arr_get($footer_acf, ['image','url'])): ?>
-        <img src="<?=placeholder()?>" data-src="<?= esc_url($logo_url) ?>"
-          alt="<?= esc_attr(arr_get($footer_acf, ['image','alt']) ?: '') ?>" class="footer__logo lazyload" />
+        <?php if ($logo_url = arr_get($footer_acf, ['image', 'url'])): ?>
+        <img src="<?= placeholder() ?>" data-src="<?= esc_url($logo_url) ?>"
+          alt="<?= esc_attr(arr_get($footer_acf, ['image', 'alt']) ?: '') ?>" class="footer__logo lazyload" />
         <?php endif; ?>
 
         <?php if ($title = arr_get($footer_acf, ['title'])): ?>
@@ -51,13 +53,13 @@ $libro_reclamaciones_html = ob_get_clean();
         <p class="footer__cta--desc"><?= esc_html($desc) ?></p>
         <?php endif; ?>
 
-        <?php if ($wa_url = arr_get($footer_acf, ['wa','link','url'])): ?>
+        <?php if ($wa_url = arr_get($footer_acf, ['wa', 'link', 'url'])): ?>
         <a href="<?= esc_url($wa_url) ?>"
-          target="<?= esc_attr(arr_get($footer_acf, ['wa','link','target']) ?: '_blank') ?>"
+          target="<?= esc_attr(arr_get($footer_acf, ['wa', 'link', 'target']) ?: '_blank') ?>"
           class="btn btn-sm footer__cta--link">
-          <?= esc_html(arr_get($footer_acf, ['wa','link','title']) ?: '') ?>
-          <?php if ($wa_img = arr_get($footer_acf, ['wa','image','url'])): ?>
-          <img class="lazyload" src="<?=placeholder()?>" data-src="<?= esc_url($wa_img) ?>" width="24" height="24"
+          <?= esc_html(arr_get($footer_acf, ['wa', 'link', 'title']) ?: '') ?>
+          <?php if ($wa_img = arr_get($footer_acf, ['wa', 'image', 'url'])): ?>
+          <img class="lazyload" src="<?= placeholder() ?>" data-src="<?= esc_url($wa_img) ?>" width="24" height="24"
             alt="WhatsApp" />
           <?php endif; ?>
         </a>
@@ -75,7 +77,10 @@ $libro_reclamaciones_html = ob_get_clean();
           ]);
           ?>
           <div class="footer__book--desktop">
-            <?= $libro_reclamaciones_html ?>
+
+            <?php
+            echo $libro_reclamaciones_html;
+            ?>
           </div>
         </div>
 
@@ -90,6 +95,25 @@ $libro_reclamaciones_html = ob_get_clean();
           ]);
           ?>
           <div class="footer__short-divider"></div>
+          <div class="footer__numbers">
+            <?php if (!empty($central)) : ?>
+            <?php foreach ($central as $phone) : ?>
+            <?php
+        $title  = $phone['title'] ?? '';
+        $number = $phone['number'] ?? '';
+        // Para href: dejamos solo dígitos
+        $tel = preg_replace('/\D+/', '', $number);
+      ?>
+            <div class="footer__phone_number">
+              <?= esc_html($title) ?>
+              <?php if ($number) : ?>
+              <a href="tel:<?= esc_attr($tel) ?>"><?= esc_html($number) ?></a>
+              <?php endif; ?>
+            </div>
+            <?php endforeach; ?>
+            <?php endif; ?>
+          </div>
+
           <div class="footer__book--mobile">
             <?= $libro_reclamaciones_html ?>
           </div>
@@ -100,13 +124,13 @@ $libro_reclamaciones_html = ob_get_clean();
     <div class="footer__divider"></div>
 
     <div class="footer__bottom">
-      <?php if ($copy = arr_get($footer_acf, ['copy','Info'])): ?>
+      <?php if ($copy = arr_get($footer_acf, ['copy', 'Info'])): ?>
       <span class="footer__bottom--copy"><?= wp_kses_post($copy) ?></span>
       <?php endif; ?>
 
       <?php if (!empty($footer_acf['social']['options'])): ?>
       <div class="footer__bottom__social">
-        <?php if ($social_title = arr_get($footer_acf, ['social','title'])): ?>
+        <?php if ($social_title = arr_get($footer_acf, ['social', 'title'])): ?>
         <span><?= esc_html($social_title) ?></span>
         <?php endif; ?>
 
@@ -133,18 +157,35 @@ $libro_reclamaciones_html = ob_get_clean();
   </div>
 </footer>
 
-<?php
-  $wg  = $wa_general ?? [];
-  $url = $wg['link']['url']  ?? '';
-  $img = $wg['image']['url'] ?? '';
-?>
 
-<?php if ($url && $img): ?>
-<a href="<?= esc_url($url) ?>"
-  <?= !empty($wg['link']['target']) ? 'target="'.esc_attr($wg['link']['target']).'"' : '' ?> class="whatsapp-link"
-  rel="noopener" <?= !empty($wg['link']['title']) ? 'aria-label="'.esc_attr($wg['link']['title']).'"' : '' ?>>
-  <img src="<?= placeholder() ?>" data-src="<?= esc_url($img) ?>" width="auto" height="auto"
-    alt="<?= !empty($wg['image']['alt']) ? esc_attr($wg['image']['alt']) : '' ?>"
-    class="whatsapp-link__icon lazyload" />
+<?php
+if (apply_filters('show_book_link', false)) :
+?>
+<?php get_template_part(HOME_CONTENT_PATH, 'more-info-form'); ?>
+<a class="book-link" href="javascript:void(0);" data-modal-target="modal-more-info">
+  <span class="sr-only">Solicita informes</span>
+  <img src="<?= placeholder() ?>" class="book-link__icon lazyload"
+    data-src="<?php echo UPLOAD_MIGRATION_PATH . '/solicitar.png'; ?>" alt="Formulario General">
 </a>
 <?php endif; ?>
+
+<?php
+$wg  = $wa_general ?? [];
+$url = $wg['link']['url']  ?? '';
+$img = $wg['image']['url'] ?? '';
+$title = $wg['link']['title'] ?? '';
+?>
+
+<?php
+if(!is_whatsapp_blocked($wa_general)){
+if ($url && $img): ?>
+<a href="<?= esc_url($url) ?>" arial-label="<?= esc_attr($title) ?>"
+  <?= !empty($wg['link']['target']) ? 'target="' . esc_attr($wg['link']['target']) . '"' : '' ?> class="whatsapp-link"
+  rel="noopener" <?= !empty($wg['link']['title']) ? 'aria-label="' . esc_attr($wg['link']['title']) . '"' : '' ?>>
+  <span class="sr-only"><?= esc_html($title) ?></span>
+  <img src="<?= esc_url($img) ?>" width="auto" height="auto" aria-hidden="true"
+    alt="<?= !empty($wg['image']['alt']) ? esc_attr($wg['image']['alt']) : '' ?>" class="whatsapp-link__icon" />
+</a>
+<?php endif;
+}
+?>

@@ -23,38 +23,41 @@ $destacadas = new WP_Query($args);
 
   <div class="featured-news-swiper post-swiper" data-width="compact">
     <div class="swiper-container">
-      <ul class="swiper-wrapper featured-news__list">
+      <div class="swiper-wrapper featured-news__list">
         <?php if ($destacadas->have_posts()) : ?>
-        <?php while ($destacadas->have_posts()) : $destacadas->the_post(); ?>
-        <?php
-              $slide = [
-                'image'   => uw_get_first_slider_image(get_the_ID() ),
-                'title'   => get_the_title(),
-                'content' => get_the_excerpt(),
-                'href'    => get_permalink(),
-              ];
+          <?php while ($destacadas->have_posts()) : $destacadas->the_post(); ?>
+            <?php
+            $slide = [
+              'image'   => uw_get_first_slider_image(get_the_ID()),
+              'title'   => get_the_title(),
+              'date'    => get_the_date('j') . ' de ' . ucfirst(get_the_date('F')) . ' del ' . get_the_date('Y'),
+              'content' => get_the_excerpt(),
+              'href'    => get_permalink(),
+              'date_before' => true,
+            ];
             ?>
-        <li class="swiper-slide featured-news__item">
-          <?php get_template_part(COMMON_CONTENT_PATH, 'entry-card', $slide); ?>
-        </li>
-        <?php endwhile; wp_reset_postdata(); ?>
+            <div class="swiper-slide featured-news__item">
+              <?php get_template_part(COMMON_CONTENT_PATH, 'entry-card', $slide); ?>
+            </div>
+          <?php endwhile;
+          wp_reset_postdata(); ?>
         <?php else : ?>
-        <li class="swiper-slide featured-news__item">
-          <p>No hay noticias destacadas por ahora.</p>
-        </li>
-        <?php endif; ?>
-      </ul>
-
-      <div class="featured-news__swiper-navigation">
-        <div class="swiper-navigation">
-          <div class="swiper-primary-button-prev"></div>
-          <div class="swiper-primary-button-next"></div>
-          <div class="swiper-counter">
-            <div class="swiper-pagination"></div>
+          <div class="swiper-slide">
+            <p>No hay noticias destacadas por ahora.</p>
           </div>
+        <?php endif; ?>
+      </div>
+    </div>
+    <div class="featured-news__swiper-navigation">
+      <div class="swiper-navigation" data-size="absolute">
+        <div class="swiper-primary-button-prev" data-size="absolute"></div>
+        <div class="swiper-primary-button-next" data-size="absolute"></div>
+        <div class="swiper-counter" data-size="absolute">
+          <div class="swiper-pagination" data-size="absolute"></div>
         </div>
+      </div>
 
-        <?php if (!$hide_see_more): ?>
+      <?php if (!$hide_see_more): ?>
         <div class="featured-news__see-more-btn">
           <?php
           get_template_part(COMMON_CONTENT_PATH, 'see-more-btn', [
@@ -63,8 +66,7 @@ $destacadas = new WP_Query($args);
           ]);
           ?>
         </div>
-        <?php endif ?>
-      </div>
+      <?php endif ?>
     </div>
   </div>
 </section>

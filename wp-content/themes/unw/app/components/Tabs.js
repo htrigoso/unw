@@ -19,7 +19,7 @@ export default class Tabs extends Component {
   init() {
     this.activeTabFromUrl()
     this.bindTabEvents()
-    window.addEventListener('resize', this.handleResize.bind(this))
+    // window.addEventListener('resize', this.handleResize.bind(this))
   }
 
   handleResize() {
@@ -38,6 +38,8 @@ export default class Tabs extends Component {
 
     if (tabId) {
       tabToActivate = [...this.elements.tabItems].find(tab => tab.dataset.target === tabId)
+    } else {
+      tabToActivate = [...this.elements.tabItems][0]
     }
 
     if (!tabToActivate) {
@@ -51,7 +53,7 @@ export default class Tabs extends Component {
 
     this.setActiveTab(tabToActivate)
     this.showTabContent(targetId)
-    this.scrollToTab(tabToActivate)
+    // this.scrollToTab(tabToActivate)
 
     // Callback para notificar el cambio de tab inicial
     if (typeof this.onTabChange === 'function') {
@@ -106,6 +108,9 @@ export default class Tabs extends Component {
     this.elements.tabItems.forEach(tab =>
       tab.classList.remove('is-active')
     )
+
+    if (!activeTab) return
+
     activeTab.classList.add('is-active')
   }
 
@@ -118,25 +123,24 @@ export default class Tabs extends Component {
   }
 
   scrollToContent(targetContent) {
-    requestAnimationFrame(() => {
-      const offset = 200
-      const top =
-        targetContent.getBoundingClientRect().top +
-        window.pageYOffset -
-        offset
+    const offset = 200
+    const top =
+      targetContent.getBoundingClientRect().top +
+      window.pageYOffset -
+      offset
 
-      window.scrollTo({ top, behavior: 'smooth' })
-    })
+    window.scrollTo({ top, behavior: 'smooth' })
   }
 
   scrollToTab(tab) {
-    requestAnimationFrame(() => {
-      const isWide = window.innerWidth >= 1440
-      tab.scrollIntoView({
-        behavior: 'smooth',
-        inline: isWide ? 'nearest' : 'center',
-        block: 'nearest'
-      })
+    const isWide = window.innerWidth >= 1440
+
+    if (!tab) return
+
+    tab.scrollIntoView({
+      behavior: 'smooth',
+      inline: isWide ? 'nearest' : 'center',
+      block: 'nearest'
     })
   }
 }

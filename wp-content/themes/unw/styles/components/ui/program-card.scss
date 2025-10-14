@@ -23,12 +23,13 @@
 
 .program-card--content__title {
   @include title-22;
+  padding-bottom: rem(10);
   margin-bottom: auto;
 }
 
 .program-card--content__description {
-  margin-top: rem(8);
   margin-bottom: auto;
+  font-size: rem(18);
 }
 
 .program-card--content__cta {

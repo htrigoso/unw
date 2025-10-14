@@ -2,7 +2,6 @@
 <html lang="es">
 
 <head>
-  <title><?php echo wp_get_document_title(); ?></title>
   <base href="/">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -23,7 +22,7 @@
   <!-- Css vars-->
   <style type="text/css">
   :root {
-    --font: "Founders Grotesk", sans-serif;
+    --font: "Hanken Grotesk", sans-serif;
     --font-inter: "Inter", sans-serif;
     --font-size: 16px;
     --font-thin: 100;
@@ -69,12 +68,28 @@
 
     --color-bg-secondary: #F0EAEE;
 
-    --navbar-height-mobile: 64px;
-    --navbar-height-desktop: 118px;
+    --navbar-height-mobile: 83px;
+    --navbar-height-desktop: 132px;
+    --navbar-height: var(--navbar-height-mobile);
+
+    --full-hero-height: 100%;
+    --full-hero-min-height: 600px;
+    --full-hero-max-height: auto;
+    --full-hero-aspect-ratio: 2.26;
 
     --swiper-prev-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-left.svg');
     --swiper-next-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/arrow-right.svg');
+    --chevron-right-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/chevron-right.svg');
+    --chevron-left-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/chevron-left.svg');
+    --chevron-right-two-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/chevron-right-two.svg');
+    --chevron-left-two-icon: url('<?php echo get_template_directory_uri(); ?>/upload/icons/chevron-left-two.svg');
     --white-check: url('<?php echo get_template_directory_uri(); ?>/upload/icons/white-check.svg');
+  }
+
+  @media (min-width: 1200px) {
+    :root {
+      --navbar-height: var(--navbar-height-desktop);
+    }
   }
   </style>
 
@@ -84,8 +99,8 @@
 
   <script>
   window.appConfigUnw = {
-    themeUrl: "<?= get_template_directory_uri(); ?>",
-    uploadUrl: "<?= get_template_directory_uri(); ?>/upload"
+    themeUrl: "<?php echo esc_url(get_template_directory_uri()); ?>",
+    uploadUrl: "<?php echo esc_url(get_template_directory_uri()); ?>/upload",
   };
 
   let doc = document.documentElement;
@@ -96,24 +111,9 @@
   window.addEventListener('resize', calcVh);
   calcVh();
   </script>
-  <!-- Google Tag Manager -->
-  <script>
-  (function(w, d, s, l, i) {
-    w[l] = w[l] || [];
-    w[l].push({
-      'gtm.start': new Date().getTime(),
-      event: 'gtm.js'
-    });
-    var f = d.getElementsByTagName(s)[0],
-      j = d.createElement(s),
-      dl = l != 'dataLayer' ? '&l=' + l : '';
-    j.async = true;
-    j.src =
-      'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-    f.parentNode.insertBefore(j, f);
-  })(window, document, 'script', 'dataLayer', 'GTM-W8DNW8B');
-  </script>
-  <!-- End Google Tag Manager -->
+
+  <?php get_template_part('content-parts/content', 'gtm'); ?>
+
   <?php wp_head(); ?>
 </head>
 

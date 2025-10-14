@@ -34,5 +34,8 @@
 }
 
 .contact-form-admission__wrapper {
-  padding-bottom: rem(48);
+  padding-top: rem(24);
+  @include media(">=tablet") {
+    padding-top: rem(48);
+  }
 }

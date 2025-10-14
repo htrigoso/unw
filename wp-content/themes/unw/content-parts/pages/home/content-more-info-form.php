@@ -34,6 +34,7 @@ $list_campus = get_carreras_campus_modalidad();
   <div class="custom-hidden"></div>
 
   <div class="custom-hidden-campus"></div>
+  <div class="custom-hidden-departament"></div>
 
   <!-- Enviar Campos vacios -->
   <input type="hidden" name="Name_Middle" value="">

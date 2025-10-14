@@ -15,30 +15,32 @@ export default class HomePage {
     new ModalManager()
 
     HeroSwiper('.hero-swiper', {
-      autoplay: false,
-      allowTouchMove: false
-    })
-    PostSwiper('.testimonial-swiper')
-    PostSwiper('.last-news-swiper', {
       pagination: {
-        el: '.last-news-swiper .swiper-pagination',
-        type: 'fraction'
-      }
+        el: '.hero-swiper .home-hero-pagination',
+        type: 'bullets'
+      },
+      navigation: {
+        nextEl: '.hero-swiper .home-hero-button-next',
+        prevEl: '.hero-swiper .home-hero-button-prev'
+      },
+      loop: true
     })
-    PostSwiper('.featured-events-swiper', {
-      pagination: false
-    })
-    PostSwiperDesktop()
+    PostSwiperDesktop('.post-swiper-desktop')
+    PostSwiper('.testimonial-swiper')
+    PostSwiper('.last-news-swiper')
+    PostSwiper('.featured-events-swiper')
     InternationalSwiper()
     this.initFormGeneral()
   }
 
   initFormGeneral() {
-    const form = new FormCrmGeneral({
-      element: $element('#form-general'),
-      container: '.more-form'
-    })
-    console.log(form)
+    const form = $element('#form-general')
+    if (form) {
+      new FormCrmGeneral({
+        element: form,
+        container: '.more-form'
+      })
+    }
   }
 }
 new HomePage()

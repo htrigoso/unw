@@ -27,13 +27,21 @@
   }
 }
 
+.certifications-swiper__item {
+  @include media("<desktop-s") {
+    width: rem(328) !important;
+  }
+
+  width: auto;
+}
+
 .certifications-card {
-  width: rem(328);
   padding: rem(32) rem(16) rem(36);
   border-radius: rem(20);
   background-color: var(--color-light-turquoise);
   display: grid;
   gap: rem(24);
+  height: 100%;
 }
 
 .certifications-card__item {

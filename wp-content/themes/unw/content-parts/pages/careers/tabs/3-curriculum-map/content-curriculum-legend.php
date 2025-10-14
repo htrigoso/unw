@@ -58,13 +58,13 @@ $default_dot_colors = [
       <?php endif; ?>
 
       <?php if (!empty($curriculum_legend['notes'])): ?>
-      <ul class="curriculum-legend__notes">
+      <div class="curriculum-legend__notes">
         <?php foreach ($curriculum_legend['notes'] as $note): ?>
-        <li class="curriculum-legend__note">
-          <?php echo esc_html($note['content'] ?? ''); ?>
-        </li>
+        <div class="curriculum-legend__note" data-content="paragraph">
+          <?php echo wp_kses_post($note['content'] ?? ''); ?>
+        </div>
         <?php endforeach; ?>
-      </ul>
+      </div>
       <?php endif; ?>
     </div>
   </div>

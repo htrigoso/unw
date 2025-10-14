@@ -13,7 +13,7 @@ $news_items = $news_data['news'] ?? [];
 
       <div class="post-swiper last-news-swiper last-news__swiper" data-width="compact">
         <div class="swiper-container">
-          <ul class="swiper-wrapper">
+          <div class="swiper-wrapper">
             <?php foreach ($news_items as $news_post) :
                 if (!($news_post instanceof WP_Post)) continue;
 
@@ -24,11 +24,11 @@ $news_items = $news_data['news'] ?? [];
                 $image = get_the_post_thumbnail_url($news_post->ID, 'medium') ?: get_template_directory_uri() . '/upload/home/last-news/default.jpg';
                 $content = get_field('extract', $news_post->ID);
               ?>
-            <li class="swiper-slide">
+            <div class="swiper-slide last-news__swiper--slide">
               <article class="last-news__card">
                 <a class="last-news__card--img" href="<?php echo esc_url(get_permalink($news_post)); ?>">
-                  <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr(get_the_title($news_post)); ?>"
-                    class="last-news__card--img lazyload" />
+                  <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($image); ?>"
+                    alt="<?php echo esc_attr(get_the_title($news_post)); ?>" class="last-news__card--img lazyload" />
                 </a>
                 <div class="last-news__card--content">
                   <h3 class="last-news__card--content__date"><?php echo esc_html($formatted_date); ?></h3>
@@ -37,17 +37,17 @@ $news_items = $news_data['news'] ?? [];
                   </p>
                 </div>
               </article>
-            </li>
+            </div>
             <?php endforeach; ?>
-          </ul>
+          </div>
         </div>
 
         <div class="last-news__swiper-navigation">
-          <div class="swiper-navigation">
-            <div class="swiper-primary-button-prev"></div>
-            <div class="swiper-primary-button-next"></div>
-            <div class="swiper-counter">
-              <div class="swiper-pagination"></div>
+          <div class="swiper-navigation" data-size="absolute">
+            <div class="swiper-primary-button-prev" data-size="absolute"></div>
+            <div class="swiper-primary-button-next" data-size="absolute"></div>
+            <div class="swiper-counter" data-size="absolute">
+              <div class="swiper-pagination" data-size="absolute"></div>
             </div>
           </div>
 

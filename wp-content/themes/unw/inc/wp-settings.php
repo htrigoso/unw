@@ -48,6 +48,8 @@ set_query_var( 'NAVBAR_COLOR', false );
 set_query_var( 'MENU_COLOR', false );
 set_query_var( 'FOOTER_COLOR', false );
 
+define('LANDING_CONTENT_PATH', 'content-parts/pages/landing/sections/content');
+
 
 /**
  * globals

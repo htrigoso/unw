@@ -63,7 +63,9 @@ add_action('wp_enqueue_scripts', function () {
     'template-fondo-perpetuo.php',
     'template-fundacion-hipolito.php',
     'template-admision-beca18.php',
-    'template-admision-examen-admision.php'
+    'template-admision-examen-admision.php',
+    'template-admision-examen-admision.php',
+    'template-precios-carreras-universitarias.php'
   ];
 
   $template_paths = array_map(fn($tpl) => 'templates/' . $tpl, $templates);
@@ -74,7 +76,7 @@ add_action('wp_enqueue_scripts', function () {
 
   $base_dir = get_stylesheet_directory();
   $base_url = get_stylesheet_directory_uri();
-
+  $version = 30; // tu versión dinámica
   // Archivos a cargar
   $assets = [
     'webflow-style' => [

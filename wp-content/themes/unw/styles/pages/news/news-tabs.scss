@@ -31,6 +31,12 @@
     padding-top: rem(42);
     padding-bottom: rem(104);
   }
+
+  .featured-news__swiper-navigation {
+    @include media('>=desktop-s') {
+      margin-top: rem(8) !important;
+    }
+  }
 }
 
 .all-news-container {

@@ -30,14 +30,14 @@ function uw_preload_responsive_images( array $image_sets = [], bool $echo = true
 
 		if ($img_mobile) {
 			$output .= sprintf(
-				'<link rel="preload" as="image" href="%s" imagesizes="100vw" fetchpriority="high">' . "\n",
+				'<link rel="preload" as="image" href="%s" imagesizes="100vw" fetchpriority="high" type="image/webp">' . "\n",
 				esc_url($img_mobile)
 			);
 		}
 
 		if ( $img_desktop ) {
 			$output .= sprintf(
-				'<link rel="preload" as="image" href="%s" imagesizes="100vw" media="(min-width: 768px)">' . "\n",
+				'<link rel="preload" as="image" href="%s" imagesizes="100vw" media="(min-width: 768px)" type="image/webp">' . "\n",
 				esc_url($img_desktop)
 			);
 		}
@@ -179,6 +179,16 @@ add_action('wp_head', function () {
         ]];
     }
 
+    function get_current_term_id() {
+      $obj = get_queried_object();
+
+        if ($obj && isset($obj->term_id)) {
+            return (int) $obj->term_id;
+        }
+
+        return 0; // 0 si no estamos en una página de taxonomía
+    }
+
     /**
      * Handle special case for template-all-careers.
      * @return array Array of preload images.
@@ -254,3 +264,21 @@ add_action('wp_head', function () {
         }
     }
 }, 1);
+
+
+
+add_action('init', function() {
+    if (get_transient('auto_sitemap_check') === 'done') {
+        return;
+    }
+
+    $sitemap_url = home_url('/sitemap_index.xml');
+    $response = wp_remote_get($sitemap_url, ['timeout' => 5]);
+
+    if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
+        flush_rewrite_rules();
+        error_log('🧭 Rank Math sitemap se regeneró automáticamente (fallo detectado).');
+    }
+
+    set_transient('auto_sitemap_check', 'done', DAY_IN_SECONDS);
+});

@@ -1,13 +1,6 @@
 :root {
   --icon-tab: url("data:image/svg+xml,%3csvg width='9' height='9' viewBox='0 0 9 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3crect x='4.24268' width='6' height='6' transform='rotate(45 4.24268 0)' fill='white'/%3e%3c/svg%3e");
   --icon-check: url("data:image/svg+xml,%3csvg width='16' height='17' viewBox='0 0 16 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M14.6364 12.25L7.81818 16L1 12.25V4.75L7.81818 1L14.6364 4.75V12.25Z' stroke='%2300B7BD' stroke-width='1.5'/%3e%3cpath d='M4.06836 8.49973L7.13654 11.227L11.5684 5.77246' stroke='%2300B7BD' stroke-width='1.5'/%3e%3c/svg%3e");
-  --navbar-height: var(--navbar-height-mobile);
-}
-
-@media (min-width: 1024px) {
-  :root {
-    --navbar-height: var(--navbar-height-desktop);
-  }
 }
 
 .w-layout-grid {
@@ -175,6 +168,7 @@ h4 {
   font-size: 20px;
   line-height: 24px;
   font-weight: bold;
+  color: #333;
 }
 
 h5 {
@@ -606,6 +600,7 @@ li {
 .container.full {
   width: 95%;
   padding-left: 0px;
+  padding-bottom: 20px;
 }
 
 .container.full.noauto {
@@ -3920,6 +3915,8 @@ li {
   h4 {
     margin-top: 10px !important;
     margin-bottom: 10px !important;
+            font-weight: 500;
+        color: #333;
   }
 }
 
@@ -4781,7 +4778,7 @@ li {
 .tabs_menu {
   position: -webkit-sticky;
   position: sticky;
-  top: var(--navbar-height-desktop) !important;
+  top: var(--navbar-height) !important;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -4938,10 +4935,10 @@ li {
 }
 
 .link_item_tab.scroll.w--current {
-  background-image: none;
-  background-position: 0px 0px;
+
   background-size: auto;
-  background-repeat: repeat;
+  background-image: var(--icon-tab);
+    background-position: 3% 50%;
 }
 
 .link_item_tab.scroll.large.extra.w--current {
@@ -6072,7 +6069,7 @@ li {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 20px !important;
   padding: 10px 16px;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
@@ -6087,6 +6084,10 @@ li {
   -webkit-transition: border-color 200ms ease, padding 200ms ease;
   transition: border-color 200ms ease, padding 200ms ease;
   cursor: pointer;
+}
+
+.trigger_acordeon:not(:last-child) {
+  margin-bottom: 0;
 }
 
 .trigger_acordeon:hover {
@@ -7390,6 +7391,7 @@ li {
   -ms-flex-align: center;
   align-items: center;
   text-align: left;
+  padding: 1.5625rem 2.75rem 1.5625rem 1.5625rem;
 }
 
 .h3nomargen {
@@ -7430,7 +7432,7 @@ li {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  padding: 12px;
+  padding: 10px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -7442,12 +7444,12 @@ li {
   border-bottom-left-radius: 8px;
   background-color: #068284;
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .item_user_contacto {
-  margin-bottom: 20px;
-  padding-bottom: 20px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
   border-bottom: 1px dashed #068284;
 }
 
@@ -8404,9 +8406,21 @@ li {
 }
 
 .img-carrera-box {
-  height: 150px;
-}
+  width: 100%;
 
+}
+.img-carrera-box img {
+
+    height: 310px;
+    width: 100%;
+    object-position: center;
+    object-fit: cover;
+}
+@media screen and (max-width: 1024px){
+  .img-carrera-box img {
+    height: 210px;
+  }
+}
 .info-carrera {
   display: -webkit-box;
   display: -webkit-flex;
@@ -10283,6 +10297,21 @@ li {
   grid-template-columns: 1fr 1fr;
   -ms-grid-rows: auto;
   grid-template-rows: auto;
+}
+
+.centro_coordinadores-new {
+  ul {
+    display: -ms-grid;
+    display: grid;
+    margin-bottom: 24px;
+    grid-auto-columns: 1fr;
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: auto;
+    grid-template-rows: auto;
+  }
 }
 
 .coordinador_bio {
@@ -13512,8 +13541,10 @@ li {
 
   .container.full {
     width: 100%;
-    padding-right: 0px;
     padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+
   }
 
   .container.full.marginright {
@@ -15471,7 +15502,6 @@ li {
     background-color: #068284;
     background-image: none;
     background-size: auto;
-    background-repeat: repeat;
     color: #fff;
   }
 
@@ -16201,13 +16231,12 @@ li {
   }
 
   .contact_box {
-    width: 100%;
     margin-right: 20px;
   }
 
   .contact_box.contact {
     width: 100%;
-    margin-right: 20px;
+    margin-right: 0px;
   }
 
   .contact_box.auto {
@@ -17494,6 +17523,13 @@ li {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
+  }
+
+  .contact_box.servicioswiener {
+    width: auto;
+    margin: 0px;
+    margin-right: 20px;
+    margin-bottom: 32px;
   }
 }
 
@@ -20995,3 +21031,33 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+.page-template-template-centro-de-terapia-fisica-y-rehabilitacion {
+  .col-item.title {
+    p {
+      margin-bottom: 0 !important;
+    }
+  }
+}
+
+.tabla-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: calc(100% - 10px);
+}
+
+.tabla-scroll table {
+  width: 100%;        /* se adapta al contenedor */
+  table-layout: fixed; /* distribuye equitativamente las columnas */
+  border-collapse: collapse;
+}
+
+.tabla-scroll th,
+.tabla-scroll td {
+  word-wrap: break-word; /* corta texto largo */
+  white-space: normal;   /* permite salto de línea */
+  padding: 8px;
+  text-align: left;
+}
+

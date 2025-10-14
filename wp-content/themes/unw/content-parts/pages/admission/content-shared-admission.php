@@ -34,7 +34,17 @@ endif;
     </div>
   </div>
 </div>
+<section class="contact-form-admission">
+  <div class="x-container x-container--pad-213 contact-form-admission__wrapper">
+    <?php
 
+      get_template_part(ADMISSION_CONTENT_PATH, $args['form'], [
+          'data_form_type' =>$args['data-form']['mobile']
+      ]);
+
+    ?>
+  </div>
+</section>
 <?php
 $admission = get_field('list');
 
@@ -42,7 +52,7 @@ if ($admission && is_array($admission)) :
 ?>
 <section class="admission">
   <div class="x-container x-container--pad-213 admission__wrapper">
-    <h1 class="admission__title"><?= esc_html($admission['title'] ?? '') ?></h1>
+    <h2 class="admission__title"><?= esc_html($admission['title'] ?? '') ?></h2>
 
     <div class="dynamic-accordion admission__modalities">
       <?php foreach ($admission['options'] as $i => $item) :
@@ -67,17 +77,7 @@ if ($admission && is_array($admission)) :
 </section>
 <?php endif; ?>
 
-<section class="contact-form-admission">
-  <div class="x-container x-container--pad-213 contact-form-admission__wrapper">
-    <?php
 
-      get_template_part(ADMISSION_CONTENT_PATH, $args['form'], [
-          'data_form_type' =>$args['data-form']['mobile']
-      ]);
-
-    ?>
-  </div>
-</section>
 
 
 <?php

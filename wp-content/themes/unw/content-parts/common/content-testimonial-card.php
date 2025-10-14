@@ -13,10 +13,10 @@ $image_url = $testimonial['image'] ?? '';
 
   <div class="testimonial__card--content">
     <h3 class="testimonial__card--content__title"><?php echo esc_html($testimonial['title']); ?></h3>
-    <p class="testimonial__card--content__description">
-      <?php echo nl2br(esc_html($testimonial['description'])); ?>
-    </p>
-    </p>
+    <div class="testimonial__card--content__description" data-content="paragraph">
+      <?php echo wp_kses_post($testimonial['description']); ?>
+    </div>
+
     <span class="testimonial__card--content__name">
       <?php echo esc_html($testimonial['name']); ?>
     </span>

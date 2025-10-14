@@ -7,6 +7,7 @@ const PostSwiper = (sectionEl = '.post-swiper', config = {}) => {
     spaceBetween: 8,
     pagination: {
       el: `${sectionEl} .swiper-pagination`,
+      type: 'fraction',
       clickable: true
     },
     navigation: {
@@ -14,6 +15,7 @@ const PostSwiper = (sectionEl = '.post-swiper', config = {}) => {
       prevEl: `${sectionEl} .swiper-primary-button-prev`
     },
     breakpoints: {
+      0: { slidesPerView: 'auto', spaceBetween: 8 },
       576: {
         slidesPerView: 'auto',
         spaceBetween: 16
@@ -21,7 +23,8 @@ const PostSwiper = (sectionEl = '.post-swiper', config = {}) => {
       1024: {
         slidesPerView: 'auto',
         spaceBetween: 24
-      }
+      },
+      1200: { slidesPerView: 3, spaceBetween: 24 }
     }
   }
 

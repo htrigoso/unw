@@ -1,15 +1,12 @@
 .breadcrumb {
   display: flex;
+  flex-wrap: wrap;
   gap: rem(4);
   align-items: center;
 }
 
 .breadcrumb__label {
   color: var(--color-white);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
 }
 
 .separator {
@@ -20,4 +17,16 @@
 .breadcrumb__label.current {
   color: var(--color-primary);
   font-weight: var(--font-bold);
+}
+
+.breadcrumb.black {
+  .separator {
+    color: var(--color-black);
+  }
+  .breadcrumb__label {
+    color: var(--color-black);
+  }
+  .breadcrumb__label.current {
+    color: var(--color-primary);
+  }
 }

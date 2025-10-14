@@ -102,7 +102,7 @@ export function createSelectDepartament({ position = 'append', name = 'SingleLin
   const wrapperDiv = buildSelectWrapper({
     id: 'departament',
     name,
-    label: 'Departamento de procedencia',
+    label: 'Departamento de procedencia (*)',
     options: departaments
   })
 
@@ -306,6 +306,7 @@ export function buildOptionsCampus({ campus, slugCareers, modalidad, element }) 
   const select = element.querySelector('#campusSelect')
 
   if (!select) return
+
   const careerData = campus?.[slugCareers]
   const campusList = careerData?.[modalidad] || []
   removeHiddenFieldCampus({ element })

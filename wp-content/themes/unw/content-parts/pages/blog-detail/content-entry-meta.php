@@ -2,7 +2,7 @@
 $image_hero = get_field('banner-image');
 
 $titulo = get_the_title();
-$fecha = get_the_date('F j, Y');
+$fecha = get_the_date('j') . ' de ' . ucfirst(get_the_date('F')) . ' del ' . get_the_date('Y');
 $autor = get_the_author();
 $author_id = get_the_author_meta('ID');
 
@@ -15,6 +15,11 @@ $breadcrumbs = [
 
 <div class="entry-meta">
   <div class="entry-meta__content">
+    <div class="entry-meta__categories">
+      <?php
+        uw_show_post_categories()
+      ?>
+    </div>
     <h1 class="entry-meta__title"><?php echo esc_html($titulo); ?></h1>
 
     <div class="entry-meta__info">
@@ -34,7 +39,8 @@ $breadcrumbs = [
     </div>
   </div>
 
-  <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($image_hero['imagen']['url']); ?>" class="entry-meta__image lazyload"
+  <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($image_hero['imagen']['url']); ?>"
+    class="entry-meta__image lazyload"
     alt="<?php echo esc_attr($image_hero['imagen']['alt'] ?? 'Imagen destacada'); ?>">
 
   <div class="entry-meta__social">

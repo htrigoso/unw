@@ -2,6 +2,10 @@
 
 .testimonials__item {
   display: flex;
+  @include media("<desktop-s") {
+    width: rem(305) !important;
+  }
+  width: auto;
 }
 
 .testimonials__title {

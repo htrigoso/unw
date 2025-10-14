@@ -2,15 +2,18 @@ import { createSwiper } from './createSwiper'
 
 const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
   const defaultConfig = {
-    loop: true,
+    loop: false,
     slidesPerView: 1,
     centeredSlides: false,
     spaceBetween: 0,
-    speed: 500,
-    lazy: false,
+    speed: 1000,
+    lazy: {
+      loadPrevNext: true,
+      loadOnTransitionStart: true
+    },
     autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
+      delay: 2500,
+      disableOnInteraction: true
     },
     effect: 'fade',
     fadeEffect: {
@@ -23,7 +26,40 @@ const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
     }
   }
 
-  return createSwiper(sectionEl, config, defaultConfig)
+  const swiper = createSwiper(sectionEl, config, defaultConfig)
+
+  if (swiper && typeof IntersectionObserver !== 'undefined') {
+    const swiperElement = typeof sectionEl === 'string'
+      ? document.querySelector(sectionEl)
+      : sectionEl
+
+    if (swiperElement) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              if (swiper.autoplay && !swiper.autoplay.running) {
+                swiper.autoplay.start()
+              }
+            } else {
+              if (swiper.autoplay && swiper.autoplay.running) {
+                swiper.autoplay.stop()
+              }
+            }
+          })
+        },
+        {
+          threshold: 0.5,
+          rootMargin: '0px'
+        }
+      )
+
+      observer.observe(swiperElement)
+      swiper.intersectionObserver = observer
+    }
+  }
+
+  return swiper
 }
 
 export default HeroSwiper

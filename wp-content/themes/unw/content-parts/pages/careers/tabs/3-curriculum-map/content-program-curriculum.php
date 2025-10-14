@@ -4,28 +4,28 @@ $malla_curricular = $args['malla_curricular'] ?? null;
 $dot_colors = ['purple', 'gray', 'blue', 'orange', 'dark-blue'];
 $lists = $malla_curricular['lists'] ?? [];
 $link = $malla_curricular['link'] ?? null;
-if(wp_is_nonempty_array($lists)) {
+if (wp_is_nonempty_array($lists)) {
 ?>
 
 <section class="program-curriculum" aria-labelledby="program-curriculum-title">
   <div class="program-curriculum__wrapper">
     <div class="program-curriculum__header">
-      <h1 id="program-curriculum-title" class="program-curriculum__title">
+      <h2 id="program-curriculum-title" class="program-curriculum__title">
         <?php echo esc_html($malla_curricular['title'] ?? 'Malla Curricular'); ?>
-      </h1>
+      </h2>
       <div class="program-curriculum__description">
         <?php echo wp_kses_post(wpautop($malla_curricular['content'] ?? '')); ?>
       </div>
     </div>
 
     <div class="program-curriculum__content" aria-label="Listado de cursos por ciclo">
-      <div class="program-swiper post-swiper switch-pagination-navigation" data-width="compact">
+      <div class="program-swiper post-swiper" data-width="compact">
         <div class="swiper-container">
-          <ul class="swiper-wrapper program-curriculum__cycles-list">
+          <div class="swiper-wrapper program-curriculum__cycles-list">
             <?php
 
-            foreach ($lists as $list): ?>
-            <li class="swiper-slide">
+              foreach ($lists as $list): ?>
+            <div class="swiper-slide program-curriculum__cycles-slide">
               <article class="program-curriculum__cycles-item">
                 <div class="cycle-card">
                   <div class="cycle-card__wrapper">
@@ -39,17 +39,17 @@ if(wp_is_nonempty_array($lists)) {
                     <div class="cycle-card__content">
                       <ul class="cycle-card__list">
                         <?php foreach ($list['courses'] as $i => $course):
-                            $thumbnail_url = get_the_post_thumbnail_url($course['course_name']->ID, 'full');
+                              $thumbnail_url = get_the_post_thumbnail_url($course['course_name']->ID, 'full');
 
-                             $color_hex = '';
+                              $color_hex = '';
 
 
-                            if (!empty($course['color_faculty_hex']) && is_object($course['color_faculty_hex']) && !empty($course['color_faculty_hex']->ID)) {
-                              $color_hex = get_the_excerpt($course['color_faculty_hex']->ID);
-                            }
-                          ?>
+                              if (!empty($course['color_faculty_hex']) && is_object($course['color_faculty_hex']) && !empty($course['color_faculty_hex']->ID)) {
+                                $color_hex = get_the_excerpt($course['color_faculty_hex']->ID);
+                              }
+                            ?>
                         <li class="cycle-card__item">
-                          <span class="dot" style="background-color:<?=$color_hex?>" aria-hidden="true"></span>
+                          <span class="dot" style="background-color:<?= $color_hex ?>" aria-hidden="true"></span>
                           <div class="cycle-card__course">
                             <?php if (!empty($thumbnail_url)): ?>
                             <img class="cycle-card__course-icon lazyload" src="<?php echo esc_url($thumbnail_url); ?>"
@@ -65,15 +65,15 @@ if(wp_is_nonempty_array($lists)) {
                   </div>
                 </div>
               </article>
-            </li>
-            <?php endforeach; ?>
-          </ul>
-          <div class="swiper-navigation">
-            <div class="swiper-primary-button-prev"></div>
-            <div class="swiper-primary-button-next"></div>
-            <div class="swiper-counter">
-              <div class="swiper-pagination"></div>
             </div>
+            <?php endforeach; ?>
+          </div>
+        </div>
+        <div class="swiper-navigation" data-size="absolute">
+          <div class="swiper-primary-button-prev" data-size="absolute"></div>
+          <div class="swiper-primary-button-next" data-size="absolute"></div>
+          <div class="swiper-counter" data-size="absolute">
+            <div class="swiper-pagination" data-size="absolute"></div>
           </div>
         </div>
       </div>

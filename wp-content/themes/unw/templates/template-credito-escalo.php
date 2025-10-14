@@ -113,4 +113,7 @@ get_header();
     </div>
   </div>
 </main>
-<?php get_footer(); ?>
+<?php
+add_filter('show_book_link', '__return_true');
+get_footer();
+?>

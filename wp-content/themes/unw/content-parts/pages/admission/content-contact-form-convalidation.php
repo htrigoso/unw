@@ -14,6 +14,7 @@ if($is_departments) {
   $departments_json =  $list_departaments;
 }
 $data_form_type = $args['data_form_type'] ?? '';
+$deactivate = $crm_ad['deactivate'];
 ?>
 <form id="<?=$data_form_type;?>" data-form="zoho" data-form-type="<?=$data_form_type;?>"
   class="contact-form formAdmision" data-careers="<?= esc_attr(wp_json_encode( $careers))?>"
@@ -34,6 +35,7 @@ $data_form_type = $args['data_form_type'] ?? '';
 
   <div class="custom-hidden"></div>
   <div class="custom-hidden-campus"></div>
+  <div class="custom-hidden-departament"></div>
 
   <?php foreach ($utms_final as $utm): ?>
   <input type="hidden" name="<?= esc_attr($utm['name']); ?>" value="<?= esc_attr($utm['value']); ?>">
@@ -74,6 +76,7 @@ $data_form_type = $args['data_form_type'] ?? '';
           'direction'    => 'flex-col justify-between',
           'option_class' => 'm-b-10',
            'form_type'=> $data_form_type,
+           'deactivate'=> $deactivate
       ]);?>
 
       <div class="flex justify-between m-b-24">

@@ -26,5 +26,5 @@ function register_taxonomy_campus() {
 
   ];
 
-  register_taxonomy('campus', ['carreras'], $args);
+  register_taxonomy('campus', ['carreras', 'carreras-a-distancia'], $args);
 }

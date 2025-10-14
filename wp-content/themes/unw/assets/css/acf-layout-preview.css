@@ -1,0 +1,33 @@
+.acf-layout-preview {
+  position: relative;
+  display: inline-block;
+  cursor: zoom-in;
+}
+
+.acf-tooltip-img {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 99999999999;
+  background: #fff;
+  padding: 4px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.acf-layout-preview:hover .acf-tooltip-img {
+  display: block;
+}
+.acf-tooltip-img img {
+  max-width: 200px;
+  height: auto;
+  border: 1px solid #666;
+  border-radius: 6px;
+}
+.acf-layout-preview .thumbnail {
+  width: 45px;
+  height: auto;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}

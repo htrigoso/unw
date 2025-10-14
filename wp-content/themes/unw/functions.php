@@ -1,5 +1,4 @@
 <?php
-
 // require vendor packages autoload
 // require_once dirname(__FILE__) . '/vendor/autoload.php';
 
@@ -17,6 +16,10 @@ require_once dirname(__FILE__) . '/inc/wp-blog.php';
 // require form
 require_once dirname(__FILE__) . '/inc/wp-form.php';
 
+// require Rank Math configuration
+require_once dirname(__FILE__) . '/inc/wp-cs.php';
+require_once dirname(__FILE__) . '/inc/wp-custom-acf.php';
+
 // require theme functions
 require_once dirname(__FILE__) . '/inc/wp-inc.php';
 
@@ -25,3 +28,7 @@ require_once dirname(__FILE__) . '/inc/wp-inc.php';
 require_once dirname(__FILE__) . '/inc/wp-seo.php';
 
 require_once dirname(__FILE__) . '/inc/wp-migratation.php';
+
+require_once dirname(__FILE__) . '/inc/wp-careers.php';
+
+require_once dirname(__FILE__) . '/inc/functions/tpl-noticias.php';

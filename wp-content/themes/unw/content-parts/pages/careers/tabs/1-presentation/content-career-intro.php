@@ -31,27 +31,39 @@ $detailText  = $presentation['detail'];
      ?>
     <div class="career-intro__summary">
       <h3 class="career-intro__summary-name">Resumen de la Carrera</h3>
-      <ul class="career-intro__list">
+      <div class="career-intro__list">
         <div class="career-intro__list-row">
-          <li class="career-intro__item">
+          <div class="career-intro__item">
             <strong>Semestres</strong>
             <span class="career-intro__highlight"><?=get_value_or_default($resumen['semesters'], true, '0'); ?></span>
-          </li>
-          <li class="career-intro__item">
+          </div>
+          <div class="career-intro__item">
             <strong>Total de créditos</strong>
             <span
               class="career-intro__highlight"><?=get_value_or_default($resumen['total_credits'], true, '0'); ?></span>
-          </li>
+          </div>
         </div>
-        <li class="career-intro__item">
+        <div class="career-intro__item">
           <strong>Grado Académico</strong>
           <span class="career-intro__highlight"><?=get_value_or_default($resumen['academic_degree'], true); ?></span>
-        </li>
-        <li class="career-intro__item">
+        </div>
+        <div class="career-intro__item">
           <strong>Título Profesional</strong>
           <span class="career-intro__highlight"><?=get_value_or_default($resumen['professional_title'], true); ?></span>
-        </li>
-      </ul>
+        </div>
+        <?php if(isset($resumen['modalities']) && !empty($resumen['modalities'])): ?>
+        <div class="career-intro__item">
+          <strong>Modalidades</strong>
+          <span class="career-intro__highlight"><?=esc_html($resumen['modalities']); ?></span>
+        </div>
+        <?php endif; ?>
+        <?php if(isset($resumen['campus']) && !empty($resumen['campus'])): ?>
+        <div class="career-intro__item">
+          <strong>Campus</strong>
+          <span class="career-intro__highlight"><?=esc_html(uw_terms_to_string($resumen['campus'])); ?></span>
+        </div>
+        <?php endif; ?>
+      </div>
     </div>
   </div>
 
