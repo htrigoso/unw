@@ -1,11 +1,10 @@
-import Tabs from '../../components/Tabs'
+import { initializeScrollableTabs } from './../../functions/scrollable-tabs'
 
 (function () {
-  const tabsElement = document.querySelector('.all-careers-tabs')
-  if (tabsElement) {
-    new Tabs({
-      element: tabsElement,
-      preventDefault: true
+  const allTabsContainers = document.querySelectorAll('.nav-tabs')
+  if (allTabsContainers.length > 0) {
+    allTabsContainers.forEach(tabsContainer => {
+      initializeScrollableTabs(tabsContainer)
     })
   }
 })()

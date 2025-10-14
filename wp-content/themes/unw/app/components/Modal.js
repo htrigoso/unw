@@ -5,7 +5,7 @@ export class ModalManager {
     this.init()
   }
 
-  openModal(modalId) {
+  openModal(modalId, trigger = null) {
     let modal = document.getElementById(modalId)
     if (!modal) {
       const template = document.getElementById(`template-${modalId}`)
@@ -25,7 +25,7 @@ export class ModalManager {
       document.body.style.overflow = 'hidden'
 
       if (this.onOpenCallback) {
-        this.onOpenCallback(modal)
+        this.onOpenCallback(modal, trigger)
       }
     }, 50)
   }
@@ -62,7 +62,7 @@ export class ModalManager {
     document.body.addEventListener('click', (e) => {
       const openBtn = e.target.closest('[data-modal-target]')
       if (openBtn) {
-        this.openModal(openBtn.getAttribute('data-modal-target'))
+        this.openModal(openBtn.getAttribute('data-modal-target'), openBtn)
       }
 
       const closeBtn = e.target.closest('[data-modal-close]')

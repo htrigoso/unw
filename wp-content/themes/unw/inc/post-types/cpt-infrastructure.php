@@ -23,8 +23,21 @@ function register_post_type_infraestructura() {
         'menu_icon' => 'dashicons-building',
         'supports' => array('title', 'editor', 'excerpt', 'thumbnail'),
         'show_in_rest' => true,
+        'exclude_from_search' => true,
+
     );
 
     register_post_type('infraestructura', $args);
 }
 add_action('init', 'register_post_type_infraestructura');
+
+
+
+function infra_featured_image_notice($content) {
+    global $post;
+    if ($post->post_type === 'infraestructura') {
+        $content .= '<p><em>Recomendación: Sube una imagen de <strong>712x445 píxeles</strong></em></p>';
+    }
+    return $content;
+}
+add_filter('admin_post_thumbnail_html', 'infra_featured_image_notice');

@@ -26,14 +26,6 @@ import Tabs from '../../components/Tabs'
     }
   })
 
-  PostSwiper('.laboratories-modal-swiper', {
-    slidesPerView: 1,
-    breakpoints: {
-      576: { slidesPerView: 1, spaceBetween: 8 },
-      1024: { slidesPerView: 1, spaceBetween: 8 }
-    }
-  })
-
   PostSwiper('.simple-events-swiper', {
     breakpoints: {
       1024: { slidesPerView: 2 },

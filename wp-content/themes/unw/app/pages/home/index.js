@@ -2,44 +2,45 @@ import HeroSwiper from '../../components/HeroSwiper'
 import PostSwiper from '../../components/PostSwiper'
 import InternationalSwiper from '../../components/InternationalSwiper'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
-import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
-import Page from '../../classes/Page'
 import { ModalManager } from '../../components/Modal'
+import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
+import { $element } from '../../utils/dom'
 
-export default class HomePage extends Page {
+export default class HomePage {
   constructor() {
-    super({
-      id: 'home-page',
-      element: '.home-page'
-    })
     this.create()
-    // super.create()
   }
 
   create() {
     new ModalManager()
 
     HeroSwiper('.hero-swiper', {
-      autoplay: false,
-      allowTouchMove: false
-    })
-    PostSwiper('.testimonial-swiper')
-    PostSwiper('.last-news-swiper', {
       pagination: {
-        el: '.last-news-swiper .swiper-pagination',
-        type: 'fraction'
-      }
+        el: '.hero-swiper .home-hero-pagination',
+        type: 'bullets'
+      },
+      navigation: {
+        nextEl: '.hero-swiper .home-hero-button-next',
+        prevEl: '.hero-swiper .home-hero-button-prev'
+      },
+      loop: true
     })
-    PostSwiper('.featured-events-swiper', {
-      pagination: false
-    })
-    PostSwiperDesktop()
+    PostSwiperDesktop('.post-swiper-desktop')
+    PostSwiper('.testimonial-swiper')
+    PostSwiper('.last-news-swiper')
+    PostSwiper('.featured-events-swiper')
     InternationalSwiper()
+    this.initFormGeneral()
+  }
 
-    new FormCrmGeneral({
-      element: '#form-general',
-      container: '.more-form'
-    })
+  initFormGeneral() {
+    const form = $element('#form-general')
+    if (form) {
+      new FormCrmGeneral({
+        element: form,
+        container: '.more-form'
+      })
+    }
   }
 }
 new HomePage()

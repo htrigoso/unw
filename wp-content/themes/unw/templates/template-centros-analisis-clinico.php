@@ -8,6 +8,13 @@
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php
   get_header();
+  $acf_sidebar = get_field('sidebar');
+  $acf_benefits = get_field('benefits');
+  $acf_infra = get_field('infra');
+  $acf_specialties = get_field('specialties');
+  $acf_prices = get_field('prices');
+  $acf_staff = get_field('staff');
+  $acf_contacts = get_field('contacts');
 ?>
 
 
@@ -15,75 +22,18 @@
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar');?>
 <main>
   <div class="main_container">
-    <div class="cover_img_page center">
-      <div class="overlay">
-      </div>
-      <img src="<?= UPLOAD_MIGRATION_PATH . '/centros-analisis-clinico/centro-de-analisis-clinicos.png' ?>"
-        srcset="<?= UPLOAD_MIGRATION_PATH . '/centros-analisis-clinico/centro-de-analisis-clinicos.png' ?> 500w, <?= UPLOAD_MIGRATION_PATH . '/centros-analisis-clinico/centro-de-analisis-clinicos.png' ?> 1920w"
-        sizes="100vw" alt="" class="img_cover left">
-      <div class="info_cover_page center">
-        <div class="container">
-          <h2 class="categoria_page serv_uni">
-            Centros Wiener
-          </h2>
-          <h1 class="h1_carreras small opacity0">
-            Centro de Análisis Clínicos </h1>
-        </div>
-      </div>
-      <div class="miga_de_pan">
-        <div class="container">
-          <div class="content_links_miga">
-            <a class="link miga" href="https://www.uwiener.edu.pe/">
-              Inicio /
-            </a>
-            <a class="link miga" href="https://www.uwiener.edu.pe/centros-wiener/">
-              Centros Wiener /
-            </a>
-            <a class="link miga w--current" href="#">
-              Centro de Análisis Clínicos </a>
-          </div>
-        </div>
-      </div>
-
-    </div>
+    <?php
+          get_template_part('content-parts/components/info-cover');
+        ?>
     <div class="main_page">
       <div class="page_interna">
         <div class="container full">
           <div class="_2-col">
             <div class="col-1 full">
               <div class="tabs_menu notab serv_uni centros">
-                <a class="link_item_tab w-inline-block" href="#presentacion_centro">
-                  <div>Presentación</div>
-                </a>
-                <a class="link_item_tab w-inline-block" href="#beneficios_centros">
-                  <div>
-                    Beneficios
-                  </div>
-                </a>
-
-                <a class="link_item_tab w-inline-block" href="#infraestructura_centros">
-                  <div>
-                    Infraestructura
-                  </div>
-                </a>
-                <a class="link_item_tab w-inline-block" href="#especialidades_centros">
-                  <div>
-                    Especialidades </div>
-                </a>
-                <a class="link_item_tab w-inline-block" href="#lista-de-precios_centros">
-                  <div>
-                    Lista de precios </div>
-                </a>
-                <a class="link_item_tab w-inline-block" href="#staff_centros">
-                  <div>
-                    Staff de profesionales
-                  </div>
-                </a>
-                <a class="link_item_tab w-inline-block" href="#contacto_centros">
-                  <div>
-                    Contacto
-                  </div>
-                </a>
+                <?php
+                    get_template_part('content-parts/components/sidebar', null, ['sidebar' => $acf_sidebar['sidebar_items']]);
+                  ?>
               </div>
             </div>
             <div class="col-1 full">
@@ -91,38 +41,9 @@
                 <div class="section_tab _2-col nopadding" id="presentacion_centro">
                   <div class="content_seccion_tab full">
                     <div class="info_section full">
-                      <div class="content_section">
-                        <div class="title_section">
-                        </div>
-                        <h2 class="h3_interna_title">
-                          Presentación </h2>
-                        <div class="line">
-                        </div>
-                        <div class="">
-                          <p class="prf_centro">
-                            Desde el año 2015 el Centro de análisis clínicos de la Universidad Privada Norbert Wiener
-                            brinda el servicio de toma de muestra, procesamiento y entrega de resultados de muestras
-                            clínicas en términos de calidad, precisión y calidez en la atención de sus
-                            pacientes.<br><br>El Centro de análisis clínicos cuenta con espacios para el desarrollo de
-                            trabajos de investigación para los alumnos de los últimos ciclos (9no y 10mo ciclo). <br>
-                          </p>
-                        </div>
-                      </div>
-
-                      <div class="content_section">
-                        <div class="clase_para_wordpress ">
-                          <h2 style="text-align: left;">Facultad de Ciencias de la Salud</h2>
-                          <p style="text-align: left;">[linea]</p>
-                          <p style="text-align: left;"><span style="color: #00b7bd;"><strong>Tecnología Médica en
-                                Laboratorio Clínico y Anatomía Patológica</strong></span></p>
-                          <p style="text-align: left;">Formamos profesionales altamente especializados con un enfoque
-                            humanista y científico que desarrollan pruebas biológicas y biofísicas que ayudan a
-                            analizar, diagnosticar, prevenir y tratar diversas enfermedades.</p>
-                          <a
-                            href="https://www.uwiener.edu.pe/carreras/tecnologia-medica-en-laboratorio-clinico-y-anatomia-patologica">Ver
-                            Carrera</a>
-                        </div>
-                      </div>
+                      <?php
+                              the_content();
+                      ?>
                     </div>
                   </div>
                 </div>
@@ -133,70 +54,34 @@
                       <div class="content_section">
                         <div class="title_section">
                           <h2 class="h3_interna_title">
-                            Beneficios de nuestro Centro de Análisis Clínicos </h2>
+                            <?= esc_html($acf_benefits['title']) ?> </h2>
                           <div class="line">
                           </div>
                         </div>
                         <div class="w-layout-grid grilla_centros">
-                          <div class="item_grilla mw">
-                            <div class="col-item title">
-                              <img alt="" class="img_grilla_item img_grilla_centros"
-                                src="<?= UPLOAD_MIGRATION_PATH . '/centros-analisis-clinico/icono-centro-analisis-6.svg' ?>">
-                              <div>
-                                Staff de profesionales con amplia experiencia <br>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="item_grilla mw">
-                            <div class="col-item title">
-                              <img alt="" class="img_grilla_item img_grilla_centros"
-                                src="<?= UPLOAD_MIGRATION_PATH . '/centros-analisis-clinico/icono-centro-analisis-4.svg' ?>">
-                              <div>
-                                Precios muy competentes al alcance tanto de los alumnos como de colaboradores de la
-                                corporación Wiener – Carrión <br>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="item_grilla mw">
-                            <div class="col-item title">
-                              <img alt="" class="img_grilla_item img_grilla_centros"
-                                src="<?= UPLOAD_MIGRATION_PATH . '/centros-analisis-clinico/icono-centro-analisis-5.svg' ?>">
-                              <div>
-                                Ubicación Céntrica <br>
-                              </div>
+                          <?php
+                              $cards = $acf_benefits['cards'];
 
-                            </div>
-                          </div>
+                              if ($cards && is_array($cards)) :
+                                foreach ($cards as $card) :
+                                  $icon_url = $card['icon']['url'] ?? '';
+                                  $title    = $card['title'] ?? '';
+                              ?>
                           <div class="item_grilla mw">
                             <div class="col-item title">
-                              <img alt="" class="img_grilla_item img_grilla_centros"
-                                src="<?= UPLOAD_MIGRATION_PATH . '/centros-analisis-clinico/icono-centro-analisis-3.svg' ?>">
+                              <?php if ($icon_url): ?>
+                              <img src="<?= esc_url($icon_url) ?>" alt="<?= esc_attr($title) ?>"
+                                class="img_grilla_item img_grilla_centros">
+                              <?php endif; ?>
                               <div>
-                                Prontitud en la entrega de resultados <br>
+                                <?= esc_html($title) ?><br>
                               </div>
-
                             </div>
                           </div>
-                          <div class="item_grilla mw">
-                            <div class="col-item title">
-                              <img alt="" class="img_grilla_item img_grilla_centros"
-                                src="<?= UPLOAD_MIGRATION_PATH . '/centros-analisis-clinico/icono-centro-analisis-1.svg' ?>">
-                              <div>
-                                Calidez de atención diferenciada <br>
-                              </div>
-
-                            </div>
-                          </div>
-                          <div class="item_grilla mw">
-                            <div class="col-item title">
-                              <img alt="" class="img_grilla_item img_grilla_centros"
-                                src="<?= UPLOAD_MIGRATION_PATH . '/centros-analisis-clinico/icono-centro-analisis-2.svg' ?>">
-                              <div>
-                                Seguimiento personalizado al paciente <br>
-                              </div>
-
-                            </div>
-                          </div>
+                          <?php
+                            endforeach;
+                          endif;
+                          ?>
                         </div>
                       </div>
                     </div>
@@ -209,73 +94,43 @@
                       <div class="content_section">
                         <div class="title_section">
                           <h2 class="h3_interna_title">
-                            Infraestuctura y equipamiento
+                            <?= esc_html($acf_infra['title']) ?>
                           </h2>
                           <div class="line">
                           </div>
                         </div>
+                        <?php
+                          $accordion_items = $acf_infra['accordion_items'];
+
+                          if ($accordion_items && is_array($accordion_items)) :
+                            foreach ($accordion_items as $index => $item) :
+                              $title   = $item['accordion_title'] ?? '';
+                              $content = $item['accordion_content'] ?? '';
+                              // ID único por item (importante si usas JS para abrir/cerrar)
+                              $uid = 'accordion_' . $index;
+                            ?>
                         <div class="acordeon">
-                          <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
+                          <div class="trigger_acordeon" data-w-id="<?= esc_attr($uid) ?>">
                             <h4 class="h4_admin centros">
-                              Amplios espacios <br>
+                              <?= esc_html($title) ?><br>
                             </h4>
                             <div class="icon_box admin">
-                              <img alt="" class="arrow_down"
-                                src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>">
+                              <img alt="" class="arrow_down" src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>">
                             </div>
                           </div>
-                          <div class="content_acordeon" style="height: 0px;">
+                          <div class="content_acordeon" style="height:0px;">
                             <div class="content_section">
                               <div class="clase_para_wordpress">
-                                <p><span style="background-color: transparent; color: rgb(0, 0, 0);">Amplios espacios
-                                    distribuidos por especialidades: Bioquímica, Hematología, Inmunología,
-                                    Microbiología.</span></p> <br>
+                                <?= wp_kses_post($content) // viene con <p> y HTML desde ACF ?>
+                                <br>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div class="acordeon">
-                          <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
-                            <h4 class="h4_admin centros">
-                              Procesamiento de muestras <br>
-                            </h4>
-                            <div class="icon_box admin">
-                              <img alt="" class="arrow_down"
-                                src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>">
-                            </div>
-                          </div>
-                          <div class="content_acordeon" style="height: 0px;">
-                            <div class="content_section">
-                              <div class="clase_para_wordpress">
-                                <p><span style="background-color: transparent; color: rgb(0, 0, 0);">Contamos con el
-                                    equipamiento necesario para el procesamiento de muestras para el apoyo diagnóstico y
-                                    prevención de enfermedades.</span></p> <br>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="acordeon">
-                          <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
-                            <h4 class="h4_admin centros">
-                              Especialistas e investigadores <br>
-                            </h4>
-                            <div class="icon_box admin">
-                              <img alt="" class="arrow_down"
-                                src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>">
-                            </div>
-                          </div>
-                          <div class="content_acordeon" style="height: 0px;">
-                            <div class="content_section">
-                              <div class="clase_para_wordpress">
-                                <p><span style="background-color: transparent; color: rgb(0, 0, 0);">Contamos con un
-                                    staff de profesionales especialistas e investigadores pertenecientes a la plana
-                                    docente de la Carrera de Laboratorio Clínico y Anatomía Patológica.</span></p>
-                                <p><br></p>
-                                <p><br></p> <br>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                        <?php
+                            endforeach;
+                          endif;
+                          ?>
                       </div>
                     </div>
                   </div>
@@ -288,132 +143,42 @@
                       <div class="content_section">
                         <div class="title_section">
                           <h2 class="h3_interna_title">
-                            Especialidades </h2>
+                            <?= esc_html($acf_specialties['title']) ?>
+                          </h2>
                           <div class="line">
                           </div>
                         </div>
+                        <?php
+                          $specialties = $acf_specialties['accordion_items'];
+
+                          if ($specialties && is_array($specialties)) :
+                            foreach ($specialties as $index => $item) :
+                              $title   = $item['accordion_title'] ?? '';
+                              $content = $item['accordion_content'] ?? '';
+                              $uid = 'specialty_' . $index; // ID único para cada trigger
+                          ?>
                         <div class="acordeon">
-                          <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
+                          <div class="trigger_acordeon" data-w-id="<?= esc_attr($uid) ?>">
                             <h4 class="h4_admin centros">
-                              Bioquímica <br>
+                              <?= esc_html($title) ?><br>
                             </h4>
                             <div class="icon_box admin">
-                              <img alt="" class="arrow_down"
-                                src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>">
+                              <img alt="" class="arrow_down" src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>">
                             </div>
                           </div>
-                          <div class="content_acordeon" style="height: 0px;">
+                          <div class="content_acordeon" style="height:0px;">
                             <div class="content_section">
                               <div>
-                                Estudio de la composición química de los fluidos Humanos. Las Pruebas Generales en esta
-                                área son: Glucosa, Colesterol, Triglicéridos, Transaminasas (TGO y TGP), perfiles
-                                Hepático y lipídico. <br>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="acordeon">
-                          <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
-                            <h4 class="h4_admin centros">
-                              Hematología <br>
-                            </h4>
-                            <div class="icon_box admin">
-                              <img alt="" class="arrow_down"
-                                src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>">
-                            </div>
-                          </div>
-                          <div class="content_acordeon" style="height: 0px;">
-                            <div class="content_section">
-                              <div>
-                                Estudio e investigación de la sangre y los órganos hematopoyéticos. Las Pruebas
-                                Generales en esta área son: Hemograma Completo, Hemoglobina, Hematocrito, Recuento de
-                                Plaquetas, Tiempo de Sangría, Tiempo de Coagulación, Tiempo de Protrombina, Velocidad de
-                                sedimentación, Recuento de Reticulocitos. <br>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="acordeon">
-                          <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
-                            <h4 class="h4_admin centros">
-                              Imnuno Hematología <br>
-                            </h4>
-                            <div class="icon_box admin">
-                              <img alt="" class="arrow_down"
-                                src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>">
-                            </div>
-                          </div>
-                          <div class="content_acordeon" style="height: 0px;">
-                            <div class="content_section">
-                              <div>
-                                Parte de la hematología, estudia los procesos inmunitarios que tienen lugar en el
-                                organismo en relación con los elementos sanguíneos. La prueba General en esta área es:
-                                Grupo Sanguíneo. <br>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="acordeon">
-                          <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
-                            <h4 class="h4_admin centros">
-                              Uroanálisis <br>
-                            </h4>
-                            <div class="icon_box admin">
-                              <img alt="" class="arrow_down"
-                                src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>">
-                            </div>
-                          </div>
-                          <div class="content_acordeon" style="height: 0px;">
-                            <div class="content_section">
-                              <div>
-                                Consiste en una serie de exámenes efectuados sobre la orina. La prueba en esta área es:
-                                Examen de Orina Completo. <br>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="acordeon">
-                          <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
-                            <h4 class="h4_admin centros">
-                              Inmunología <br>
-                            </h4>
-                            <div class="icon_box admin">
-                              <img alt="" class="arrow_down"
-                                src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>">
-                            </div>
-                          </div>
-                          <div class="content_acordeon" style="height: 0px;">
-                            <div class="content_section">
-                              <div>
-                                Estudia específicamente la inmunidad, que corresponde a la capacidad natural o adquirida
-                                por el cuerpo humano para luchar contra un agente patógeno. Las pruebas Generales en
-                                esta área son: Prueba rápida VIH 1 y 2, HCG sub Beta. <br>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="acordeon">
-                          <div class="trigger_acordeon" data-w-id="2b387c3c-a003-77f8-efb0-866238f53969">
-                            <h4 class="h4_admin centros">
-                              Parasitología <br>
-                            </h4>
-                            <div class="icon_box admin">
-                              <img alt="" class="arrow_down"
-                                src="<?= UPLOAD_MIGRATION_PATH . '/shared/select.svg' ?>">
-                            </div>
-                          </div>
-                          <div class="content_acordeon" style="height: 0px;">
-                            <div class="content_section">
-                              <div>
-                                Es la expedición de la biología que estudia el fenómeno del parasitismo. Por un lado,
-                                estudia a los organismos vivos parásitos y la relación de ellos con sus hospedadores y
-                                el medio ambiente. Las pruebas Generales en esta área son: Examen parasitológico, Examen
-                                parasitológico seriado (X3), Thevenon, Reacción inflamatoria en heces Test de Graham.
+                                <?= wp_kses_post($content) // viene con <p> y HTML desde ACF ?>
                                 <br>
                               </div>
                             </div>
                           </div>
                         </div>
+                        <?php
+                            endforeach;
+                          endif;
+                          ?>
                       </div>
                     </div>
                   </div>
@@ -426,33 +191,15 @@
                         <div class="content_section">
                           <div class="title_section">
                             <h2 class="h3_interna_title">
-                              Lista de precios </h2>
+                              <?= esc_html($acf_prices['title']) ?> </h2>
                             <div class="line">
                             </div>
                           </div>
                         </div>
                         <div class="clase_para_wordpress ">
-                          <h3 style="text-align: left;">Promociones</h3>
-                          <h4 style="text-align: left;"><span style="color: #00b7bd;">Lista de precios</span></h4>
-                          <ul style="text-align: left;">
-                            <li><span style="font-weight: 400;">Particular - Corporativo: Para administrativos de la
-                                corporación Wiener – Carrión</span></li>
-                            <li><span style="font-weight: 400;">Alumnos de clínica Odontológica e Ingresantes</span>
-                            </li>
-                          </ul>
-                          <a href="<?= UPLOAD_MIGRATION_PATH . '/centros-analisis-clinico/analisis_clinicos_precios.pdf' ?>"
-                            target="_blank" rel="noopener">Descargar lista de precios</a>
-
-                          &nbsp;
-
-                          &nbsp;
-                          <h4 style="text-align: left;"><span style="color: #00b7bd;"><strong>Entrega de
-                                resultados</strong></span></h4>
-                          <ul>
-                            <li style="text-align: left;"><span style="font-weight: 400;">Entrega vía correo
-                                electrónico</span></li>
-                            <li style="text-align: left;"><span style="font-weight: 400;">Entrega física</span></li>
-                          </ul>
+                          <?php
+                                echo wp_kses_post($acf_prices['content'])
+                          ?>
                         </div>
                       </div>
                     </div>
@@ -465,22 +212,13 @@
                       <div class="content_section">
                         <div class="title_section">
                           <h2 class="h3_interna_title">
-                            Staff de Profesionales
+                            <?= esc_html($acf_staff['title']) ?>
                           </h2>
                           <div class="line">
                           </div>
                         </div>
                         <div class="director_centro">
-                          <img alt="" class="director_img" loading="lazy" src="">
-                          <div class="director_info">
-                            <h4 class="director_centro_name">
-                              Dr. Juan Carlos Benites Azabache </h4>
-                            <div class="director_cargo">
-                              Director del Centro de Análisis Clínicos </div>
-                            <div class="director_name">
-                              Doctor en Educación, Tecnólogo Médico especialista en Microbiología. </div>
-                          </div>
-
+                          <?php echo wp_kses_post($acf_staff['content']) ?>
                         </div>
                       </div>
                     </div>
@@ -491,56 +229,14 @@
                     <div class="info_section full">
                       <div class="content_section">
                         <div class="contact-2col">
-
+                          <?php
+                          $contacts = $acf_contacts;
+                          foreach ($contacts as $contact):
+                          ?>
                           <div class="contact_box">
-                            <h4 class="h4_verde">
-                              Solicitud de análisis y orientación </h4>
-                            <div class="item_user_contacto last">
-                              <div class="item_contact">
-                                <img alt="" class="icon_contact" loading="lazy"
-                                  src="<?= UPLOAD_MIGRATION_PATH . '/shared/contact_black.svg' ?>">
-                                <div>
-                                  Lunes a viernes de 9:00 a.m.a 8:00 p.m. </div>
-
-                              </div>
-                              <div class="item_contact">
-                                <img alt="" class="icon_contact" loading="lazy"
-                                  src="<?= UPLOAD_MIGRATION_PATH . '/shared/contact_black.svg' ?>">
-                                <div>
-                                  Sábados de 9:00 a.m. a 6:00 p.m. </div>
-
-                              </div>
-
-                            </div>
+                            <?php echo wp_kses_post($contact['content']) ?>
                           </div>
-
-                          <div class="contact_box">
-                            <h4 class="h4_verde">
-                              Ubicación </h4>
-                            <div class="item_user_contacto last">
-                              <div class="item_contact">
-                                <img alt="" class="icon_contact" loading="lazy"
-                                  src="<?= UPLOAD_MIGRATION_PATH . '/shared/ubicacion.png' ?>">
-                                <div>
-                                  Av. Arequipa 440 – Cercado de Lima </div>
-
-                              </div>
-                              <div class="item_contact">
-                                <img alt="" class="icon_contact" loading="lazy"
-                                  src="<?= UPLOAD_MIGRATION_PATH . '/shared/phone_black.svg' ?>">
-                                <div>
-                                  (01) 706-5555 Anexo 3111 </div>
-
-                              </div>
-                              <div class="item_contact">
-                                <img alt="" class="icon_contact" loading="lazy"
-                                  src="<?= UPLOAD_MIGRATION_PATH . '/shared/arroba_black.svg' ?>">
-                                <div>
-                                  analisis.clinicos@uwiener.edu.pe </div>
-
-                              </div>
-                            </div>
-                          </div>
+                          <?php endforeach ?>
                         </div>
                       </div>
                     </div>

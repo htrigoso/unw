@@ -1,0 +1,14 @@
+.landing-image__wrapper {
+  padding-top: rem(24);
+  padding-bottom: rem(24);
+
+  @include media(">=tablet") {
+    padding-top: rem(40);
+    padding-bottom: rem(60);
+  }
+}
+
+.landing-image--img {
+  width: 100%;
+  object-fit: cover;
+}

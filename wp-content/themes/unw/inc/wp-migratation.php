@@ -19,26 +19,77 @@ add_action('wp_enqueue_scripts', function () {
     'template-internacionalizacion.php',
     'template-trasparencia.php',
     'template-politicas-de-privacidad.php',
+
+    'template-promocion-cultural.php',
+    'template-promocion-deporte.php',
+    'template-servicios-psicopedagogicos.php',
+    'template-servicios-medicos.php',
+    'template-autenticacion-documentos.php',
+    'template-autenticacion-silabos.php',
+    'template-duplicado-documentos.php',
+    'template-fedateo-documentos.php',
+    'template-fedateo-documentos.php',
+    'template-constancia-grado-academico-otros.php',
+    'template-duplicado-grado-academico.php',
+    'template-expedicion-diploma-grado-academico.php',
+    'template-cronograma-sustentaciones.php',
+    'template-constancia-promedio-ponderado.php',
+    'template-duplicado-record-notas.php',
+    'template-constancia-estudios.php',
+    'template-constancia-horas-curso.php',
+    'template-historial-academico.php',
+    'template-certificado-estudios-ciclo.php',
+    'template-modificacion-datos-sistema-foto.php',
+    'template-traslado-interno.php',
+    'template-usuario-clave.php',
+    'template-reserva-matricula.php',
+    'template-reserva-matricula-dos.php',
+    'template-anulacion-matricula.php',
+    'template-retiro-curso.php',
+    'template-certificado-aprendizaje-habilidades.php',
+    'template-record-notas.php',
+    'template-plan-estudios.php',
+    'template-constancia-quinto.php',
+    'template-constancia-ingreso.php',
+    'template-constancia-tercio.php',
+    'template-constancia-estudiante-exterior.php',
+    'template-constancia-matricula.php',
+    'template-tramite-sustentacion-ii.php',
+    'template-duplicado-carnet-universitario.php',
+    'template-carne-medio-pasaje.php',
+    'template-becas-credito.php',
+    'template-becas-fondo-empleo.php',
+    'template-credito-escalo.php',
+    'template-fondo-perpetuo.php',
+    'template-fundacion-hipolito.php',
+    'template-admision-beca18.php',
+    'template-admision-examen-admision.php',
+    'template-admision-examen-admision.php',
+    'template-precios-carreras-universitarias.php'
   ];
 
   $template_paths = array_map(fn($tpl) => 'templates/' . $tpl, $templates);
 
-if (!is_page_template($template_paths)) {
-  return;
-}
+  if (!is_page_template($template_paths)) {
+    return;
+  }
 
   $base_dir = get_stylesheet_directory();
   $base_url = get_stylesheet_directory_uri();
-
+  $version = 30; // tu versión dinámica
   // Archivos a cargar
   $assets = [
+    'webflow-style' => [
+      'type' => 'style',
+      'path' => '/assets/css/webflow.css',
+    ],
     'stylemain-style' => [
       'type' => 'style',
       'path' => '/assets/css/style.css',
     ],
-    'webflow-style' => [
+    'wiener-style' => [
       'type' => 'style',
-      'path' => '/assets/css/webflow.css',
+      'path' => '/assets/css/wiener-webmaster.css',
     ],
     'jquery-custom' => [
       'type' => 'script',

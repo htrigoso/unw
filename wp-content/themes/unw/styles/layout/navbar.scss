@@ -7,37 +7,32 @@
 }
 
 .navbar__wrapper {
-  max-height: rem(64);
   position: relative;
   display: flex;
-  align-items: center;
   justify-content: space-between;
   padding-top: rem(12);
   padding-bottom: rem(12);
   gap: rem(32);
 
-  @include media(">=tablet") {
-    height: rem(64);
+  @include media(">=desktop-s") {
     padding-top: 0;
     padding-bottom: 0;
-    align-items: stretch;
   }
 }
 
 .navbar__logo {
-  display: block;
+  display: flex;
+  align-items: center;
+  padding-top: rem(15);
+  padding-bottom: rem(15);
   pointer-events: all;
-
-  @include media(">=tablet", "<desktop-s") {
-    display: none;
-  }
 
   img {
     width: rem(144);
     height: auto;
 
-    @include media(">=tablet") {
-      width: rem(192);
+    @include media(">=desktop-s") {
+      width: rem(240);
     }
   }
 }
@@ -47,10 +42,6 @@
   align-items: center;
   justify-content: flex-end;
   pointer-events: all;
-
-  @include media(">=tablet") {
-    height: 100%;
-  }
 
   li {
     padding-left: 0 !important;
@@ -64,32 +55,15 @@
 .navbar__menu-wrapper {
   display: none;
 
-  @include media(">=tablet") {
-    height: 100%;
+  @include media(">=desktop-s") {
     display: block;
   }
 }
 
-.navbar__menu,
-.navbar__menu > ul,
-.navbar__menu > ul > li {
-  @include media(">=tablet") {
-    height: 100%;
-  }
-}
 h4.has-link-parent {
   cursor: pointer;
 
   font-weight: var(--font-regular);
-}
-
-.navbar__menu > ul > li > a,
-.navbar__menu > ul > li > h4 {
-  @include media(">=tablet") {
-    height: 100%;
-    display: flex !important;
-    align-items: center;
-  }
 }
 
 .navbar__menu {
@@ -141,6 +115,8 @@ h4.has-link-parent {
     & > h4 {
       display: inline-block;
       text-align: center;
+      padding-top: rem(30);
+      padding-bottom: rem(30);
     }
   }
   .menu-item {
@@ -156,7 +132,7 @@ h4.has-link-parent {
   display: flex;
   gap: rem(12);
 
-  @include media(">=tablet") {
+  @include media(">=desktop-s") {
     display: none;
   }
 }

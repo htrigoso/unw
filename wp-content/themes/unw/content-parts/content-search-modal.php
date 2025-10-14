@@ -2,7 +2,8 @@
   <div class="search-modal__wrapper__content">
     <div class="x-container sidebar__header">
       <a class="sidebar__logo pointer" href="<?php echo esc_url(home_url('/')); ?>">
-        <img width="101" height="40" src="<?= UPLOAD_PATH . '/logo-unw.svg' ?>" alt="Logo UNW">
+        <img width="101" height="40" src="<?= placeholder() ?>" data-src="<?= UPLOAD_PATH . '/logo-unw.svg' ?>"
+          class="lazyload" alt="Logo UNW">
       </a>
       <button type="button" aria-label="Abrir modal de búsqueda" class="btn-menu-hamburger pointer"
         data-close-modal="search-modal">

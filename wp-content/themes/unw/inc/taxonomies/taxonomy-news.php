@@ -1,26 +1,20 @@
 <?php
-add_action('init', 'register_taxonomy_categoria_novedad');
 function register_taxonomy_categoria_novedad() {
   $labels = [
-    'name'              => 'Categorías de Novedades',
-    'singular_name'     => 'Categoría de Novedad',
-    'search_items'      => 'Buscar categoría',
-    'all_items'         => 'Todas las categorías',
-    'edit_item'         => 'Editar categoría',
-    'update_item'       => 'Actualizar categoría',
-    'add_new_item'      => 'Agregar nueva categoría',
-    'new_item_name'     => 'Nueva categoría',
-    'menu_name'         => 'Categorías'
+    'name'          => 'Categorías de Noticias',
+    'singular_name' => 'Categoría de Noticia',
+    'menu_name'     => 'Categorías',
   ];
 
   $args = [
-    'hierarchical'      => true, // true = funciona como categorías jerárquicas
+    'hierarchical'      => true,
     'labels'            => $labels,
     'show_ui'           => true,
     'show_admin_column' => true,
     'query_var'         => true,
-    'rewrite'           => ['slug' => 'categoria-novedad'],
+    'rewrite'           => ['slug' => 'noticias'], // 🔹 URL será /categoria-noticia/
   ];
 
   register_taxonomy('categoria_novedad', ['novedades'], $args);
 }
+add_action('init', 'register_taxonomy_categoria_novedad');

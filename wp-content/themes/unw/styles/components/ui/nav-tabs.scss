@@ -3,13 +3,103 @@
   scrollbar-width: none;
 }
 
-.nav-tabs__list {
+.nav-tabs__wrapper {
   display: flex;
-  width: fit-content;
-  justify-content: space-between;
+  align-items: center;
+  gap: rem(24);
+
+  &.show-controls {
+    .nav-tabs--prev,
+    .nav-tabs--next {
+      display: block;
+    }
+  }
+}
+
+.nav-tabs--prev,
+.nav-tabs--next {
+  border-radius: 999px;
+  border: 1px solid var(--color-turquoise-three);
+  position: relative;
+  cursor: pointer;
+
+  display: none;
+
+  @include media(">=tablet") {
+    &.show-controls {
+      display: block;
+    }
+  }
+
+  &::before {
+    margin: rem(5);
+    content: "";
+    display: block;
+    width: 43px;
+    height: 43px;
+    background-color: var(--color-turquoise-three);
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+  }
+
+  &[aria-disabled="true"] {
+    opacity: 0.5;
+    pointer-events: none;
+    border-color: var(--color-secondary-grey);
+
+    &::before {
+      background-color: var(--color-secondary-grey);
+    }
+  }
+
+  &:not([aria-disabled="true"]):hover {
+    border-color: var(--color-turquoise-two);
+
+    &::before {
+      background-color: var(--color-turquoise-two);
+    }
+  }
+}
+
+.nav-tabs--prev::before {
+  mask-image: var(--swiper-prev-icon);
+  -webkit-mask-image: var(--swiper-prev-icon);
+}
+
+.nav-tabs--next::before {
+  mask-image: var(--swiper-next-icon);
+  -webkit-mask-image: var(--swiper-next-icon);
+}
+
+.nav-tabs__list {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: flex-start;
   padding: rem(4) !important;
   border-radius: rem(64);
   background-color: var(--color-light-turquoise);
+
+  overflow-x: auto;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: rem(8);
+    height: rem(8);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-turquoise-three);
+    border-radius: rem(4);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-turquoise-two);
+  }
 }
 
 .tab__item-wrapper:not(:last-child) {

@@ -25,3 +25,12 @@
   margin-bottom: rem(8);
 }
 
+.infra-card__description {
+  h1,
+  h2,
+  h3,
+  h4 {
+    @include title-18;
+    margin-bottom: rem(8);
+  }
+}

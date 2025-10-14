@@ -1,22 +1,32 @@
 <?php
 $sliders = get_field('sliders', get_the_ID());
-$default_title = get_the_title();
+$title_sec = get_field('title_sec', get_the_ID());
+$mode = $args['mode'] ?? '';
+$title = $args['title'] ?? '';
+$url = $args['url'] ?? '#';
+if(empty($title_sec)) {
+  $title_sec = get_the_title();
+}
+
 
 if (isset($sliders['list_of_files']) && is_array($sliders['list_of_files'])) {
   foreach ($sliders['list_of_files'] as $i => $slide) {
     if (!isset($sliders['list_of_files'][$i]['title'])) {
-      $sliders['list_of_files'][$i]['title'] = $default_title;
+      $sliders['list_of_files'][$i]['title'] = $title_sec;
     }
     if (!isset($sliders['list_of_files'][$i]['label'])) {
-      $sliders['list_of_files'][$i]['label'] = $default_title;
+      $sliders['list_of_files'][$i]['label'] = $title_sec;
     }
   }
 }
-$name_tax = get_facultad_taxonomy_name();
+
+
 
 $base_breadcrumbs = [
   ['label' => 'Inicio', 'href' => home_url('/')],
-  ['label' => $name_tax, 'href' => '/']
+  ['label' => $title,
+    'href' => $url
+  ]
 ];
 ?>
 <div class="careers-hero">
@@ -26,7 +36,8 @@ $base_breadcrumbs = [
     'swiper-hero',
     [
       'sliders' => $sliders,
-      'base_breadcrumbs' => $base_breadcrumbs
+      'base_breadcrumbs' => $base_breadcrumbs,
+      'title_sec' => $title_sec
     ]
   );
 
@@ -37,10 +48,7 @@ $base_breadcrumbs = [
   <div class="x-container careers-hero__form__wrapper">
     <div class="careers-hero__form">
       <?php
-      if ($terms && !is_wp_error($terms)) {
-        $slugs = wp_list_pluck($terms, 'slug');
-
-        if (in_array('presencial', $slugs)) {
+        if ($mode ==='presencial') {
           get_template_part(CAREERS_CONTENT_PATH, 'contact-form-presencial', [
             'data_form_type' =>$args['data-form']['desktop']
           ]
@@ -50,7 +58,6 @@ $base_breadcrumbs = [
             'data_form_type' =>$args['data-form']['desktop']
           ]);
         }
-      }
       ?>
     </div>
   </div>

@@ -22,7 +22,7 @@ if (!empty($tags)) {
       $related_posts[] = [
         "image" => get_the_post_thumbnail_url(get_the_ID(), 'medium') ?: UPLOAD_PATH . "/blog/cards/card-default.jpg",
         "title" => get_the_title(),
-        "date" => get_the_date('F j, Y'),
+        "date" => get_the_date('j') . ' de ' . ucfirst(get_the_date('F')) . ' del ' . get_the_date('Y'),
         "content" => wp_trim_words(get_the_excerpt(), 25, '...'),
         "href" => get_permalink()
       ];
@@ -50,7 +50,7 @@ if ($popular_query->have_posts()) :
     $popular_posts[] = [
       "image" => get_the_post_thumbnail_url(get_the_ID(), 'medium') ?: UPLOAD_PATH . "/blog/cards/card-default.jpg",
       "title" => get_the_title(),
-      "date" => get_the_date('F j, Y'),
+      "date" => get_the_date('j') . ' de ' . ucfirst(get_the_date('F')) . ' del ' . get_the_date('Y'),
       "content" => wp_trim_words(get_the_excerpt(), 25, '...'),
       "href" => get_permalink()
     ];
@@ -65,11 +65,11 @@ endif;
       <?php get_template_part(BLOG_DETAIL_CONTENT_PATH, 'entry-meta'); ?>
 
       <div class="x-container blog-detail__content">
-        <div class="blog-detail__text">
+        <div class="blog-detail__text" data-content="paragraph">
           <?php
           $contenido = get_field('content');
           if ($contenido) {
-            echo $contenido;
+            echo wp_kses_post($contenido);
           }
           ?>
         </div>
@@ -78,7 +78,11 @@ endif;
           <?php if (!empty($tags)) : ?>
           <div class="blog-detail__tags">
             <?php foreach ($tags as $tag) : ?>
-            <span class="blog-detail__tag"><?php echo esc_html($tag->name); ?></span>
+            <a href="<?php echo esc_url(get_tag_link($tag->term_id)); ?>">
+              <span class="blog-detail__tag">
+                <?php echo esc_html($tag->name); ?>
+              </span>
+            </a>
             <?php endforeach; ?>
           </div>
           <?php endif; ?>

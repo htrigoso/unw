@@ -1,13 +1,13 @@
 window.requestAnimFrame = (function () {
   return window.requestAnimationFrame ||
-      window.webkitRequestAnimationFrame ||
-      window.mozRequestAnimationFrame ||
-      function (callback) {
-        window.setTimeout(callback, 1000 / 60)
-      }
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    function (callback) {
+      window.setTimeout(callback, 1000 / 60)
+    }
 })()
 
-export function scrollToElement (scrollTargetY, speed, easing, callback) {
+export function scrollToElement(scrollTargetY, speed, easing, callback) {
   // scrollTargetY: the target scrollY property of the window
   // speed: time in pixels per second
   // easing: easing equation to use
@@ -48,7 +48,7 @@ export function scrollToElement (scrollTargetY, speed, easing, callback) {
   }
 
   // add animation loop
-  function tick () {
+  function tick() {
     currentTime += 1 / 60
 
     const p = currentTime / time

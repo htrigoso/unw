@@ -5,7 +5,9 @@ $alt = $args['alt'] ?? '';
 $title = $args['title'] ?? '';
 $breadcrumbs = $args['breadcrumbs'] ?? [];
 $type = $args['type'] ?? 'Imagen';
-$variant = $args['variant'] ?? 'standard'; // "standard" and "primary" are the expected values
+$variant = $args['variant'] ?? 'standard';
+$index = $args['index'] ?? 0;
+
 ?>
 
 <div class="hero-slide" data-variant="<?php echo esc_attr($variant); ?>">
@@ -18,20 +20,31 @@ $variant = $args['variant'] ?? 'standard'; // "standard" and "primary" are the e
   <?php else: ?>
     <picture class="hero-slide__picture">
       <?php if ($img_desktop): ?>
-        <source srcset="<?php echo esc_url($img_desktop); ?>" media="(min-width: 768px)"/>
+        <source srcset="<?php echo esc_url($img_desktop); ?>" media="(min-width: 768px)" />
       <?php endif; ?>
       <?php if ($img_mobile): ?>
-        <img src="<?php echo esc_url($img_mobile); ?>" alt="<?php echo esc_attr($alt); ?>"
-          class="hero-slide__picture--img" fetchpriority="high" decoding="async" loading="eager" />
+        <img src="<?php echo esc_url($img_mobile); ?>" alt="<?php echo esc_attr($alt); ?>" class="hero-slide__picture--img"
+          fetchpriority="high" decoding="async" loading="eager" />
       <?php endif; ?>
     </picture>
   <?php endif; ?>
   <div class="hero-slide__wrapper">
     <div class="x-container hero-slide__container">
       <article class="hero-slide__content">
-        <h1 class="hero-slide__content--title">
-          <?php echo esc_html($title); ?>
-        </h1>
+        <?php
+        $trimmed_title = trim($title);
+
+        if (strpos($trimmed_title, '<h') === 0) {
+          echo wp_kses_post($title);
+        } else {
+          if ($index === 0) {
+            echo '<h1>' . nl2br(esc_html($title)) . '</h1>';
+          } else {
+            echo '<h2>' . nl2br(esc_html($title)) . '</h2>';
+          }
+        }
+        ?>
+
         <?php
         get_template_part(COMMON_CONTENT_PATH, 'breadcrumb', [
           'breadcrumb' => $breadcrumbs

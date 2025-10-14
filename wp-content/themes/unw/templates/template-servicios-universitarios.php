@@ -8,6 +8,8 @@
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php
   get_header();
+    $acf_links = get_field('links');
+
 ?>
 
 
@@ -15,145 +17,73 @@
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar');?>
 <main>
   <div class="main_container">
-    <div class="cover_img_page center fijo">
-      <div class="overlay"></div>
-      <img src="<?= UPLOAD_MIGRATION_PATH . '/servicios-universitarios/Registros-Acade_micos.png' ?>"
-        srcset="<?= UPLOAD_MIGRATION_PATH . '/servicios-universitarios/Registros-Acade_micos.png' ?> 500w, <?= UPLOAD_MIGRATION_PATH . '/servicios-universitarios/Registros-Acade_micos.png' ?> 1920w"
-        sizes="100vw" alt="" class="img_cover">
-      <div class="info_cover_page center">
-        <div class="container">
-          <h2 class="categoria_page hide">Regresar</h2>
-          <h1 class="h1_carreras small"><strong>Servicios universitarios</strong><br></h1>
-        </div>
-      </div>
-      <div class="miga_de_pan">
-        <div class="container">
-          <div class="content_links_miga"><a href="https://www.uwiener.edu.pe/" class="link miga">Inicio /</a><a
-              href="#" aria-current="page" class="link miga w--current">Servicios universitarios</a></div>
-        </div>
-      </div>
-    </div>
+    <?php
+          get_template_part('content-parts/components/info-cover');
+        ?>
     <div class="main_page">
       <div class="page_interna">
         <div class="section_container nopaddingbotttom">
           <div class="container auto">
             <div class="clase_para_wordpress">
 
-              <h2 class="wp-block-heading">Presentación</h2>
-
-
-
-              <p>La Universidad Privada Norbert Wiener presenta la información correspondiente, en cumplimiento de la
-                normatividad que regula el sistema universitario actual, según lo indicado en el Formato de
-                Licenciamiento B55 de la Superintendencia Nacional de Educación Superior Universitaria (Sunedu). Se
-                cumple a cabalidad con lo exigido por la Ley Universitaria 30220 y la Sunedu, asumiendo el compromiso de
-                respeto al Estado de derecho, las normas y la Constitución Política de nuestro país</p>
-
+              <?php
+                              the_content();
+                      ?>
 
 
               <h2 class="wp-block-heading">Servicios</h2>
 
 
 
-              <p>[linea]</p>
+
             </div>
             <div role="list" class="grid-3 w-dyn-items">
+              <?php if (!empty($acf_links['lists'])) : ?>
+              <?php foreach ($acf_links['lists'] as $item) : ?>
               <div role="listitem" class="w-dyn-item">
                 <div class="item_grilla mw vertical carreras interna">
-                  <div class="img-carrera-box"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/servicios-universitarios/biblioteca.png' ?>" alt=""
-                      class="img_cover_carreras"></div>
-                  <div class="info-carrera">
-                    <h4 class="h4_carreras dark marginright">Biblioteca</h4><a
-                      href="https://intranet.uwiener.edu.pe/univwiener/biblioteca/biblioteca.asp" class="btn-legacy w-button"
-                      target="_blank">+ información</a>
+
+                  <div class="img-carrera-box">
+                    <?php if (!empty($item['is_link'])) : ?>
+                    <!-- Caso con link directo -->
+                    <?php if (!empty($item['image']['url'])) : ?>
+                    <img src="<?= esc_url($item['image']['url']); ?>"
+                      alt="<?= esc_attr($item['image']['alt'] ?? $item['title']); ?>" class="img_cover_carreras">
+                    <?php endif; ?>
+                    <?php else : ?>
+                    <!-- Caso con page -->
+                    <img src="<?= esc_url(get_the_post_thumbnail_url($item['page']->ID, 'large')); ?>"
+                      alt="<?= esc_attr($item['page']->post_title); ?>" class="img_cover_carreras">
+                    <?php endif; ?>
                   </div>
+
+                  <div class="info-carrera">
+                    <h4 class="h4_carreras dark marginright">
+                      <?php if (!empty($item['is_link'])) : ?>
+                      <?= esc_html($item['title']); ?>
+                      <?php else : ?>
+                      <?= esc_html($item['page']->post_title); ?>
+                      <?php endif; ?>
+                    </h4>
+
+                    <?php if (!empty($item['is_link'])) : ?>
+                    <a href="<?= esc_url($item['link']['url']); ?>" class="btn-legacy w-button"
+                      target="<?= esc_attr($item['link']['target'] ?? '_self'); ?>">
+                      + información
+                    </a>
+                    <?php else : ?>
+                    <a href="<?= esc_url(get_permalink($item['page']->ID)); ?>" class="btn-legacy w-button">
+                      + información
+                    </a>
+                    <?php endif; ?>
+                  </div>
+
                 </div>
               </div>
-              <div role="listitem" class="w-dyn-item">
-                <div class="item_grilla mw vertical carreras interna">
-                  <div class="img-carrera-box"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/servicios-universitarios/500x250_jefatura-de-becas.jpg' ?>" alt=""
-                      class="img_cover_carreras"></div>
-                  <div class="info-carrera">
-                    <h4 class="h4_carreras dark marginright">Jefatura de Becas</h4><a
-                      href="https://www.uwiener.edu.pe/servicios-universitarios/becas/" class="btn-legacy w-button">+
-                      información</a>
-                  </div>
-                </div>
-              </div>
-              <div role="listitem" class="w-dyn-item">
-                <div class="item_grilla mw vertical carreras interna">
-                  <div class="img-carrera-box"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/servicios-universitarios/Banner_ResponsabilidadSocial_1920x400-2023-1.jpg' ?>"
-                      alt="" class="img_cover_carreras"></div>
-                  <div class="info-carrera">
-                    <h4 class="h4_carreras dark marginright">Responsabilidad Social</h4><a
-                      href="https://www.uwiener.edu.pe/servicios-universitarios/responsabilidad-social/"
-                      class="btn-legacy w-button">+ información</a>
-                  </div>
-                </div>
-              </div>
-              <div role="listitem" class="w-dyn-item">
-                <div class="item_grilla mw vertical carreras interna">
-                  <div class="img-carrera-box"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/servicios-universitarios/Registros-Acade_micos.png' ?>" alt=""
-                      class="img_cover_carreras"></div>
-                  <div class="info-carrera">
-                    <h4 class="h4_carreras dark marginright">Registros Académicos</h4><a
-                      href="https://www.uwiener.edu.pe/servicios-universitarios/registros-academicos/"
-                      class="btn-legacy w-button">+ información</a>
-                  </div>
-                </div>
-              </div>
-              <div role="listitem" class="w-dyn-item">
-                <div class="item_grilla mw vertical carreras interna">
-                  <div class="img-carrera-box"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/servicios-universitarios/Secretari_a-General.png' ?>" alt=""
-                      class="img_cover_carreras"></div>
-                  <div class="info-carrera">
-                    <h4 class="h4_carreras dark marginright">Secretaría General</h4><a
-                      href="https://www.uwiener.edu.pe/servicios-universitarios/secretaria-general/"
-                      class="btn-legacy w-button">+ información</a>
-                  </div>
-                </div>
-              </div>
-              <div role="listitem" class="w-dyn-item">
-                <div class="item_grilla mw vertical carreras interna">
-                  <div class="img-carrera-box"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/servicios-universitarios/Direccio_n-de-Bienestar-Universitario.png' ?>"
-                      alt="" class="img_cover_carreras"></div>
-                  <div class="info-carrera">
-                    <h4 class="h4_carreras dark marginright">Bienestar Estudiantil</h4><a
-                      href="https://www.uwiener.edu.pe/servicios-universitarios/bienestar-estudiantil/"
-                      class="btn-legacy w-button">+ información</a>
-                  </div>
-                </div>
-              </div>
-              <div role="listitem" class="w-dyn-item">
-                <div class="item_grilla mw vertical carreras interna">
-                  <div class="img-carrera-box"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/servicios-universitarios/empleabilidad-y-Relacionamiento-Empresarial500.png' ?>"
-                      alt="" class="img_cover_carreras"></div>
-                  <div class="info-carrera">
-                    <h4 class="h4_carreras dark marginright">Dirección de Empleabilidad y Alumni</h4><a
-                      href="https://www.uwiener.edu.pe/servicios-universitarios/direccion-de-empleabilidad-y-alumni/"
-                      class="btn-legacy w-button">+ información</a>
-                  </div>
-                </div>
-              </div>
-              <div role="listitem" class="w-dyn-item">
-                <div class="item_grilla mw vertical carreras interna">
-                  <div class="img-carrera-box"><img
-                      src="<?= UPLOAD_MIGRATION_PATH . '/servicios-universitarios/Defensori_a-Universitaria.png' ?>" alt=""
-                      class="img_cover_carreras"></div>
-                  <div class="info-carrera">
-                    <h4 class="h4_carreras dark marginright">Defensoría Universitaria</h4><a
-                      href="https://www.uwiener.edu.pe/servicios-universitarios/defensoria-universitaria/"
-                      class="btn-legacy w-button">+ información</a>
-                  </div>
-                </div>
-              </div>
+              <?php endforeach; ?>
+              <?php endif; ?>
+
+
             </div>
           </div>
         </div>
@@ -161,4 +91,8 @@
     </div>
   </div>
 </main>
-<?php get_footer(); ?>
+<?php
+add_filter('show_book_link', '__return_true');
+
+get_footer();
+?>

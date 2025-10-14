@@ -10,7 +10,8 @@ $is_video = $args['is_video'] ?? false;
     <source src="<?php echo esc_url($video_url); ?>" type="video/mp4" />
     Tu navegador no soporta la reproducción de videos HTML5.
   </video>
-  <?php else : ?>
-  <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($thumbnail); ?>" alt="Thumbnail" class="video-w-thumb__img lazyload" />
+  <?php elseif (!empty($thumbnail)) : ?>
+  <img src="<?=placeholder() ?>" data-src="<?php echo esc_url($thumbnail); ?>" alt="Thumbnail"
+    class="video-w-thumb__img lazyload" />
   <?php endif; ?>
 </div>

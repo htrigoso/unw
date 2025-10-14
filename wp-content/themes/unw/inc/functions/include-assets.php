@@ -1,6 +1,33 @@
 <?php
+add_filter('the_posts', function($posts, $query) {
+    if ( $query->is_search() && $query->is_main_query() ) {
 
+        // Palabras clave que deben mostrar el libro
+        $keywords = ['libro', 'reclamaciones', 'queja'];
 
+        foreach ( $keywords as $kw ) {
+            if ( stripos( $query->query_vars['s'], $kw ) !== false ) {
+
+                // Crear un "post falso"
+                $fake_post = new stdClass();
+                $fake_post->ID = -9999; // ID ficticio
+                $fake_post->post_title = 'Libro de Reclamaciones';
+                $fake_post->post_excerpt = 'Accede a nuestro Libro de Reclamaciones en línea.';
+                $fake_post->post_content = '';
+                $fake_post->post_status = 'publish';
+                $fake_post->post_type = 'custom';
+                $fake_post->filter = 'raw';
+                $fake_post->guid = 'https://librodereclamaciones.uwiener.edu.pe/?_gl=1*jxf9yi*_gcl_au*MjU3MzU1MTk5LjE3NTc0NTc3MzI.';
+
+                // Inyectar al inicio
+                array_unshift($posts, $fake_post);
+
+                break;
+            }
+        }
+    }
+    return $posts;
+}, 10, 2);
 
 
 add_filter( 'big_image_size_threshold', '__return_false' );
@@ -108,7 +135,19 @@ function placeholder() {
 function get_placeholder() {
   return 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAECAYAAABGM/VAAAAABHNCSVQICAgIfAhkiAAAAF1JREFUCFtjvP/m1n8GIPj64TzD5f+GDJ8+/WBgrDp767+DKAOD1K/zDEpShgxbH/xhYFx+59Z/LW5Ghg9//zMoMd5mePJZiYHxxMsH2w6+BhnAwJAo9pvh5GcmBgCRxSUqb+IRJgAAAABJRU5ErkJggg==';
 }
-add_action('wp_enqueue_scripts', 'include_assets');
+
+
+function add_defer_to_script($handle) {
+  add_filter('script_loader_tag', function($tag, $script_handle, $src) use ($handle) {
+    if ($script_handle === $handle) {
+      // Buscar la posición del id y colocar defer antes
+      return str_replace(' id=', ' defer id=', $tag);
+    }
+    return $tag;
+  }, 10, 3);
+}
+
+add_action('wp_enqueue_scripts', 'include_assets', 20);
 
 function include_assets()
 {
@@ -130,6 +169,8 @@ function include_assets()
   }
 
 
+ $preload_styles = [];
+  $preload_scripts = [];
 
   if (!empty($assets)) {
     foreach ($assets as $key => $val) {
@@ -144,17 +185,17 @@ function include_assets()
                 $script_url = $script_url . '.gz';
               }
 
-              if ($env === 'production') {
-                // Aquí se agrega la acción para precargar el CSS.
-                add_action('wp_head', function() use ($style_url) {
-                  echo '<link rel="preload" href="' . esc_url($style_url) . '" as="style">';
-                }, 1);
+              if ($env === 'production' && $style_url) {
 
-                // Luego, encolamos el estilo de forma normal para que se aplique.
+                 $preload_styles[] = $style_url;
                 wp_enqueue_style($key, $style_url);
               }
 
+               $preload_scripts[] = $script_url;
               wp_enqueue_script($key, $script_url, [], '', true);
+
+              // Agregar defer al script
+              add_defer_to_script($key);
             }
           }
           break;
@@ -169,16 +210,34 @@ function include_assets()
                 $script_url = $script_url . '.gz';
               }
 
-              if ($env === 'production') {
+              if ($env === 'production' && $style_url) {
+                $preload_styles[] = $style_url;
                 wp_enqueue_style($key, $style_url);
               }
-
+               $preload_scripts[] = $script_url;
               wp_enqueue_script($key, $script_url, ['app'], '', true);
+
+              // Agregar defer al script
+              add_defer_to_script($key);
             }
           }
           break;
       }
     }
+  }
+
+  // Preload CSS
+  if (!empty($preload_styles)) {
+      foreach ($preload_styles as $css_url) {
+        echo '<link rel="preload" href="' . esc_url($css_url) . '" as="style">' . "\n";
+      }
+  }
+
+  // Preload Scripts
+  if (!empty($preload_scripts)) {
+      foreach ($preload_scripts as $js_url) {
+        echo '<link rel="preload" href="' . esc_url($js_url) . '" as="script">' . "\n";
+      }
   }
 }
 
@@ -280,16 +339,30 @@ function uw_output_lang_switcher() {
     echo '</nav>';
 }
 
-add_action('wp_head', function() {
-  if ( !is_singular() ) return;
 
-  $urls = uw_get_lang_urls(); // devuelve ['es' => ..., 'en' => ..., 'current' => 'es'|'en']
-  if ( empty($urls['es']) || empty($urls['en']) ) return;
 
-  // Español (principal)
-  echo '<link rel="alternate" hreflang="es" href="' . esc_url($urls['es']) . '">' . "\n";
-  // Inglés
-  echo '<link rel="alternate" hreflang="en" href="' . esc_url($urls['en']) . '">' . "\n";
-  // Versión por defecto (tu canon es ES)
-  echo '<link rel="alternate" hreflang="x-default" href="' . esc_url($urls['es']) . '">' . "\n";
-}, 5);
+
+/**
+ * Devuelve un extracto del contenido del post con un límite de palabras.
+ *
+ * @param int $post_id  ID del post
+ * @param int $limit    Número máximo de palabras
+ * @return string
+ */
+function get_trimmed_content($post_id, $limit = 40) {
+    $content = get_post_field('post_content', $post_id);
+
+    if (empty($content)) {
+        return '';
+    }
+
+    // Limpiar HTML y shortcodes
+    $content = strip_shortcodes(strip_tags($content));
+    $words   = preg_split('/\s+/', $content);
+
+    if (count($words) > $limit) {
+        $content = implode(' ', array_slice($words, 0, $limit)) . '...';
+    }
+
+    return trim($content);
+}

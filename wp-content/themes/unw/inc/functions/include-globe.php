@@ -6,10 +6,14 @@ add_action('wp_enqueue_scripts', function () {
         return;
     }
 
-    // Verificar si es powered-by-asu (ES)
-    $is_asu_page = is_page('powered-by-asu');
+    $is_asu_page = false;
 
-    // Verificar si es powered-by-asu/en
+    // Verificar si es la página "powered-by-asu"
+    if ($post->post_name === 'powered-by-asu') {
+        $is_asu_page = true;
+    }
+
+    // Verificar si es la versión en inglés (slug "en" y padre "powered-by-asu")
     if ($post->post_name === 'en' && $post->post_parent) {
         $parent = get_post($post->post_parent);
         if ($parent && $parent->post_name === 'powered-by-asu') {
@@ -17,13 +21,14 @@ add_action('wp_enqueue_scripts', function () {
         }
     }
 
+    // Si coincide, cargar el script de Globe
     if ($is_asu_page) {
         wp_enqueue_script(
             'globe-gl-js',
-            '//cdn.jsdelivr.net/npm/globe.gl',
+            'https://cdn.jsdelivr.net/npm/globe.gl',
             [],
             null,
-            false
+            false // cargar en el footer
         );
     }
 });

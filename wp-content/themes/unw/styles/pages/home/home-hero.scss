@@ -1,5 +1,14 @@
+.hero-swiper {
+  .swiper-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+}
+
 .swiper-hero__wrapper {
   position: relative;
+  background-color: var(--color-light-turquoise);
   width: 100%;
   height: 100%;
 }
@@ -15,14 +24,15 @@
 
 .swiper-hero__picture--img {
   width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
-  aspect-ratio: 10/9;
-  max-height: rem(500);
 
   @include media(">=tablet") {
-    aspect-ratio: 1/2;
-    max-height: rem(769);
+    min-height: var(--full-hero-min-height);
+    height: var(--full-hero-height);
+    max-height: var(--full-hero-max-height);
+    aspect-ratio: var(--full-hero-aspect-ratio);
   }
 }
 
@@ -54,19 +64,25 @@
 }
 
 .hero__content--title {
-  @include title-28;
-  color: var(--color-white);
-  margin-bottom: rem(12);
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include title-28;
+    color: var(--color-white);
 
-  @include media(">=tablet") {
-    @include title-80;
-    height: rem(137);
+    @include media(">=tablet") {
+      @include title-80;
+    }
   }
+  margin-bottom: rem(30);
 }
 
 .hero__content--body {
   color: var(--color-white);
-  margin-bottom: rem(12);
+  margin-bottom: rem(30);
   max-width: rem(477);
 
   @include media(">=tablet") {
@@ -94,5 +110,143 @@
 
   @include media(">=phone-m") {
     width: fit-content;
+  }
+}
+
+.hero-controls {
+  margin-top: rem(8);
+  width: 100%;
+  background-color: var(--color-white);
+  display: flex;
+  gap: rem(21);
+  justify-content: center;
+  align-items: center;
+  padding-top: rem(20);
+  padding-bottom: rem(20);
+
+  @include media(">=tablet") {
+    gap: rem(32);
+    margin-top: 0;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    width: auto;
+    padding: rem(22) rem(42);
+    border-radius: rem(16) rem(16) 0 0;
+    background-color: var(--color-light-turquoise);
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: rem(51);
+      height: rem(51);
+      background-color: var(--color-light-turquoise);
+    }
+
+    &::before {
+      left: rem(-50);
+      mask-image: radial-gradient(
+        circle at 0 0,
+        transparent 0,
+        transparent rem(51),
+        black rem(51)
+      );
+      -webkit-mask-image: radial-gradient(
+        circle at 0 0,
+        transparent 0,
+        transparent rem(51),
+        black rem(51)
+      );
+    }
+
+    &::after {
+      right: rem(-50);
+      mask-image: radial-gradient(
+        circle at 100% 0,
+        transparent 0,
+        transparent rem(51),
+        black rem(51)
+      );
+      -webkit-mask-image: radial-gradient(
+        circle at 100% 0,
+        transparent 0,
+        transparent rem(51),
+        black rem(51)
+      );
+    }
+  }
+}
+
+.home-hero-button-prev,
+.home-hero-button-next {
+  position: relative;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    display: block;
+    width: rem(14);
+    height: rem(14);
+    background-color: var(--color-turquoise-three);
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+
+    @include media(">=tablet") {
+      width: rem(18);
+      height: rem(18);
+    }
+  }
+
+  &[aria-disabled="true"] {
+    opacity: 0.5;
+    pointer-events: none;
+    border-color: var(--color-secondary-grey);
+
+    &::before {
+      background-color: var(--color-secondary-grey);
+    }
+  }
+}
+
+.home-hero-button-prev::before {
+  mask-image: var(--chevron-left-icon);
+  -webkit-mask-image: var(--chevron-left-icon);
+}
+
+.home-hero-button-next::before {
+  mask-image: var(--chevron-right-icon);
+  -webkit-mask-image: var(--chevron-right-icon);
+}
+
+.home-hero-pagination {
+  display: flex;
+  gap: rem(21);
+
+  @include media(">=tablet") {
+    gap: rem(32);
+  }
+
+  .swiper-pagination-bullet {
+    width: rem(10);
+    height: rem(10);
+    border: rem(1.66) solid var(--color-turquoise-three);
+    border-radius: rem(999);
+
+    @include media(">=tablet") {
+      width: rem(16);
+      height: rem(16);
+    }
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: var(--color-turquoise-three);
   }
 }

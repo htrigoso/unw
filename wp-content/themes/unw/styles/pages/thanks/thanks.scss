@@ -5,7 +5,7 @@
   flex-direction: column;
 
   @include media(">=tablet") {
-    min-height: calc(100dvh - var(--navbar-height-desktop));
+    min-height: calc(100dvh - var(--navbar-height));
   }
 }
 

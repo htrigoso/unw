@@ -10,7 +10,9 @@ class App {
     this.megaMenuDesktop()
     this.tabMegaMenuDesktop()
     this.hideBackdrop()
+
     this.handleOnSubmitForm()
+    this.blockedClickButtonModal()
   }
 
   createNavbar() {
@@ -152,24 +154,40 @@ class App {
 
       forms.forEach((form) => {
         form.addEventListener('submit', (e) => {
-          const button = form.querySelector('#button-send')
+          // Evitar doble envío
+          if (form.dataset.submitted === 'true') {
+            e.preventDefault()
+            return
+          }
+          form.dataset.submitted = 'true'
 
+          // Botón de envío
+          const button = form.querySelector('#button-send')
           if (button) {
             button.disabled = true
             button.dataset.originalText = button.innerText
             button.innerText = 'Enviando...'
           }
 
+          // Push a dataLayer
           if (window.dataLayer && Array.isArray(window.dataLayer)) {
             window.dataLayer.push({
               event: 'gtm.formSubmit',
-              formId: form.id || null,
-              formType: form.dataset.formType || null
+              formId: form?.id || null,
+              formType: form?.dataset?.formType || null
             })
           } else {
             console.warn('⚠️ dataLayer no está definido')
           }
         })
+      })
+    })
+  }
+
+  blockedClickButtonModal() {
+    document.querySelectorAll('[data-modal-target]').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault() // evita scroll
       })
     })
   }

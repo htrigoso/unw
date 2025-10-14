@@ -17,11 +17,12 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  max-height: rem(350);
 
   @include media(">=tablet") {
-    min-height: rem(769);
-    max-height: rem(769);
+    min-height: var(--full-hero-min-height);
+    height: var(--full-hero-height);
+    max-height: var(--full-hero-max-height);
+    aspect-ratio: var(--full-hero-aspect-ratio);
   }
 }
 
@@ -44,26 +45,35 @@
   }
 }
 
-.hero-slide__content--title {
-  @include title-28;
-  color: var(--color-white);
-  max-width: rem(545);
-  margin-bottom: rem(8);
+.hero-slide__content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @include title-28;
+    color: var(--color-white);
 
-  @include media(">=tablet") {
-    @include title-56;
-    margin-bottom: rem(85);
-    min-height: rem(132);
+    margin-bottom: rem(8);
+    @include media(">=tablet") {
+      @include title-56;
+      margin-bottom: rem(85);
+    }
   }
 }
 
 .hero-slide[data-variant="primary"] {
-  .hero-slide__content--title {
-    @include title-40;
-
-    @include media(">=tablet") {
-      @include title-56;
-      margin-bottom: rem(39);
+  .hero-slide__content {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      @include title-40;
+      @include media(">=tablet") {
+        @include title-56;
+        margin-bottom: rem(85);
+      }
     }
   }
 

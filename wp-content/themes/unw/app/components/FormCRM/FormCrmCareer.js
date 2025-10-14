@@ -1,4 +1,3 @@
-import Component from '../../classes/Component'
 import { buildOptionsCampusCareers, createSelectCampus, createSelectDepartament, FORMS, removeSelectCampus, removeSelectDepartament, sanitizeForInput, setClaseName, validateInputs, validatePhone } from './utils'
 
 // ==========================
@@ -10,9 +9,9 @@ const FORM_CARRIERS_PRESENCIAL =
 const FORM_CARRIERS_VIRTUAL =
   'https://forms.zohopublic.com/adminzoho11/form/WebCarrerasVirtual/formperma/f1PqvMaVQ3bdPj9ELVT4XJWYy_eHSjrAECWfWqSB_uE/htmlRecords/submit'
 
-export default class FormCrmCareer extends Component {
-  constructor({ element, container, onCompleted }) {
-    super({ element, elements: {} })
+export default class FormCrmCareer {
+  constructor({ element }) {
+    this.element = element
     this.createListeners()
   }
 
@@ -25,6 +24,7 @@ export default class FormCrmCareer extends Component {
     this.handleDepartmentChange()
     this.handleFormMixtoChange()
     this.handleDepartamentChange()
+    this.handleCampusChange()
   }
 
   // ==========================
@@ -46,7 +46,8 @@ export default class FormCrmCareer extends Component {
     const radios = this.element.querySelectorAll('input[name="form_mixto"]')
     const campus = JSON.parse(this.element.dataset.campus || '[]')
     const isMixto = JSON.parse(this.element.dataset.mixto || 0)
-
+    const codePre = this.element.dataset.codePre || ''
+    const codeVir = this.element.dataset.codeVir || ''
     if (!radios.length) return
 
     radios.forEach(radio => {
@@ -66,6 +67,8 @@ export default class FormCrmCareer extends Component {
             }
 
             buildOptionsCampusCareers({ campus, element: this.element })
+
+            this.setCodeTypeCareer(codePre)
             break
 
           case FORMS.VIRTUAL:
@@ -80,12 +83,14 @@ export default class FormCrmCareer extends Component {
             if (isMixto && campus.length > 0) {
               removeSelectCampus(this.element)
             }
+            this.setCodeTypeCareer(codeVir)
             break
           case FORMS.WORK:
             this.element.action = FORM_CARRIERS_VIRTUAL
             removeSelectCampus(this.element)
             setClaseName('f-100', this.element)
             removeSelectDepartament(this.element)
+            this.setCodeTypeCareer(codeVir)
             break
 
           default:
@@ -94,6 +99,13 @@ export default class FormCrmCareer extends Component {
         }
       })
     })
+  }
+
+  setCodeTypeCareer(value) {
+    const codeInput = this.element.querySelector('input[name="SingleLine4"]')
+    if (!codeInput) return
+
+    codeInput.value = value
   }
 
   handleDepartamentChange() {
@@ -119,6 +131,23 @@ export default class FormCrmCareer extends Component {
       const hiddenName = map[checked.value]?.[target.id]
       if (hiddenName) {
         hiddenContainer.innerHTML = `<input type="hidden" name="${hiddenName}" value="${text}">`
+      }
+    })
+  }
+
+  handleCampusChange() {
+    const select = this.element.querySelector('#campus')
+    if (!select) return
+
+    select.addEventListener('change', (event) => {
+      const selectedOption = event.target.options[event.target.selectedIndex]
+      const text = selectedOption.textContent.trim()
+      const value = selectedOption.value
+      if (value) {
+        console.log('ok')
+
+        this.element.querySelector('.custom-hidden-campus').innerHTML = `
+            <input type="hidden" name="SingleLine7" value="${text}">`
       }
     })
   }

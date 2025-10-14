@@ -10,6 +10,18 @@
     padding: rem(32) rem(16) rem(16);
   }
 }
+.entry-meta__categories {
+  margin-bottom: rem(15);
+  a {
+    background-color: var(--color-turquoise-two);
+    display: inline-block;
+    padding: rem(10);
+    border-radius: rem(10);
+    &:not(:first-child) {
+      margin-left: rem(10);
+    }
+  }
+}
 
 .entry-meta__title {
   @include title-28;

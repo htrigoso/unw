@@ -24,23 +24,3 @@
     @include title-36;
   }
 }
-
-.infrastructure__list {
-  @include media("<phone") {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: rem(24);
-  }
-}
-
-.infrastructure__item {
-  .infra-card {
-    @include media(">=phone") {
-      width: rem(305);
-    }
-
-    @include media(">=tablet") {
-      width: auto;
-    }
-  }
-}

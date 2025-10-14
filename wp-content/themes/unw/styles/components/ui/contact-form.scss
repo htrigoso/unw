@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   gap: rem(10);
-  padding: rem(24) rem(16);
+  padding: rem(16) rem(16);
   background-color: var(--color-light-turquoise);
 }
 
@@ -27,7 +27,7 @@
   gap: rem(24);
 
   @include media(">=phone") {
-    gap: rem(32);
+    gap: rem(13);
     padding: rem(24) rem(32) rem(24);
   }
 }

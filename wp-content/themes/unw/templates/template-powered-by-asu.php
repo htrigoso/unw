@@ -9,7 +9,10 @@
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php get_header(); ?>
 
-<?php get_template_part(PBA_CONTENT_PATH, 'pba-navbar'); ?>
+
+<?php get_template_part(GENERAL_CONTENT_PATH, 'navbar' , [
+  'hide_top_bar_power_asu'=> true
+]); ?>
 <main>
   <?php
   $slide_hero = get_field('slide-hero');
@@ -26,7 +29,9 @@
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-presentation'); ?>
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-recognitions'); ?>
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-powered'); ?>
-  <?php get_template_part(PBA_CONTENT_PATH, 'pba-benefits'); ?>
+  <?php get_template_part(COMMON_CONTENT_PATH, 'grid-benefits', [
+    'benefits' => get_field('benefits')
+  ]); ?>
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-mastery'); ?>
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-highlights'); ?>
   <?php get_template_part(PBA_CONTENT_PATH, 'pba-network'); ?>

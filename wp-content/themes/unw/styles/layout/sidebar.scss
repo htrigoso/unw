@@ -78,6 +78,10 @@
     @include media(">=phone") {
       padding-inline: rem(24) !important;
     }
+
+    @include media(">=tablet") {
+      padding-inline: rem(52) !important;
+    }
   }
 
   .menu-item-has-children > a,
@@ -94,7 +98,8 @@
   }
 }
 
-.sidebar__menu-link {
+.sidebar__menu-link,
+.sidebar__menu-item.menu-item {
   font-size: rem(18);
   color: var(--color-black);
 

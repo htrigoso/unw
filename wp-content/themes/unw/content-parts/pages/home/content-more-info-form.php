@@ -11,7 +11,8 @@ $careers = get_carreras();
 $list_departaments = $form_crm_option['list_departaments'];
 $list_campus = get_carreras_campus_modalidad();
 ?>
-<form id="form-general" data-form="zoho" class="more-form" data-careers="<?= esc_attr(wp_json_encode( $careers))?>"
+<form id="form-general" data-form="zoho" class="more-form newformfloat"
+  data-careers="<?= esc_attr(wp_json_encode( $careers))?>"
   data-departaments="<?= esc_attr(wp_json_encode( $list_departaments))?>"
   data-campus="<?= esc_attr(wp_json_encode( $list_campus))?>" method="POST" accept-charset="UTF-8"
   enctype="multipart/form-data" action="<?=$formUrl?>">
@@ -33,6 +34,7 @@ $list_campus = get_carreras_campus_modalidad();
   <div class="custom-hidden"></div>
 
   <div class="custom-hidden-campus"></div>
+  <div class="custom-hidden-departament"></div>
 
   <!-- Enviar Campos vacios -->
   <input type="hidden" name="Name_Middle" value="">

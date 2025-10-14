@@ -2,6 +2,9 @@
 $array_index_name = get_query_var('array_index_name');
 
 $menu = get_field('menu-of-careers-programs', 'option');
+
+if(isset($menu[$array_index_name])){
+
 $menu = $menu[$array_index_name];
 
 foreach ($menu as $column_key => $column_data):
@@ -36,4 +39,5 @@ foreach ($menu as $column_key => $column_data):
 </ul>
 <?php
 endforeach;
+}
 ?>

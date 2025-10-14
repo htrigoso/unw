@@ -10,7 +10,7 @@ $career_field = $args['career_field'] ?? null;
   <?php endif; ?>
 
   <?php if (!empty($career_field['description'])): ?>
-  <div class="career-field__description">
+  <div class="career-field__description" data-content="paragraph">
     <?php echo wp_kses_post(wpautop($career_field['description'])); ?>
   </div>
   <?php endif; ?>
@@ -23,7 +23,8 @@ $career_field = $args['career_field'] ?? null;
         <?php echo $index + 1; ?>.
       </div>
       <h3 class="career-field__item-title"><?php echo esc_html($area['title'] ?? ''); ?></h3>
-      <p class="career-field__item-description"><?php echo esc_html($area['description'] ?? ''); ?></p>
+      <div class="career-field__item-description" data-content="paragraph">
+        <?php echo wp_kses_post($area['description']); ?></div>
     </li>
     <?php endforeach; ?>
   </ul>

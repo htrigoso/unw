@@ -14,7 +14,8 @@
   $list_departaments = $form_crm_option['list_departaments'];
   $term              = get_facultad_taxonomy_name(get_the_ID());
   $page_title        = get_current_page_title();
-  $code_carrier     = $crm_carriers['code'];
+  $code_carrier_pre     = $crm_carriers['code'];
+  $code_carrier_vir     = $crm_carriers['code_virtual'];
   // ---- Fusionar UTMs ----
   $utms_final = merge_utms($utms_default, $utm_carriers);
   $list_campus_default =    get_campus_by_carrera_id(  $page_id);
@@ -23,14 +24,11 @@
   $list_campus =  wp_json_encode([]);
   $departments_json =  [] ;
   $campus_json =  [] ;
+  $campus_json = $list_campus_default;
   $is_form_mixto = $crm_carriers ['is_mixto'];
-
-   // Si es form mixto
   if($is_form_mixto) {
-
     $group_presencial = $form_mixto['group_presencial'];
     $group_virtual = $form_mixto['group_virtual'];
-
 
     if($group_presencial['status']) {
       $campus_json = $list_campus_default;
@@ -40,18 +38,17 @@
      if($group_virtual['status']) {
       $departments_json =  $list_departaments;
     }
-
   }else {
     if($form_normal['status']) {
       $campus_json = $list_campus_default;
     }
   }
-
-$data_form_type = $args['data_form_type'] ?? '';
+  $data_form_type = $args['data_form_type'] ?? '';
 ?>
 <form id="<?=$data_form_type;?>" data-form="zoho" data-form-type="<?=$data_form_type;?>"
   data-departaments=" <?= esc_attr(wp_json_encode( $departments_json)) ?>"
   data-campus="<?= esc_attr(wp_json_encode( $campus_json)) ?>" data-mixto="<?=esc_attr(trim($is_form_mixto))?>"
+  data-code-pre="<?=esc_attr($code_carrier_pre)?>" data-code-vir="<?=esc_attr($code_carrier_vir)?>"
   class="contact-form formCarrera" method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
   action="<?=$formUrl?>">
   <div class="form-header">
@@ -76,14 +73,15 @@ $data_form_type = $args['data_form_type'] ?? '';
   <input type="hidden" name="Dropdown2" value=""> <!-- Grado -->
   <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
 
-  <input type="hidden" name="SingleLine5" value="<?=esc_attr($term)?>"><!-- Facultad -->
-  <input type="hidden" name="SingleLine4" value="<?=esc_attr($code_carrier)?>"> <!-- Codigo por carrera acf -->
-  <input type="hidden" name="SingleLine3" value="<?=esc_attr($page_title)?>">
+  <input type="hidden" name="SingleLine3" value="<?=esc_attr($term)?>"><!-- Facultad -->
+  <input type="hidden" name="SingleLine4" value="<?=esc_attr($code_carrier_pre)?>"> <!-- Codigo por carrera acf -->
+  <input type="hidden" name="SingleLine5" value="<?=esc_attr($page_title)?>">
   <input type="hidden" name="Website" value="<?=get_current_page_url()?>"> <!-- Url de Trakeo -->
   <!-- ////Campos vacios -->
 
 
   <div class="custom-hidden"></div>
+  <div class="custom-hidden-campus"></div>
 
 
 
@@ -93,7 +91,7 @@ $data_form_type = $args['data_form_type'] ?? '';
       <?php if ( $is_form_mixto ): ?>
       <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'radio', [
         'direction'    => 'flex-col justify-between',
-         'form_type'=> $data_form_type,
+        'form_type'=> $data_form_type,
       ]);?>
       <?php endif; ?>
 
@@ -158,7 +156,7 @@ $data_form_type = $args['data_form_type'] ?? '';
               </option>
               <?php endforeach; ?>
             </select>
-            <label for="campus">Elige tu campus</label>
+            <label for="campus">Elige tu campus (*)</label>
             <span class="error-message">Datos inválidos</span>
           </div>
         </div>
@@ -174,7 +172,7 @@ $data_form_type = $args['data_form_type'] ?? '';
       ]);?>
     </div>
     <div class="form-body__actions">
-      <button type="submit" class="btn btn-primary">Enviar</button>
+      <button type="submit" class="btn btn-primary" id="button-send">Enviar</button>
     </div>
   </div>
 </form>

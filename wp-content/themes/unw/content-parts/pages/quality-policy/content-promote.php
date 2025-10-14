@@ -8,26 +8,27 @@ if ($promote && is_array($promote)) :
       <h2 class="promote__title"><?= esc_html($promote['title']); ?></h2>
       <div class="promote-swiper post-swiper" data-width="compact">
         <div class="swiper-container">
-          <ul class="swiper-wrapper promote-swiper__list">
+          <div class="swiper-wrapper promote-swiper__list">
             <?php foreach ($promote['list'] as $card) : ?>
-              <li class="swiper-slide promote-swiper__item">
+              <div class="swiper-slide promote-swiper__item">
                 <article class="promote-card">
                   <div>
-                    <img class="promote-card__icon lazyload" src="<?=placeholder() ?>" data-src="<?= esc_url($card['icon']['url']); ?>"
-                      alt="<?= esc_attr($card['icon']['alt']); ?>" aria-hidden="true">
+                    <img class="promote-card__icon lazyload" src="<?= placeholder() ?>"
+                      data-src="<?= esc_url($card['icon']['url']); ?>" alt="<?= esc_attr($card['icon']['alt']); ?>"
+                      aria-hidden="true">
                   </div>
                   <span class="promote-card__title"><?= esc_html($card['title']); ?></span>
                   <p class="promote-card__description"><?= esc_html($card['description']); ?></p>
                 </article>
-              </li>
+              </div>
             <?php endforeach; ?>
-          </ul>
-          <div class="swiper-navigation">
-            <div class="swiper-primary-button-prev"></div>
-            <div class="swiper-primary-button-next"></div>
-            <div class="swiper-counter">
-              <div class="swiper-pagination"></div>
-            </div>
+          </div>
+        </div>
+        <div class="swiper-navigation" data-size="absolute">
+          <div class="swiper-primary-button-prev" data-size="absolute"></div>
+          <div class="swiper-primary-button-next" data-size="absolute"></div>
+          <div class="swiper-counter" data-size="absolute">
+            <div class="swiper-pagination" data-size="absolute"></div>
           </div>
         </div>
       </div>

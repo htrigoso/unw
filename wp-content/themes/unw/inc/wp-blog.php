@@ -1,5 +1,140 @@
 <?php
 
+
+function uw_show_post_categories($post_id = null, $class = 'entry-meta__category') {
+    $post_id = $post_id ?: get_the_ID();
+    $categories = get_the_category($post_id);
+
+    if (!empty($categories) && !is_wp_error($categories)) {
+        foreach ($categories as $category) {
+            printf(
+                '<a href="%s" class="%s">%s</a>',
+                esc_url(get_category_link($category->term_id)),
+                esc_attr($class),
+                esc_html($category->name)
+            );
+        }
+    }
+}
+
+add_filter('request', function($vars) {
+    global $wp;
+
+    // Obtener la ruta actual (sin dominio)
+    $current_path = $wp->request ?? '';
+
+    // Solo aplicar si empieza con "blog/"
+    if (strpos($current_path, 'blog/') === 0 && isset($vars['name']) && !empty($vars['name'])) {
+        $slug = $vars['name'];
+
+        // Verificar si es categoría
+        if (term_exists($slug, 'category')) {
+            unset($vars['name']); // no es post
+            $vars['category_name'] = $slug; // forzar categoría
+        }
+        // Verificar si es tag
+        elseif (term_exists($slug, 'post_tag')) {
+            unset($vars['name']); // no es post
+            $vars['tag'] = $slug; // forzar tag
+        }
+    }
+
+    return $vars;
+});
+
+//////******No tocas */
+
+
+
+function get_tag_tabs($args = []) {
+  // Argumentos por defecto
+  $defaults = [
+    'taxonomy'   => 'post_tag',
+    'hide_empty' => true,
+    'orderby'    => 'name',
+    'order'      => 'ASC',
+  ];
+
+  // Merge de argumentos
+  $args = wp_parse_args($args, $defaults);
+
+  // Obtener tags
+  $tags = get_terms($args);
+
+  // Array para almacenar tabs
+  $tabs = [];
+
+  // Verificar si hay tags y no hay error
+  if (!is_wp_error($tags) && $tags) {
+    foreach ($tags as $tag) {
+      $tabs[] = [
+        'id'     => $tag->term_id,
+        'label'  => $tag->name,
+        'status' => true,
+        'url'    => esc_url(get_tag_link($tag->term_id)),
+        'target' => sanitize_title($tag->slug),
+      ];
+    }
+  }
+
+  return $tabs;
+}
+
+function get_category_tabs($args = []) {
+  // Argumentos por defecto
+  $defaults = [
+    'hide_empty' => true,
+    'orderby'    => 'name',
+    'order'      => 'ASC',
+  ];
+
+  // Merge de argumentos
+  $args = wp_parse_args($args, $defaults);
+
+  // Obtener categorías
+  $categories = get_categories($args);
+
+  // Array para almacenar tabs
+  $tabs = [];
+
+  // Verificar si hay categorías y no hay error
+  if (!is_wp_error($categories) && $categories) {
+    foreach ($categories as $category) {
+      $tabs[] = [
+        'id'     => $category->term_id,
+        'label'  => $category->name,
+        'status' => true,
+        'url'    => esc_url(get_category_link($category->term_id)),
+        'target' => sanitize_title($category->slug),
+       ];
+    }
+  }
+
+  return $tabs;
+}
+
+
+function get_post_category_names($post_id = null) {
+    if (!$post_id) {
+        $post_id = get_the_ID();
+    }
+
+    $categories = get_the_category($post_id);
+    $result = [];
+
+    if ($categories && !is_wp_error($categories)) {
+        foreach ($categories as $category) {
+            $result[] = [
+                'name' => $category->name,
+                'url'  => get_category_link($category->term_id),
+            ];
+        }
+    }
+
+    return $result;
+}
+
+
 function blog_search_template($template) {
     if (isset($_GET['blog_search'])) {
         $new_template = locate_template(array('search-blog.php'));

@@ -1,60 +1,145 @@
 <?php
 $hero = get_field('hero');
-$hero_title = $hero['title'] ?? '';
-$hero_description = $hero['description'] ?? '';
-$link_one = $hero['link_one'] ?? null;
-$link_two = $hero['link_two'] ?? null;
-$hero_image = $hero['list'][0]['images'] ?? null;
-
-$img_desktop = $hero_image['desktop']['url'];
-$img_desktop_alt = $hero_image['desktop']['alt'];
-$img_mobile = $hero_image['mobile']['url'];
-$img_mobile_alt = $hero_image['mobile']['alt'];
+$slides = $hero['list'] ?? [];
+if (!empty($slides)):
+  $first_slide = $slides[0];
+  $first_images = $first_slide['images'] ?? null;
+  $img_desktop_url = $first_images['desktop']['url'] ?? '';
+  $img_desktop_alt = $first_images['desktop']['alt'] ?? '';
+  $img_mobile_url = $first_images['mobile']['url'] ?? '';
+  $img_mobile_alt = $first_images['mobile']['alt'] ?? $img_desktop_alt;
 ?>
 
-<?php if (!empty($hero) && is_array($hero)):?>
 
 
-<section class="hero hero-swiper">
-  <div class="swiper-container is-draggable">
-    <div class="swiper-wrapper swiper-hero__wrapper">
-      <div class="swiper-slide swiper-hero__slide">
-        <picture class="swiper-hero__picture">
-          <source srcset="<?php echo esc_url($img_desktop); ?>" width="1440" height="600" media="(min-width: 768px)" />
-          <img alt="<?= $img_mobile_alt ?>" src="<?php echo esc_url($img_mobile); ?>" class="swiper-hero__picture--img"
-            width="768" height="500" fetchpriority="high" decoding="async" loading="eager" />
-        </picture>
+  <section class="hero hero-swiper">
+    <div class="swiper-container is-draggable">
+      <div class="swiper-wrapper swiper-hero__wrapper">
+        <?php
+        $slide_index = 0;
+        foreach ($slides as $slide):
+          $images = $slide['images'] ?? null;
+          $img_desktop_url = $images['desktop']['url'] ?? '';
+          $img_desktop_alt = $images['desktop']['alt'] ?? '';
+          $img_mobile_url = $images['mobile']['url'] ?? '';
+          $img_mobile_alt = $images['mobile']['alt'] ?? $img_desktop_alt;
+
+          $img_attrs = 'decoding="async"';
+          if ($slide_index === 0) {
+            $img_attrs .= ' fetchpriority="high" loading="eager"';
+          } else {
+            $img_attrs .= ' loading="lazy"';
+          }
+        ?>
+          <div class="swiper-slide swiper-hero__slide">
+            <div class="swiper-lazy-preloader"></div>
+            <?php if (!empty($slide['type'])): ?>
+              <?php
+              $link_simple = $slide['link'] ?? null;
+              $link_simple_url = $link_simple['url'] ?? '';
+              $link_simple_target = $link_simple['target'] ?: '_self';
+
+              $final_href = esc_url($link_simple_url);
+              $data_attr = '';
+              if ($link_simple_url === '#modal-informacion') {
+                $final_href = '#modal-more-info';
+                $data_attr = 'data-modal-target="modal-more-info"';
+              }
+              ?>
+              <a href="<?php echo $final_href; ?>" <?php echo $data_attr; ?>
+                target="<?php echo esc_attr($link_simple_target); ?>"
+                aria-label="<?php echo esc_attr($link_simple['title'] ?? 'Ver más'); ?>">
+                <picture class="swiper-hero__picture">
+                  <source srcset="<?php echo esc_url($img_desktop_url); ?>" width="1920" height="754"
+                    media="(min-width: 768px)" />
+                  <img alt="<?php echo esc_attr($img_mobile_alt); ?>" src="<?php echo esc_url($img_mobile_url); ?>"
+                    class="swiper-hero__picture--img swiper-lazy" width="768" height="500" <?php echo $img_attrs; ?> />
+                </picture>
+              </a>
+            <?php else:
+            ?>
+              <?php
+              $hero_title = $slide['title'] ?? '';
+              $hero_description = $slide['description'] ?? '';
+              $link_one = $slide['link_one'] ?? null;
+              $link_two = $slide['link_two'] ?? null;
+              ?>
+              <picture class="swiper-hero__picture">
+                <source srcset="<?php echo esc_url($img_desktop_url); ?>" width="1920" height="754"
+                  media="(min-width: 768px)" />
+                <img alt="<?php echo esc_attr($img_mobile_alt); ?>" src="<?php echo esc_url($img_mobile_url); ?>"
+                  class="swiper-hero__picture--img" width="768" height="500" <?php echo $img_attrs; ?> />
+              </picture>
+
+              <div class="hero__wrapper">
+                <div class="x-container hero__container">
+                  <article class="hero__content">
+                    <?php if (!empty($hero_title)): ?>
+                      <div class="hero__content--title"><?php echo wp_kses_post($hero_title, [
+                                                          'h1' => [],
+                                                          'h2' => [],
+                                                          'h3' => [],
+                                                          'h4' => [],
+                                                          'h5' => [],
+                                                          'h6' => [],
+                                                        ]); ?></div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($hero_description)): ?>
+                      <div class="hero__content--body"><?php echo wp_kses_post($hero_description); ?></div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($link_one) || !empty($link_two)): ?>
+                      <div class="hero__content--buttons">
+                        <?php if (!empty($link_one['title'])):
+                          $link_one_url = $link_one['url'] ?? '#';
+                          $href_one = esc_url($link_one_url);
+                          $data_attr_one = '';
+                          if ($link_one_url === '#modal-informacion') {
+                            $href_one = '#modal-more-info';
+                            $data_attr_one = 'data-modal-target="modal-more-info"';
+                          }
+                        ?>
+                          <a class="btn btn-primary hero__content--cta" href="<?php echo $href_one; ?>"
+                            <?php echo $data_attr_one; ?> target="<?php echo esc_attr($link_one['target'] ?: '_self'); ?>">
+                            <?php echo esc_html($link_one['title']); ?>
+                          </a>
+                        <?php endif; ?>
+
+                        <?php if (!empty($link_two['title']) && !empty($link_two['url'])):
+                          $link_two_url = $link_two['url'] ?? '#';
+                          $href_two = esc_url($link_two_url);
+                          $data_attr_two = '';
+                          if ($link_two_url === '#modal-informacion') {
+                            $href_two = '#modal-more-info';
+                            $data_attr_two = 'data-modal-target="modal-more-info"';
+                          }
+                        ?>
+                          <a class="btn btn-primary-outline hero__content--cta" href="<?php echo $href_two; ?>"
+                            <?php echo $data_attr_two; ?> target="<?php echo esc_attr($link_two['target'] ?: '_self'); ?>">
+                            <?php echo esc_html($link_two['title']); ?>
+                          </a>
+                        <?php endif; ?>
+                      </div>
+                    <?php endif; ?>
+                  </article>
+                </div>
+              </div>
+            <?php endif; ?>
+          </div>
+        <?php
+          $slide_index++;
+        endforeach; ?>
       </div>
-      <div class="hero__wrapper">
-        <div class="x-container hero__container">
-          <article class="hero__content">
-            <?php if (!empty($hero_title)): ?>
-            <h1 class="hero__content--title"><?php echo esc_html($hero_title); ?></h1>
-            <?php endif; ?>
 
-            <?php if (!empty($hero_description)): ?>
-            <p class="hero__content--body"><?= $hero_description ?></p>
-            <?php endif; ?>
-
-            <div class="hero__content--buttons">
-              <a class="btn btn-primary hero__content--cta"
-                href="<?php echo !empty($link_one['url']) ? esc_url($link_one['url']) : 'javascript:void(0);'; ?>" <?php if (empty($link_one['url'])) {
-                    echo 'data-modal-target="modal-more-info"';
-                  } ?> target="<?php echo esc_attr($link_one['target'] ?? '_self'); ?>">
-                <?php echo esc_html($link_one['title'] ?? 'Solicitar más información'); ?>
-              </a>
-
-              <?php if (!empty($link_two['url'])): ?>
-              <a class="btn btn-primary-outline hero__content--cta" href="<?php echo esc_url($link_two['url']); ?>"
-                target="<?php echo esc_attr($link_two['target'] ?? '_self'); ?>">
-                <?php echo esc_html($link_two['title'] ?? 'Conocer proceso de admisión'); ?>
-              </a>
-              <?php endif; ?>
-            </div>
-          </article>
+      <?php if (count($slides) > 1) : ?>
+        <div class="hero-controls">
+          <div class="home-hero-button-prev"></div>
+          <div class="home-hero-pagination"></div>
+          <div class="home-hero-button-next"></div>
         </div>
-      </div>
+      <?php endif ?>
     </div>
-  </div>
-</section>
+  </section>
+
 <?php endif; ?>

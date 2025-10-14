@@ -21,7 +21,7 @@ function register_post_type_eventos() {
         'has_archive' => true,
         'rewrite' => array('slug' => 'eventos'),
         'menu_icon' => 'dashicons-calendar-alt',
-        'supports' => array('title', 'thumbnail'),
+        'supports' => array('title', 'editor', 'thumbnail'),
         'show_in_rest' => true,
     );
 

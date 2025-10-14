@@ -2,42 +2,47 @@
 import { ModalManager } from '../../components/Modal'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
 
-window.addEventListener('DOMContentLoaded', () => {
-  // Language switch
-  let currentLang = 'ES' // Puedes leer esto de localStorage o PHP
+/* ======================================================
+ *  ESPERA HASTA QUE LA LIBRERÍA Globe ESTÉ DISPONIBLE
+ * ====================================================== */
+function waitForGlobe(callback) {
+  if (typeof Globe !== 'undefined') {
+    callback()
+  } else {
+    setTimeout(() => waitForGlobe(callback), 1000)
+  }
+}
+initPostSwiper()
+waitForGlobe(() => {
+  initGlobeSection()
+})
 
-  const circle = document.getElementById('switchCircle')
-  const switchContainer = document.getElementById('languageSwitch')
-
-  switchContainer?.addEventListener('click', () => {
-    if (currentLang === 'ES') {
-      currentLang = 'EN'
-      circle.style.transform = 'translateX(-55%)'
-      circle.innerText = 'EN'
-      // localStorage.setItem('lang', 'en');
-      // window.location.href = '?lang=en';
-    } else {
-      currentLang = 'ES'
-      circle.style.transform = 'translateX(55%)'
-      circle.innerText = 'ES'
-      // localStorage.setItem('lang', 'es');
-      // window.location.href = '?lang=es';
-    }
-  })
-
+/* ============================
+ *  INICIALIZADOR DEL SWIPER
+ * ============================ */
+function initPostSwiper() {
   PostSwiperDesktop('.highlight-swiper', {
-    pagination: {
-      el: '.highlight-swiper .swiper-pagination',
-      type: 'fraction'
+    breakpoints: {
+      0: { slidesPerView: 1, spaceBetween: 8 },
+      576: { slidesPerView: 1, spaceBetween: 8 },
+      1024: { slidesPerView: 1, spaceBetween: 8 },
+      1200: { slidesPerView: 1, spaceBetween: 8 }
     }
   })
+}
+
+/* ============================
+ *  GLOBO INTERACTIVO
+ * ============================ */
+function initGlobeSection() {
+  const section = document.querySelector('.pba-network')
+  if (!section) return
 
   const modals = new ModalManager()
-  const section = document.querySelector('.pba-network')
-  const marker = section.dataset.marker
-  const map = section.dataset.map
-  const countries = window.pbaCountries
+  const { marker, map } = section.dataset
+  const countries = window.pbaCountries || []
   const container = document.getElementById('globeViz')
+  const tooltip = document.getElementById('tooltip')
 
   const gData = countries.map((p, i) => ({
     id: i + 1,
@@ -47,100 +52,114 @@ window.addEventListener('DOMContentLoaded', () => {
     size: 30
   }))
 
-  const tooltip = document.getElementById('tooltip')
+  const globe = createGlobe(container, map, marker, gData, tooltip, modals)
+  setupControls(globe)
+  setupResize(globe, container)
+}
 
-  const globe = new Globe(document.getElementById('globeViz'))
+/* ============================
+ *  CREAR GLOBO
+ * ============================ */
+function createGlobe(container, map, marker, gData, tooltip, modals) {
+  const globe = new Globe(container)
     .globeImageUrl(map)
     .backgroundColor('rgb(218, 247, 247, 1)')
     .showAtmosphere(false)
     .globeOffset([0, 0])
     .htmlElementsData(gData)
-    .htmlElement(d => {
-      const el = document.createElement('img')
-      el.src = marker
-      el.style.width = `${d.size}px`
-      el.style.transition = 'opacity 250ms'
-      el.style.pointerEvents = 'auto'
-      el.style.cursor = 'pointer'
-
-      // Tooltip al pasar el mouse
-      el.addEventListener('mouseover', e => {
-        tooltip.textContent = d.nombre
-        tooltip.style.opacity = 1
-      })
-
-      el.addEventListener('mousemove', e => {
-        tooltip.style.left = e.clientX + 10 + 'px'
-        tooltip.style.top = e.clientY + 10 + 'px'
-      })
-
-      el.addEventListener('mouseout', e => {
-        tooltip.style.opacity = 0
-      })
-
-      el.addEventListener('click', e => {
-        e.stopPropagation()
-        console.log(d)
-
-        openModal({
-          id: d.id,
-          name: d.nombre,
-          lat: Number(d.lat),
-          lng: Number(d.lng)
-        })
-        globe.pointOfView(
-          { lat: d.lat, lng: d.lng, altitude: 1.5 },
-          1500
-        )
-      })
-
-      return el
-    })
+    .htmlElement(d => createMarker(d, marker, tooltip, globe, modals))
     .htmlElementVisibilityModifier((el, isVisible) => {
       el.style.opacity = isVisible ? 1 : 0
     })
 
+  globe.pointOfView({ lat: 0, lng: -90, altitude: 1.5 })
+  globe.controls().enableZoom = false
+
+  return globe
+}
+
+/* ============================
+ *  CREAR MARCADORES CON TOOLTIP
+ * ============================ */
+function createMarker(d, marker, tooltip, globe, modals) {
+  const el = document.createElement('img')
+  el.src = marker
+  el.style.width = `${d.size}px`
+  el.style.transition = 'opacity 250ms'
+  el.style.pointerEvents = 'auto'
+  el.style.cursor = 'pointer'
+
+  el.addEventListener('mouseover', () => {
+    tooltip.textContent = d.nombre
+    tooltip.style.opacity = 1
+  })
+
+  el.addEventListener('mousemove', e => {
+    tooltip.style.left = e.clientX + 10 + 'px'
+    tooltip.style.top = e.clientY + 10 + 'px'
+  })
+
+  el.addEventListener('mouseout', () => {
+    tooltip.style.opacity = 0
+  })
+
+  el.addEventListener('click', e => {
+    e.stopPropagation()
+    openModal(modals, d)
+    globe.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.5 }, 1500)
+  })
+
+  return el
+}
+
+/* ============================
+ *  ABRIR MODAL
+ * ============================ */
+function openModal(modals, data) {
+  modals.openModal(data.nombre)
+}
+
+/* ============================
+ *  AJUSTE RESPONSIVE DEL GLOBO
+ * ============================ */
+function setupResize(globe, container) {
   function resizeGlobe() {
     const width = Math.min(window.innerWidth, 711)
     const height = Math.max(460, width)
-
     container.style.width = `${width}px`
     container.style.height = `${height}px`
-
     globe.width(width).height(height)
   }
 
   resizeGlobe()
   window.addEventListener('resize', resizeGlobe)
+}
 
-  globe.pointOfView({ lat: 0, lng: -90, altitude: 1.5 })
-  globe.controls().enableZoom = false
-
-  document.querySelectorAll('#globeControls button').forEach(btn => {
+/* ============================
+ *  CONTROLES DE MAPA
+ * ============================ */
+function setupControls(globe) {
+  const buttons = document.querySelectorAll('#globeControls button')
+  buttons.forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('#globeControls button').forEach(b => {
-        b.classList.remove('active')
-      })
-
+      buttons.forEach(b => b.classList.remove('active'))
       btn.classList.add('active')
 
       const img = btn.dataset.map
-
       const lat = parseFloat(btn.dataset.lat)
       const lng = parseFloat(btn.dataset.lng)
-      toggleMap(img, { lat, lng })
+      toggleMap(globe, img, { lat, lng })
     })
   })
+}
 
-  function toggleMap(img, coords) {
-    globe.globeImageUrl(img)
-    globe.pointOfView(
-      { lat: coords.lat, lng: coords.lng, altitude: 1.5 },
-      1500
-    )
-  }
-
-  function openModal(data) {
-    modals.openModal(data.name)
-  }
-})
+/* ============================
+ *  CAMBIO DE MAPA
+ * ============================ */
+function toggleMap(globe, img, coords) {
+  globe.globeImageUrl(img)
+  globe.pointOfView(
+    { lat: coords.lat, lng: coords.lng, altitude: 1.5 },
+    1500
+  )
+}

@@ -5,3 +5,4 @@ wp-content/debug.log
 wp-content/themes/.DS_Store
 wp-content/themes/unw/.DS_Store
 .htaccess
+wp-content/uploads/

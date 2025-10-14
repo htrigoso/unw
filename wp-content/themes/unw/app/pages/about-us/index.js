@@ -6,11 +6,8 @@ import PostSwiper from '../../components/PostSwiper'
       0: { slidesPerView: 1, spaceBetween: 8 },
       576: { slidesPerView: 1, spaceBetween: 8 },
       768: { slidesPerView: 3, spaceBetween: 8 },
-      1024: { slidesPerView: 3, spaceBetween: 8 }
-    },
-    pagination: {
-      el: '.purpose-swiper .swiper-pagination',
-      type: 'fraction'
+      1024: { slidesPerView: 3, spaceBetween: 8 },
+      1200: { slidesPerView: 3, spaceBetween: 8 }
     }
   })
 
@@ -20,18 +17,14 @@ import PostSwiper from '../../components/PostSwiper'
       576: { slidesPerView: 'auto', spaceBetween: 16 },
       768: { slidesPerView: 'auto', spaceBetween: 16 },
       1024: { slidesPerView: 'auto', spaceBetween: 16 }
-    },
-    pagination: {
-      el: '.authorities-swiper .swiper-pagination',
-      type: 'fraction'
     }
   })
 
   PostSwiper('.certifications-swiper', {
     breakpoints: {
-      0: { slidesPerView: 'auto', spaceBetween: 32 },
-      576: { slidesPerView: 'auto', spaceBetween: 32 },
-      1024: { slidesPerView: 'auto', spaceBetween: 32 }
+      0: { slidesPerView: 'auto', spaceBetween: 24 },
+      576: { slidesPerView: 'auto', spaceBetween: 24 },
+      1024: { slidesPerView: 'auto', spaceBetween: 24 }
     }
   })
 })()

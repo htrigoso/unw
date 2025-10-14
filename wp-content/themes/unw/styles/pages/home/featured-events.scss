@@ -1,5 +1,7 @@
 .featured-events {
-  background-color: var(--color-light-turquoise);
+  @include media(">=tablet") {
+    background-color: var(--color-light-turquoise);
+  }
 }
 
 .featured-events__wrapper {
@@ -20,7 +22,7 @@
   .swiper-events__see-more-btn {
     width: 100%;
 
-    @include media(">=phone-576") {
+    @include media(">=phone") {
       width: auto;
     }
 

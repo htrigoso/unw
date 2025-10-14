@@ -11,9 +11,10 @@
 }
 
 .swiper-events__card {
-  .event-card {
-    width: rem(280);
+  @include media("<desktop-s") {
+    width: rem(280) !important;
   }
+  width: auto;
 }
 
 .swiper-events__swiper-navigation {

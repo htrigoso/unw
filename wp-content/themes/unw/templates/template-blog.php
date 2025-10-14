@@ -13,7 +13,6 @@
 <main>
   <?php
   $acf_hero = get_field('hero-slide');
-
   $img_desktop = $acf_hero['images']['desktop']['url'] ?? '';
   $img_mobile = $acf_hero['images']['mobile']['url'] ?? '';
   $alt = $acf_hero['images']['desktop']['alt'] ?? '';

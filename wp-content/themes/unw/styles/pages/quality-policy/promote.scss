@@ -22,6 +22,13 @@
   }
 }
 
+.promote-swiper__item {
+  @include media("<desktop-s") {
+    width: rem(284) !important;
+  }
+  width: auto;
+}
+
 .promote-card {
   padding: rem(24) rem(20);
   display: flex;
@@ -30,7 +37,6 @@
   border-radius: rem(20);
   border: 1px solid var(--color-turquoise-one);
   height: 100%;
-  width: rem(284);
   background-color: var(--color-white);
 }
 

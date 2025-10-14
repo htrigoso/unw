@@ -1,4 +1,4 @@
-import Component from '../../classes/Component'
+
 import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, removeNameAttributeCampus, removeSelectDepartament, resetCustomHidden, setClaseName, setNameAttributeCampus, showCampusSelect, updateHiddenInputs, updateOptionsCareers, validateInputs, validatePhone } from './utils'
 
 // ==========================
@@ -10,9 +10,9 @@ const FORM_ADMISSION_PRESENCIAL =
 const FORM_ADMISSION_VIRTUAL =
   'https://forms.zohopublic.com/adminzoho11/form/WebAdmisinIVirtual/formperma/pQcbclF2i7Gt1QAKd0zl3Ow5bT3dxSrcE3-ybtsYQoE/htmlRecords/submit'
 
-export default class FormCrmAdmission extends Component {
-  constructor({ element, container, onCompleted }) {
-    super({ element, elements: {} })
+export default class FormCrmAdmission {
+  constructor({ element, container }) {
+    this.element = element
     this.formContainer = container
     this.createListeners()
   }
@@ -75,7 +75,7 @@ export default class FormCrmAdmission extends Component {
             updateOptionsCareers({ element: this.element, careers, value })
 
             showCampusSelect({ element: this.element })
-
+            this.removeCustomHiddenDepartament()
             break
 
           case FORMS.WORK:
@@ -107,6 +107,7 @@ export default class FormCrmAdmission extends Component {
               this.updateHiddenFields({ select, hiddenContainer })
             }
             updateOptionsCareers({ element: this.element, careers, value: 'virtual' })
+            this.removeCustomHiddenDepartament()
             break
 
           default:
@@ -179,10 +180,12 @@ export default class FormCrmAdmission extends Component {
       if (!parentOptgroup || parentOptgroup.tagName !== 'OPTGROUP') return
       const facultyName = parentOptgroup.label
       const careerName = selectedOption.textContent.trim()
+
       if (checked) {
         this.updateHiddenFields({ select, hiddenContainer })
         const slugCareers = selectedOption.dataset.key
         const modalidad = selectedOption.dataset.mode
+
         buildOptionsCampus({ campus, slugCareers, modalidad, element: this.element })
       } else {
         // Cuando no exist el check
@@ -216,6 +219,13 @@ export default class FormCrmAdmission extends Component {
     })
   }
 
+  removeCustomHiddenDepartament() {
+    const customDepartament = this.element.querySelector('.custom-hidden-departament')
+    if (customDepartament) {
+      customDepartament.innerHTML = ''
+    }
+  }
+
   handleDepartamentChange() {
     this.element.addEventListener('change', (event) => {
       const target = event.target
@@ -227,7 +237,10 @@ export default class FormCrmAdmission extends Component {
         const selectedOption = target.options[target.selectedIndex]
         const text = selectedOption?.textContent.trim() || ''
 
-        this.element.querySelector('input[name="SingleLine9"]').value = text
+        const customDepartament = this.element.querySelector('.custom-hidden-departament')
+        if (customDepartament) {
+          customDepartament.innerHTML = `<input type="hidden" name="SingleLine9" value="${text}">`
+        }
       }
     })
   }
