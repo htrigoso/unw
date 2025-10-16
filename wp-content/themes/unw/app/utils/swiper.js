@@ -1,3 +1,4 @@
+
 /**
  * Updates all Swiper instances found within the specified target content element.
  *
@@ -25,37 +26,49 @@ export function changeSwiperSlide(index, swiper) {
   }
 }
 
-// Utility to display a counter for Swiper slides
-export default function SwiperCounter(swiper, counterSelector) {
-  if (Array.isArray(swiper)) {
-    swiper.forEach((instance, i) => {
-      let counterEl
-      if (Array.isArray(counterSelector)) {
-        counterEl = typeof counterSelector[i] === 'string'
-          ? document.querySelector(counterSelector[i])
-          : counterSelector[i]
-      } else if (typeof counterSelector === 'string') {
-        counterEl = instance.el.querySelector(counterSelector)
-      } else {
-        counterEl = counterSelector
-      }
-      if (counterEl) setupCounter(instance, counterEl)
-    })
-  } else {
-    const counterEl = typeof counterSelector === 'string'
-      ? document.querySelector(counterSelector)
-      : counterSelector
-    if (counterEl) setupCounter(swiper, counterEl)
+/**
+ * Manages custom pagination for a Swiper instance by adding click event listeners
+ * to pagination bullets and navigating to the corresponding slide.
+ *
+ * @param {Object} swiper - The Swiper instance to manage pagination for.
+ */
+export function managePagination(swiper) {
+  if (!swiper || !swiper.pagination) {
+    console.warn('Swiper or pagination not found')
+    return
   }
 
-  function setupCounter(swiperInstance, counterEl) {
-    function update() {
-      const current = String(swiperInstance.realIndex + 1).padStart(2, '0')
-      const total = String(swiperInstance.slides.filter(s => !s.classList.contains('swiper-slide-duplicate')).length).padStart(2, '0')
-      counterEl.textContent = `${current}/${total}`
+  setTimeout(() => {
+    const paginationEl = swiper.pagination.el
+
+    if (!paginationEl) {
+      console.warn('Pagination element not found')
+      return
     }
-    swiperInstance.on('init', update)
-    swiperInstance.on('slideChange', update)
-    if (swiperInstance.initialized) update()
-  }
+
+    const container = typeof paginationEl === 'string'
+      ? document.querySelector(paginationEl)
+      : (paginationEl instanceof HTMLElement ? paginationEl : paginationEl[0])
+
+    if (!container) {
+      return
+    }
+
+    container.addEventListener('click', (e) => {
+      const bullet = e.target.closest('.swiper-pagination-bullet')
+
+      if (bullet) {
+        const allBullets = container.querySelectorAll('.swiper-pagination-bullet')
+        const index = Array.from(allBullets).indexOf(bullet)
+
+        if (index !== -1) {
+          if (swiper.params.loop) {
+            swiper.slideToLoop(index)
+          } else {
+            changeSwiperSlide(index, swiper)
+          }
+        }
+      }
+    })
+  }, 100)
 }
