@@ -2,6 +2,7 @@
 <?php get_template_part('content-parts/content', 'sidebar'); ?>
 <?php get_template_part('content-parts/content', 'toaster'); ?>
 <?php get_template_part('content-parts/content', 'footer'); ?>
+<?php get_template_part('content-parts/content', 'whatsapp'); ?>
 
 <?php wp_footer(); ?>
 </body>
