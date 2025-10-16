@@ -1,8 +1,7 @@
 const QUERY_PARAMS_TO_REMOVE = ['tab']
 
-export async function getUTMWhatsAppLink({
+export async function saveUTMWhatsApp({
   url,
-  postId,
   urlApi,
   nonce
 }) {
@@ -16,7 +15,6 @@ export async function getUTMWhatsAppLink({
   formData.append('action', 'create_utm_whatsapp')
   formData.append('title', `${url.origin}${url.pathname}`)
   formData.append('url', url.toString())
-  formData.append('post_id', postId)
   formData.append('nonce', nonce)
 
   try {
@@ -25,12 +23,15 @@ export async function getUTMWhatsAppLink({
       body: formData
     })
 
-    const { success, data } = await response.json()
+    const data = await response.json()
 
-    return success ? data.whatsapp_link : null
+    return data
   } catch (error) {
     console.error('Error:', error)
 
-    return null
+    return {
+      success: false,
+      message: 'Error al crear el UTM WhatsApp'
+    }
   }
 }

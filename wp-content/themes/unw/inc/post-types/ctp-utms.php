@@ -104,10 +104,9 @@ function unw_find_utm_by_url($url, $code_format)
  * @param string $title The title to associate with the UTM
  * @param string $url The URL to associate with the UTM
  * @param string $code_format
- * @param int $current_post_id The post ID to use as context for the template
- * @return array|WP_Error ['utm_id', 'utm_code', 'whatsapp_link'] or WP_Error
+ * @return array|WP_Error ['utm_id', 'utm_code'] or WP_Error
  */
-function unw_create_utm($title, $url, $code_format, $current_post_id)
+function unw_create_utm($title, $url, $code_format)
 {
   // Generate unique UTM code
   $utm_code = unw_generate_utm_code($code_format);
@@ -148,24 +147,23 @@ function unw_create_utm($title, $url, $code_format, $current_post_id)
   update_field('code_format', $code_format, $post_id);
   update_field('utm_code', $utm_code, $post_id);
 
-  // Generate WhatsApp link
-  $whatsapp_link = unw_generate_whatsapp_link($utm_code, $current_post_id);
+  // // Generate WhatsApp link
+  // $whatsapp_link = unw_generate_whatsapp_link($utm_code, $current_post_id);
 
-  if (!$whatsapp_link) {
-    // Rollback: delete the post if WhatsApp link generation fails
-    wp_delete_post($post_id, true);
+  // if (!$whatsapp_link) {
+  //   // Rollback: delete the post if WhatsApp link generation fails
+  //   wp_delete_post($post_id, true);
 
-    return new WP_Error(
-      'whatsapp_config_missing',
-      'No se pudo generar el link de WhatsApp. Verifica que el campo "code_message_generic" exista en ACF Options > utms_whatsapp.',
-      ['status' => 500]
-    );
-  }
+  //   return new WP_Error(
+  //     'whatsapp_config_missing',
+  //     'No se pudo generar el link de WhatsApp. Verifica que el campo "code_message_generic" exista en ACF Options > utms_whatsapp.',
+  //     ['status' => 500]
+  //   );
+  // }
 
   return [
     'utm_id' => $post_id,
     'utm_code' => $utm_code,
-    'whatsapp_link' => $whatsapp_link,
   ];
 }
 
@@ -260,7 +258,7 @@ function unw_generate_whatsapp_link($utm_code, $current_post_id)
  *
  * @param string $url The URL to search for
  * @param int $current_post_id The post ID to use as context for the template
- * @return string|false WhatsApp link if found, false otherwise
+ * @return Array ['exists' => bool, 'utm_code' => string, 'whatsapp_link' => string]
  */
 function get_utm_by_url($url, $current_post_id)
 {
@@ -275,19 +273,37 @@ function get_utm_by_url($url, $current_post_id)
   // Find existing UTM
   $utm_post = unw_find_utm_by_url($url, $code_format);
 
+  // If UTM doesn't exist, generate a new one
   if (!$utm_post) {
-    return false;
+    $utm_code = unw_generate_utm_code($code_format);
+
+    return [
+      'exists' => false,
+      'utm_code' => $utm_code,
+      'whatsapp_link' => unw_generate_whatsapp_link($utm_code, $current_post_id),
+    ];
   }
 
   // Get UTM code
   $utm_code = get_field('utm_code', $utm_post->ID);
 
+  // If UTM code is empty, generate a new one
   if (!$utm_code) {
-    return false;
+    $utm_code = unw_generate_utm_code($code_format);
+
+    return [
+      'exists' => false,
+      'utm_code' => $utm_code,
+      'whatsapp_link' => unw_generate_whatsapp_link($utm_code, $current_post_id),
+    ];
   }
 
   // Generate and return WhatsApp link
-  return unw_generate_whatsapp_link($utm_code, $current_post_id);
+  return [
+    'exists' => true,
+    'utm_code' => $utm_code,
+    'whatsapp_link' => unw_generate_whatsapp_link($utm_code, $current_post_id),
+  ];
 }
 
 /**
@@ -304,7 +320,6 @@ function unw_ajax_create_utm_whatsapp()
 
   $title = isset($_POST['title']) ? esc_attr($_POST['title']) : '';
   $url = isset($_POST['url']) ? esc_url_raw($_POST['url']) : '';
-  $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : null;
 
   // Validate Title
   if (!$title || !filter_var($title, FILTER_VALIDATE_URL)) {
@@ -319,14 +334,6 @@ function unw_ajax_create_utm_whatsapp()
       'message' => 'URL inválida o no proporcionada.',
     ], 400);
   }
-
-  // Validate Post ID
-  if (!$post_id || $post_id === 0) {
-    wp_send_json_error([
-      'message' => 'Post ID inválido o no proporcionado.',
-    ], 400);
-  }
-
   // Determine code format based on URL parameters
   $code_format = unw_determine_code_format($url);
 
@@ -343,15 +350,13 @@ function unw_ajax_create_utm_whatsapp()
       ], 500);
     }
 
-    $whatsapp_link = unw_generate_whatsapp_link($utm_code, $post_id);
-
     wp_send_json_success([
       'action' => 'found',
       'utm_code' => $utm_code,
-      'whatsapp_link' => $whatsapp_link,
+      'message' => 'UTM encontrado',
     ]);
   } else {
-    $result = unw_create_utm($title, $url, $code_format, $post_id);
+    $result = unw_create_utm($title, $url, $code_format);
 
     if (is_wp_error($result)) {
       wp_send_json_error([
@@ -362,7 +367,7 @@ function unw_ajax_create_utm_whatsapp()
     wp_send_json_success([
       'action' => 'created',
       'utm_code' => $result['utm_code'],
-      'whatsapp_link' => $result['whatsapp_link'],
+      'message' => 'UTM creado',
     ]);
   }
 }

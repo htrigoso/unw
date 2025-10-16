@@ -1,45 +1,38 @@
 <?php
 $wa_general = get_field('wa_general', 'options');
 $wg  = $wa_general ?? [];
-$url = $wg['link']['url']  ?? '';
-$img = $wg['image']['url'] ?? '';
-$title = $wg['link']['title'] ?? '';
+
+$wg_img = $wg['image'] ?? [];
+$wg_link = $wg['link'] ?? [];
 
 if (!is_whatsapp_blocked($wa_general)) {
-  if ($url && $img) {
-    $current_post_id = get_queried_object_id();
-    $full_url = unw_get_current_url(['tab']);
-    $wa_link = get_utm_by_url($full_url, $current_post_id);
-
-    if ($wa_link) {
+  if ($wg_img && $wg_link) {
+    $current_url = unw_get_current_url(['tab']);
+    $utm = get_utm_by_url($current_url, get_queried_object_id());
 ?>
-      <a
-        class="whatsapp-link"
-        href="<?= esc_url($wa_link) ?>"
-        arial-label="<?= esc_attr($title) ?>"
-        rel="noopener"
-        <?= !empty($wg['link']['target']) ? 'target="' . esc_attr($wg['link']['target']) . '"' : '' ?>
-        <?= !empty($wg['link']['title']) ? 'aria-label="' . esc_attr($wg['link']['title']) . '"' : '' ?>>
-        <span class="sr-only"><?= esc_html($title) ?></span>
-        <img src="<?= esc_url($img) ?>" width="auto" height="auto" aria-hidden="true"
-          alt="<?= !empty($wg['image']['alt']) ? esc_attr($wg['image']['alt']) : '' ?>" class="whatsapp-link__icon" />
-      </a>
-    <?php
-    } else {
-    ?>
-      <button
-        type="button"
-        id="contact-whatsapp"
-        class="whatsapp-link"
-        data-id="<?php echo $current_post_id; ?>"
-        data-url="<?php echo admin_url('admin-ajax.php'); ?>"
-        data-nonce="<?php echo wp_create_nonce('utm_whatsapp_nonce'); ?>">
-        <span class="sr-only"><?= esc_html($title) ?></span>
-        <img src="<?= esc_url($img) ?>" width="auto" height="auto" aria-hidden="true"
-          alt="<?= !empty($wg['image']['alt']) ? esc_attr($wg['image']['alt']) : '' ?>" class="whatsapp-link__icon" />
-      </button>
+    <a
+      class="whatsapp-link"
+      id="contact-whatsapp"
+      href="<?= esc_url($utm['whatsapp_link']) ?>"
+      rel="noopener"
+      <?= !empty($wg_link['target']) ? 'target="' . esc_attr($wg_link['target']) . '"' : '' ?>
+      <?= !empty($wg_link['title']) ? 'aria-title="' . esc_attr($wg_link['title']) . '"' : '' ?>
+      data-exists="<?php echo $utm['exists'] ? 'true' : 'false'; ?>"
+      <?php if (!$utm['exists']) { ?>
+      data-url="<?php echo admin_url('admin-ajax.php'); ?>"
+      data-nonce="<?php echo wp_create_nonce('utm_whatsapp_nonce'); ?>"
+      <?php } ?>
+    >
+      <span class="sr-only"><?= esc_html($wg_link['title']) ?></span>
+      <img
+        class="whatsapp-link__icon"
+        src="<?= esc_url($wg_img['url']) ?>"
+        <?= !empty($wg_img['alt']) ? 'alt="' . esc_attr($wg_img['alt']) . '"' : '' ?>
+        width="auto"
+        height="auto"
+        aria-hidden="true" />
+    </a>
 <?php
-    }
   }
 }
 ?>

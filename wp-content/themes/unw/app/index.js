@@ -1,5 +1,5 @@
 import Menu from './components/Menu'
-import { getUTMWhatsAppLink } from './functions/utm-whatsapp'
+import { saveUTMWhatsApp } from './functions/utm-whatsapp'
 import { $element } from './utils/dom'
 import initLazyLoad from './utils/lazyload'
 
@@ -207,29 +207,27 @@ class App {
       $button.classList.toggle('is-loading', value)
     }
 
-    $button.addEventListener('click', (e) => {
-      e.preventDefault()
+    $button.addEventListener('click', () => {
+      const utmCodeExists = $button.dataset.exists === 'true'
 
-      if (isLoading) return
+      if (isLoading || utmCodeExists) return
 
       const url = new URL(window.location.href)
-      const postId = $button.dataset.id
       const urlApi = $button.dataset.url
       const nonce = $button.dataset.nonce
 
       setIsLoading(true)
 
-      getUTMWhatsAppLink({
+      saveUTMWhatsApp({
         url,
-        postId,
         urlApi,
         nonce
-      }).then(link => {
-        if (link) {
-          window.open(link, '_blank')
-        }
-
+      }).then((resp) => {
         setIsLoading(false)
+
+        if (resp.success) {
+          $button.dataset.exists = 'true'
+        }
       })
     })
   }
