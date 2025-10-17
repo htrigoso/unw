@@ -6,7 +6,7 @@ const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
     slidesPerView: 1,
     centeredSlides: false,
     spaceBetween: 0,
-    speed: 100,
+    speed: 0,
     lazy: {
       loadPrevNext: true,
       loadOnTransitionStart: true
