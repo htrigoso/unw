@@ -232,13 +232,9 @@ function unw_generate_whatsapp_link($utm_code, $current_post_id)
   $template = $utms_whatsapp['code_message_generic'];
 
   // Search if the post ID is in the list of custom UTMs
-  if (!empty($utms_whatsapp['utms']) && ($current_post_id)) {
+  if (!empty($utms_whatsapp['utms']) && $current_post_id) {
     foreach ($utms_whatsapp['utms'] as $utm_item) {
-      if (
-        $utm_item['page'] instanceof WP_Post
-        && $utm_item['page']->ID === $current_post_id
-        && !empty($utm_item['message'])
-      ) {
+      if ($utm_item['page'] === $current_post_id && !empty($utm_item['message'])) {
         $template = $utm_item['message'];
         break;
       }
