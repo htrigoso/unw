@@ -326,6 +326,12 @@
 }
 
 .whatsapp-link {
+  cursor: pointer;
+
+  &.is-loading {
+    cursor: wait;
+  }
+
   @include media(">=tablet") {
     bottom: rem(16);
   }

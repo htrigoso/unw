@@ -11,7 +11,6 @@ function arr_get($arr, $path)
 }
 
 $footer_acf = get_field('footer', 'options');
-$wa_general = get_field('wa_general', 'options');
 $central = get_field('central_numbers', 'options');
 
 
@@ -168,24 +167,3 @@ if (apply_filters('show_book_link', false)) :
     data-src="<?php echo UPLOAD_MIGRATION_PATH . '/solicitar.png'; ?>" alt="Formulario General">
 </a>
 <?php endif; ?>
-
-<?php
-$wg  = $wa_general ?? [];
-$url = $wg['link']['url']  ?? '';
-$img = $wg['image']['url'] ?? '';
-$title = $wg['link']['title'] ?? '';
-?>
-
-<?php
-if(!is_whatsapp_blocked($wa_general)){
-if ($url && $img): ?>
-<a href="<?= esc_url($url) ?>" arial-label="<?= esc_attr($title) ?>"
-  <?= !empty($wg['link']['target']) ? 'target="' . esc_attr($wg['link']['target']) . '"' : '' ?> class="whatsapp-link"
-  rel="noopener" <?= !empty($wg['link']['title']) ? 'aria-label="' . esc_attr($wg['link']['title']) . '"' : '' ?>>
-  <span class="sr-only"><?= esc_html($title) ?></span>
-  <img src="<?= esc_url($img) ?>" width="auto" height="auto" aria-hidden="true"
-    alt="<?= !empty($wg['image']['alt']) ? esc_attr($wg['image']['alt']) : '' ?>" class="whatsapp-link__icon" />
-</a>
-<?php endif;
-}
-?>

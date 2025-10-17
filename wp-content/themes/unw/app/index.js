@@ -1,4 +1,5 @@
 import Menu from './components/Menu'
+import { saveUTMWhatsApp } from './functions/utm-whatsapp'
 import { $element } from './utils/dom'
 import initLazyLoad from './utils/lazyload'
 
@@ -13,6 +14,7 @@ class App {
 
     this.handleOnSubmitForm()
     this.blockedClickButtonModal()
+    this.whatsappButton()
   }
 
   createNavbar() {
@@ -188,6 +190,44 @@ class App {
     document.querySelectorAll('[data-modal-target]').forEach(btn => {
       btn.addEventListener('click', e => {
         e.preventDefault() // evita scroll
+      })
+    })
+  }
+
+  whatsappButton() {
+    const $button = $element('#contact-whatsapp')
+
+    if (!$button) return
+
+    let isLoading = false
+
+    const setIsLoading = (value) => {
+      isLoading = value
+
+      $button.classList.toggle('is-loading', value)
+    }
+
+    $button.addEventListener('click', () => {
+      const utmCodeExists = $button.dataset.exists === 'true'
+
+      if (isLoading || utmCodeExists) return
+
+      const url = new URL(window.location.href)
+      const urlApi = $button.dataset.url
+      const nonce = $button.dataset.nonce
+
+      setIsLoading(true)
+
+      saveUTMWhatsApp({
+        url,
+        urlApi,
+        nonce
+      }).then((resp) => {
+        setIsLoading(false)
+
+        if (resp.success) {
+          $button.dataset.exists = 'true'
+        }
       })
     })
   }

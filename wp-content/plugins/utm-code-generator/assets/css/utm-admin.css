@@ -1,0 +1,58 @@
+/**
+ * UTM Code Generator - Admin Styles
+ */
+
+/* Read-only code field */
+.utm-code-readonly {
+    background-color: #f0f0f1 !important;
+    cursor: not-allowed !important;
+    color: #50575e;
+}
+
+/* Locked code field (already has value) */
+.utm-code-locked {
+    background-color: #e8e8e8 !important;
+    font-weight: 600;
+}
+
+/* Generating state */
+.utm-code-generating {
+    background-color: #fff9e6 !important;
+    color: #996800;
+    font-style: italic;
+}
+
+/* Successfully generated */
+.utm-code-generated {
+    background-color: #e7f7ed !important;
+    color: #1e4620;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+/* ACF field wrapper adjustments */
+[data-name="utm_code"] .acf-input {
+    position: relative;
+}
+
+[data-name="utm_code"] .acf-input::after {
+    content: '🔒';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Remove lock icon when generating */
+[data-name="utm_code"] .utm-code-generating + .acf-input::after {
+    content: '⏳';
+}
+
+/* Format select field highlight */
+[data-name="code_format"] select:focus {
+    border-color: #2271b1;
+    box-shadow: 0 0 0 1px #2271b1;
+}
