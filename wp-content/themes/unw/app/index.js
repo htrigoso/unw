@@ -1,5 +1,5 @@
 import Menu from './components/Menu'
-import { getUTMWhatsApp } from './functions/utm-whatsapp'
+import { getUTMWhatsApp, EXCLUDE_URL_PARAMS } from './functions/utm-whatsapp'
 import { $element } from './utils/dom'
 import initLazyLoad from './utils/lazyload'
 
@@ -15,6 +15,8 @@ class App {
     this.handleOnSubmitForm()
     this.blockedClickButtonModal()
     this.whatsappButton()
+
+    this.propagateUrlParamsToInternalLinks()
   }
 
   createNavbar() {
@@ -242,6 +244,35 @@ class App {
           window.open(utmWhatsAppLink, '_blank')
         }
       })
+    })
+  }
+
+  propagateUrlParamsToInternalLinks() {
+    document.addEventListener('DOMContentLoaded', function () {
+      const urlParams = new URLSearchParams(window.location.search)
+
+      EXCLUDE_URL_PARAMS.forEach(param => {
+        urlParams.delete(param)
+      })
+
+      // If there are URL parameters, add them to all internal links
+      if (urlParams.toString()) {
+        const links = document.querySelectorAll(`a[href^="/"], a[href^="${window.location.origin}"]`)
+
+        links.forEach(link => {
+          const href = link.getAttribute('href')
+          const url = new URL(href, window.location.origin)
+
+          // Add existing parameters
+          urlParams.forEach((value, key) => {
+            if (!url.searchParams.has(key)) {
+              url.searchParams.set(key, value)
+            }
+          })
+
+          link.setAttribute('href', url.toString())
+        })
+      }
     })
   }
 }
