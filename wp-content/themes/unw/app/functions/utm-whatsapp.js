@@ -1,4 +1,4 @@
-const QUERY_PARAMS_TO_REMOVE = ['tab']
+export const EXCLUDE_URL_PARAMS = ['tab']
 
 export async function getUTMWhatsApp({
   pageId,
@@ -7,7 +7,7 @@ export async function getUTMWhatsApp({
   nonce
 }) {
   // Remove query params
-  QUERY_PARAMS_TO_REMOVE.forEach(param => {
+  EXCLUDE_URL_PARAMS.forEach(param => {
     url.searchParams.delete(param)
   })
 
