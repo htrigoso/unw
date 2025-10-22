@@ -104,9 +104,10 @@ function unw_find_utm_by_url($url, $code_format)
  * @param string $title The title to associate with the UTM
  * @param string $url The URL to associate with the UTM
  * @param string $code_format
+ * @param int $current_page_id The page ID to use as context for the template
  * @return array|WP_Error ['utm_id', 'utm_code'] or WP_Error
  */
-function unw_create_utm($title, $url, $code_format)
+function unw_create_utm($title, $url, $code_format, $current_page_id)
 {
   // Generate unique UTM code
   $utm_code = unw_generate_utm_code($code_format);
@@ -118,11 +119,6 @@ function unw_create_utm($title, $url, $code_format)
       ['status' => 500]
     );
   }
-
-  // Parse URL to get domain for title
-  // $parsed_url = wp_parse_url($url);
-  // $domain = isset($parsed_url['host']) ? $parsed_url['host'] : 'Unknown';
-  // $path = isset($parsed_url['path']) ? $parsed_url['path'] : '';
 
   // Create post
   $post_data = [
@@ -147,23 +143,24 @@ function unw_create_utm($title, $url, $code_format)
   update_field('code_format', $code_format, $post_id);
   update_field('utm_code', $utm_code, $post_id);
 
-  // // Generate WhatsApp link
-  // $whatsapp_link = unw_generate_whatsapp_link($utm_code, $current_post_id);
+  // Generate WhatsApp link
+  $whatsapp_link = unw_generate_whatsapp_link($utm_code, $current_page_id);
 
-  // if (!$whatsapp_link) {
-  //   // Rollback: delete the post if WhatsApp link generation fails
-  //   wp_delete_post($post_id, true);
+  if (!$whatsapp_link) {
+    // Rollback: delete the post if WhatsApp link generation fails
+    wp_delete_post($post_id, true);
 
-  //   return new WP_Error(
-  //     'whatsapp_config_missing',
-  //     'No se pudo generar el link de WhatsApp. Verifica que el campo "code_message_generic" exista en ACF Options > utms_whatsapp.',
-  //     ['status' => 500]
-  //   );
-  // }
+    return new WP_Error(
+      'whatsapp_config_missing',
+      'No se pudo generar el link de WhatsApp. Verifica que el campo "code_message_generic" exista en ACF Options > utms_whatsapp.',
+      ['status' => 500]
+    );
+  }
 
   return [
     'utm_id' => $post_id,
     'utm_code' => $utm_code,
+    'utm_whatsapp_link' => $whatsapp_link,
   ];
 }
 
@@ -215,10 +212,10 @@ function unw_generate_utm_code($format)
  * Retrieves the template from ACF Options and replaces {utm_code} placeholder
  *
  * @param string $utm_code The UTM code to insert
- * @param int $current_post_id The post ID to use as context for the template
+ * @param int $current_page_id The page ID to use as context for the template
  * @return string|false WhatsApp link or false if template not found
  */
-function unw_generate_whatsapp_link($utm_code, $current_post_id)
+function unw_generate_whatsapp_link($utm_code, $current_page_id)
 {
   // Get ACF options group
   $utms_whatsapp = get_field('utms_whatsapp', 'options');
@@ -232,9 +229,9 @@ function unw_generate_whatsapp_link($utm_code, $current_post_id)
   $template = $utms_whatsapp['code_message_generic'];
 
   // Search if the post ID is in the list of custom UTMs
-  if (!empty($utms_whatsapp['utms']) && $current_post_id) {
+  if (!empty($utms_whatsapp['utms']) && $current_page_id) {
     foreach ($utms_whatsapp['utms'] as $utm_item) {
-      if ($utm_item['page'] === $current_post_id && !empty($utm_item['message'])) {
+      if ($utm_item['page'] === $current_page_id && !empty($utm_item['message'])) {
         $template = $utm_item['message'];
         break;
       }
@@ -253,10 +250,10 @@ function unw_generate_whatsapp_link($utm_code, $current_post_id)
  * Returns WhatsApp link if UTM exists, false otherwise
  *
  * @param string $url The URL to search for
- * @param int $current_post_id The post ID to use as context for the template
+ * @param int $current_page_id The page ID to use as context for the template
  * @return Array ['exists' => bool, 'utm_code' => string, 'whatsapp_link' => string]
  */
-function get_utm_by_url($url, $current_post_id)
+function get_utm_by_url($url, $current_page_id)
 {
   // Validate URL
   if (!filter_var($url, FILTER_VALIDATE_URL)) {
@@ -276,7 +273,7 @@ function get_utm_by_url($url, $current_post_id)
     return [
       'exists' => false,
       'utm_code' => $utm_code,
-      'whatsapp_link' => unw_generate_whatsapp_link($utm_code, $current_post_id),
+      'whatsapp_link' => unw_generate_whatsapp_link($utm_code, $current_page_id),
     ];
   }
 
@@ -290,7 +287,7 @@ function get_utm_by_url($url, $current_post_id)
     return [
       'exists' => false,
       'utm_code' => $utm_code,
-      'whatsapp_link' => unw_generate_whatsapp_link($utm_code, $current_post_id),
+      'whatsapp_link' => unw_generate_whatsapp_link($utm_code, $current_page_id),
     ];
   }
 
@@ -298,7 +295,7 @@ function get_utm_by_url($url, $current_post_id)
   return [
     'exists' => true,
     'utm_code' => $utm_code,
-    'whatsapp_link' => unw_generate_whatsapp_link($utm_code, $current_post_id),
+    'whatsapp_link' => unw_generate_whatsapp_link($utm_code, $current_page_id),
   ];
 }
 
@@ -315,12 +312,20 @@ function unw_ajax_create_utm_whatsapp()
   check_ajax_referer('utm_whatsapp_nonce', 'nonce');
 
   $title = isset($_POST['title']) ? esc_attr($_POST['title']) : '';
+  $page_id = isset($_POST['page_id']) ? intval($_POST['page_id']) : 0;
   $url = isset($_POST['url']) ? esc_url_raw($_POST['url']) : '';
 
   // Validate Title
   if (!$title || !filter_var($title, FILTER_VALIDATE_URL)) {
     wp_send_json_error([
       'message' => 'Título inválido o no proporcionado.',
+    ], 400);
+  }
+
+  // Validate Page ID
+  if (!$page_id || $page_id < 1) {
+    wp_send_json_error([
+      'message' => 'ID de página inválido o no proporcionado.',
     ], 400);
   }
 
@@ -346,13 +351,15 @@ function unw_ajax_create_utm_whatsapp()
       ], 500);
     }
 
+    $whatsapp_link = unw_generate_whatsapp_link($utm_code, $page_id);
+
     wp_send_json_success([
       'action' => 'found',
       'utm_code' => $utm_code,
-      'message' => 'UTM encontrado',
+      'utm_whatsapp_link' => $whatsapp_link,
     ]);
   } else {
-    $result = unw_create_utm($title, $url, $code_format);
+    $result = unw_create_utm($title, $url, $code_format, $page_id);
 
     if (is_wp_error($result)) {
       wp_send_json_error([
@@ -363,7 +370,7 @@ function unw_ajax_create_utm_whatsapp()
     wp_send_json_success([
       'action' => 'created',
       'utm_code' => $result['utm_code'],
-      'message' => 'UTM creado',
+      'utm_whatsapp_link' => $result['utm_whatsapp_link'],
     ]);
   }
 }

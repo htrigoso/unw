@@ -1,6 +1,7 @@
 const QUERY_PARAMS_TO_REMOVE = ['tab']
 
-export async function saveUTMWhatsApp({
+export async function getUTMWhatsApp({
+  pageId,
   url,
   urlApi,
   nonce
@@ -14,6 +15,7 @@ export async function saveUTMWhatsApp({
 
   formData.append('action', 'create_utm_whatsapp')
   formData.append('title', `${url.origin}${url.pathname}`)
+  formData.append('page_id', pageId)
   formData.append('url', url.toString())
   formData.append('nonce', nonce)
 
