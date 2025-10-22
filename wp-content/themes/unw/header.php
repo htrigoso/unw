@@ -101,6 +101,7 @@
   window.appConfigUnw = {
     themeUrl: "<?php echo esc_url(get_template_directory_uri()); ?>",
     uploadUrl: "<?php echo esc_url(get_template_directory_uri()); ?>/upload",
+    preserveUrlParams: <?php echo get_field('preserve_url_params', 'options') === true ? 'true' : 'false'; ?>,
   };
 
   let doc = document.documentElement;
