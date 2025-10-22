@@ -16,7 +16,9 @@ class App {
     this.blockedClickButtonModal()
     this.whatsappButton()
 
-    this.propagateUrlParamsToInternalLinks()
+    if (window.appConfigUnw.preserveUrlParams === true) {
+      this.propagateUrlParamsToInternalLinks()
+    }
   }
 
   createNavbar() {
