@@ -7,15 +7,15 @@ $form_crm_option   = get_field('form_crm', 'option');
 $list_departaments = $form_crm_option['list_departaments'];
 $is_departments = $crm_ad['is_departments'];
 $careers = get_carreras();
-$validation_dni = $crm_ad['validation_dni'];
 $departments_json =  [] ;
 if($is_departments) {
   $departments_json =  $list_departaments;
 }
 $list_campus = get_carreras_campus_modalidad();
-$hide_dni = $validation_dni['hide'];
 $data_form_type = $args['data_form_type'] ?? '';
 $deactivate = $crm_ad['deactivate'];
+$validation_dni = $crm_ad['validation_dni'];
+$hide_dni = $validation_dni['hide'];
 ?>
 <form id="<?=$data_form_type;?>" data-form="zoho" data-form-type="<?=$data_form_type;?>"
   class="contact-form formAdmision" data-careers="<?= esc_attr(wp_json_encode( $careers))?>"
