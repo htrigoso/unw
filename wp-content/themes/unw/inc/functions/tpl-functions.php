@@ -1,4 +1,5 @@
 <?php
+// add_filter( 'automatic_updates_is_vcs_checkout', '__return_false', 1 );
 
 if (!is_admin()) {
   add_action('wp_enqueue_scripts', 'wp_jquery_enqueue');

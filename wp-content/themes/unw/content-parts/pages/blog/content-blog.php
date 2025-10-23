@@ -52,20 +52,20 @@ $cta      = get_field('cta');
 
       <!-- Tabs dinámicos -->
 
-      <div class="blog__tabs">
+      <!-- <div class="blog__tabs">
         <?php
           // Determinar qué tabs mostrar
-          $tabs = is_tag() ? get_tag_tabs() : get_category_tabs();
+          // $tabs = is_tag() ? get_tag_tabs() : get_category_tabs();
 
-          get_template_part(COMMON_CONTENT_PATH, 'nav-tabs', [
-            'nav_tabs'         => $tabs,
-            'is_url'           => true,
-            'active_id'        => $term_id,
-            'show_icon_remove' => true,
-            'show_controls'=>true
-          ]);
+          // get_template_part(COMMON_CONTENT_PATH, 'nav-tabs', [
+          //   'nav_tabs'         => $tabs,
+          //   'is_url'           => true,
+          //   'active_id'        => $term_id,
+          //   'show_icon_remove' => true,
+          //   'show_controls'=>true
+          // ]);
           ?>
-      </div>
+      </div> -->
 
 
       <!-- Contenido -->
@@ -78,7 +78,7 @@ $cta      = get_field('cta');
               get_template_part(COMMON_CONTENT_PATH, 'entry-card', [
                 'image'   => get_the_post_thumbnail_url(get_the_ID(), 'medium_large') ?: UPLOAD_PATH . '/default-image.jpg',
                 'title'   => get_the_title(),
-                'date'    => get_the_date('j') . ' de ' . ucfirst(get_the_date('F')) . ' del ' . get_the_date('Y'),
+                'date'    => get_the_date('j') . ' de ' . get_the_date('F') . ' del ' . get_the_date('Y'),
                 'content' => get_the_excerpt(),
                 'href'    => get_permalink(),
                 'tags'    => get_post_category_names(get_the_ID()),

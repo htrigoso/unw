@@ -45,9 +45,6 @@
 }
 
 .blog-detail__text {
-  strong {
-    color: var(--color-primary);
-  }
   p:not(:last-child) {
     margin-bottom: rem(20);
   }

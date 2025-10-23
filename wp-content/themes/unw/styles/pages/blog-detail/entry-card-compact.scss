@@ -5,14 +5,15 @@
 .entry-card-compact__wrapper {
   display: flex;
   height: 100%;
-  gap: rem(24);
+  gap: rem(12);
 }
 
 .entry-card-compact__image {
-  width: rem(92);
-  height: rem(92);
+  width: rem(120);
+  height: rem(120);
   border-radius: rem(16);
   object-fit: cover;
+  object-position: center;
 }
 
 .entry-card-compact__content {
@@ -34,4 +35,5 @@
 
 .entry-card-compact__desc {
   color: var(--color-black);
+  font-size: rem(14);
 }

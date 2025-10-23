@@ -36,9 +36,9 @@ function render_html_all_careers($args = []) {
         'title_global'       => 'Carreras',
     ];
 
+
     // Mezclamos defaults con los valores recibidos
     $args = wp_parse_args($args, $defaults);
-
 
     extract($args);
     // Ahora tienes disponibles:
@@ -56,7 +56,7 @@ function render_html_all_careers($args = []) {
     if ($current_faculty_id == 0) {
         $hero_data = get_field('hero');
         if (!empty($hero_data)) {
-            $hero_title       = $hero_data['title'] ?? '';
+            $hero_title       = $title_global;
             $hero_img_desktop = $hero_data['images']['desktop']['url'] ?? '';
             $hero_img_mobile  = $hero_data['images']['mobile']['url'] ?? '';
         }

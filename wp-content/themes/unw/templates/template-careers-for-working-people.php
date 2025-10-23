@@ -10,11 +10,12 @@
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 <main>
   <?php
+    $page_title = get_the_title();
     render_html_all_careers([
         'current_faculty_id' => 0,
         'post_type'          => 'carreras-a-distancia',
         'taxonomy'           => 'categoria-carrera-distancia',
-        'title_global'       => 'Carreras a Distancia',
+        'title_global'       => $page_title
     ]);
   ?>
 </main>
