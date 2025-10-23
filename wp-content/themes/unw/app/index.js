@@ -2,6 +2,7 @@ import Menu from './components/Menu'
 import { getUTMWhatsApp, EXCLUDE_URL_PARAMS } from './functions/utm-whatsapp'
 import { $element } from './utils/dom'
 import initLazyLoad from './utils/lazyload'
+import { getBaseDomain } from './utils/url-parse'
 
 class App {
   constructor() {
@@ -258,11 +259,6 @@ class App {
       })
 
       if (!urlParams.toString()) return
-
-      const getBaseDomain = (hostname) => {
-        const parts = hostname.split('.')
-        return parts.slice(-2).join('.')
-      }
 
       const currentBaseDomain = getBaseDomain(window.location.hostname)
 
