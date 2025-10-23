@@ -1,5 +1,5 @@
 import Menu from './components/Menu'
-import { getUTMWhatsApp, EXCLUDE_URL_PARAMS } from './functions/utm-whatsapp'
+import { getUTMWhatsAppLink, EXCLUDE_URL_PARAMS } from './functions/utm-whatsapp'
 import { $element } from './utils/dom'
 import initLazyLoad from './utils/lazyload'
 import { getBaseDomain } from './utils/url-parse'
@@ -225,28 +225,24 @@ class App {
         return
       }
 
-      const pageId = $button.dataset.pageId
-      const url = new URL(window.location.href)
-      const urlApi = $button.dataset.url
-      const nonce = $button.dataset.nonce
+      const data = {
+        url: new URL(window.location.href),
+        urlApi: $button.dataset.url,
+        nonce: $button.dataset.nonce
+      }
 
       setIsLoading(true)
 
-      getUTMWhatsApp({
-        pageId,
-        url,
-        urlApi,
-        nonce
-      }).then((resp) => {
-        setIsLoading(false)
+      getUTMWhatsAppLink(data)
+        .then(link => {
+          setIsLoading(false)
 
-        // If response is successful, set UTM WhatsApp link and open in new tab
-        if (resp.success) {
-          utmWhatsAppLink = resp.data.utm_whatsapp_link
+          if (link) {
+            utmWhatsAppLink = link
 
-          window.open(utmWhatsAppLink, '_blank')
-        }
-      })
+            window.open(utmWhatsAppLink, '_blank')
+          }
+        })
     })
   }
 
