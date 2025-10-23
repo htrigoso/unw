@@ -257,12 +257,39 @@ class App {
         urlParams.delete(param)
       })
 
-      // If there are URL parameters, add them to all internal links
-      if (urlParams.toString()) {
-        const links = document.querySelectorAll(`a[href^="/"], a[href^="${window.location.origin}"]`)
+      if (!urlParams.toString()) return
 
-        links.forEach(link => {
-          const href = link.getAttribute('href')
+      const getBaseDomain = (hostname) => {
+        const parts = hostname.split('.')
+        return parts.slice(-2).join('.')
+      }
+
+      const currentBaseDomain = getBaseDomain(window.location.hostname)
+
+      const links = document.querySelectorAll('a[href]')
+
+      links.forEach(link => {
+        const href = link.getAttribute('href')
+
+        // Check if link is relative or same base domain
+        let isInternal = false
+
+        if (href.startsWith('/')) {
+          // Relative link
+          isInternal = true
+        } else if (href.startsWith('http://') || href.startsWith('https://')) {
+          // Absolute link - check if it belongs to the same base domain
+          try {
+            const linkUrl = new URL(href)
+            const linkBaseDomain = getBaseDomain(linkUrl.hostname)
+            isInternal = (linkBaseDomain === currentBaseDomain)
+          } catch (e) {
+            // Ignore invalid URL
+            isInternal = false
+          }
+        }
+
+        if (isInternal) {
           const url = new URL(href, window.location.origin)
 
           // Add existing parameters
@@ -273,8 +300,8 @@ class App {
           })
 
           link.setAttribute('href', url.toString())
-        })
-      }
+        }
+      })
     })
   }
 }
