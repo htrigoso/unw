@@ -366,3 +366,11 @@ function get_trimmed_content($post_id, $limit = 40) {
 
     return trim($content);
 }
+
+add_action('wp_enqueue_scripts', function() {
+  // Ruta hacia el CSS dentro del tema activo
+  $css_path = get_stylesheet_directory_uri() . '/assets/css/cookie.css';
+
+  // Registrar y cargar el archivo CSS
+  wp_enqueue_style('cookie-unw', $css_path, [], filemtime(get_stylesheet_directory() . '/assets/css/cookie.css'));
+}, 20);

@@ -1,0 +1,44 @@
+button.cmplz-btn.cmplz-view-preferences {
+  display: none;
+}
+
+.cmplz-categories {
+  display: flex !important;
+}
+
+.cmplz-category.cmplz-functional {
+  display: none !important;
+}
+
+.cmplz-cookiebanner .cmplz-categories .cmplz-category {
+  background: none !important;
+}
+
+.cmplz-cookiebanner
+  .cmplz-categories
+  .cmplz-category
+  .cmplz-banner-checkbox
+  .cmplz-label:before {
+  top: -9px;
+  height: 20px;
+  width: 33px;
+}
+
+.cmplz-cookiebanner
+  .cmplz-categories
+  .cmplz-category
+  .cmplz-banner-checkbox
+  .cmplz-label:after {
+  top: -7px;
+  height: 16px;
+  width: 16px;
+}
+
+.button.cmplz-btn.cmplz-save-preferences,
+.button.cmplz-btn.cmplz-view-preferences {
+  display: none !important;
+  border: 1px solid;
+}
+.cmplz-label span {
+  display: none !important;
+}
