@@ -20,7 +20,7 @@ if (!function_exists('unw_get_event_data')) {
     $hour     = $info['time'] ?? '';
     $location = $info['location'] ?? '';
     $url      = $info['register_url'] ?? '';
-    $image_url = get_the_post_thumbnail_url($post->ID, 'full') ?: get_template_directory_uri() . '/upload/default.jpg';
+    $image_url = get_the_post_thumbnail_url($post->ID, 'medium_large') ?: get_template_directory_uri() . '/upload/default.jpg';
     $image_alt = $title;
     $status = $info['status'] ?? false;
 

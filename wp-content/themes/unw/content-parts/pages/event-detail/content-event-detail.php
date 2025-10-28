@@ -1,11 +1,17 @@
 <?php
-$event = get_field('event_content');
- ?>
+  $event = get_field('event_content');
+  $event_info = get_field('event_info');
+?>
 <?php if(!empty($event)): ?>
 <div class="event-detail">
   <div class="x-container x-container--pad-213">
     <section class="event-detail__wrapper">
       <article class="event-detail__content">
+        <?php
+
+        if($event_info['status']):?>
+        <span class="event-detail__status">Evento finalizado</span>
+        <?php endif ?>
         <div class="event-detail__description" data-content="paragraph">
           <?php the_content(); ?>
         </div>
@@ -23,9 +29,7 @@ $event = get_field('event_content');
 
         <div class="event-detail__data">
           <?php
-            $event_info = get_field('event_info');
-
-            if(!$event_info['status']){
+            if(!$event_info['status_page']){
               get_template_part(COMMON_CONTENT_PATH, 'body-w-list', [
                 'title' => 'Fecha y lugar',
                 'blocks' => [
