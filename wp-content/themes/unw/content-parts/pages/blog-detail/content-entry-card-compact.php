@@ -13,8 +13,6 @@ $date = $args['date'];
     <div class="entry-card-compact__content">
       <h4 class="entry-card-compact__title"><?php echo esc_html($title); ?></h4>
       <span class="entry-card-compact__date"><?php echo esc_html($date); ?></span>
-      <p class="entry-card-compact__desc" title="<?php echo esc_attr($content); ?>"><?php echo esc_html($content); ?>
-      </p>
     </div>
   </article>
 </a>
