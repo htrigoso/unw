@@ -213,6 +213,32 @@ class App {
       $button.classList.toggle('is-loading', value)
     }
 
+    const handleGetWhatsAppLink = () => {
+      setIsLoading(true)
+
+      const data = {
+        url: new URL(window.location.href),
+        urlApi: $button.dataset.url,
+        nonce: $button.dataset.nonce
+      }
+
+      getUTMWhatsAppLink(data)
+        .then(link => {
+          setIsLoading(false)
+
+          if (link) {
+            utmWhatsAppLink = link
+            $button.href = link
+            window.open(link, '_blank')
+          }
+        })
+    }
+
+    const timeout = setTimeout(() => {
+      clearTimeout(timeout)
+      handleGetWhatsAppLink()
+    }, 0)
+
     $button.addEventListener('click', (e) => {
       e.preventDefault()
 
@@ -225,24 +251,7 @@ class App {
         return
       }
 
-      const data = {
-        url: new URL(window.location.href),
-        urlApi: $button.dataset.url,
-        nonce: $button.dataset.nonce
-      }
-
-      setIsLoading(true)
-
-      getUTMWhatsAppLink(data)
-        .then(link => {
-          setIsLoading(false)
-
-          if (link) {
-            utmWhatsAppLink = link
-
-            window.open(utmWhatsAppLink, '_blank')
-          }
-        })
+      handleGetWhatsAppLink()
     })
   }
 
