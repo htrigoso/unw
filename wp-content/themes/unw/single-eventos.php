@@ -26,16 +26,19 @@
             'alt' => $mobile['alt'] ?? $mobile['title'] ?? '',
           ],
         ],
-        'title' => $slide['title'] ?? '',
-        'label' => $slide['label'] ?? get_the_title(),
+        'title' => get_the_title(),
+        'label' => get_the_title()
       ];
     }
   }
+
+
 
   $base_breadcrumbs = [
     ['label' => 'Inicio', 'href' => home_url('/')],
     ['label' => 'Eventos', 'href' => home_url('/eventos')]
   ];
+
 
   get_template_part(
     COMMON_CONTENT_PATH,

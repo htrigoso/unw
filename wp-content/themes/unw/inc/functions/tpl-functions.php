@@ -1,4 +1,5 @@
 <?php
+// add_filter( 'automatic_updates_is_vcs_checkout', '__return_false', 1 );
 
 if (!is_admin()) {
   add_action('wp_enqueue_scripts', 'wp_jquery_enqueue');
@@ -187,12 +188,7 @@ function allinone_icon_svg($name, $loading = 'lazy')
   }
 }
 
-/*Hide admin menu on front-end part*/
-add_filter('show_admin_bar', 'no_admin_bar');
-function no_admin_bar()
-{
-  return false;
-}
+
 
 function allinone_get_pages_by_template($template = 'page.php', $post_type = 'page', $multi = false)
 {

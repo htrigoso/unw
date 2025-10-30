@@ -24,8 +24,8 @@ $title_extra = $args['title_extra'] ?? '';
          $categoria_title = $title_extra ? $title_extra : $parent_title;
         ?>
 
-      <h2 class="categoria_page serv_uni"><?= esc_html( $categoria_title ); ?></h2>
-      <h2 class="h1_carreras"><?= esc_html( get_the_title() ); ?></h2>
+      <strong class="categoria_page serv_uni"><?= esc_html( $categoria_title ); ?></strong>
+      <h1 class="h1_carreras"><?= esc_html( get_the_title() ); ?></h1>
 
     </div>
   </div>

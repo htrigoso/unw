@@ -10,13 +10,17 @@ $tags = $args['tags'] ?? [];
 ?>
 
 <article class="entry-card">
-  <img src="<?= placeholder() ?>" data-src="<?php echo $image; ?>" alt="<?php echo esc_attr($title); ?>"
-    class="entry-card__image lazyload">
+  <a href="<?php echo esc_url($href); ?>">
+    <img src="<?= placeholder() ?>" data-src="<?php echo $image; ?>" alt="<?php echo esc_attr($title); ?>"
+      class="entry-card__image lazyload">
+  </a>
   <div class="entry-card__content">
     <?php if (!empty($date) && $date_before) : ?>
     <span class="entry-card__date" style="margin-bottom: 12px;"><?php echo esc_html($date); ?></span>
     <?php endif; ?>
-    <h3 class="entry-card__title"><?php echo esc_html($title); ?></h3>
+    <a href="<?php echo esc_url($href); ?>">
+      <h3 class="entry-card__title"><?php echo esc_html($title); ?></h3>
+    </a>
     <?php
     if (!empty($tags)) :
 

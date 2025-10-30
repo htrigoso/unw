@@ -76,7 +76,6 @@ add_action('wp_enqueue_scripts', function () {
 
   $base_dir = get_stylesheet_directory();
   $base_url = get_stylesheet_directory_uri();
-  $version = 30; // tu versión dinámica
   // Archivos a cargar
   $assets = [
     'webflow-style' => [

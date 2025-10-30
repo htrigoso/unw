@@ -7,15 +7,15 @@ $form_crm_option   = get_field('form_crm', 'option');
 $list_departaments = $form_crm_option['list_departaments'];
 $is_departments = $crm_ad['is_departments'];
 $careers = get_carreras();
-
 $departments_json =  [] ;
 if($is_departments) {
   $departments_json =  $list_departaments;
 }
 $list_campus = get_carreras_campus_modalidad();
-
 $data_form_type = $args['data_form_type'] ?? '';
 $deactivate = $crm_ad['deactivate'];
+$validation_dni = $crm_ad['validation_dni'];
+$hide_dni = $validation_dni['hide'];
 ?>
 <form id="<?=$data_form_type;?>" data-form="zoho" data-form-type="<?=$data_form_type;?>"
   class="contact-form formAdmision" data-careers="<?= esc_attr(wp_json_encode( $careers))?>"
@@ -105,14 +105,22 @@ $deactivate = $crm_ad['deactivate'];
       </div>
 
       <div class="flex justify-between m-b-24">
+        <?php
+        if ( ! $hide_dni) {
+          $title = $validation_dni['title'] . (!empty($validation_dni['required']) ? ' (*)' : '');
+        ?>
         <div class="f-50">
-          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
-            'name'=> 'SingleLine',
-            'label'=> 'Número de documento (*)',
-            'type' => 'tel',
-          ]);?>
+          <?php
+            get_template_part( GENERAL_FORM_CONTACT_PATH, 'input', [
+              'name'     => 'SingleLine',
+              'label'    => $title,
+              'type'     => 'tel',
+              'required' => $validation_dni['required']
+            ]);
+          ?>
         </div>
-        <div class="f-50">
+        <?php }?>
+        <div class="f-<?=$hide_dni?'100':'50'?>">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
             'name'=> 'PhoneNumber_countrycode',
             'label'=> 'Celular (*)',

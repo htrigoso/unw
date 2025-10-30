@@ -25,8 +25,8 @@ $destacadas = new WP_Query($args);
     <div class="swiper-container">
       <div class="swiper-wrapper featured-news__list">
         <?php if ($destacadas->have_posts()) : ?>
-          <?php while ($destacadas->have_posts()) : $destacadas->the_post(); ?>
-            <?php
+        <?php while ($destacadas->have_posts()) : $destacadas->the_post(); ?>
+        <?php
             $slide = [
               'image'   => uw_get_first_slider_image(get_the_ID()),
               'title'   => get_the_title(),
@@ -36,15 +36,15 @@ $destacadas = new WP_Query($args);
               'date_before' => true,
             ];
             ?>
-            <div class="swiper-slide featured-news__item">
-              <?php get_template_part(COMMON_CONTENT_PATH, 'entry-card', $slide); ?>
-            </div>
-          <?php endwhile;
+        <div class="swiper-slide featured-news__item">
+          <?php get_template_part(COMMON_CONTENT_PATH, 'entry-card', $slide); ?>
+        </div>
+        <?php endwhile;
           wp_reset_postdata(); ?>
         <?php else : ?>
-          <div class="swiper-slide">
-            <p>No hay noticias destacadas por ahora.</p>
-          </div>
+        <div class="swiper-slide">
+          <p>No hay noticias destacadas por ahora.</p>
+        </div>
         <?php endif; ?>
       </div>
     </div>
@@ -58,14 +58,14 @@ $destacadas = new WP_Query($args);
       </div>
 
       <?php if (!$hide_see_more): ?>
-        <div class="featured-news__see-more-btn">
-          <?php
+      <div class="featured-news__see-more-btn">
+        <?php
           get_template_part(COMMON_CONTENT_PATH, 'see-more-btn', [
             'text' => 'Ver todas las noticias',
-            'href' => home_url('/novedades/')
+            'href' => home_url('/noticias/')
           ]);
           ?>
-        </div>
+      </div>
       <?php endif ?>
     </div>
   </div>
