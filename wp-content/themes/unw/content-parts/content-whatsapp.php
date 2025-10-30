@@ -6,17 +6,16 @@ $wg_img = $wg['image'] ?? [];
 $wg_link = $wg['link'] ?? [];
 
 if (!is_whatsapp_blocked($wa_general) && !empty($wg_img) && !empty($wg_link)) {
-  $wa_utms = get_field('utms_whatsapp', 'options');
+  $utms_whatsapp = unw_get_utms_whatsapp();
 
-  if (!empty($wa_utms) && $wa_utms['active'] === true) {
-    // $current_url = unw_get_current_url(['tab']);
-    // $utm = get_utm_by_url($current_url, get_queried_object_id());
+  if ($utms_whatsapp['active'] === true) {
 ?>
-    <button
-      type="button"
+    <a
       class="whatsapp-link"
       id="contact-whatsapp"
-      data-page-id="<?php echo get_queried_object_id(); ?>"
+      href="#"
+      rel="noopener"
+      <?= !empty($wg_link['target']) ? 'target="' . esc_attr($wg_link['target']) . '"' : '' ?>
       data-url="<?php echo admin_url('admin-ajax.php'); ?>"
       data-nonce="<?php echo wp_create_nonce('utm_whatsapp_nonce'); ?>"
     >
@@ -28,7 +27,7 @@ if (!is_whatsapp_blocked($wa_general) && !empty($wg_img) && !empty($wg_link)) {
         width="auto"
         height="auto"
         aria-hidden="true" />
-    </button>
+    </a>
   <?php
   } else {
   ?>
