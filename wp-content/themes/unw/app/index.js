@@ -1,5 +1,5 @@
 import Menu from './components/Menu'
-import { getUTMWhatsApp, EXCLUDE_URL_PARAMS } from './functions/utm-whatsapp'
+import { getUTMWhatsAppLink, EXCLUDE_URL_PARAMS } from './functions/utm-whatsapp'
 import { $element } from './utils/dom'
 import initLazyLoad from './utils/lazyload'
 import { getBaseDomain } from './utils/url-parse'
@@ -213,6 +213,32 @@ class App {
       $button.classList.toggle('is-loading', value)
     }
 
+    const handleGetWhatsAppLink = () => {
+      setIsLoading(true)
+
+      const data = {
+        url: new URL(window.location.href),
+        urlApi: $button.dataset.url,
+        nonce: $button.dataset.nonce
+      }
+
+      getUTMWhatsAppLink(data)
+        .then(link => {
+          setIsLoading(false)
+
+          if (link) {
+            utmWhatsAppLink = link
+            $button.href = link
+            window.open(link, '_blank')
+          }
+        })
+    }
+
+    const timeout = setTimeout(() => {
+      clearTimeout(timeout)
+      handleGetWhatsAppLink()
+    }, 0)
+
     $button.addEventListener('click', (e) => {
       e.preventDefault()
 
@@ -225,28 +251,7 @@ class App {
         return
       }
 
-      const pageId = $button.dataset.pageId
-      const url = new URL(window.location.href)
-      const urlApi = $button.dataset.url
-      const nonce = $button.dataset.nonce
-
-      setIsLoading(true)
-
-      getUTMWhatsApp({
-        pageId,
-        url,
-        urlApi,
-        nonce
-      }).then((resp) => {
-        setIsLoading(false)
-
-        // If response is successful, set UTM WhatsApp link and open in new tab
-        if (resp.success) {
-          utmWhatsAppLink = resp.data.utm_whatsapp_link
-
-          window.open(utmWhatsAppLink, '_blank')
-        }
-      })
+      handleGetWhatsAppLink()
     })
   }
 

@@ -1,7 +1,12 @@
 export const EXCLUDE_URL_PARAMS = ['tab']
 
-export async function getUTMWhatsApp({
-  pageId,
+export function makeWhatsAppLink(utmCode) {
+  const template = window.appConfigUnw.utmsWhatsapp.template || ''
+
+  return template.replace('{utm_code}', utmCode)
+}
+
+export async function getUTMWhatsAppLink({
   url,
   urlApi,
   nonce
@@ -15,7 +20,6 @@ export async function getUTMWhatsApp({
 
   formData.append('action', 'create_utm_whatsapp')
   formData.append('title', `${url.origin}${url.pathname}`)
-  formData.append('page_id', pageId)
   formData.append('url', url.toString())
   formData.append('nonce', nonce)
 
@@ -27,13 +31,14 @@ export async function getUTMWhatsApp({
 
     const data = await response.json()
 
-    return data
+    if (!data.success) {
+      return null
+    }
+
+    return makeWhatsAppLink(data.data.utm_code)
   } catch (error) {
     console.error('Error:', error)
 
-    return {
-      success: false,
-      message: 'Error al crear el UTM WhatsApp'
-    }
+    return null
   }
 }
