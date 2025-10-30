@@ -213,7 +213,7 @@ class App {
       $button.classList.toggle('is-loading', value)
     }
 
-    const handleGetWhatsAppLink = () => {
+    const handleGetWhatsAppLink = (onSuccess = () => {}) => {
       setIsLoading(true)
 
       const data = {
@@ -224,13 +224,13 @@ class App {
 
       getUTMWhatsAppLink(data)
         .then(link => {
-          setIsLoading(false)
-
           if (link) {
             utmWhatsAppLink = link
             $button.href = link
-            window.open(link, '_blank')
+            onSuccess(link)
           }
+
+          setIsLoading(false)
         })
     }
 
@@ -240,18 +240,15 @@ class App {
     }, 0)
 
     $button.addEventListener('click', (e) => {
-      e.preventDefault()
+      if (isLoading) {
+        e.preventDefault()
+      } else if (!utmWhatsAppLink) {
+        e.preventDefault()
 
-      if (isLoading) return
-
-      // If UTM exists, open WhatsApp link in new tab
-      if (utmWhatsAppLink) {
-        window.open(utmWhatsAppLink, '_blank')
-
-        return
+        handleGetWhatsAppLink((link) => {
+          window.open(link, '_blank')
+        })
       }
-
-      handleGetWhatsAppLink()
     })
   }
 
