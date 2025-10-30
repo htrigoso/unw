@@ -5,7 +5,7 @@ function uw_get_modalities_options() {
         '' => '--Seleccione--',
         'presencial' => 'Presencial',
         'semipresencial' => '100% virtual',
-        'presencial_semipresencial' => 'Presencial y 100% virtual',
+        'presencial_semipresencial' => 'Presencial, 100% virtual',
     ];
 }
 
@@ -22,20 +22,8 @@ function uw_terms_to_string($terms) {
     // Extraer solo los nombres
     $names = wp_list_pluck($terms, 'name');
 
-    // Contar términos
-    $count = count($names);
-
-    if ($count === 1) {
-        return $names[0];
-    }
-
-    if ($count === 2) {
-        return $names[0] . ' y ' . $names[1];
-    }
-
-    // Para 3 o más → unir con comas y 'y' al final
-    $last = array_pop($names);
-    return implode(', ', $names) . ' y ' . $last;
+    // Unir todos los nombres con comas
+    return implode(', ', $names);
 }
 
 function render_html_all_careers($args = []) {
@@ -48,9 +36,9 @@ function render_html_all_careers($args = []) {
         'title_global'       => 'Carreras',
     ];
 
+
     // Mezclamos defaults con los valores recibidos
     $args = wp_parse_args($args, $defaults);
-
 
     extract($args);
     // Ahora tienes disponibles:
@@ -68,7 +56,7 @@ function render_html_all_careers($args = []) {
     if ($current_faculty_id == 0) {
         $hero_data = get_field('hero');
         if (!empty($hero_data)) {
-            $hero_title       = $hero_data['title'] ?? '';
+            $hero_title       = $title_global;
             $hero_img_desktop = $hero_data['images']['desktop']['url'] ?? '';
             $hero_img_mobile  = $hero_data['images']['mobile']['url'] ?? '';
         }

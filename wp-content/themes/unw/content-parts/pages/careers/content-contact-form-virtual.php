@@ -11,6 +11,8 @@ $code_carrier     = $crm_carriers['code_virtual'];
 // ---- Fusionar UTMs ----
 $utms_final = merge_utms($utms_default, $utm_carriers);
 $data_form_type = $args['data_form_type'] ?? '';
+$validation_dni = $crm_carriers['validation_dni'];
+$hide_dni = $validation_dni['hide'];
 ?>
 <form id="<?=$data_form_type;?>" data-form="zoho" data-form-type="<?=$data_form_type;?>"
   class="contact-form formCarrera" method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
@@ -71,7 +73,7 @@ $data_form_type = $args['data_form_type'] ?? '';
       </div>
 
       <div class="flex justify-between m-b-24">
-        <div class="f-50">
+        <div class="f-<?=$hide_dni?'100':'50'?>">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
             'name'=> 'Name_Last',
             'label'=> 'Apellidos (*)',
@@ -79,13 +81,21 @@ $data_form_type = $args['data_form_type'] ?? '';
             'max_length' => 60
           ]);?>
         </div>
+        <?php
+        if ( ! $hide_dni) {
+          $title = $validation_dni['title'] . (!empty($validation_dni['required']) ? ' (*)' : '');
+        ?>
         <div class="f-50">
-          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
-            'name'=> 'SingleLine',
-            'label'=> 'Número de documento (*)',
-            'type' => 'tel',
-          ]);?>
+          <?php
+            get_template_part( GENERAL_FORM_CONTACT_PATH, 'input', [
+              'name'     => 'SingleLine',
+              'label'    => $title,
+              'type'     => 'tel',
+              'required' => $validation_dni['required']
+            ]);
+          ?>
         </div>
+        <?php }?>
       </div>
 
       <div class="flex justify-between">

@@ -20,7 +20,7 @@ $acf_contact = get_field('contact');
     <div class="info_page">
       <?php
       get_template_part('content-parts/components/info-cover', null, [
-        'title_extra' => 'Becas Externas'
+        'title_extra' => 'Centros Wiener'
       ]);
       ?>
       <div class="main_page">
@@ -63,14 +63,14 @@ $acf_contact = get_field('contact');
                       </div>
                     </div>
                     <?php if (isset($acf_contact)) { ?>
-                      <div class="contact_box servicioswiener">
-                        <?php
+                    <div class="contact_box servicioswiener">
+                      <?php
                         get_template_part('content-parts/components/contact', null, [
                           'contact' => $acf_contact
                         ]);
                         ?>
 
-                      </div>
+                    </div>
                     <?php } ?>
                   </div>
                 </div>

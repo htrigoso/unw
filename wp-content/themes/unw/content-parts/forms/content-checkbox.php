@@ -14,10 +14,13 @@ $id = $input['form_type'] ?? 'none'
 </div>
 
 <?php
-$privacy = get_field('privacity', 'option');
+// Obtener la página por su slug
+$privacy_page = get_page_by_path('politicas-de-privacidad');
 
-get_template_part(COMMON_CONTENT_PATH, 'rich-text-modal', [
-  'id' => 'politics-modal',
-  'body' => $privacy['content']
-]);
+if ($privacy_page) {
+  get_template_part(COMMON_CONTENT_PATH, 'rich-text-modal', [
+    'id'   => 'politics-modal',
+    'body' => '<h1>' . esc_html($privacy_page->post_title) . '</h1>' . apply_filters('the_content', $privacy_page->post_content),
+  ]);
+}
 ?>

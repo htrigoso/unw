@@ -8,9 +8,11 @@
 }
 
 .program-card--img {
-  height: rem(140);
   width: 100%;
   object-fit: cover;
+  height: 100%;
+  object-position: center;
+  max-height: rem(180);
 }
 
 .program-card--content {
@@ -24,7 +26,6 @@
 .program-card--content__title {
   @include title-22;
   padding-bottom: rem(10);
-  margin-bottom: auto;
 }
 
 .program-card--content__description {

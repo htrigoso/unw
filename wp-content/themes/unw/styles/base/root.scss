@@ -87,7 +87,8 @@ body.sidebar-open {
       list-style-type: auto;
     }
   }
-  a {
+  a:not(.btn) {
     font-weight: var(--font-medium);
+    color: var(--color-primary);
   }
 }

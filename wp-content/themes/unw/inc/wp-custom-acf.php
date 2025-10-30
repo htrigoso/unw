@@ -106,18 +106,18 @@ add_action('acf/input/admin_head', function() {
 
     if (isset($post) && $post->post_type === 'novedades') {
         ?>
-        <style>
-            /* Oculta el acordeón con name="contenido" */
-            [data-name="contenido"] {
-                display: none !important;
-            }
+<style>
+/* Oculta el acordeón con name="contenido" */
+[data-name="contenido"] {
+  display: none !important;
+}
 
-            /* Por si el campo 'content' queda fuera del acordeón */
-            [data-name="content"] {
-                display: none !important;
-            }
-        </style>
-        <?php
+/* Por si el campo 'content' queda fuera del acordeón */
+[data-name="content"] {
+  display: none !important;
+}
+</style>
+<?php
     }
 });
 

@@ -47,7 +47,7 @@ get_header();
 
                       </div>
 
-                      <div id="servsecretaria" class="content_section">
+                      <div id="servsecretaria" class="content_section wrapper_collection mt auto w-dyn-list">
                         <div role="list" class="collection_list gilla _3-col w-dyn-items">
                           <?php
                                 get_template_part('content-parts/components/cards', null, ['cards' => $acf_cards['cards']]);

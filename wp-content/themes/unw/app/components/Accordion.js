@@ -38,15 +38,23 @@ export default class Accordion extends Component {
 
   handleAccordionClick(event, idx) {
     event.preventDefault()
+
     const item = this.elements.items[idx]
     const isOpen = item.classList.contains('is-open')
+    const btn = item.querySelector('button')
+    const content = item.querySelector('.accordion-content')
+
+    if (btn) {
+      btn.setAttribute('aria-expanded', String(!isOpen))
+      content.setAttribute('aria-hidden', String(isOpen))
+    }
 
     if (this.allowMultiple) {
       item.classList.toggle('is-open')
     } else {
+      console.log('2')
       if (!isOpen) {
         this.closeAll()
-        item.classList.add('is-open')
       } else {
         item.classList.remove('is-open')
       }

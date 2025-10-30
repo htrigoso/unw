@@ -61,17 +61,6 @@
 .rich-text li {
   margin-bottom: 0.5em;
   position: relative;
-
-  &::before {
-    content: " ";
-    position: absolute;
-    width: rem(10);
-    height: rem(10);
-    background-color: var(--color-primary);
-    border-radius: rem(999);
-    left: rem(-20);
-    top: rem(4);
-  }
 }
 
 .rich-text strong {

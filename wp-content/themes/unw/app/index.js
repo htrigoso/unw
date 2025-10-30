@@ -1,6 +1,8 @@
 import Menu from './components/Menu'
+import { getUTMWhatsAppLink, EXCLUDE_URL_PARAMS } from './functions/utm-whatsapp'
 import { $element } from './utils/dom'
 import initLazyLoad from './utils/lazyload'
+import { getBaseDomain } from './utils/url-parse'
 
 class App {
   constructor() {
@@ -13,6 +15,11 @@ class App {
 
     this.handleOnSubmitForm()
     this.blockedClickButtonModal()
+    this.whatsappButton()
+
+    if (window.appConfigUnw.preserveUrlParams === true) {
+      this.propagateUrlParamsToInternalLinks()
+    }
   }
 
   createNavbar() {
@@ -188,6 +195,113 @@ class App {
     document.querySelectorAll('[data-modal-target]').forEach(btn => {
       btn.addEventListener('click', e => {
         e.preventDefault() // evita scroll
+      })
+    })
+  }
+
+  whatsappButton() {
+    const $button = $element('#contact-whatsapp')
+
+    if (!$button) return
+
+    let isLoading = false
+    let utmWhatsAppLink = null
+
+    const setIsLoading = (value) => {
+      isLoading = value
+
+      $button.classList.toggle('is-loading', value)
+    }
+
+    const handleGetWhatsAppLink = () => {
+      setIsLoading(true)
+
+      const data = {
+        url: new URL(window.location.href),
+        urlApi: $button.dataset.url,
+        nonce: $button.dataset.nonce
+      }
+
+      getUTMWhatsAppLink(data)
+        .then(link => {
+          setIsLoading(false)
+
+          if (link) {
+            utmWhatsAppLink = link
+            $button.href = link
+            window.open(link, '_blank')
+          }
+        })
+    }
+
+    const timeout = setTimeout(() => {
+      clearTimeout(timeout)
+      handleGetWhatsAppLink()
+    }, 0)
+
+    $button.addEventListener('click', (e) => {
+      e.preventDefault()
+
+      if (isLoading) return
+
+      // If UTM exists, open WhatsApp link in new tab
+      if (utmWhatsAppLink) {
+        window.open(utmWhatsAppLink, '_blank')
+
+        return
+      }
+
+      handleGetWhatsAppLink()
+    })
+  }
+
+  propagateUrlParamsToInternalLinks() {
+    document.addEventListener('DOMContentLoaded', function () {
+      const urlParams = new URLSearchParams(window.location.search)
+
+      EXCLUDE_URL_PARAMS.forEach(param => {
+        urlParams.delete(param)
+      })
+
+      if (!urlParams.toString()) return
+
+      const currentBaseDomain = getBaseDomain(window.location.hostname)
+
+      const links = document.querySelectorAll('a[href]')
+
+      links.forEach(link => {
+        const href = link.getAttribute('href')
+
+        // Check if link is relative or same base domain
+        let isInternal = false
+
+        if (href.startsWith('/')) {
+          // Relative link
+          isInternal = true
+        } else if (href.startsWith('http://') || href.startsWith('https://')) {
+          // Absolute link - check if it belongs to the same base domain
+          try {
+            const linkUrl = new URL(href)
+            const linkBaseDomain = getBaseDomain(linkUrl.hostname)
+            isInternal = (linkBaseDomain === currentBaseDomain)
+          } catch (e) {
+            // Ignore invalid URL
+            isInternal = false
+          }
+        }
+
+        if (isInternal) {
+          const url = new URL(href, window.location.origin)
+
+          // Add existing parameters
+          urlParams.forEach((value, key) => {
+            if (!url.searchParams.has(key)) {
+              url.searchParams.set(key, value)
+            }
+          })
+
+          link.setAttribute('href', url.toString())
+        }
       })
     })
   }

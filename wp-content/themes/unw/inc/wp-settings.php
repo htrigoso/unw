@@ -101,13 +101,7 @@ function wp_deregister_styles() {
 }
 
 
-/**
- * hide admin menu on front-end part
- */
-add_filter('show_admin_bar', 'hide_admin_bar');
-function hide_admin_bar() {
-    return false;
-}
+
 
 
 /**

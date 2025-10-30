@@ -5,6 +5,7 @@ import PostSwiperDesktop from '../../components/PostSwiperDesktop'
 import { ModalManager } from '../../components/Modal'
 import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
 import { $element } from '../../utils/dom'
+import { managePagination } from '../../utils/swiper'
 
 export default class HomePage {
   constructor() {
@@ -14,10 +15,11 @@ export default class HomePage {
   create() {
     new ModalManager()
 
-    HeroSwiper('.hero-swiper', {
+    const heroSwiper = HeroSwiper('.hero-swiper', {
       pagination: {
         el: '.hero-swiper .home-hero-pagination',
-        type: 'bullets'
+        type: 'bullets',
+        clickable: false
       },
       navigation: {
         nextEl: '.hero-swiper .home-hero-button-next',
@@ -25,6 +27,11 @@ export default class HomePage {
       },
       loop: true
     })
+
+    if (heroSwiper) {
+      managePagination(heroSwiper)
+    }
+
     PostSwiperDesktop('.post-swiper-desktop')
     PostSwiper('.testimonial-swiper')
     PostSwiper('.last-news-swiper')

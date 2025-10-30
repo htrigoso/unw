@@ -7,9 +7,10 @@ $utms_final = merge_utms($utms_default, $utm_admission);
 $form_crm_option   = get_field('form_crm', 'option');
 $formUrl           = "https://forms.zohopublic.com/adminzoho11/form/WebPreWiener/formperma/l1wwdmdtbCUdnHXBKB4zGg2X1eb12Fnp-VgoBjOAEmA/htmlRecords/submit";
 $careers = get_carreras();
-
 $list_departaments = $form_crm_option['list_departaments'];
 $list_campus = get_carreras_campus_modalidad();
+$validation_dni = $form_crm_option['validation_dni'];
+$hide_dni = $validation_dni['hide'];
 ?>
 <form id="form-general" data-form="zoho" class="more-form newformfloat"
   data-careers="<?= esc_attr(wp_json_encode( $careers))?>"
@@ -82,13 +83,27 @@ $list_campus = get_carreras_campus_modalidad();
       </div>
 
       <div class="flex justify-between m-b-24">
+        <?php
+        if ( ! $hide_dni) {
+          $title = $validation_dni['title'] . (!empty($validation_dni['required']) ? ' (*)' : '');
+        ?>
         <div class="f-50">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
             'name'=> 'SingleLine',
-            'label'=> 'Número de documento (*)',
+             'label'    => $title,
             'type' => 'tel',
+            'required' => $validation_dni['required']
           ]);?>
         </div>
+        <?php }else {?>
+        <div class="f-50">
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+              'name'=> 'Email',
+              'label'=> 'Correo electrónico (*)',
+              'type' => 'email',
+            ]);?>
+        </div>
+        <?php }?>
         <div class="f-50">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
             'name'=> 'PhoneNumber_countrycode',
@@ -98,11 +113,17 @@ $list_campus = get_carreras_campus_modalidad();
         </div>
       </div>
       <div class="m-b-24">
-        <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+        <?php
+        if (  !$hide_dni) {
+        ?>
+        <div class="f-100">
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
             'name'=> 'Email',
             'label'=> 'Correo electrónico (*)',
             'type' => 'email',
           ]);?>
+        </div>
+        <?php  }?>
       </div>
 
       <div class="flex justify-between" data-html-name="departament">
