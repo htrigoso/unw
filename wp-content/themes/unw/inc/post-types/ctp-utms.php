@@ -160,31 +160,18 @@ function unw_generate_utm_code($format)
 
   global $wpdb;
 
-  // Cache key for this format's last code
-  $cache_key = 'unw_utm_last_code_' . $format;
+  $last_code = $wpdb->get_var($wpdb->prepare("
+          SELECT meta_value
+          FROM {$wpdb->postmeta} pm
+          INNER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
+          WHERE pm.meta_key = 'utm_code'
+          AND pm.meta_value LIKE %s
+          AND p.post_type = %s
+          AND p.post_status != 'trash'
+          ORDER BY pm.meta_value DESC
+          LIMIT 1
+      ", $format . '%', UNW_UTM_POST_TYPE));
 
-  // Try to get from cache first
-  $last_code = get_transient($cache_key);
-
-  // If not in cache, query database
-  if (false === $last_code) {
-    $last_code = $wpdb->get_var($wpdb->prepare("
-            SELECT meta_value
-            FROM {$wpdb->postmeta} pm
-            INNER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
-            WHERE pm.meta_key = 'utm_code'
-            AND pm.meta_value LIKE %s
-            AND p.post_type = %s
-            AND p.post_status != 'trash'
-            ORDER BY pm.meta_value DESC
-            LIMIT 1
-        ", $format . '%', UNW_UTM_POST_TYPE));
-
-    // Cache for 1 hour (or until manually cleared)
-    if ($last_code) {
-      set_transient($cache_key, $last_code, HOUR_IN_SECONDS);
-    }
-  }
 
   // Calculate next number
   $number = 1;
@@ -193,11 +180,8 @@ function unw_generate_utm_code($format)
     $number = $current_number + 1;
   }
 
-  // Generate code with 5-digit zero-padding
+  // Generate code
   $new_code = $format . str_pad($number, UNW_UTM_CODE_PADDING, '0', STR_PAD_LEFT);
-
-  // Update cache with new code
-  set_transient($cache_key, $new_code, HOUR_IN_SECONDS);
 
   return $new_code;
 }
