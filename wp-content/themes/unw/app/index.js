@@ -2,7 +2,7 @@ import Menu from './components/Menu'
 import { getUTMWhatsAppLink, EXCLUDE_URL_PARAMS } from './functions/utm-whatsapp'
 import { $element } from './utils/dom'
 import initLazyLoad from './utils/lazyload'
-import { getBaseDomain } from './utils/url-parse'
+import { getBaseDomain, getRfc3986SearchFromUrl } from './utils/url-parse'
 
 class App {
   constructor() {
@@ -217,6 +217,7 @@ class App {
       setIsLoading(true)
 
       const data = {
+        page: $button.dataset.page,
         url: new URL(window.location.href),
         urlApi: $button.dataset.url,
         nonce: $button.dataset.nonce
@@ -297,7 +298,11 @@ class App {
             }
           })
 
-          link.setAttribute('href', url.toString())
+          // 🔒 Codification strict RFC 3986
+          const rfc3986Search = getRfc3986SearchFromUrl(Array.from(url.searchParams.entries()))
+          const rfc3986Url = `${url.origin}${url.pathname}${rfc3986Search}`
+
+          link.setAttribute('href', rfc3986Url)
         }
       })
     })

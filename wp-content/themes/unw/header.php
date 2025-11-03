@@ -97,7 +97,6 @@
 
   <?php
   $preserve_url_params = get_field('preserve_url_params', 'options');
-  $utms_whatsapp = unw_get_utms_whatsapp();
   ?>
 
   <script>
@@ -105,7 +104,6 @@
     themeUrl: "<?php echo esc_url(get_template_directory_uri()); ?>",
     uploadUrl: "<?php echo esc_url(get_template_directory_uri()); ?>/upload",
     preserveUrlParams: <?php echo $preserve_url_params === true ? 'true' : 'false'; ?>,
-    utmsWhatsapp: <?php echo wp_json_encode($utms_whatsapp); ?>,
   };
 
   let doc = document.documentElement;
