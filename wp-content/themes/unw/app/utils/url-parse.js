@@ -11,3 +11,11 @@ export function getBaseDomain(hostname) {
 
   return parsed.domain
 }
+
+export function getRfc3986SearchFromUrl(params) {
+  const rfc3986Search = params
+    .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
+    .join('&')
+
+  return rfc3986Search ? `?${rfc3986Search}` : ''
+}
