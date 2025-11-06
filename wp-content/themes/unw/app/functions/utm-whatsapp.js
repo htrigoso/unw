@@ -1,6 +1,12 @@
 import { getRfc3986SearchFromUrl } from '../utils/url-parse'
 
-export const EXCLUDE_URL_PARAMS = ['tab']
+export const EXCLUDE_URL_PARAMS = [
+  // El parámetro se usa para busquedas
+  's',
+
+  // El parámetro se usa para navegar por tabs en las carreras y demás
+  'tab'
+]
 
 export const UTM_QUERY_PARAMS = [
   'utm_source',
