@@ -29,7 +29,7 @@
 
         <div class="event-detail__data">
           <?php
-            if(!$event_info['status_page']){
+            if($event_info['status_page']){
               get_template_part(COMMON_CONTENT_PATH, 'body-w-list', [
                 'title' => 'Fecha y lugar',
                 'blocks' => [
