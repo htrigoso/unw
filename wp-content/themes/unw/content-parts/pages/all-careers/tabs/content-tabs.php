@@ -22,7 +22,7 @@ $careers_posts = $args['careers_posts'] ?? [];
         <?php
             $cards = [];
             foreach ($careers_posts as $career) {
-                $img = get_the_post_thumbnail_url($career->ID, 'full');
+                $img = get_the_post_thumbnail_url($career->ID, 'medium_large');
                 $cards[] = [
                     'image'       => $img,
                     'image_alt'   => $career->post_title,
