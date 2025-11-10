@@ -163,6 +163,12 @@
     line-height: rem(20);
   }
 
+  &-xxs {
+    padding: rem(5) rem(7);
+    font-size: rem(16);
+    line-height: rem(19);
+  }
+
   // &:disabled {
   //   background: var(--color-gray);
   //   color: #e8e8e8;
