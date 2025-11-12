@@ -300,6 +300,83 @@ function unw_generate_utm_code($format)
 }
 
 /**
+ * Get current URL and prepare data for UTM creation
+ *
+ * This function extracts the current URL and formats it following the same logic
+ * as app/functions/utm-whatsapp.js and app/utils/url-parse.js
+ *
+ * @return array ['title' => string, 'content' => string, 'url' => string]
+ */
+function unw_get_current_url()
+{
+  // Get the full current URL
+  $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
+  $host = $_SERVER['HTTP_HOST'] ?? '';
+  $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+  $full_url = $protocol . $host . $request_uri;
+
+  // Parse the URL
+  $parsed_url = parse_url($full_url);
+  $scheme = $parsed_url['scheme'] ?? 'http';
+  $host = $parsed_url['host'] ?? '';
+  $path = $parsed_url['path'] ?? '';
+  $query_string = $parsed_url['query'] ?? '';
+
+  // Build base URL (origin + pathname) for title
+  $base_url = $scheme . '://' . $host . $path;
+
+  // Parse query parameters
+  parse_str($query_string, $query_params);
+
+  // Define excluded parameters (same as EXCLUDE_URL_PARAMS in utm-whatsapp.js)
+  $exclude_params = [
+    // El parámetro se usa para busquedas
+    's',
+
+    // El parámetro se usa para navegar por tabs en las carreras y demás
+    'tab'
+  ];
+
+  // Define UTM parameters (same as UTM_QUERY_PARAMS in utm-whatsapp.js)
+  $utm_params = [
+    'utm_source',
+    'utm_medium',
+    'utm_campaign',
+    'utm_term',
+    'utm_content'
+  ];
+
+  // Remove excluded parameters
+  foreach ($exclude_params as $param) {
+    unset($query_params[$param]);
+  }
+
+  // Extract only UTM parameters for content URL (following makeUTMContent logic)
+  $utm_only_params = [];
+  foreach ($utm_params as $param) {
+    if (isset($query_params[$param]) && $query_params[$param] !== '') {
+      $utm_only_params[$param] = $query_params[$param];
+    }
+  }
+
+  // Build content URL with only UTM parameters (RFC 3986 encoding)
+  $content_url = $base_url;
+  if (!empty($utm_only_params)) {
+    $rfc3986_params = [];
+    foreach ($utm_only_params as $key => $value) {
+      $rfc3986_params[] = rawurlencode($key) . '=' . rawurlencode($value);
+    }
+    $content_url .= '?' . implode('&', $rfc3986_params);
+  }
+
+  return [
+    'title' => $base_url,
+    'content' => $content_url,
+    'url' => $full_url,
+  ];
+}
+
+/**
  * Get WhatsApp template url from config
  *
  * @param array $utms_whatsapp The UTMs WhatsApp field from ACF
@@ -353,20 +430,37 @@ function unw_get_utms_whatsapp($page_id)
 }
 
 /**
- * Generate WhatsApp link from template
+ * Generate WhatsApp link from current URL
  *
- * Retrieves the template from ACF Options and replaces {utm_code} placeholder
- *
- * @param string $page_id The page ID to search for
- * @param int $utm_code The UTM code to insert
- * @return string WhatsApp link
  */
-function unw_generate_whatsapp_link($page_id, $utm_code)
+function unw_generate_whatsapp_link($data,  $utms_whatsapp)
 {
-  $result = unw_get_utms_whatsapp($page_id);
+  $title = $data['title'];
+  $content = $data['content'];
+  $url = $data['url'];
+
+  // Determine code format based on URL parameters
+  $code_format = unw_determine_code_format($content);
+
+  // Try to find existing UTM
+  $utm_data = unw_find_utm_by_content($content, $code_format);
+
+  // Determine UTM code - either from existing or create new
+  if ($utm_data && !empty($utm_data['utm_code'])) {
+    $utm_code = $utm_data['utm_code'];
+  } else {
+    // Create new UTM
+    $result = unw_create_utm($title, $content, $url, $code_format);
+
+    if (is_wp_error($result)) {
+      return false;
+    }
+
+    $utm_code = $result['utm_code'];
+  }
 
   // Replace placeholder with actual UTM code
-  $whatsapp_link = str_replace('{utm_code}', $utm_code, $result['template']);
+  $whatsapp_link = str_replace('{utm_code}', $utm_code, $utms_whatsapp['template']);
 
   return $whatsapp_link;
 }
@@ -424,8 +518,11 @@ function unw_ajax_create_utm_whatsapp()
     $action = 'created';
   }
 
-  // Generate WhatsApp link (uses cached ACF options)
-  $whatsapp_link = unw_generate_whatsapp_link($page, $utm_code);
+  // Get template for WhatsApp
+  $utm_result = unw_get_utms_whatsapp($page);
+
+  // Replace placeholder with actual UTM code
+  $whatsapp_link = str_replace('{utm_code}', $utm_code, $utm_result['template']);
 
   wp_send_json_success([
     'action' => $action,

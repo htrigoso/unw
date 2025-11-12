@@ -1,5 +1,13 @@
 import psl from 'psl'
 
+export const EXCLUDE_URL_PARAMS = [
+  // El parámetro se usa para busquedas
+  's',
+
+  // El parámetro se usa para navegar por tabs en las carreras y demás
+  'tab'
+]
+
 export function getBaseDomain(hostname) {
   const cleanHostname = hostname.replace(/^www\./, '')
 
