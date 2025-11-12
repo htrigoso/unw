@@ -2,7 +2,7 @@
 
 // require head
 require_once dirname(__FILE__) . '/functions/include-assets.php';
-
+require_once dirname(__FILE__) . '/functions/include-rocket.php';
 
 // require actions
 // require_once dirname(__FILE__) . '/actions/wp-action-contact.php';
