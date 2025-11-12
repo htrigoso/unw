@@ -15,7 +15,7 @@ class App {
 
     this.handleOnSubmitForm()
     this.blockedClickButtonModal()
-    this.whatsappButton()
+    // this.whatsappButton()
 
     if (window.appConfigUnw.preserveUrlParams === true) {
       this.propagateUrlParamsToInternalLinks()
