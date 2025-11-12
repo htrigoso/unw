@@ -1,8 +1,7 @@
 import Menu from './components/Menu'
-import { getUTMWhatsAppLink, EXCLUDE_URL_PARAMS } from './functions/utm-whatsapp'
 import { $element } from './utils/dom'
 import initLazyLoad from './utils/lazyload'
-import { getBaseDomain, getRfc3986SearchFromUrl } from './utils/url-parse'
+import { getBaseDomain, getRfc3986SearchFromUrl, EXCLUDE_URL_PARAMS } from './utils/url-parse'
 
 class App {
   constructor() {
@@ -15,7 +14,6 @@ class App {
 
     this.handleOnSubmitForm()
     this.blockedClickButtonModal()
-    // this.whatsappButton()
 
     if (window.appConfigUnw.preserveUrlParams === true) {
       this.propagateUrlParamsToInternalLinks()
@@ -196,60 +194,6 @@ class App {
       btn.addEventListener('click', e => {
         e.preventDefault() // evita scroll
       })
-    })
-  }
-
-  whatsappButton() {
-    const $button = $element('#contact-whatsapp')
-
-    if (!$button) return
-
-    let isLoading = false
-    let utmWhatsAppLink = null
-
-    const setIsLoading = (value) => {
-      isLoading = value
-
-      $button.classList.toggle('is-loading', value)
-    }
-
-    const handleGetWhatsAppLink = (onSuccess = () => {}) => {
-      setIsLoading(true)
-
-      const data = {
-        page: $button.dataset.page,
-        url: new URL(window.location.href),
-        urlApi: $button.dataset.url,
-        nonce: $button.dataset.nonce
-      }
-
-      getUTMWhatsAppLink(data)
-        .then(link => {
-          if (link) {
-            utmWhatsAppLink = link
-            $button.href = link
-            onSuccess(link)
-          }
-
-          setIsLoading(false)
-        })
-    }
-
-    const timeout = setTimeout(() => {
-      clearTimeout(timeout)
-      handleGetWhatsAppLink()
-    }, 0)
-
-    $button.addEventListener('click', (e) => {
-      if (isLoading) {
-        e.preventDefault()
-      } else if (!utmWhatsAppLink) {
-        e.preventDefault()
-
-        handleGetWhatsAppLink((link) => {
-          window.open(link, '_blank')
-        })
-      }
     })
   }
 

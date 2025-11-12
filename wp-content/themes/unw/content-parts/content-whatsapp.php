@@ -16,7 +16,6 @@ if (!is_whatsapp_blocked($wa_general) && !empty($wg_img) && !empty($wg_link)) {
 ?>
     <a
       class="whatsapp-link"
-      id="contact-whatsapp"
       href="<?= esc_url($whatsapp_link) ?>"
       rel="noopener"
       <?= !empty($wg_link['target']) ? 'target="' . esc_attr($wg_link['target']) . '"' : '' ?>
