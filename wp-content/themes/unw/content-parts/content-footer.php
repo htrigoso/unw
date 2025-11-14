@@ -20,6 +20,9 @@ $book_title  = arr_get($footer_acf, ['Book', 'link', 'title']);
 $book_target = arr_get($footer_acf, ['Book', 'link', 'target']);
 $book_img    = arr_get($footer_acf, ['Book', 'image', 'url']);
 
+/// === COPY ===
+$copy = arr_get($footer_acf, ['copy', 'Info']);
+
 ob_start();
 if ($book_url && $book_title) : ?>
 <a aria-label="<?= esc_attr($book_title) ?>" href="<?= esc_url($book_url) ?>"
@@ -110,40 +113,53 @@ $libro_reclamaciones_html = ob_get_clean();
         <?php endforeach; ?>
       </div>
       <div class="footer__social-menu-claim">
-        <?php if (!empty($footer_acf['social']['options'])): ?>
-        <ul class="footer__social">
-          <?php foreach ($footer_acf['social']['options'] as $social):
-              if (!empty($social['status']) && !empty($social['link']['url']) && !empty($social['type']['value'])): ?>
-          <li class="footer__social-item">
-            <a href="<?= esc_url($social['link']['url']) ?>"
-              target="<?= esc_attr($social['link']['target'] ?: '_blank') ?>"
-              aria-label="<?= esc_attr($social['type']['label']) ?>">
-              <svg width="30" height="32">
-                <use xlink:href="#<?= esc_attr($social['type']['value']) ?>"></use>
-              </svg>
-            </a>
-          </li>
-          <?php endif;
-            endforeach; ?>
-        </ul>
-        <?php endif; ?>
-        <?php
-        wp_nav_menu([
-          'menu'       => 'navbar_menu_mobile_1',
-          'menu_class' => 'footer__menu',
-          'container'  => 'nav',
-          'container_class' => 'footer__menu-container',
-          'walker'     => class_exists('Custom_Menu_Walker') ? new Custom_Menu_Walker() : '',
-        ]);
-        ?>
+        <div class="footer_social-menu">
+          <?php if (!empty($footer_acf['social']['options'])): ?>
+          <ul class="footer__social">
+            <?php foreach ($footer_acf['social']['options'] as $social):
+                if (!empty($social['status']) && !empty($social['link']['url']) && !empty($social['type']['value'])): ?>
+            <li class="footer__social-item">
+              <a href="<?= esc_url($social['link']['url']) ?>"
+                target="<?= esc_attr($social['link']['target'] ?: '_blank') ?>"
+                aria-label="<?= esc_attr($social['type']['label']) ?>">
+                <svg width="30" height="32">
+                  <use xlink:href="#<?= esc_attr($social['type']['value']) ?>"></use>
+                </svg>
+              </a>
+            </li>
+            <?php endif;
+              endforeach; ?>
+          </ul>
+          <?php endif; ?>
+          <?php
+          wp_nav_menu([
+            'menu'       => 'navbar_menu_mobile_1',
+            'menu_class' => 'footer__menu',
+            'container'  => 'nav',
+            'container_class' => 'footer__menu-container',
+            'walker'     => class_exists('Custom_Menu_Walker') ? new Custom_Menu_Walker() : '',
+          ]);
+          ?>
+        </div>
         <div class="footer__claim">
           <?php echo $libro_reclamaciones_html; ?>
+          <?php
+          if ($copy):
+            $exploded_copy = !empty($copy) ? explode('|', $copy) : [];
+          ?>
+          <p class="footer__copy-tablet">
+            <?php foreach ($exploded_copy as $copy_item): ?>
+            <span><?= wp_kses_post($copy_item) ?></span>
+            <br />
+            <?php endforeach; ?>
+          </p>
+          <?php endif; ?>
         </div>
       </div>
     </div>
     <div class="footer__bottom">
       <?php
-      if ($copy = arr_get($footer_acf, ['copy', 'Info'])):
+      if ($copy):
         $exploded_copy = !empty($copy) ? explode('|', $copy) : [];
       ?>
       <p class="footer__copy-desktop"><?= wp_kses_post($copy) ?></p>
