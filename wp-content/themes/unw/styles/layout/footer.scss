@@ -14,9 +14,9 @@
   padding-top: rem(42);
   padding-bottom: rem(42);
 
-  @include media(">=tablet") {
-    padding-top: rem(88);
-    padding-bottom: rem(64);
+  @include media(">=phone") {
+    padding-top: rem(60);
+    padding-bottom: rem(60);
   }
 
   @include media(">=desktop-s") {
@@ -26,7 +26,7 @@
 }
 
 .footer__upper {
-  @include media(">=tablet") {
+  @include media(">=desktop-s") {
     display: flex;
     gap: rem(32);
     justify-content: space-between;
@@ -34,8 +34,12 @@
 }
 
 .footer__campus {
-  @include media("<tablet") {
+  @include media("<phone") {
     margin-bottom: rem(47);
+  }
+
+  @include media(">=phone", "<desktop-s") {
+    margin-bottom: rem(54);
   }
 }
 
@@ -58,16 +62,27 @@
   flex-direction: column;
   gap: rem(47);
 
-  @include media("<tablet") {
+  @include media("<phone") {
     margin-bottom: rem(47);
   }
 
-  @include media(">=tablet") {
+  @include media(">=phone", "<desktop-s") {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: rem(48);
+    margin-bottom: rem(54);
+  }
+
+  @include media(">=desktop-s") {
     gap: rem(56);
   }
 }
 
 .footer__contact {
+  @include media(">=phone", "<desktop-s") {
+    flex: 1 1 100%;
+  }
+
   ul {
     display: flex;
     flex-direction: column;
@@ -132,6 +147,10 @@
 .footer__menu {
   padding-top: rem(24);
   padding-bottom: rem(42);
+
+  @include media(">=phone", "<desktop-s") {
+    padding-bottom: 0;
+  }
 }
 
 .footer__menu,
@@ -189,7 +208,11 @@
 .footer__bottom {
   padding-top: rem(47);
 
-  @include media(">=tablet") {
+  @include media(">=phone", "<desktop-s") {
+    display: none;
+  }
+
+  @include media(">=desktop-s") {
     padding-top: rem(64);
   }
 }
@@ -202,20 +225,42 @@
   text-align: left;
 }
 
-.footer__copy-desktop {
-  @extend .footer__copy;
-  text-align: center;
-
-  @include media("<phone") {
-    display: none;
-  }
-}
-
 .footer__copy-mobile {
   @extend .footer__copy;
 
   @include media(">=phone") {
     display: none;
+  }
+}
+
+.footer__copy-tablet {
+  @extend .footer__copy;
+  display: none;
+  margin-top: rem(26);
+
+  @include media(">=phone", "<desktop-s") {
+    display: block;
+  }
+}
+
+.footer__copy-desktop {
+  @extend .footer__copy;
+  text-align: center;
+
+  @include media("<desktop-s") {
+    display: none;
+  }
+}
+
+.footer__social-menu-claim {
+  @include media(">=phone", "<desktop-s") {
+    display: flex;
+    gap: rem(48);
+
+    .footer_social-menu,
+    .footer__claim {
+      flex: 1 1 100%;
+    }
   }
 }
 
@@ -229,6 +274,16 @@
 
   a {
     color: var(--color-white);
+  }
+}
+
+.footer__claim {
+  @include media(">=phone", "<desktop-s") {
+    padding-top: rem(16);
+  }
+
+  a {
+    display: inline-block;
   }
 }
 
