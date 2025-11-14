@@ -36,20 +36,21 @@ if (!empty($slides)):
         <div class="swiper-lazy-preloader"></div>
         <?php if (!empty($slide['type'])): ?>
         <?php
-              $link_simple = $slide['link'] ?? null;
-              $link_simple_url = $link_simple['url'] ?? '';
-              $link_simple_target = $link_simple['target'] ?: '_self';
+          $link_simple = $slide['link'] ?? null;
+          if(!empty( $link_simple)) {
+            $link_simple_url = $link_simple['url'] ?? '';
+            $link_simple_target = $link_simple['target'] ?: '_self';
 
-              $final_href = esc_url($link_simple_url);
-              $data_attr = '';
-              if ($link_simple_url === '#modal-informacion') {
-                $final_href = '#modal-more-info';
-                $data_attr = 'data-modal-target="modal-more-info"';
-              }
-              ?>
-        <a href="<?php echo $final_href; ?>" <?php echo $data_attr; ?>
-          target="<?php echo esc_attr($link_simple_target); ?>"
-          aria-label="<?php echo esc_attr($link_simple['title'] ?? 'Ver más'); ?>">
+            $final_href = esc_url($link_simple_url);
+            $data_attr = '';
+            if ($link_simple_url === '#modal-informacion') {
+              $final_href = '#modal-more-info';
+              $data_attr = 'data-modal-target="modal-more-info"';
+            }
+          }
+          ?>
+        <a href="<?php echo $final_href ?? '#'; ?>" <?php echo $data_attr; ?>
+          target="<?php echo esc_attr($link_simple_target); ?>" aria-label="Ver más">
           <picture class="swiper-hero__picture">
             <source srcset="<?php echo esc_url($img_desktop_url); ?>" width="1920" height="754"
               media="(min-width: 768px)" />
