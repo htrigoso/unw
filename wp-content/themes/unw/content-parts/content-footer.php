@@ -20,14 +20,16 @@ $book_title  = arr_get($footer_acf, ['Book', 'link', 'title']);
 $book_target = arr_get($footer_acf, ['Book', 'link', 'target']);
 $book_img    = arr_get($footer_acf, ['Book', 'image', 'url']);
 
+/// === COPY ===
+$copy = arr_get($footer_acf, ['copy', 'Info']);
+
 ob_start();
 if ($book_url && $book_title) : ?>
-<a href="<?= esc_url($book_url) ?>" <?= $book_target ? 'target="' . esc_attr($book_target) . '"' : '' ?>
-  class="footer__book">
-
+<a aria-label="<?= esc_attr($book_title) ?>" href="<?= esc_url($book_url) ?>"
+  <?= $book_target ? 'target="' . esc_attr($book_target) . '"' : '' ?> class="footer__book">
   <?php if ($book_img): ?>
-  <img class="lazyload" src="<?= placeholder() ?>" data-src="<?= esc_url($book_img) ?>" width="240" height="135" alt=""
-    aria-hidden="true" />
+  <img class="lazyload" src="<?= placeholder() ?>" data-src="<?= esc_url($book_img) ?>" width="173" height="98"
+    alt="<?= esc_attr($book_title) ?>" aria-hidden="true" />
   <?php endif; ?>
 </a>
 <?php endif;
@@ -35,122 +37,138 @@ $libro_reclamaciones_html = ob_get_clean();
 ?>
 
 <footer class="footer">
-  <div class="x-container x-container--pad-213 footer__wrapper">
-
+  <div class="x-container footer__wrapper">
     <div class="footer__upper">
-      <div class="footer__left">
-        <?php if ($logo_url = arr_get($footer_acf, ['image', 'url'])): ?>
-        <img src="<?= placeholder() ?>" data-src="<?= esc_url($logo_url) ?>"
-          alt="<?= esc_attr(arr_get($footer_acf, ['image', 'alt']) ?: '') ?>" class="footer__logo lazyload" />
-        <?php endif; ?>
+      <div class="footer__campus">
+        <?php
+        $campus = $footer_acf['campus'] ?? [];
+        ?>
+        <h3 class="footer__sub-title"><?= esc_html($campus['title']) ?></h3>
+        <?php if (!empty($campus['options'])) : ?>
+        <ul class="footer__campus-options">
+          <?php
+            foreach ($campus['options'] as $option) :
+              if ($option['show']):
+            ?>
+          <li>
+            <?php if ($option['active']) : ?>
+            <a class="btn btn-xxs footer__campus-link" href="<?= esc_url($option['link']['url']) ?>"
+              target="<?= esc_attr($option['link']['target'] ?: '_self') ?>">
+              <?= esc_html($option['link']['title']) ?>
+            </a>
+            <?php else : ?>
+            <span class="btn btn-xxs footer__campus-link">
+              <?= esc_html($option['link']['title']) ?>
+            </span>
+            <?php endif; ?>
+          </li>
+          <?php
+              endif;
+            endforeach;
+            ?>
+        </ul>
+        <?php
+        endif;
 
-        <?php if ($title = arr_get($footer_acf, ['title'])): ?>
-        <h3 class="footer__cta--title"><?= esc_html($title) ?></h3>
-        <?php endif; ?>
-
-        <?php if ($desc = arr_get($footer_acf, ['description'])): ?>
-        <p class="footer__cta--desc"><?= esc_html($desc) ?></p>
-        <?php endif; ?>
-
-        <?php if ($wa_url = arr_get($footer_acf, ['wa', 'link', 'url'])): ?>
-        <a href="<?= esc_url($wa_url) ?>"
-          target="<?= esc_attr(arr_get($footer_acf, ['wa', 'link', 'target']) ?: '_blank') ?>"
-          class="btn btn-sm footer__cta--link">
-          <?= esc_html(arr_get($footer_acf, ['wa', 'link', 'title']) ?: '') ?>
-          <?php if ($wa_img = arr_get($footer_acf, ['wa', 'image', 'url'])): ?>
-          <img class="lazyload" src="<?= placeholder() ?>" data-src="<?= esc_url($wa_img) ?>" width="24" height="24"
-            alt="WhatsApp" />
-          <?php endif; ?>
-        </a>
+        if ($campus['links']) :
+        ?>
+        <ul class="footer__campus-links">
+          <?php
+            foreach ($campus['links'] as $link) :
+              if ($link['show']):
+            ?>
+          <li>
+            <a class="btn footer__link" href="<?= esc_url($link['link']['url']) ?>"
+              target="<?= esc_attr($link['link']['target'] ?: '_self') ?>">
+              <?= esc_html($link['link']['title']) ?>
+            </a>
+          </li>
+          <?php
+              endif;
+            endforeach;
+            ?>
+        </ul>
         <?php endif; ?>
       </div>
-
-      <div class="footer__right">
-        <div class="footer__right-col-left">
+      <div class="footer__contacts">
+        <?php
+        $contacts = $footer_acf['contacts'] ?? [];
+        foreach ($contacts as $contact) :
+        ?>
+        <div class="footer__contact">
+          <h3 class="footer__sub-title"><?= $contact['title'] ?></h3>
+          <?php if (!empty($contact['options'])) : ?>
+          <ul>
+            <?php foreach ($contact['options'] as $option) : ?>
+            <li>
+              <svg width="24" height="24">
+                <use xlink:href="#<?= esc_attr($option['type']) ?>"></use>
+              </svg>
+              <span><?= wp_kses_post($option['content']) ?></span>
+            </li>
+            <?php endforeach; ?>
+          </ul>
+          <?php endif; ?>
+        </div>
+        <?php endforeach; ?>
+      </div>
+      <div class="footer__social-menu-claim">
+        <div class="footer_social-menu">
+          <?php if (!empty($footer_acf['social']['options'])): ?>
+          <ul class="footer__social">
+            <?php foreach ($footer_acf['social']['options'] as $social):
+                if (!empty($social['status']) && !empty($social['link']['url']) && !empty($social['type']['value'])): ?>
+            <li class="footer__social-item">
+              <a href="<?= esc_url($social['link']['url']) ?>"
+                target="<?= esc_attr($social['link']['target'] ?: '_blank') ?>"
+                aria-label="<?= esc_attr($social['type']['label']) ?>">
+                <svg width="30" height="32">
+                  <use xlink:href="#<?= esc_attr($social['type']['value']) ?>"></use>
+                </svg>
+              </a>
+            </li>
+            <?php endif;
+              endforeach; ?>
+          </ul>
+          <?php endif; ?>
           <?php
           wp_nav_menu([
             'menu'       => 'navbar_menu_mobile_1',
-            'menu_class' => 'footer__menu__list',
+            'menu_class' => 'footer__menu',
             'container'  => 'nav',
+            'container_class' => 'footer__menu-container',
             'walker'     => class_exists('Custom_Menu_Walker') ? new Custom_Menu_Walker() : '',
           ]);
           ?>
-          <div class="footer__book--desktop">
-
-            <?php
-            echo $libro_reclamaciones_html;
-            ?>
-          </div>
         </div>
-
-        <div class="footer__right-col-right">
-          <div class="footer__short-divider"></div>
+        <div class="footer__claim">
+          <?php echo $libro_reclamaciones_html; ?>
           <?php
-          wp_nav_menu([
-            'menu'       => 'navbar_menu_mobile_2',
-            'menu_class' => 'footer__menu__list',
-            'container'  => 'nav',
-            'walker'     => class_exists('Custom_Menu_Walker') ? new Custom_Menu_Walker() : '',
-          ]);
+          if ($copy):
+            $exploded_copy = !empty($copy) ? explode('|', $copy) : [];
           ?>
-          <div class="footer__short-divider"></div>
-          <div class="footer__numbers">
-            <?php if (!empty($central)) : ?>
-            <?php foreach ($central as $phone) : ?>
-            <?php
-        $title  = $phone['title'] ?? '';
-        $number = $phone['number'] ?? '';
-        // Para href: dejamos solo dígitos
-        $tel = preg_replace('/\D+/', '', $number);
-      ?>
-            <div class="footer__phone_number">
-              <?= esc_html($title) ?>
-              <?php if ($number) : ?>
-              <a href="tel:<?= esc_attr($tel) ?>"><?= esc_html($number) ?></a>
-              <?php endif; ?>
-            </div>
+          <p class="footer__copy-tablet">
+            <?php foreach ($exploded_copy as $copy_item): ?>
+            <span><?= wp_kses_post($copy_item) ?></span>
+            <br />
             <?php endforeach; ?>
-            <?php endif; ?>
-          </div>
-
-          <div class="footer__book--mobile">
-            <?= $libro_reclamaciones_html ?>
-          </div>
+          </p>
+          <?php endif; ?>
         </div>
       </div>
     </div>
-
-    <div class="footer__divider"></div>
-
     <div class="footer__bottom">
-      <?php if ($copy = arr_get($footer_acf, ['copy', 'Info'])): ?>
-      <span class="footer__bottom--copy"><?= wp_kses_post($copy) ?></span>
-      <?php endif; ?>
-
-      <?php if (!empty($footer_acf['social']['options'])): ?>
-      <div class="footer__bottom__social">
-        <?php if ($social_title = arr_get($footer_acf, ['social', 'title'])): ?>
-        <span><?= esc_html($social_title) ?></span>
-        <?php endif; ?>
-
-        <ul class="footer__bottom__list">
-          <?php foreach ($footer_acf['social']['options'] as $social):
-              if (!empty($social['status']) && !empty($social['link']['url']) && !empty($social['type']['value'])): ?>
-          <li class="footer__bottom__item">
-            <a href="<?= esc_url($social['link']['url']) ?>"
-              target="<?= esc_attr($social['link']['target'] ?: '_blank') ?>"
-              aria-label="<?= esc_attr($social['type']['label']) ?>" class="footer__bottom__link">
-              <i>
-                <svg width="24" height="24">
-                  <use xlink:href="#<?= esc_attr($social['type']['value']) ?>"></use>
-                </svg>
-              </i>
-            </a>
-          </li>
-          <?php endif;
-            endforeach; ?>
-        </ul>
-      </div>
+      <?php
+      if ($copy):
+        $exploded_copy = !empty($copy) ? explode('|', $copy) : [];
+      ?>
+      <p class="footer__copy-desktop"><?= wp_kses_post($copy) ?></p>
+      <p class="footer__copy-mobile">
+        <?php foreach ($exploded_copy as $copy_item): ?>
+        <span><?= wp_kses_post($copy_item) ?></span>
+        <br />
+        <?php endforeach; ?>
+      </p>
       <?php endif; ?>
     </div>
   </div>

@@ -27,11 +27,20 @@ function register_post_type_novedades() {
 add_action('init', 'register_post_type_novedades');
 
 
-function uw_get_first_slider_image($post_id = null, $size = 'full') {
+function uw_get_first_slider_image($post_id = null, $size = 'medium_large') {
     if (!$post_id) {
         $post_id = get_the_ID();
     }
 
+    // 1️⃣ Si tiene imagen destacada, devuelve esa primero
+    if (has_post_thumbnail($post_id)) {
+        $featured_image = get_the_post_thumbnail_url($post_id, $size);
+        if ($featured_image) {
+            return $featured_image;
+        }
+    }
+
+    // 2️⃣ Si no hay destacada, busca en el campo 'slider'
     $slider = get_field('slider', $post_id);
 
     if (empty($slider) || !is_array($slider)) {
@@ -44,11 +53,11 @@ function uw_get_first_slider_image($post_id = null, $size = 'full') {
         return '';
     }
 
-    // Si existe el tamaño pedido
+    // 3️⃣ Usa el tamaño solicitado si existe
     if (!empty($image['sizes'][$size])) {
         return $image['sizes'][$size];
     }
 
-    // Si no, intenta la URL completa
+    // 4️⃣ En último caso, devuelve la URL completa
     return !empty($image['url']) ? $image['url'] : '';
 }

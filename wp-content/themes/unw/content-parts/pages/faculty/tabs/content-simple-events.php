@@ -25,7 +25,7 @@ $link = $acf_data['link'] ?? null;
               $location = $info['location'] ?? '';
               $url      = $info['register_url'] ?? '';
 
-              $image_url = get_the_post_thumbnail_url($post->ID, 'full') ?: get_template_directory_uri() . '/upload/default-event.jpg';
+              $image_url = get_the_post_thumbnail_url($post->ID, 'medium_large') ?: get_template_directory_uri() . '/upload/default-event.jpg';
               $image_alt = $title;
             ?>
         <div class="swiper-slide simple-events__slide">

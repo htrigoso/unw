@@ -79,6 +79,13 @@ function custom_carreras_distancia_rewrite_rules() {
   );
 }
 
+
+add_rewrite_rule(
+    '^carreras-a-distancia/([^/]+)/schema-preview/?$',
+    'index.php?carreras-a-distancia=$matches[1]&schema-preview=1',
+    'top'
+  );
+
 // 👇 Regenerar reglas cuando se crea/actualiza un término
 add_action('created_categoria-carrera-distancia', 'flush_rewrite_rules');
 add_action('edited_categoria-carrera-distancia', 'flush_rewrite_rules');

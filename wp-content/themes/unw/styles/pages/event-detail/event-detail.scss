@@ -21,6 +21,14 @@
     width: 50%;
   }
 }
+.event-detail__status {
+  --ribbon-bg: #ffc627;
+  background: var(--ribbon-bg);
+  display: inline-block;
+  padding: rem(10);
+  border-radius: rem(5);
+  margin-bottom: rem(10);
+}
 
 .event-detail__subtitle {
   @include title-32;
