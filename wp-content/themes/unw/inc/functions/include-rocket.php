@@ -229,10 +229,3 @@ add_action( 'wp_footer', function () {
 <?php
 }, 99 );
 
-// 5) Filtros adicionales para plugins de GTM (si los usas)
-add_filter('gtm4wp_delay_js', '__return_true'); // Plugin GTM4WP
-add_filter('rocket_delay_js_exclusions', function($excluded) {
-    // Quitar GTM de exclusiones si usas WP Rocket
-    $excluded = array_diff($excluded, ['googletagmanager.com']);
-    return $excluded;
-});
