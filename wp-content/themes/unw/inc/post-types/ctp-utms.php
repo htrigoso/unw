@@ -529,3 +529,268 @@ function unw_ajax_create_utm_whatsapp()
     'utm_whatsapp_link' => $whatsapp_link,
   ]);
 }
+
+/**
+ * Add export to Excel button with filters in UTM post type admin screen
+ */
+add_action('manage_posts_extra_tablenav', 'unw_utm_add_export_button');
+
+function unw_utm_add_export_button($which)
+{
+  global $typenow;
+
+  // Only show on UTM post type and on top position
+  if ($typenow !== UNW_UTM_POST_TYPE || $which !== 'top') {
+    return;
+  }
+
+  // Get available years from UTM posts
+  global $wpdb;
+  $years = $wpdb->get_col("
+    SELECT DISTINCT YEAR(post_date) as year
+    FROM {$wpdb->posts}
+    WHERE post_type = '" . UNW_UTM_POST_TYPE . "'
+    AND post_status = 'publish'
+    ORDER BY year DESC
+  ");
+
+  $current_year = isset($_GET['export_year']) ? intval($_GET['export_year']) : '';
+  $current_month = isset($_GET['export_month']) ? intval($_GET['export_month']) : '';
+?>
+<div class="alignleft actions" style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+  <!-- Year Filter -->
+  <select name="export_year" id="export_year" style="min-width: 100px;">
+    <option value="">Todos los años</option>
+    <?php foreach ($years as $year) : ?>
+    <option value="<?php echo esc_attr($year); ?>" <?php selected($current_year, $year); ?>>
+      <?php echo esc_html($year); ?>
+    </option>
+    <?php endforeach; ?>
+  </select>
+
+  <!-- Month Filter -->
+  <select name="export_month" id="export_month" style="min-width: 120px;">
+    <option value="">Todos los meses</option>
+    <option value="1" <?php selected($current_month, 1); ?>>Enero</option>
+    <option value="2" <?php selected($current_month, 2); ?>>Febrero</option>
+    <option value="3" <?php selected($current_month, 3); ?>>Marzo</option>
+    <option value="4" <?php selected($current_month, 4); ?>>Abril</option>
+    <option value="5" <?php selected($current_month, 5); ?>>Mayo</option>
+    <option value="6" <?php selected($current_month, 6); ?>>Junio</option>
+    <option value="7" <?php selected($current_month, 7); ?>>Julio</option>
+    <option value="8" <?php selected($current_month, 8); ?>>Agosto</option>
+    <option value="9" <?php selected($current_month, 9); ?>>Septiembre</option>
+    <option value="10" <?php selected($current_month, 10); ?>>Octubre</option>
+    <option value="11" <?php selected($current_month, 11); ?>>Noviembre</option>
+    <option value="12" <?php selected($current_month, 12); ?>>Diciembre</option>
+  </select>
+
+  <!-- Export Button -->
+  <button type="button" id="export_utms_btn" class="button button-primary">
+    <span class="dashicons dashicons-download" style="margin-top: 3px;"></span>
+    Exportar a Excel
+  </button>
+</div>
+
+<script>
+jQuery(document).ready(function($) {
+  // Validación: Si se selecciona mes, año es obligatorio
+  $('#export_month').on('change', function() {
+    var month = $(this).val();
+    var $yearSelect = $('#export_year');
+
+    if (month && !$yearSelect.val()) {
+      // Si hay mes seleccionado pero no año, marcar año como requerido
+      $yearSelect.css('border', '2px solid #d63638');
+      $yearSelect.focus();
+    } else {
+      $yearSelect.css('border', '');
+    }
+  });
+
+  // Limpiar el borde rojo cuando se selecciona un año
+  $('#export_year').on('change', function() {
+    $(this).css('border', '');
+  });
+
+  $('#export_utms_btn').on('click', function(e) {
+    e.preventDefault();
+
+    var year = $('#export_year').val();
+    var month = $('#export_month').val();
+
+    // Validación: Si hay mes seleccionado, año es obligatorio
+    if (month && !year) {
+      $('#export_year').css('border', '2px solid #d63638');
+      $('#export_year').focus();
+      alert('Por favor selecciona un año cuando filtres por mes.');
+      return;
+    }
+
+    var exportUrl = '<?php echo admin_url('admin-post.php'); ?>';
+    var params = new URLSearchParams({
+      action: 'export_utms_excel',
+      _wpnonce: '<?php echo wp_create_nonce('export_utms_excel'); ?>'
+    });
+
+    if (year) {
+      params.append('export_year', year);
+    }
+
+    if (month) {
+      params.append('export_month', month);
+    }
+
+    window.location.href = exportUrl + '?' + params.toString();
+  });
+});
+</script>
+<?php
+}
+
+/**
+ * Handle Excel export with year/month filters
+ */
+add_action('admin_post_export_utms_excel', 'unw_utm_export_to_excel');
+
+function unw_utm_export_to_excel()
+{
+  // Check user capabilities
+  if (!current_user_can('edit_posts')) {
+    wp_die('No tienes permisos para exportar UTMs.');
+  }
+
+  // Verify nonce
+  if (!isset($_GET['_wpnonce']) || !wp_verify_nonce($_GET['_wpnonce'], 'export_utms_excel')) {
+    wp_die('Solicitud inválida.');
+  }
+
+  // Get filter values
+  $filter_year = isset($_GET['export_year']) ? intval($_GET['export_year']) : 0;
+  $filter_month = isset($_GET['export_month']) ? intval($_GET['export_month']) : 0;
+
+  // Build query args
+  $args = array(
+    'post_type' => UNW_UTM_POST_TYPE,
+    'post_status' => 'publish',
+    'posts_per_page' => -1,
+    'orderby' => 'date',
+    'order' => 'DESC',
+  );
+
+  // Apply date filter if year or month is selected
+  if ($filter_year || $filter_month) {
+    $date_query = array();
+
+    if ($filter_year && $filter_month) {
+      // Specific year and month
+      $date_query['year'] = $filter_year;
+      $date_query['month'] = $filter_month;
+    } elseif ($filter_year) {
+      // Only year
+      $date_query['year'] = $filter_year;
+    } elseif ($filter_month) {
+      // Only month (current year)
+      $date_query['year'] = date('Y');
+      $date_query['month'] = $filter_month;
+    }
+
+    $args['date_query'] = array($date_query);
+  }
+
+  $utms = get_posts($args);
+
+  // Generate filename with filter info
+  $filename_parts = array('utms-export');
+
+  if ($filter_year && $filter_month) {
+    $month_names = array(
+      1 => 'enero',
+      2 => 'febrero',
+      3 => 'marzo',
+      4 => 'abril',
+      5 => 'mayo',
+      6 => 'junio',
+      7 => 'julio',
+      8 => 'agosto',
+      9 => 'septiembre',
+      10 => 'octubre',
+      11 => 'noviembre',
+      12 => 'diciembre'
+    );
+    $filename_parts[] = $month_names[$filter_month] . '-' . $filter_year;
+  } elseif ($filter_year) {
+    $filename_parts[] = 'año-' . $filter_year;
+  } elseif ($filter_month) {
+    $month_names = array(
+      1 => 'enero',
+      2 => 'febrero',
+      3 => 'marzo',
+      4 => 'abril',
+      5 => 'mayo',
+      6 => 'junio',
+      7 => 'julio',
+      8 => 'agosto',
+      9 => 'septiembre',
+      10 => 'octubre',
+      11 => 'noviembre',
+      12 => 'diciembre'
+    );
+    $filename_parts[] = $month_names[$filter_month];
+  } else {
+    $filename_parts[] = 'todos';
+  }
+
+  $filename_parts[] = date('Y-m-d-His');
+  $filename = implode('-', $filename_parts) . '.csv';
+
+  // Set headers for CSV download
+  header('Content-Type: text/csv; charset=utf-8');
+  header('Content-Disposition: attachment; filename="' . $filename . '"');
+  header('Pragma: no-cache');
+  header('Expires: 0');
+
+  // Create output stream
+  $output = fopen('php://output', 'w');
+
+  // Add BOM for proper UTF-8 encoding in Excel
+  fprintf($output, chr(0xEF) . chr(0xBB) . chr(0xBF));
+
+  // Add header row
+  fputcsv($output, array(
+    'Título',
+    'Código UTM',
+    'Formato',
+    'URL de UTM',
+    'URL Completa',
+    'Fecha de Publicación'
+  ));
+
+  // Add data rows
+  foreach ($utms as $utm) {
+    $utm_code = get_field('utm_code', $utm->ID);
+    $code_format = get_field('code_format', $utm->ID);
+    $utm_url = get_field('utm_url', $utm->ID);
+    $location_href = get_field('location_href', $utm->ID);
+
+    // Format code_format value
+    $format_label = '';
+    if ($code_format === UNW_UTM_FORMAT_PAUTA) {
+      $format_label = 'PAUTA';
+    } elseif ($code_format === UNW_UTM_FORMAT_ORGANICO) {
+      $format_label = 'ORGÁNICO';
+    }
+
+    fputcsv($output, array(
+      $utm->post_title,
+      $utm_code,
+      $format_label,
+      $utm_url,
+      $location_href,
+      get_the_date('Y-m-d H:i:s', $utm->ID)
+    ));
+  }
+
+  fclose($output);
+  exit;
+}
