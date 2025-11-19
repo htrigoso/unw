@@ -13,9 +13,7 @@
 }
 
 .more-form__header--title {
-  @include media(">=phone") {
-    max-width: none;
-  }
+  max-width: none;
 }
 
 .more-form-body {
@@ -53,5 +51,27 @@
 .more-modal {
   .modal-container {
     max-width: rem(714);
+  }
+}
+
+.more-form__shadow-box {
+  width: 100%;
+  border-radius: rem(20);
+  overflow: hidden;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.25);
+}
+
+.more-form__responsive {
+  @include media('<=phone-576') {
+    .more-form-body__row {
+      flex-direction: column;
+      margin-bottom: 0;
+
+      .f-50 {
+        width: 100%;
+        max-width: none;
+        margin-bottom: rem(26);
+      }
+    }
   }
 }
