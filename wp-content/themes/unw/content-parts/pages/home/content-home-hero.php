@@ -11,8 +11,6 @@ if (!empty($slides)):
   $img_mobile_alt = $first_images['mobile']['alt'] ?? $img_desktop_alt;
 ?>
 
-
-
 <section class="hero hero-swiper">
   <div class="swiper-container is-draggable">
     <div class="swiper-wrapper swiper-hero__wrapper">
@@ -37,7 +35,7 @@ if (!empty($slides)):
         <?php if (!empty($slide['type'])): ?>
         <?php
           $link_simple = $slide['link'] ?? null;
-          if(!empty( $link_simple)) {
+          if(!empty($link_simple)) {
             $link_simple_url = $link_simple['url'] ?? '';
             $link_simple_target = $link_simple['target'] ?: '_self';
 

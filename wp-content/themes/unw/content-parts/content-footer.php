@@ -178,7 +178,7 @@ $libro_reclamaciones_html = ob_get_clean();
 <?php
 if (apply_filters('show_book_link', false)) :
 ?>
-<?php get_template_part(HOME_CONTENT_PATH, 'more-info-form'); ?>
+<?php get_template_part(COMMON_CONTENT_PATH, 'more-info-modal'); ?>
 <a class="book-link" href="javascript:void(0);" data-modal-target="modal-more-info">
   <span class="sr-only">Solicita informes</span>
   <img src="<?= placeholder() ?>" class="book-link__icon lazyload"
