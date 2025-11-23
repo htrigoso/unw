@@ -38,8 +38,8 @@ export default class FormCrmAdmission {
     const radios = this.element.querySelectorAll('input[name="form_mixto"]')
 
     if (!radios.length) return
-    const departaments = JSON.parse(this.element.dataset.departaments || '[]')
-    const careers = JSON.parse(this.element.dataset.careers || '[]')
+    const departaments = window.appConfigUnw.departaments || []
+    const careers = window.appConfigUnw.careers || []
 
     radios.forEach(radio => {
       radio.addEventListener('change', () => {
@@ -166,7 +166,7 @@ export default class FormCrmAdmission {
     if (!form) return
 
     const select = form.querySelector('#careerSelect')
-    const campus = JSON.parse(this.element.dataset.campus || '[]')
+    const campus = window.appConfigUnw.campus || []
 
     const hiddenContainer = form.querySelector('.custom-hidden')
 

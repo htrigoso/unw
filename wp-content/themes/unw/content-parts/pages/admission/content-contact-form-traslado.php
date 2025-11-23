@@ -12,7 +12,6 @@ $validation_dni = $crm_ad['validation_dni'];
 $hide_dni = $validation_dni['hide'];
 ?>
 <form id="<?=$data_form_type;?>" data-form="zoho" data-form-type="<?=$data_form_type;?>"
-  data-careers="<?= esc_attr(wp_json_encode( $careers))?>" data-campus="<?= esc_attr(wp_json_encode( $list_campus))?>"
   class="contact-form formAdmision form-admission-2-desktop" method="POST" accept-charset="UTF-8"
   enctype="multipart/form-data"
   action="https://forms.zohopublic.com/adminzoho11/form/AdmisinII/formperma/_m8BugFNCHb9CoXtj6nhvLnp7I_JAlphigAw3SovFkI/htmlRecords/submit">

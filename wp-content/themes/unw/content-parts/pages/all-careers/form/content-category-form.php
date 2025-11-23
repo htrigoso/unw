@@ -3,16 +3,26 @@
   $utms_default = get_field('list_utms', 'option');
   $utm_admission = $crm_carriers['list_utms'] ?? [];
   $utms_final = merge_utms($utms_default, $utm_admission);
-  $form_crm_option = get_field('form_crm', 'option');
+
   $formUrl = "https://forms.zohopublic.com/adminzoho11/form/WebFacultades/formperma/fDTnpldKeP_IhYXDSkyc6rF7sXx2IKYDi1scDuEShjI/htmlRecords/submit";
-  $validation_dni = $form_crm_option['validation_dni'];
+
+  $form_crm_option = get_field('form_crm', 'option');
+  $form_crm_categories = get_field('form_crm_categories', 'option');
+  $validation_dni = $form_crm_categories['validation_dni_pregrado'];
   $hide_dni = $validation_dni['hide'];
+
   $vertical_modality = $args['vertical_modality'] ?? '';
   $position_form = $args['position_form'] ?? '';
 
   $careers = get_carreras();
   $list_departaments = $form_crm_option['list_departaments'];
   $list_campus = get_carreras_campus_modalidad();
+
+   if (is_tax()) {
+      $current_taxonomy = get_queried_object();
+      $current_term_id = $current_taxonomy->term_id;
+      $careers = get_carreras_by_facultad($current_term_id, 'pregrado');
+   }
 
   get_template_part(COMMON_CONTENT_PATH, 'more-info-form-category-presencial', [
     'form_id' => 'form-category-presencial',

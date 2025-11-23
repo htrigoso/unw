@@ -200,6 +200,82 @@ function render_only_careers($args = [])
 }
 
 
+/**
+ * Obtiene carreras filtradas por facultad
+ *
+ * @param int $term_id ID del término de la facultad
+ * @param string $modalidad 'pregrado', 'virtual', o null para ambas
+ * @return array Carreras filtradas
+ */
+function get_carreras_by_facultad($term_id = null, $modalidad = null) {
+  if (!$term_id) {
+    return get_carreras();
+  }
+
+  $tax_args = [
+    'post_type'              => ['carreras', 'carreras-a-distancia'],
+    'posts_per_page'         => -1,
+    'post_status'            => 'publish',
+    'orderby'                => 'title',
+    'order'                  => 'ASC',
+    'fields'                 => 'ids',
+    'no_found_rows'          => true,
+    'update_post_term_cache' => true,
+    'update_post_meta_cache' => false,
+    'tax_query'              => [
+      'relation' => 'OR',
+      [
+        'taxonomy' => 'categoria-carrera',
+        'field'    => 'term_id',
+        'terms'    => $term_id,
+      ],
+      [
+        'taxonomy' => 'categoria-carrera-distancia',
+        'field'    => 'term_id',
+        'terms'    => $term_id,
+      ],
+    ],
+  ];
+
+  $filtered_carreras = get_posts($tax_args);
+
+  $result = [
+    'pregrado' => [],
+    'virtual'  => [],
+  ];
+
+  foreach ($filtered_carreras as $id) {
+    $title = get_the_title($id);
+    $slug  = get_post_field('post_name', $id);
+    $post_type = get_post_type($id);
+
+    $mod = $post_type === 'carreras-a-distancia' ? 'virtual' : 'pregrado';
+
+    // Filtrar por modalidad si se especifica
+    if ($modalidad && $modalidad !== $mod) {
+      continue;
+    }
+
+    $taxonomy = $mod === 'virtual' ? 'categoria-carrera-distancia' : 'categoria-carrera';
+    $facultades = get_the_terms($id, $taxonomy);
+    $facultad = ($facultades && !is_wp_error($facultades)) ? $facultades[0]->name : 'Sin facultad';
+
+    $code_pre = get_post_meta($id, 'crm_code', true);
+    $code_vir = get_post_meta($id, 'crm_code_virtual', true);
+
+    $result[$mod][$facultad][] = [
+      'id'        => $id,
+      'slug'      => $slug,
+      'title'     => $title,
+      'modalidad' => $mod,
+      'code'      => $mod === 'pregrado' ? $code_pre : $code_vir,
+    ];
+  }
+
+  return $result;
+}
+
+
 function get_carreras()
 {
   // Traemos todos los posts de ambos CPT

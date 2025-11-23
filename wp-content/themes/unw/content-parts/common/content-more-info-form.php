@@ -35,10 +35,7 @@ $vertical_modality = $args['vertical_modality'] ?? false;
 
 <form id="<?= esc_attr($form_id) ?>" data-form="zoho"
   class="more-form newformfloat<?= $shadow_box ? ' more-form__shadow-box' : '' ?><?= $responsive ? ' more-form__responsive' : '' ?>"
-  data-careers="<?= esc_attr(wp_json_encode($careers)) ?>"
-  data-departaments="<?= esc_attr(wp_json_encode($list_departaments)) ?>"
-  data-campus="<?= esc_attr(wp_json_encode($list_campus)) ?>" method="POST" accept-charset="UTF-8"
-  enctype="multipart/form-data" action="<?= esc_attr($form_action) ?>">
+  method="POST" accept-charset="UTF-8" enctype="multipart/form-data" action="<?= esc_attr($form_action) ?>">
 
   <div class="form-header more-form__header">
     <i>

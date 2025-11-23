@@ -44,7 +44,7 @@ export default class FormCrmCareer {
 
   handleFormMixtoChange() {
     const radios = this.element.querySelectorAll('input[name="form_mixto"]')
-    const campus = JSON.parse(this.element.dataset.campus || '[]')
+    const campus = window.appConfigUnw.campus || []
     const isMixto = JSON.parse(this.element.dataset.mixto || 0)
     const codePre = this.element.dataset.codePre || ''
     const codeVir = this.element.dataset.codeVir || ''

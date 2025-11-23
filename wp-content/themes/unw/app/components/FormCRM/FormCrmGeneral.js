@@ -45,8 +45,8 @@ export default class FormCrmGeneral {
     const radios = this.element.querySelectorAll('input[name="form_mixto"]')
     if (!radios.length) return
 
-    const departaments = JSON.parse(this.element.dataset.departaments || '[]')
-    const careers = JSON.parse(this.element.dataset.careers || '[]')
+    const departaments = window.appConfigUnw.departaments || []
+    const careers = window.appConfigUnw.careers || []
 
     radios.forEach(radio => {
       radio.addEventListener('change', () => {

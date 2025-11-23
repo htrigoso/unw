@@ -36,10 +36,7 @@ $position_form = $args['position_form'] ?? '';
 
 <form id="<?= esc_attr($form_id) ?>" data-form="zoho"
   class="more-form newformfloat<?= $shadow_box ? ' more-form__shadow-box' : '' ?><?= $responsive ? ' more-form__responsive' : '' ?>"
-  data-careers="<?= esc_attr(wp_json_encode($careers)) ?>"
-  data-departaments="<?= esc_attr(wp_json_encode($list_departaments)) ?>"
-  data-campus="<?= esc_attr(wp_json_encode($list_campus)) ?>" method="POST" accept-charset="UTF-8"
-  enctype="multipart/form-data" action="<?= esc_attr($form_action) ?>"
+  method="POST" accept-charset="UTF-8" enctype="multipart/form-data" action="<?= esc_attr($form_action) ?>"
   data-position-form="<?= esc_attr($position_form) ?>">
 
   <div class="form-header more-form__header">
@@ -81,8 +78,10 @@ $position_form = $args['position_form'] ?? '';
     <div class="form-body__fields">
       <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'radio', [
         'direction'    => $vertical_modality ? 'flex-col' : 'justify-between',
-        'location'      => $location
+        'location'     => $location,
+        'form_type'   => $position_form,
       ]); ?>
+
 
       <div class="flex justify-between m-b-24 more-form-body__row">
         <div class="f-50">

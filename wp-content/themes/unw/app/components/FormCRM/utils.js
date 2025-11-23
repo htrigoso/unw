@@ -88,7 +88,7 @@ export function setClaseName(value, element) {
 // Creadores dinámicos
 // ==========================
 export function createSelectDepartament({ position = 'append', name = 'SingleLine8', element } = {}) {
-  const departaments = JSON.parse(element.dataset.departaments || '[]')
+  const departaments = window.appConfigUnw.departaments || []
   if (departaments.length === 0) return
 
   const containerHtml = element.querySelector(
@@ -206,7 +206,7 @@ export function sanitizeForInput(str) {
 }
 
 export function createSelectCampus(element, name = 'SingleLine7') {
-  const campus = JSON.parse(element.dataset.campus || '[]')
+  const campus = window.appConfigUnw.campus || []
   if (campus.length === 0) return
 
   const containerHtml = element.querySelector('[data-html-name="campus"]')

@@ -48,11 +48,9 @@
   $hide_dni = $validation_dni['hide'];
 ?>
 <form id="<?=$data_form_type;?>" data-form="zoho" data-form-type="<?=$data_form_type;?>"
-  data-departaments=" <?= esc_attr(wp_json_encode( $departments_json)) ?>"
-  data-campus="<?= esc_attr(wp_json_encode( $campus_json)) ?>" data-mixto="<?=esc_attr(trim($is_form_mixto))?>"
-  data-code-pre="<?=esc_attr($code_carrier_pre)?>" data-code-vir="<?=esc_attr($code_carrier_vir)?>"
-  class="contact-form formCarrera" method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
-  action="<?=$formUrl?>">
+  data-mixto="<?=esc_attr(trim($is_form_mixto))?>" data-code-pre="<?=esc_attr($code_carrier_pre)?>"
+  data-code-vir="<?=esc_attr($code_carrier_vir)?>" class="contact-form formCarrera" method="POST" accept-charset="UTF-8"
+  enctype="multipart/form-data" action="<?=$formUrl?>">
   <div class="form-header">
     <i>
       <svg width="52" height="52">
