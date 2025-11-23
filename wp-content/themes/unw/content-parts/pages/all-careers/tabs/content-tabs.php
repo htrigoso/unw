@@ -8,7 +8,7 @@ $careers_posts = $args['careers_posts'] ?? [];
   <div class="x-container x-container--pad-213 all-careers-tabs__form">
     <?php
      get_template_part(ALL_CAREERS_FORM_PATH, 'category-form', [
-       'mode' => $mode,
+       'position_form' => 'mobile'
      ]);
     ?>
   </div>

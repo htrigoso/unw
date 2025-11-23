@@ -5,7 +5,7 @@ import { $element } from '../../utils/dom'
 
 (function () {
   new ModalManager()
-  initFormCategory()
+
   const allTabsContainers = document.querySelectorAll('.nav-tabs')
   if (allTabsContainers.length > 0) {
     allTabsContainers.forEach(tabsContainer => {
@@ -13,13 +13,11 @@ import { $element } from '../../utils/dom'
     })
   }
 
-  function initFormCategory() {
-    const form = $element('#form-category-presencial')
-    if (form) {
-      new FormCrmCategory({
-        element: form,
-        container: '.more-form'
-      })
-    }
+  const initFormsByPosition = (position) => {
+    const form = $element(`[data-position-form="${position}"]`)
+    if (form) new FormCrmCategory({ element: form })
   }
+
+  initFormsByPosition('desktop')
+  initFormsByPosition('mobile')
 })()

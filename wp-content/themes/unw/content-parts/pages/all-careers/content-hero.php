@@ -10,7 +10,10 @@ $hero_slide = $args['hero_slide'] ?? [];
   <div class="x-container all-careers-hero__form__wrapper">
     <div class="all-careers-hero__form">
       <?php
-      get_template_part(COMMON_CONTENT_PATH, 'more-info-form', ['shadow_box' => true, 'vertical_modality' => true]);
+      get_template_part(ALL_CAREERS_FORM_PATH, 'category-form', [
+        'vertical_modality' => true,
+        'position_form' => 'desktop'
+      ]);
       ?>
     </div>
   </div>

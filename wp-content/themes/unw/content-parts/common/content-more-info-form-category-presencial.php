@@ -30,6 +30,8 @@ $validation_dni = $args['validation_dni'] ?? [];
 $location = $args['location'] ?? 'is-home';
 $shadow_box = $args['shadow_box'] ?? false;
 $responsive = $args['responsive'] ?? false;
+$vertical_modality = $args['vertical_modality'] ?? false;
+$position_form = $args['position_form'] ?? '';
 ?>
 
 <form id="<?= esc_attr($form_id) ?>" data-form="zoho"
@@ -37,7 +39,8 @@ $responsive = $args['responsive'] ?? false;
   data-careers="<?= esc_attr(wp_json_encode($careers)) ?>"
   data-departaments="<?= esc_attr(wp_json_encode($list_departaments)) ?>"
   data-campus="<?= esc_attr(wp_json_encode($list_campus)) ?>" method="POST" accept-charset="UTF-8"
-  enctype="multipart/form-data" action="<?= esc_attr($form_action) ?>">
+  enctype="multipart/form-data" action="<?= esc_attr($form_action) ?>"
+  data-position-form="<?= esc_attr($position_form) ?>">
 
   <div class="form-header more-form__header">
     <i>
@@ -75,10 +78,9 @@ $responsive = $args['responsive'] ?? false;
   <input type="hidden" name="Website" value="<?= get_current_page_url() ?>"> <!-- Url de Trakeo -->
 
   <div class="form-body more-form-body">
-
     <div class="form-body__fields">
       <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'radio', [
-        'direction'    => 'justify-between',
+        'direction'    => $vertical_modality ? 'flex-col' : 'justify-between',
         'location'      => $location
       ]); ?>
 

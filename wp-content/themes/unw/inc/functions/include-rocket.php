@@ -35,6 +35,10 @@ function my_delay_js_exclusions() {
 
 // 2) Decide si aplicar delay (no en admin, previsualizador, REST, etc.)
 function my_should_delay_js() {
+    // ❌ NO ejecutar en local
+    if ( defined('WP_ENVIRONMENT_TYPE') && WP_ENVIRONMENT_TYPE === 'local' ) return false;
+    if ( in_array($_SERVER['HTTP_HOST'] ?? '', ['localhost', '127.0.0.1', 'local.test', 'unw.local']) ) return false;
+
     if ( is_admin() || is_user_logged_in() && current_user_can('edit_posts') ) return false;
     if ( defined('REST_REQUEST') && REST_REQUEST ) return false;
     if ( isset($_GET['no_delay_js']) ) return false; // útil para debug

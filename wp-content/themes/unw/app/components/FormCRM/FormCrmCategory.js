@@ -45,8 +45,8 @@ export default class FormCrmCategory {
     const radios = this.element.querySelectorAll('input[name="form_mixto"]')
     if (!radios.length) return
 
-    const departaments = JSON.parse(this.element.dataset.departaments || '[]')
-    const careers = JSON.parse(this.element.dataset.careers || '[]')
+    const departaments = window.appConfigUnw.departaments || []
+    const careers = window.appConfigUnw.careers || []
 
     radios.forEach(radio => {
       radio.addEventListener('change', () => {
@@ -123,11 +123,13 @@ export default class FormCrmCategory {
   }
 
   buildHiddenInputs({ facultyName, careerName, type }) {
+    console.log(facultyName, careerName, type)
+
     if (type === FORMS.PREGRADO) {
       return createHiddenInputs({
         type,
         fields: [
-          { name: 'SingleLine3', facultyName },
+          { name: 'SingleLine4', facultyName },
           { name: 'SingleLine6', careerName }
         ]
       })
@@ -147,7 +149,7 @@ export default class FormCrmCategory {
   }
 
   updateHiddenFields({ select, hiddenContainer }) {
-    const checked = document.querySelector('input[name="form_mixto"]:checked')
+    const checked = this.element.querySelector('input[name="form_mixto"]:checked')
     const selectedOption = select.options[select.selectedIndex]
     const parentOptgroup = selectedOption.parentElement
 
@@ -163,16 +165,15 @@ export default class FormCrmCategory {
   }
 
   handleCarrersChange() {
-    const form = document.querySelector(`${this.formContainer} `)
-    if (!form) return
-    const select = document.getElementById('careerSelect')
+    const select = this.element.querySelector('#careerSelect')
+    if (!select) return
 
-    const campus = JSON.parse(this.element.dataset.campus || '[]')
+    const campus = window.appConfigUnw.campus || []
 
-    const hiddenContainer = form.querySelector('.custom-hidden')
+    const hiddenContainer = this.element.querySelector('.custom-hidden')
 
     const boundUpdate = () => {
-      const checked = document.querySelector('input[name="form_mixto"]:checked')
+      const checked = this.element.querySelector('input[name="form_mixto"]:checked')
       const selectedOption = select.options[select.selectedIndex]
 
       if (!selectedOption) return
@@ -190,7 +191,7 @@ export default class FormCrmCategory {
     }
 
     select.addEventListener('change', boundUpdate)
-    document
+    this.element
       .querySelectorAll('input[name="form_mixto"]')
       .forEach(radio => radio.addEventListener('change', boundUpdate))
 
