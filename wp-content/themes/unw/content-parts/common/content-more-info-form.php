@@ -30,6 +30,7 @@ $validation_dni = $args['validation_dni'] ?? [];
 $location = $args['location'] ?? 'is-home';
 $shadow_box = $args['shadow_box'] ?? false;
 $responsive = $args['responsive'] ?? false;
+$vertical_modality = $args['vertical_modality'] ?? false;
 ?>
 
 <form id="<?= esc_attr($form_id) ?>" data-form="zoho" class="more-form newformfloat<?= $shadow_box ? ' more-form__shadow-box' : '' ?><?= $responsive ? ' more-form__responsive' : '' ?>"
@@ -74,10 +75,9 @@ $responsive = $args['responsive'] ?? false;
   <input type="hidden" name="Website" value="<?= get_current_page_url() ?>"> <!-- Url de Trakeo -->
 
   <div class="form-body more-form-body">
-
     <div class="form-body__fields">
       <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'radio', [
-        'direction'    => 'justify-between',
+        'direction'    => $vertical_modality ? 'flex-col' : 'justify-between',
         'location'      => $location
       ]); ?>
 
