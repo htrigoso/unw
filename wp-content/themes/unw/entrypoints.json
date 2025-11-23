@@ -1,5 +1,6 @@
 {
   "bundles": {
+    "critical": ["./app/critical/index.js"],
     "app": ["./app/index.js", "./styles/index.scss"],
     "home": ["./app/pages/home/index.js", "./styles/pages/home/index.scss"],
     "careers": [

@@ -3,6 +3,11 @@
  * Delay JS execution similar to WP Rocket, but theme-only.
  */
 
+// 0) Helper para verificar si DelayJS está activo (usable en templates)
+function is_delay_js_active() {
+    return my_should_delay_js();
+}
+
 // 1) Handles que NUNCA debes retrasar (añade los tuyos)
 function my_delay_js_exclusions() {
     return [
@@ -115,117 +120,268 @@ add_action( 'wp_footer', function () {
     ?>
 <script>
 /*!
- * Delay JS Loader - Performance Optimization
+ * Delay JS Loader - Performance Optimization v2.0
  * - Carga scripts marcados con type="text/delayed-javascript"
- * - Dispara en la primera interacción o timeout
+ * - Dispara en la primera interacción REAL del usuario
  * - Mantiene el orden; respeta async/defer
- * - Optimizado para PageSpeed
+ * - Incluye fix para iOS y validaciones exhaustivas
+ * - Basado en el patrón exitoso de GTMLoader
  */
 (function() {
-  var START_TIMEOUT_MS = 3000; // reducido a 3s para mejor balance
-  var loaded = false;
-  var userInteracted = false;
+  'use strict';
 
-  function getDelayedScripts() {
-    return Array.prototype.slice.call(document.querySelectorAll('script[type="text/delayed-javascript"]'));
-  }
+  class DelayJSLoader {
+    constructor() {
+      this.version = '2.0.0';
+      this.loaded = false;
+      this.userActionTriggered = false;
+      this.firstMousemoveIgnored = false;
 
-  function loadScriptFromMarker(marker) {
-    var s = document.createElement('script');
-    var src = marker.getAttribute('data-src');
-    var isAsync = marker.getAttribute('data-async') === '1';
-    var isDefer = marker.getAttribute('data-defer') === '1';
+      // Eventos de interacción del usuario
+      this.triggerEvents = [
+        'keydown', 'keyup',
+        'mousedown', 'mouseup', 'mousemove', 'mouseover', 'mouseout',
+        'touchmove', 'touchstart', 'touchend', 'touchcancel',
+        'wheel', 'click', 'dblclick', 'input'
+      ];
 
-    if (isAsync) s.async = true;
-    if (isDefer) s.defer = true;
+      this.userEventHandler = this.handleUserEvent.bind(this);
+      this.init();
+    }
 
-    // Conserva nom. de handle como data-attr útil para depurar
-    s.setAttribute('data-handle', marker.getAttribute('data-handle') || '');
+    // Método principal de inicialización
+    init() {
+      this.setupPageShowHide();
 
-    // Evita que adblockers rompan URLs parcialmente cargadas
-    s.src = src;
+      // Fix para dispositivos iOS (iPad/iPhone)
+      if (/iP(ad|hone)/.test(navigator.userAgent)) {
+        this.setupIOSTouchFix();
+      }
 
-    // Copia atributos "nonce" / "crossorigin" si existían (ajusta si los usas)
-    var nonce = marker.getAttribute('nonce');
-    if (nonce) s.setAttribute('nonce', nonce);
-    var co = marker.getAttribute('crossorigin');
-    if (co) s.setAttribute('crossorigin', co);
+      this.captureUserEvents();
+      this.logInitialState();
+    }
 
-    // Reemplaza el marcador por el script real
-    marker.parentNode.replaceChild(s, marker);
-    return new Promise(function(resolve) {
-      s.onload = s.onerror = resolve;
-    });
-  }
-
-  // Carga en orden secuencial los que NO eran async (para no romper dependencias)
-  // y permite que los marcados como async se disparen en paralelo.
-  function run() {
-    if (loaded) return;
-    loaded = true;
-
-    var markers = getDelayedScripts();
-    if (!markers.length) return;
-
-    // separa por async
-    var seq = [],
-      parallel = [];
-    markers.forEach(function(m) {
-      if (m.getAttribute('data-async') === '1') parallel.push(m);
-      else seq.push(m);
-    });
-
-    // paralelos primero (no bloquean)
-    parallel.forEach(loadScriptFromMarker);
-
-    // luego los secuenciales, respetando el orden en el DOM
-    (function loadNext(i) {
-      if (i >= seq.length) return;
-      loadScriptFromMarker(seq[i]).then(function() {
-        loadNext(i + 1);
+    // Configurar listeners para pageshow/pagehide
+    setupPageShowHide() {
+      window.addEventListener('pageshow', (event) => {
+        this.persisted = event.persisted;
+      }, {
+        isDelayJS: true
       });
-    })(0);
+
+      window.addEventListener('pagehide', () => {
+        this.onFirstUserAction = null;
+      }, {
+        isDelayJS: true
+      });
+    }
+
+    // Fix para iOS: convertir touch en click real
+    setupIOSTouchFix() {
+      let touchStart;
+
+      function saveTouchStart(event) {
+        touchStart = event;
+      }
+
+      window.addEventListener('touchstart', saveTouchStart, {
+        isDelayJS: true
+      });
+
+      window.addEventListener('touchend', (event) => {
+        // Validar que el touch fue un tap (no un swipe)
+        if (event.changedTouches[0] && touchStart?.changedTouches[0] &&
+          Math.abs(event.changedTouches[0].pageX - touchStart.changedTouches[0].pageX) < 10 &&
+          Math.abs(event.changedTouches[0].pageY - touchStart.changedTouches[0].pageY) < 10 &&
+          event.timeStamp - touchStart.timeStamp < 200) {
+
+          // No convertir si es un input de texto
+          if (event.target.tagName === 'INPUT' && event.target.type === 'text') {
+            return;
+          }
+
+          // Disparar eventos sintéticos
+          event.target.dispatchEvent(new TouchEvent('touchend', {
+            target: event.target,
+            bubbles: true
+          }));
+
+          event.target.dispatchEvent(new MouseEvent('mouseover', {
+            target: event.target,
+            bubbles: true
+          }));
+
+          event.target.dispatchEvent(new PointerEvent('click', {
+            target: event.target,
+            bubbles: true,
+            cancelable: true,
+            detail: 1,
+            clientX: event.changedTouches[0].clientX,
+            clientY: event.changedTouches[0].clientY
+          }));
+
+          event.preventDefault();
+        }
+      }, {
+        isDelayJS: true
+      });
+    }
+
+    // Manejar eventos del usuario
+    handleUserEvent(event) {
+      // Marcar que el usuario ha interactuado
+      if (!this.userActionTriggered) {
+        if (event.type === 'mousemove' && !this.firstMousemoveIgnored) {
+          // Ignorar el primer mousemove (puede ser automático)
+          this.firstMousemoveIgnored = true;
+          return;
+        }
+
+        // Ignorar eventos pasivos que no indican interacción real
+        if (event.type === 'keyup' || event.type === 'mouseover' || event.type === 'mouseout') {
+          return;
+        }
+
+        this.userActionTriggered = true;
+        console.log('[DelayJS] User interaction detected:', event.type);
+        this.triggerScriptLoad();
+      }
+    }
+
+    // Capturar todos los eventos del usuario
+    captureUserEvents() {
+      this.triggerEvents.forEach(eventType => {
+        window.addEventListener(eventType, this.userEventHandler, {
+          passive: true,
+          isDelayJS: true
+        });
+      });
+
+      document.addEventListener('visibilitychange', this.userEventHandler, {
+        isDelayJS: true
+      });
+
+      // Si la página está oculta, activar inmediatamente
+      if (document.hidden) {
+        this.triggerScriptLoad();
+      }
+    }
+
+    // Remover listeners de interacción del usuario
+    removeUserInteractionListener() {
+      this.triggerEvents.forEach(eventType => {
+        window.removeEventListener(eventType, this.userEventHandler, {
+          passive: true
+        });
+      });
+      document.removeEventListener('visibilitychange', this.userEventHandler);
+    }
+
+    // Obtener scripts retrasados
+    getDelayedScripts() {
+      return Array.from(document.querySelectorAll('script[type="text/delayed-javascript"]'));
+    }
+
+    // Cargar un script desde su marcador
+    loadScriptFromMarker(marker) {
+      return new Promise((resolve) => {
+        const script = document.createElement('script');
+        const src = marker.getAttribute('data-src');
+        const isAsync = marker.getAttribute('data-async') === '1';
+        const isDefer = marker.getAttribute('data-defer') === '1';
+
+        if (isAsync) script.async = true;
+        if (isDefer) script.defer = true;
+
+        // Conserva handle para debug
+        script.setAttribute('data-handle', marker.getAttribute('data-handle') || '');
+
+        // Atributos de seguridad
+        const nonce = marker.getAttribute('nonce');
+        if (nonce) script.setAttribute('nonce', nonce);
+
+        const crossorigin = marker.getAttribute('crossorigin');
+        if (crossorigin) script.setAttribute('crossorigin', crossorigin);
+
+        script.src = src;
+        script.onload = script.onerror = () => {
+          console.log('[DelayJS] Loaded:', marker.getAttribute('data-handle') || src);
+          resolve();
+        };
+
+        // Reemplazar el marcador por el script real
+        marker.parentNode.replaceChild(script, marker);
+      });
+    }
+
+    // Cargar todos los scripts
+    async loadAllScripts() {
+      const markers = this.getDelayedScripts();
+      if (!markers.length) {
+        console.log('[DelayJS] No delayed scripts found');
+        return;
+      }
+
+      console.log('[DelayJS] Loading', markers.length, 'delayed scripts...');
+
+      // Separar por async
+      const sequential = [];
+      const parallel = [];
+
+      markers.forEach(marker => {
+        if (marker.getAttribute('data-async') === '1') {
+          parallel.push(marker);
+        } else {
+          sequential.push(marker);
+        }
+      });
+
+      // Cargar paralelos primero (no bloquean)
+      parallel.forEach(marker => this.loadScriptFromMarker(marker));
+
+      // Cargar secuenciales respetando el orden
+      for (const marker of sequential) {
+        await this.loadScriptFromMarker(marker);
+      }
+
+      console.log('[DelayJS] All scripts loaded successfully');
+    }
+
+    // Activar la carga de scripts
+    async triggerScriptLoad() {
+      if (this.loaded) return;
+      this.loaded = true;
+
+      this.removeUserInteractionListener();
+
+      await this.yieldToMain();
+      await this.loadAllScripts();
+    }
+
+    // Ceder control al navegador (yield to main thread)
+    async yieldToMain() {
+      if (document.hidden) {
+        // Si la página está oculta, usar setTimeout
+        return new Promise(resolve => setTimeout(resolve));
+      } else {
+        // Si está visible, usar requestAnimationFrame para mejor rendimiento
+        return new Promise(resolve => requestAnimationFrame(resolve));
+      }
+    }
+
+    // Log del estado inicial
+    logInitialState() {
+      const delayedScripts = this.getDelayedScripts();
+      if (delayedScripts.length > 0) {
+        console.log('[DelayJS] Scripts to be loaded');
+      }
+    }
   }
 
-  // Disparadores de interacción - SOLO se ejecuta con interacción REAL del usuario
-  // Eliminamos mousemove y touchmove porque son muy sensibles
-  var triggers = ['mousedown', 'touchstart', 'wheel', 'keydown', 'click'];
-  var interactionDetected = false;
-
-  function onFirstInteraction(e) {
-    if (loaded || interactionDetected) return;
-
-    // Prevenir ejecución múltiple
-    interactionDetected = true;
-    userInteracted = true;
-
-    console.log('[DelayJS] User interaction detected:', e.type);
-
-    // Remover todos los listeners inmediatamente
-    triggers.forEach(function(t) {
-      window.removeEventListener(t, onFirstInteraction, true);
-      document.removeEventListener(t, onFirstInteraction, true);
-    });
-
-    // Ejecutar en el siguiente tick para asegurar limpieza de listeners
-    setTimeout(function() {
-      run();
-    }, 0);
-  }
-
-  // Registrar listeners SOLO en document (no en window) para reducir sensibilidad
-  triggers.forEach(function(t) {
-    document.addEventListener(t, onFirstInteraction, {
-      capture: true,
-      passive: true,
-      once: true // Auto-remove después del primer disparo
-    });
-  });
-
-  console.log('[DelayJS] Waiting for user interaction to load scripts...');
-  console.log('[DelayJS] Delayed scripts count:', getDelayedScripts().length);
+  // Inicializar el loader
+  new DelayJSLoader();
 })();
 </script>
 <?php
 }, 99 );
-

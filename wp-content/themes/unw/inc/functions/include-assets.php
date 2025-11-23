@@ -169,12 +169,40 @@ function include_assets()
   }
 
 
- $preload_styles = [];
+  $preload_styles = [];
   $preload_scripts = [];
+  $critical_scripts = []; // Array para scripts críticos
 
   if (!empty($assets)) {
     foreach ($assets as $key => $val) {
       switch ($key) {
+        case 'critical':
+          {
+            // ⚡ SCRIPT CRÍTICO - Se carga en footer con defer
+            if (array_key_exists('js', $val)) {
+              $script_url = ($env === 'production') ? $themePath . '/' . $val['js'] : $val['js'];
+
+              if (ALLOW_GZIP) {
+                $script_url = $script_url . '.gz';
+              }
+
+              // Agregar a array de scripts críticos para preload
+              $critical_scripts[] = $script_url;
+
+              // Cargar en footer con defer
+              wp_enqueue_script('critical', $script_url, [], '', true); // true = in footer
+
+              // Agregar defer y data-no-delay con alta prioridad (antes del filtro de DelayJS)
+              add_filter('script_loader_tag', function($tag, $handle) {
+                if ($handle === 'critical') {
+                  // Agregar defer y data-no-delay
+                  $tag = str_replace('<script ', '<script defer data-no-delay ', $tag);
+                }
+                return $tag;
+              }, 5, 2); // Prioridad 5 (antes que el filtro de DelayJS que está en 10)
+            }
+          }
+          break;
         case 'app':
           {
             if (array_key_exists('js', $val)) {
@@ -224,6 +252,13 @@ function include_assets()
           break;
       }
     }
+  }
+
+  // Preload Scripts Críticos (primero, máxima prioridad)
+  if (!empty($critical_scripts)) {
+      foreach ($critical_scripts as $js_url) {
+        echo '<link rel="preload" href="' . esc_url($js_url) . '" as="script">' . "\n";
+      }
   }
 
   // Preload CSS

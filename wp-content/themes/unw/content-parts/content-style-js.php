@@ -11,6 +11,7 @@
 
   if (!empty($assetsJsonFile)) {
     $assets = json_decode($assetsJsonFile, true);
+
     $vars = $wp_query->query_vars;
     $themePath = get_template_directory_uri();
     $env = $assets['env'];
@@ -19,6 +20,9 @@
 
 
 
+
+  // Verificar si DelayJS está activo para NO hacer preload de scripts retrasados
+  $delay_js_active = function_exists('is_delay_js_active') && is_delay_js_active();
 
   if (!empty($assets)) {
     foreach ($assets as $key => $val) {
@@ -45,7 +49,10 @@
               echo "<link rel='stylesheet' href='{$style_url}' media='print' onload=\"this.media='all'\">\n";
               echo "<noscript><link rel='stylesheet' href='{$style_url}' media='all'></noscript>\n";
 
-              echo "<link rel='modulepreload' href='" . esc_url($script_url) . "'>\n";
+              // NO hacer modulepreload si DelayJS está activo (evita warnings)
+              if (!$delay_js_active) {
+                echo "<link rel='modulepreload' href='" . esc_url($script_url) . "'>\n";
+              }
               echo "<script type='module'>import('" . esc_url($script_url) . "');</script>\n";
 
             }
