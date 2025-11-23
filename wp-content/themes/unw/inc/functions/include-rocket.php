@@ -373,13 +373,8 @@ add_action( 'wp_footer', function () {
     // Log del estado inicial
     logInitialState() {
       const delayedScripts = this.getDelayedScripts();
-      console.log('[DelayJS] System initialized v' + this.version);
-      console.log('[DelayJS] Waiting for user interaction to load scripts...');
-      console.log('[DelayJS] Delayed scripts count:', delayedScripts.length);
-
       if (delayedScripts.length > 0) {
-        console.log('[DelayJS] Scripts to be loaded:',
-          delayedScripts.map(s => s.getAttribute('data-handle') || s.getAttribute('data-src')));
+        console.log('[DelayJS] Scripts to be loaded');
       }
     }
   }
@@ -390,4 +385,3 @@ add_action( 'wp_footer', function () {
 </script>
 <?php
 }, 99 );
-

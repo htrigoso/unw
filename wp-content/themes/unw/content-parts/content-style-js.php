@@ -11,6 +11,7 @@
 
   if (!empty($assetsJsonFile)) {
     $assets = json_decode($assetsJsonFile, true);
+
     $vars = $wp_query->query_vars;
     $themePath = get_template_directory_uri();
     $env = $assets['env'];
