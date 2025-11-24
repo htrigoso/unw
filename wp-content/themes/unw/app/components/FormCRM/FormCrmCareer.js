@@ -1,4 +1,4 @@
-import { handleFormSubmitTracking } from '../../utils/incubeta'
+import { getFormData, handleFormSubmitTracking } from '../../utils/incubeta'
 import { buildOptionsCampusCareers, createSelectCampus, createSelectDepartament, FORMS, removeSelectCampus, removeSelectDepartament, sanitizeForInput, setClaseName, validateInputs, validatePhone } from './utils'
 
 // ==========================
@@ -45,22 +45,10 @@ export default class FormCrmCareer {
       }
 
       this.isSubmitting = true
-
-      const checked = this.element.querySelector('input[name="form_mixto"]:checked')
-      const careerSelect = this.element.querySelector('#careerSelect')
-      const selectedOption = careerSelect?.options[careerSelect.selectedIndex]
-      const campusSelect = this.element.querySelector('#campusSelect')
-      const campusOption = campusSelect?.options[campusSelect.selectedIndex]
-      const departamentSelect = this.element.querySelector('#departament')
-      const departamentOption = departamentSelect?.options[departamentSelect.selectedIndex]
+      const formData = getFormData(this.element)
 
       // Usar función de Incubeta para tracking
-      await handleFormSubmitTracking(this.element, {
-        modalidad: checked?.value,
-        carrera: selectedOption?.textContent.trim(),
-        campus: campusOption?.textContent.trim(),
-        departamento: departamentOption?.textContent.trim()
-      }, (dataLayerEvent) => {
+      await handleFormSubmitTracking(this.element, formData, (dataLayerEvent) => {
         console.log('✅ DataLayer validado (submit):', dataLayerEvent)
       })
     })

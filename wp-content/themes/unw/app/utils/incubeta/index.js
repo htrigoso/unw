@@ -6,6 +6,35 @@
 import { hashValue } from '../../components/FormCRM/utils'
 
 /**
+ * Obtiene los datos del formulario de manera estandarizada
+ * @param {HTMLFormElement} form - Elemento del formulario
+ * @returns {Object} - Objeto con todos los elementos del formulario
+ */
+export function getFormData(form) {
+  const checked = form.querySelector('input[name="form_mixto"]:checked')
+  const careerSelect = form.querySelector('#careerSelect')
+  const selectedOption = careerSelect?.options[careerSelect.selectedIndex]
+  const campusSelect = form.querySelector('#campusSelect')
+  const campusOption = campusSelect?.options[campusSelect.selectedIndex]
+  const departamentSelect = form.querySelector('#departament')
+  const departamentOption = departamentSelect?.options[departamentSelect.selectedIndex]
+
+  return {
+    checked,
+    careerSelect,
+    selectedOption,
+    campusSelect,
+    campusOption,
+    departamentSelect,
+    departamentOption,
+    modalidad: checked?.value,
+    carrera: selectedOption?.textContent.trim(),
+    campus: campusOption?.textContent.trim(),
+    departamento: departamentOption?.textContent.trim()
+  }
+}
+
+/**
  * Normaliza el valor de modalidad
  * @param {string} modalidad - Valor de modalidad del formulario
  * @returns {string} - Modalidad normalizada
