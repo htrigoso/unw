@@ -2,6 +2,7 @@ import Menu from './components/Menu'
 import { $element } from './utils/dom'
 import initLazyLoad from './utils/lazyload'
 import { initViewItemListTracking } from './utils/incubeta/viewItemList'
+import { initSelectItemTracking, trackCareerDetail } from './utils/incubeta/selectItem'
 
 class App {
   constructor() {
@@ -194,8 +195,16 @@ class App {
   }
 
   initCareersTracking() {
-    // Iniciar tracking de view_item_list si hay datos disponibles
+    // Tracking de view_item_list (cuando se carga la página de listado)
     initViewItemListTracking()
+
+    // Tracking de select_item (cuando hacen click en "Ver carrera")
+    initSelectItemTracking()
+
+    // Tracking automático de select_item para páginas single
+    if (window.unwCareerDetailData) {
+      trackCareerDetail(window.unwCareerDetailData)
+    }
   }
 }
 

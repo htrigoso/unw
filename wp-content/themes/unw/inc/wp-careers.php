@@ -28,6 +28,27 @@ function uw_terms_to_string($terms)
   return implode(', ', $names);
 }
 
+/**
+ * Obtiene el código CRM de una carrera según la modalidad
+ *
+ * @param int $career_id ID de la carrera
+ * @param string $mode 'virtual' o 'presencial'
+ * @return string Código CRM
+ */
+function get_career_crm_code($career_id, $mode = 'presencial') {
+  $crm = get_field('crm', $career_id);
+
+  if (!$crm) {
+    return '';
+  }
+
+  if ($mode === 'virtual') {
+    return $crm['code_virtual'] ?? '';
+  }
+
+  return $crm['code'] ?? '';
+}
+
 function render_html_all_careers($args = [])
 {
 
@@ -155,12 +176,19 @@ function render_html_all_careers($args = [])
     ]
   ]);
 
+  // 👉 Preparar datos de carreras con código CRM
+  $mode = $post_type === 'carreras-a-distancia' ? 'virtual' : 'presencial';
+  $careers_data = array_map(function($career) use ($mode) {
+    $career->crm_code = get_career_crm_code($career->ID, $mode);
+    return $career;
+  }, $careers_query->posts);
+
   // 👉 Render tabs
   get_template_part(ALL_CAREERS_TABS_PATH, 'tabs', [
     'tabs'              => $tabs,
-    'mode'              => $post_type === 'carreras-a-distancia' ? 'virtual' : 'presencial',
+    'mode'              => $mode,
     'current_faculty_id' => $current_faculty_id,
-    'careers_posts'     => $careers_query->posts,
+    'careers_posts'     => $careers_data,
   ]);
 }
 

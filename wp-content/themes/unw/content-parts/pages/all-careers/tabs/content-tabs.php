@@ -5,23 +5,6 @@ $current_faculty_id = $args['current_faculty_id'] ?? 0;
 $careers_posts = $args['careers_posts'] ?? [];
 
 
-// Preparar datos para tracking de Incubeta
-$careers_data = array_map(function($career) use ($mode) {
-  // Obtener código CRM según modalidad
-  $crm_code = '';
-  $crm = get_field('crm', $career->ID);
-
-  if ($mode === 'virtual') {
-    $crm_code = $crm['code_virtual'];
-  } else {
-    $crm_code = $crm['code'];
-  }
-
-  return [
-    'id' => $crm_code,
-    'title' => $career->post_title
-  ];
-}, $careers_posts);
 
 
 $list_name = $mode === 'virtual' ? 'carreras_a_distancia' : 'carreras_pregrado';
@@ -51,6 +34,7 @@ $item_brand = $mode === 'virtual' ? 'Carrera a distancia' : 'Carrera presencial'
         <?php
         $cards = [];
         foreach ($careers_posts as $career) {
+
           $img = get_the_post_thumbnail_url($career->ID, 'medium_large');
           $cards[] = [
             'image'       => $img,
@@ -59,6 +43,7 @@ $item_brand = $mode === 'virtual' ? 'Carrera a distancia' : 'Carrera presencial'
             'link'        => get_permalink($career->ID),
             'link_title'  => 'Ver carrera',
             'link_target' => '_blank',
+            'crm_code'    => $career->crm_code
           ];
         }
         get_template_part(ALL_CAREERS_TABS_PATH, 'body', ['cards' => $cards]);
@@ -74,7 +59,7 @@ $item_brand = $mode === 'virtual' ? 'Carrera a distancia' : 'Carrera presencial'
  * El tracking se ejecuta desde app/index.js mediante initViewItemListTracking()
  */
 window.unwCareersData = {
-  careers: <?php echo json_encode($careers_data); ?>,
+  careers: <?php echo json_encode($careers_posts); ?>,
   listName: '<?php echo esc_js($list_name); ?>',
   itemBrand: '<?php echo esc_js($item_brand); ?>'
 };
