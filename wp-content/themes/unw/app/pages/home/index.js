@@ -1,10 +1,10 @@
-import HeroSwiper from '../../components/HeroSwiper'
 import PostSwiper from '../../components/PostSwiper'
 import InternationalSwiper from '../../components/InternationalSwiper'
 import PostSwiperDesktop from '../../components/PostSwiperDesktop'
 import { ModalManager } from '../../components/Modal'
 import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
 import { $element } from '../../utils/dom'
+import { initViewProgramTypeTracking } from '../../utils/incubeta/viewProgramType'
 
 export default class HomePage {
   constructor() {
@@ -19,6 +19,7 @@ export default class HomePage {
     PostSwiper('.featured-events-swiper')
     InternationalSwiper()
     this.initFormGeneral()
+    initViewProgramTypeTracking()
   }
 
   initFormGeneral() {
