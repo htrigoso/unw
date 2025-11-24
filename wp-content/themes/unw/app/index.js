@@ -3,6 +3,7 @@ import { $element } from './utils/dom'
 import initLazyLoad from './utils/lazyload'
 import { initViewItemListTracking } from './utils/incubeta/viewItemList'
 import { initSelectItemTracking, trackCareerDetail } from './utils/incubeta/selectItem'
+import { initErrorMessageTracking } from './utils/incubeta/errorMessage'
 
 class App {
   constructor() {
@@ -15,6 +16,7 @@ class App {
     this.handleOnSubmitForm()
     this.blockedClickButtonModal()
     this.initCareersTracking()
+    this.initErrorTracking()
   }
 
   createNavbar() {
@@ -205,6 +207,11 @@ class App {
     if (window.unwCareerDetailData) {
       trackCareerDetail(window.unwCareerDetailData)
     }
+  }
+
+  initErrorTracking() {
+    // Tracking de errores de validación en formularios
+    initErrorMessageTracking()
   }
 }
 
