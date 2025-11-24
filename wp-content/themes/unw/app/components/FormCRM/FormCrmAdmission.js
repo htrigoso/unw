@@ -1,4 +1,5 @@
 
+import { handleFormSubmitTracking } from '../../utils/incubeta'
 import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, removeNameAttributeCampus, removeSelectDepartament, resetCustomHidden, setClaseName, setNameAttributeCampus, showCampusSelect, updateHiddenInputs, updateOptionsCareers, validateInputs, validatePhone } from './utils'
 
 // ==========================
@@ -13,6 +14,7 @@ const FORM_ADMISSION_VIRTUAL =
 export default class FormCrmAdmission {
   constructor({ element, container }) {
     this.element = element
+    this.isSubmitting = false
     this.formContainer = container
     this.createListeners()
   }
@@ -27,11 +29,44 @@ export default class FormCrmAdmission {
     this.handleCarrersChange()
     this.handleDepartamentChange()
     this.handleCampusChange()
+    this.handleFormSubmit()
   }
 
   // ==========================
   // Handlers
   // ==========================
+
+  handleFormSubmit() {
+    if (!this.element) return
+
+    this.element.addEventListener('submit', async (event) => {
+      // Prevenir doble envío
+      if (this.isSubmitting) {
+        event.preventDefault()
+        return
+      }
+
+      this.isSubmitting = true
+
+      const checked = this.element.querySelector('input[name="form_mixto"]:checked')
+      const careerSelect = this.element.querySelector('#careerSelect')
+      const selectedOption = careerSelect?.options[careerSelect.selectedIndex]
+      const campusSelect = this.element.querySelector('#campusSelect')
+      const campusOption = campusSelect?.options[campusSelect.selectedIndex]
+      const departamentSelect = this.element.querySelector('#departament')
+      const departamentOption = departamentSelect?.options[departamentSelect.selectedIndex]
+
+      // Usar función de Incubeta para tracking
+      await handleFormSubmitTracking(this.element, {
+        modalidad: checked?.value,
+        carrera: selectedOption?.textContent.trim(),
+        campus: campusOption?.textContent.trim(),
+        departamento: departamentOption?.textContent.trim()
+      }, (dataLayerEvent) => {
+        console.log('✅ DataLayer validado (submit):', dataLayerEvent)
+      })
+    })
+  }
 
   handleFormMixtoChange() {
     if (!this.element) return

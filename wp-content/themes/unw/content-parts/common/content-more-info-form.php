@@ -33,7 +33,7 @@ $responsive = $args['responsive'] ?? false;
 $vertical_modality = $args['vertical_modality'] ?? false;
 ?>
 
-<form id="<?= esc_attr($form_id) ?>" data-form="zoho"
+<form id="<?= esc_attr($form_id) ?>" name="<?= esc_attr($form_id) ?>" data-form="zoho"
   class="more-form newformfloat<?= $shadow_box ? ' more-form__shadow-box' : '' ?><?= $responsive ? ' more-form__responsive' : '' ?>"
   method="POST" accept-charset="UTF-8" enctype="multipart/form-data" action="<?= esc_attr($form_action) ?>">
 

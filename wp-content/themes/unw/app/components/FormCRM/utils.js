@@ -3,6 +3,31 @@ export const FORMS = Object.freeze({
   VIRTUAL: 'virtual',
   WORK: 'work'
 })
+
+/**
+ * Hashea un valor con SHA256
+ * @param {string} value - Valor a hashear
+ * @returns {Promise<string>} - Hash en formato hexadecimal
+ */
+export async function hashValue(value) {
+  if (!value) return ''
+
+  // Verificar si crypto.subtle está disponible
+  if (!window.crypto || !window.crypto.subtle) {
+    return value
+  }
+
+  try {
+    const msgBuffer = new TextEncoder().encode(value)
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer)
+    const hashArray = Array.from(new Uint8Array(hashBuffer))
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
+  } catch (error) {
+    console.error('Error al hashear valor:', error)
+    return value
+  }
+}
+
 export function validateInputs() {
   const rules = {
     letters: /[^A-Za-zÁÉÍÓÚáéíóúÑñ\s]/g, // solo letras y espacios

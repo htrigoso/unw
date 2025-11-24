@@ -1,4 +1,5 @@
 import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenFieldCampus, updateHiddenInputs, updateOptionsCareers, validateInputs, showCampusSelect, validatePhone } from './utils'
+import { handleFormSubmitTracking } from '../../utils/incubeta'
 
 // ==========================
 // Constantes de formularios
@@ -12,8 +13,8 @@ const FORM_GENERAL_VIRTUAL =
 export default class FormCrmGeneral {
   constructor({ element, container }) {
     this.element = element
-
     this.formContainer = container
+    this.isSubmitting = false
     this.createListeners()
   }
 
@@ -27,6 +28,39 @@ export default class FormCrmGeneral {
     this.handleCarrersChange()
     this.handleDepartamentChange()
     this.handleCampusChange()
+    this.handleFormSubmit()
+  }
+
+  handleFormSubmit() {
+    if (!this.element) return
+
+    this.element.addEventListener('submit', async (event) => {
+      // Prevenir doble envío
+      if (this.isSubmitting) {
+        event.preventDefault()
+        return
+      }
+
+      this.isSubmitting = true
+
+      const checked = this.element.querySelector('input[name="form_mixto"]:checked')
+      const careerSelect = this.element.querySelector('#careerSelect')
+      const selectedOption = careerSelect?.options[careerSelect.selectedIndex]
+      const campusSelect = this.element.querySelector('#campusSelect')
+      const campusOption = campusSelect?.options[campusSelect.selectedIndex]
+      const departamentSelect = this.element.querySelector('#departament')
+      const departamentOption = departamentSelect?.options[departamentSelect.selectedIndex]
+
+      // Usar función de Incubeta para tracking
+      await handleFormSubmitTracking(this.element, {
+        modalidad: checked?.value,
+        carrera: selectedOption?.textContent.trim(),
+        campus: campusOption?.textContent.trim(),
+        departamento: departamentOption?.textContent.trim()
+      }, (dataLayerEvent) => {
+        console.log('✅ DataLayer validado (submit):', dataLayerEvent)
+      })
+    })
   }
 
   removeCustomHiddenDepartament() {
@@ -167,7 +201,7 @@ export default class FormCrmGeneral {
     if (!form) return
     const select = document.getElementById('careerSelect')
 
-    const campus = JSON.parse(this.element.dataset.campus || '[]')
+    const campus = window.appConfigUnw.campus || []
 
     const hiddenContainer = form.querySelector('.custom-hidden')
 
