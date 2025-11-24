@@ -31,6 +31,7 @@ function uw_terms_to_string($terms)
 function render_html_all_careers($args = [])
 {
 
+
   // Valores por defecto
   $defaults = [
     'current_faculty_id' => 0,

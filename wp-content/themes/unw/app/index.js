@@ -1,6 +1,8 @@
 import Menu from './components/Menu'
 import { $element } from './utils/dom'
 import initLazyLoad from './utils/lazyload'
+import { initViewItemListTracking } from './utils/incubeta/viewItemList'
+
 class App {
   constructor() {
     this.createLazyLoad()
@@ -11,6 +13,7 @@ class App {
     this.hideBackdrop()
     this.handleOnSubmitForm()
     this.blockedClickButtonModal()
+    this.initCareersTracking()
   }
 
   createNavbar() {
@@ -188,6 +191,11 @@ class App {
         e.preventDefault() // evita scroll
       })
     })
+  }
+
+  initCareersTracking() {
+    // Iniciar tracking de view_item_list si hay datos disponibles
+    initViewItemListTracking()
   }
 }
 

@@ -141,3 +141,66 @@ export async function handleFormSubmitTracking(form, data, callback) {
     throw error
   }
 }
+
+/**
+ * Construye el evento view_item_list para listado de carreras
+ * Evento: view_item_list - Se dispara cuando el usuario ve un listado de carreras
+ *
+ * @param {Array} careers - Array de carreras (posts de WordPress)
+ * @param {string} listName - Nombre de la lista (ej: 'carreras_a_distancia', 'carreras_pregrado')
+ * @param {string} itemBrand - Marca del item (ej: 'Carrera a distancia', 'Carrera presencial')
+ * @returns {Object} - Objeto dataLayer para view_item_list
+ */
+export function buildViewItemListDataLayer(careers, listName, itemBrand) {
+  const items = careers.map((career, index) => ({
+    item_id: career.id.toString(),
+    item_name: career.title,
+    affiliation: '',
+    coupon: '',
+    discount: 0,
+    index: index,
+    item_brand: itemBrand,
+    item_category: '',
+    item_category2: '',
+    item_category3: '',
+    item_category4: '',
+    item_category5: '',
+    item_list_id: listName,
+    item_list_name: listName,
+    item_variant: '',
+    location_id: '',
+    price: 0,
+    quantity: 1
+  }))
+
+  return {
+    event: 'view_item_list',
+    ecommerce: {
+      item_list_id: listName,
+      item_list_name: listName,
+      items: items
+    }
+  }
+}
+
+/**
+ * Envía el evento view_item_list al dataLayer
+ * @param {Array} careers - Array de carreras
+ * @param {string} listName - Nombre de la lista
+ * @param {string} itemBrand - Marca del item
+ */
+export function trackViewItemList(careers, listName, itemBrand) {
+  if (!careers || careers.length === 0) {
+    console.warn('No hay carreras para trackear en view_item_list')
+    return
+  }
+
+  // Limpiar objeto ecommerce previo
+  pushToDataLayer({ ecommerce: null })
+
+  // Enviar evento
+  const dataLayerEvent = buildViewItemListDataLayer(careers, listName, itemBrand)
+  pushToDataLayer(dataLayerEvent)
+
+  console.log('✅ view_item_list enviado:', dataLayerEvent)
+}
