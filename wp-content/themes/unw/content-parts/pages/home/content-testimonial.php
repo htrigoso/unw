@@ -14,7 +14,7 @@ $testimonial_posts = $testimonial_data['testimonials'] ?? [];
         </h2>
 
         <div class="post-swiper testimonial-swiper" data-width="compact">
-          <div class="swiper-container">
+          <div class="swiper-container" data-type-component="swiper">
             <div class="swiper-wrapper">
               <?php foreach ($testimonial_posts as $testimonial_post) :
                 $info = get_field('info-testimonio', $testimonial_post->ID);

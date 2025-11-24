@@ -10,7 +10,7 @@ if ( $purpose && is_array($purpose) ) :
 
     <?php if ( !empty($purpose['list']) && is_array($purpose['list']) ) : ?>
     <div class="purpose-swiper post-swiper">
-      <div class="swiper-container">
+      <div class="swiper-container" data-type-component="swiper">
         <div class="swiper-wrapper purpose-swiper__list">
           <?php foreach ($purpose['list'] as $item) : ?>
           <div class="swiper-slide purpose-swiper__item">

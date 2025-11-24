@@ -8,7 +8,7 @@ if ($authorities && is_array($authorities)) :
         <?= esc_html($authorities['title']); ?>
       </h3>
       <div class="authorities-swiper post-swiper" data-width="compact">
-        <div class="swiper-container">
+        <div class="swiper-container" data-type-component="swiper">
           <div class="swiper-wrapper authorities-swiper__list">
             <?php foreach ($authorities['list'] as $card) : ?>
               <div class="swiper-slide authorities-swiper__item">

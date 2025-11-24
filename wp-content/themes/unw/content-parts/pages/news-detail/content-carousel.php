@@ -4,7 +4,7 @@ $slider = get_field('slider');
 
 <?php if (!empty($slider)) : ?>
 <div class="carousel post-swiper">
-  <div class="swiper-container">
+  <div class="swiper-container" data-type-component="swiper">
     <div class="swiper-wrapper carousel__list">
       <?php foreach ($slider as $slide) : ?>
       <?php

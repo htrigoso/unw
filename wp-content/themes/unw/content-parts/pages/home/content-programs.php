@@ -10,7 +10,7 @@ $lists = $programs['lists'] ?? [];
     <h2 class="programs__title"><?php echo esc_html($title); ?></h2>
 
     <div class="post-swiper-desktop switch-pagination-navigation" data-width="compact">
-      <div class="swiper-container">
+      <div class="swiper-container" data-type-component="swiper">
         <div class="swiper-wrapper programs__cards">
           <?php foreach ($lists as $index => $program):
               $image = $program['image']['url'] ?? '';

@@ -12,7 +12,7 @@ if (!empty($slides)):
 ?>
 
 <section class="hero hero-swiper">
-  <div class="swiper-container is-draggable">
+  <div class="swiper-container is-draggable" data-type-component="swiper">
     <div class="swiper-wrapper swiper-hero__wrapper">
       <?php
         $slide_index = 0;

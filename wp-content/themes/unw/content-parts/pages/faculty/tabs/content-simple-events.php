@@ -11,7 +11,7 @@ $link = $acf_data['link'] ?? null;
   <h2 class="simple-events__title"><?php echo esc_html($acf_data['title'] ?? 'Eventos Destacados'); ?></h2>
 
   <div class="post-swiper simple-events-swiper" data-width="compact">
-    <div class="swiper-container">
+    <div class="swiper-container" data-type-component="swiper">
       <div class="swiper-wrapper">
         <?php foreach ($featured_events as $post): ?>
         <?php

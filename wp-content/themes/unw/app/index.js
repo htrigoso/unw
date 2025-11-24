@@ -8,6 +8,9 @@ import { initFaqClickTracking } from './utils/incubeta/faqClick'
 import { initFooterClickTracking } from './utils/incubeta/footerClick'
 import { initContactClickTracking } from './utils/incubeta/contactClick'
 import { initShareClickTracking } from './utils/incubeta/shareClick'
+import { initCarrouselViewTracking } from './utils/incubeta/carrouselView'
+import { initCarrouselSwipeTracking } from './utils/incubeta/carrouselSwipe'
+import { initCarrouselClickTracking } from './utils/incubeta/carrouselClick'
 
 class App {
   constructor() {
@@ -25,6 +28,7 @@ class App {
     this.initFooterTracking()
     this.initContactTracking()
     this.initShareTracking()
+    this.initCarrouselTracking()
   }
 
   createNavbar() {
@@ -240,6 +244,15 @@ class App {
   initShareTracking() {
     // Tracking de clicks en compartir contenido
     initShareClickTracking()
+  }
+
+  initCarrouselTracking() {
+    // Tracking de visualización de carrousels/swipers
+    initCarrouselViewTracking()
+    // Tracking de cambios de slide en carrousels
+    initCarrouselSwipeTracking()
+    // Tracking de clicks en enlaces dentro de carrousels
+    initCarrouselClickTracking()
   }
 }
 
