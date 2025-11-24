@@ -1,4 +1,5 @@
 import { initializeScrollableTabs } from './../../functions/scrollable-tabs'
+import { initSelectContentTracking } from '../../utils/incubeta/selectContent'
 
 (function () {
   const allTabsContainers = document.querySelectorAll('.nav-tabs')
@@ -7,4 +8,7 @@ import { initializeScrollableTabs } from './../../functions/scrollable-tabs'
       initializeScrollableTabs(tabsContainer)
     })
   }
+
+  // Inicializar tracking de select_content
+  initSelectContentTracking()
 })()

@@ -12,17 +12,21 @@ $guidance_steps = get_field('guidance_steps');
       <?php endif; ?>
 
       <div class="guidance-steps__items">
-        <?php foreach ($guidance_steps['options'] as $index => $step) :
+        <?php
+          $c=1;
+          foreach ($guidance_steps['options'] as $index => $step) :
             $img = $step['image']['url'] ?? '';
             $title = $step['title'] ?? '';
             $url = $step['link']['url'] ?? '#';
             $target = $step['link']['target'] ?? '_self';
           ?>
         <article class="guidance-steps__item">
-          <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>" class="guidance-steps__link">
+          <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>"
+            class="guidance-steps__link <?=$c===3?'btn-contact':''?>"
+            <?=$c===3?'data-contact-platform="modal" data-contact-type="agenda"':''?>>'
             <?php if ($img) : ?>
-            <img class="lazyload guidance-steps__image" src="<?=placeholder() ?>" data-src="<?php echo esc_url($img); ?>"
-              alt="<?php echo esc_attr($title); ?>">
+            <img class="lazyload guidance-steps__image" src="<?=placeholder() ?>"
+              data-src="<?php echo esc_url($img); ?>" alt="<?php echo esc_attr($title); ?>">
             <?php endif; ?>
             <div class="guidance-steps__overlay">
               <span class="guidance-steps__number"><?php echo ($index + 1) . '.'; ?></span>
@@ -37,7 +41,9 @@ $guidance_steps = get_field('guidance_steps');
             </div>
           </a>
         </article>
-        <?php endforeach; ?>
+        <?php
+          $c++;
+         endforeach; ?>
       </div>
 
     </div>

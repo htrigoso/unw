@@ -7,6 +7,7 @@ $link = $args['link'];
 $link_target = $args['link_target'];
 $link_title = $args['link_title'];
 $crm_code = $args['crm_code'] ?? '';
+$content_id = $args['content_id'] ?? '';
 ?>
 
 <article class="program-card">
@@ -24,7 +25,9 @@ $crm_code = $args['crm_code'] ?? '';
     <?php endif; ?>
     <?php if (!empty($link)): ?>
     <a href="<?php echo esc_url($link); ?>" data-crm-code="<?php echo esc_attr($crm_code); ?>"
-      class="btn btn-primary program-card--content__cta btn-careers-select-item">
+      data-content-type="<?php echo esc_attr($title_item); ?>" data-content-id="<?php echo esc_attr($content_id); ?>"
+      class="btn btn-primary program-card--content__cta btn-careers-select-item"
+      data-is-home="<?=is_front_page() ? 1 : 0 ?>">
       <?php echo esc_html($link_title); ?>
     </a>
     <?php endif; ?>

@@ -4,6 +4,10 @@ import initLazyLoad from './utils/lazyload'
 import { initViewItemListTracking } from './utils/incubeta/viewItemList'
 import { initSelectItemTracking, trackCareerDetail } from './utils/incubeta/selectItem'
 import { initErrorMessageTracking } from './utils/incubeta/errorMessage'
+import { initFaqClickTracking } from './utils/incubeta/faqClick'
+import { initFooterClickTracking } from './utils/incubeta/footerClick'
+import { initContactClickTracking } from './utils/incubeta/contactClick'
+import { initShareClickTracking } from './utils/incubeta/shareClick'
 
 class App {
   constructor() {
@@ -17,6 +21,10 @@ class App {
     this.blockedClickButtonModal()
     this.initCareersTracking()
     this.initErrorTracking()
+    this.initFaqTracking()
+    this.initFooterTracking()
+    this.initContactTracking()
+    this.initShareTracking()
   }
 
   createNavbar() {
@@ -212,6 +220,26 @@ class App {
   initErrorTracking() {
     // Tracking de errores de validación en formularios
     initErrorMessageTracking()
+  }
+
+  initFaqTracking() {
+    // Tracking de clicks en preguntas frecuentes (FAQ)
+    initFaqClickTracking()
+  }
+
+  initFooterTracking() {
+    // Tracking de clicks en enlaces del footer
+    initFooterClickTracking()
+  }
+
+  initContactTracking() {
+    // Tracking de clicks en opciones de contacto
+    initContactClickTracking()
+  }
+
+  initShareTracking() {
+    // Tracking de clicks en compartir contenido
+    initShareClickTracking()
   }
 }
 

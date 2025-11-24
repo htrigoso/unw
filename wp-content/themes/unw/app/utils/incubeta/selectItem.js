@@ -103,6 +103,12 @@ export function initSelectItemTracking() {
 
     if (!button) return
 
+    // NO ejecutar si es del home (tiene data-is-home="1")
+    if (button.getAttribute('data-is-home') === '1') {
+      console.log('[Incubeta] Skip select_item - es del home (data-is-home="1")')
+      return
+    }
+
     // Obtener índice del botón en la lista
     const allButtons = document.querySelectorAll('.btn-careers-select-item')
     const index = Array.from(allButtons).indexOf(button)
