@@ -181,9 +181,7 @@ function unw_find_utm_by_content($content, $code_format)
     'post_id' => (int) $result->ID,
     'utm_code' => $result->utm_code
   ] : null;
-}
-
-/**
+}/**
  * Create new UTM post with auto-generated code
  *
  * @param string $title The title to associate with the UTM
@@ -218,6 +216,16 @@ function unw_create_utm($title, $content, $url, $code_format)
       'location_href' => $url, // Store full URL in content/description
     ],
   ];
+
+  $code_exist = unw_find_utm_by_content($content, $code_format);
+
+  if($code_exist) {
+    return [
+      'utm_id' => $code_exist['post_id'],
+      'utm_code' => code_exist['utm_code'],
+    ];
+  }
+
 
   $post_id = wp_insert_post($post_data, true);
 
@@ -793,4 +801,141 @@ function unw_utm_export_to_excel()
 
   fclose($output);
   exit;
+}
+
+/**
+ * Validate UTM code uniqueness before saving
+ * Prevents duplicate UTM codes across all UTM posts
+ */
+add_filter('acf/validate_value/key=field_68ef1390b2cab', 'unw_validate_unique_utm_code', 10, 4);
+
+function unw_validate_unique_utm_code($valid, $value, $field, $input_name)
+{
+  // Si ya hay un error, no validar
+  if (!$valid) {
+    return $valid;
+  }
+
+  // Si no hay valor, retornar (el campo es requerido, ACF lo maneja)
+  if (empty($value)) {
+    return $valid;
+  }
+
+  global $wpdb;
+
+  // Obtener el ID del post actual (si existe)
+  $post_id = 0;
+  if (isset($_POST['post_ID'])) {
+    $post_id = intval($_POST['post_ID']);
+  } elseif (isset($_POST['post_id'])) {
+    $post_id = intval($_POST['post_id']);
+  }
+
+  // Buscar si ya existe otro post con el mismo código UTM
+  $query = $wpdb->prepare("
+    SELECT p.ID, p.post_title
+    FROM {$wpdb->posts} p
+    INNER JOIN {$wpdb->postmeta} pm
+      ON p.ID = pm.post_id
+      AND pm.meta_key = 'utm_code'
+    WHERE p.post_type = %s
+      AND p.post_status != 'trash'
+      AND pm.meta_value = %s
+      AND p.ID != %d
+    LIMIT 1
+  ", UNW_UTM_POST_TYPE, $value, $post_id);
+
+  $existing = $wpdb->get_row($query);
+
+  // Si existe otro post con el mismo código, retornar error
+  if ($existing) {
+    $valid = sprintf(
+      'El código UTM "%s" ya está siendo utilizado por "%s" (ID: %d). Por favor, utiliza un código diferente.',
+      esc_html($value),
+      esc_html($existing->post_title),
+      $existing->ID
+    );
+  }
+
+  return $valid;
+}
+
+/**
+ * Validate UTM URL + code_format uniqueness before saving
+ * Prevents duplicate URLs with the same code_format
+ */
+add_filter('acf/validate_value/key=field_690a550143d1f', 'unw_validate_unique_utm_url_format', 10, 4);
+
+function unw_validate_unique_utm_url_format($valid, $value, $field, $input_name)
+{
+  // Si ya hay un error, no validar
+  if (!$valid) {
+    return $valid;
+  }
+
+  // Si no hay valor, retornar (el campo es requerido, ACF lo maneja)
+  if (empty($value)) {
+    return $valid;
+  }
+
+  global $wpdb;
+
+  // Obtener el ID del post actual
+  $post_id = 0;
+  if (isset($_POST['post_ID'])) {
+    $post_id = intval($_POST['post_ID']);
+  } elseif (isset($_POST['post_id'])) {
+    $post_id = intval($_POST['post_id']);
+  }
+
+  // Obtener el code_format del formulario actual
+  $current_code_format = '';
+  if (isset($_POST['acf']['field_68ef132eb2caa'])) {
+    $current_code_format = sanitize_text_field($_POST['acf']['field_68ef132eb2caa']);
+  }
+
+  // Si no hay code_format seleccionado, no podemos validar aún
+  if (empty($current_code_format)) {
+    return $valid;
+  }
+
+  // Limpiar la URL para comparación
+  $clean_url = trim($value);
+
+  // Buscar si ya existe otro post con la misma URL + code_format
+  $query = $wpdb->prepare("
+    SELECT p.ID, p.post_title, pm_code.meta_value AS utm_code
+    FROM {$wpdb->posts} p
+    INNER JOIN {$wpdb->postmeta} pm_url
+      ON p.ID = pm_url.post_id
+      AND pm_url.meta_key = 'utm_url'
+    INNER JOIN {$wpdb->postmeta} pm_format
+      ON p.ID = pm_format.post_id
+      AND pm_format.meta_key = 'code_format'
+    INNER JOIN {$wpdb->postmeta} pm_code
+      ON p.ID = pm_code.post_id
+      AND pm_code.meta_key = 'utm_code'
+    WHERE p.post_type = %s
+      AND p.post_status != 'trash'
+      AND pm_url.meta_value = %s
+      AND pm_format.meta_value = %s
+      AND p.ID != %d
+    LIMIT 1
+  ", UNW_UTM_POST_TYPE, $clean_url, $current_code_format, $post_id);
+
+  $existing = $wpdb->get_row($query);
+
+  // Si existe otro post con la misma URL y formato, es un error
+  if ($existing) {
+    $format_label = $current_code_format === UNW_UTM_FORMAT_PAUTA ? 'PAUTA' : 'ORGÁNICO';
+    $valid = sprintf(
+      'Esta URL ya está registrada con el formato "%s" (código: %s) en "%s" (ID: %d). No puedes duplicar la misma URL con el mismo formato.',
+      $format_label,
+      esc_html($existing->utm_code),
+      esc_html($existing->post_title),
+      $existing->ID
+    );
+  }
+
+  return $valid;
 }

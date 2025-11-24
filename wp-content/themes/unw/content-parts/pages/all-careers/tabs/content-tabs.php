@@ -13,7 +13,7 @@ $item_brand = $mode === 'virtual' ? 'Carrera a distancia' : 'Carrera presencial'
 <div class="all-careers-tabs">
   <div class="x-container x-container--pad-213 all-careers-tabs__form">
     <?php
-     get_template_part(ALL_CAREERS_FORM_PATH, 'form', [
+     get_template_part(ALL_CAREERS_FORM_PATH, 'category-form', [
        'position_form' => 'mobile'
      ]);
     ?>

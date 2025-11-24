@@ -25,6 +25,8 @@
       $careers = get_carreras_by_facultad($current_term_id, 'pregrado');
    }
 
+
+
   get_template_part(COMMON_CONTENT_PATH, 'more-info-form-category-presencial', [
     'form_id' => 'form-category-presencial',
     'form_action' => $formUrl,
