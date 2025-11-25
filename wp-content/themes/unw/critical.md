@@ -91,3 +91,71 @@ Se separó el entry point `critical` en dos:
 - Los chunks dinámicos se insertan con JavaScript y no bloquean el parsing
 - El `defer` es importante solo para scripts en el HTML inicial (ya configurado en PHP)
 - `publicPath` debe ser `/` para que PHP construya las URLs completas correctamente
+
+---
+
+## Cambios Adicionales
+
+### 8. `inc/functions/include-rocket.php` (Delay JS Optimization)
+
+**Cambio**: Agregadas exclusiones para scripts de plantillas migradas
+
+```php
+// Scripts de plantillas migradas (webflow)
+'jquery-custom',
+'js-custom',
+'webflow-script',
+```
+
+**Propósito**: Evitar que el sistema de delay JS retrase scripts críticos de las plantillas que usan Webflow, ya que rompen la funcionalidad de esas páginas.
+
+**Cómo funciona**:
+
+- El filtro `script_loader_tag` verifica cada script antes de aplicar el delay
+- Si el handle está en `my_delay_js_exclusions()`, devuelve el tag sin modificar
+- Estos 3 scripts se cargan normalmente sin `type="rocketlazyloadscript"`
+
+### 9. `content-parts/content-search-modal.php` (Preservar parámetros URL)
+
+**Cambio**: Formulario de búsqueda preserva todos los parámetros GET
+
+```php
+// Preservar todos los parámetros de la URL actual excepto 's' (búsqueda)
+foreach ($_GET as $param => $value) {
+  if ($param !== 's' && !empty($value)) {
+    $sanitized_value = sanitize_text_field(wp_unslash($value));
+    echo '<input type="hidden" name="' . esc_attr($param) . '" value="' . esc_attr($sanitized_value) . '" />';
+  }
+}
+```
+
+**Propósito**: Mantener parámetros UTM y otros query params en las búsquedas
+
+**Beneficios**:
+
+- Tracking de campañas se mantiene durante la navegación
+- Funciona con cualquier parámetro: `utm_source`, `utm_medium`, `gclid`, `fbclid`, etc.
+- No requiere hardcodear lista de parámetros
+
+**Seguridad**:
+
+- `sanitize_text_field()` - elimina caracteres peligrosos
+- `wp_unslash()` - remueve slashes automáticos de WordPress
+- `esc_attr()` - previene XSS en atributos HTML
+- `esc_url()` - sanitiza la URL del action
+
+**Ejemplo**:
+
+- URL original: `http://unw.local/bienestar/?utm_source=abc&utm_campaign=test`
+- Al buscar "carreras", se mantienen los parámetros
+- Resultado: `http://unw.local/?s=carreras&utm_source=abc&utm_campaign=test`
+
+### 10. `webpack.config.js` - Babel Register
+
+**Cambio**: Comentado `require('@babel/register')`
+
+```javascript
+// require('@babel/register')
+```
+
+**Razón**: Causaba transpilación innecesaria de archivos de configuración de webpack, generando errores con imports de ES6. No es necesario para este proyecto ya que webpack.config.js usa sintaxis compatible con Node 14.

@@ -28,13 +28,7 @@
       <div class="search-modal__form">
         <form action="<?php echo esc_url(home_url('/')); ?>" method="get">
           <?php
-          // Preservar todos los parámetros de la URL actual excepto 's' (búsqueda)
-          foreach ($_GET as $param => $value) {
-            if ($param !== 's' && !empty($value)) {
-              $sanitized_value = sanitize_text_field(wp_unslash($value));
-              echo '<input type="hidden" name="' . esc_attr($param) . '" value="' . esc_attr($sanitized_value) . '" />';
-            }
-          }
+          preserve_url_params();
           ?>
           <div class="search-field">
             <input type="text" name="s" placeholder="¿Qué estás buscando?"
