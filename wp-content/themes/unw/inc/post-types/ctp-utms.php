@@ -219,6 +219,15 @@ function unw_create_utm($title, $content, $url, $code_format)
     ],
   ];
 
+  $code_exist = unw_find_utm_by_content($content, $code_format);
+
+  if($code_exist) {
+    return [
+      'utm_id' => $code_exist['post_id'],
+      'utm_code' => code_exist['utm_code'],
+    ];
+  }
+
   $post_id = wp_insert_post($post_data, true);
 
   if (is_wp_error($post_id)) {
