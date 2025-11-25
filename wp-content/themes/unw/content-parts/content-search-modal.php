@@ -26,9 +26,19 @@
         </button>
       </div>
       <div class="search-modal__form">
-        <form action="<?php echo home_url('/'); ?>">
+        <form action="<?php echo esc_url(home_url('/')); ?>" method="get">
+          <?php
+          // Preservar todos los parámetros de la URL actual excepto 's' (búsqueda)
+          foreach ($_GET as $param => $value) {
+            if ($param !== 's' && !empty($value)) {
+              $sanitized_value = sanitize_text_field(wp_unslash($value));
+              echo '<input type="hidden" name="' . esc_attr($param) . '" value="' . esc_attr($sanitized_value) . '" />';
+            }
+          }
+          ?>
           <div class="search-field">
-            <input type="text" name="s" placeholder="¿Qué estás buscando?" />
+            <input type="text" name="s" placeholder="¿Qué estás buscando?"
+              value="<?php echo esc_attr(get_search_query()); ?>" />
             <i>
               <svg width="24" height="24">
                 <use xlink:href="#search"></use>

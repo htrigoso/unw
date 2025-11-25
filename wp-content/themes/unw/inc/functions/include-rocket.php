@@ -26,6 +26,11 @@ function my_delay_js_exclusions() {
         'google-recaptcha',
         'gform_recaptcha',
 
+        // Scripts de plantillas migradas (webflow)
+        'jquery-custom',
+        'js-custom',
+        'webflow-script',
+
         // ⚠️ IMPORTANTE: Comenta estos si quieres retrasar tus scripts del tema
         // 'app',              // Script principal del tema
         // 'vendors',          // Vendors del tema
@@ -37,8 +42,8 @@ function my_delay_js_exclusions() {
 function my_should_delay_js() {
 
   // ❌ NO ejecutar en local
-    if ( defined('WP_ENVIRONMENT_TYPE') && WP_ENVIRONMENT_TYPE === 'local' ) return false;
-    if ( in_array($_SERVER['HTTP_HOST'] ?? '', ['localhost', '127.0.0.1', 'local.test', 'unw.local']) ) return false;
+    // if ( defined('WP_ENVIRONMENT_TYPE') && WP_ENVIRONMENT_TYPE === 'local' ) return false;
+    // if ( in_array($_SERVER['HTTP_HOST'] ?? '', ['localhost', '127.0.0.1', 'local.test', 'unw.local']) ) return false;
 
     if ( is_admin() || is_user_logged_in() && current_user_can('edit_posts') ) return false;
     if ( defined('REST_REQUEST') && REST_REQUEST ) return false;
