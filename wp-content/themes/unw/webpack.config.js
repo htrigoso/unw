@@ -1,12 +1,9 @@
-require('@babel/register')
 const glob = require('glob-all')
-
 const path = require('path')
 const webpack = require('webpack')
 const AssetsPlugin = require('assets-webpack-plugin')
 const compass = require('compass-importer')
 const chalk = require('chalk')
-const CompressionPlugin = require('compression-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
@@ -58,7 +55,8 @@ module.exports = (env, options) => {
     output: {
       path: path.resolve(__dirname, 'public'),
       publicPath: '/',
-      filename: 'js/[name].js'
+      filename: 'js/[name].js',
+      chunkFilename: 'js/[name].js'
     },
     resolve: { modules: [dirApp, dirStyles, dirNode] },
     devtool: 'inline-source-map',
@@ -151,7 +149,8 @@ module.exports = (env, options) => {
     output: {
       path: path.resolve(__dirname, 'build'),
       publicPath: '/',
-      filename: `js/[name].${settings.useHash ? '[contenthash:10].' : ''}js`
+      filename: `js/[name].${settings.useHash ? '[contenthash:10].' : ''}js`,
+      chunkFilename: `js/[name].${settings.useHash ? '[contenthash:10].' : ''}js`
     },
     resolve: { modules: [dirApp, dirStyles, dirNode] },
     devtool: 'cheap-module-source-map',
@@ -251,18 +250,6 @@ module.exports = (env, options) => {
         }
       })
     ]
-  }
-
-  if (settings.mode === 'production' && settings.compressAssets) {
-    configProd.plugins.push(
-      new CompressionPlugin({
-        test: /\.(js|css)$/,
-        filename: '[path].gz[query]',
-        algorithm: 'gzip',
-        deleteOriginalAssets: false,
-        compressionOptions: { level: 6 }
-      })
-    )
   }
 
   return settings.mode === 'production' ? configProd : configDev
