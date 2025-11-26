@@ -1,4 +1,7 @@
 <form class="blog-search-form" role="search" method="get" action="<?php echo esc_url(home_url('/blog/')); ?>">
+  <?php
+  preserve_url_params();
+  ?>
   <?php get_template_part(
     COMMON_CONTENT_PATH,
     'search-input',
