@@ -1,4 +1,5 @@
 import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenFieldCampus, updateHiddenInputs, updateOptionsCareers, validateInputs, showCampusSelect, validatePhone } from './utils'
+import { handleFormSubmitTracking, getFormData } from '../../utils/incubeta'
 
 // ==========================
 // Constantes de formularios
@@ -12,8 +13,8 @@ const FORM_GENERAL_VIRTUAL =
 export default class FormCrmGeneral {
   constructor({ element, container }) {
     this.element = element
-
     this.formContainer = container
+    this.isSubmitting = false
     this.createListeners()
   }
 
@@ -27,6 +28,28 @@ export default class FormCrmGeneral {
     this.handleCarrersChange()
     this.handleDepartamentChange()
     this.handleCampusChange()
+    this.handleFormSubmit()
+  }
+
+  handleFormSubmit() {
+    if (!this.element) return
+
+    this.element.addEventListener('submit', async (event) => {
+      // Prevenir doble envío
+      if (this.isSubmitting) {
+        event.preventDefault()
+        return
+      }
+
+      this.isSubmitting = true
+
+      const formData = getFormData(this.element)
+
+      // Usar función de Incubeta para tracking
+      await handleFormSubmitTracking(this.element, formData, (dataLayerEvent) => {
+        console.log('✅ DataLayer validado (submit):', dataLayerEvent)
+      })
+    })
   }
 
   removeCustomHiddenDepartament() {
@@ -45,8 +68,8 @@ export default class FormCrmGeneral {
     const radios = this.element.querySelectorAll('input[name="form_mixto"]')
     if (!radios.length) return
 
-    const departaments = JSON.parse(this.element.dataset.departaments || '[]')
-    const careers = JSON.parse(this.element.dataset.careers || '[]')
+    const departaments = window.appConfigUnw.departaments || []
+    const careers = window.appConfigUnw.careers || []
 
     radios.forEach(radio => {
       radio.addEventListener('change', () => {
@@ -167,7 +190,7 @@ export default class FormCrmGeneral {
     if (!form) return
     const select = document.getElementById('careerSelect')
 
-    const campus = JSON.parse(this.element.dataset.campus || '[]')
+    const campus = window.appConfigUnw.campus || []
 
     const hiddenContainer = form.querySelector('.custom-hidden')
 

@@ -20,7 +20,7 @@ if (wp_is_nonempty_array($lists)) {
 
     <div class="program-curriculum__content" aria-label="Listado de cursos por ciclo">
       <div class="program-swiper post-swiper" data-width="compact">
-        <div class="swiper-container">
+        <div class="swiper-container" data-type-component="swiper">
           <div class="swiper-wrapper program-curriculum__cycles-list">
             <?php
 

@@ -10,9 +10,14 @@ $url            = $args['url'];
 $status         = $args['status'] ?? false;
 $customStyle    = $args['customStyle'] ?? '';
 
+// Datos para tracking de select_content
+$content_id = $args['content_id'] ?? '';
+$category_tag = $args['category_tag'] ?? '';
+
 ?>
 
-<article class="event-card">
+<article class="event-card" data-content-type="Evento" data-content-id="<?php echo esc_attr($content_id); ?>"
+  data-content-title="<?php echo esc_attr($title); ?>" data-category-tag="<?php echo esc_attr($category_tag); ?>">
   <?php if ($status): ?>
   <div class="event-card-ribbon--wrap">
     <span class="event-card-ribbon--inner"
@@ -43,7 +48,9 @@ $customStyle    = $args['customStyle'] ?? '';
     <?php
     if ($url && is_array($url)):
     ?>
-    <a href=" <?= $url['url'] ?>" class="btn btn-sm btn-secondary-one-outline event-card--cta">
+    <a href=" <?= $url['url'] ?>"
+      class="btn btn-sm btn-secondary-one-outline event-card--cta btn-select-content-item-click"
+      data-is-home="<?=is_front_page() ? 1 : 0 ?>">
       <?= $url['title'] ?>
       <i>
         <svg class="icon icon--arrow" width="32" height="32">

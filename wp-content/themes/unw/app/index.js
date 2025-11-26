@@ -1,6 +1,17 @@
 import Menu from './components/Menu'
 import { $element } from './utils/dom'
 import initLazyLoad from './utils/lazyload'
+import { initViewItemListTracking } from './utils/incubeta/viewItemList'
+import { initSelectItemTracking, trackCareerDetail } from './utils/incubeta/selectItem'
+import { initErrorMessageTracking } from './utils/incubeta/errorMessage'
+import { initFaqClickTracking } from './utils/incubeta/faqClick'
+import { initFooterClickTracking } from './utils/incubeta/footerClick'
+import { initContactClickTracking } from './utils/incubeta/contactClick'
+import { initShareClickTracking } from './utils/incubeta/shareClick'
+import { initCarrouselViewTracking } from './utils/incubeta/carrouselView'
+import { initCarrouselSwipeTracking } from './utils/incubeta/carrouselSwipe'
+import { initCarrouselClickTracking } from './utils/incubeta/carrouselClick'
+
 class App {
   constructor() {
     this.createLazyLoad()
@@ -11,6 +22,13 @@ class App {
     this.hideBackdrop()
     this.handleOnSubmitForm()
     this.blockedClickButtonModal()
+    this.initCareersTracking()
+    this.initErrorTracking()
+    this.initFaqTracking()
+    this.initFooterTracking()
+    this.initContactTracking()
+    this.initShareTracking()
+    this.initCarrouselTracking()
   }
 
   createNavbar() {
@@ -188,6 +206,53 @@ class App {
         e.preventDefault() // evita scroll
       })
     })
+  }
+
+  initCareersTracking() {
+    // Tracking de view_item_list (cuando se carga la página de listado)
+    initViewItemListTracking()
+
+    // Tracking de select_item (cuando hacen click en "Ver carrera")
+    initSelectItemTracking()
+
+    // Tracking automático de select_item para páginas single
+    if (window.unwCareerDetailData) {
+      trackCareerDetail(window.unwCareerDetailData)
+    }
+  }
+
+  initErrorTracking() {
+    // Tracking de errores de validación en formularios
+    initErrorMessageTracking()
+  }
+
+  initFaqTracking() {
+    // Tracking de clicks en preguntas frecuentes (FAQ)
+    initFaqClickTracking()
+  }
+
+  initFooterTracking() {
+    // Tracking de clicks en enlaces del footer
+    initFooterClickTracking()
+  }
+
+  initContactTracking() {
+    // Tracking de clicks en opciones de contacto
+    initContactClickTracking()
+  }
+
+  initShareTracking() {
+    // Tracking de clicks en compartir contenido
+    initShareClickTracking()
+  }
+
+  initCarrouselTracking() {
+    // Tracking de visualización de carrousels/swipers
+    initCarrouselViewTracking()
+    // Tracking de cambios de slide en carrousels
+    initCarrouselSwipeTracking()
+    // Tracking de clicks en enlaces dentro de carrousels
+    initCarrouselClickTracking()
   }
 }
 

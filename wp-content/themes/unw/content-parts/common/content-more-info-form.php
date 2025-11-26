@@ -30,13 +30,12 @@ $validation_dni = $args['validation_dni'] ?? [];
 $location = $args['location'] ?? 'is-home';
 $shadow_box = $args['shadow_box'] ?? false;
 $responsive = $args['responsive'] ?? false;
+$vertical_modality = $args['vertical_modality'] ?? false;
 ?>
 
-<form id="<?= esc_attr($form_id) ?>" data-form="zoho" class="more-form newformfloat<?= $shadow_box ? ' more-form__shadow-box' : '' ?><?= $responsive ? ' more-form__responsive' : '' ?>"
-  data-careers="<?= esc_attr(wp_json_encode($careers)) ?>"
-  data-departaments="<?= esc_attr(wp_json_encode($list_departaments)) ?>"
-  data-campus="<?= esc_attr(wp_json_encode($list_campus)) ?>" method="POST" accept-charset="UTF-8"
-  enctype="multipart/form-data" action="<?= esc_attr($form_action) ?>">
+<form id="<?= esc_attr($form_id) ?>" name="<?= esc_attr($form_id) ?>" data-form="zoho"
+  class="more-form newformfloat<?= $shadow_box ? ' more-form__shadow-box' : '' ?><?= $responsive ? ' more-form__responsive' : '' ?>"
+  method="POST" accept-charset="UTF-8" enctype="multipart/form-data" action="<?= esc_attr($form_action) ?>">
 
   <div class="form-header more-form__header">
     <i>
@@ -50,7 +49,7 @@ $responsive = $args['responsive'] ?? false;
   </div>
 
   <?php foreach ($utms as $utm): ?>
-    <input type="hidden" name="<?= esc_attr($utm['name']); ?>" value="<?= esc_attr($utm['value']); ?>">
+  <input type="hidden" name="<?= esc_attr($utm['name']); ?>" value="<?= esc_attr($utm['value']); ?>">
   <?php endforeach; ?>
 
   <div class="custom-hidden"></div>
@@ -74,10 +73,9 @@ $responsive = $args['responsive'] ?? false;
   <input type="hidden" name="Website" value="<?= get_current_page_url() ?>"> <!-- Url de Trakeo -->
 
   <div class="form-body more-form-body">
-
     <div class="form-body__fields">
       <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'radio', [
-        'direction'    => 'justify-between',
+        'direction'    => $vertical_modality ? 'flex-col' : 'justify-between',
         'location'      => $location
       ]); ?>
 
@@ -105,22 +103,22 @@ $responsive = $args['responsive'] ?? false;
         if (!$hide_dni) {
           $title = ($validation_dni['title'] ?? 'DNI') . (!empty($validation_dni['required']) ? ' (*)' : '');
         ?>
-          <div class="f-50">
-            <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+        <div class="f-50">
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
               'name' => 'SingleLine',
               'label'    => $title,
               'type' => 'tel',
               'required' => $validation_dni['required'] ?? false
             ]); ?>
-          </div>
+        </div>
         <?php } else { ?>
-          <div class="f-50">
-            <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+        <div class="f-50">
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
               'name' => 'Email',
               'label' => 'Correo electrónico (*)',
               'type' => 'email',
             ]); ?>
-          </div>
+        </div>
         <?php } ?>
         <div class="f-50">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
@@ -133,13 +131,13 @@ $responsive = $args['responsive'] ?? false;
 
       <div class="m-b-24">
         <?php if (!$hide_dni) { ?>
-          <div class="f-100">
-            <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+        <div class="f-100">
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
               'name' => 'Email',
               'label' => 'Correo electrónico (*)',
               'type' => 'email',
             ]); ?>
-          </div>
+        </div>
         <?php } ?>
       </div>
 

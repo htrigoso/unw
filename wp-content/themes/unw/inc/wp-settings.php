@@ -25,6 +25,7 @@ define('OUR_HISTORY_CONTENT_PATH', 'content-parts/pages/our-history/content');
 define('QUALITY_POLICY_CONTENT_PATH', 'content-parts/pages/quality-policy/content');
 define('CAREERS_CONTENT_PATH', 'content-parts/pages/careers/content');
 define('THANKS_CONTENT_PATH', 'content-parts/pages/thanks/content');
+define('ALL_CAREERS_CONTENT_PATH', 'content-parts/pages/all-careers/content');
 
 define('ERROR_CONTENT_PATH', 'content-parts/pages/404/content');
 
@@ -34,6 +35,7 @@ define('GENERAL_FORM_CONTACT_PATH', 'content-parts/forms/content');
 
 define('CAREERS_TABS_PATH', 'content-parts/pages/careers/tabs/content');
 define('ALL_CAREERS_TABS_PATH', 'content-parts/pages/all-careers/tabs/content');
+define('ALL_CAREERS_FORM_PATH', 'content-parts/pages/all-careers/form/content');
 define('ADMISSION_TABS_PATH', 'content-parts/pages/admission/tabs/content');
 define('FACULTY_TABS_PATH', 'content-parts/pages/faculty/tabs/content');
 define('NEWS_TABS_PATH', 'content-parts/pages/news/tabs/content');

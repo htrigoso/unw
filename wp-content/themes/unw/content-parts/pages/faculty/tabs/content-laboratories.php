@@ -13,7 +13,7 @@ $card_items = $infrastructure['list'];
   </p>
 
   <div class="laboratories-swiper post-swiper-desktop switch-pagination-navigation" data-width="compact">
-    <div class="swiper-container">
+    <div class="swiper-container" data-type-component="swiper">
       <div class="swiper-wrapper laboratories__list">
         <?php
         if ($card_items) :

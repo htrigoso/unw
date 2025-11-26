@@ -1,4 +1,5 @@
 
+import { handleFormSubmitTracking, getFormData } from '../../utils/incubeta'
 import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, removeNameAttributeCampus, removeSelectDepartament, resetCustomHidden, setClaseName, setNameAttributeCampus, showCampusSelect, updateHiddenInputs, updateOptionsCareers, validateInputs, validatePhone } from './utils'
 
 // ==========================
@@ -13,6 +14,7 @@ const FORM_ADMISSION_VIRTUAL =
 export default class FormCrmAdmission {
   constructor({ element, container }) {
     this.element = element
+    this.isSubmitting = false
     this.formContainer = container
     this.createListeners()
   }
@@ -27,19 +29,42 @@ export default class FormCrmAdmission {
     this.handleCarrersChange()
     this.handleDepartamentChange()
     this.handleCampusChange()
+    this.handleFormSubmit()
   }
 
   // ==========================
   // Handlers
   // ==========================
 
+  handleFormSubmit() {
+    if (!this.element) return
+
+    this.element.addEventListener('submit', async (event) => {
+      // Prevenir doble envío
+      if (this.isSubmitting) {
+        event.preventDefault()
+        return
+      }
+
+      this.isSubmitting = true
+
+      // Obtener datos del formulario de manera estandarizada
+      const formData = getFormData(this.element)
+
+      // Usar función de Incubeta para tracking
+      await handleFormSubmitTracking(this.element, formData, (dataLayerEvent) => {
+        console.log('✅ DataLayer validado (submit):', dataLayerEvent)
+      })
+    })
+  }
+
   handleFormMixtoChange() {
     if (!this.element) return
     const radios = this.element.querySelectorAll('input[name="form_mixto"]')
 
     if (!radios.length) return
-    const departaments = JSON.parse(this.element.dataset.departaments || '[]')
-    const careers = JSON.parse(this.element.dataset.careers || '[]')
+    const departaments = window.appConfigUnw.departaments || []
+    const careers = window.appConfigUnw.careers || []
 
     radios.forEach(radio => {
       radio.addEventListener('change', () => {
@@ -166,7 +191,7 @@ export default class FormCrmAdmission {
     if (!form) return
 
     const select = form.querySelector('#careerSelect')
-    const campus = JSON.parse(this.element.dataset.campus || '[]')
+    const campus = window.appConfigUnw.campus || []
 
     const hiddenContainer = form.querySelector('.custom-hidden')
 

@@ -22,7 +22,7 @@ $lists = $acf_comite['lists'] ?? [];
     ?>
   <div class="program-committee__slides">
     <div class="program-committee-swiper post-swiper" data-width="compact">
-      <div class="swiper-container">
+      <div class="swiper-container" data-type-component="swiper">
         <div class="swiper-wrapper">
           <?php foreach ($lists as $member): ?>
           <?php

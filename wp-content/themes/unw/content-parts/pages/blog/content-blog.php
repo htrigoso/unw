@@ -75,13 +75,19 @@ $cta      = get_field('cta');
           <?php if ($wp_query->have_posts()) : ?>
           <?php while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
           <?php
+              $categories = get_post_category_names(get_the_ID());
+              $first_category = !empty($categories) ? $categories[0]['name'] : '';
+
               get_template_part(COMMON_CONTENT_PATH, 'entry-card', [
                 'image'   => get_the_post_thumbnail_url(get_the_ID(), 'medium_large') ?: UPLOAD_PATH . '/default-image.jpg',
                 'title'   => get_the_title(),
                 'date'    => get_the_date('j') . ' de ' . get_the_date('F') . ' del ' . get_the_date('Y'),
                 'content' => get_the_excerpt(),
                 'href'    => get_permalink(),
-                'tags'    => get_post_category_names(get_the_ID()),
+                'tags'    => $categories,
+                'content_type' => 'Blog',
+                'content_id' => get_the_ID(),
+                'category_tag' => $first_category,
               ]);
               ?>
           <?php endwhile; ?>
