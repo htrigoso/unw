@@ -35,7 +35,7 @@ define('GENERAL_FORM_CONTACT_PATH', 'content-parts/forms/content');
 
 define('CAREERS_TABS_PATH', 'content-parts/pages/careers/tabs/content');
 define('ALL_CAREERS_TABS_PATH', 'content-parts/pages/all-careers/tabs/content');
-define('ALL_CAREERS_FORM_PATH', 'content-parts/pages/all-careers/form/content');
+define('ALL_CAREERS_FORMS_PATH', 'content-parts/pages/all-careers/forms/content');
 define('ADMISSION_TABS_PATH', 'content-parts/pages/admission/tabs/content');
 define('FACULTY_TABS_PATH', 'content-parts/pages/faculty/tabs/content');
 define('NEWS_TABS_PATH', 'content-parts/pages/news/tabs/content');
@@ -295,12 +295,6 @@ function desactivar_editor_en_paginas($post) {
 }
 add_action('edit_form_after_title', 'desactivar_editor_en_paginas');
 
-
-
-
-add_action('init', function() {
-  remove_post_type_support('post', 'editor');
-});
 
 
 function unw_remove_editor_from_specific_page() {

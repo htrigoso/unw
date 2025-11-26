@@ -1,6 +1,4 @@
 <?php
-
-  $crm_ad = get_field('crm');
   $utms_default = get_field('list_utms', 'option');
   $utm_admission = $crm_carriers['list_utms'] ?? [];
   $utms_final = merge_utms($utms_default, $utm_admission);
@@ -27,8 +25,8 @@
 
 
 
-  get_template_part(COMMON_CONTENT_PATH, 'more-info-form-category-presencial', [
-    'form_id' => 'form-category-presencial',
+  get_template_part(COMMON_CONTENT_PATH, 'more-info-form-category-distancia', [
+    'form_id' => 'form-category-distancia-'.$position_form,
     'form_action' => $formUrl,
     'utms' => $utms_final,
     'careers' => $careers,

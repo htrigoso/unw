@@ -9,7 +9,7 @@ const FORM_GENERAL_PRESENCIAL =
 const FORM_GENERAL_VIRTUAL =
   'https://forms.zohopublic.com/adminzoho11/form/WebFacultadesVirtual/formperma/XZxvtW2GuLFc2zHw6RV9IKsDHhw5fMTH_275g92vXQM/htmlRecords/submit'
 
-export default class FormCrmCategory {
+export default class FormCrmCategoryDistancia {
   constructor({ element, container }) {
     this.element = element
 

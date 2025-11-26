@@ -1,23 +1,37 @@
 import { initializeScrollableTabs } from './../../functions/scrollable-tabs'
 import { ModalManager } from './../../components/Modal'
-import FormCrmCategory from '../../components/FormCRM/FormCrmCategory'
+import FormCrmCategoryPregrado from '../../components/FormCRM/FormCrmCategoryPregrado'
+import FormCrmCategoryDistancia from '../../components/FormCRM/FormCrmCategoryDistancia'
+import FormCrmCategoryDistanciaBase from '../../components/FormCRM/FormCrmCategoryDistanciaBase'
 import { $element } from '../../utils/dom'
 
 (function () {
   new ModalManager()
 
-  const allTabsContainers = document.querySelectorAll('.nav-tabs')
-  if (allTabsContainers.length > 0) {
-    allTabsContainers.forEach(tabsContainer => {
-      initializeScrollableTabs(tabsContainer)
+  // Inicializar tabs scrollables
+  document.querySelectorAll('.nav-tabs').forEach(initializeScrollableTabs)
+
+  // Configuración de formularios por tipo
+  const formConfig = [
+    {
+      FormClass: FormCrmCategoryPregrado,
+      names: ['form-category-presencial-desktop', 'form-category-presencial-mobile']
+    },
+    {
+      FormClass: FormCrmCategoryDistancia,
+      names: ['form-category-distancia-desktop', 'form-category-distancia-mobile']
+    },
+    {
+      FormClass: FormCrmCategoryDistanciaBase,
+      names: ['form-category-distancia-base-desktop', 'form-category-distancia-base-mobile']
+    }
+  ]
+
+  // Inicializar todos los formularios
+  formConfig.forEach(({ FormClass, names }) => {
+    names.forEach(name => {
+      const form = $element(`[name="${name}"]`)
+      if (form) new FormClass({ element: form })
     })
-  }
-
-  const initFormsByPosition = (position) => {
-    const form = $element(`[data-position-form="${position}"]`)
-    if (form) new FormCrmCategory({ element: form })
-  }
-
-  initFormsByPosition('desktop')
-  initFormsByPosition('mobile')
+  })
 })()

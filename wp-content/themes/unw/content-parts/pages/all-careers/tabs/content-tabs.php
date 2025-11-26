@@ -3,19 +3,32 @@ $mode = $args['mode'] ?? null;
 $tabs = $args['tabs'] ?? [];
 $current_faculty_id = $args['current_faculty_id'] ?? 0;
 $careers_posts = $args['careers_posts'] ?? [];
-
-
-
-
 $list_name = $mode === 'virtual' ? 'carreras_a_distancia' : 'carreras_pregrado';
 $item_brand = $mode === 'virtual' ? 'Carrera a distancia' : 'Carrera presencial';
+
+$current_post_type = get_post_type();
+
 ?>
 <div class="all-careers-tabs">
   <div class="x-container x-container--pad-213 all-careers-tabs__form">
     <?php
-     get_template_part(ALL_CAREERS_FORM_PATH, 'category-form', [
-       'position_form' => 'mobile'
-     ]);
+     if(is_page('carreras-uwiener') || $current_post_type == 'carreras') {
+           get_template_part(ALL_CAREERS_FORMS_PATH, 'category-form-pregrado', [
+            'position_form' => 'mobile'
+          ]);
+       }
+
+       if(is_page('carreras-a-distancia')) {
+          get_template_part(ALL_CAREERS_FORMS_PATH, 'category-form-distancia-base', [
+            'position_form' => 'mobile'
+          ]);
+       }
+
+       if($current_post_type == 'carreras-a-distancia') {
+         get_template_part(ALL_CAREERS_FORMS_PATH, 'category-form-distancia', [
+            'position_form' => 'mobile'
+          ]);
+       }
     ?>
   </div>
   <div class="x-container all-careers-tabs__container">
