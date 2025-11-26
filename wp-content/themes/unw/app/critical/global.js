@@ -1,6 +1,5 @@
-import HeroSwiper from '../components/HeroSwiper'
-import { managePagination } from '../utils/swiper'
 import { EXCLUDE_URL_PARAMS, getBaseDomain, getRfc3986SearchFromUrl } from '../utils/url-parse'
+import '../set-public-path'
 
 export default class CriticalPage {
   constructor() {
@@ -10,29 +9,6 @@ export default class CriticalPage {
   create() {
     if (window.appConfigUnw?.preserveUrlParams) {
       this.propagateUrlParamsToInternalLinks()
-    }
-
-    if (window.appConfigUnw?.isHome) {
-      this.initHomeComponents()
-    }
-  }
-
-  initHomeComponents() {
-    const heroSwiper = HeroSwiper('.hero-swiper', {
-      pagination: {
-        el: '.hero-swiper .home-hero-pagination',
-        type: 'bullets',
-        clickable: false
-      },
-      navigation: {
-        nextEl: '.hero-swiper .home-hero-button-next',
-        prevEl: '.hero-swiper .home-hero-button-prev'
-      },
-      loop: true
-    })
-
-    if (heroSwiper) {
-      managePagination(heroSwiper)
     }
   }
 

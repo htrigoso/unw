@@ -26,6 +26,11 @@ function my_delay_js_exclusions() {
         'google-recaptcha',
         'gform_recaptcha',
 
+        // Scripts de plantillas migradas (webflow)
+        'jquery-custom',
+        'js-custom',
+        'webflow-script',
+
         // ⚠️ IMPORTANTE: Comenta estos si quieres retrasar tus scripts del tema
         // 'app',              // Script principal del tema
         // 'vendors',          // Vendors del tema

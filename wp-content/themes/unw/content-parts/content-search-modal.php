@@ -26,9 +26,13 @@
         </button>
       </div>
       <div class="search-modal__form">
-        <form action="<?php echo home_url('/'); ?>">
+        <form action="<?php echo esc_url(home_url('/')); ?>" method="get">
+          <?php
+          preserve_url_params();
+          ?>
           <div class="search-field">
-            <input type="text" name="s" placeholder="¿Qué estás buscando?" />
+            <input type="text" name="s" placeholder="¿Qué estás buscando?"
+              value="<?php echo esc_attr(get_search_query()); ?>" />
             <i>
               <svg width="24" height="24">
                 <use xlink:href="#search"></use>

@@ -168,50 +168,44 @@ function include_assets()
     unset($assets['env']);
   }
 
-
   $preload_styles = [];
   $preload_scripts = [];
   $critical_scripts = []; // Array para scripts críticos
 
   if (!empty($assets)) {
     foreach ($assets as $key => $val) {
-      switch ($key) {
-        case 'critical':
-          {
-            // ⚡ SCRIPT CRÍTICO - Se carga en footer con defer
-            if (array_key_exists('js', $val)) {
-              $script_url = ($env === 'production') ? $themePath . '/' . $val['js'] : $val['js'];
 
-              if (ALLOW_GZIP) {
-                $script_url = $script_url . '.gz';
-              }
+      // Detectar si el key comienza con 'critical-'
+      if (strpos($key, 'critical-') === 0) {
+        // ⚡ SCRIPT CRÍTICO - Se carga en footer con defer
+        if (array_key_exists('js', $val)) {
+          $script_url = ($env === 'production') ? $themePath . '/' . $val['js'] : $val['js'];
 
-              // Agregar a array de scripts críticos para preload
-              $critical_scripts[] = $script_url;
+          // Agregar a array de scripts críticos para preload
+          $critical_scripts[] = $script_url;
 
-              // Cargar en footer con defer
-              wp_enqueue_script('critical', $script_url, [], '', true); // true = in footer
+          // Cargar en footer con defer
+          wp_enqueue_script($key, $script_url, [], '', true); // true = in footer
 
-              // Agregar defer y data-no-delay con alta prioridad (antes del filtro de DelayJS)
-              add_filter('script_loader_tag', function($tag, $handle) {
-                if ($handle === 'critical') {
-                  // Agregar defer y data-no-delay
-                  $tag = str_replace('<script ', '<script defer data-no-delay ', $tag);
-                }
-                return $tag;
-              }, 5, 2); // Prioridad 5 (antes que el filtro de DelayJS que está en 10)
+          // Agregar defer y data-no-delay con alta prioridad (antes del filtro de DelayJS)
+          add_filter('script_loader_tag', function($tag, $handle) use ($key) {
+            if ($handle === $key) {
+              // Agregar defer y data-no-delay
+              $tag = str_replace('<script ', '<script defer data-no-delay ', $tag);
             }
-          }
-          break;
+            return $tag;
+          }, 5, 2); // Prioridad 5 (antes que el filtro de DelayJS que está en 10)
+        }
+        continue; // Pasar al siguiente item
+      }
+
+      switch ($key) {
         case 'app':
           {
             if (array_key_exists('js', $val)) {
               $style_url = ($env === 'production') ? $themePath . '/' . $val['css'] : null;
               $script_url = ($env === 'production') ? $themePath . '/' . $val['js'] : $val['js'];
 
-              if (ALLOW_GZIP) {
-                $script_url = $script_url . '.gz';
-              }
 
               if ($env === 'production' && $style_url) {
 
@@ -232,11 +226,6 @@ function include_assets()
             if (array_key_exists('js', $val)) {
               $style_url = ($env === 'production') ? $themePath . '/' . $val['css'] : null;
               $script_url = ($env === 'production') ? $themePath . '/' . $val['js'] : $val['js'];
-
-              if (ALLOW_GZIP) {
-                $style_url = $style_url . '.gz';
-                $script_url = $script_url . '.gz';
-              }
 
               if ($env === 'production' && $style_url) {
                 $preload_styles[] = $style_url;
@@ -260,6 +249,8 @@ function include_assets()
         echo '<link rel="preload" href="' . esc_url($js_url) . '" as="script">' . "\n";
       }
   }
+
+
 
   // Preload CSS
   if (!empty($preload_styles)) {
