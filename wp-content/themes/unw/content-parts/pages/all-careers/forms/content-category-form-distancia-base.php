@@ -3,7 +3,7 @@
   $utm_admission = $crm_carriers['list_utms'] ?? [];
   $utms_final = merge_utms($utms_default, $utm_admission);
 
-  $formUrl = "https://forms.zohopublic.com/adminzoho11/form/WebFacultades/formperma/fDTnpldKeP_IhYXDSkyc6rF7sXx2IKYDi1scDuEShjI/htmlRecords/submit";
+  $formUrl = "https://forms.zohopublic.com/adminzoho11/form/WebBaseVirtual/formperma/r6dyucr2_RC_mCaLCNhmhvEHn820MmGvdkHztewDq58/htmlRecords/submit";
 
   $form_crm_option = get_field('form_crm', 'option');
   $form_crm_categories = get_field('form_crm_categories', 'option');
@@ -25,7 +25,7 @@
 
 
 
-  get_template_part(COMMON_CONTENT_PATH, 'more-info-form-category-pregrado', [
+  get_template_part(COMMON_CONTENT_PATH, 'more-info-form-category-distancia-base', [
     'form_id' => 'form-category-distancia-base-'.$position_form,
     'form_action' => $formUrl,
     'utms' => $utms_final,

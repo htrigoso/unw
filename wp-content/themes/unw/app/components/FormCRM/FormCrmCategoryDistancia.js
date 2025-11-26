@@ -72,7 +72,7 @@ export default class FormCrmCategoryDistancia {
 
             updateHiddenInputs([
               { name: 'SingleLine1', value: 'UNW_Pregrado' },
-              { name: 'SingleLine2', value: 'Web Admisión I' }
+              { name: 'SingleLine2', value: 'Web Facultades' }
             ], this.element)
             setNameAttributeCampus({ element: this.element })
 
@@ -99,7 +99,7 @@ export default class FormCrmCategoryDistancia {
 
             updateHiddenInputs([
               { name: 'SingleLine1', value: 'UNW_Pregrado_Distancia' },
-              { name: 'SingleLine2', value: 'Web Solicita Información – Virtual' }
+              { name: 'SingleLine2', value: 'Web Facultades – Virtual' }
             ], this.element)
             if (value === FORMS.VIRTUAL) {
               if (departaments.length > 0) {
@@ -129,6 +129,7 @@ export default class FormCrmCategoryDistancia {
       return createHiddenInputs({
         type,
         fields: [
+          { name: 'SingleLine3', facultyName },
           { name: 'SingleLine4', facultyName },
           { name: 'SingleLine6', careerName }
         ]
@@ -139,6 +140,7 @@ export default class FormCrmCategoryDistancia {
       return createHiddenInputs({
         type,
         fields: [
+          { name: 'SingleLine3', facultyName },
           { name: 'SingleLine4', facultyName },
           { name: 'SingleLine6', careerName }
         ]

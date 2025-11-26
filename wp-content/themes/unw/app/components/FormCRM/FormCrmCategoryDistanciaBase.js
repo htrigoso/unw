@@ -4,10 +4,10 @@ import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS,
 // Constantes de formularios
 // ==========================
 const FORM_GENERAL_PRESENCIAL =
-  'https://forms.zohopublic.com/adminzoho11/form/WebFacultades/formperma/fDTnpldKeP_IhYXDSkyc6rF7sXx2IKYDi1scDuEShjI/htmlRecords/submit'
+  'https://forms.zohopublic.com/adminzoho11/form/WebBaseVirtual/formperma/r6dyucr2_RC_mCaLCNhmhvEHn820MmGvdkHztewDq58/htmlRecords/submit'
 
 const FORM_GENERAL_VIRTUAL =
-  'https://forms.zohopublic.com/adminzoho11/form/WebFacultadesVirtual/formperma/XZxvtW2GuLFc2zHw6RV9IKsDHhw5fMTH_275g92vXQM/htmlRecords/submit'
+  'https://forms.zohopublic.com/adminzoho11/form/WebBaseVirtual/formperma/r6dyucr2_RC_mCaLCNhmhvEHn820MmGvdkHztewDq58/htmlRecords/submit'
 
 export default class FormCrmCategoryDistanciaBase {
   constructor({ element, container }) {
@@ -71,8 +71,8 @@ export default class FormCrmCategoryDistanciaBase {
             }
 
             updateHiddenInputs([
-              { name: 'SingleLine1', value: 'UNW_Pregrado' },
-              { name: 'SingleLine2', value: 'Web Admisión I' }
+              { name: 'SingleLine1', value: 'UNW_Pregrado_Distancia' },
+              { name: 'SingleLine2', value: 'Landing Base Virtual' }
             ], this.element)
             setNameAttributeCampus({ element: this.element })
 
@@ -99,7 +99,7 @@ export default class FormCrmCategoryDistanciaBase {
 
             updateHiddenInputs([
               { name: 'SingleLine1', value: 'UNW_Pregrado_Distancia' },
-              { name: 'SingleLine2', value: 'Web Solicita Información – Virtual' }
+              { name: 'SingleLine2', value: 'Web Base - Virtual' }
             ], this.element)
             if (value === FORMS.VIRTUAL) {
               if (departaments.length > 0) {

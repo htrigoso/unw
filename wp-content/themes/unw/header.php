@@ -107,6 +107,7 @@
     careers: <?= json_encode(get_carreras()) ?>,
     departaments: <?= json_encode($form_crm_option['list_departaments']) ?>,
     campus: <?= json_encode(get_carreras_campus_modalidad()) ?>
+
   };
 
   let doc = document.documentElement;

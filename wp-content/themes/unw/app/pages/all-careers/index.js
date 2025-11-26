@@ -15,7 +15,7 @@ import { $element } from '../../utils/dom'
   const formConfig = [
     {
       FormClass: FormCrmCategoryPregrado,
-      names: ['form-category-presencial-desktop', 'form-category-presencial-mobile']
+      names: ['form-category-pregrado-desktop', 'form-category-pregrado-mobile']
     },
     {
       FormClass: FormCrmCategoryDistancia,

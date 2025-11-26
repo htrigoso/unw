@@ -257,7 +257,7 @@ export function createHiddenInputs({ type, fields }) {
     )
   }
 
-  if (!Array.isArray(fields) || fields.length !== 2) {
+  if (!Array.isArray(fields)) {
     throw new Error(
       '[buildHiddenInputs] "fields" must be an array with exactly 2 items (faculty + career).'
     )

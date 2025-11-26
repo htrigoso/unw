@@ -3,7 +3,7 @@
   $utm_admission = $crm_carriers['list_utms'] ?? [];
   $utms_final = merge_utms($utms_default, $utm_admission);
 
-  $formUrl = "https://forms.zohopublic.com/adminzoho11/form/WebFacultades/formperma/fDTnpldKeP_IhYXDSkyc6rF7sXx2IKYDi1scDuEShjI/htmlRecords/submit";
+  $formUrl = "https://forms.zohopublic.com/adminzoho11/form/WebFacultadesVirtual/formperma/XZxvtW2GuLFc2zHw6RV9IKsDHhw5fMTH_275g92vXQM/htmlRecords/submit";
 
   $form_crm_option = get_field('form_crm', 'option');
   $form_crm_categories = get_field('form_crm_categories', 'option');
