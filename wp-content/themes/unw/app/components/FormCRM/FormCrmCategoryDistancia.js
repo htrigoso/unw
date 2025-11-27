@@ -4,7 +4,7 @@ import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS,
 // Constantes de formularios
 // ==========================
 const FORM_GENERAL_PRESENCIAL =
-  'https://forms.zohopublic.com/adminzoho11/form/WebFacultades/formperma/fDTnpldKeP_IhYXDSkyc6rF7sXx2IKYDi1scDuEShjI/htmlRecords/submit'
+  'https://forms.zohopublic.com/adminzoho11/form/WebFacultadesVirtual/formperma/XZxvtW2GuLFc2zHw6RV9IKsDHhw5fMTH_275g92vXQM/htmlRecords/submit'
 
 const FORM_GENERAL_VIRTUAL =
   'https://forms.zohopublic.com/adminzoho11/form/WebFacultadesVirtual/formperma/XZxvtW2GuLFc2zHw6RV9IKsDHhw5fMTH_275g92vXQM/htmlRecords/submit'

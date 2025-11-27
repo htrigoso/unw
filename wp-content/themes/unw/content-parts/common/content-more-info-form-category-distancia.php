@@ -46,8 +46,7 @@ $position_form = $args['position_form'] ?? '';
       </svg>
     </i>
     <h4 class="form-header__title more-form__header--title">
-      ¡Déjanos tus datos y nos contactaremos contigo! <br>
-      <i>Form categoría distancia</i>
+      ¡Déjanos tus datos y nos contactaremos contigo!
     </h4>
 
   </div>
@@ -82,6 +81,7 @@ $position_form = $args['position_form'] ?? '';
         'direction'    => $vertical_modality ? 'flex-col' : 'justify-between',
         'location'     => $location,
         'form_type'   => $position_form,
+        'hide_presencial'=> true,
       ]); ?>
 
 

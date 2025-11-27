@@ -76,7 +76,7 @@ $vertical_modality = $args['vertical_modality'] ?? false;
     <div class="form-body__fields">
       <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'radio', [
         'direction'    => $vertical_modality ? 'flex-col' : 'justify-between',
-        'location'      => $location
+        'location'      => $location,
       ]); ?>
 
       <div class="flex justify-between m-b-24 more-form-body__row">
