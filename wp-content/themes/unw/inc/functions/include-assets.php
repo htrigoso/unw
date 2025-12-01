@@ -160,8 +160,10 @@ function include_assets()
     $assetsJsonFile = file_get_contents(get_template_directory() . '/public/assets.json');
   }
 
+
   if (!empty($assetsJsonFile)) {
     $assets = json_decode($assetsJsonFile, true);
+
     $vars = $wp_query->query_vars;
     $themePath = get_template_directory_uri();
     $env = $assets['env'];
@@ -224,6 +226,7 @@ function include_assets()
         case $vars['ASSETS_CHUNK_NAME']:
           {
             if (array_key_exists('js', $val)) {
+
               $style_url = ($env === 'production') ? $themePath . '/' . $val['css'] : null;
               $script_url = ($env === 'production') ? $themePath . '/' . $val['js'] : $val['js'];
 
