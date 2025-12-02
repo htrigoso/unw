@@ -14,7 +14,6 @@ $id = $input['form_type'] ?? 'none'
 </div>
 
 <?php
-// Obtener la página por su slug
 $privacy_page = get_page_by_path('politicas-de-privacidad');
 
 if ($privacy_page) {

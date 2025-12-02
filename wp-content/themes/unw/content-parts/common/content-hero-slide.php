@@ -7,7 +7,6 @@ $breadcrumbs = $args['breadcrumbs'] ?? [];
 $type = $args['type'] ?? 'Imagen';
 $variant = $args['variant'] ?? 'standard';
 $index = $args['index'] ?? 0;
-
 ?>
 
 <div class="hero-slide" data-variant="<?php echo esc_attr($variant); ?>">

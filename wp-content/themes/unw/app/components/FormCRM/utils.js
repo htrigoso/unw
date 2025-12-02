@@ -3,6 +3,31 @@ export const FORMS = Object.freeze({
   VIRTUAL: 'virtual',
   WORK: 'work'
 })
+
+/**
+ * Hashea un valor con SHA256
+ * @param {string} value - Valor a hashear
+ * @returns {Promise<string>} - Hash en formato hexadecimal
+ */
+export async function hashValue(value) {
+  if (!value) return ''
+
+  // Verificar si crypto.subtle está disponible
+  if (!window.crypto || !window.crypto.subtle) {
+    return value
+  }
+
+  try {
+    const msgBuffer = new TextEncoder().encode(value)
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer)
+    const hashArray = Array.from(new Uint8Array(hashBuffer))
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
+  } catch (error) {
+    console.error('Error al hashear valor:', error)
+    return value
+  }
+}
+
 export function validateInputs() {
   const rules = {
     letters: /[^A-Za-zÁÉÍÓÚáéíóúÑñ\s]/g, // solo letras y espacios
@@ -88,7 +113,7 @@ export function setClaseName(value, element) {
 // Creadores dinámicos
 // ==========================
 export function createSelectDepartament({ position = 'append', name = 'SingleLine8', element } = {}) {
-  const departaments = JSON.parse(element.dataset.departaments || '[]')
+  const departaments = window.appConfigUnw.departaments || []
   if (departaments.length === 0) return
 
   const containerHtml = element.querySelector(
@@ -206,7 +231,7 @@ export function sanitizeForInput(str) {
 }
 
 export function createSelectCampus(element, name = 'SingleLine7') {
-  const campus = JSON.parse(element.dataset.campus || '[]')
+  const campus = window.appConfigUnw.campus || []
   if (campus.length === 0) return
 
   const containerHtml = element.querySelector('[data-html-name="campus"]')
@@ -232,7 +257,7 @@ export function createHiddenInputs({ type, fields }) {
     )
   }
 
-  if (!Array.isArray(fields) || fields.length !== 2) {
+  if (!Array.isArray(fields)) {
     throw new Error(
       '[buildHiddenInputs] "fields" must be an array with exactly 2 items (faculty + career).'
     )

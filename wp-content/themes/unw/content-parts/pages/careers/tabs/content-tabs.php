@@ -1,12 +1,16 @@
 <?php
 $tabs = [];
 $acf_careers = get_fields(get_the_ID());
+
 $excluir = ['sliders', 'crm', 'title_sec', 'curriculum_legend'];
 $tabs = [];
 $mode = $args['mode'] ?? '';
 
 foreach ($acf_careers as $key => $value) {
   if (in_array($key, $excluir, true)) {
+    continue;
+  }
+  if (!isset($value['tab']['label']) || empty($value['tab']['label'])) {
     continue;
   }
   $tabs[] = [

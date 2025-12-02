@@ -67,10 +67,8 @@ endif;
       <div class="x-container blog-detail__content">
         <div class="blog-detail__text" data-content="paragraph">
           <?php
-          $contenido = get_field('content');
-          if ($contenido) {
-            echo wp_kses_post($contenido);
-          }
+          // Contenido del editor de WordPress
+          the_content();
           ?>
         </div>
 

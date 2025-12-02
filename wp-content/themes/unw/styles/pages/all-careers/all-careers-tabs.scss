@@ -1,3 +1,13 @@
+.all-careers-tabs__form {
+  display: block;
+  padding-top: rem(24);
+  padding-bottom: rem(24);
+
+  @include media(">=desktop-s") {
+    display: none;
+  }
+}
+
 .all-careers-tabs__container {
   display: flex;
   flex-direction: column;
@@ -15,6 +25,9 @@
 
   @include media(">=tablet") {
     padding-inline: rem(81);
+  }
+
+  @include media(">=desktop-s") {
     margin-top: rem(63);
   }
 }

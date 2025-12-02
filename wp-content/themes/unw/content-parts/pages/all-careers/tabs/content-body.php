@@ -16,7 +16,8 @@ $careers = $args['cards'] ?? []
               'description' => '',
               'link' => $career['link'],
               'link_title' => $career['link_title'],
-              'link_target' => $career['link_target']
+              'link_target' => $career['link_target'],
+              'crm_code' => $career['crm_code']
             ));
             ?>
       </li>

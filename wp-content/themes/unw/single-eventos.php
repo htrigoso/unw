@@ -1,7 +1,13 @@
 <?php set_query_var('ASSETS_CHUNK_NAME', 'event-detail'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php get_header(); ?>
-
+<script data-no-delay>
+  window.unwContentData = {
+    content_type: 'Eventos',
+    content_id: '<?php echo get_the_ID(); ?>',
+    content_title: '<?php echo esc_js(get_the_title()); ?>'
+  };
+</script>
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 <main>
   <?php

@@ -1,7 +1,16 @@
 import Menu from './components/Menu'
 import { $element } from './utils/dom'
 import initLazyLoad from './utils/lazyload'
-import { getBaseDomain, getRfc3986SearchFromUrl, EXCLUDE_URL_PARAMS } from './utils/url-parse'
+import { initViewItemListTracking } from './utils/incubeta/viewItemList'
+import { initSelectItemTracking, trackCareerDetail } from './utils/incubeta/selectItem'
+import { initErrorMessageTracking } from './utils/incubeta/errorMessage'
+import { initFaqClickTracking } from './utils/incubeta/faqClick'
+import { initFooterClickTracking } from './utils/incubeta/footerClick'
+import { initContactClickTracking } from './utils/incubeta/contactClick'
+import { initShareClickTracking } from './utils/incubeta/shareClick'
+import { initCarrouselViewTracking } from './utils/incubeta/carrouselView'
+import { initCarrouselSwipeTracking } from './utils/incubeta/carrouselSwipe'
+import { initCarrouselClickTracking } from './utils/incubeta/carrouselClick'
 
 class App {
   constructor() {
@@ -11,13 +20,15 @@ class App {
     this.megaMenuDesktop()
     this.tabMegaMenuDesktop()
     this.hideBackdrop()
-
     this.handleOnSubmitForm()
     this.blockedClickButtonModal()
-
-    if (window.appConfigUnw.preserveUrlParams === true) {
-      this.propagateUrlParamsToInternalLinks()
-    }
+    this.initCareersTracking()
+    this.initErrorTracking()
+    this.initFaqTracking()
+    this.initFooterTracking()
+    this.initContactTracking()
+    this.initShareTracking()
+    this.initCarrouselTracking()
   }
 
   createNavbar() {
@@ -197,57 +208,51 @@ class App {
     })
   }
 
-  propagateUrlParamsToInternalLinks() {
-    const urlParams = new URLSearchParams(window.location.search)
+  initCareersTracking() {
+    // Tracking de view_item_list (cuando se carga la página de listado)
+    initViewItemListTracking()
 
-    EXCLUDE_URL_PARAMS.forEach(param => {
-      urlParams.delete(param)
-    })
+    // Tracking de select_item (cuando hacen click en "Ver carrera")
+    initSelectItemTracking()
 
-    if (!urlParams.toString()) return
+    // Tracking automático de select_item para páginas single
+    if (window.unwCareerDetailData) {
+      trackCareerDetail(window.unwCareerDetailData)
+    }
+  }
 
-    const currentBaseDomain = getBaseDomain(window.location.hostname)
+  initErrorTracking() {
+    // Tracking de errores de validación en formularios
+    initErrorMessageTracking()
+  }
 
-    const links = document.querySelectorAll('a[href]')
+  initFaqTracking() {
+    // Tracking de clicks en preguntas frecuentes (FAQ)
+    initFaqClickTracking()
+  }
 
-    links.forEach(link => {
-      const href = link.getAttribute('href')
+  initFooterTracking() {
+    // Tracking de clicks en enlaces del footer
+    initFooterClickTracking()
+  }
 
-      // Check if link is relative or same base domain
-      let isInternal = false
+  initContactTracking() {
+    // Tracking de clicks en opciones de contacto
+    initContactClickTracking()
+  }
 
-      if (href.startsWith('/')) {
-        // Relative link
-        isInternal = true
-      } else if (href.startsWith('http://') || href.startsWith('https://')) {
-        // Absolute link - check if it belongs to the same base domain
-        try {
-          const linkUrl = new URL(href)
-          const linkBaseDomain = getBaseDomain(linkUrl.hostname)
-          isInternal = (linkBaseDomain === currentBaseDomain)
-        } catch (e) {
-          // Ignore invalid URL
-          isInternal = false
-        }
-      }
+  initShareTracking() {
+    // Tracking de clicks en compartir contenido
+    initShareClickTracking()
+  }
 
-      if (isInternal) {
-        const url = new URL(href, window.location.origin)
-
-        // Add existing parameters
-        urlParams.forEach((value, key) => {
-          if (!url.searchParams.has(key)) {
-            url.searchParams.set(key, value)
-          }
-        })
-
-        // 🔒 Codification strict RFC 3986
-        const rfc3986Search = getRfc3986SearchFromUrl(Array.from(url.searchParams.entries()))
-        const rfc3986Url = `${url.origin}${url.pathname}${rfc3986Search}`
-
-        link.setAttribute('href', rfc3986Url)
-      }
-    })
+  initCarrouselTracking() {
+    // Tracking de visualización de carrousels/swipers
+    initCarrouselViewTracking()
+    // Tracking de cambios de slide en carrousels
+    initCarrouselSwipeTracking()
+    // Tracking de clicks en enlaces dentro de carrousels
+    initCarrouselClickTracking()
   }
 }
 

@@ -185,6 +185,10 @@
       }
     }
   }
+
+  .flex-col {
+    flex-direction: column !important;
+  }
 }
 
 .form-field-checkbox {

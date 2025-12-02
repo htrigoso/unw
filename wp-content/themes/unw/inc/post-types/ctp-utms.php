@@ -181,9 +181,7 @@ function unw_find_utm_by_content($content, $code_format)
     'post_id' => (int) $result->ID,
     'utm_code' => $result->utm_code
   ] : null;
-}
-
-/**
+}/**
  * Create new UTM post with auto-generated code
  *
  * @param string $title The title to associate with the UTM
@@ -218,6 +216,15 @@ function unw_create_utm($title, $content, $url, $code_format)
       'location_href' => $url, // Store full URL in content/description
     ],
   ];
+
+  $code_exist = unw_find_utm_by_content($content, $code_format);
+
+  if($code_exist) {
+    return [
+      'utm_id' => $code_exist['post_id'],
+      'utm_code' => code_exist['utm_code'],
+    ];
+  }
 
   $post_id = wp_insert_post($post_data, true);
 
