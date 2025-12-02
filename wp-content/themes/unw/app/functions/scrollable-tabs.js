@@ -19,12 +19,20 @@ export function initializeScrollableTabs(containerElement, options = {}, onInit)
     return
   }
 
-  const updateScrollButtonStates = () => {
-    const isAtStart = list.scrollLeft <= 0
-    prevButton.setAttribute('aria-disabled', isAtStart)
+  let rafId = null
 
-    const isAtEnd = list.scrollLeft + list.clientWidth >= list.scrollWidth - 1
-    nextButton.setAttribute('aria-disabled', isAtEnd)
+  const updateScrollButtonStates = () => {
+    if (rafId) return
+
+    rafId = requestAnimationFrame(() => {
+      const isAtStart = list.scrollLeft <= 0
+      prevButton.setAttribute('aria-disabled', isAtStart)
+
+      const isAtEnd = list.scrollLeft + list.clientWidth >= list.scrollWidth - 1
+      nextButton.setAttribute('aria-disabled', isAtEnd)
+
+      rafId = null
+    })
   }
 
   nextButton.addEventListener('click', () => {
@@ -47,6 +55,9 @@ export function initializeScrollableTabs(containerElement, options = {}, onInit)
   }
 
   const destroy = () => {
+    if (rafId) {
+      cancelAnimationFrame(rafId)
+    }
     list.removeEventListener('scroll', updateScrollButtonStates)
     window.removeEventListener('resize', updateScrollButtonStates)
   }

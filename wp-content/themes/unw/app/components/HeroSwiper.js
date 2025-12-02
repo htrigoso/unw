@@ -30,15 +30,23 @@ const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
       : sectionEl
 
     if (swiperElement) {
-      // Activar loop después de que el usuario llegue al segundo slide
+      // Activar loop cuando el usuario llegue al penúltimo slide
       let loopActivated = false
       swiper.on('slideChange', () => {
-        if (!loopActivated && swiper.realIndex >= 1) {
+        const totalSlides = swiper.slides.length
+        const currentIndex = swiper.realIndex
+
+        if (!loopActivated && currentIndex >= totalSlides - 2) {
           loopActivated = true
+          const currentRealIndex = swiper.realIndex
+
           swiper.params.loop = true
           swiper.loopDestroy()
           swiper.loopCreate()
           swiper.update()
+
+          // Mantener la posición actual después de activar el loop
+          swiper.slideToLoop(currentRealIndex, 0)
         }
       })
 
