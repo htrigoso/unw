@@ -11,10 +11,10 @@ const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
     centeredSlides: false,
     spaceBetween: 0,
     speed: 0,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: true
-    },
+    // autoplay: {
+    //   delay: 5000,
+    //   disableOnInteraction: true
+    // },
     effect: 'fade',
     fadeEffect: {
       crossFade: true
@@ -57,28 +57,28 @@ const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
         }
       })
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              if (swiper.autoplay && !swiper.autoplay.running) {
-                swiper.autoplay.start()
-              }
-            } else {
-              if (swiper.autoplay && swiper.autoplay.running) {
-                swiper.autoplay.stop()
-              }
-            }
-          })
-        },
-        {
-          threshold: 0.5,
-          rootMargin: '0px'
-        }
-      )
+      // const observer = new IntersectionObserver(
+      //   (entries) => {
+      //     entries.forEach(entry => {
+      //       if (entry.isIntersecting) {
+      //         if (swiper.autoplay && !swiper.autoplay.running) {
+      //           swiper.autoplay.start()
+      //         }
+      //       } else {
+      //         if (swiper.autoplay && swiper.autoplay.running) {
+      //           swiper.autoplay.stop()
+      //         }
+      //       }
+      //     })
+      //   },
+      //   {
+      //     threshold: 0.5,
+      //     rootMargin: '0px'
+      //   }
+      // )
 
-      observer.observe(swiperElement)
-      swiper.intersectionObserver = observer
+      // observer.observe(swiperElement)
+      // swiper.intersectionObserver = observer
     }
   }
 
