@@ -7,10 +7,6 @@ const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
     centeredSlides: false,
     spaceBetween: 0,
     speed: 0, // Cambiado de 0 a 300ms para mejor UX
-    lazy: {
-      loadPrevNext: true,
-      loadOnTransitionStart: true
-    },
     autoplay: {
       delay: 5000,
       disableOnInteraction: true
