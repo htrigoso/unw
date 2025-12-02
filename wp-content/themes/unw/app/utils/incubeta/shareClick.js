@@ -3,11 +3,13 @@
  * Maneja el evento ev_share cuando el usuario hace click en compartir contenido
  */
 
+import { withIncubeta } from '../incubeta-utils'
+
 /**
  * Envía el evento ev_share al dataLayer
  * @param {Object} data - Datos del share
  */
-function sendShareEvent(data) {
+const sendShareEvent = withIncubeta(function(data) {
   window.dataLayer = window.dataLayer || []
 
   const dataLayerEvent = {
@@ -44,13 +46,13 @@ function sendShareEvent(data) {
       sendEvent()
     }
   }, 100)
-}
+})
 
 /**
  * Inicializa el tracking de share
  * Detecta clicks en .btn-link-social
  */
-export function initShareClickTracking() {
+export const initShareClickTracking = withIncubeta(function() {
   document.addEventListener('click', (e) => {
     // Buscar si el click fue en un botón de compartir
     const target = e.target.closest('.btn-link-social')
@@ -77,4 +79,4 @@ export function initShareClickTracking() {
   })
 
   console.log('[Incubeta] Tracking de ev_share inicializado')
-}
+})

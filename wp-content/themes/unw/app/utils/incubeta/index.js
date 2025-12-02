@@ -1,9 +1,12 @@
 /**
  * Incubeta DataLayer Utilities
  * Funciones genéricas para implementar tracking según especificaciones de Incubeta
+ *
+ * Control: ENABLE_INCUBETA en .env (true/false)
  */
 
 import { hashValue } from '../../components/FormCRM/utils'
+import { withIncubeta } from '../incubeta-utils'
 
 /**
  * Obtiene los datos del formulario de manera estandarizada
@@ -106,13 +109,13 @@ export async function buildFormSubmitDataLayer(formData) {
  * Envía un evento al dataLayer
  * @param {Object} dataLayerEvent - Objeto de evento a enviar
  */
-export function pushToDataLayer(dataLayerEvent) {
+export const pushToDataLayer = withIncubeta(function (dataLayerEvent) {
   if (window.dataLayer && Array.isArray(window.dataLayer)) {
     window.dataLayer.push(dataLayerEvent)
   } else {
     console.warn('dataLayer no está disponible')
   }
-}
+})
 
 /**
  * Maneja el envío completo de un formulario con tracking de Incubeta
@@ -121,7 +124,7 @@ export function pushToDataLayer(dataLayerEvent) {
  * @param {Function} callback - Función callback que recibe el dataLayerEvent generado
  * @returns {Promise<Object>} - Objeto dataLayer generado
  */
-export async function handleFormSubmitTracking(form, data, callback) {
+export const handleFormSubmitTracking = withIncubeta(async function (form, data, callback) {
   try {
     const dataLayerEvent = await buildFormSubmitDataLayer({
       form,
@@ -140,7 +143,7 @@ export async function handleFormSubmitTracking(form, data, callback) {
     console.error('Error en tracking de formulario:', error)
     throw error
   }
-}
+})
 
 /**
  * Construye el evento view_item_list para listado de carreras
@@ -189,7 +192,7 @@ export function buildViewItemListDataLayer(careers, listName, itemBrand) {
  * @param {string} listName - Nombre de la lista
  * @param {string} itemBrand - Marca del item
  */
-export function trackViewItemList(careers, listName, itemBrand) {
+export const trackViewItemList = withIncubeta(function (careers, listName, itemBrand) {
   if (!careers || careers.length === 0) {
     console.warn('No hay carreras para trackear en view_item_list')
     return
@@ -203,4 +206,4 @@ export function trackViewItemList(careers, listName, itemBrand) {
   pushToDataLayer(dataLayerEvent)
 
   console.log('✅ view_item_list enviado:', dataLayerEvent)
-}
+})

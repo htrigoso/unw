@@ -3,11 +3,13 @@
  * Maneja el evento contact cuando el usuario hace click en opciones de contacto
  */
 
+import { withIncubeta } from '../incubeta-utils'
+
 /**
  * Envía el evento contact al dataLayer
  * @param {Object} data - Datos del contacto
  */
-function sendContactEvent(data) {
+const sendContactEvent = withIncubeta(function (data) {
   window.dataLayer = window.dataLayer || []
 
   const dataLayerEvent = {
@@ -43,13 +45,13 @@ function sendContactEvent(data) {
       sendEvent()
     }
   }, 100)
-}
+})
 
 /**
  * Inicializa el tracking de contact
  * Detecta clicks en .whatsapp-link, .book-link, .btn-contact
  */
-export function initContactClickTracking() {
+export const initContactClickTracking = withIncubeta(function () {
   document.addEventListener('click', (e) => {
     // Buscar si el click fue en alguna de las clases de contacto
     const target = e.target.closest('.whatsapp-link, .book-link, .btn-contact')
@@ -91,4 +93,4 @@ export function initContactClickTracking() {
   })
 
   console.log('[Incubeta] Tracking de contact inicializado')
-}
+})

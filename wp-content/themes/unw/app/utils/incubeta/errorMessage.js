@@ -3,12 +3,14 @@
  * Maneja el evento error_message cuando se muestra un error de validación
  */
 
+import { withIncubeta } from '../incubeta-utils'
+
 /**
  * Envía el evento error_message al dataLayer (espera a GTM si es necesario)
  * @param {string} errorText - Texto del mensaje de error
  * @param {string} formId - ID del formulario donde ocurrió el error
  */
-export function trackErrorMessage(errorText, formId) {
+export const trackErrorMessage = withIncubeta(function (errorText, formId) {
   // Inicializar dataLayer si no existe
   window.dataLayer = window.dataLayer || []
 
@@ -45,7 +47,7 @@ export function trackErrorMessage(errorText, formId) {
       sendEvent()
     }
   }, 100)
-}
+})
 
 /**
  * Traduce mensajes de error de HTML5 al español
@@ -97,7 +99,7 @@ function getSpanishErrorMessage(input) {
  * Observa errores de validación HTML5 en formularios
  * @param {HTMLFormElement} form - Formulario a observar
  */
-export function observeFormErrors(form) {
+export const observeFormErrors = withIncubeta(function (form) {
   if (!form) return
 
   const formId = form.id || 'unknown-form'
@@ -157,12 +159,12 @@ export function observeFormErrors(form) {
       subtree: true
     })
   })
-}
+})
 
 /**
  * Inicializa el tracking de errores para todos los formularios
  */
-export function initErrorMessageTracking() {
+export const initErrorMessageTracking = withIncubeta(function () {
   // Observar formularios Zoho
   const zohoForms = document.querySelectorAll('[data-form="zoho"]')
   zohoForms.forEach(form => observeFormErrors(form))
@@ -192,4 +194,4 @@ export function initErrorMessageTracking() {
     childList: true,
     subtree: true
   })
-}
+})

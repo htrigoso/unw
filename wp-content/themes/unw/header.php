@@ -121,7 +121,7 @@
 
   <!-- Incubeta Control -->
   <script>
-  window.INCUBETA_ENABLED = <?php echo defined('INCUBETA_ENABLED') && INCUBETA_ENABLED ? 'true' : 'false'; ?>;
+  window.INCUBETA_ENABLED = 'false';
   </script>
 
   <?php get_template_part('content-parts/content', 'gtm'); ?>

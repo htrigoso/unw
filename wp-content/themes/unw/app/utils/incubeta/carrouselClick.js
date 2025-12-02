@@ -3,11 +3,13 @@
  * Maneja el evento carrousel_click cuando el usuario hace click en un slider
  */
 
+import { withIncubeta } from '../incubeta-utils'
+
 /**
  * Envía el evento carrousel_click al dataLayer
  * @param {Object} data - Datos del click
  */
-function sendCarrouselClickEvent(data) {
+const sendCarrouselClickEvent = withIncubeta(function(data) {
   window.dataLayer = window.dataLayer || []
 
   const dataLayerEvent = {
@@ -46,7 +48,7 @@ function sendCarrouselClickEvent(data) {
       sendEvent()
     }
   }, 100)
-}
+})
 
 /**
  * Genera un ID único para el carrousel (igual lógica que carrouselView.js)
@@ -160,7 +162,7 @@ function getLinkText(clickedElement) {
  * Inicializa el tracking de carrousel_click
  * Detecta clicks en enlaces dentro de slides de swipers
  */
-export function initCarrouselClickTracking() {
+export const initCarrouselClickTracking = withIncubeta(function() {
   document.addEventListener('click', (e) => {
     // Buscar si el click fue en un enlace
     const link = e.target.closest('a, button')
@@ -211,4 +213,4 @@ export function initCarrouselClickTracking() {
   })
 
   console.log('[Incubeta] Tracking de carrousel_click inicializado')
-}
+})

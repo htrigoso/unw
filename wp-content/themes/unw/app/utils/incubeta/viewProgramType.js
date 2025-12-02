@@ -3,10 +3,12 @@
  * Maneja el evento view_program_type cuando se muestra la sección de programas en el home
  */
 
+import { withIncubeta } from '../incubeta-utils'
+
 /**
  * Envía el evento view_program_type al dataLayer
  */
-function sendViewProgramTypeEvent() {
+const sendViewProgramTypeEvent = withIncubeta(function () {
   window.dataLayer = window.dataLayer || []
 
   const dataLayerEvent = {
@@ -15,13 +17,13 @@ function sendViewProgramTypeEvent() {
 
   window.dataLayer.push(dataLayerEvent)
   console.log('[Incubeta] ✅ view_program_type enviado:', dataLayerEvent)
-}
+})
 
 /**
  * Espera a que GTM esté disponible y envía el evento
  * @param {Function} callback - Función a ejecutar cuando GTM esté listo
  */
-function waitForGTM(callback) {
+const waitForGTM = withIncubeta(function (callback) {
   if (window.google_tag_manager) {
     callback()
     return
@@ -42,13 +44,13 @@ function waitForGTM(callback) {
       callback()
     }
   }, 100)
-}
+})
 
 /**
  * Inicializa el tracking de view_program_type usando MutationObserver
  * Se ejecuta cuando la sección .programs se hace visible en el home
  */
-export function initViewProgramTypeTracking() {
+export const initViewProgramTypeTracking = withIncubeta(function () {
   // Verificar que estamos en el home
   const homePage = document.getElementById('home-page')
   if (!homePage) {
@@ -89,4 +91,4 @@ export function initViewProgramTypeTracking() {
   // Comenzar a observar la sección
   observer.observe(programsSection)
   console.log('[Incubeta] 👁️ Observando section.programs para view_program_type')
-}
+})

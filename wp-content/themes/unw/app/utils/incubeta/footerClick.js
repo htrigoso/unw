@@ -3,11 +3,13 @@
  * Maneja el evento footer cuando el usuario hace click en una opción del footer
  */
 
+import { withIncubeta } from '../incubeta-utils'
+
 /**
  * Envía el evento footer al dataLayer
  * @param {Object} data - Datos del footer
  */
-function sendFooterEvent(data) {
+const sendFooterEvent = withIncubeta(function (data) {
   window.dataLayer = window.dataLayer || []
 
   const dataLayerEvent = {
@@ -42,13 +44,13 @@ function sendFooterEvent(data) {
       sendEvent()
     }
   }, 100)
-}
+})
 
 /**
  * Inicializa el tracking de footer
  * Detecta clicks en enlaces dentro del footer
  */
-export function initFooterClickTracking() {
+export const initFooterClickTracking = withIncubeta(function () {
   document.addEventListener('click', (e) => {
     // Buscar si el click fue dentro del footer
     const footerElement = e.target.closest('.footer')
@@ -88,4 +90,4 @@ export function initFooterClickTracking() {
   })
 
   console.log('[Incubeta] Tracking de footer inicializado')
-}
+})

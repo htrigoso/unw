@@ -3,11 +3,13 @@
  * Maneja el evento select_event cuando el usuario hace click en un evento del home
  */
 
+import { withIncubeta } from '../incubeta-utils'
+
 /**
  * Envía el evento select_event al dataLayer
  * @param {Object} data - Datos del evento
  */
-function sendSelectEventEvent(data) {
+const sendSelectEventEvent = withIncubeta(function (data) {
   window.dataLayer = window.dataLayer || []
 
   const dataLayerEvent = {
@@ -44,13 +46,13 @@ function sendSelectEventEvent(data) {
       sendEvent()
     }
   }, 100)
-}
+})
 
 /**
  * Inicializa el tracking de select_event
  * Detecta clicks en eventos del home
  */
-export function initSelectEventTracking() {
+export const initSelectEventTracking = withIncubeta(function () {
   document.addEventListener('click', (e) => {
     const target = e.target.closest('.btn-select-content-item-click')
 
@@ -92,4 +94,4 @@ export function initSelectEventTracking() {
   })
 
   console.log('[Incubeta] Tracking de select_event inicializado (solo home)')
-}
+})

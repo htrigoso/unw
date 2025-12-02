@@ -3,10 +3,12 @@
  * Maneja el evento view_event_list cuando el usuario visualiza la sección de eventos destacados en el home
  */
 
+import { withIncubeta } from '../incubeta-utils'
+
 /**
  * Envía el evento view_event_list al dataLayer
  */
-function sendViewEventListEvent() {
+const sendViewEventListEvent = withIncubeta(function() {
   window.dataLayer = window.dataLayer || []
 
   const dataLayerEvent = {
@@ -41,13 +43,13 @@ function sendViewEventListEvent() {
       sendEvent()
     }
   }, 100)
-}
+})
 
 /**
  * Inicializa el tracking de view_event_list
  * Usa IntersectionObserver para detectar cuando la sección de eventos destacados es visible
  */
-export function initViewEventListTracking() {
+export const initViewEventListTracking = withIncubeta(function() {
   // Solo ejecutar en el home
   if (!document.body.classList.contains('home')) {
     console.log('[Incubeta] No es el home, skip view_event_list')
@@ -83,4 +85,4 @@ export function initViewEventListTracking() {
 
   observer.observe(featuredEventsSection)
   console.log('[Incubeta] Observando sección de eventos destacados para view_event_list')
-}
+})
