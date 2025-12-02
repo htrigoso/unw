@@ -6,7 +6,7 @@ const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
     slidesPerView: 1,
     centeredSlides: false,
     spaceBetween: 0,
-    speed: 0, // Cambiado de 0 a 300ms para mejor UX
+    speed: 0,
     autoplay: {
       delay: 5000,
       disableOnInteraction: true
@@ -30,6 +30,18 @@ const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
       : sectionEl
 
     if (swiperElement) {
+      // Activar loop después de que el usuario llegue al segundo slide
+      let loopActivated = false
+      swiper.on('slideChange', () => {
+        if (!loopActivated && swiper.realIndex >= 1) {
+          loopActivated = true
+          swiper.params.loop = true
+          swiper.loopDestroy()
+          swiper.loopCreate()
+          swiper.update()
+        }
+      })
+
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach(entry => {

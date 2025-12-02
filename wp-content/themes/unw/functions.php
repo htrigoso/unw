@@ -1,4 +1,11 @@
 <?php
+/**
+ * Control de Incubeta Analytics
+ * Define INCUBETA_ENABLED como true para habilitar tracking
+ * Define como false o comenta la línea para deshabilitar
+ */
+define('INCUBETA_ENABLED', false);
+
 // require vendor packages autoload
 // require_once dirname(__FILE__) . '/vendor/autoload.php';
 
