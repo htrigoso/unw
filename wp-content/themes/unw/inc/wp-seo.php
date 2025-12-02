@@ -37,7 +37,7 @@ function uw_preload_responsive_images( array $image_sets = [], bool $echo = true
 
 		if ( $img_desktop ) {
 			$output .= sprintf(
-				'<link rel="preload" as="image" href="%s" imagesizes="100vw" media="(min-width: 768px)" type="image/webp">' . "\n",
+				'<link rel="preload" as="image" href="%s" imagesizes="100vw" fetchpriority="high" media="(min-width: 768px)" type="image/webp">' . "\n",
 				esc_url($img_desktop)
 			);
 		}
@@ -144,7 +144,7 @@ add_action('wp_head', function () {
      * @param array $items List of items.
      * @param string $image_key Key for image data.
      * @param string|null $type_filter Optional type filter.
-     * @return array Array of preload images.
+     * @return array Array of preload images (only first item).
      */
     function get_images_to_preload($items, $image_key, $type_filter = null) {
         if (empty($items) || !is_array($items)) {
@@ -155,13 +155,17 @@ add_action('wp_head', function () {
             ? array_filter($items, fn($item) => isset($item[$image_key]['type']) && strtolower($item[$image_key]['type']) === $type_filter)
             : $items;
 
-        return array_values(array_map(
-            fn($item) => [
-                'url' => $item[$image_key]['mobile']['url'] ?? null,
-                'url_desktop' => $item[$image_key]['desktop']['url'] ?? null,
-            ],
-            $filtered_items
-        ));
+        // Return only first item
+        $first_item = reset($filtered_items);
+
+        if (!$first_item) {
+            return [];
+        }
+
+        return [[
+            'url' => $first_item[$image_key]['mobile']['url'] ?? null,
+            'url_desktop' => $first_item[$image_key]['desktop']['url'] ?? null,
+        ]];
     }
 
     /**

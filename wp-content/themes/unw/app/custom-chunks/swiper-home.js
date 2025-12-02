@@ -22,7 +22,7 @@ export default class SwiperHero {
         nextEl: '.hero-swiper .home-hero-button-next',
         prevEl: '.hero-swiper .home-hero-button-prev'
       },
-      loop: true
+      loop: false
     })
 
     if (heroSwiper) {
