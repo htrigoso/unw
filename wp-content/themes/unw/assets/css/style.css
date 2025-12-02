@@ -15541,7 +15541,7 @@ li {
   }
 
   .link_item_tab.scroll.large {
-    width: 200px;
+    min-width: 200px;
     margin-right: 0px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -21087,3 +21087,12 @@ table {
   text-align: left;
 }
 
+._2-col > .col-1.full {
+  overflow: auto;
+}
+
+@media screen and (min-width: 479px) {
+  ._2-col > .col-1.full {
+    overflow: visible;
+  }
+}
