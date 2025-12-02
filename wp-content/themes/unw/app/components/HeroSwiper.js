@@ -1,4 +1,8 @@
+import Swiper, { Lazy } from 'swiper'
 import { createSwiper } from './createSwiper'
+
+// Configurar Lazy solo para HeroSwiper
+Swiper.use([Lazy])
 
 const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
   const defaultConfig = {
@@ -16,6 +20,9 @@ const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
       crossFade: true
     },
     autoHeight: false,
+    lazy: {
+      loadPrevNext: true
+    },
     pagination: {
       el: `${sectionEl} .swiper-pagination`,
       clickable: true
