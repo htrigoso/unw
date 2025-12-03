@@ -1,5 +1,6 @@
 import Swiper, { Lazy } from 'swiper'
 import { createSwiper } from './createSwiper'
+import { UserActivityDetector } from '../utils/detect-user-activity'
 
 // Configurar Lazy solo para HeroSwiper
 Swiper.use([Lazy])
@@ -57,28 +58,30 @@ const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
         }
       })
 
-      // const observer = new IntersectionObserver(
-      //   (entries) => {
-      //     entries.forEach(entry => {
-      //       if (entry.isIntersecting) {
-      //         if (swiper.autoplay && !swiper.autoplay.running) {
-      //           swiper.autoplay.start()
-      //         }
-      //       } else {
-      //         if (swiper.autoplay && swiper.autoplay.running) {
-      //           swiper.autoplay.stop()
-      //         }
-      //       }
-      //     })
-      //   },
-      //   {
-      //     threshold: 0.5,
-      //     rootMargin: '0px'
-      //   }
-      // )
+      new UserActivityDetector(() => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                if (swiper.autoplay && !swiper.autoplay.running) {
+                  swiper.autoplay.start()
+                }
+              } else {
+                if (swiper.autoplay && swiper.autoplay.running) {
+                  swiper.autoplay.stop()
+                }
+              }
+            })
+          },
+          {
+            threshold: 0.5,
+            rootMargin: '0px'
+          }
+        )
 
-      // observer.observe(swiperElement)
-      // swiper.intersectionObserver = observer
+        observer.observe(swiperElement)
+        swiper.intersectionObserver = observer
+      })
     }
   }
 
