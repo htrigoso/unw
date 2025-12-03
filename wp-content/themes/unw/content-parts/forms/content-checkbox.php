@@ -19,7 +19,7 @@ $privacy_page = get_page_by_path('politicas-de-privacidad');
 if ($privacy_page) {
   get_template_part(COMMON_CONTENT_PATH, 'rich-text-modal', [
     'id'   => 'politics-modal',
-    'body' => '<h1>' . esc_html($privacy_page->post_title) . '</h1>' . apply_filters('the_content', $privacy_page->post_content),
+    'body' => '<strong style="font-size:2rem; display:block; text-align:center;">' . esc_html($privacy_page->post_title) . '</strong>' . apply_filters('the_content', $privacy_page->post_content),
   ]);
 }
 ?>
