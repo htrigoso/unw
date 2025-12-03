@@ -128,14 +128,6 @@ add_action( 'wp_footer', function () {
     echo '<!-- DelayJS System Active - Scripts will load on user interaction -->' . "\n";
     ?>
 <script>
-/*!
- * Delay JS Loader - Performance Optimization v2.0
- * - Carga scripts marcados con type="text/delayed-javascript"
- * - Dispara en la primera interacción REAL del usuario
- * - Mantiene el orden; respeta async/defer
- * - Incluye fix para iOS y validaciones exhaustivas
- * - Basado en el patrón exitoso de GTMLoader
- */
 (function() {
   'use strict';
 

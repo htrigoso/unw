@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <?php uw_generate_critical_image_preloads();?>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="Cache-control" content="public">
   <meta name="format-detection" content="telephone=no">
@@ -16,6 +17,31 @@
   <meta name="msapplication-TileColor" content="#92dce5">
   <meta name="msapplication-navbutton-color" content="#f7f9fb">
   <link rel="icon" type="image/png" sizes="32x32" href="<?php echo UPLOAD_PATH; ?>/favicon/favicon.png">
+  <style>
+  /* Asegura que el primer slide sea visible inmediatamente sin esperar al JS */
+  .swiper-hero__slide:first-child {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+
+  }
+
+  .swiper-hero__picture--img {
+    /* Evita que la imagen colapse mientras carga */
+    min-height: var(--full-hero-height);
+
+    /* Ajusta esto a la altura real de tu banner en móvil */
+    background-color: #f0f0f0;
+    /* Un color de fondo gris claro mientras carga */
+  }
+
+  @media (max-width: 768px) {
+    .swiper-hero__picture--img {
+      min-height: 500px;
+      /* Altura específica para móvil según tu diseño */
+    }
+  }
+  </style>
 
 
   <!-- Css vars-->

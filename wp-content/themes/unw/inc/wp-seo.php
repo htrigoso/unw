@@ -30,14 +30,14 @@ function uw_preload_responsive_images( array $image_sets = [], bool $echo = true
 
 		if ($img_mobile) {
 			$output .= sprintf(
-				'<link rel="preload" as="image" href="%s" imagesizes="100vw" fetchpriority="high" type="image/webp">' . "\n",
+				'<link rel="preload" as="image" href="%s"  fetchpriority="high" type="image/webp" media="(max-width: 767px)">' . "\n",
 				esc_url($img_mobile)
 			);
 		}
 
 		if ( $img_desktop ) {
 			$output .= sprintf(
-				'<link rel="preload" as="image" href="%s" imagesizes="100vw" fetchpriority="high" media="(min-width: 768px)" type="image/webp">' . "\n",
+				'<link rel="preload" as="image" href="%s"  fetchpriority="high" media="(min-width: 768px)" type="image/webp">' . "\n",
 				esc_url($img_desktop)
 			);
 		}
@@ -50,224 +50,171 @@ function uw_preload_responsive_images( array $image_sets = [], bool $echo = true
 	return $output;
 }
 
+/**
+ * Extract images for preload from a list of items.
+ * @param array $items List of items.
+ * @param string $image_key Key for image data.
+ * @param string|null $type_filter Optional type filter.
+ * @return array Array of preload images (only first item).
+ */
+function get_images_to_preload($items, $image_key, $type_filter = null) {
+	if (empty($items) || !is_array($items)) {
+		return [];
+	}
 
-add_action('wp_head', function () {
-    /**
-     * Configuration for page templates and their image extraction logic.
-     * @var array $config Map of template/post type to callback and parameters.
-     */
-    $config = [
-        // Page templates with single image
-        'page_templates_single' => [
-            'templates/template-about-us.php' => [
-                'field' => 'hero',
-                'image_key' => 'images',
-            ],
-            'templates/template-admission-convalidation.php' => [
-                'field' => 'Hero',
-                'image_key' => 'images',
-            ],
-            'templates/template-admission-pregrado.php' => [
-                'field' => 'Hero',
-                'image_key' => 'images',
-            ],
-            'templates/template-admission-traslado.php' => [
-                'field' => 'Hero',
-                'image_key' => 'images',
-            ],
-            'templates/template-blog.php' => [
-                'field' => 'hero-slide',
-                'image_key' => 'images',
-            ],
-            'templates/template-our-history.php' => [
-                'field' => 'hero',
-                'image_key' => 'images',
-            ],
-            'templates/template-powered-by-asu.php' => [
-                'field' => 'slide-hero',
-                'image_key' => 'images',
-            ],
-            'templates/template-quality-policy.php' => [
-                'field' => 'hero',
-                'image_key' => 'images',
-            ],
-        ],
-        // Page templates with image lists
-        'page_templates_list' => [
-            'templates/template-home.php' => [
-                'field' => 'hero',
-                'list_key' => 'list',
-                'image_key' => 'images',
-            ],
-        ],
-        // Singular post types
-        'singular' => [
-            'carreras' => [
-                'field' => 'sliders',
-                'list_key' => 'list_of_files',
-                'image_key' => 'images',
-                'type_filter' => 'imagen',
-            ],
-            'eventos' => [
-                'field' => 'list_of_files',
-                'image_key' => 'imagen',
-            ],
-            'facultad' => [
-                'field' => 'hero_slider',
-                'list_key' => 'list_of_files',
-                'image_key' => 'images',
-                'type_filter' => 'imagen',
-            ],
-        ],
-        // Post type archives
-        'archives' => [
-            'eventos' => [
-                'field' => 'hero-events',
-                'option' => true,
-                'image_key' => 'images',
-            ],
-            'novedades' => [
-                'field' => 'hero-news',
-                'option' => true,
-                'image_key' => 'images',
-                'single' => true,
-            ],
-        ],
-        // Special case for template-all-careers
-        'special' => [
-            'templates/template-all-careers.php' => fn() => preload_all_careers_images(),
-        ],
-    ];
+	$filtered_items = $type_filter
+		? array_filter($items, fn($item) => isset($item[$image_key]['type']) && strtolower($item[$image_key]['type']) === $type_filter)
+		: $items;
 
-    /**
-     * Extract images for preload from a list of items.
-     * @param array $items List of items.
-     * @param string $image_key Key for image data.
-     * @param string|null $type_filter Optional type filter.
-     * @return array Array of preload images (only first item).
-     */
-    function get_images_to_preload($items, $image_key, $type_filter = null) {
-        if (empty($items) || !is_array($items)) {
-            return [];
-        }
+	// Return only first item
+	$first_item = reset($filtered_items);
 
-        $filtered_items = $type_filter
-            ? array_filter($items, fn($item) => isset($item[$image_key]['type']) && strtolower($item[$image_key]['type']) === $type_filter)
-            : $items;
+	if (!$first_item) {
+		return [];
+	}
 
-        // Return only first item
-        $first_item = reset($filtered_items);
+	return [[
+		'url' => $first_item[$image_key]['mobile']['url'] ?? null,
+		'url_desktop' => $first_item[$image_key]['desktop']['url'] ?? null,
+	]];
+}
 
-        if (!$first_item) {
-            return [];
-        }
+/**
+ * Extract single image for preload.
+ * @param array $image_source Image data.
+ * @return array Array of preload images.
+ */
+function get_single_image_to_preload($image_source) {
+	if (empty($image_source) || !is_array($image_source)) {
+		return [];
+	}
+	return [[
+		'url' => $image_source['mobile']['url'] ?? null,
+		'url_desktop' => $image_source['desktop']['url'] ?? null,
+	]];
+}
 
-        return [[
-            'url' => $first_item[$image_key]['mobile']['url'] ?? null,
-            'url_desktop' => $first_item[$image_key]['desktop']['url'] ?? null,
-        ]];
-    }
+/**
+ * Get current term ID from queried object.
+ * @return int Term ID or 0 if not on taxonomy page.
+ */
+function get_current_term_id() {
+	$obj = get_queried_object();
 
-    /**
-     * Extract single image for preload.
-     * @param array $image_source Image data.
-     * @return array Array of preload images.
-     */
-    function get_single_image_to_preload($image_source) {
-        if (empty($image_source) || !is_array($image_source)) {
-            return [];
-        }
-        return [[
-            'url' => $image_source['mobile']['url'] ?? null,
-            'url_desktop' => $image_source['desktop']['url'] ?? null,
-        ]];
-    }
+	if ($obj && isset($obj->term_id)) {
+		return (int) $obj->term_id;
+	}
 
-    function get_current_term_id() {
-      $obj = get_queried_object();
+	return 0;
+}
 
-        if ($obj && isset($obj->term_id)) {
-            return (int) $obj->term_id;
-        }
+/**
+ * Handle special case for template-all-careers.
+ * @return array Array of preload images.
+ */
+function preload_all_careers_images() {
+	$current_id_term = get_current_term_id();
+	$image_source = $current_id_term == 0
+		? get_field('hero')['images'] ?? []
+		: get_field('images', 'facultad_' . $current_id_term) ?? [];
 
-        return 0; // 0 si no estamos en una página de taxonomía
-    }
+	return get_single_image_to_preload($image_source);
+}
 
-    /**
-     * Handle special case for template-all-careers.
-     * @return array Array of preload images.
-     */
-    function preload_all_careers_images() {
-        $current_id_term = get_current_term_id();
-        $image_source = $current_id_term == 0
-            ? get_field('hero')['images'] ?? []
-            : get_field('images', 'facultad_' . $current_id_term) ?? [];
+/**
+ * Process images and preload if valid.
+ * @param array $images Images to preload.
+ */
+function preload_if_valid($images) {
+	if (!empty($images) && is_array($images)) {
+		uw_preload_responsive_images(array_filter($images, fn($img) => !is_null($img['url']) || !is_null($img['url_desktop'])));
+	}
+}
 
-        return get_single_image_to_preload($image_source);
-    }
+/**
+ * Genera preloads de imágenes críticas según el template/post type actual.
+ * Llama esta función directamente en header.php para máximo control.
+ * Optimizado: detección directa sin foreach, solo ejecuta el código del template activo.
+ */
+function uw_generate_critical_image_preloads() {
+	// 1. Detectar template activo primero (early detection)
+	$current_template = get_page_template_slug();
 
-    /**
-     * Process images and preload if valid.
-     * @param array $images Images to preload.
-     */
-    function preload_if_valid($images) {
-        if (!empty($images) && is_array($images)) {
-            uw_preload_responsive_images(array_filter($images, fn($img) => !is_null($img['url']) || !is_null($img['url_desktop'])));
-        }
-    }
+	// 2. Page templates - detección directa por template
+	if ($current_template) {
+		// Special case: template-all-careers
+		if ($current_template === 'templates/template-all-careers.php') {
+			$images = preload_all_careers_images();
+			preload_if_valid($images);
+			return;
+		}
 
-    // Process page templates with single images
-    foreach ($config['page_templates_single'] as $template => $params) {
-        if (is_page_template($template)) {
-            $data = get_field($params['field']);
-            $images = get_single_image_to_preload($data[$params['image_key']] ?? []);
-            preload_if_valid($images);
-            return;
-        }
-    }
+		// Home template (list)
+		if ($current_template === 'templates/template-home.php') {
+			$data = get_field('hero');
+			$images = get_images_to_preload($data['list'] ?? [], 'images');
+			preload_if_valid($images);
+			return;
+		}
 
-    // Process page templates with image lists
-    foreach ($config['page_templates_list'] as $template => $params) {
-        if (is_page_template($template)) {
-            $data = get_field($params['field']);
-            $images = get_images_to_preload($data[$params['list_key']] ?? [], $params['image_key']);
-            preload_if_valid($images);
-            return;
-        }
-    }
+		// Templates con single image - switch optimizado
+		$single_image_config = match($current_template) {
+			'templates/template-about-us.php' => ['field' => 'hero', 'image_key' => 'images'],
+			'templates/template-admission-convalidation.php' => ['field' => 'Hero', 'image_key' => 'images'],
+			'templates/template-admission-pregrado.php' => ['field' => 'Hero', 'image_key' => 'images'],
+			'templates/template-admission-traslado.php' => ['field' => 'Hero', 'image_key' => 'images'],
+			'templates/template-blog.php' => ['field' => 'hero-slide', 'image_key' => 'images'],
+			'templates/template-our-history.php' => ['field' => 'hero', 'image_key' => 'images'],
+			'templates/template-powered-by-asu.php' => ['field' => 'slide-hero', 'image_key' => 'images'],
+			'templates/template-quality-policy.php' => ['field' => 'hero', 'image_key' => 'images'],
+			default => null
+		};
 
-    // Process singular post types
-    foreach ($config['singular'] as $post_type => $params) {
-        if (is_singular($post_type)) {
-            $data = get_field($params['field']);
-            $items = isset($params['list_key']) ? $data[$params['list_key']] ?? [] : $data;
-            $images = get_images_to_preload($items, $params['image_key'], $params['type_filter'] ?? null);
-            preload_if_valid($images);
-            return;
-        }
-    }
+		if ($single_image_config) {
+			$data = get_field($single_image_config['field']);
+			$images = get_single_image_to_preload($data[$single_image_config['image_key']] ?? []);
+			preload_if_valid($images);
+			return;
+		}
+	}
 
-    // Process post type archives
-    foreach ($config['archives'] as $post_type => $params) {
-        if (is_post_type_archive($post_type)) {
-            $data = get_field($params['field'], $params['option'] ? 'option' : null);
-            $images = $params['single'] ?? false
-                ? get_single_image_to_preload($data[$params['image_key']] ?? [])
-                : get_images_to_preload($data ?? [], $params['image_key']);
-            preload_if_valid($images);
-            return;
-        }
-    }
+	// 3. Post type archives - detección directa
+	if (is_post_type_archive('eventos')) {
+		$data = get_field('hero-events', 'option');
+		$images = get_images_to_preload($data ?? [], 'images');
+		preload_if_valid($images);
+		return;
+	}
 
-    // Process special case
-    foreach ($config['special'] as $template => $callback) {
-        if (is_page_template($template)) {
-            $images = $callback();
-            preload_if_valid($images);
-            return;
-        }
-    }
-}, 1); // Prioridad muy alta para ejecutar antes que todo en el head
+	if (is_post_type_archive('novedades')) {
+		$data = get_field('hero-news', 'option');
+		$images = get_single_image_to_preload($data['images'] ?? []);
+		preload_if_valid($images);
+		return;
+	}
+
+	// 4. Singular post types - detección directa
+	if (is_singular('carreras')) {
+		$data = get_field('sliders');
+		$images = get_images_to_preload($data['list_of_files'] ?? [], 'images', 'imagen');
+		preload_if_valid($images);
+		return;
+	}
+
+	if (is_singular('eventos')) {
+		$data = get_field('list_of_files');
+		$images = get_images_to_preload($data ?? [], 'imagen');
+		preload_if_valid($images);
+		return;
+	}
+
+	if (is_singular('facultad')) {
+		$data = get_field('hero_slider');
+		$images = get_images_to_preload($data['list_of_files'] ?? [], 'images', 'imagen');
+		preload_if_valid($images);
+		return;
+	}
+}
 
 
 
