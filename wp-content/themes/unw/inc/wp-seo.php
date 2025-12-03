@@ -267,7 +267,7 @@ add_action('wp_head', function () {
             return;
         }
     }
-}, 1);
+}, 1); // Prioridad muy alta para ejecutar antes que todo en el head
 
 
 

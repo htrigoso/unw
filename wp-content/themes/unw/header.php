@@ -16,7 +16,7 @@
   <meta name="msapplication-TileColor" content="#92dce5">
   <meta name="msapplication-navbutton-color" content="#f7f9fb">
   <link rel="icon" type="image/png" sizes="32x32" href="<?php echo UPLOAD_PATH; ?>/favicon/favicon.png">
-  <?php get_template_part('content-parts/content', 'fonts'); ?>
+
 
   <!-- Css vars-->
   <style type="text/css">
@@ -123,7 +123,7 @@
   <script>
   window.INCUBETA_ENABLED = 'false';
   </script>
-
+  <?php get_template_part('content-parts/content', 'fonts'); ?>
   <?php get_template_part('content-parts/content', 'gtm'); ?>
 
   <?php wp_head(); ?>
