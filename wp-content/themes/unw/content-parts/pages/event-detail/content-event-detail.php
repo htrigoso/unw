@@ -49,7 +49,7 @@
 
       <article class="event-detail__form">
         <?php
-           // get_template_part(EVENT_DETAIL_CONTENT_PATH, 'contact-form')
+           get_template_part(EVENT_DETAIL_CONTENT_PATH, 'contact-form')
         ?>
       </article>
     </section>
