@@ -165,6 +165,16 @@ add_filter('post_link', 'custom_post_permalink', 10, 2);
 
 // Agregar reglas de reescritura para que funcionen las nuevas URLs
 function custom_blog_rewrite_rules() {
+    // Obtener el ID de la página de blog
+    $blog_page = get_page_by_path('blog');
+    $blog_page_id = $blog_page ? $blog_page->ID : 0;
+
+    // Regla para paginación del blog: /blog/page/2/ (debe ir primero)
+    if ($blog_page_id) {
+        add_rewrite_rule('^blog/page/?([0-9]{1,})/?$', 'index.php?page_id=' . $blog_page_id . '&paged=$matches[1]', 'top');
+    }
+
+    // Regla para posts individuales: /blog/post-name/ (debe ir después)
     add_rewrite_rule('^blog/([^/]+)/?$', 'index.php?name=$matches[1]', 'top');
 }
 add_action('init', 'custom_blog_rewrite_rules');
