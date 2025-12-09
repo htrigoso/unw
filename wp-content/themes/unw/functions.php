@@ -41,3 +41,6 @@ require_once dirname(__FILE__) . '/inc/wp-careers.php';
 require_once dirname(__FILE__) . '/inc/functions/tpl-noticias.php';
 
 require_once dirname(__FILE__) . '/inc/functions/preserve-url-params.php';
+
+// require UTM unique index prevention
+require_once dirname(__FILE__) . '/inc/functions/utm-create-unique-index.php';

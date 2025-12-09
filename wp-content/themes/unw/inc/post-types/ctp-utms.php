@@ -175,6 +175,8 @@ function unw_find_utm_by_content($content, $code_format)
     LIMIT 1
   ", UNW_UTM_POST_TYPE, $content, $code_format);
 
+
+
   $result = $wpdb->get_row($query);
 
   return $result ? [
@@ -192,58 +194,137 @@ function unw_find_utm_by_content($content, $code_format)
  */
 function unw_create_utm($title, $content, $url, $code_format)
 {
-  // Generate unique UTM code
-  $utm_code = unw_generate_utm_code($code_format);
+  global $wpdb;
 
-  if (!$utm_code) {
+  // LOCK: Prevenir race conditions con nombre único basado en URL + formato
+  $lock_name = 'utm_create_' . md5($content . $code_format);
+  $lock_timeout = 10; // 10 segundos máximo
+
+  // Intentar obtener lock
+  $lock_result = $wpdb->get_var($wpdb->prepare(
+    "SELECT GET_LOCK(%s, %d)",
+    $lock_name,
+    $lock_timeout
+  ));
+
+  if ($lock_result != 1) {
     return new WP_Error(
-      'code_generation_failed',
-      'No se pudo generar el código UTM.',
-      ['status' => 500]
+      'lock_timeout',
+      'No se pudo obtener el bloqueo para crear UTM. Intenta nuevamente.',
+      ['status' => 503]
     );
   }
 
-  $post_data = [
-    'post_type' => UNW_UTM_POST_TYPE,
-    'post_status' => 'publish',
-    'post_title' => $utm_code . ' - ' . $title,
-    // 'post_content' => '',
-    'post_author' => 0,
-    'meta_input' => [
-      'utm_url' => $content,
-      'code_format' => $code_format,
-      'utm_code' => $utm_code,
-      'location_href' => $url, // Store full URL in content/description
-    ],
-  ];
+  try {
+    // Verificar NUEVAMENTE si existe (dentro del lock)
+    $code_exist = unw_find_utm_by_content($content, $code_format);
 
-  $code_exist = unw_find_utm_by_content($content, $code_format);
+    if ($code_exist) {
+      // Liberar lock antes de retornar
+      $wpdb->query($wpdb->prepare("SELECT RELEASE_LOCK(%s)", $lock_name));
 
-  if($code_exist) {
-    return [
-      'utm_id' => $code_exist['post_id'],
-      'utm_code' => code_exist['utm_code'],
+      return [
+        'utm_id' => $code_exist['post_id'],
+        'utm_code' => $code_exist['utm_code'],
+      ];
+    }
+
+    // Verificar en tabla auxiliar si existe
+    $temp_table = $wpdb->prefix . 'utm_unique_temp';
+    if ($wpdb->get_var("SHOW TABLES LIKE '{$temp_table}'") === $temp_table) {
+      $existing_in_temp = $wpdb->get_row($wpdb->prepare("
+        SELECT post_id FROM {$temp_table}
+        WHERE utm_url = %s AND code_format = %s
+        LIMIT 1
+      ", $content, $code_format));
+
+      if ($existing_in_temp) {
+        $existing_code = get_post_meta($existing_in_temp->post_id, 'utm_code', true);
+
+        // Liberar lock
+        $wpdb->query($wpdb->prepare("SELECT RELEASE_LOCK(%s)", $lock_name));
+
+        return [
+          'utm_id' => (int) $existing_in_temp->post_id,
+          'utm_code' => $existing_code,
+        ];
+      }
+    }
+
+    // Generate unique UTM code
+    $utm_code = unw_generate_utm_code($code_format);
+
+    if (!$utm_code) {
+      // Liberar lock
+      $wpdb->query($wpdb->prepare("SELECT RELEASE_LOCK(%s)", $lock_name));
+
+      return new WP_Error(
+        'code_generation_failed',
+        'No se pudo generar el código UTM.',
+        ['status' => 500]
+      );
+    }
+
+    $post_data = [
+      'post_type' => UNW_UTM_POST_TYPE,
+      'post_status' => 'publish',
+      'post_title' => $utm_code . ' - ' . $title,
+      'post_author' => 0,
+      'meta_input' => [
+        'utm_url' => $content,
+        'code_format' => $code_format,
+        'utm_code' => $utm_code,
+        'location_href' => $url,
+      ],
     ];
-  }
 
+    $post_id = wp_insert_post($post_data, true);
 
-  $post_id = wp_insert_post($post_data, true);
+    if (is_wp_error($post_id)) {
+      // Delete UTM code from cache
+      delete_utm_transients();
 
-  if (is_wp_error($post_id)) {
-    // Delete UTM code from cache
-    delete_utm_transients();
+      // Liberar lock
+      $wpdb->query($wpdb->prepare("SELECT RELEASE_LOCK(%s)", $lock_name));
+
+      return new WP_Error(
+        'post_creation_failed',
+        'No se pudo crear el post UTM: ' . $post_id->get_error_message(),
+        ['status' => 500]
+      );
+    }
+
+    // Insertar en tabla auxiliar si existe
+    if ($wpdb->get_var("SHOW TABLES LIKE '{$temp_table}'") === $temp_table) {
+      $wpdb->insert(
+        $temp_table,
+        [
+          'post_id' => $post_id,
+          'utm_url' => $content,
+          'code_format' => $code_format,
+        ],
+        ['%d', '%s', '%s']
+      );
+    }
+
+    // Liberar lock
+    $wpdb->query($wpdb->prepare("SELECT RELEASE_LOCK(%s)", $lock_name));
+
+    return [
+      'utm_id' => $post_id,
+      'utm_code' => $utm_code,
+    ];
+
+  } catch (Exception $e) {
+    // Liberar lock en caso de error
+    $wpdb->query($wpdb->prepare("SELECT RELEASE_LOCK(%s)", $lock_name));
 
     return new WP_Error(
-      'post_creation_failed',
-      'No se pudo crear el post UTM: ' . $post_id->get_error_message(),
+      'utm_creation_exception',
+      'Error al crear UTM: ' . $e->getMessage(),
       ['status' => 500]
     );
   }
-
-  return [
-    'utm_id' => $post_id,
-    'utm_code' => $utm_code,
-  ];
 }
 
 /**
