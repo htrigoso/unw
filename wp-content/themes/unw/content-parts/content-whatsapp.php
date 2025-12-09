@@ -14,9 +14,8 @@ if (!is_whatsapp_blocked($wa_general) && !empty($wg_img) && !empty($wg_link)) {
     $whatsapp_link = unw_generate_whatsapp_link($current_url, $utms_whatsapp);
     if ($whatsapp_link) {
 ?>
-<a class="whatsapp-link" href="<?= esc_url($whatsapp_link) ?>" rel="noopener"
-  data-contact-platform="whatsapp" data-contact-type="widget"
-  <?= !empty($wg_link['target']) ? 'target="' . esc_attr($wg_link['target']) . '"' : '' ?>>
+<a class="whatsapp-link" href="<?= esc_url($whatsapp_link) ?>" rel="noopener" data-contact-platform="whatsapp"
+  data-contact-type="widget" <?= !empty($wg_link['target']) ? 'target="' . esc_attr($wg_link['target']) . '"' : '' ?>>
   <span class="sr-only"><?= esc_html($wg_link['title']) ?></span>
   <img class="whatsapp-link__icon" src="<?= esc_url($wg_img['url']) ?>" alt="Ícono de Whatsapp"
     <?= !empty($wg_img['alt']) ? 'alt="' . esc_attr($wg_img['alt']) . '"' : '' ?> width="auto" height="auto"
@@ -26,9 +25,8 @@ if (!is_whatsapp_blocked($wa_general) && !empty($wg_img) && !empty($wg_link)) {
     }
   } else {
   ?>
-<a class="whatsapp-link" href="<?= esc_url($wg_link['url']) ?>" rel="noopener"
-  data-contact-platform="whatsapp" data-contact-type="widget"
-  <?= !empty($wg_link['target']) ? 'target="' . esc_attr($wg_link['target']) . '"' : '' ?>
+<a class="whatsapp-link" href="<?= esc_url($wg_link['url']) ?>" rel="noopener" data-contact-platform="whatsapp"
+  data-contact-type="widget" <?= !empty($wg_link['target']) ? 'target="' . esc_attr($wg_link['target']) . '"' : '' ?>
   <?= !empty($wg_link['title']) ? 'title="' . esc_attr($wg_link['title']) . '"' : '' ?>>
   <span class="sr-only"><?= esc_html($wg_link['title']) ?></span>
   <img class="whatsapp-link__icon" src="<?= esc_url($wg_img['url']) ?>" alt="Ícono de Whatsapp"
