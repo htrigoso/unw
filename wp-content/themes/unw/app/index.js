@@ -58,7 +58,6 @@ class App {
         e.preventDefault()
         const _html = document.querySelector('html')
         _html.style.overflow = 'hidden'
-
         const parentItem = link.closest('li')
         if (!parentItem) return
 
@@ -67,6 +66,23 @@ class App {
             item.classList.remove('is-open')
           }
         })
+
+        // Aplicar top según altura del navbar
+        const parent = link.closest('li')
+        const parentWrapper = parent.querySelector('.main-submenu-wrapper')
+
+        const navbar = document.querySelector('.navbar')
+        if (navbar) {
+          let navbarHeight = navbar.offsetHeight
+
+          // Sumar altura del admin bar si existe
+          const adminBar = document.getElementById('wpadminbar')
+          if (adminBar) {
+            navbarHeight += adminBar.offsetHeight
+          }
+
+          parentWrapper.style.top = `${navbarHeight}px`
+        }
 
         parentItem.classList.toggle('is-open')
         // Si ahora hay alguno abierto, bloquea scroll. Si no, lo quita.
