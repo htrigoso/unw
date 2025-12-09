@@ -73,7 +73,7 @@ add_filter('acf/fields/flexible_content/layout_title/name=sections', function($t
         'section-image'      => get_template_directory_uri() . '/assets/images/sections/section-5.png',
         'section-grid-card-v2'      => get_template_directory_uri() . '/assets/images/sections/section-6.png',
         'section-grid-card-v3'      => get_template_directory_uri() . '/assets/images/sections/section-7.png',
-
+        'section-acordeon'      => get_template_directory_uri() . '/assets/images/sections/section-8.png',
     ];
 
      if (isset($preview_images[$layout['name']])) {
