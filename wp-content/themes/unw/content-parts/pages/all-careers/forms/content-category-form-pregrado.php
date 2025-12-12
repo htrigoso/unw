@@ -16,10 +16,11 @@
   $careers = get_carreras();
   $list_departaments = $form_crm_option['list_departaments'];
   $list_campus = get_carreras_campus_modalidad();
-
-   if (is_tax()) {
+  $facultad_name = '';
+  if (is_tax()) {
       $current_taxonomy = get_queried_object();
       $current_term_id = $current_taxonomy->term_id;
+      $facultad_name = $current_taxonomy->name;
       $careers = get_carreras_by_facultad($current_term_id, 'pregrado');
    }
 
@@ -36,6 +37,7 @@
     'location' => 'is-home',
     'shadow_box' => true,
     'vertical_modality' => $vertical_modality,
-    'position_form'=> $position_form
+    'position_form'=> $position_form,
+    'facultad_name' => $facultad_name,
   ]);
 ?>

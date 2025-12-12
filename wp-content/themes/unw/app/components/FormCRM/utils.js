@@ -424,6 +424,43 @@ export function updateOptionsCareers({ element = null, careers = {}, value = '' 
   })
 }
 
+export function updateOptionsCareersByFacultad({ element = null, careers = {}, value = '', facultadName = '' } = {}) {
+  if (!element) return
+
+  const select = element.querySelector('#careerSelect')
+  if (!select) return
+
+  // limpiar el select
+  select.innerHTML = '<option value="" selected>--Seleccione--</option>'
+
+  // Primero filtrar por modalidad (value)
+  const data = value ? careers?.[value] || {} : careers
+
+  const resultado = window.appConfigUnw?.is_page_category_careers
+    ? data
+    : facultadName && data[facultadName]
+      ? { [facultadName]: data[facultadName] }
+      : {}
+
+  Object.entries(resultado).forEach(([facultad, items]) => {
+    if (!Array.isArray(items) || items.length === 0) return
+
+    const optgroup = document.createElement('optgroup')
+    optgroup.label = facultad
+
+    items.forEach(item => {
+      const option = document.createElement('option')
+      option.value = item.code || ''
+      option.textContent = item.title || ''
+      option.dataset.key = item.slug || ''
+      option.dataset.mode = item.modalidad || ''
+      optgroup.appendChild(option)
+    })
+
+    select.appendChild(optgroup)
+  })
+}
+
 export function validatePhone() {
   const inputs = document.querySelectorAll('input[name="PhoneNumber_countrycode"]')
   if (!inputs.length) return

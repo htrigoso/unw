@@ -1,4 +1,4 @@
-import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenFieldCampus, updateHiddenInputs, updateOptionsCareers, validateInputs, showCampusSelect, validatePhone } from './utils'
+import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenFieldCampus, updateHiddenInputs, updateOptionsCareers, validateInputs, showCampusSelect, validatePhone, updateOptionsCareersByFacultad } from './utils'
 
 // ==========================
 // Constantes de formularios
@@ -47,6 +47,7 @@ export default class FormCrmCategoryPregrado {
 
     const departaments = window.appConfigUnw.departaments || []
     const careers = window.appConfigUnw.careers || []
+    const facultadName = this.element.dataset.facultadName || ''
 
     radios.forEach(radio => {
       radio.addEventListener('change', () => {
@@ -76,7 +77,7 @@ export default class FormCrmCategoryPregrado {
             ], this.element)
             setNameAttributeCampus({ element: this.element })
 
-            updateOptionsCareers({ element: this.element, careers, value })
+            updateOptionsCareersByFacultad({ element: this.element, careers, value, facultadName })
 
             showCampusSelect({ element: this.element })
             this.removeCustomHiddenDepartament()
@@ -110,7 +111,7 @@ export default class FormCrmCategoryPregrado {
             if (select.value) {
               this.updateHiddenFields({ select, hiddenContainer })
             }
-            updateOptionsCareers({ element: this.element, careers, value: 'virtual' })
+            updateOptionsCareersByFacultad({ element: this.element, careers, value: 'virtual', facultadName })
             this.removeCustomHiddenDepartament()
             break
 

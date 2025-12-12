@@ -1,10 +1,8 @@
-import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenFieldCampus, updateHiddenInputs, updateOptionsCareers, validateInputs, showCampusSelect, validatePhone } from './utils'
+import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, updateHiddenFieldCampus, updateHiddenInputs, validateInputs, validatePhone, updateOptionsCareersByFacultad } from './utils'
 
 // ==========================
 // Constantes de formularios
 // ==========================
-const FORM_GENERAL_PRESENCIAL =
-  'https://forms.zohopublic.com/adminzoho11/form/WebFacultadesVirtual/formperma/XZxvtW2GuLFc2zHw6RV9IKsDHhw5fMTH_275g92vXQM/htmlRecords/submit'
 
 const FORM_GENERAL_VIRTUAL =
   'https://forms.zohopublic.com/adminzoho11/form/WebFacultadesVirtual/formperma/XZxvtW2GuLFc2zHw6RV9IKsDHhw5fMTH_275g92vXQM/htmlRecords/submit'
@@ -47,6 +45,7 @@ export default class FormCrmCategoryDistancia {
 
     const departaments = window.appConfigUnw.departaments || []
     const careers = window.appConfigUnw.careers || []
+    const facultadName = this.element.dataset.facultadName || ''
 
     radios.forEach(radio => {
       radio.addEventListener('change', () => {
@@ -57,31 +56,6 @@ export default class FormCrmCategoryDistancia {
         const hiddenContainer = this.element.querySelector('.custom-hidden')
 
         switch (value) {
-          case FORMS.PREGRADO:
-            this.element.action = FORM_GENERAL_PRESENCIAL
-            resetCustomHidden({ element: this.element })
-            setClaseName('f-100', this.element)
-
-            if (departaments.length > 0) {
-              removeSelectDepartament(this.element)
-            }
-
-            if (select.value) {
-              this.updateHiddenFields({ select, hiddenContainer })
-            }
-
-            updateHiddenInputs([
-              { name: 'SingleLine1', value: 'UNW_Pregrado' },
-              { name: 'SingleLine2', value: 'Web Facultades' }
-            ], this.element)
-            setNameAttributeCampus({ element: this.element })
-
-            updateOptionsCareers({ element: this.element, careers, value })
-
-            showCampusSelect({ element: this.element })
-            this.removeCustomHiddenDepartament()
-            break
-
           case FORMS.WORK:
           case FORMS.VIRTUAL:
             this.element.action = FORM_GENERAL_VIRTUAL
@@ -110,7 +84,8 @@ export default class FormCrmCategoryDistancia {
             if (select.value) {
               this.updateHiddenFields({ select, hiddenContainer })
             }
-            updateOptionsCareers({ element: this.element, careers, value: 'virtual' })
+
+            updateOptionsCareersByFacultad({ element: this.element, careers, value: 'virtual', facultadName })
             this.removeCustomHiddenDepartament()
             break
 

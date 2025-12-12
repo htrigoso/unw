@@ -132,8 +132,8 @@
     isHome: <?php echo is_front_page() ? 'true' : 'false'; ?>,
     careers: <?= json_encode(get_carreras()) ?>,
     departaments: <?= json_encode($form_crm_option['list_departaments']) ?>,
-    campus: <?= json_encode(get_carreras_campus_modalidad()) ?>
-
+    campus: <?= json_encode(get_carreras_campus_modalidad()) ?>,
+    is_page_category_careers: <?= is_page(['carreras-uwiener', 'carreras-a-distancia']) ? 'true' : 'false';?>
   };
 
   let doc = document.documentElement;

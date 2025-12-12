@@ -16,26 +16,20 @@
   $careers = get_carreras();
   $list_departaments = $form_crm_option['list_departaments'];
   $list_campus = get_carreras_campus_modalidad();
-
-   if (is_tax()) {
-      $current_taxonomy = get_queried_object();
-      $current_term_id = $current_taxonomy->term_id;
-      $careers = get_carreras_by_facultad($current_term_id, 'pregrado');
-   }
-
-
+  $facultad_name = '';
 
   get_template_part(COMMON_CONTENT_PATH, 'more-info-form-category-distancia-base', [
     'form_id' => 'form-category-distancia-base-'.$position_form,
     'form_action' => $formUrl,
     'utms' => $utms_final,
-    'careers' => $careers,
+    'careers' => $careers['virtual'],
     'list_departaments' => $list_departaments,
     'hide_dni' => $hide_dni,
     'validation_dni' => $validation_dni,
     'location' => 'is-home',
     'shadow_box' => true,
     'vertical_modality' => $vertical_modality,
-    'position_form'=> $position_form
+    'position_form'=> $position_form,
+    'facultad_name'=> $facultad_name,
   ]);
 ?>
