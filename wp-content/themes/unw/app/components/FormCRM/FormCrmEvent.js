@@ -1,19 +1,20 @@
-import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenFieldCampus, updateHiddenInputs, validateInputs, showCampusSelect, validatePhone, updateOptionsCareersByFacultad } from './utils'
+import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenInputs, updateOptionsCareers, validateInputs, showCampusSelect, validatePhone, updateHiddenFieldCampusEvent } from './utils'
+import { handleFormSubmitTracking, getFormData } from '../../utils/incubeta'
 
 // ==========================
 // Constantes de formularios
 // ==========================
 const FORM_GENERAL_PRESENCIAL =
-  'https://forms.zohopublic.com/adminzoho11/form/WebFacultades/formperma/fDTnpldKeP_IhYXDSkyc6rF7sXx2IKYDi1scDuEShjI/htmlRecords/submit'
+  'https://forms.zohopublic.com/adminzoho11/form/WebPreWiener/formperma/l1wwdmdtbCUdnHXBKB4zGg2X1eb12Fnp-VgoBjOAEmA/htmlRecords/submit'
 
 const FORM_GENERAL_VIRTUAL =
-  'https://forms.zohopublic.com/adminzoho11/form/WebFacultadesVirtual/formperma/XZxvtW2GuLFc2zHw6RV9IKsDHhw5fMTH_275g92vXQM/htmlRecords/submit'
+  'https://forms.zohopublic.com/adminzoho11/form/WebSolicitaInformacinVirtual/formperma/kEghJarUi7QiD6-qDLpQpVMV_uW8uH0m1XlinN5KPls/htmlRecords/submit'
 
-export default class FormCrmCategoryPregrado {
+export default class FormCrmEvent {
   constructor({ element, container }) {
     this.element = element
-
     this.formContainer = container
+    this.isSubmitting = false
     this.createListeners()
   }
 
@@ -27,6 +28,28 @@ export default class FormCrmCategoryPregrado {
     this.handleCarrersChange()
     this.handleDepartamentChange()
     this.handleCampusChange()
+    this.handleFormSubmit()
+  }
+
+  handleFormSubmit() {
+    if (!this.element) return
+
+    this.element.addEventListener('submit', async (event) => {
+      // Prevenir doble envío
+      if (this.isSubmitting) {
+        event.preventDefault()
+        return
+      }
+
+      this.isSubmitting = true
+
+      const formData = getFormData(this.element)
+
+      // Usar función de Incubeta para tracking
+      await handleFormSubmitTracking(this.element, formData, (dataLayerEvent) => {
+        console.log('✅ DataLayer validado (submit):', dataLayerEvent)
+      })
+    })
   }
 
   removeCustomHiddenDepartament() {
@@ -47,7 +70,6 @@ export default class FormCrmCategoryPregrado {
 
     const departaments = window.appConfigUnw.departaments || []
     const careers = window.appConfigUnw.careers || []
-    const facultadName = this.element.dataset.facultadName || ''
 
     radios.forEach(radio => {
       radio.addEventListener('change', () => {
@@ -73,11 +95,11 @@ export default class FormCrmCategoryPregrado {
 
             updateHiddenInputs([
               { name: 'SingleLine1', value: 'UNW_Pregrado' },
-              { name: 'SingleLine2', value: 'Web Facultades' }
+              { name: 'SingleLine2', value: 'Web Admisión I' }
             ], this.element)
             setNameAttributeCampus({ element: this.element })
 
-            updateOptionsCareersByFacultad({ element: this.element, careers, value, facultadName })
+            updateOptionsCareers({ element: this.element, careers, value })
 
             showCampusSelect({ element: this.element })
             this.removeCustomHiddenDepartament()
@@ -96,11 +118,11 @@ export default class FormCrmCategoryPregrado {
             hideCampusSelect({ value, element: this.element })
             this.element.action = FORM_GENERAL_VIRTUAL
             setClaseName('f-50', this.element)
-            select.setAttribute('name', 'SingleLine5')
+            select.setAttribute('name', 'SingleLine3')
 
             updateHiddenInputs([
               { name: 'SingleLine1', value: 'UNW_Pregrado_Distancia' },
-              { name: 'SingleLine2', value: 'Web Facultades – Virtual' }
+              { name: 'SingleLine2', value: 'Web Solicita Información – Virtual' }
             ], this.element)
             if (value === FORMS.VIRTUAL) {
               if (departaments.length > 0) {
@@ -111,7 +133,7 @@ export default class FormCrmCategoryPregrado {
             if (select.value) {
               this.updateHiddenFields({ select, hiddenContainer })
             }
-            updateOptionsCareersByFacultad({ element: this.element, careers, value: 'virtual', facultadName })
+            updateOptionsCareers({ element: this.element, careers, value: 'virtual' })
             this.removeCustomHiddenDepartament()
             break
 
@@ -128,9 +150,8 @@ export default class FormCrmCategoryPregrado {
       return createHiddenInputs({
         type,
         fields: [
-          { name: 'SingleLine4', facultyName },
-          { name: 'SingleLine3', facultyName },
-          { name: 'SingleLine6', careerName }
+          { name: 'SingleLine5', facultyName },
+          { name: 'SingleLine4', careerName }
         ]
       })
     }
@@ -139,9 +160,8 @@ export default class FormCrmCategoryPregrado {
       return createHiddenInputs({
         type,
         fields: [
-          { name: 'SingleLine4', facultyName },
-          { name: 'SingleLine3', facultyName },
-          { name: 'SingleLine6', careerName }
+          { name: 'SingleLine5', facultyName },
+          { name: 'SingleLine4', careerName }
         ]
       })
     }
@@ -149,7 +169,8 @@ export default class FormCrmCategoryPregrado {
     return ''
   }
 
-  updateHiddenFields({ select, hiddenContainer, type }) {
+  updateHiddenFields({ select, hiddenContainer }) {
+    const checked = document.querySelector('input[name="form_mixto"]:checked')
     const selectedOption = select.options[select.selectedIndex]
     const parentOptgroup = selectedOption.parentElement
 
@@ -158,22 +179,23 @@ export default class FormCrmCategoryPregrado {
     const html = this.buildHiddenInputs({
       facultyName: parentOptgroup.label,
       careerName: selectedOption.textContent.trim(),
-      type
+      type: checked.value
     })
 
     hiddenContainer.innerHTML = html
   }
 
   handleCarrersChange() {
-    const select = this.element.querySelector('#careerSelect')
-    if (!select) return
+    const form = document.querySelector(`${this.formContainer} `)
+    if (!form) return
+    const select = document.getElementById('careerSelect')
 
     const campus = window.appConfigUnw.campus || []
 
-    const hiddenContainer = this.element.querySelector('.custom-hidden')
+    const hiddenContainer = form.querySelector('.custom-hidden')
 
     const boundUpdate = () => {
-      const checked = this.element.querySelector('input[name="form_mixto"]:checked')
+      const checked = document.querySelector('input[name="form_mixto"]:checked')
       const selectedOption = select.options[select.selectedIndex]
 
       if (!selectedOption) return
@@ -181,17 +203,17 @@ export default class FormCrmCategoryPregrado {
       const parentOptgroup = selectedOption.parentElement
       if (!parentOptgroup || parentOptgroup.tagName !== 'OPTGROUP') return
 
-      const slugCareers = selectedOption.dataset.key
-      const modalidad = selectedOption.dataset.mode
+      if (checked) {
+        this.updateHiddenFields({ select, hiddenContainer })
+        const slugCareers = selectedOption.dataset.key
+        const modalidad = selectedOption.dataset.mode
 
-      const type = checked?.value || 'virtual'
-
-      this.updateHiddenFields({ select, hiddenContainer, type })
-      buildOptionsCampus({ campus, slugCareers, modalidad, element: this.element })
+        buildOptionsCampus({ campus, slugCareers, modalidad, element: this.element })
+      }
     }
 
     select.addEventListener('change', boundUpdate)
-    this.element
+    document
       .querySelectorAll('input[name="form_mixto"]')
       .forEach(radio => radio.addEventListener('change', boundUpdate))
 
@@ -207,7 +229,7 @@ export default class FormCrmCategoryPregrado {
       const text = selectedOption.textContent.trim()
       const value = selectedOption.value
       if (value) {
-        updateHiddenFieldCampus({ text, value, element: this.element })
+        updateHiddenFieldCampusEvent({ text, value, element: this.element })
       }
     })
   }

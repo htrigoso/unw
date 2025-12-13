@@ -383,6 +383,14 @@ export function updateHiddenFieldCampusTraslado({ text, value, element }) {
                 `
 }
 
+export function updateHiddenFieldCampusEvent({ text, value, element }) {
+  if (!element) return
+  element.querySelector('.custom-hidden-campus').innerHTML = `
+            <input type="hidden" name="SingleLine6" value="${text}">
+              <input type="hidden" name="SingleLine7" value="${value}">
+                `
+}
+
 export function setNameAttributeCampus({ element }) {
   if (!element) return
   const select = element.querySelector('#campusSelect')
