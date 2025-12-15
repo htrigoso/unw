@@ -1,3 +1,4 @@
+
 import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenInputs, updateOptionsCareers, validateInputs, showCampusSelect, validatePhone, updateHiddenFieldCampusEvent } from './utils'
 import { handleFormSubmitTracking, getFormData } from '../../utils/incubeta'
 
@@ -5,10 +6,10 @@ import { handleFormSubmitTracking, getFormData } from '../../utils/incubeta'
 // Constantes de formularios
 // ==========================
 const FORM_GENERAL_PRESENCIAL =
-  'https://forms.zohopublic.com/adminzoho11/form/WebPreWiener/formperma/l1wwdmdtbCUdnHXBKB4zGg2X1eb12Fnp-VgoBjOAEmA/htmlRecords/submit'
+  'https://forms.zohopublic.com/adminzoho11/form/EventosHbridov2/formperma/2j3H_F_LzgaCnNmjSksgBTd3Z0M_D03NvmeOIsRMhwM/htmlRecords/submit'
 
 const FORM_GENERAL_VIRTUAL =
-  'https://forms.zohopublic.com/adminzoho11/form/WebSolicitaInformacinVirtual/formperma/kEghJarUi7QiD6-qDLpQpVMV_uW8uH0m1XlinN5KPls/htmlRecords/submit'
+  'https://forms.zohopublic.com/adminzoho11/form/EventosHbridov2/formperma/2j3H_F_LzgaCnNmjSksgBTd3Z0M_D03NvmeOIsRMhwM/htmlRecords/submit'
 
 export default class FormCrmEvent {
   constructor({ element, container }) {
@@ -94,8 +95,7 @@ export default class FormCrmEvent {
             }
 
             updateHiddenInputs([
-              { name: 'SingleLine1', value: 'UNW_Pregrado' },
-              { name: 'SingleLine2', value: 'Web Admisión I' }
+              { name: 'SingleLine11', value: 'UNW_pregrado' }
             ], this.element)
             setNameAttributeCampus({ element: this.element })
 
@@ -103,6 +103,7 @@ export default class FormCrmEvent {
 
             showCampusSelect({ element: this.element })
             this.removeCustomHiddenDepartament()
+            this.degreeofstudies(value)
             break
 
           case FORMS.WORK:
@@ -121,12 +122,11 @@ export default class FormCrmEvent {
             select.setAttribute('name', 'SingleLine3')
 
             updateHiddenInputs([
-              { name: 'SingleLine1', value: 'UNW_Pregrado_Distancia' },
-              { name: 'SingleLine2', value: 'Web Solicita Información – Virtual' }
+              { name: 'SingleLine11', value: 'UNW_a_distancia' }
             ], this.element)
             if (value === FORMS.VIRTUAL) {
               if (departaments.length > 0) {
-                createSelectDepartament({ element: this.element })
+                createSelectDepartament({ element: this.element, name: 'SingleLine9' })
               }
             }
 
@@ -135,6 +135,7 @@ export default class FormCrmEvent {
             }
             updateOptionsCareers({ element: this.element, careers, value: 'virtual' })
             this.removeCustomHiddenDepartament()
+            this.degreeofstudies(value)
             break
 
           default:
@@ -246,9 +247,28 @@ export default class FormCrmEvent {
         const text = selectedOption?.textContent.trim() || ''
         const customDepartament = this.element.querySelector('.custom-hidden-departament')
         if (customDepartament) {
-          customDepartament.innerHTML = `<input type="hidden" name="SingleLine9" value="${text}">`
+          customDepartament.innerHTML = `<input type="hidden" name="SingleLine8" value="${text}">`
         }
       }
     })
+  }
+
+  degreeofstudies(type) {
+    const htmlDegree = this.element.querySelector('[data-html-name="degree"]')
+    if (!htmlDegree) return
+    const selectDegree = htmlDegree.querySelector('select')
+    if (!selectDegree) return
+
+    if (type === 'pregrado') {
+      // Hacer el campo requerido y agregar el name
+      selectDegree.setAttribute('required', 'required')
+      selectDegree.setAttribute('name', 'Dropdown2')
+      htmlDegree.style.display = ''
+    } else if (type === 'virtual' || type === 'work') {
+      // Quitar el campo requerido y el name, ocultar el campo
+      selectDegree.removeAttribute('required')
+      selectDegree.removeAttribute('name')
+      htmlDegree.style.display = 'none'
+    }
   }
 }

@@ -59,17 +59,16 @@ $event_id = $args['event_id'] ?? '';
   <input type="hidden" name="Name_Middle" value="">
   <input type="hidden" name="Dropdown3" value="Perú (+51)">
   <input type="hidden" name="Dropdown" value="DNI">
-  <input type="hidden" name="Dropdown2" value=""> <!-- Grado -->
   <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
 
   <input type="hidden" name="Radio" value="No"> <!--  Soy padre de familia -->
 
-  <input type="hidden" name="SingleLine1" value="UNW_Pregrado"> <!-- Unidad de negocio -->
-  <input type="hidden" name="SingleLine2" value="Web Facultades"> <!-- Fuente de origen -->
+  <input type="hidden" name="SingleLine11" value="UNW_Pregrado"> <!-- Unidad de negocio -->
+
 
   <input type="hidden" name="Dropdown4" value="Activo"> <!-- Estado de período -->
   <input type="hidden" name="Website" value="<?= get_current_page_url() ?>"> <!-- Url de Trakeo -->
-  <input type="hidden" name="event_id" value="<?= esc_attr($event_id) ?>"> <!-- Comentarios -->
+  <input type="hidden" name="SingleLine10" value="<?= esc_attr($event_id) ?>"> <!-- Comentarios -->
 
 
   <div class="form-body more-form-body">
@@ -143,7 +142,7 @@ $event_id = $args['event_id'] ?? '';
         <?php } ?>
       </div>
 
-      <div class="flex justify-between more-form-body__row" data-html-name="departament">
+      <div class="flex justify-between more-form-body__row m-b-24" data-html-name="departament">
         <div class="f-50">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'careers', [
             'name' => 'SingleLine3',
@@ -156,6 +155,19 @@ $event_id = $args['event_id'] ?? '';
             'name' => 'SingleLine7',
             'label' => 'Elige tu campus (*)',
             'careers' => [],
+          ]); ?>
+        </div>
+      </div>
+      <div class="flex" data-html-name="degree">
+        <div class="f-100">
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'select', [
+            'name' => 'Dropdown2',
+            'label' => 'Grado de estudios (*)',
+            'options' => [
+              '4to grado',
+              '5to grado',
+              'Ya terminé el colegio',
+            ],
           ]); ?>
         </div>
       </div>

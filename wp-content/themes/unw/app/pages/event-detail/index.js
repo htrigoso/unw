@@ -2,8 +2,10 @@ import HeroSwiper from '../../components/HeroSwiper'
 import { initViewContentTracking } from '../../utils/incubeta/viewContent'
 import { initBeginEventRegistrationTracking } from '../../utils/incubeta/beginEventRegistration'
 import FormCrmEvent from '../../components/FormCRM/FormCrmEvent'
+import { ModalManager } from '../../components/Modal'
 
 (function () {
+  new ModalManager()
   // Inicializar tracking de view_content
   initViewContentTracking()
 
