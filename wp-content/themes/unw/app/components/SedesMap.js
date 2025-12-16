@@ -99,36 +99,40 @@ export default class SedesMap extends Component {
    */
   updateCardPosition(marker, card) {
     const cardArrow = card.querySelector('.card-map__arrow')
-    const clientRectMarker = marker.getBoundingClientRect()
-    const cardWidth = card.clientWidth
-    const cardHeight = card.clientHeight
-    const { top, left, sectionRight, markerWidth } = this.getPosition(clientRectMarker)
-    const margin = this.isMobile ? 16 : 20
-    let arrowPosition = 'bottom-right'
-    let x = 0
-    let y = 0
 
-    if (this.isMobile) {
-      if (cardWidth / 2 < sectionRight) {
-        x = left - markerWidth / 2
-        y = top - cardHeight - margin
-        arrowPosition = 'bottom-left'
+    // Batch read: agrupar todas las lecturas geométricas
+    requestAnimationFrame(() => {
+      const clientRectMarker = marker.getBoundingClientRect()
+      const cardWidth = card.clientWidth
+      const cardHeight = card.clientHeight
+      const { top, left, sectionRight, markerWidth } = this.getPosition(clientRectMarker)
+      const margin = this.isMobile ? 16 : 20
+      let arrowPosition = 'bottom-right'
+      let x = 0
+      let y = 0
+
+      if (this.isMobile) {
+        if (cardWidth / 2 < sectionRight) {
+          x = left - markerWidth / 2
+          y = top - cardHeight - margin
+          arrowPosition = 'bottom-left'
+        } else {
+          x = left - cardWidth + (markerWidth / 2) + margin
+          y = top - cardHeight - margin
+        }
+
+        card.style.top = `${y}px`
+        card.style.left = `${x}px`
       } else {
-        x = left - cardWidth + (markerWidth / 2) + margin
-        y = top - cardHeight - margin
+        x = left - cardWidth + (markerWidth / 2)
+        y = top - cardHeight
+
+        card.style.top = `calc(${y}px - 1.5rem)`
+        card.style.left = `calc(${x}px + 2.15rem)`
       }
 
-      card.style.top = `${y}px`
-      card.style.left = `${x}px`
-    } else {
-      x = left - cardWidth + (markerWidth / 2)
-      y = top - cardHeight
-
-      card.style.top = `calc(${y}px - 1.5rem)`
-      card.style.left = `calc(${x}px + 2.15rem)`
-    }
-
-    cardArrow.classList.add(arrowPosition)
+      cardArrow.classList.add(arrowPosition)
+    })
   }
 
   getPosition({ top, left, right, width }) {

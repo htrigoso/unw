@@ -18,11 +18,8 @@ $deactivate = $crm_ad['deactivate'];
 $validation_dni = $crm_ad['validation_dni'];
 $hide_dni = $validation_dni['hide'];
 ?>
-<form id="<?=$data_form_type;?>" data-form="zoho" data-form-type="<?=$data_form_type;?>"
-  class="contact-form formAdmision" data-careers="<?= esc_attr(wp_json_encode( $careers))?>"
-  data-departaments="<?= esc_attr(wp_json_encode( $departments_json))?>"
-  data-campus="<?= esc_attr(wp_json_encode( $list_campus))?>" method="POST" accept-charset="UTF-8"
-  enctype="multipart/form-data"
+<form id="<?=$data_form_type;?>" name="<?=$data_form_type;?>" data-form="zoho" data-form-type="<?=$data_form_type;?>"
+  class="contact-form formAdmision" method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
   action="https://forms.zohopublic.com/adminzoho11/form/Admisin/formperma/qazbrVloDUNKCisJII7v7HMG2gMsSkD30FMV9GEJM4E/htmlRecords/submit">
   <div class="form-header">
     <i>

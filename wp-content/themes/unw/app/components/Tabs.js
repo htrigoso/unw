@@ -124,12 +124,16 @@ export default class Tabs extends Component {
 
   scrollToContent(targetContent) {
     const offset = 200
-    const top =
-      targetContent.getBoundingClientRect().top +
-      window.pageYOffset -
-      offset
 
-    window.scrollTo({ top, behavior: 'smooth' })
+    // Batch read: agrupar lectura geométrica
+    requestAnimationFrame(() => {
+      const top =
+        targetContent.getBoundingClientRect().top +
+        window.pageYOffset -
+        offset
+
+      window.scrollTo({ top, behavior: 'smooth' })
+    })
   }
 
   scrollToTab(tab) {

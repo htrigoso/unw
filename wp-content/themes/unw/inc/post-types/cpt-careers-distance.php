@@ -90,3 +90,16 @@ add_rewrite_rule(
 add_action('created_categoria-carrera-distancia', 'flush_rewrite_rules');
 add_action('edited_categoria-carrera-distancia', 'flush_rewrite_rules');
 add_action('delete_categoria-carrera-distancia', 'flush_rewrite_rules');
+
+
+// Agregar clase del slug de página al body del admin
+add_filter('admin_body_class', function($classes) {
+  $screen = get_current_screen();
+  if ($screen && $screen->base === 'post' && $screen->post_type === 'page') {
+    global $post;
+    if ($post && $post->post_name) {
+      $classes .= ' page-slug-' . $post->post_name;
+    }
+  }
+  return $classes;
+});

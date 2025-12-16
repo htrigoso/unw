@@ -1,5 +1,6 @@
 wp-config.php
 .DS_Store
+**/.DS_Store
 wp-content/.DS_Store
 wp-content/debug.log
 wp-content/themes/.DS_Store

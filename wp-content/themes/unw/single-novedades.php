@@ -7,7 +7,13 @@
 <?php set_query_var('ASSETS_CHUNK_NAME', 'news-detail'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php get_header(); ?>
-
+<script data-no-delay>
+  window.unwContentData = {
+    content_type: 'Noticia',
+    content_id: '<?php echo get_the_ID(); ?>',
+    content_title: '<?php echo esc_js(get_the_title()); ?>'
+  };
+</script>
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
 <main>
   <?php get_template_part(NEWS_DETAIL_CONTENT_PATH, 'header'); ?>

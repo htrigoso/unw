@@ -187,7 +187,6 @@ p {
 
 ul {
   margin-top: 0px;
-  margin-bottom: 10px !important;
   padding-left: 0px;
   list-style-type: none;
 }
@@ -15541,7 +15540,7 @@ li {
   }
 
   .link_item_tab.scroll.large {
-    width: 200px;
+    min-width: 200px;
     margin-right: 0px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -21087,3 +21086,20 @@ table {
   text-align: left;
 }
 
+._2-col > .col-1.full {
+  overflow: auto;
+}
+
+@media screen and (min-width: 479px) {
+  ._2-col > .col-1.full {
+    overflow: visible;
+  }
+}
+.custom-table-border{
+    border-collapse: collapse;
+    width: 100%;
+}
+.custom-table-border td {
+  border: 1px solid #000;
+  padding: 8px;
+}

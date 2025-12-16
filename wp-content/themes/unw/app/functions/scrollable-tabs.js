@@ -19,12 +19,20 @@ export function initializeScrollableTabs(containerElement, options = {}, onInit)
     return
   }
 
-  const updateScrollButtonStates = () => {
-    const isAtStart = list.scrollLeft <= 0
-    prevButton.setAttribute('aria-disabled', isAtStart)
+  let rafId = null
 
-    const isAtEnd = list.scrollLeft + list.clientWidth >= list.scrollWidth - 1
-    nextButton.setAttribute('aria-disabled', isAtEnd)
+  const updateScrollButtonStates = () => {
+    if (rafId) return
+
+    rafId = requestAnimationFrame(() => {
+      const isAtStart = list.scrollLeft <= 0
+      prevButton.setAttribute('aria-disabled', isAtStart)
+
+      const isAtEnd = list.scrollLeft + list.clientWidth >= list.scrollWidth - 1
+      nextButton.setAttribute('aria-disabled', isAtEnd)
+
+      rafId = null
+    })
   }
 
   nextButton.addEventListener('click', () => {
@@ -47,6 +55,9 @@ export function initializeScrollableTabs(containerElement, options = {}, onInit)
   }
 
   const destroy = () => {
+    if (rafId) {
+      cancelAnimationFrame(rafId)
+    }
     list.removeEventListener('scroll', updateScrollButtonStates)
     window.removeEventListener('resize', updateScrollButtonStates)
   }
@@ -58,20 +69,28 @@ function scrollToTab(tab) {
   if (!tab) return
 
   const container = tab.closest('.nav-tabs__list')
-  const tabLeft = tab.offsetLeft
-  const tabRight = tabLeft + tab.offsetWidth
-  const containerLeft = container.scrollLeft
-  const containerRight = containerLeft + container.clientWidth
 
-  if (tabLeft < containerLeft) {
-    container.scrollTo({
-      left: tabLeft,
-      behavior: 'smooth'
-    })
-  } else if (tabRight > containerRight) {
-    container.scrollTo({
-      left: tabRight - container.clientWidth,
-      behavior: 'smooth'
-    })
-  }
+  // Batch read: agrupar todas las lecturas de geometría juntas
+  requestAnimationFrame(() => {
+    const tabLeft = tab.offsetLeft
+    const tabWidth = tab.offsetWidth
+    const containerScrollLeft = container.scrollLeft
+    const containerWidth = container.clientWidth
+
+    // Calcular después de leer todas las propiedades
+    const tabRight = tabLeft + tabWidth
+    const containerRight = containerScrollLeft + containerWidth
+
+    if (tabLeft < containerScrollLeft) {
+      container.scrollTo({
+        left: tabLeft,
+        behavior: 'smooth'
+      })
+    } else if (tabRight > containerRight) {
+      container.scrollTo({
+        left: tabRight - containerWidth,
+        behavior: 'smooth'
+      })
+    }
+  })
 }

@@ -3,7 +3,8 @@ import psl from 'psl'
 export const EXCLUDE_URL_PARAMS = [
   // El parámetro se usa para busquedas
   's',
-
+  'blog_search',
+  'post_type',
   // El parámetro se usa para navegar por tabs en las carreras y demás
   'tab'
 ]

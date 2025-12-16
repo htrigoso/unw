@@ -1,3 +1,4 @@
+import { getFormData, handleFormSubmitTracking } from '../../utils/incubeta'
 import { buildOptionsCampusCareers, createSelectCampus, createSelectDepartament, FORMS, removeSelectCampus, removeSelectDepartament, sanitizeForInput, setClaseName, validateInputs, validatePhone } from './utils'
 
 // ==========================
@@ -12,6 +13,7 @@ const FORM_CARRIERS_VIRTUAL =
 export default class FormCrmCareer {
   constructor({ element }) {
     this.element = element
+    this.isSubmitting = false
     this.createListeners()
   }
 
@@ -25,11 +27,33 @@ export default class FormCrmCareer {
     this.handleFormMixtoChange()
     this.handleDepartamentChange()
     this.handleCampusChange()
+    this.handleFormSubmit()
   }
 
   // ==========================
   // Handlers
   // ==========================
+
+  handleFormSubmit() {
+    if (!this.element) return
+
+    this.element.addEventListener('submit', async (event) => {
+      // Prevenir doble envío
+      if (this.isSubmitting) {
+        event.preventDefault()
+        return
+      }
+
+      this.isSubmitting = true
+      const formData = getFormData(this.element)
+
+      // Usar función de Incubeta para tracking
+      await handleFormSubmitTracking(this.element, formData, (dataLayerEvent) => {
+        console.log('✅ DataLayer validado (submit):', dataLayerEvent)
+      })
+    })
+  }
+
   handleDepartmentChange() {
     const selectDepartament = this.element.querySelector('#departament')
     const hiddenDepartament = this.element.querySelector('#hidden_departament')
@@ -44,7 +68,7 @@ export default class FormCrmCareer {
 
   handleFormMixtoChange() {
     const radios = this.element.querySelectorAll('input[name="form_mixto"]')
-    const campus = JSON.parse(this.element.dataset.campus || '[]')
+    const campus = window.appConfigUnw.campus || []
     const isMixto = JSON.parse(this.element.dataset.mixto || 0)
     const codePre = this.element.dataset.codePre || ''
     const codeVir = this.element.dataset.codeVir || ''

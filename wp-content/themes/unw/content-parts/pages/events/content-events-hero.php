@@ -5,7 +5,7 @@ $events = get_field('hero-events', 'option');
 
 <?php if (!empty($events)) : ?>
   <section class="events-hero hero-swiper">
-    <div class="swiper-container is-draggable">
+    <div class="swiper-container is-draggable" data-type-component="swiper">
       <div class="swiper-wrapper swiper-events-hero__wrapper">
         <?php foreach ($events as $event) :
           $desktop_image = $event['images']['desktop']['url'] ?? '';

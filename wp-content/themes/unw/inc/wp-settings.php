@@ -25,6 +25,7 @@ define('OUR_HISTORY_CONTENT_PATH', 'content-parts/pages/our-history/content');
 define('QUALITY_POLICY_CONTENT_PATH', 'content-parts/pages/quality-policy/content');
 define('CAREERS_CONTENT_PATH', 'content-parts/pages/careers/content');
 define('THANKS_CONTENT_PATH', 'content-parts/pages/thanks/content');
+define('ALL_CAREERS_CONTENT_PATH', 'content-parts/pages/all-careers/content');
 
 define('ERROR_CONTENT_PATH', 'content-parts/pages/404/content');
 
@@ -34,6 +35,7 @@ define('GENERAL_FORM_CONTACT_PATH', 'content-parts/forms/content');
 
 define('CAREERS_TABS_PATH', 'content-parts/pages/careers/tabs/content');
 define('ALL_CAREERS_TABS_PATH', 'content-parts/pages/all-careers/tabs/content');
+define('ALL_CAREERS_FORMS_PATH', 'content-parts/pages/all-careers/forms/content');
 define('ADMISSION_TABS_PATH', 'content-parts/pages/admission/tabs/content');
 define('FACULTY_TABS_PATH', 'content-parts/pages/faculty/tabs/content');
 define('NEWS_TABS_PATH', 'content-parts/pages/news/tabs/content');
@@ -169,6 +171,9 @@ function theme_setting() {
     add_image_size( 'category-thumb', 160, 157, true );
     add_theme_support('title-tag');
 
+    // Soporte para logo personalizado sin recorte
+    add_theme_support('custom-logo');
+
     register_nav_menus( array(
         'navbar_menu' => __( 'Navbar Menu', 'navbar_menu' ),
         'mobile_menu' => __( 'Mobile Menu', 'mobile_menu' ),
@@ -176,6 +181,53 @@ function theme_setting() {
     ));
 }
 
+/**
+ * Deshabilitar Icono del sitio (Site Icon) del Customizer
+ */
+add_action('customize_register', 'remove_site_icon_control');
+function remove_site_icon_control($wp_customize) {
+    $wp_customize->remove_control('site_icon');
+}
+
+
+/**
+ * Permitir subida de SVG
+ */
+add_filter('upload_mimes', 'allow_svg_upload');
+function allow_svg_upload($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+    $mimes['svgz'] = 'image/svg+xml';
+    return $mimes;
+}
+
+/**
+ * Saltear recorte de imagen para SVG en el Customizer
+ */
+add_filter('wp_get_attachment_metadata', 'skip_crop_for_svg', 10, 2);
+function skip_crop_for_svg($data, $attachment_id) {
+    $mime = get_post_mime_type($attachment_id);
+    if ($mime === 'image/svg+xml') {
+        // Simular metadatos para que WordPress no intente recortar
+        if (!isset($data['width'])) {
+            $data['width'] = 240;
+            $data['height'] = 48;
+        }
+    }
+    return $data;
+}
+
+/**
+ * Fix SVG display
+ */
+add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 4);
+function fix_svg_mime_type($data, $file, $filename, $mimes) {
+    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    if ($ext === 'svg') {
+        $data['ext'] = 'svg';
+        $data['type'] = 'image/svg+xml';
+    }
+    return $data;
+}
 
 /**
  * add <br> to TinyMCE
@@ -293,12 +345,6 @@ function desactivar_editor_en_paginas($post) {
 }
 add_action('edit_form_after_title', 'desactivar_editor_en_paginas');
 
-
-
-
-add_action('init', function() {
-  remove_post_type_support('post', 'editor');
-});
 
 
 function unw_remove_editor_from_specific_page() {

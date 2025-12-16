@@ -7,7 +7,7 @@ $highlights = get_field('highlights');
     <h2 class="pba-highlights__title"><?= $highlights['title']; ?></h2>
 
     <div class="highlight-swiper post-swiper-desktop switch-pagination-navigation">
-      <div class="swiper-container">
+      <div class="swiper-container" data-type-component="swiper">
         <div class="swiper-wrapper pba-highlights__list">
           <?php foreach ($highlights['list'] as $i => $highlight): ?>
             <div class="swiper-slide pba-highlights__item">

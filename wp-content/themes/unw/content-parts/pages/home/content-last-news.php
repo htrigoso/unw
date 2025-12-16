@@ -12,7 +12,7 @@ $news_items = $news_data['news'] ?? [];
       <?php endif; ?>
 
       <div class="post-swiper last-news-swiper last-news__swiper" data-width="compact">
-        <div class="swiper-container">
+        <div class="swiper-container" data-type-component="swiper">
           <div class="swiper-wrapper">
             <?php foreach ($news_items as $news_post) :
                 if (!($news_post instanceof WP_Post)) continue;

@@ -27,6 +27,9 @@ $destacadas = new WP_Query($args);
         <?php if ($destacadas->have_posts()) : ?>
         <?php while ($destacadas->have_posts()) : $destacadas->the_post(); ?>
         <?php
+            $categories = wp_get_post_terms(get_the_ID(), 'categoria_novedad');
+            $first_category = !empty($categories) && !is_wp_error($categories) ? $categories[0]->name : '';
+
             $slide = [
               'image'   => uw_get_first_slider_image(get_the_ID()),
               'title'   => get_the_title(),
@@ -34,6 +37,9 @@ $destacadas = new WP_Query($args);
               'content' => get_the_excerpt(),
               'href'    => get_permalink(),
               'date_before' => true,
+              'content_type' => 'Noticia',
+              'content_id' => get_the_ID(),
+              'category_tag' => $first_category,
             ];
             ?>
         <div class="swiper-slide featured-news__item">

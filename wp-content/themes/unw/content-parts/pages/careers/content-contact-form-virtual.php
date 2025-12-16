@@ -14,7 +14,7 @@ $data_form_type = $args['data_form_type'] ?? '';
 $validation_dni = $crm_carriers['validation_dni'];
 $hide_dni = $validation_dni['hide'];
 ?>
-<form id="<?=$data_form_type;?>" data-form="zoho" data-form-type="<?=$data_form_type;?>"
+<form id="<?=$data_form_type;?>" name="<?=$data_form_type;?>" data-form="zoho" data-form-type="<?=$data_form_type;?>"
   class="contact-form formCarrera" method="POST" accept-charset="UTF-8" enctype="multipart/form-data"
   action="<?=$formUrl?>">
   <div class="form-header">

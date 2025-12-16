@@ -24,6 +24,9 @@ if (!function_exists('unw_get_event_data')) {
     $image_alt = $title;
     $status = $info['status'] ?? false;
 
+    $categories = wp_get_post_terms($post->ID, 'categoria_evento');
+    $first_category = !empty($categories) && !is_wp_error($categories) ? $categories[0]->name : '';
+
     return [
       'title' => $title,
       'hour' => $hour,
@@ -33,7 +36,9 @@ if (!function_exists('unw_get_event_data')) {
       'status' =>  $status,
       'image_url' => $image_url,
       'image_alt' => $image_alt,
-      'customStyle'=> $customStyle
+      'customStyle'=> $customStyle,
+      'content_id' => $post->ID,
+      'category_tag' => $first_category,
     ];
   }
 }
