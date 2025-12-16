@@ -1,4 +1,4 @@
-import Swiper from 'swiper/bundle'
+import Swiper from 'swiper'
 
 const TabSwiper = (sectionEl = '.tabs-swiper') => {
   return new Swiper(`${sectionEl} .swiper-container`, {

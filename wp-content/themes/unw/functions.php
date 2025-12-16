@@ -1,4 +1,11 @@
 <?php
+/**
+ * Control de Incubeta Analytics
+ * Define INCUBETA_ENABLED como true para habilitar tracking
+ * Define como false o comenta la línea para deshabilitar
+ */
+define('INCUBETA_ENABLED', false);
+
 // require vendor packages autoload
 // require_once dirname(__FILE__) . '/vendor/autoload.php';
 
@@ -34,3 +41,6 @@ require_once dirname(__FILE__) . '/inc/wp-careers.php';
 require_once dirname(__FILE__) . '/inc/functions/tpl-noticias.php';
 
 require_once dirname(__FILE__) . '/inc/functions/preserve-url-params.php';
+
+// require UTM unique index prevention
+require_once dirname(__FILE__) . '/inc/functions/utm-create-unique-index.php';

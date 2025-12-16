@@ -3,6 +3,8 @@
  * Maneja el evento select_item cuando el usuario hace click en "Ver carrera"
  */
 
+import { withIncubeta } from '../incubeta-utils'
+
 /**
  * Construye el item para select_item
  * @param {HTMLElement} button - Botón clickeado
@@ -43,7 +45,7 @@ function buildSelectItem(button, index) {
  * @param {HTMLElement} button - Botón clickeado
  * @param {number} index - Índice del item
  */
-function sendSelectItemEvent(button, index) {
+const sendSelectItemEvent = withIncubeta(function (button, index) {
   const { listName } = window.unwCareersData || {}
 
   const item = buildSelectItem(button, index)
@@ -88,12 +90,12 @@ function sendSelectItemEvent(button, index) {
       sendEvent()
     }
   }, 100)
-}
+})
 
 /**
  * Inicializa el tracking de clicks en carreras
  */
-export function initSelectItemTracking() {
+export const initSelectItemTracking = withIncubeta(function () {
   // Inicializar dataLayer si no existe
   window.dataLayer = window.dataLayer || []
 
@@ -116,7 +118,7 @@ export function initSelectItemTracking() {
     // Enviar evento
     sendSelectItemEvent(button, index)
   })
-}
+})
 
 /**
  * Envía select_item automáticamente para páginas single de carreras
@@ -126,7 +128,7 @@ export function initSelectItemTracking() {
  * @param {string} careerData.listName - Nombre de la lista
  * @param {string} careerData.itemBrand - Marca del item
  */
-export function trackCareerDetail(careerData) {
+export const trackCareerDetail = withIncubeta(function (careerData) {
   // Inicializar dataLayer si no existe
   window.dataLayer = window.dataLayer || []
 
@@ -193,4 +195,4 @@ export function trackCareerDetail(careerData) {
       sendEvent()
     }
   }, 100)
-}
+})

@@ -4,6 +4,8 @@
  * Espera a que GTM esté disponible antes de enviar
  */
 
+import { withIncubeta } from '../incubeta-utils'
+
 /**
  * Construye y envía el evento view_item_list
  * @param {Object} careersData - Datos de carreras desde PHP
@@ -11,7 +13,7 @@
  * @param {string} careersData.listName - Nombre de la lista
  * @param {string} careersData.itemBrand - Marca del item
  */
-function sendViewItemListEvent(careersData) {
+const sendViewItemListEvent = withIncubeta(function (careersData) {
   const { careers, listName, itemBrand } = careersData
 
   if (!careers || careers.length === 0) {
@@ -56,13 +58,13 @@ function sendViewItemListEvent(careersData) {
 
   window.dataLayer.push(dataLayerEvent)
   console.log('[Incubeta] ✅ view_item_list enviado:', dataLayerEvent)
-}
+})
 
 /**
  * Detecta cuando GTM está disponible y envía el evento
  * @param {Object} careersData - Datos de carreras
  */
-function waitForGTM(careersData) {
+const waitForGTM = withIncubeta(function (careersData) {
   // Si GTM ya está cargado, enviar inmediatamente
   if (window.google_tag_manager) {
     sendViewItemListEvent(careersData)
@@ -84,13 +86,13 @@ function waitForGTM(careersData) {
       sendViewItemListEvent(careersData)
     }
   }, 100)
-}
+})
 
 /**
  * Inicializa el tracking de view_item_list
  * Busca datos en window.unwCareersData y espera a GTM
  */
-export function initViewItemListTracking() {
+export const initViewItemListTracking = withIncubeta(function () {
   // Inicializar dataLayer si no existe
   window.dataLayer = window.dataLayer || []
 
@@ -101,4 +103,4 @@ export function initViewItemListTracking() {
 
   // Iniciar detección de GTM
   waitForGTM(window.unwCareersData)
-}
+})

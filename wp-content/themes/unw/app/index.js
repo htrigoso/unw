@@ -11,6 +11,7 @@ import { initShareClickTracking } from './utils/incubeta/shareClick'
 import { initCarrouselViewTracking } from './utils/incubeta/carrouselView'
 import { initCarrouselSwipeTracking } from './utils/incubeta/carrouselSwipe'
 import { initCarrouselClickTracking } from './utils/incubeta/carrouselClick'
+import { onDOMReady } from './utils/dom-ready'
 
 class App {
   constructor() {
@@ -20,7 +21,6 @@ class App {
     this.megaMenuDesktop()
     this.tabMegaMenuDesktop()
     this.hideBackdrop()
-    this.handleOnSubmitForm()
     this.blockedClickButtonModal()
     this.initCareersTracking()
     this.initErrorTracking()
@@ -58,7 +58,6 @@ class App {
         e.preventDefault()
         const _html = document.querySelector('html')
         _html.style.overflow = 'hidden'
-
         const parentItem = link.closest('li')
         if (!parentItem) return
 
@@ -67,6 +66,23 @@ class App {
             item.classList.remove('is-open')
           }
         })
+
+        // Aplicar top según altura del navbar
+        const parent = link.closest('li')
+        const parentWrapper = parent.querySelector('.main-submenu-wrapper')
+
+        const navbar = document.querySelector('.navbar')
+        if (navbar) {
+          let navbarHeight = navbar.offsetHeight
+
+          // Sumar altura del admin bar si existe
+          const adminBar = document.getElementById('wpadminbar')
+          if (adminBar) {
+            navbarHeight += adminBar.offsetHeight
+          }
+
+          parentWrapper.style.top = `${navbarHeight}px`
+        }
 
         parentItem.classList.toggle('is-open')
         // Si ahora hay alguno abierto, bloquea scroll. Si no, lo quita.
@@ -163,43 +179,6 @@ class App {
     document.documentElement.style.overflow = ''
   }
 
-  handleOnSubmitForm() {
-    document.addEventListener('DOMContentLoaded', () => {
-      const forms = document.querySelectorAll('[data-form="zoho"]')
-      if (!forms.length) return
-
-      forms.forEach((form) => {
-        form.addEventListener('submit', (e) => {
-          // Evitar doble envío
-          if (form.dataset.submitted === 'true') {
-            e.preventDefault()
-            return
-          }
-          form.dataset.submitted = 'true'
-
-          // Botón de envío
-          const button = form.querySelector('#button-send')
-          if (button) {
-            button.disabled = true
-            button.dataset.originalText = button.innerText
-            button.innerText = 'Enviando...'
-          }
-
-          // Push a dataLayer
-          if (window.dataLayer && Array.isArray(window.dataLayer)) {
-            window.dataLayer.push({
-              event: 'gtm.formSubmit',
-              formId: form?.id || null,
-              formType: form?.dataset?.formType || null
-            })
-          } else {
-            console.warn('⚠️ dataLayer no está definido')
-          }
-        })
-      })
-    })
-  }
-
   blockedClickButtonModal() {
     document.querySelectorAll('[data-modal-target]').forEach(btn => {
       btn.addEventListener('click', e => {
@@ -256,4 +235,6 @@ class App {
   }
 }
 
-new App()
+onDOMReady(() => {
+  new App()
+})

@@ -1,6 +1,3 @@
-import PostSwiper from '../../components/PostSwiper'
-import InternationalSwiper from '../../components/InternationalSwiper'
-import PostSwiperDesktop from '../../components/PostSwiperDesktop'
 import { ModalManager } from '../../components/Modal'
 import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
 import { $element } from '../../utils/dom'
@@ -16,11 +13,6 @@ export default class HomePage {
 
   create() {
     new ModalManager()
-    PostSwiperDesktop('.post-swiper-desktop')
-    PostSwiper('.testimonial-swiper')
-    PostSwiper('.last-news-swiper')
-    PostSwiper('.featured-events-swiper')
-    InternationalSwiper()
     this.initFormGeneral()
     initViewProgramTypeTracking()
     initSelectProgramTypeTracking()

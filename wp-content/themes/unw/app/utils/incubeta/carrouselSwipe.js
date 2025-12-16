@@ -3,11 +3,13 @@
  * Maneja el evento carrousel_swipe cuando el usuario cambia de slider
  */
 
+import { withIncubeta } from '../incubeta-utils'
+
 /**
  * Envía el evento carrousel_swipe al dataLayer
  * @param {Object} data - Datos del swipe
  */
-function sendCarrouselSwipeEvent(data) {
+const sendCarrouselSwipeEvent = withIncubeta(function (data) {
   window.dataLayer = window.dataLayer || []
 
   const dataLayerEvent = {
@@ -45,7 +47,7 @@ function sendCarrouselSwipeEvent(data) {
       sendEvent()
     }
   }, 100)
-}
+})
 
 /**
  * Genera un ID único para el carrousel (igual lógica que carrouselView.js)
@@ -124,7 +126,7 @@ function getSlideName(slide) {
  * Inicializa el tracking de carrousel_swipe
  * Detecta cuando el slider cambia de slide (por click, arrastre, autoplay, etc.)
  */
-export function initCarrouselSwipeTracking() {
+export const initCarrouselSwipeTracking = withIncubeta(function () {
   // Esperar a que los swipers se inicialicen
   const checkSwipers = setInterval(() => {
     const swipers = document.querySelectorAll('[data-type-component="swiper"]')
@@ -195,4 +197,4 @@ export function initCarrouselSwipeTracking() {
   setTimeout(() => {
     clearInterval(checkSwipers)
   }, 10000)
-}
+})

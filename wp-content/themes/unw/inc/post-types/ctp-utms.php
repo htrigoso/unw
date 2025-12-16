@@ -175,6 +175,8 @@ function unw_find_utm_by_content($content, $code_format)
     LIMIT 1
   ", UNW_UTM_POST_TYPE, $content, $code_format);
 
+
+
   $result = $wpdb->get_row($query);
 
   return $result ? [
@@ -192,7 +194,52 @@ function unw_find_utm_by_content($content, $code_format)
  */
 function unw_create_utm($title, $content, $url, $code_format)
 {
-  // Generate unique UTM code
+  global $wpdb;
+
+  // PASO 1: Verificar si ya existe (lectura rápida sin locks)
+  // Esto maneja el 99% de casos donde el UTM ya fue creado
+  $code_exist = unw_find_utm_by_content($content, $code_format);
+
+  if ($code_exist) {
+    return [
+      'utm_id' => $code_exist['post_id'],
+      'utm_code' => $code_exist['utm_code'],
+    ];
+  }
+
+  // PASO 2: Verificar en tabla auxiliar (con UNIQUE INDEX)
+  $temp_table = $wpdb->prefix . 'utm_unique_temp';
+  $table_exists = $wpdb->get_var("SHOW TABLES LIKE '{$temp_table}'") === $temp_table;
+
+  if ($table_exists) {
+    $existing_in_temp = $wpdb->get_row($wpdb->prepare("
+      SELECT post_id FROM {$temp_table}
+      WHERE utm_url = %s AND code_format = %s
+      LIMIT 1
+    ", $content, $code_format));
+
+    if ($existing_in_temp) {
+      $existing_code = get_post_meta($existing_in_temp->post_id, 'utm_code', true);
+
+      return [
+        'utm_id' => (int) $existing_in_temp->post_id,
+        'utm_code' => $existing_code,
+      ];
+    }
+  }
+
+  // PASO 3: OPTIMISTIC LOCKING - Intentar crear usando UNIQUE INDEX como lock
+  // Esta es la estrategia clave para 800+ usuarios simultáneos sin esperas
+
+  if (!$table_exists) {
+    return new WP_Error(
+      'table_not_exists',
+      'La tabla auxiliar de prevención de duplicados no existe. Créala desde UTMs → Configuración.',
+      ['status' => 500]
+    );
+  }
+
+  // Generar código UTM ANTES de intentar reservar el slot
   $utm_code = unw_generate_utm_code($code_format);
 
   if (!$utm_code) {
@@ -203,46 +250,164 @@ function unw_create_utm($title, $content, $url, $code_format)
     );
   }
 
-  $post_data = [
-    'post_type' => UNW_UTM_POST_TYPE,
-    'post_status' => 'publish',
-    'post_title' => $utm_code . ' - ' . $title,
-    // 'post_content' => '',
-    'post_author' => 0,
-    'meta_input' => [
-      'utm_url' => $content,
-      'code_format' => $code_format,
-      'utm_code' => $utm_code,
-      'location_href' => $url, // Store full URL in content/description
-    ],
-  ];
+  // ESTRATEGIA: Insertar en tabla auxiliar con post_id temporal = 0
+  // El UNIQUE INDEX (utm_url, code_format) garantiza que solo 1 usuario tenga éxito
+  // Los otros 799 usuarios recibirán error de duplicate key
+  $max_retries = 10;  // 10 intentos = 500ms máximo de espera
+  $retry_count = 0;
+  $reservation_success = false;
 
-  $code_exist = unw_find_utm_by_content($content, $code_format);
+  while ($retry_count < $max_retries && !$reservation_success) {
+    $retry_count++;
 
-  if($code_exist) {
-    return [
-      'utm_id' => $code_exist['post_id'],
-      'utm_code' => code_exist['utm_code'],
-    ];
+    // Intentar reservar el slot en tabla auxiliar
+    $insert_result = $wpdb->query($wpdb->prepare("
+      INSERT IGNORE INTO {$temp_table} (post_id, utm_url, code_format)
+      VALUES (0, %s, %s)
+    ", $content, $code_format));
+
+    if ($insert_result === 1) {
+      // ✅ Éxito: Este usuario ganó la carrera
+      $reservation_success = true;
+      break;
+    }
+
+    // ❌ Otro usuario insertó primero o la fila ya existe
+    // Esperar con backoff exponencial y verificar si el post ya fue creado
+    $wait_time = 50000 * pow(2, $retry_count - 1);  // 50ms, 100ms, 200ms, 400ms...
+    usleep(min($wait_time, 500000));  // Máximo 500ms por intento
+
+    // Verificar si otro usuario completó la creación
+    $existing_in_temp = $wpdb->get_row($wpdb->prepare("
+      SELECT post_id FROM {$temp_table}
+      WHERE utm_url = %s AND code_format = %s AND post_id > 0
+      LIMIT 1
+    ", $content, $code_format));
+
+    if ($existing_in_temp) {
+      // Otro usuario ya completó la creación del post
+      $existing_code = get_post_meta($existing_in_temp->post_id, 'utm_code', true);
+
+      return [
+        'utm_id' => (int) $existing_in_temp->post_id,
+        'utm_code' => $existing_code,
+      ];
+    }
   }
 
-  $post_id = wp_insert_post($post_data, true);
+  if (!$reservation_success) {
+    // Después de 10 intentos, verificar una última vez
+    $existing_in_temp = $wpdb->get_row($wpdb->prepare("
+      SELECT post_id FROM {$temp_table}
+      WHERE utm_url = %s AND code_format = %s AND post_id > 0
+      LIMIT 1
+    ", $content, $code_format));
 
-  if (is_wp_error($post_id)) {
-    // Delete UTM code from cache
-    delete_utm_transients();
+    if ($existing_in_temp) {
+      $existing_code = get_post_meta($existing_in_temp->post_id, 'utm_code', true);
+
+      return [
+        'utm_id' => (int) $existing_in_temp->post_id,
+        'utm_code' => $existing_code,
+      ];
+    }
+
+    // FALLBACK: Verificar si Usuario 1 falló y borró el registro
+    // Si no hay registro, significa que el ganador original falló
+    // Intentar ser el nuevo ganador
+    $exists_any = $wpdb->get_var($wpdb->prepare("
+      SELECT COUNT(*) FROM {$temp_table}
+      WHERE utm_url = %s AND code_format = %s
+      LIMIT 1
+    ", $content, $code_format));
+
+    if ($exists_any == 0) {
+      // El registro fue borrado, Usuario 1 falló
+      // Dar una oportunidad más como nuevo ganador
+      $retry_insert = $wpdb->query($wpdb->prepare("
+        INSERT IGNORE INTO {$temp_table} (post_id, utm_url, code_format)
+        VALUES (0, %s, %s)
+      ", $content, $code_format));
+
+      if ($retry_insert === 1) {
+        // ¡Ahora SOY el ganador! Continuar con creación del post
+        $reservation_success = true;
+        // El código continúa al PASO 4 automáticamente
+      }
+    }
+
+    // Si aún no hay éxito, retornar error
+    if (!$reservation_success) {
+      return new WP_Error(
+        'reservation_failed',
+        'No se pudo reservar el slot para crear UTM.',
+        ['status' => 503]
+      );
+    }
+  }
+
+  // PASO 4: Este usuario ganó la reserva → Crear el post
+  try {
+    $post_data = [
+      'post_type' => UNW_UTM_POST_TYPE,
+      'post_status' => 'publish',
+      'post_title' => $utm_code . ' - ' . $title,
+      'post_author' => 0,
+      'meta_input' => [
+        'utm_url' => $content,
+        'code_format' => $code_format,
+        'utm_code' => $utm_code,
+        'location_href' => $url,
+      ],
+    ];
+
+    $post_id = wp_insert_post($post_data, true);
+
+    if (is_wp_error($post_id)) {
+      // Limpiar la reserva fallida
+      $wpdb->delete(
+        $temp_table,
+        ['utm_url' => $content, 'code_format' => $code_format],
+        ['%s', '%s']
+      );
+
+      delete_utm_transients();
+
+      return new WP_Error(
+        'post_creation_failed',
+        'No se pudo crear el post UTM: ' . $post_id->get_error_message(),
+        ['status' => 500]
+      );
+    }
+
+    // PASO 5: Actualizar la tabla auxiliar con el post_id real
+    $wpdb->update(
+      $temp_table,
+      ['post_id' => $post_id],
+      ['utm_url' => $content, 'code_format' => $code_format],
+      ['%d'],
+      ['%s', '%s']
+    );
+
+    return [
+      'utm_id' => $post_id,
+      'utm_code' => $utm_code,
+    ];
+
+  } catch (Exception $e) {
+    // Limpiar la reserva en caso de error
+    $wpdb->delete(
+      $temp_table,
+      ['utm_url' => $content, 'code_format' => $code_format],
+      ['%s', '%s']
+    );
 
     return new WP_Error(
-      'post_creation_failed',
-      'No se pudo crear el post UTM: ' . $post_id->get_error_message(),
+      'utm_creation_exception',
+      'Error al crear UTM: ' . $e->getMessage(),
       ['status' => 500]
     );
   }
-
-  return [
-    'utm_id' => $post_id,
-    'utm_code' => $utm_code,
-  ];
 }
 
 /**
@@ -563,41 +728,87 @@ function unw_utm_add_export_button($which)
 
   $current_year = isset($_GET['export_year']) ? intval($_GET['export_year']) : '';
   $current_month = isset($_GET['export_month']) ? intval($_GET['export_month']) : '';
+  $current_format = isset($_GET['filter_code_format']) ? sanitize_text_field($_GET['filter_code_format']) : '';
 ?>
-<div class="alignleft actions" style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-  <!-- Year Filter -->
-  <select name="export_year" id="export_year" style="min-width: 100px;">
-    <option value="">Todos los años</option>
-    <?php foreach ($years as $year) : ?>
-    <option value="<?php echo esc_attr($year); ?>" <?php selected($current_year, $year); ?>>
-      <?php echo esc_html($year); ?>
-    </option>
-    <?php endforeach; ?>
-  </select>
 
-  <!-- Month Filter -->
-  <select name="export_month" id="export_month" style="min-width: 120px;">
-    <option value="">Todos los meses</option>
-    <option value="1" <?php selected($current_month, 1); ?>>Enero</option>
-    <option value="2" <?php selected($current_month, 2); ?>>Febrero</option>
-    <option value="3" <?php selected($current_month, 3); ?>>Marzo</option>
-    <option value="4" <?php selected($current_month, 4); ?>>Abril</option>
-    <option value="5" <?php selected($current_month, 5); ?>>Mayo</option>
-    <option value="6" <?php selected($current_month, 6); ?>>Junio</option>
-    <option value="7" <?php selected($current_month, 7); ?>>Julio</option>
-    <option value="8" <?php selected($current_month, 8); ?>>Agosto</option>
-    <option value="9" <?php selected($current_month, 9); ?>>Septiembre</option>
-    <option value="10" <?php selected($current_month, 10); ?>>Octubre</option>
-    <option value="11" <?php selected($current_month, 11); ?>>Noviembre</option>
-    <option value="12" <?php selected($current_month, 12); ?>>Diciembre</option>
-  </select>
+<!-- Filtros de UTM - UI Mejorada -->
+<div class="alignleft actions" style="margin-bottom: 10px;">
+  <div style="display: inline-flex; gap: 10px; align-items: center; background: #f0f0f1; padding: 8px 12px; border-radius: 4px; flex-wrap: wrap;">
 
-  <!-- Export Button -->
-  <button type="button" id="export_utms_btn" class="button button-primary">
-    <span class="dashicons dashicons-download" style="margin-top: 3px;"></span>
-    Exportar a Excel
-  </button>
+    <!-- Formato de Código -->
+    <div style="display: flex; align-items: center; gap: 6px;">
+      <label for="filter_code_format" style="font-weight: 600; color: #1d2327; margin: 0; font-size: 13px;">Formato:</label>
+      <select name="filter_code_format" id="filter_code_format" style="min-width: 140px;">
+        <option value="">Todos</option>
+        <option value="<?php echo esc_attr(UNW_UTM_FORMAT_PAUTA); ?>" <?php selected($current_format, UNW_UTM_FORMAT_PAUTA); ?>>
+          PAUTA (<?php echo UNW_UTM_FORMAT_PAUTA; ?>)
+        </option>
+        <option value="<?php echo esc_attr(UNW_UTM_FORMAT_ORGANICO); ?>" <?php selected($current_format, UNW_UTM_FORMAT_ORGANICO); ?>>
+          ORGÁNICO (<?php echo UNW_UTM_FORMAT_ORGANICO; ?>)
+        </option>
+      </select>
+    </div>
+
+    <!-- Año -->
+    <div style="display: flex; align-items: center; gap: 6px;">
+      <label for="export_year" style="font-weight: 600; color: #1d2327; margin: 0; font-size: 13px;">Año:</label>
+      <select name="export_year" id="export_year" style="min-width: 90px;">
+        <option value="">Todos</option>
+        <?php foreach ($years as $year) : ?>
+        <option value="<?php echo esc_attr($year); ?>" <?php selected($current_year, $year); ?>>
+          <?php echo esc_html($year); ?>
+        </option>
+        <?php endforeach; ?>
+      </select>
+    </div>
+
+    <!-- Mes -->
+    <div style="display: flex; align-items: center; gap: 6px;">
+      <label for="export_month" style="font-weight: 600; color: #1d2327; margin: 0; font-size: 13px;">Mes:</label>
+      <select name="export_month" id="export_month" style="min-width: 110px;">
+        <option value="">Todos</option>
+        <option value="1" <?php selected($current_month, 1); ?>>Enero</option>
+        <option value="2" <?php selected($current_month, 2); ?>>Febrero</option>
+        <option value="3" <?php selected($current_month, 3); ?>>Marzo</option>
+        <option value="4" <?php selected($current_month, 4); ?>>Abril</option>
+        <option value="5" <?php selected($current_month, 5); ?>>Mayo</option>
+        <option value="6" <?php selected($current_month, 6); ?>>Junio</option>
+        <option value="7" <?php selected($current_month, 7); ?>>Julio</option>
+        <option value="8" <?php selected($current_month, 8); ?>>Agosto</option>
+        <option value="9" <?php selected($current_month, 9); ?>>Septiembre</option>
+        <option value="10" <?php selected($current_month, 10); ?>>Octubre</option>
+        <option value="11" <?php selected($current_month, 11); ?>>Noviembre</option>
+        <option value="12" <?php selected($current_month, 12); ?>>Diciembre</option>
+      </select>
+    </div>
+
+    <!-- Botones -->
+    <div style="display: inline-flex; gap: 6px; margin-left: 8px;">
+      <button type="submit" class="button" style="height: 32px;">
+        <span class="dashicons dashicons-filter" style="margin-top: 4px;"></span>
+        Filtrar
+      </button>
+      <?php if ($current_year || $current_month || $current_format): ?>
+      <a href="<?php echo admin_url('edit.php?post_type=' . UNW_UTM_POST_TYPE); ?>" class="button" style="height: 32px; line-height: 30px;">
+        <span class="dashicons dashicons-image-rotate" style="margin-top: 4px;"></span>
+        Limpiar
+      </a>
+      <?php endif; ?>
+      <button type="button" id="export_utms_btn" class="button button-primary" style="height: 32px;">
+        <span class="dashicons dashicons-download" style="margin-top: 4px;"></span>
+        Exportar
+      </button>
+    </div>
+  </div>
 </div>
+
+<!-- Ocultar filtro de Rank Math -->
+<style>
+  /* Ocultar el dropdown de Rank Math en la lista de UTMs */
+  .post-type-unw_utm #posts-filter .tablenav.top .actions:not(.alignleft) select[name*="rank"] {
+    display: none !important;
+  }
+</style>
 
 <script>
 jQuery(document).ready(function($) {
@@ -800,4 +1011,179 @@ function unw_utm_export_to_excel()
 
   fclose($output);
   exit;
+}
+
+/**
+ * Validate UTM code uniqueness before saving
+ * Prevents duplicate UTM codes across all UTM posts
+ */
+add_filter('acf/validate_value/key=field_68ef1390b2cab', 'unw_validate_unique_utm_code', 10, 4);
+
+function unw_validate_unique_utm_code($valid, $value, $field, $input_name)
+{
+  // Si ya hay un error, no validar
+  if (!$valid) {
+    return $valid;
+  }
+
+  // Si no hay valor, retornar (el campo es requerido, ACF lo maneja)
+  if (empty($value)) {
+    return $valid;
+  }
+
+  global $wpdb;
+
+  // Obtener el ID del post actual (si existe)
+  $post_id = 0;
+  if (isset($_POST['post_ID'])) {
+    $post_id = intval($_POST['post_ID']);
+  } elseif (isset($_POST['post_id'])) {
+    $post_id = intval($_POST['post_id']);
+  }
+
+  // Buscar si ya existe otro post con el mismo código UTM
+  $query = $wpdb->prepare("
+    SELECT p.ID, p.post_title
+    FROM {$wpdb->posts} p
+    INNER JOIN {$wpdb->postmeta} pm
+      ON p.ID = pm.post_id
+      AND pm.meta_key = 'utm_code'
+    WHERE p.post_type = %s
+      AND p.post_status != 'trash'
+      AND pm.meta_value = %s
+      AND p.ID != %d
+    LIMIT 1
+  ", UNW_UTM_POST_TYPE, $value, $post_id);
+
+  $existing = $wpdb->get_row($query);
+
+  // Si existe otro post con el mismo código, retornar error
+  if ($existing) {
+    $valid = sprintf(
+      'El código UTM "%s" ya está siendo utilizado por "%s" (ID: %d). Por favor, utiliza un código diferente.',
+      esc_html($value),
+      esc_html($existing->post_title),
+      $existing->ID
+    );
+  }
+
+  return $valid;
+}
+
+/**
+ * Validate UTM URL + code_format uniqueness before saving
+ * Prevents duplicate URLs with the same code_format
+ */
+add_filter('acf/validate_value/key=field_690a550143d1f', 'unw_validate_unique_utm_url_format', 10, 4);
+
+function unw_validate_unique_utm_url_format($valid, $value, $field, $input_name)
+{
+  // Si ya hay un error, no validar
+  if (!$valid) {
+    return $valid;
+  }
+
+  // Si no hay valor, retornar (el campo es requerido, ACF lo maneja)
+  if (empty($value)) {
+    return $valid;
+  }
+
+  global $wpdb;
+
+  // Obtener el ID del post actual
+  $post_id = 0;
+  if (isset($_POST['post_ID'])) {
+    $post_id = intval($_POST['post_ID']);
+  } elseif (isset($_POST['post_id'])) {
+    $post_id = intval($_POST['post_id']);
+  }
+
+  // Obtener el code_format del formulario actual
+  $current_code_format = '';
+  if (isset($_POST['acf']['field_68ef132eb2caa'])) {
+    $current_code_format = sanitize_text_field($_POST['acf']['field_68ef132eb2caa']);
+  }
+
+  // Si no hay code_format seleccionado, no podemos validar aún
+  if (empty($current_code_format)) {
+    return $valid;
+  }
+
+  // Limpiar la URL para comparación
+  $clean_url = trim($value);
+
+  // Buscar si ya existe otro post con la misma URL + code_format
+  $query = $wpdb->prepare("
+    SELECT p.ID, p.post_title, pm_code.meta_value AS utm_code
+    FROM {$wpdb->posts} p
+    INNER JOIN {$wpdb->postmeta} pm_url
+      ON p.ID = pm_url.post_id
+      AND pm_url.meta_key = 'utm_url'
+    INNER JOIN {$wpdb->postmeta} pm_format
+      ON p.ID = pm_format.post_id
+      AND pm_format.meta_key = 'code_format'
+    INNER JOIN {$wpdb->postmeta} pm_code
+      ON p.ID = pm_code.post_id
+      AND pm_code.meta_key = 'utm_code'
+    WHERE p.post_type = %s
+      AND p.post_status != 'trash'
+      AND pm_url.meta_value = %s
+      AND pm_format.meta_value = %s
+      AND p.ID != %d
+    LIMIT 1
+  ", UNW_UTM_POST_TYPE, $clean_url, $current_code_format, $post_id);
+
+  $existing = $wpdb->get_row($query);
+
+  // Si existe otro post con la misma URL y formato, es un error
+  if ($existing) {
+    $format_label = $current_code_format === UNW_UTM_FORMAT_PAUTA ? 'PAUTA' : 'ORGÁNICO';
+    $valid = sprintf(
+      'Esta URL ya está registrada con el formato "%s" (código: %s) en "%s" (ID: %d). No puedes duplicar la misma URL con el mismo formato.',
+      $format_label,
+      esc_html($existing->utm_code),
+      esc_html($existing->post_title),
+      $existing->ID
+    );
+  }
+
+  return $valid;
+}
+/**
+ * Filter UTMs by code_format in admin list
+ */
+add_filter('pre_get_posts', 'unw_utm_filter_by_code_format');
+
+function unw_utm_filter_by_code_format($query)
+{
+  // Only run in admin and for UTM post type main query
+  if (!is_admin() || !$query->is_main_query()) {
+    return;
+  }
+
+  global $pagenow, $typenow;
+
+  // Only on edit.php page for UTM post type
+  if ($pagenow !== 'edit.php' || $typenow !== UNW_UTM_POST_TYPE) {
+    return;
+  }
+
+  // Check if code_format filter is set
+  if (isset($_GET['filter_code_format']) && !empty($_GET['filter_code_format'])) {
+    $code_format = sanitize_text_field($_GET['filter_code_format']);
+
+    // Validate format
+    if (in_array($code_format, [UNW_UTM_FORMAT_PAUTA, UNW_UTM_FORMAT_ORGANICO])) {
+      // Add meta query to filter by code_format
+      $meta_query = $query->get('meta_query') ?: [];
+
+      $meta_query[] = [
+        'key' => 'code_format',
+        'value' => $code_format,
+        'compare' => '='
+      ];
+
+      $query->set('meta_query', $meta_query);
+    }
+  }
 }

@@ -1,0 +1,10 @@
+/* Ocultar campo is_mixto en taxonomía categoria-carrera-distancia */
+body.taxonomy-categoria-carrera-distancia .acf-field[data-name="is_mixto"] {
+  display: none !important;
+}
+
+/* Ocultar campo is_mixto en página carreras-a-distancia (usa slug, no ID) */
+body.post-type-page.page-slug-carreras-a-distancia
+  .acf-field[data-name="is_mixto"] {
+  display: none !important;
+}

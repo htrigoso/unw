@@ -1,13 +1,13 @@
 <?php
+  $form_category = get_field('componente_form_category');
   $utms_default = get_field('list_utms', 'option');
-  $utm_admission = $crm_carriers['list_utms'] ?? [];
+  $utm_admission = $form_category['list_utms'] ?? [];
   $utms_final = merge_utms($utms_default, $utm_admission);
 
   $formUrl = "https://forms.zohopublic.com/adminzoho11/form/WebBaseVirtual/formperma/r6dyucr2_RC_mCaLCNhmhvEHn820MmGvdkHztewDq58/htmlRecords/submit";
 
   $form_crm_option = get_field('form_crm', 'option');
-  $form_crm_categories = get_field('form_crm_categories', 'option');
-  $validation_dni = $form_crm_categories['validation_dni_pregrado'];
+  $validation_dni = $form_category['validation_dni_pregrado'];
   $hide_dni = $validation_dni['hide'];
 
   $vertical_modality = $args['vertical_modality'] ?? '';
@@ -16,12 +16,8 @@
   $careers = get_carreras();
   $list_departaments = $form_crm_option['list_departaments'];
   $list_campus = get_carreras_campus_modalidad();
+  $facultad_name = '';
 
-   if (is_tax()) {
-      $current_taxonomy = get_queried_object();
-      $current_term_id = $current_taxonomy->term_id;
-      $careers = get_carreras_by_facultad($current_term_id, 'pregrado');
-   }
 
 
 
@@ -29,13 +25,14 @@
     'form_id' => 'form-category-distancia-base-'.$position_form,
     'form_action' => $formUrl,
     'utms' => $utms_final,
-    'careers' => $careers,
+    'careers' => $careers['virtual'],
     'list_departaments' => $list_departaments,
     'hide_dni' => $hide_dni,
     'validation_dni' => $validation_dni,
     'location' => 'is-home',
     'shadow_box' => true,
     'vertical_modality' => $vertical_modality,
-    'position_form'=> $position_form
+    'position_form'=> $position_form,
+    'facultad_name'=> $facultad_name,
   ]);
 ?>

@@ -23,12 +23,7 @@ if (!empty($slides)):
           $img_mobile_url = $images['mobile']['url'] ?? '';
           $img_mobile_alt = $images['mobile']['alt'] ?? $img_desktop_alt;
 
-          $img_attrs = '';
-          if ($slide_index === 0) {
-            $img_attrs .= ' decoding="async" fetchpriority="high" loading="eager"';
-          } else {
-            $img_attrs .= ' loading="lazy"';
-          }
+          $is_first = $slide_index === 0;
         ?>
       <div class="swiper-slide swiper-hero__slide">
         <?php if (!empty($slide['type'])): ?>
@@ -49,10 +44,19 @@ if (!empty($slides)):
         <a href="<?php echo $final_href ?? '#'; ?>" <?php echo $data_attr; ?>
           target="<?php echo esc_attr($link_simple_target); ?>" aria-label="Ver más">
           <picture class="swiper-hero__picture">
+            <?php if ($is_first): ?>
             <source srcset="<?php echo esc_url($img_desktop_url); ?>" width="1920" height="754"
               media="(min-width: 768px)" />
             <img alt="<?php echo esc_attr($img_mobile_alt); ?>" src="<?php echo esc_url($img_mobile_url); ?>"
-              class="swiper-hero__picture--img" width="768" height="500" <?php echo $img_attrs; ?> />
+              class="swiper-hero__picture--img" width="768" height="500" decoding="sync" fetchpriority="high"
+              loading="eager" />
+            <?php else: ?>
+            <source data-srcset="<?php echo esc_url($img_desktop_url); ?>" width="1920" height="754"
+              media="(min-width: 768px)" />
+            <img alt="<?php echo esc_attr($img_mobile_alt); ?>" data-src="<?php echo esc_url($img_mobile_url); ?>"
+              class="swiper-hero__picture--img swiper-lazy" width="768" height="500" />
+            <div class="swiper-lazy-preloader"></div>
+            <?php endif; ?>
           </picture>
         </a>
         <?php else:
@@ -64,10 +68,19 @@ if (!empty($slides)):
               $link_two = $slide['link_two'] ?? null;
               ?>
         <picture class="swiper-hero__picture">
+          <?php if ($is_first): ?>
           <source srcset="<?php echo esc_url($img_desktop_url); ?>" width="1920" height="754"
             media="(min-width: 768px)" />
           <img alt="<?php echo esc_attr($img_mobile_alt); ?>" src="<?php echo esc_url($img_mobile_url); ?>"
-            class="swiper-hero__picture--img" width="768" height="500" <?php echo $img_attrs; ?> />
+            class="swiper-hero__picture--img" width="768" height="500" decoding="sync" fetchpriority="high"
+            loading="eager" />
+          <?php else: ?>
+          <source data-srcset="<?php echo esc_url($img_desktop_url); ?>" width="1920" height="754"
+            media="(min-width: 768px)" />
+          <img alt="<?php echo esc_attr($img_mobile_alt); ?>" data-src="<?php echo esc_url($img_mobile_url); ?>"
+            class="swiper-hero__picture--img swiper-lazy" width="768" height="500" />
+          <div class="swiper-lazy-preloader"></div>
+          <?php endif; ?>
         </picture>
 
         <div class="hero__wrapper">

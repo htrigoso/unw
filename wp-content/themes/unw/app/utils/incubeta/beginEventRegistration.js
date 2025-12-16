@@ -4,11 +4,13 @@
  * dentro del detalle de un evento
  */
 
+import { withIncubeta } from '../incubeta-utils'
+
 /**
  * Envía el evento begin_event_registration al dataLayer
  * @param {Object} data - Datos del evento
  */
-function sendBeginEventRegistrationEvent(data) {
+const sendBeginEventRegistrationEvent = withIncubeta(function (data) {
   window.dataLayer = window.dataLayer || []
 
   const dataLayerEvent = {
@@ -45,13 +47,13 @@ function sendBeginEventRegistrationEvent(data) {
       sendEvent()
     }
   }, 100)
-}
+})
 
 /**
  * Inicializa el tracking de begin_event_registration
  * Detecta clicks en enlaces con la clase .btn-event-registration dentro del contenido del evento
  */
-export function initBeginEventRegistrationTracking() {
+export const initBeginEventRegistrationTracking = withIncubeta(function () {
   document.addEventListener('click', (e) => {
     // Buscar si el click fue en un enlace con la clase especial
     const target = e.target.closest('.btn-event-registration')
@@ -81,4 +83,4 @@ export function initBeginEventRegistrationTracking() {
   })
 
   console.log('[Incubeta] Tracking de begin_event_registration inicializado')
-}
+})

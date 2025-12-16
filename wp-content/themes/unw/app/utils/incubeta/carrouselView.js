@@ -3,11 +3,13 @@
  * Maneja el evento carrousel_view cuando el usuario visualiza un swiper en pantalla
  */
 
+import { withIncubeta } from '../incubeta-utils'
+
 /**
  * Envía el evento carrousel_view al dataLayer
  * @param {Object} data - Datos del carrousel
  */
-function sendCarrouselViewEvent(data) {
+const sendCarrouselViewEvent = withIncubeta(function (data) {
   window.dataLayer = window.dataLayer || []
 
   const dataLayerEvent = {
@@ -42,7 +44,7 @@ function sendCarrouselViewEvent(data) {
       sendEvent()
     }
   }, 100)
-}
+})
 
 /**
  * Genera un ID único para el carrousel basado en su posición y contexto
@@ -89,7 +91,7 @@ function generateCarrouselId(element) {
  * Inicializa el tracking de carrousel_view
  * Usa IntersectionObserver para detectar cuando los swipers son visibles
  */
-export function initCarrouselViewTracking() {
+export const initCarrouselViewTracking = withIncubeta(function () {
   const swipers = document.querySelectorAll('[data-type-component="swiper"]')
 
   if (swipers.length === 0) {
@@ -128,4 +130,4 @@ export function initCarrouselViewTracking() {
   })
 
   console.log(`[Incubeta] Observando ${swipers.length} swipers para carrousel_view`)
-}
+})

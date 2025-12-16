@@ -1,8 +1,11 @@
 import HeroSwiper from '../../components/HeroSwiper'
 import { initViewContentTracking } from '../../utils/incubeta/viewContent'
 import { initBeginEventRegistrationTracking } from '../../utils/incubeta/beginEventRegistration'
+import FormCrmEvent from '../../components/FormCRM/FormCrmEvent'
+import { ModalManager } from '../../components/Modal'
 
 (function () {
+  new ModalManager()
   // Inicializar tracking de view_content
   initViewContentTracking()
 
@@ -13,4 +16,16 @@ import { initBeginEventRegistrationTracking } from '../../utils/incubeta/beginEv
     loop: false,
     autoplay: false
   })
+
+  initFormEvent()
+
+  function initFormEvent() {
+    const form = document.querySelector('#form-event')
+    if (form) {
+      new FormCrmEvent({
+        element: form,
+        container: '.more-form'
+      })
+    }
+  }
 })()

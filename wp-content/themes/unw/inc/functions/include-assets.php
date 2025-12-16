@@ -249,7 +249,7 @@ function include_assets()
   // Preload Scripts Críticos (primero, máxima prioridad)
   if (!empty($critical_scripts)) {
       foreach ($critical_scripts as $js_url) {
-        echo '<link rel="preload" href="' . esc_url($js_url) . '" as="script">' . "\n";
+        // echo '<link rel="preload" href="' . esc_url($js_url) . '" as="script">' . "\n";
       }
   }
 
@@ -258,14 +258,14 @@ function include_assets()
   // Preload CSS
   if (!empty($preload_styles)) {
       foreach ($preload_styles as $css_url) {
-        echo '<link rel="preload" href="' . esc_url($css_url) . '" as="style">' . "\n";
+         echo '<link rel="preload" href="' . esc_url($css_url) . '" as="style">' . "\n";
       }
   }
 
   // Preload Scripts
   if (!empty($preload_scripts)) {
       foreach ($preload_scripts as $js_url) {
-        echo '<link rel="preload" href="' . esc_url($js_url) . '" as="script">' . "\n";
+        // echo '<link rel="preload" href="' . esc_url($js_url) . '" as="script">' . "\n";
       }
   }
 }

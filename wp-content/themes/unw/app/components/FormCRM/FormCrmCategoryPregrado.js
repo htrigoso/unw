@@ -1,4 +1,4 @@
-import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenFieldCampus, updateHiddenInputs, updateOptionsCareers, validateInputs, showCampusSelect, validatePhone } from './utils'
+import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenFieldCampus, updateHiddenInputs, validateInputs, showCampusSelect, validatePhone, updateOptionsCareersByFacultad } from './utils'
 
 // ==========================
 // Constantes de formularios
@@ -47,6 +47,7 @@ export default class FormCrmCategoryPregrado {
 
     const departaments = window.appConfigUnw.departaments || []
     const careers = window.appConfigUnw.careers || []
+    const facultadName = this.element.dataset.facultadName || ''
 
     radios.forEach(radio => {
       radio.addEventListener('change', () => {
@@ -76,7 +77,7 @@ export default class FormCrmCategoryPregrado {
             ], this.element)
             setNameAttributeCampus({ element: this.element })
 
-            updateOptionsCareers({ element: this.element, careers, value })
+            updateOptionsCareersByFacultad({ element: this.element, careers, value, facultadName })
 
             showCampusSelect({ element: this.element })
             this.removeCustomHiddenDepartament()
@@ -110,7 +111,7 @@ export default class FormCrmCategoryPregrado {
             if (select.value) {
               this.updateHiddenFields({ select, hiddenContainer })
             }
-            updateOptionsCareers({ element: this.element, careers, value: 'virtual' })
+            updateOptionsCareersByFacultad({ element: this.element, careers, value: 'virtual', facultadName })
             this.removeCustomHiddenDepartament()
             break
 
@@ -123,8 +124,6 @@ export default class FormCrmCategoryPregrado {
   }
 
   buildHiddenInputs({ facultyName, careerName, type }) {
-    console.log(facultyName, careerName, type)
-
     if (type === FORMS.PREGRADO) {
       return createHiddenInputs({
         type,
@@ -150,8 +149,7 @@ export default class FormCrmCategoryPregrado {
     return ''
   }
 
-  updateHiddenFields({ select, hiddenContainer }) {
-    const checked = this.element.querySelector('input[name="form_mixto"]:checked')
+  updateHiddenFields({ select, hiddenContainer, type }) {
     const selectedOption = select.options[select.selectedIndex]
     const parentOptgroup = selectedOption.parentElement
 
@@ -160,7 +158,7 @@ export default class FormCrmCategoryPregrado {
     const html = this.buildHiddenInputs({
       facultyName: parentOptgroup.label,
       careerName: selectedOption.textContent.trim(),
-      type: checked.value
+      type
     })
 
     hiddenContainer.innerHTML = html
@@ -183,13 +181,13 @@ export default class FormCrmCategoryPregrado {
       const parentOptgroup = selectedOption.parentElement
       if (!parentOptgroup || parentOptgroup.tagName !== 'OPTGROUP') return
 
-      if (checked) {
-        this.updateHiddenFields({ select, hiddenContainer })
-        const slugCareers = selectedOption.dataset.key
-        const modalidad = selectedOption.dataset.mode
+      const slugCareers = selectedOption.dataset.key
+      const modalidad = selectedOption.dataset.mode
 
-        buildOptionsCampus({ campus, slugCareers, modalidad, element: this.element })
-      }
+      const type = checked?.value || 'virtual'
+
+      this.updateHiddenFields({ select, hiddenContainer, type })
+      buildOptionsCampus({ campus, slugCareers, modalidad, element: this.element })
     }
 
     select.addEventListener('change', boundUpdate)

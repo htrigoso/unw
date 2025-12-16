@@ -3,11 +3,13 @@
  * Maneja el evento select_content cuando se hace clic en Blog, Eventos o Noticias
  */
 
+import { withIncubeta } from '../incubeta-utils'
+
 /**
  * Envía el evento select_content al dataLayer
  * @param {Object} data - Datos del contenido
  */
-function sendSelectContentEvent(data) {
+const sendSelectContentEvent = withIncubeta(function (data) {
   window.dataLayer = window.dataLayer || []
 
   const dataLayerEvent = {
@@ -45,12 +47,12 @@ function sendSelectContentEvent(data) {
       sendEvent()
     }
   }, 100)
-}
+})
 
 /**
  * Inicializa el tracking de select_content para Blog, Eventos y Noticias
  */
-export function initSelectContentTracking() {
+export const initSelectContentTracking = withIncubeta(function () {
   // Event delegation para capturar clicks solo en elementos con la clase específica
   document.addEventListener('click', (event) => {
     const target = event.target.closest('.btn-select-content-item-click')
@@ -91,4 +93,4 @@ export function initSelectContentTracking() {
   })
 
   console.log('[Incubeta] 👆 Tracking de select_content iniciado (Blog, Eventos, Noticias)')
-}
+})

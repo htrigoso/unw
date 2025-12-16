@@ -2,6 +2,7 @@
   <div class="search-section__wrapper x-container x-container--pad-213">
     <form class="search-section__form">
       <h1 class="search-section__title">Resultados de la búsqueda:</h1>
+      <?php preserve_url_params();?>
       <?php get_template_part(
         COMMON_CONTENT_PATH,
         'search-input',

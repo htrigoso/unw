@@ -1,0 +1,19 @@
+.landing-faq {
+  padding-block: rem(48);
+
+  @include media(">=tablet") {
+    padding-block: rem(64);
+  }
+
+  @include media(">=desktop") {
+    padding-block: rem(80);
+  }
+
+  .faq-section__title {
+    margin-bottom: rem(32);
+
+    @include media(">=tablet") {
+      margin-bottom: rem(40);
+    }
+  }
+}

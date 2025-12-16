@@ -3,6 +3,8 @@
  * Maneja el evento select_program_type cuando se hace clic en un tipo de programa en el home
  */
 
+import { withIncubeta } from '../incubeta-utils'
+
 /**
  * Construye el objeto de datos para select_program_type
  * @param {HTMLElement} button - El botón clickeado
@@ -22,7 +24,7 @@ function buildSelectProgramType(button) {
  * Envía el evento select_program_type al dataLayer
  * @param {Object} data - Datos del programa
  */
-function sendSelectProgramTypeEvent(data) {
+const sendSelectProgramTypeEvent = withIncubeta(function(data) {
   window.dataLayer = window.dataLayer || []
 
   const dataLayerEvent = {
@@ -58,13 +60,13 @@ function sendSelectProgramTypeEvent(data) {
       sendEvent()
     }
   }, 100)
-}
+})
 
 /**
  * Inicializa el tracking de select_program_type
  * Solo se ejecuta para botones con data-is-home="1"
  */
-export function initSelectProgramTypeTracking() {
+export const initSelectProgramTypeTracking = withIncubeta(function() {
   // Event delegation para capturar clicks en los botones del home
   document.addEventListener('click', (event) => {
     const button = event.target.closest('.btn-careers-select-item')
@@ -79,4 +81,4 @@ export function initSelectProgramTypeTracking() {
   })
 
   console.log('[Incubeta] 👆 Tracking de select_program_type iniciado (solo home)')
-}
+})

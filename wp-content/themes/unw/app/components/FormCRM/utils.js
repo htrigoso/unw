@@ -383,6 +383,14 @@ export function updateHiddenFieldCampusTraslado({ text, value, element }) {
                 `
 }
 
+export function updateHiddenFieldCampusEvent({ text, value, element }) {
+  if (!element) return
+  element.querySelector('.custom-hidden-campus').innerHTML = `
+            <input type="hidden" name="SingleLine6" value="${text}">
+              <input type="hidden" name="SingleLine7" value="${value}">
+                `
+}
+
 export function setNameAttributeCampus({ element }) {
   if (!element) return
   const select = element.querySelector('#campusSelect')
@@ -406,6 +414,43 @@ export function updateOptionsCareers({ element = null, careers = {}, value = '' 
 
   // recorrer facultades
   Object.entries(data).forEach(([facultad, items]) => {
+    if (!Array.isArray(items) || items.length === 0) return
+
+    const optgroup = document.createElement('optgroup')
+    optgroup.label = facultad
+
+    items.forEach(item => {
+      const option = document.createElement('option')
+      option.value = item.code || ''
+      option.textContent = item.title || ''
+      option.dataset.key = item.slug || ''
+      option.dataset.mode = item.modalidad || ''
+      optgroup.appendChild(option)
+    })
+
+    select.appendChild(optgroup)
+  })
+}
+
+export function updateOptionsCareersByFacultad({ element = null, careers = {}, value = '', facultadName = '' } = {}) {
+  if (!element) return
+
+  const select = element.querySelector('#careerSelect')
+  if (!select) return
+
+  // limpiar el select
+  select.innerHTML = '<option value="" selected>--Seleccione--</option>'
+
+  // Primero filtrar por modalidad (value)
+  const data = value ? careers?.[value] || {} : careers
+
+  const resultado = window.appConfigUnw?.is_page_category_careers
+    ? data
+    : facultadName && data[facultadName]
+      ? { [facultadName]: data[facultadName] }
+      : {}
+
+  Object.entries(resultado).forEach(([facultad, items]) => {
     if (!Array.isArray(items) || items.length === 0) return
 
     const optgroup = document.createElement('optgroup')

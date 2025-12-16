@@ -17,7 +17,9 @@
   }
 
   .accordion-label {
-    font-size: rem(18);
+    h3 {
+      font-size: rem(18);
+    }
   }
 
   .accordion-content {

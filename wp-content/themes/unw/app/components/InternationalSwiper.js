@@ -1,8 +1,9 @@
-import Swiper from 'swiper/bundle'
+import Swiper, { Navigation } from 'swiper'
 
 const InternationalSwiper = (sectionEl = '.international-agreements') => {
-  return new Swiper(`${sectionEl} .swiper-container`, {
+  Swiper.use([Navigation])
 
+  return new Swiper(`${sectionEl} .swiper-container`, {
     slidesPerView: 'auto',
     spaceBetween: 12,
     grabCursor: true,

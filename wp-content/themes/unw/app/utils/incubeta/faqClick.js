@@ -3,11 +3,13 @@
  * Maneja el evento faq cuando el usuario hace click en una pregunta frecuente
  */
 
+import { withIncubeta } from '../incubeta-utils'
+
 /**
  * Envía el evento faq al dataLayer
  * @param {Object} data - Datos del FAQ
  */
-function sendFaqEvent(data) {
+const sendFaqEvent = withIncubeta(function (data) {
   window.dataLayer = window.dataLayer || []
 
   const dataLayerEvent = {
@@ -44,13 +46,13 @@ function sendFaqEvent(data) {
       sendEvent()
     }
   }, 100)
-}
+})
 
 /**
  * Inicializa el tracking de faq
  * Detecta clicks en preguntas del accordion (ambos tipos: PHP y JS component)
  */
-export function initFaqClickTracking() {
+export const initFaqClickTracking = withIncubeta(function () {
   document.addEventListener('click', (e) => {
     let question = null
     let position = null
@@ -103,4 +105,4 @@ export function initFaqClickTracking() {
   })
 
   console.log('[Incubeta] Tracking de faq inicializado (PHP + JS Component)')
-}
+})

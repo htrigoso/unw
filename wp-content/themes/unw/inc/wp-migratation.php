@@ -74,6 +74,10 @@ add_action('wp_enqueue_scripts', function () {
     return;
   }
 
+  // Remover filtros que eliminan query strings solo para estas plantillas
+  remove_all_filters('style_loader_src');
+  remove_all_filters('script_loader_src');
+
   $base_dir = get_stylesheet_directory();
   $base_url = get_stylesheet_directory_uri();
   // Archivos a cargar
@@ -116,7 +120,7 @@ add_action('wp_enqueue_scripts', function () {
       continue;
     }
 
-    $version = filemtime($full_path);
+    $version = '1.0.0';
 
     if ($asset['type'] === 'style') {
       wp_enqueue_style($handle, $full_url, [], $version);

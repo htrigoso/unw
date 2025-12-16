@@ -153,7 +153,7 @@ module.exports = (env, options) => {
       chunkFilename: `js/[name].${settings.useHash ? '[contenthash:10].' : ''}js`
     },
     resolve: { modules: [dirApp, dirStyles, dirNode] },
-    devtool: 'cheap-module-source-map',
+    devtool: process.env.SOURCE_MAP === 'true' ? 'source-map' : false,
     module: {
       rules: [
         {
@@ -202,13 +202,13 @@ module.exports = (env, options) => {
       minimize: true,
       minimizer: [
         new UglifyJsPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: process.env.SOURCE_MAP === 'true',
           uglifyOptions: {
-            cache: true,
             compress: { drop_console: true },
             mangle: false,
-            parallel: true,
-            output: { beautify: false },
-            sourceMap: true
+            output: { beautify: false }
           }
         }),
         new OptimizeCSSAssetsPlugin()

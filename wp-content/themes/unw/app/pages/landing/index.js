@@ -1,6 +1,7 @@
 import HeroSwiper from '../../components/HeroSwiper'
 import { ModalManager } from '../../components/Modal'
 import PostSwiper from '../../components/PostSwiper'
+import Accordion from '../../components/Accordion'
 
 (function () {
   HeroSwiper('.hero-swiper', {
@@ -12,6 +13,11 @@ import PostSwiper from '../../components/PostSwiper'
   })
 
   PostSwiper('.destacados-swiper')
+
+  // Inicializar accordions (FAQ)
+  document.querySelectorAll('.dynamic-accordion').forEach(element => {
+    new Accordion({ element, allowMultiple: true })
+  })
 
   new ModalManager({
     onOpen: (modal, trigger) => {

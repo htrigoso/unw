@@ -1,5 +1,6 @@
 import { EXCLUDE_URL_PARAMS, getBaseDomain, getRfc3986SearchFromUrl } from '../utils/url-parse'
 import '../set-public-path'
+import { onDOMReady } from '../utils/dom-ready'
 
 export default class CriticalPage {
   constructor() {
@@ -10,6 +11,46 @@ export default class CriticalPage {
     if (window.appConfigUnw?.preserveUrlParams) {
       this.propagateUrlParamsToInternalLinks()
     }
+    this.handleOnSubmitForm()
+  }
+
+  handleOnSubmitForm() {
+    document.addEventListener('DOMContentLoaded', () => {
+      const forms = document.querySelectorAll('[data-form="zoho"]')
+      if (!forms.length) return
+
+      forms.forEach((form) => {
+        form.addEventListener('submit', (e) => {
+          // Evitar doble envío
+          console.log('heree', new Date().toISOString())
+
+          if (form.dataset.submitted === 'true') {
+            e.preventDefault()
+            return
+          }
+          form.dataset.submitted = 'true'
+
+          // Botón de envío
+          const button = form.querySelector('#button-send')
+          if (button) {
+            button.disabled = true
+            button.dataset.originalText = button.innerText
+            button.innerText = 'Enviando...'
+          }
+
+          // Push a dataLayer
+          if (window.dataLayer && Array.isArray(window.dataLayer)) {
+            window.dataLayer.push({
+              event: 'gtm.formSubmit',
+              formId: form?.id || null,
+              formType: form?.dataset?.formType || null
+            })
+          } else {
+            console.warn('⚠️ dataLayer no está definido')
+          }
+        })
+      })
+    })
   }
 
   propagateUrlParamsToInternalLinks() {
@@ -66,12 +107,6 @@ export default class CriticalPage {
   }
 }
 
-// Inicializar cuando el DOM esté listo
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    new CriticalPage()
-  })
-} else {
-  // DOM ya está listo
+onDOMReady(() => {
   new CriticalPage()
-}
+})

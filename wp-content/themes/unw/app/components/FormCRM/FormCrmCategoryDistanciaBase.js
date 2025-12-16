@@ -1,10 +1,8 @@
-import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenFieldCampus, updateHiddenInputs, updateOptionsCareers, validateInputs, showCampusSelect, validatePhone } from './utils'
+import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenFieldCampus, updateHiddenInputs, updateOptionsCareers, validateInputs, validatePhone } from './utils'
 
 // ==========================
 // Constantes de formularios
 // ==========================
-const FORM_GENERAL_PRESENCIAL =
-  'https://forms.zohopublic.com/adminzoho11/form/WebBaseVirtual/formperma/r6dyucr2_RC_mCaLCNhmhvEHn820MmGvdkHztewDq58/htmlRecords/submit'
 
 const FORM_GENERAL_VIRTUAL =
   'https://forms.zohopublic.com/adminzoho11/form/WebBaseVirtual/formperma/r6dyucr2_RC_mCaLCNhmhvEHn820MmGvdkHztewDq58/htmlRecords/submit'
@@ -57,31 +55,6 @@ export default class FormCrmCategoryDistanciaBase {
         const hiddenContainer = this.element.querySelector('.custom-hidden')
 
         switch (value) {
-          case FORMS.PREGRADO:
-            this.element.action = FORM_GENERAL_PRESENCIAL
-            resetCustomHidden({ element: this.element })
-            setClaseName('f-100', this.element)
-
-            if (departaments.length > 0) {
-              removeSelectDepartament(this.element)
-            }
-
-            if (select.value) {
-              this.updateHiddenFields({ select, hiddenContainer })
-            }
-
-            updateHiddenInputs([
-              { name: 'SingleLine1', value: 'UNW_Pregrado_Distancia' },
-              { name: 'SingleLine2', value: 'Landing Base Virtual' }
-            ], this.element)
-            setNameAttributeCampus({ element: this.element })
-
-            updateOptionsCareers({ element: this.element, careers, value })
-
-            showCampusSelect({ element: this.element })
-            this.removeCustomHiddenDepartament()
-            break
-
           case FORMS.WORK:
           case FORMS.VIRTUAL:
             this.element.action = FORM_GENERAL_VIRTUAL

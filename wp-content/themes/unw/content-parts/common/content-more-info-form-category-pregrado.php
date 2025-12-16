@@ -32,12 +32,15 @@ $shadow_box = $args['shadow_box'] ?? false;
 $responsive = $args['responsive'] ?? false;
 $vertical_modality = $args['vertical_modality'] ?? false;
 $position_form = $args['position_form'] ?? '';
+$facultad_name = $args['facultad_name'] ?? '';
+$is_form_mixto = $args['is_form_mixto'] ?? false;
 ?>
 
 <form id="<?= esc_attr($form_id) ?>" data-form="zoho" name="<?= esc_attr($form_id) ?>"
+  data-mixto="<?=esc_attr(trim($is_form_mixto))?>"
   class="more-form newformfloat<?= $shadow_box ? ' more-form__shadow-box' : '' ?><?= $responsive ? ' more-form__responsive' : '' ?>"
   method="POST" accept-charset="UTF-8" enctype="multipart/form-data" action="<?= esc_attr($form_action) ?>"
-  data-position-form="<?= esc_attr($position_form) ?>">
+  data-position-form="<?= esc_attr($position_form) ?>" data-facultad-name="<?= esc_attr($facultad_name) ?>">
 
   <div class="form-header more-form__header">
     <i>
@@ -70,18 +73,20 @@ $position_form = $args['position_form'] ?? '';
   <input type="hidden" name="Radio" value="No"> <!--  Soy padre de familia -->
 
   <input type="hidden" name="SingleLine1" value="UNW_Pregrado"> <!-- Unidad de negocio -->
-  <input type="hidden" name="SingleLine2" value="Web Solicita Información"> <!-- Fuente de origen -->
+  <input type="hidden" name="SingleLine2" value="Web Facultades"> <!-- Fuente de origen -->
 
   <input type="hidden" name="Dropdown4" value="Activo"> <!-- Estado de período -->
   <input type="hidden" name="Website" value="<?= get_current_page_url() ?>"> <!-- Url de Trakeo -->
 
   <div class="form-body more-form-body">
     <div class="form-body__fields">
+      <?php if ( $is_form_mixto ): ?>
       <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'radio', [
         'direction'    => $vertical_modality ? 'flex-col' : 'justify-between',
         'location'     => $location,
         'form_type'   => $position_form,
       ]); ?>
+      <?php endif; ?>
 
 
       <div class="flex justify-between m-b-24 more-form-body__row">

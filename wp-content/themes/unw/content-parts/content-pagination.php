@@ -5,6 +5,7 @@ if(!$args['wp_query']):
 endif;
 $wp_query = $args['wp_query'] ?? null;
 $search_term = $args['search_term'] ?? '';
+$paged = get_query_var('paged') ?: 1;
 
 
 if (  $wp_query->max_num_pages > 1) : ?>

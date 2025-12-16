@@ -3,11 +3,13 @@
  * Maneja el evento view_content cuando el usuario entra a leer un contenido
  */
 
+import { withIncubeta } from '../incubeta-utils'
+
 /**
  * Envía el evento view_content al dataLayer
  * @param {Object} data - Datos del contenido
  */
-function sendViewContentEvent(data) {
+const sendViewContentEvent = withIncubeta(function(data) {
   window.dataLayer = window.dataLayer || []
 
   const dataLayerEvent = {
@@ -44,13 +46,13 @@ function sendViewContentEvent(data) {
       sendEvent()
     }
   }, 100)
-}
+})
 
 /**
  * Inicializa el tracking de view_content
  * Lee los datos del contenido desde window.unwContentData
  */
-export function initViewContentTracking() {
+export const initViewContentTracking = withIncubeta(function() {
   // Verificar si existen los datos del contenido
   if (!window.unwContentData) {
     console.log('[Incubeta] No hay datos de contenido (window.unwContentData), skip view_content')
@@ -72,4 +74,4 @@ export function initViewContentTracking() {
     content_id: contentId,
     content_title: contentTitle
   })
-}
+})
