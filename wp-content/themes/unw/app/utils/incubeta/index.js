@@ -156,8 +156,8 @@ export const handleFormSubmitTracking = withIncubeta(async function (form, data,
  */
 export function buildViewItemListDataLayer(careers, listName, itemBrand) {
   const items = careers.map((career, index) => ({
-    item_id: career.id.toString(),
-    item_name: career.title,
+    item_id: String(career.ID),
+    item_name: career.post_title,
     affiliation: '',
     coupon: '',
     discount: 0,

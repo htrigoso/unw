@@ -131,6 +131,7 @@ export const initSelectItemTracking = withIncubeta(function () {
 export const trackCareerDetail = withIncubeta(function (careerData) {
   // Inicializar dataLayer si no existe
   window.dataLayer = window.dataLayer || []
+  console.log(careerData)
 
   const { id, title, listName, itemBrand } = careerData
 
