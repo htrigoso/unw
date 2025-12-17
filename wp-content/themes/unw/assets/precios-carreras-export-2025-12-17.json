@@ -1,0 +1,566 @@
+
+{
+    "post_id": 13703,
+    "post_title": "Pensiones y Precios Carreras Universitarias",
+    "post_content": "Descubre los costos y la estructura de pagos de cada carrera en la Universidad Norbert Wiener. Consulta todos los precios de nuestros programas de pregrado y planifica tu inversión educativa de forma clara y sencilla.",
+    "template": "templates\/template-precios-carreras-universitarias.php",
+    "acf_fields": {
+        "regular_cycle": {
+            "titulo": "Ciclo Regular",
+            "cards": [
+                {
+                    "title": "Administración en Turismo y Hotelería",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 780.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 3,900.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Administración y Dirección de Empresas",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 780.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 3,900.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Administración y Marketing",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 780.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 3,900.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Administración y Negocios Internacionales",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 780.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 3,900.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Arquitectura",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 810.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 4,050.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Comunicaciones en Medios Digitales",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 780.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 3,900.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Contabilidad y Auditoria",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 780.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 3,900.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Derecho y Ciencia Política",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 855.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 4,275.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Enfermería",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 925.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 4,625.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Farmacia y Bioquímica",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 1,150.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 5,750.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Ingeniería Civil",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 810.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 4,050.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Ingeniería de Sistemas e Informática",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 810.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 4,050.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Ingeniería Industrial y Gestión Empresarial",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 810.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 4,050.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Medicina Humana",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 2,590.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 12,950.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Nutrición y Dietética",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 905.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 4,525.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Obstetricia",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 860.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 4,300.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Odontología",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 1,250.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 6,250.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Psicología",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 860.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 4,300.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Tecnología Médica en Laboratorio Clínico",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 920.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 4,600.00"
+                        }
+                    ]
+                },
+                {
+                    "title": "Tecnología Médica en Terapia Física",
+                    "fee": "Tarifa regular",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "5 Cuotas de:",
+                            "price": "S\/ 950.00"
+                        },
+                        {
+                            "titulo": "Ciclo completo:",
+                            "price": "S\/ 4,750.00"
+                        }
+                    ]
+                }
+            ]
+        },
+        "fee_academic": {
+            "titulo": "Tarifa por Crédito Académico",
+            "cards": [
+                {
+                    "title": "Detalles de Tarifa por Crédito",
+                    "prices": [
+                        {
+                            "titulo": "Odontología y Farmacia y Bioquímica:",
+                            "price": "S\/306.00"
+                        },
+                        {
+                            "titulo": "Medicina Humana:",
+                            "price": "S\/445.00"
+                        },
+                        {
+                            "titulo": "Resto de Carreras:",
+                            "price": "S\/235.00"
+                        }
+                    ]
+                }
+            ]
+        },
+        "internship_cycle": {
+            "titulo": "Ciclo de Internado",
+            "cards": [
+                {
+                    "title": "Obstetricia",
+                    "fee": "Tarifa de internado",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "Cuota de internado:",
+                            "price": "S\/ 744.00"
+                        },
+                        {
+                            "titulo": "Observaciones:",
+                            "price": "Dos ciclos, noveno y décimo ciclo cada uno de 6 cuotas."
+                        }
+                    ]
+                },
+                {
+                    "title": "Tecnología Médica en Laboratorio Clínico y Anatomía Patológica",
+                    "fee": "Tarifa de internado",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "Cuota de internado:",
+                            "price": "S\/ 865.00"
+                        },
+                        {
+                            "titulo": "Observaciones:",
+                            "price": "Dos ciclos, noveno y décimo ciclo cada uno de 5 cuotas."
+                        }
+                    ]
+                },
+                {
+                    "title": "Tecnología Médica en Terapia Física y Rehabilitación",
+                    "fee": "Tarifa de internado",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "Cuota de internado:",
+                            "price": "S\/ 865.00"
+                        },
+                        {
+                            "titulo": "Observaciones:",
+                            "price": "Dos ciclos, noveno y décimo ciclo cada uno de 6 cuotas."
+                        }
+                    ]
+                },
+                {
+                    "title": "Enfermería",
+                    "fee": "Tarifa de internado",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "Cuota de internado:",
+                            "price": "S\/ 780.00"
+                        },
+                        {
+                            "titulo": "Observaciones:",
+                            "price": "Dos ciclos, noveno y décimo ciclo cada uno de 6 cuotas."
+                        }
+                    ]
+                },
+                {
+                    "title": "Odontología",
+                    "fee": "Tarifa de internado",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "Cuota de internado:",
+                            "price": "S\/ 1,133.00"
+                        },
+                        {
+                            "titulo": "Observaciones:",
+                            "price": "Décimo ciclo de 5 cuotas."
+                        }
+                    ]
+                },
+                {
+                    "title": "Farmacia y Bioquímica",
+                    "fee": "Tarifa de internado",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "Cuota de internado:",
+                            "price": "S\/ 937.00"
+                        },
+                        {
+                            "titulo": "Observaciones:",
+                            "price": "Décimo ciclo de 6 cuotas."
+                        }
+                    ]
+                },
+                {
+                    "title": "Psicología",
+                    "fee": "Tarifa de internado",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "Cuota de internado:",
+                            "price": "S\/ 744.00"
+                        },
+                        {
+                            "titulo": "Observaciones:",
+                            "price": "Dos ciclos, noveno y décimo ciclo cada uno de 6 cuotas."
+                        }
+                    ]
+                },
+                {
+                    "title": "Nutrición Humana",
+                    "fee": "Tarifa de internado",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "Cuota de internado:",
+                            "price": "S\/ 744.00"
+                        },
+                        {
+                            "titulo": "Observaciones:",
+                            "price": "Dos ciclos, noveno y décimo ciclo cada uno de 6 cuotas."
+                        }
+                    ]
+                },
+                {
+                    "title": "Medicina Humana",
+                    "fee": "Tarifa de internado",
+                    "prices": [
+                        {
+                            "titulo": "Matrícula:",
+                            "price": "S\/ 350.00"
+                        },
+                        {
+                            "titulo": "Cuota de internado:",
+                            "price": "S\/ 2,086.00"
+                        },
+                        {
+                            "titulo": "Observaciones:",
+                            "price": "Dos ciclos, décimo tercero y décimo cuarto ciclo cada uno de 5 cuotas."
+                        }
+                    ]
+                }
+            ]
+        },
+        "note": "<p>*Actualizado al 22 de noviembre del 2024. La aplicación del tarifario para el ciclo regular será válida para los ingresantes del periodo 2025-I y no tendrá carácter retroactivo tras su actualización.<\/p>\n"
+    },
+    "exported_date": "2025-12-17 15:10:10",
+    "site_url": "http:\/\/unw.local"
+}

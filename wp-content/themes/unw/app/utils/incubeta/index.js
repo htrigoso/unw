@@ -205,5 +205,5 @@ export const trackViewItemList = withIncubeta(function (careers, listName, itemB
   const dataLayerEvent = buildViewItemListDataLayer(careers, listName, itemBrand)
   pushToDataLayer(dataLayerEvent)
 
-  console.log('✅ view_item_list enviado:', dataLayerEvent)
+  console.log('✅ view_item_list enviado 11:', dataLayerEvent)
 })

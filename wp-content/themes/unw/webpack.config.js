@@ -206,7 +206,7 @@ module.exports = (env, options) => {
           parallel: true,
           sourceMap: process.env.SOURCE_MAP === 'true',
           uglifyOptions: {
-            compress: { drop_console: true },
+            compress: { drop_console: false },
             mangle: false,
             output: { beautify: false }
           }

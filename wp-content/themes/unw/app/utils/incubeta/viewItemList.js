@@ -56,7 +56,7 @@ const sendViewItemListEvent = withIncubeta(function (careersData) {
     }
   }
   window.dataLayer.push(dataLayerEvent)
-  console.log('[Incubeta] ✅ view_item_list enviado:', dataLayerEvent)
+  console.log('[Incubeta 22] ✅ view_item_list enviado:', dataLayerEvent)
 })
 
 /**
