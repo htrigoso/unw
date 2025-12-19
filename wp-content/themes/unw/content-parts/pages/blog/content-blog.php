@@ -52,9 +52,9 @@ $cta      = get_field('cta');
 
       <!-- Tabs dinámicos -->
 
-      <!-- <div class="blog__tabs">
+      <div class="blog__tabs">
         <?php
-          // Determinar qué tabs mostrar
+
           // $tabs = is_tag() ? get_tag_tabs() : get_category_tabs();
 
           // get_template_part(COMMON_CONTENT_PATH, 'nav-tabs', [
@@ -65,7 +65,7 @@ $cta      = get_field('cta');
           //   'show_controls'=>true
           // ]);
           ?>
-      </div> -->
+      </div>
 
 
       <!-- Contenido -->
