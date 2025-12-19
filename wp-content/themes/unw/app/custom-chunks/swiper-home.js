@@ -21,6 +21,10 @@ export default class HomeSwiperLoader {
             type: 'bullets',
             clickable: false
           },
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false
+          },
           navigation: {
             nextEl: `${selector} .home-hero-button-next`,
             prevEl: `${selector} .home-hero-button-prev`

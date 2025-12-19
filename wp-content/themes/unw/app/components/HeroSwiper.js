@@ -12,10 +12,6 @@ const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
     centeredSlides: false,
     spaceBetween: 0,
     speed: 0,
-    // autoplay: {
-    //   delay: 5000,
-    //   disableOnInteraction: true
-    // },
     effect: 'fade',
     fadeEffect: {
       crossFade: true
@@ -47,6 +43,7 @@ const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
         if (!loopActivated && currentIndex >= totalSlides - 2) {
           loopActivated = true
           const currentRealIndex = swiper.realIndex
+          const wasAutoplayRunning = swiper.autoplay && swiper.autoplay.running
 
           swiper.params.loop = true
           swiper.loopDestroy()
@@ -55,6 +52,10 @@ const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
 
           // Mantener la posición actual después de activar el loop
           swiper.slideToLoop(currentRealIndex, 0)
+
+          if (wasAutoplayRunning && swiper.autoplay) {
+            swiper.autoplay.start()
+          }
         }
       })
 
