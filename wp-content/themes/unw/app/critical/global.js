@@ -102,6 +102,7 @@ export default class CriticalPage {
         const rfc3986Url = `${url.origin}${url.pathname}${rfc3986Search}`
 
         link.setAttribute('href', rfc3986Url)
+        link.dataset.paramsProcessed = 'true'
       }
     })
   }

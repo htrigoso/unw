@@ -11,6 +11,7 @@ import { initShareClickTracking } from './utils/incubeta/shareClick'
 import { initCarrouselViewTracking } from './utils/incubeta/carrouselView'
 import { initCarrouselSwipeTracking } from './utils/incubeta/carrouselSwipe'
 import { initCarrouselClickTracking } from './utils/incubeta/carrouselClick'
+import { initMenuClickTracking } from './utils/incubeta/menuClick'
 import { onDOMReady } from './utils/dom-ready'
 
 class App {
@@ -29,6 +30,7 @@ class App {
     this.initContactTracking()
     this.initShareTracking()
     this.initCarrouselTracking()
+    this.initMenuTracking()
   }
 
   createNavbar() {
@@ -232,6 +234,11 @@ class App {
     initCarrouselSwipeTracking()
     // Tracking de clicks en enlaces dentro de carrousels
     initCarrouselClickTracking()
+  }
+
+  initMenuTracking() {
+    // Tracking de clicks en el menú de navegación
+    initMenuClickTracking()
   }
 }
 

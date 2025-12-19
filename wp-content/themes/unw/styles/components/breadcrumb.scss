@@ -15,7 +15,7 @@
 }
 
 .breadcrumb__label.current {
-  color: var(--color-primary);
+  color: var(--color-light-turquoise);
   font-weight: var(--font-bold);
 }
 
@@ -27,6 +27,6 @@
     color: var(--color-black);
   }
   .breadcrumb__label.current {
-    color: var(--color-primary);
+    color: var(--color-light-turquoise);
   }
 }

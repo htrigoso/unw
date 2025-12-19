@@ -156,8 +156,8 @@ export const handleFormSubmitTracking = withIncubeta(async function (form, data,
  */
 export function buildViewItemListDataLayer(careers, listName, itemBrand) {
   const items = careers.map((career, index) => ({
-    item_id: career.id.toString(),
-    item_name: career.title,
+    item_id: String(career.ID),
+    item_name: career.post_title,
     affiliation: '',
     coupon: '',
     discount: 0,
@@ -205,5 +205,5 @@ export const trackViewItemList = withIncubeta(function (careers, listName, itemB
   const dataLayerEvent = buildViewItemListDataLayer(careers, listName, itemBrand)
   pushToDataLayer(dataLayerEvent)
 
-  console.log('✅ view_item_list enviado:', dataLayerEvent)
+  console.log('✅ view_item_list enviado 11:', dataLayerEvent)
 })

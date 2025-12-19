@@ -131,6 +131,7 @@ export const initSelectItemTracking = withIncubeta(function () {
 export const trackCareerDetail = withIncubeta(function (careerData) {
   // Inicializar dataLayer si no existe
   window.dataLayer = window.dataLayer || []
+  console.log(careerData)
 
   const { id, title, listName, itemBrand } = careerData
 
@@ -161,7 +162,7 @@ export const trackCareerDetail = withIncubeta(function (careerData) {
 
     // Enviar evento
     const dataLayerEvent = {
-      event: 'select_item',
+      event: 'view_item',
       ecommerce: {
         item_list_id: listName,
         item_list_name: listName,
@@ -170,7 +171,7 @@ export const trackCareerDetail = withIncubeta(function (careerData) {
     }
 
     window.dataLayer.push(dataLayerEvent)
-    console.log('[Incubeta] ✅ select_item (detail) enviado:', dataLayerEvent)
+    console.log('[Incubeta] ✅ view_item (detail) enviado:', dataLayerEvent)
   }
 
   // Si GTM ya está cargado, enviar inmediatamente

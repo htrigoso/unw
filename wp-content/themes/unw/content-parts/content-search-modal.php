@@ -26,7 +26,8 @@
         </button>
       </div>
       <div class="search-modal__form">
-        <form action="<?php echo esc_url(home_url('/')); ?>" method="get">
+        <form action="<?php echo esc_url(home_url('/')); ?>" method="get"
+          onsubmit="return this.querySelector('[name=s]').value.trim() !== ''">
           <?php
           preserve_url_params();
           ?>

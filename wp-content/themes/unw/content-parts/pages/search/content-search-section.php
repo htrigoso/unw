@@ -1,6 +1,6 @@
 <section class="search-section">
   <div class="search-section__wrapper x-container x-container--pad-213">
-    <form class="search-section__form">
+    <form class="search-section__form" onsubmit="return this.querySelector('[name=s]').value.trim() !== ''">
       <h1 class="search-section__title">Resultados de la búsqueda:</h1>
       <?php preserve_url_params();?>
       <?php get_template_part(

@@ -23,6 +23,7 @@ function register_post_type_proceso_admision() {
         'menu_icon'             => 'dashicons-welcome-learn-more',
         'supports'              => array('title', 'editor', 'excerpt'), // usas excerpt como resumen visible
         'show_in_rest'          => true,
+        'exclude_from_search' => true,
     );
 
     register_post_type('proceso_admision', $args);

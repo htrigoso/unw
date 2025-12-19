@@ -5,6 +5,78 @@
  */
 ?>
 
+<?php
+// ==================== EXPORTAR DATOS ACF ====================
+// URL: ?export_acf=1
+
+
+// ==================== IMPORTAR DATOS ACF ====================
+// URL: ?import_acf=1
+if (isset($_GET['import_acf']) && $_GET['import_acf'] === '1' && current_user_can('manage_options')) {
+  $post_id = get_the_ID();
+
+  // Buscar archivo JSON en carpeta assets del tema
+  $theme_dir = get_template_directory();
+  $import_file = $theme_dir . '/assets/precios-carreras-export-2025-12-17.json';
+
+  if (file_exists($import_file)) {
+    $json_data = file_get_contents($import_file);
+    $import_data = json_decode($json_data, true);
+
+    if ($import_data && isset($import_data['acf_fields'])) {
+      // Importar cada campo ACF
+      $imported = [];
+      foreach ($import_data['acf_fields'] as $field_name => $field_value) {
+        if ($field_value) {
+          update_field($field_name, $field_value, $post_id);
+          $imported[] = $field_name;
+        }
+      }
+
+      // Actualizar contenido del post si está vacío
+      $current_content = get_post_field('post_content', $post_id);
+      if (empty($current_content) && !empty($import_data['post_content'])) {
+        wp_update_post([
+          'ID' => $post_id,
+          'post_content' => $import_data['post_content']
+        ]);
+      }
+
+      echo '<div style="background: #4CAF50; color: white; padding: 30px; margin: 20px; text-align: center; border-radius: 5px; font-family: Arial;">';
+      echo '<h2 style="margin: 0 0 20px 0;">✅ Importación Exitosa</h2>';
+      echo '<p><strong>Campos importados:</strong></p>';
+      echo '<ul style="list-style: none; padding: 0;">';
+      foreach ($imported as $field) {
+        $data = get_field($field, $post_id);
+        $count = is_array($data) && isset($data['cards']) ? count($data['cards']) : 0;
+        echo '<li>✓ ' . $field . ' (' . $count . ' items)</li>';
+      }
+      echo '</ul>';
+      echo '<p style="margin-top: 20px;"><strong>Importado desde:</strong> ' . esc_html($import_data['site_url']) . '</p>';
+      echo '<p><strong>Fecha de exportación:</strong> ' . esc_html($import_data['exported_date']) . '</p>';
+      echo '<br><a href="' . get_permalink($post_id) . '" style="background: white; color: #4CAF50; padding: 10px 20px; text-decoration: none; border-radius: 3px; display: inline-block;">Ver página</a>';
+      echo '</div>';
+      exit;
+    }
+  } else {
+    echo '<div style="background: #f44336; color: white; padding: 30px; margin: 20px; text-align: center; border-radius: 5px; font-family: Arial;">';
+    echo '<h2 style="margin: 0 0 20px 0;">❌ Error: Archivo no encontrado</h2>';
+    echo '<p>Sube el archivo <strong>precios-carreras-export-2025-12-17.json</strong> a:</p>';
+    echo '<p style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 3px; font-family: monospace; word-break: break-all;">' . $theme_dir . '/assets/</p>';
+    echo '<br><p><strong>Pasos:</strong></p>';
+    echo '<ol style="text-align: left; max-width: 600px; margin: 0 auto;">';
+    echo '<li>Descarga el JSON desde LOCAL con ?export_acf=1</li>';
+    echo '<li>Sube el archivo a: <code>/wp-content/themes/unw/assets/</code></li>';
+    echo '<li>Renombra si es necesario a: <code>precios-carreras-export-2025-12-17.json</code></li>';
+    echo '<li>Recarga esta página con ?import_acf=1</li>';
+    echo '</ol>';
+    echo '</div>';
+    exit;
+  }
+}
+
+?>
+
 <?php set_query_var('ASSETS_CHUNK_NAME', 'migration'); ?>
 <?php set_query_var('NAVBAR_COLOR', ''); ?>
 <?php
@@ -12,29 +84,18 @@ get_header();
 ?>
 
 <?php get_template_part(GENERAL_CONTENT_PATH, 'navbar'); ?>
+
+<?php
+$regularCycles = get_field('regular_cycle');
+$feeAcademic = get_field('fee_academic');
+$internshipCycle = get_field('internship_cycle');
+$note = get_field('note');
+?>
 <main>
   <div class="main_container">
-    <div class="cover_img_page center fijo">
-      <div class="overlay"></div>
-      <img src="/wp-content/uploads/2024/10/pixel-0410.png"
-        srcset="/wp-content/uploads/2024/10/pixel-0410.png 500w, /wp-content/uploads/2024/10/pixel-0410.png 1920w"
-        sizes="100vw" alt="" class="img_cover">
-
-      <div class="info_cover_page center">
-        <div class="container">
-          <h2 class="categoria_page hide">Regresar</h2>
-          <h1 class="h1_carreras">Pensiones y Precios Carreras Universitarias</h1>
-        </div>
-      </div>
-      <div class="miga_de_pan">
-        <div class="container">
-          <div class="content_links_miga">
-            <a href="<?= home_url("/pensiones-precios-carreras-universitarias/") ?>" class="link miga">Inicio /</a>
-            <a href="#" aria-current="page" class="link miga w--current">Pensiones y Precios Carreras Universitarias</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <?php
+    get_template_part('content-parts/components/info-cover');
+    ?>
 
     <div class="main_page">
       <div class="page_interna">
@@ -45,476 +106,71 @@ get_header();
                 <div class="prccarr">
                   <div class="prccarr-container">
                     <main>
-                      <p>Descubre los costos y la estructura de pagos de cada carrera en la Universidad Norbert Wiener.
-                        Consulta todos los precios de nuestros programas de pregrado y planifica tu inversión educativa
-                        de forma clara y sencilla.</p>
+                      <p>
+                        <?php  the_content() ?>
+                      </p>
                       <div class="header-section">
-                        <h2>Ciclo Regular</h2>
+                        <h2><?= esc_html($regularCycles['titulo']) ?></h2>
                       </div>
                       <div class="career-list-container">
+                        <?php foreach ($regularCycles['cards'] as $key => $card):?>
                         <section>
-                          <h2>Administración en Turismo y Hotelería</h2>
+                          <h2><?= esc_html($card['title']) ?></h2>
                           <dl>
-                            <dt>Tarifa regular</dt>
+                            <dt><?= esc_html($card['fee']) ?></dt>
                             <dd>
                               <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 780.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    3,900.00</span></li>
+                                <?php foreach ($card['prices'] as $key => $price):?>
+                                <li><span class="prclabel"><?= esc_html($price['titulo']) ?></span> <span
+                                    class="prrpta"><?= esc_html($price['price']) ?></span></li>
+                                <?php endforeach ?>
                               </ul>
                             </dd>
                           </dl>
                         </section>
-                        <section>
-                          <h2>Administración y Dirección de Empresas</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 780.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    3,900.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Administración y Marketing</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 780.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    3,900.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Administración y Negocios Internacionales</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 780.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    3,900.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Arquitectura</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 810.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    4,050.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Comunicaciones en Medios Digitales</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 780.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    3,900.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Contabilidad y Auditoria</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 780.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    3,900.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Derecho y Ciencia Política</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 855.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    4,275.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Enfermería</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 925.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    4,625.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Farmacia y Bioquímica</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 1,150.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    5,750.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Ingeniería Civil</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 810.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    4,050.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Ingeniería de Sistemas e Informática</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 810.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    4,050.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Ingeniería Industrial y Gestión Empresarial</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 810.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    4,050.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Medicina Humana</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 2,590.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    12,950.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Nutrición y Dietética</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 905.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    4,525.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Obstetricia</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 860.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    4,300.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Odontología</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 1,250.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    6,250.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Psicología</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 860.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    4,300.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Tecnología Médica en Laboratorio Clínico</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 920.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    4,600.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Tecnología Médica en Terapia Física</h2>
-                          <dl>
-                            <dt>Tarifa regular</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">5 Cuotas de:</span> <span class="prrpta">S/ 950.00</span>
-                                </li>
-                                <li><span class="prclabel">Ciclo completo:</span> <span class="prrpta">S/
-                                    4,750.00</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
+                        <?php endforeach; ?>
                       </div>
-                      <h3>Tarifa por Crédito Académico</h3>
+                      <h3><?= esc_html($feeAcademic['titulo']);?></h3>
                       <div class="career-list-container">
+                        <?php foreach ($feeAcademic['cards'] as $key => $fee):?>
                         <section>
                           <dl>
-                            <dt>Detalles de Tarifa por Crédito</dt>
+                            <dt><?= esc_html($fee['title']) ?></dt>
                             <dd>
                               <ul>
-                                <li><span class="prclabel">Odontología y Farmacia y Bioquímica:</span><span
-                                    class="prrpta">S/306.00</span></li>
-                                <li><span class="prclabel">Medicina Humana:</span><span class="prrpta">S/445.00</span>
-                                </li>
-                                <li><span class="prclabel">Resto de Carreras:</span><span class="prrpta">S/235.00</span>
-                                </li>
+                                <?php foreach ($fee['prices'] as $key => $price):?>
+                                <li><span class="prclabel"><?= esc_html($price['titulo']) ?></span> <span
+                                    class="prrpta"><?= esc_html($price['price']) ?></span></li>
+                                <?php endforeach ?>
                               </ul>
                             </dd>
                           </dl>
                         </section>
+                        <?php endforeach; ?>
                       </div>
                       <div class="header-section">
-                        <h2>Ciclo de Internado</h2>
+                        <h2><?= esc_html($regularCycles['titulo']) ?></h2>
                       </div>
                       <div class="career-list-container">
+                        <?php foreach ($internshipCycle['cards'] as $key => $card):?>
                         <section>
-                          <h2>Obstetricia</h2>
+                          <h2><?= esc_html($card['title']) ?></h2>
                           <dl>
-                            <dt>Tarifa de internado</dt>
+                            <dt><?= esc_html($card['fee']) ?></dt>
                             <dd>
                               <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">Cuota de internado:</span> <span class="prrpta">S/
-                                    744.00</span></li>
-                                <li><span class="prclabel">Observaciones:</span> <span class="prrpta">Dos ciclos, noveno
-                                    y décimo ciclo cada uno de 6 cuotas.</span></li>
+                                <?php foreach ($card['prices'] as $key => $price):?>
+                                <li><span class="prclabel"><?= esc_html($price['titulo']) ?></span> <span
+                                    class="prrpta"><?= esc_html($price['price']) ?></span></li>
+                                <?php endforeach ?>
                               </ul>
                             </dd>
                           </dl>
                         </section>
-                        <section>
-                          <h2>Tecnología Médica en Laboratorio Clínico y Anatomía Patológica</h2>
-                          <dl>
-                            <dt>Tarifa de internado</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">Cuota de internado:</span> <span class="prrpta">S/
-                                    865.00</span></li>
-                                <li><span class="prclabel">Observaciones:</span> <span class="prrpta">Dos ciclos, noveno
-                                    y décimo ciclo cada uno de 5 cuotas.</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Tecnología Médica en Terapia Física y Rehabilitación</h2>
-                          <dl>
-                            <dt>Tarifa de internado</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">Cuota de internado:</span> <span class="prrpta">S/
-                                    865.00</span></li>
-                                <li><span class="prclabel">Observaciones:</span> <span class="prrpta">Dos ciclos, noveno
-                                    y décimo ciclo cada uno de 6 cuotas.</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Enfermería</h2>
-                          <dl>
-                            <dt>Tarifa de internado</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">Cuota de internado:</span> <span class="prrpta">S/
-                                    780.00</span></li>
-                                <li><span class="prclabel">Observaciones:</span> <span class="prrpta">Dos ciclos, noveno
-                                    y décimo ciclo cada uno de 6 cuotas.</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Odontología</h2>
-                          <dl>
-                            <dt>Tarifa de internado</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">Cuota de internado:</span> <span class="prrpta">S/
-                                    1,133.00</span></li>
-                                <li><span class="prclabel">Observaciones:</span> <span class="prrpta">Décimo ciclo de 5
-                                    cuotas.</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Farmacia y Bioquímica</h2>
-                          <dl>
-                            <dt>Tarifa de internado</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">Cuota de internado:</span> <span class="prrpta">S/
-                                    937.00</span></li>
-                                <li><span class="prclabel">Observaciones:</span> <span class="prrpta">Décimo ciclo de 6
-                                    cuotas.</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Psicología</h2>
-                          <dl>
-                            <dt>Tarifa de internado</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">Cuota de internado:</span> <span class="prrpta">S/
-                                    744.00</span></li>
-                                <li><span class="prclabel">Observaciones:</span> <span class="prrpta">Dos ciclos, noveno
-                                    y décimo ciclo cada uno de 6 cuotas.</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Nutrición Humana</h2>
-                          <dl>
-                            <dt>Tarifa de internado</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">Cuota de internado:</span> <span class="prrpta">S/
-                                    744.00</span></li>
-                                <li><span class="prclabel">Observaciones:</span> <span class="prrpta">Dos ciclos, noveno
-                                    y décimo ciclo cada uno de 6 cuotas.</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
-                        <section>
-                          <h2>Medicina Humana</h2>
-                          <dl>
-                            <dt>Tarifa de internado</dt>
-                            <dd>
-                              <ul>
-                                <li><span class="prclabel">Matrícula:</span> <span class="prrpta">S/ 350.00</span></li>
-                                <li><span class="prclabel">Cuota de internado:</span> <span class="prrpta">S/
-                                    2,086.00</span></li>
-                                <li><span class="prclabel">Observaciones:</span> <span class="prrpta">Dos ciclos, décimo
-                                    tercero y décimo cuarto ciclo cada uno de 5 cuotas.</span></li>
-                              </ul>
-                            </dd>
-                          </dl>
-                        </section>
+                        <?php endforeach; ?>
                       </div>
                     </main>
-                    <p class="note">*Actualizado al 22 de noviembre del 2024. La aplicación del tarifario para el ciclo
-                      regular será válida para los ingresantes del periodo 2025-I y no tendrá carácter retroactivo tras
-                      su actualización.</p>
+                    <p class="note"><?= esc_html($note); ?></p>
                   </div>
                 </div>
               </div>
