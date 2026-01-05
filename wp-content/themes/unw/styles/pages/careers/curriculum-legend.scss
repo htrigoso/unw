@@ -24,10 +24,6 @@
   width: auto;
 }
 
-.curriculum-legend__paragraph {
-  color: var(--color-asu-brown);
-}
-
 .curriculum-legend__list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));

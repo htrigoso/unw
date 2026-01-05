@@ -25,6 +25,7 @@ export default class FormCrmEvent {
   createListeners() {
     validateInputs()
     validatePhone()
+    this.updateRadioModalidad() // Inicializar valor
     this.handleFormMixtoChange()
     this.handleCarrersChange()
     this.handleDepartamentChange()
@@ -64,6 +65,23 @@ export default class FormCrmEvent {
   // Handlers
   // ==========================
 
+  updateRadioModalidad() {
+    if (!this.element) return
+
+    const hiddenRadio = this.element.querySelector('#hidden-radio-modalidad')
+    if (!hiddenRadio) return
+
+    const valorSeleccionado = document.querySelector('input[name="form_mixto"]:checked')?.value || ''
+
+    if (valorSeleccionado === 'pregrado') {
+      hiddenRadio.value = 'Presencial'
+    } else if (valorSeleccionado) {
+      hiddenRadio.value = 'Carreras gente que trabaja'
+    } else {
+      hiddenRadio.value = ''
+    }
+  }
+
   handleFormMixtoChange() {
     if (!this.element) return
     const radios = this.element.querySelectorAll('input[name="form_mixto"]')
@@ -75,6 +93,9 @@ export default class FormCrmEvent {
     radios.forEach(radio => {
       radio.addEventListener('change', () => {
         if (!radio.checked) return
+
+        // Actualizar campo Radio hidden
+        this.updateRadioModalidad()
 
         const value = radio.value.trim().toLowerCase()
         const select = this.element.querySelector('#careerSelect')
@@ -126,7 +147,7 @@ export default class FormCrmEvent {
             ], this.element)
             if (value === FORMS.VIRTUAL) {
               if (departaments.length > 0) {
-                createSelectDepartament({ element: this.element, name: 'SingleLine9' })
+                createSelectDepartament({ element: this.element, name: 'Dropdown8' })
               }
             }
 
@@ -151,8 +172,8 @@ export default class FormCrmEvent {
       return createHiddenInputs({
         type,
         fields: [
-          { name: 'SingleLine5', facultyName },
-          { name: 'SingleLine4', careerName }
+          { name: 'Dropdown_group_name', facultyName },
+          { name: 'Dropdown', careerName }
         ]
       })
     }
@@ -161,8 +182,8 @@ export default class FormCrmEvent {
       return createHiddenInputs({
         type,
         fields: [
-          { name: 'SingleLine5', facultyName },
-          { name: 'SingleLine4', careerName }
+          { name: 'Dropdown_group_name', facultyName },
+          { name: 'Dropdown', careerName }
         ]
       })
     }

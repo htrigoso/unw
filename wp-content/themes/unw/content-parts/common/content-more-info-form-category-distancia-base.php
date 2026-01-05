@@ -155,13 +155,6 @@ $facultad_name = $args['facultad_name'] ?? '';
             'careers' => $careers,
           ]); ?>
         </div>
-        <div class="f-50" data-html-name="campus">
-          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'campus', [
-            'name' => 'SingleLine9',
-            'label' => 'Elige tu campus (*)',
-            'careers' => [],
-          ]); ?>
-        </div>
       </div>
     </div>
 
