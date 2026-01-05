@@ -39,6 +39,7 @@ if (!function_exists('unw_get_event_data')) {
       'customStyle'=> $customStyle,
       'content_id' => $post->ID,
       'category_tag' => $first_category,
+      'link' => get_permalink($post->ID),
     ];
   }
 }

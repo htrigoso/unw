@@ -43,3 +43,56 @@ function testimonios_featured_image_notice($content) {
     return $content;
 }
 add_filter('admin_post_thumbnail_html', 'testimonios_featured_image_notice');
+
+// Agregar columna "Usado en Carreras"
+add_filter('manage_testimonios_posts_columns', function($columns) {
+    $columns['used_in_carreras'] = 'Usado en Carreras';
+    return $columns;
+});
+
+// Mostrar datos en la columna personalizada
+add_action('manage_testimonios_posts_custom_column', function($column, $post_id) {
+    if ($column !== 'used_in_carreras') return;
+
+    // Obtener todas las carreras
+    $carreras = get_posts([
+        'post_type'      => ['carreras', 'carreras-a-distancia'],
+        'posts_per_page' => -1,
+        'post_status'    => 'publish',
+        'fields'         => 'ids'
+    ]);
+
+    $links = [];
+
+    foreach ($carreras as $carrera_id) {
+        // Obtener el grupo presentation
+        $presentation = get_field('presentation', $carrera_id);
+
+        // Verificar si existe testimonials_info y testimonials
+        if ($presentation && isset($presentation['testimonials_info']['testimonials'])) {
+            $testimonios_list = $presentation['testimonials_info']['testimonials'];
+
+            // Si es un array de objetos post
+            if (is_array($testimonios_list)) {
+                foreach ($testimonios_list as $testimonio) {
+                    $testimonio_id = is_object($testimonio) ? $testimonio->ID : $testimonio;
+
+                    if ($testimonio_id == $post_id) {
+                        $links[] = sprintf(
+                            '<a href="%s">%s</a>',
+                            esc_url(get_edit_post_link($carrera_id)),
+                            esc_html(get_the_title($carrera_id))
+                        );
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    if (!empty($links)) {
+        echo implode(', ', $links);
+    } else {
+        echo '<span style="color:#999;">No usado</span>';
+    }
+}, 10, 2);

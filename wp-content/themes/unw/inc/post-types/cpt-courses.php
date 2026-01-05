@@ -31,6 +31,63 @@ function register_cpt_cursos() {
 }
 add_action('init', 'register_cpt_cursos');
 
+// Agregar columna "Usado en Carreras"
+add_filter('manage_curso_posts_columns', function($columns) {
+    $columns['used_in_carreras'] = 'Usado en Carreras';
+    return $columns;
+});
+
+// Mostrar datos en la columna personalizada
+add_action('manage_curso_posts_custom_column', function($column, $post_id) {
+    if ($column !== 'used_in_carreras') return;
+
+    // Obtener todas las carreras
+    $carreras = get_posts([
+        'post_type'      => ['carreras', 'carreras-a-distancia'],
+        'posts_per_page' => -1,
+        'post_status'    => 'publish',
+        'fields'         => 'ids'
+    ]);
+
+    $links = [];
+
+    foreach ($carreras as $carrera_id) {
+        // Obtener el grupo malla_curricular
+        $malla = get_field('malla_curricular', $carrera_id);
+
+        // Verificar si existe lists (ciclos)
+        if ($malla && isset($malla['lists']) && is_array($malla['lists'])) {
+            foreach ($malla['lists'] as $ciclo) {
+                // Verificar si el ciclo tiene courses
+                if (isset($ciclo['courses']) && is_array($ciclo['courses'])) {
+                    foreach ($ciclo['courses'] as $course_item) {
+                        // El curso está en course_name
+                        if (isset($course_item['course_name'])) {
+                            $curso_obj = $course_item['course_name'];
+                            $curso_id = is_object($curso_obj) ? $curso_obj->ID : $curso_obj;
+
+                            if ($curso_id == $post_id) {
+                                $links[] = sprintf(
+                                    '<a href="%s">%s</a>',
+                                    esc_url(get_edit_post_link($carrera_id)),
+                                    esc_html(get_the_title($carrera_id))
+                                );
+                                break 2; // Salir de ambos loops
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    if (!empty($links)) {
+        echo implode(', ', $links);
+    } else {
+        echo '<span style="color:#999;">No usado</span>';
+    }
+}, 10, 2);
+
 
 
 // Meta campo para color hexadecimal

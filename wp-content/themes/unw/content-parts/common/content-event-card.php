@@ -9,7 +9,7 @@ $location       = $args['location'] ?? '';
 $url            = $args['url'];
 $status         = $args['status'] ?? false;
 $customStyle    = $args['customStyle'] ?? '';
-
+$link          = $args['link'] ?? '';
 // Datos para tracking de select_content
 $content_id = $args['content_id'] ?? '';
 $category_tag = $args['category_tag'] ?? '';
@@ -46,9 +46,10 @@ $category_tag = $args['category_tag'] ?? '';
     </div>
 
     <?php
-    if ($url && is_array($url)):
+    if ($link):
+
     ?>
-    <a href=" <?= $url['url'] ?>"
+    <a href=" <?= $link ?>"
       class="btn btn-sm btn-secondary-one-outline event-card--cta btn-select-content-item-click"
       data-is-home="<?=is_front_page() ? 1 : 0 ?>">
       <?= $url['title'] ?>

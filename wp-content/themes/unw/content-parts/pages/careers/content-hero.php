@@ -7,6 +7,7 @@ $url = $args['url'] ?? '#';
 if(empty($title_sec)) {
   $title_sec = get_the_title();
 }
+$new_careers = get_field('new_careers', get_the_ID());
 
 
 if (isset($sliders['list_of_files']) && is_array($sliders['list_of_files'])) {
@@ -37,7 +38,8 @@ $base_breadcrumbs = [
     [
       'sliders' => $sliders,
       'base_breadcrumbs' => $base_breadcrumbs,
-      'title_sec' => $title_sec
+      'title_sec' => $title_sec,
+      'new_careers' => $new_careers,
     ]
   );
 
