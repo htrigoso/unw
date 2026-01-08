@@ -9,7 +9,10 @@ import { $element } from '../../utils/dom'
   new ModalManager()
 
   // Inicializar tabs scrollables
-  document.querySelectorAll('.nav-tabs').forEach(initializeScrollableTabs)
+  const navTabs = document.querySelectorAll('.nav-tabs')
+  if (navTabs.length > 0) {
+    navTabs.forEach(initializeScrollableTabs)
+  }
 
   // Configuración de formularios por tipo
   const formConfig = [

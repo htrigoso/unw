@@ -20,11 +20,21 @@ $admission_items = $admission_info['process'] ?? [];
         <?php endif; ?>
       </div>
       <?php
+
           $date_admission = get_field('admission_date', 'option');
+
           if (!empty($date_admission)):
-          $date_parts = explode('/', $date_admission);
-          $day = $date_parts[0] ?? '';
-          $month_number = $date_parts[1] ?? '';
+          $timezone = wp_timezone();
+          $date_obj = DateTimeImmutable::createFromFormat('Y-m-d', $date_admission, $timezone);
+          if (!$date_obj && preg_match('/^\d{8}$/', $date_admission)) {
+            $date_obj = DateTimeImmutable::createFromFormat('Ymd', $date_admission, $timezone);
+          }
+          if (!$date_obj) {
+            $date_obj = DateTimeImmutable::createFromFormat('d/m/Y', $date_admission, $timezone);
+          }
+
+          $day = $date_obj ? $date_obj->format('d') : '';
+          $month_number = $date_obj ? $date_obj->format('m') : '';
           $month_label = '';
           if ($month_number) {
             $months = ['01' => 'ENERO', '02' => 'FEB', '03' => 'MAR', '04' => 'ABR', '05' => 'MAYO', '06' => 'JUN', '07' => 'JUL', '08' => 'AGO', '09' => 'SET', '10' => 'OCT', '11' => 'NOV', '12' => 'DIC'];

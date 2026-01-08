@@ -30,6 +30,8 @@ require_once dirname(__FILE__) . '/inc/wp-custom-acf.php';
 // require theme functions
 require_once dirname(__FILE__) . '/inc/wp-inc.php';
 
+require_once dirname(__FILE__) . '/inc/wp-cron-admission.php';
+
 
 // require SEO functions
 require_once dirname(__FILE__) . '/inc/wp-seo.php';

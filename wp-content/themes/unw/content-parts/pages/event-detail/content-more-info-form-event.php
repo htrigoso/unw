@@ -56,19 +56,17 @@ $event_id = $args['event_id'] ?? '';
   <div class="custom-hidden-departament"></div>
 
   <!-- Enviar Campos vacios -->
-  <input type="hidden" name="Name_Middle" value="">
-  <input type="hidden" name="Dropdown3" value="Perú (+51)">
-  <input type="hidden" name="Dropdown" value="DNI">
-  <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
-
-  <input type="hidden" name="Radio" value="No"> <!--  Soy padre de familia -->
+  <input type="hidden" name="Dropdown4" value="Perú (+51)">
+  <input type="hidden" name="Dropdown3" value="DNI">
 
   <input type="hidden" name="SingleLine11" value="UNW_Pregrado"> <!-- Unidad de negocio -->
 
 
-  <input type="hidden" name="Dropdown4" value="Activo"> <!-- Estado de período -->
-  <input type="hidden" name="Website" value="<?= get_current_page_url() ?>"> <!-- Url de Trakeo -->
+  <input type="hidden" name="Dropdown6" value="Activo"> <!-- Estado de período -->
+  <input type="hidden" name="Website" value="<?= get_current_page_url() ?>">
+  <input type="hidden" name="Dropdown7" value="Evento"> <!-- Comentarios -->
   <input type="hidden" name="SingleLine10" value="<?= esc_attr($event_id) ?>"> <!-- Comentarios -->
+  <input type="hidden" name="Radio" id="hidden-radio-modalidad" value=""> <!-- Modalidad dinámica -->
 
 
   <div class="form-body more-form-body">
@@ -83,15 +81,16 @@ $event_id = $args['event_id'] ?? '';
       <div class="flex justify-between m-b-24 more-form-body__row">
         <div class="f-50">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
-            'name' => 'Name_First',
+            'name' => 'SingleLine',
             'label' => 'Nombres (*)',
             'type' => 'text',
-            'max_length' => 30
+            'max_length' => 30,
+            'skip_auto_validation' => true
           ]); ?>
         </div>
         <div class="f-50">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
-            'name' => 'Name_Last',
+            'name' => 'SingleLine1',
             'label' => 'Apellidos (*)',
             'type' => 'text',
             'max_length' => 60
@@ -106,7 +105,7 @@ $event_id = $args['event_id'] ?? '';
         ?>
         <div class="f-50">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
-              'name' => 'SingleLine',
+              'name' => 'SingleLine2',
               'label'    => $title,
               'type' => 'tel',
               'required' => $validation_dni['required'] ?? false
@@ -178,7 +177,7 @@ $event_id = $args['event_id'] ?? '';
     </p>
 
     <div class="form-body__terms">
-      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox'); ?>
+      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox', ['name' => 'DecisionBox']); ?>
     </div>
 
     <div class="form-body__actions more-form-body__actions">

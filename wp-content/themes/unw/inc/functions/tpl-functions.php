@@ -319,3 +319,66 @@ function wpml_lang_desktop() {
     echo join('', $html);
   }
 }
+
+function uw_get_career_summary_labels($defaults = []) {
+  $fallbacks = [
+    'title' => 'Resumen de la Carrera',
+    'semesters' => 'Semestres',
+    'total_credits' => 'Total de créditos',
+    'academic_degree' => 'Grado Académico',
+    'professional_title' => 'Título Profesional',
+    'modalities' => 'Modalidades',
+    'campus' => 'Campus',
+  ];
+
+  $defaults = wp_parse_args($defaults, $fallbacks);
+
+  $labels = [
+    'title' => get_field('career_summary_title_label', 'option'),
+    'semesters' => get_field('career_summary_semesters_label', 'option'),
+    'total_credits' => get_field('career_summary_total_credits_label', 'option'),
+    'academic_degree' => get_field('career_summary_academic_degree_label', 'option'),
+    'professional_title' => get_field('career_summary_professional_title_label', 'option'),
+    'modalities' => get_field('career_summary_modalities_label', 'option'),
+    'campus' => get_field('career_summary_campus_label', 'option'),
+  ];
+
+  foreach ($labels as $key => $value) {
+    if (!is_string($value) || trim($value) === '') {
+      $labels[$key] = $defaults[$key];
+    }
+  }
+
+  return $labels;
+}
+
+function uw_get_modalities_titles($modalities = [], $separator = ', ') {
+  if (empty($modalities) || !is_array($modalities)) {
+    return '';
+  }
+
+  $titles = [];
+
+  foreach ($modalities as $item) {
+    if (is_object($item) && isset($item->post_title)) {
+      $titles[] = $item->post_title;
+      continue;
+    }
+
+    if (is_array($item) && isset($item['post_title'])) {
+      $titles[] = $item['post_title'];
+      continue;
+    }
+
+    if (is_numeric($item)) {
+      $title = get_the_title((int) $item);
+      if ($title) {
+        $titles[] = $title;
+      }
+    }
+  }
+
+  $titles = array_filter(array_map('trim', $titles));
+
+  return implode($separator, $titles);
+}

@@ -12,12 +12,18 @@ $req = array_key_exists('required', $input) ? (bool) $input['required'] : true;
 
 $extra_attrs = '';
 $maxlength   = '';
+$skip_validation = $input['skip_auto_validation'] ?? false;
+
+// Agregar atributo data si se quiere saltar validación JS
+if ($skip_validation) {
+    $extra_attrs .= ' data-skip-validation="true"';
+}
 
 // Validaciones especiales
-if ($input['name'] === 'SingleLine') {
+if (($input['name'] === 'SingleLine' || $input['name'] === 'SingleLine2') && !$skip_validation) {
     $extra_attrs .= ' inputmode="numeric" pattern="\d{8}" maxlength="8"';
 }
-if ($input['name'] === 'PhoneNumber_countrycode') {
+if ($input['name'] === 'PhoneNumber_countrycode' || $input['name'] === 'PhoneNumber') {
     $extra_attrs .= ' inputmode="numeric" pattern="\d{9}" maxlength="9"';
 }
 if ($input['name'] === 'Email') {

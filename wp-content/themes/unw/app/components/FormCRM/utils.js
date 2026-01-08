@@ -39,7 +39,9 @@ export function validateInputs() {
     { id: 'Name_First', type: 'letters' },
     { id: 'Name_Last', type: 'letters' },
     { id: 'PhoneNumber_countrycode', type: 'numbers' },
-    { id: 'SingleLine', type: 'numbers' }
+    { id: 'PhoneNumber', type: 'numbers' },
+    { id: 'SingleLine', type: 'numbers' },
+    { id: 'SingleLine2', type: 'numbers' }
   ]
 
   const sanitizeValue = (input, regex) => {
@@ -67,6 +69,9 @@ export function validateInputs() {
   config.forEach(({ id, type }) => {
     const input = document.getElementById(id)
     if (!input) return
+
+    // Saltar si tiene el atributo data-skip-validation
+    if (input.dataset.skipValidation === 'true') return
 
     const regex = rules[type]
 
@@ -387,8 +392,8 @@ export function updateHiddenFieldCampusEvent({ text, value, element }) {
   if (!element) return
   element.querySelector('.custom-hidden-campus').innerHTML = `
             <input type="hidden" name="SingleLine6" value="${text}">
-              <input type="hidden" name="SingleLine7" value="${value}">
-                `
+            <input type="hidden" name="SingleLine7" value="${value}">
+            `
 }
 
 export function setNameAttributeCampus({ element }) {
@@ -470,7 +475,7 @@ export function updateOptionsCareersByFacultad({ element = null, careers = {}, v
 }
 
 export function validatePhone() {
-  const inputs = document.querySelectorAll('input[name="PhoneNumber_countrycode"]')
+  const inputs = document.querySelectorAll('input[name="PhoneNumber_countrycode"], input[name="PhoneNumber"]')
   if (!inputs.length) return
   inputs.forEach(input => {
     input.addEventListener('input', e => {

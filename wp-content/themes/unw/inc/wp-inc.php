@@ -15,6 +15,7 @@ require_once dirname(__FILE__) . '/functions/tpl-functions.php';
 require_once dirname(__FILE__) . '/post-types/cpt-careers.php';
 require_once dirname(__FILE__) . '/post-types/cpt-careers-distance.php';
 require_once dirname(__FILE__) . '/post-types/cpt-countries.php';
+require_once dirname(__FILE__) . '/post-types/cpt-modalidades.php';
 require_once dirname(__FILE__) . '/post-types/cpt-testimonials.php';
 require_once dirname(__FILE__) . '/post-types/cpt-comite.php';
 require_once dirname(__FILE__) . '/post-types/cpt-news.php';
