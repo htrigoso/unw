@@ -26,10 +26,14 @@ $category_tag = $args['category_tag'] ?? '';
     </span>
   </div>
   <?php endif; ?>
-  <img src="<?= placeholder() ?>" data-src="<?php echo esc_url($image_url); ?>"
-    alt="<?php echo esc_attr($image_alt); ?>" class="event-card--img lazyload" />
+  <a href="<?= $link ?>">
+    <img src="<?= placeholder() ?>" data-src="<?php echo esc_url($image_url); ?>"
+      alt="<?php echo esc_attr($image_alt); ?>" class="event-card--img lazyload" />
+  </a>
   <div class="event-card--content">
-    <h3 class="event-card--title"><?php echo esc_html($title); ?></h3>
+    <h3 class="event-card--title">
+      <a href="<?= $link ?>"><?php echo esc_html($title); ?></a>
+    </h3>
     <div class="event-card--row">
       <div class="event-card--info">
         <span class="event-card--info--title">Fecha</span>
@@ -47,10 +51,8 @@ $category_tag = $args['category_tag'] ?? '';
 
     <?php
     if ($link):
-
     ?>
-    <a href=" <?= $link ?>"
-      class="btn btn-sm btn-secondary-one-outline event-card--cta btn-select-content-item-click"
+    <a href=" <?= $link ?>" class="btn btn-sm btn-secondary-one-outline event-card--cta btn-select-content-item-click"
       data-is-home="<?=is_front_page() ? 1 : 0 ?>">
       <?= $url['title'] ?>
       <i>
