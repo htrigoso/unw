@@ -3,52 +3,77 @@
  * Admission automatic date update (ACF Options)
  */
 
-
-// 1️⃣ Programar el cron diario
-function admission_schedule_cron() {
-    if ( ! wp_next_scheduled( 'admission_update_event' ) ) {
-        wp_schedule_event( time(), 'daily', 'admission_update_event' );
+// 1️⃣ Ejecutar actualización automática en cada visita (frontend)
+add_action( 'wp', function() {
+    if ( is_admin() ) {
+        return;
     }
-}
-add_action( 'wp', 'admission_schedule_cron' );
 
-
-// 2️⃣ Ejecutar actualización automática
-add_action( 'admission_update_event', 'admission_update_date' );
+    admission_update_date();
+} );
 
 function admission_update_date() {
+    $auto_enabled = get_field( 'admission_auto_update_enabled', 'option' );
 
-    // Obtener el group "admission" desde Options
-    $admission = get_field( 'admission', 'option' );
-
-    if ( ! is_array( $admission ) ) {
+    if ( ! $auto_enabled ) {
         return;
     }
 
-    // Día configurado (dentro del group)
-    $update_day = $admission['admission_update_day'] ?? 'saturday';
+    $admission_date = get_field( 'admission_date', 'option' );
+    $increment_days = get_field( 'admission_increment_days', 'option' );
+    $lead_days = get_field( 'admission_update_lead_days', 'option' );
 
-    // Día actual (monday, tuesday...)
-    $today = strtolower( date( 'l' ) );
-
-    // Si hoy no es el día configurado → salir
-    if ( $today !== $update_day ) {
+    if ( empty( $admission_date ) || empty( $increment_days ) || empty( $lead_days ) ) {
         return;
     }
 
-    // Evitar ejecutar más de una vez el mismo día
-    $last_run   = get_option( 'admission_last_update' );
-    $today_date = date( 'Y-m-d' );
+    $increment_days = (int) $increment_days;
+    $lead_days = (int) $lead_days;
 
-    if ( $last_run === $today_date ) {
+    if ( $increment_days < 1 ) {
+        $increment_days = 1;
+    } elseif ( $increment_days > 30 ) {
+        $increment_days = 30;
+    }
+
+    if ( $lead_days < 1 ) {
+        $lead_days = 1;
+    } elseif ( $lead_days > 7 ) {
+        $lead_days = 7;
+    }
+
+    $timezone = wp_timezone();
+    $base_date = DateTimeImmutable::createFromFormat( 'Y-m-d', $admission_date, $timezone );
+
+    if ( ! $base_date && preg_match( '/^\d{8}$/', $admission_date ) ) {
+        $base_date = DateTimeImmutable::createFromFormat( 'Ymd', $admission_date, $timezone );
+    }
+
+    if ( ! $base_date ) {
+        $base_date = DateTimeImmutable::createFromFormat( 'd/m/Y', $admission_date, $timezone );
+    }
+
+    if ( ! $base_date ) {
         return;
     }
 
-    // Actualizar SOLO el campo date (ACF Date Picker → Ymd)
-    $admission['date'] = date( 'Ymd' );
+    $next_date = $base_date->add( new DateInterval( 'P' . $increment_days . 'D' ) );
+    $trigger_date = $next_date->sub( new DateInterval( 'P' . $lead_days . 'D' ) );
+    $today_date = ( new DateTimeImmutable( 'now', $timezone ) )->format( 'Y-m-d' );
 
-    update_field( 'admission', $admission, 'option' );
+    if ( $today_date !== $trigger_date->format( 'Y-m-d' ) ) {
+        return;
+    }
 
-    // Guardar última ejecución
+    $last_run = get_option( 'admission_last_update' );
+    $last_updated_date = get_option( 'admission_last_updated_date' );
+    $base_date_str = $base_date->format( 'Y-m-d' );
+    if ( $last_run === $today_date && $last_updated_date === $base_date_str ) {
+        return;
+    }
+
+    update_field( 'admission_date', $next_date->format( 'Y-m-d' ), 'option' );
+
     update_option( 'admission_last_update', $today_date );
+    update_option( 'admission_last_updated_date', $next_date->format( 'Y-m-d' ) );
 }

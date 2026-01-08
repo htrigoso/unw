@@ -147,6 +147,16 @@ add_action('acf/init', function() {
     return;
   }
 
+  $increment_choices = [];
+  for ($i = 1; $i <= 30; $i++) {
+    $increment_choices[(string) $i] = $i . ' día' . ($i === 1 ? '' : 's');
+  }
+
+  $lead_choices = [];
+  for ($i = 1; $i <= 7; $i++) {
+    $lead_choices[(string) $i] = $i . ' día' . ($i === 1 ? '' : 's');
+  }
+
   acf_add_local_field_group([
     'key' => 'group_unw_career_summary',
     'title' => 'Resumen de la Carrera',
@@ -225,5 +235,69 @@ add_action('acf/init', function() {
     'instruction_placement' => 'label',
     'active' => true,
     'description' => 'Etiquetas editables para el resumen de la carrera.',
+  ]);
+
+  acf_add_local_field_group([
+    'key' => 'group_unw_admission_settings',
+    'title' => 'Admisión',
+    'fields' => [
+      [
+        'key' => 'field_unw_admission_accordion',
+        'label' => 'Configuracion Admision',
+        'name' => 'admission_general_accordion',
+        'type' => 'accordion',
+        'open' => 1,
+        'multi_expand' => 0,
+        'endpoint' => 0,
+      ],
+      [
+        'key' => 'field_unw_admission_date',
+        'label' => 'Fecha de admisión',
+        'name' => 'admission_date',
+        'type' => 'date_picker',
+        'display_format' => 'd/m/Y',
+        'return_format' => 'Y-m-d',
+        'first_day' => 1,
+      ],
+      [
+        'key' => 'field_unw_admission_increment_days',
+        'label' => 'Incremento (días)',
+        'name' => 'admission_increment_days',
+        'type' => 'select',
+        'choices' => $increment_choices,
+        'default_value' => 7,
+        'return_format' => 'value',
+      ],
+      [
+        'key' => 'field_unw_admission_update_lead_days',
+        'label' => 'Actualizar (días antes)',
+        'name' => 'admission_update_lead_days',
+        'type' => 'select',
+        'choices' => $lead_choices,
+        'default_value' => 1,
+        'return_format' => 'value',
+      ],
+      [
+        'key' => 'field_unw_admission_auto_update_enabled',
+        'label' => 'Auto-actualizar fecha',
+        'name' => 'admission_auto_update_enabled',
+        'type' => 'true_false',
+        'default_value' => 1,
+      ],
+    ],
+    'location' => [
+      [
+        [
+          'param' => 'options_page',
+          'operator' => '==',
+          'value' => 'unw-general-settings',
+        ],
+      ],
+    ],
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'active' => true,
   ]);
 });
