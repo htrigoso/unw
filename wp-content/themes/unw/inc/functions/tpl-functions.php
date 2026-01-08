@@ -319,3 +319,34 @@ function wpml_lang_desktop() {
     echo join('', $html);
   }
 }
+
+function uw_get_modalities_titles($modalities = [], $separator = ', ') {
+  if (empty($modalities) || !is_array($modalities)) {
+    return '';
+  }
+
+  $titles = [];
+
+  foreach ($modalities as $item) {
+    if (is_object($item) && isset($item->post_title)) {
+      $titles[] = $item->post_title;
+      continue;
+    }
+
+    if (is_array($item) && isset($item['post_title'])) {
+      $titles[] = $item['post_title'];
+      continue;
+    }
+
+    if (is_numeric($item)) {
+      $title = get_the_title((int) $item);
+      if ($title) {
+        $titles[] = $title;
+      }
+    }
+  }
+
+  $titles = array_filter(array_map('trim', $titles));
+
+  return implode($separator, $titles);
+}

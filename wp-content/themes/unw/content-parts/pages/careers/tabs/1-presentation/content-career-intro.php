@@ -54,7 +54,7 @@ $detailText  = $presentation['detail'];
         <?php if(isset($resumen['modalities']) && !empty($resumen['modalities'])): ?>
         <div class="career-intro__item">
           <strong>Modalidades</strong>
-          <span class="career-intro__highlight"><?=esc_html($resumen['modalities']); ?></span>
+          <span class="career-intro__highlight"><?=esc_html(uw_get_modalities_titles($resumen['modalities'])); ?></span>
         </div>
         <?php endif; ?>
         <?php if(isset($resumen['campus']) && !empty($resumen['campus'])): ?>

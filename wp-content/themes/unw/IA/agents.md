@@ -1083,7 +1083,14 @@ build, .DS_Store, .vscode/*
 
 ---
 
-## 15. Glosario
+## 15. Cambios recientes
+
+- Noticias: se agregó un tab "Todas las noticias" con enlace al archivo del CPT y se marca activo cuando no se navega por `categoria_novedad` (`content-parts/pages/news/tabs/content-tabs.php`).
+- Frontend: se valida existencia de `.nav-tabs` antes de inicializar tabs scrollables (`app/pages/all-careers/index.js`).
+- Blog: se agregó el tab "Todos los blogs" con enlace a la página de posts y active_id por contexto; el icono remove solo aparece cuando hay filtro (`content-parts/pages/blog/content-blog.php`).
+- SEO: se completó el post dummy en búsquedas con campos requeridos por Rank Math (post_author, post_content, post_date, post_modified) (`inc/wp-blog.php`).
+
+## 16. Glosario
 
 | Término              | Definición                                                                                       |
 | -------------------- | ------------------------------------------------------------------------------------------------ |

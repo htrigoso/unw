@@ -207,6 +207,10 @@ function ensure_global_post_set() {
         $post = new stdClass();
         $post->ID = 0;
         $post->post_type = 'post';
+        $post->post_author = 0;
+        $post->post_content = '';
+        $post->post_date = '0000-00-00 00:00:00';
+        $post->post_modified = '0000-00-00 00:00:00';
         $post->comment_count = 0;
     }
 }

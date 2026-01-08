@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit5f7baa3c88d3863c9cdff6c3f96a44d9
+class ComposerStaticInit3c9e46504742cd1d6e92de84d34a0790
 {
     public static $files = array (
         'da5f6548f070d3d306f90eee42dd5de6' => __DIR__ . '/..' . '/donatj/phpuseragentparser/src/UserAgentParser.php',
@@ -22,10 +22,6 @@ class ComposerStaticInit5f7baa3c88d3863c9cdff6c3f96a44d9
         array (
             'WPMedia\\Mixpanel\\' => 17,
         ),
-        'M' => 
-        array (
-            'MyThemeShop\\Helpers\\' => 20,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -37,38 +33,10 @@ class ComposerStaticInit5f7baa3c88d3863c9cdff6c3f96a44d9
         array (
             0 => __DIR__ . '/..' . '/wp-media/wp-mixpanel/src',
         ),
-        'MyThemeShop\\Helpers\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src',
-        ),
     );
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'MyThemeShop\\Admin\\List_Table' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/admin/class-list-table.php',
-        'MyThemeShop\\Admin\\Page' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/admin/class-page.php',
-        'MyThemeShop\\Database\\Clauses' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/database/class-clauses.php',
-        'MyThemeShop\\Database\\Database' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/database/class-database.php',
-        'MyThemeShop\\Database\\Escape' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/database/class-escape.php',
-        'MyThemeShop\\Database\\GroupBy' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/database/class-groupby.php',
-        'MyThemeShop\\Database\\Joins' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/database/class-joins.php',
-        'MyThemeShop\\Database\\OrderBy' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/database/class-orderby.php',
-        'MyThemeShop\\Database\\Query_Builder' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/database/class-query-builder.php',
-        'MyThemeShop\\Database\\Select' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/database/class-select.php',
-        'MyThemeShop\\Database\\Translate' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/database/class-translate.php',
-        'MyThemeShop\\Database\\Where' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/database/class-where.php',
-        'MyThemeShop\\Helpers\\Arr' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/helpers/class-arr.php',
-        'MyThemeShop\\Helpers\\Attachment' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/helpers/class-attachment.php',
-        'MyThemeShop\\Helpers\\Conditional' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/helpers/class-conditional.php',
-        'MyThemeShop\\Helpers\\DB' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/helpers/class-db.php',
-        'MyThemeShop\\Helpers\\HTML' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/helpers/class-html.php',
-        'MyThemeShop\\Helpers\\Param' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/helpers/class-param.php',
-        'MyThemeShop\\Helpers\\Str' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/helpers/class-str.php',
-        'MyThemeShop\\Helpers\\Url' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/helpers/class-url.php',
-        'MyThemeShop\\Helpers\\WordPress' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/helpers/class-wordpress.php',
-        'MyThemeShop\\Json_Manager' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/class-json-manager.php',
-        'MyThemeShop\\Notification' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/class-notification.php',
-        'MyThemeShop\\Notification_Center' => __DIR__ . '/..' . '/mythemeshop/wordpress-helpers/src/class-notification-center.php',
         'RankMath\\ACF\\ACF' => __DIR__ . '/../..' . '/includes/modules/acf/class-acf.php',
         'RankMath\\Admin\\Admin' => __DIR__ . '/../..' . '/includes/admin/class-admin.php',
         'RankMath\\Admin\\Admin_Breadcrumbs' => __DIR__ . '/../..' . '/includes/admin/class-admin-breadcrumbs.php',
@@ -356,6 +324,8 @@ class ComposerStaticInit5f7baa3c88d3863c9cdff6c3f96a44d9
         'RankMath\\Status\\Status' => __DIR__ . '/../..' . '/includes/modules/status/class-status.php',
         'RankMath\\Status\\System_Status' => __DIR__ . '/../..' . '/includes/modules/status/class-system-status.php',
         'RankMath\\Term' => __DIR__ . '/../..' . '/includes/class-term.php',
+        'RankMath\\ThirdParty\\Loco\\Loco_I18n_Inline' => __DIR__ . '/../..' . '/includes/3rdparty/loco/class-loco-i18n-inline.php',
+        'RankMath\\ThirdParty\\WPML' => __DIR__ . '/../..' . '/includes/3rdparty/wpml/class-wpml.php',
         'RankMath\\Thumbnail_Overlay' => __DIR__ . '/../..' . '/includes/class-thumbnail-overlay.php',
         'RankMath\\Tools\\AIOSEO_Blocks' => __DIR__ . '/../..' . '/includes/modules/database-tools/class-aioseo-blocks.php',
         'RankMath\\Tools\\AIOSEO_TOC_Converter' => __DIR__ . '/../..' . '/includes/modules/database-tools/class-aioseo-toc-converter.php',
@@ -423,9 +393,9 @@ class ComposerStaticInit5f7baa3c88d3863c9cdff6c3f96a44d9
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit5f7baa3c88d3863c9cdff6c3f96a44d9::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit5f7baa3c88d3863c9cdff6c3f96a44d9::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit5f7baa3c88d3863c9cdff6c3f96a44d9::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3c9e46504742cd1d6e92de84d34a0790::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3c9e46504742cd1d6e92de84d34a0790::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit3c9e46504742cd1d6e92de84d34a0790::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -44,7 +44,7 @@ class Instant_Indexing extends Base {
 	private $submitted = [];
 
 	/**
-	 * Store previous post status that we can check agains in save_post.
+	 * Store previous post status that we can check against in save_post.
 	 *
 	 * @var array
 	 */
@@ -286,6 +286,9 @@ class Instant_Indexing extends Base {
 	 * @return void
 	 */
 	public function save_post( $post_id, $post ) {
+		if ( defined( 'RANK_MATH_IMPORTING_CSV' ) && RANK_MATH_IMPORTING_CSV ) {
+			return;
+		}
 		// Check if already submitted.
 		if ( in_array( $post_id, $this->submitted, true ) ) {
 			return;
