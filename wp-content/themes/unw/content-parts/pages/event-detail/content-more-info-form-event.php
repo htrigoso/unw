@@ -63,7 +63,7 @@ $event_id = $args['event_id'] ?? '';
 
 
   <input type="hidden" name="Dropdown6" value="Activo"> <!-- Estado de período -->
-  <input type="hidden" name="Website" value="<?= get_current_page_url() ?>"> <!-- Url de Trakeo -->
+  <input type="hidden" name="Website" value="<?= get_current_page_url() ?>">
   <input type="hidden" name="Dropdown7" value="Evento"> <!-- Comentarios -->
   <input type="hidden" name="SingleLine10" value="<?= esc_attr($event_id) ?>"> <!-- Comentarios -->
   <input type="hidden" name="Radio" id="hidden-radio-modalidad" value=""> <!-- Modalidad dinámica -->
@@ -122,7 +122,7 @@ $event_id = $args['event_id'] ?? '';
         <?php } ?>
         <div class="f-50">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
-            'name' => 'PhoneNumber',
+            'name' => 'PhoneNumber_countrycode',
             'label' => 'Celular (*)',
             'type' => 'tel',
           ]); ?>
