@@ -147,7 +147,7 @@ export default class FormCrmEvent {
             ], this.element)
             if (value === FORMS.VIRTUAL) {
               if (departaments.length > 0) {
-                createSelectDepartament({ element: this.element, name: 'Dropdown8' })
+                createSelectDepartament({ element: this.element, name: 'SingleLine8' })
               }
             }
 
@@ -168,27 +168,13 @@ export default class FormCrmEvent {
   }
 
   buildHiddenInputs({ facultyName, careerName, type }) {
-    if (type === FORMS.PREGRADO) {
-      return createHiddenInputs({
-        type,
-        fields: [
-          { name: 'Dropdown_group_name', facultyName },
-          { name: 'Dropdown', careerName }
-        ]
-      })
-    }
-
-    if (type === FORMS.VIRTUAL || type === FORMS.WORK) {
-      return createHiddenInputs({
-        type,
-        fields: [
-          { name: 'Dropdown_group_name', facultyName },
-          { name: 'Dropdown', careerName }
-        ]
-      })
-    }
-
-    return ''
+    return createHiddenInputs({
+      type,
+      fields: [
+        { name: 'SingleLine5', facultyName },
+        { name: 'SingleLine4', careerName }
+      ]
+    })
   }
 
   updateHiddenFields({ select, hiddenContainer }) {
@@ -268,7 +254,7 @@ export default class FormCrmEvent {
         const text = selectedOption?.textContent.trim() || ''
         const customDepartament = this.element.querySelector('.custom-hidden-departament')
         if (customDepartament) {
-          customDepartament.innerHTML = `<input type="hidden" name="SingleLine8" value="${text}">`
+          customDepartament.innerHTML = `<input type="hidden" name="SingleLine9" value="${text}">`
         }
       }
     })

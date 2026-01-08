@@ -65,7 +65,7 @@ $event_id = $args['event_id'] ?? '';
   <input type="hidden" name="Dropdown6" value="Activo"> <!-- Estado de período -->
   <input type="hidden" name="Website" value="<?= get_current_page_url() ?>"> <!-- Url de Trakeo -->
   <input type="hidden" name="Dropdown7" value="Evento"> <!-- Comentarios -->
-  <input type="hidden" name="Dropdown5" value="<?= esc_attr($event_id) ?>"> <!-- Comentarios -->
+  <input type="hidden" name="SingleLine10" value="<?= esc_attr($event_id) ?>"> <!-- Comentarios -->
   <input type="hidden" name="Radio" id="hidden-radio-modalidad" value=""> <!-- Modalidad dinámica -->
 
 
