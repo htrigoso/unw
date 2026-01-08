@@ -216,6 +216,15 @@ function ensure_global_post_set() {
 }
 add_action('wp', 'ensure_global_post_set');
 
+function blog_featured_image_notice($content, $post_id) {
+    if (get_post_type($post_id) === 'post') {
+        $content .= '<p><em>Recomendación: Sube una imagen de <strong>768 x 432 píxeles</strong></em></p>';
+    }
+
+    return $content;
+}
+add_filter('admin_post_thumbnail_html', 'blog_featured_image_notice', 10, 2);
+
 // Manejar la búsqueda del blog
 function handle_blog_search($wp_query) {
     if (!is_admin() && $wp_query->is_main_query()) {
