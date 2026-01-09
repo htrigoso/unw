@@ -47,6 +47,10 @@
         </div>
       </article>
 
+      <?php 
+      $hide_event_form = get_field('events_hide_form', 'options');
+      if (!$hide_event_form) : 
+      ?>
       <article class="event-detail__form">
         <?php
         $utms_default = get_field('list_utms', 'option');
@@ -85,6 +89,7 @@
         ]);
       ?>
       </article>
+      <?php endif; ?>
     </section>
   </div>
 </div>

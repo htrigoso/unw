@@ -3,9 +3,14 @@
  * Admission automatic date update (ACF Options)
  */
 
-// 1️⃣ Ejecutar actualización automática en cada visita (frontend)
+// 1️⃣ Ejecutar actualización automática solo en detalle de carreras
 add_action( 'wp', function() {
     if ( is_admin() ) {
+        return;
+    }
+
+    // Solo ejecutar en single de carreras o carreras a distancia
+    if ( ! is_singular( [ 'carreras', 'carreras-a-distancia' ] ) ) {
         return;
     }
 

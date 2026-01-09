@@ -300,4 +300,82 @@ add_action('acf/init', function() {
     'instruction_placement' => 'label',
     'active' => true,
   ]);
+
+  acf_add_local_field_group([
+    'key' => 'group_unw_events_settings',
+    'title' => 'Eventos',
+    'fields' => [
+      [
+        'key' => 'field_unw_events_accordion',
+        'label' => 'Configuración de Eventos',
+        'name' => 'events_general_accordion',
+        'type' => 'accordion',
+        'open' => 1,
+        'multi_expand' => 0,
+        'endpoint' => 0,
+      ],
+      [
+        'key' => 'field_unw_events_hide_form',
+        'label' => 'Ocultar formulario de eventos',
+        'name' => 'events_hide_form',
+        'type' => 'true_false',
+        'default_value' => 0,
+        'ui' => 1,
+        'instructions' => 'Activar para ocultar el formulario de contacto en la página de detalle de eventos',
+      ],
+    ],
+    'location' => [
+      [
+        [
+          'param' => 'options_page',
+          'operator' => '==',
+          'value' => 'unw-general-settings',
+        ],
+      ],
+    ],
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'active' => true,
+  ]);
+
+  acf_add_local_field_group([
+    'key' => 'group_unw_careers_settings',
+    'title' => 'Carreras',
+    'fields' => [
+      [
+        'key' => 'field_unw_careers_accordion',
+        'label' => 'Configuración de Carreras',
+        'name' => 'careers_general_accordion',
+        'type' => 'accordion',
+        'open' => 1,
+        'multi_expand' => 0,
+        'endpoint' => 0,
+      ],
+      [
+        'key' => 'field_unw_careers_hide_form',
+        'label' => 'Ocultar formularios de carreras',
+        'name' => 'careers_hide_form',
+        'type' => 'true_false',
+        'default_value' => 0,
+        'ui' => 1,
+        'instructions' => 'Activar para ocultar los formularios en las páginas de listado de carreras (presenciales y a distancia)',
+      ],
+    ],
+    'location' => [
+      [
+        [
+          'param' => 'options_page',
+          'operator' => '==',
+          'value' => 'unw-general-settings',
+        ],
+      ],
+    ],
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'active' => true,
+  ]);
 });

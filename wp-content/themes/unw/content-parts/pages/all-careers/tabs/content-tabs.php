@@ -10,6 +10,10 @@ $current_post_type = get_post_type();
 
 ?>
 <div class="all-careers-tabs">
+  <?php
+  $hide_careers_form = get_field('careers_hide_form', 'options');
+  if (!$hide_careers_form) :
+  ?>
   <div class="x-container x-container--pad-213 all-careers-tabs__form">
     <?php
      if(is_page('carreras-uwiener') || $current_post_type == 'carreras') {
@@ -31,6 +35,7 @@ $current_post_type = get_post_type();
        }
     ?>
   </div>
+  <?php endif; ?>
   <div class="x-container all-careers-tabs__container">
     <?php
     get_template_part(COMMON_CONTENT_PATH, 'nav-tabs', [
