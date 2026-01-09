@@ -53,15 +53,24 @@
   h5 {
     @include title-28;
     color: var(--color-white);
-
-    margin-bottom: rem(8);
     @include media(">=tablet") {
       @include title-56;
-      margin-bottom: rem(85);
     }
   }
+  .highlight {
+    display: inline-block;
+    background-color: var(--color-asu-gold);
+    font-size: rem(15);
+    padding: rem(5) rem(10);
+    border-radius: rem(5);
+  }
 }
-
+.hero-slide__title {
+  margin-bottom: rem(8);
+  @include media(">=tablet") {
+    margin-bottom: rem(85);
+  }
+}
 .hero-slide[data-variant="primary"] {
   .hero-slide__content {
     h1,

@@ -1,7 +1,13 @@
 <?php
 
 $current_term = get_queried_object();
-$current_id = $current_term && isset($current_term->term_id) ? $current_term->term_id : null;
+$current_id = null;
+
+if ($current_term && isset($current_term->term_id) && is_tax('categoria_novedad')) {
+  $current_id = $current_term->term_id;
+} else {
+  $current_id = 'all';
+}
 
 $terms = get_terms([
   'taxonomy' => 'categoria_novedad',
@@ -9,6 +15,17 @@ $terms = get_terms([
 ]);
 
 $tabs = [];
+$archive_url = get_post_type_archive_link('novedades');
+
+if ($archive_url) {
+  $tabs[] = [
+    'id' => 'all',
+    'label'  => 'Todas las noticias',
+    'url'    => $archive_url,
+    'status' => true,
+    'target' => '',
+  ];
+}
 
 if (!empty($terms) && !is_wp_error($terms)) {
   foreach ($terms as $term) {

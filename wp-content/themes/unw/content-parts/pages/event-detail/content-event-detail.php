@@ -47,16 +47,22 @@
         </div>
       </article>
 
+      <?php 
+      $hide_event_form = get_field('events_hide_form', 'options');
+      if (!$hide_event_form) : 
+      ?>
       <article class="event-detail__form">
         <?php
         $utms_default = get_field('list_utms', 'option');
-        $utm_admission = $crm_carriers['list_utms'] ?? [];
+        $form_crm_categories = get_field('componente_form_category');
+        $utm_admission = $form_crm_categories['list_utms'] ?? [];
         $utms_final = merge_utms($utms_default, $utm_admission);
 
         $formUrl = "https://forms.zohopublic.com/adminzoho11/form/EventosHbridov2/formperma/2j3H_F_LzgaCnNmjSksgBTd3Z0M_D03NvmeOIsRMhwM/htmlRecords/submit";
 
         $form_crm_option = get_field('form_crm', 'option');
-        $form_crm_categories = get_field('form_crm_categories', 'option');
+
+
         $validation_dni = $form_crm_categories['validation_dni_pregrado'];
         $hide_dni = $validation_dni['hide'];
 
@@ -83,6 +89,7 @@
         ]);
       ?>
       </article>
+      <?php endif; ?>
     </section>
   </div>
 </div>

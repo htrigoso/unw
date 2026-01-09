@@ -7,13 +7,16 @@ $posts_per_page = 20;
 $current_object = get_queried_object();
 $taxonomy_type  = null;
 $term_id        = 0;
+$active_tab_id  = 'all';
 
 if (is_category()) {
   $taxonomy_type = 'category';
   $term_id       = $current_object->term_id;
+  $active_tab_id = $term_id;
 } elseif (is_tag()) {
   $taxonomy_type = 'tag';
   $term_id       = $current_object->term_id;
+  $active_tab_id = $term_id;
 }
 
 // Configurar query
@@ -39,6 +42,8 @@ if ($search_term) {
 $wp_query = new WP_Query($args);
 
 $cta      = get_field('cta');
+$hide_cat = get_field('hide_cat');
+
 ?>
 
 <section class="blog">
@@ -51,21 +56,36 @@ $cta      = get_field('cta');
       </div>
 
       <!-- Tabs dinámicos -->
-
-      <!-- <div class="blog__tabs">
+      <?php if(!$hide_cat) : ?>
+      <div class="blog__tabs">
         <?php
-          // Determinar qué tabs mostrar
-          // $tabs = is_tag() ? get_tag_tabs() : get_category_tabs();
 
-          // get_template_part(COMMON_CONTENT_PATH, 'nav-tabs', [
-          //   'nav_tabs'         => $tabs,
-          //   'is_url'           => true,
-          //   'active_id'        => $term_id,
-          //   'show_icon_remove' => true,
-          //   'show_controls'=>true
-          // ]);
+          $tabs = is_tag() ? get_tag_tabs() : get_category_tabs();
+          $blog_page_id = get_option('page_for_posts');
+          $blog_url = $blog_page_id ? get_permalink($blog_page_id) : home_url('/blog/');
+
+          if (!$blog_url) {
+            $blog_url = home_url('/blog/');
+          }
+
+          array_unshift($tabs, [
+            'id'     => 'all',
+            'label'  => 'Todos los blogs',
+            'status' => true,
+            'url'    => $blog_url,
+            'target' => 'all',
+          ]);
+
+          get_template_part(COMMON_CONTENT_PATH, 'nav-tabs', [
+            'nav_tabs'         => $tabs,
+            'is_url'           => true,
+            'active_id'        => $active_tab_id,
+            'show_icon_remove' => $taxonomy_type !== null,
+            'show_controls'=>true
+          ]);
           ?>
-      </div> -->
+      </div>
+      <?php endif; ?>
 
 
       <!-- Contenido -->

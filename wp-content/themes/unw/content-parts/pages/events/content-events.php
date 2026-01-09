@@ -12,14 +12,7 @@ $feature_events_query = new WP_Query([
   'post_type'      => 'eventos',
   'orderby'        => 'date',
   'order'          => 'DESC',
-  'meta_query'     => [
-    [
-      'key'     => 'featured',
-      'value'   => 1,
-      'compare' => '='
-    ]
-  ],
-  'posts_per_page' => 4,
+  'posts_per_page' => 7,
 ]);
 
 if ($feature_events_query->have_posts()) {
@@ -31,9 +24,12 @@ if ($feature_events_query->have_posts()) {
       "post_title" => get_the_title(),
       "event_info" => $info,
       "thumbnail_url" => get_the_post_thumbnail_url(get_the_ID(), 'large'),
+      "link" => get_permalink(get_the_ID()),
     ];
   }
   wp_reset_postdata();
+  // Ordenar eventos destacados
+  $feature_events['events'] = unw_apply_event_sorting($feature_events['events']);
 }
 
 // =======================
@@ -61,9 +57,12 @@ if ($all_events_query->have_posts()) {
       "post_title" => get_the_title(),
       "event_info" => $info,
       "thumbnail_url" => get_the_post_thumbnail_url(get_the_ID(), 'large'),
+      "link" => get_permalink(get_the_ID()),
     ];
   }
   wp_reset_postdata();
+  // Ordenar todos los eventos
+  $all_events['events'] = unw_apply_event_sorting($all_events['events']);
 }
 ?>
 

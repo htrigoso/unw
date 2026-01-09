@@ -40,12 +40,19 @@ class Sidebar_Menu_Walker extends Walker_Nav_Menu
       $output .= '</div>';
     } else {
       $output .= '<li>';
-      $output .= '<a href="' . esc_url($item->url) . '" class="sidebar__menu-item s' . esc_attr($class_names) . '">';
-      $output .= '</li';
+      $output .= '<a href="' . esc_url($item->url) . '" class="sidebar__menu-item ' . esc_attr($class_names) . '"';
+
+      // Agregar target si está definido
+      if (!empty($item->target)) {
+        $output .= ' target="' . esc_attr($item->target) . '"';
+      }
+
+      $output .= '>';
       $output .= '<span class="sidebar__menu-link">';
       $output .= esc_html($item->title);
       $output .= '</span>';
       $output .= '</a>';
+      $output .= '</li>';
     }
   }
 

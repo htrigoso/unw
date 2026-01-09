@@ -25,6 +25,7 @@ export default class FormCrmEvent {
   createListeners() {
     validateInputs()
     validatePhone()
+    this.updateRadioModalidad() // Inicializar valor
     this.handleFormMixtoChange()
     this.handleCarrersChange()
     this.handleDepartamentChange()
@@ -64,6 +65,23 @@ export default class FormCrmEvent {
   // Handlers
   // ==========================
 
+  updateRadioModalidad() {
+    if (!this.element) return
+
+    const hiddenRadio = this.element.querySelector('#hidden-radio-modalidad')
+    if (!hiddenRadio) return
+
+    const valorSeleccionado = document.querySelector('input[name="form_mixto"]:checked')?.value || ''
+
+    if (valorSeleccionado === 'pregrado') {
+      hiddenRadio.value = 'Presencial'
+    } else if (valorSeleccionado) {
+      hiddenRadio.value = 'Carreras gente que trabaja'
+    } else {
+      hiddenRadio.value = ''
+    }
+  }
+
   handleFormMixtoChange() {
     if (!this.element) return
     const radios = this.element.querySelectorAll('input[name="form_mixto"]')
@@ -75,6 +93,9 @@ export default class FormCrmEvent {
     radios.forEach(radio => {
       radio.addEventListener('change', () => {
         if (!radio.checked) return
+
+        // Actualizar campo Radio hidden
+        this.updateRadioModalidad()
 
         const value = radio.value.trim().toLowerCase()
         const select = this.element.querySelector('#careerSelect')
@@ -122,11 +143,11 @@ export default class FormCrmEvent {
             select.setAttribute('name', 'SingleLine3')
 
             updateHiddenInputs([
-              { name: 'SingleLine11', value: 'UNW_a_distancia' }
+              { name: 'SingleLine11', value: 'UNW_Pregrado_Distancia' }
             ], this.element)
             if (value === FORMS.VIRTUAL) {
               if (departaments.length > 0) {
-                createSelectDepartament({ element: this.element, name: 'SingleLine9' })
+                createSelectDepartament({ element: this.element, name: 'SingleLine8' })
               }
             }
 
@@ -147,27 +168,13 @@ export default class FormCrmEvent {
   }
 
   buildHiddenInputs({ facultyName, careerName, type }) {
-    if (type === FORMS.PREGRADO) {
-      return createHiddenInputs({
-        type,
-        fields: [
-          { name: 'SingleLine5', facultyName },
-          { name: 'SingleLine4', careerName }
-        ]
-      })
-    }
-
-    if (type === FORMS.VIRTUAL || type === FORMS.WORK) {
-      return createHiddenInputs({
-        type,
-        fields: [
-          { name: 'SingleLine5', facultyName },
-          { name: 'SingleLine4', careerName }
-        ]
-      })
-    }
-
-    return ''
+    return createHiddenInputs({
+      type,
+      fields: [
+        { name: 'SingleLine5', facultyName },
+        { name: 'SingleLine4', careerName }
+      ]
+    })
   }
 
   updateHiddenFields({ select, hiddenContainer }) {
@@ -247,7 +254,7 @@ export default class FormCrmEvent {
         const text = selectedOption?.textContent.trim() || ''
         const customDepartament = this.element.querySelector('.custom-hidden-departament')
         if (customDepartament) {
-          customDepartament.innerHTML = `<input type="hidden" name="SingleLine8" value="${text}">`
+          customDepartament.innerHTML = `<input type="hidden" name="SingleLine9" value="${text}">`
         }
       }
     })

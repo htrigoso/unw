@@ -8,6 +8,10 @@ $current_post_type = get_post_type();
   get_template_part(COMMON_CONTENT_PATH, 'hero-slide', $hero_slide);
   ?>
 
+  <?php
+  $hide_careers_form = get_field('careers_hide_form', 'options');
+  if (!$hide_careers_form) :
+  ?>
   <div class="x-container all-careers-hero__form__wrapper">
     <div class="all-careers-hero__form">
       <?php
@@ -34,4 +38,5 @@ $current_post_type = get_post_type();
       ?>
     </div>
   </div>
+  <?php endif; ?>
 </section>

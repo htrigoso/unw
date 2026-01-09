@@ -2,10 +2,10 @@
 Contributors: rankmath
 Plugin link: https://rankmath.com/?utm_source=LP&utm_campaign=WP
 Tags: seo, WordPress SEO, google search console, schema, redirection, 
-Tested up to: 6.8
+Tested up to: 6.9
 Requires at least: 6.3
 Requires PHP: 7.4
-Stable tag: 1.0.253
+Stable tag: 1.0.261
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -233,7 +233,7 @@ and many more
 ✔ PREMIUM 24x7x365 Dedicated Support Managers
 ✔ MOST COMPETITIVE PRICING EVER!
 
-**<a href="https://rankmath.com/pricing/" target="_blank">CHEK ALL THE PREMIUM FEATURES AND PRICING HERE</a>**
+**<a href="https://rankmath.com/pricing/" target="_blank">CHECK ALL THE PREMIUM FEATURES AND PRICING HERE</a>**
 
 
 ## CONNECT WITH THE TEAM AND SEO EXPERTS ##
@@ -339,10 +339,14 @@ Please drop us an email at support@rankmath.com, and we will be more than happy 
 
 == Changelog ==
 
-= 1.0.253 [Sept 10, 2025] =
-- Fixed: Missing option to select [Primary term](https://rankmath.com/kb/how-to-choose-a-primary-category/#how-to-choose-a-primary-category) when [filter to disable Rank Math's Sidebar integration](https://rankmath.com/kb/filters-hooks-api-developer/#disable-gutenberg-sidebar) was used
-- Fixed: [Custom Field variable](https://rankmath.com/kb/variables-in-seo-title-description/#custom-field-advanced) was not working in the [SERP fields](https://rankmath.com/kb/general-tab/#seo-title-permalink-description)
-- Fixed: Duplicate entries were created in the Analytics objects table when updating a post after switching it from Elementor's Top Bar
-- Fixed: Incompatibility with the AffiliateWP plugin when [Remove Base option](https://rankmath.com/kb/general-settings/?#remove-base) was enabled
+= 1.0.261 [Dec 31, 2025] =
+- Added: `OnlineBusiness` & `OnlineStore` Schema to the [Local Business Schema types](https://rankmath.com/kb/multiple-locations/#configuring-local-business-schema)
+- Improved: [Mobile Snapshot UI](https://rankmath.com/kb/seo-analysis/#mobile-snapshot-test) in the SEO Analyzer
+- Fixed: [Focus keyword in the SEO Title test](https://rankmath.com/kb/score-100-in-tests/#focus-keyword-in-the-seo-title-primary-focus-keyword-only) fails when an apostrophe is used in the title
+- Fixed: PHP error on some setups due to the use of `%s` variable in the [Breadcrumbs Archive format](https://rankmath.com/kb/general-settings/#archive-format)
+- Fixed: Product Schema was incorrectly adding `InStock` to the [availability](https://rankmath.com/kb/woocommerce-product-schema/#availability) property for backorder products
+- Fixed: Schema translation issue on secondary language posts created using the WPML plugin
+- Fixed: [Analytics Account field](https://rankmath.com/kb/general-settings/#analytics-settings) was not showing all accounts when more than 200 accounts were present
+- Fixed: Typos in various files
 
 Full changelog can be found here - **[Rank Math changelog](https://rankmath.com/changelog/?utm_source=Plugin&utm_medium=Changelog&utm_campaign=WP)**

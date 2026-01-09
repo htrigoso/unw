@@ -23,8 +23,8 @@ const sendViewItemListEvent = withIncubeta(function (careersData) {
 
   // Construir items
   const items = careers.map((career, index) => ({
-    item_id: career.id.toString(),
-    item_name: career.title,
+    item_id: String(career.ID),
+    item_name: career.post_title,
     affiliation: '',
     coupon: '',
     discount: 0,
@@ -55,9 +55,8 @@ const sendViewItemListEvent = withIncubeta(function (careersData) {
       items: items
     }
   }
-
   window.dataLayer.push(dataLayerEvent)
-  console.log('[Incubeta] ✅ view_item_list enviado:', dataLayerEvent)
+  console.log('[Incubeta 22] ✅ view_item_list enviado:', dataLayerEvent)
 })
 
 /**

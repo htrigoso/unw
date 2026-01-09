@@ -1,4 +1,3 @@
-import { ModalManager } from '../../components/Modal'
 import FormCrmGeneral from '../../components/FormCRM/FormCrmGeneral'
 import { $element } from '../../utils/dom'
 import { initViewProgramTypeTracking } from '../../utils/incubeta/viewProgramType'
@@ -12,7 +11,6 @@ export default class HomePage {
   }
 
   create() {
-    new ModalManager()
     this.initFormGeneral()
     initViewProgramTypeTracking()
     initSelectProgramTypeTracking()

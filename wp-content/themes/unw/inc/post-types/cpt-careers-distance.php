@@ -103,3 +103,11 @@ add_filter('admin_body_class', function($classes) {
   }
   return $classes;
 });
+
+
+add_filter('admin_post_thumbnail_html', function($content, $post_id) {
+    if (get_post_type($post_id) === 'carreras-a-distancia') {
+        $content .= '<p><em>Tamaño recomendado: 768x454</em></p>';
+    }
+    return $content;
+}, 10, 2);

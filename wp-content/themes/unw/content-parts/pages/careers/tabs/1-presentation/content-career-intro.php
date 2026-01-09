@@ -8,6 +8,8 @@ $mobileImg   = $presentation['images']['mobile']['url'] ?? IMAGE_DEFAULT;
 $altImg      = $presentation['images']['desktop']['alt']??'';
 $resumen     = $presentation['resumen']['resumen_info']??'';
 $detailText  = $presentation['detail'];
+
+$summary_labels = uw_get_career_summary_labels();
 ?>
 
 <section class="career-intro">
@@ -30,36 +32,38 @@ $detailText  = $presentation['detail'];
     <?php
      ?>
     <div class="career-intro__summary">
-      <h3 class="career-intro__summary-name">Resumen de la Carrera</h3>
+      <h3 class="career-intro__summary-name">
+        <?=esc_html($summary_labels['title']); ?>
+      </h3>
       <div class="career-intro__list">
         <div class="career-intro__list-row">
           <div class="career-intro__item">
-            <strong>Semestres</strong>
+            <strong><?=esc_html($summary_labels['semesters']); ?></strong>
             <span class="career-intro__highlight"><?=get_value_or_default($resumen['semesters'], true, '0'); ?></span>
           </div>
           <div class="career-intro__item">
-            <strong>Total de créditos</strong>
+            <strong><?=esc_html($summary_labels['total_credits']); ?></strong>
             <span
               class="career-intro__highlight"><?=get_value_or_default($resumen['total_credits'], true, '0'); ?></span>
           </div>
         </div>
         <div class="career-intro__item">
-          <strong>Grado Académico</strong>
+          <strong><?=esc_html($summary_labels['academic_degree']); ?></strong>
           <span class="career-intro__highlight"><?=get_value_or_default($resumen['academic_degree'], true); ?></span>
         </div>
         <div class="career-intro__item">
-          <strong>Título Profesional</strong>
+          <strong><?=esc_html($summary_labels['professional_title']); ?></strong>
           <span class="career-intro__highlight"><?=get_value_or_default($resumen['professional_title'], true); ?></span>
         </div>
         <?php if(isset($resumen['modalities']) && !empty($resumen['modalities'])): ?>
         <div class="career-intro__item">
-          <strong>Modalidades</strong>
-          <span class="career-intro__highlight"><?=esc_html($resumen['modalities']); ?></span>
+          <strong><?=esc_html($summary_labels['modalities']); ?></strong>
+          <span class="career-intro__highlight"><?=esc_html(uw_get_modalities_titles($resumen['modalities'])); ?></span>
         </div>
         <?php endif; ?>
         <?php if(isset($resumen['campus']) && !empty($resumen['campus'])): ?>
         <div class="career-intro__item">
-          <strong>Campus</strong>
+          <strong><?=esc_html($summary_labels['campus']); ?></strong>
           <span class="career-intro__highlight"><?=esc_html(uw_terms_to_string($resumen['campus'])); ?></span>
         </div>
         <?php endif; ?>

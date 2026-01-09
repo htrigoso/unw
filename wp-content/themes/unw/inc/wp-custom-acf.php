@@ -141,3 +141,241 @@ function is_whatsapp_blocked($wa_config) {
 
     return false;
 }
+
+add_action('acf/init', function() {
+  if (!function_exists('acf_add_local_field_group')) {
+    return;
+  }
+
+  $increment_choices = [];
+  for ($i = 1; $i <= 30; $i++) {
+    $increment_choices[(string) $i] = $i . ' día' . ($i === 1 ? '' : 's');
+  }
+
+  $lead_choices = [];
+  for ($i = 1; $i <= 7; $i++) {
+    $lead_choices[(string) $i] = $i . ' día' . ($i === 1 ? '' : 's');
+  }
+
+  acf_add_local_field_group([
+    'key' => 'group_unw_career_summary',
+    'title' => 'Resumen de la Carrera',
+    'fields' => [
+      [
+        'key' => 'field_unw_career_summary_accordion',
+        'label' => 'Resumen de la Carrera',
+        'name' => 'career_summary_accordion',
+        'type' => 'accordion',
+        'open' => 0,
+        'multi_expand' => 0,
+        'endpoint' => 0,
+      ],
+      [
+        'key' => 'field_unw_career_summary_title_label',
+        'label' => 'Título del resumen',
+        'name' => 'career_summary_title_label',
+        'type' => 'text',
+        'default_value' => 'Resumen de la Carrera',
+      ],
+      [
+        'key' => 'field_unw_career_summary_semesters_label',
+        'label' => 'Semestres',
+        'name' => 'career_summary_semesters_label',
+        'type' => 'text',
+        'default_value' => 'Semestres',
+      ],
+      [
+        'key' => 'field_unw_career_summary_total_credits_label',
+        'label' => 'Total de créditos',
+        'name' => 'career_summary_total_credits_label',
+        'type' => 'text',
+        'default_value' => 'Total de créditos',
+      ],
+      [
+        'key' => 'field_unw_career_summary_academic_degree_label',
+        'label' => 'Grado Académico',
+        'name' => 'career_summary_academic_degree_label',
+        'type' => 'text',
+        'default_value' => 'Grado Académico',
+      ],
+      [
+        'key' => 'field_unw_career_summary_professional_title_label',
+        'label' => 'Título Profesional',
+        'name' => 'career_summary_professional_title_label',
+        'type' => 'text',
+        'default_value' => 'Título Profesional',
+      ],
+      [
+        'key' => 'field_unw_career_summary_modalities_label',
+        'label' => 'Modalidades',
+        'name' => 'career_summary_modalities_label',
+        'type' => 'text',
+        'default_value' => 'Modalidades',
+      ],
+      [
+        'key' => 'field_unw_career_summary_campus_label',
+        'label' => 'Campus',
+        'name' => 'career_summary_campus_label',
+        'type' => 'text',
+        'default_value' => 'Campus',
+      ],
+    ],
+    'location' => [
+      [
+        [
+          'param' => 'options_page',
+          'operator' => '==',
+          'value' => 'unw-general-settings',
+        ],
+      ],
+    ],
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'active' => true,
+    'description' => 'Etiquetas editables para el resumen de la carrera.',
+  ]);
+
+  acf_add_local_field_group([
+    'key' => 'group_unw_admission_settings',
+    'title' => 'Admisión',
+    'fields' => [
+      [
+        'key' => 'field_unw_admission_accordion',
+        'label' => 'Configuracion Admision',
+        'name' => 'admission_general_accordion',
+        'type' => 'accordion',
+        'open' => 1,
+        'multi_expand' => 0,
+        'endpoint' => 0,
+      ],
+      [
+        'key' => 'field_unw_admission_date',
+        'label' => 'Fecha de admisión',
+        'name' => 'admission_date',
+        'type' => 'date_picker',
+        'display_format' => 'd/m/Y',
+        'return_format' => 'Y-m-d',
+        'first_day' => 1,
+      ],
+      [
+        'key' => 'field_unw_admission_increment_days',
+        'label' => 'Incremento (días)',
+        'name' => 'admission_increment_days',
+        'type' => 'select',
+        'choices' => $increment_choices,
+        'default_value' => 7,
+        'return_format' => 'value',
+      ],
+      [
+        'key' => 'field_unw_admission_update_lead_days',
+        'label' => 'Actualizar (días antes)',
+        'name' => 'admission_update_lead_days',
+        'type' => 'select',
+        'choices' => $lead_choices,
+        'default_value' => 1,
+        'return_format' => 'value',
+      ],
+      [
+        'key' => 'field_unw_admission_auto_update_enabled',
+        'label' => 'Auto-actualizar fecha',
+        'name' => 'admission_auto_update_enabled',
+        'type' => 'true_false',
+        'default_value' => 1,
+      ],
+    ],
+    'location' => [
+      [
+        [
+          'param' => 'options_page',
+          'operator' => '==',
+          'value' => 'unw-general-settings',
+        ],
+      ],
+    ],
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'active' => true,
+  ]);
+
+  acf_add_local_field_group([
+    'key' => 'group_unw_events_settings',
+    'title' => 'Eventos',
+    'fields' => [
+      [
+        'key' => 'field_unw_events_accordion',
+        'label' => 'Configuración de Eventos',
+        'name' => 'events_general_accordion',
+        'type' => 'accordion',
+        'open' => 1,
+        'multi_expand' => 0,
+        'endpoint' => 0,
+      ],
+      [
+        'key' => 'field_unw_events_hide_form',
+        'label' => 'Ocultar formulario de eventos',
+        'name' => 'events_hide_form',
+        'type' => 'true_false',
+        'default_value' => 0,
+        'ui' => 1,
+        'instructions' => 'Activar para ocultar el formulario de contacto en la página de detalle de eventos',
+      ],
+    ],
+    'location' => [
+      [
+        [
+          'param' => 'options_page',
+          'operator' => '==',
+          'value' => 'unw-general-settings',
+        ],
+      ],
+    ],
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'active' => true,
+  ]);
+
+  acf_add_local_field_group([
+    'key' => 'group_unw_careers_settings',
+    'title' => 'Carreras',
+    'fields' => [
+      [
+        'key' => 'field_unw_careers_accordion',
+        'label' => 'Configuración de Carreras',
+        'name' => 'careers_general_accordion',
+        'type' => 'accordion',
+        'open' => 1,
+        'multi_expand' => 0,
+        'endpoint' => 0,
+      ],
+      [
+        'key' => 'field_unw_careers_hide_form',
+        'label' => 'Ocultar formularios de carreras',
+        'name' => 'careers_hide_form',
+        'type' => 'true_false',
+        'default_value' => 0,
+        'ui' => 1,
+        'instructions' => 'Activar para ocultar los formularios en las páginas de listado de carreras (presenciales y a distancia)',
+      ],
+    ],
+    'location' => [
+      [
+        [
+          'param' => 'options_page',
+          'operator' => '==',
+          'value' => 'unw-general-settings',
+        ],
+      ],
+    ],
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'active' => true,
+  ]);
+});

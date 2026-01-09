@@ -48,13 +48,13 @@ if (!empty($slides)):
             <source srcset="<?php echo esc_url($img_desktop_url); ?>" width="1920" height="754"
               media="(min-width: 768px)" />
             <img alt="<?php echo esc_attr($img_mobile_alt); ?>" src="<?php echo esc_url($img_mobile_url); ?>"
-              class="swiper-hero__picture--img" width="768" height="500" decoding="sync" fetchpriority="high"
+              class="swiper-hero__picture--img" width="768" height="0" decoding="sync" fetchpriority="high"
               loading="eager" />
             <?php else: ?>
             <source data-srcset="<?php echo esc_url($img_desktop_url); ?>" width="1920" height="754"
               media="(min-width: 768px)" />
             <img alt="<?php echo esc_attr($img_mobile_alt); ?>" data-src="<?php echo esc_url($img_mobile_url); ?>"
-              class="swiper-hero__picture--img swiper-lazy" width="768" height="500" />
+              class="swiper-hero__picture--img swiper-lazy" width="768" height="0" />
             <div class="swiper-lazy-preloader"></div>
             <?php endif; ?>
           </picture>
@@ -72,13 +72,13 @@ if (!empty($slides)):
           <source srcset="<?php echo esc_url($img_desktop_url); ?>" width="1920" height="754"
             media="(min-width: 768px)" />
           <img alt="<?php echo esc_attr($img_mobile_alt); ?>" src="<?php echo esc_url($img_mobile_url); ?>"
-            class="swiper-hero__picture--img" width="768" height="500" decoding="sync" fetchpriority="high"
+            class="swiper-hero__picture--img" width="768" height="0" decoding="sync" fetchpriority="high"
             loading="eager" />
           <?php else: ?>
           <source data-srcset="<?php echo esc_url($img_desktop_url); ?>" width="1920" height="754"
             media="(min-width: 768px)" />
           <img alt="<?php echo esc_attr($img_mobile_alt); ?>" data-src="<?php echo esc_url($img_mobile_url); ?>"
-            class="swiper-hero__picture--img swiper-lazy" width="768" height="500" />
+            class="swiper-hero__picture--img swiper-lazy" width="768" height="0" />
           <div class="swiper-lazy-preloader"></div>
           <?php endif; ?>
         </picture>

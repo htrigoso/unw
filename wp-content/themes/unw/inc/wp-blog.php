@@ -207,10 +207,23 @@ function ensure_global_post_set() {
         $post = new stdClass();
         $post->ID = 0;
         $post->post_type = 'post';
+        $post->post_author = 0;
+        $post->post_content = '';
+        $post->post_date = '0000-00-00 00:00:00';
+        $post->post_modified = '0000-00-00 00:00:00';
         $post->comment_count = 0;
     }
 }
 add_action('wp', 'ensure_global_post_set');
+
+function blog_featured_image_notice($content, $post_id) {
+    if (get_post_type($post_id) === 'post') {
+        $content .= '<p><em>Recomendación: Sube una imagen de <strong>768 x 432 píxeles</strong></em></p>';
+    }
+
+    return $content;
+}
+add_filter('admin_post_thumbnail_html', 'blog_featured_image_notice', 10, 2);
 
 // Manejar la búsqueda del blog
 function handle_blog_search($wp_query) {

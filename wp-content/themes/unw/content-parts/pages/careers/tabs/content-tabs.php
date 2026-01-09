@@ -7,22 +7,24 @@ $tabs = [];
 $mode = $args['mode'] ?? '';
 
 foreach ($acf_careers as $key => $value) {
+
   if (in_array($key, $excluir, true)) {
     continue;
   }
   if (!isset($value['tab']['label']) || empty($value['tab']['label'])) {
     continue;
   }
+
   $tabs[] = [
     'label'  => $value['tab']['label'],
     'status' => $value['status'],
-    'target' => sanitize_title($value['tab']['label'])
+    'target' => $value['tab']['key']
   ];
 }
  $tabs[] = [
     'label' => 'Internacionalización',
     'status' => true,
-    'target' => 'internacionalizacion'
+     'target' => 'internacionalizacion'
  ];
 ?>
 
@@ -48,6 +50,7 @@ foreach ($acf_careers as $key => $value) {
     get_template_part(COMMON_CONTENT_PATH, 'nav-tabs', [
       'nav_tabs' => $tabs,
     ]);
+
 
     ?>
   </div>

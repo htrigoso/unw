@@ -1,9 +1,10 @@
 <?php
 $input = $args ?? [];
-$id = $input['form_type'] ?? 'none'
+$id = $input['form_type'] ?? 'none';
+$name = $input['name'] ?? 'DecisionBox1';
 ?>
 <div class="form-field-checkbox">
-  <input type="checkbox" name="DecisionBox1" id="checkbox-<?=$id?>" checked required>
+  <input type="checkbox" name="<?php echo esc_attr($name); ?>" id="checkbox-<?=$id?>" checked required>
   <label for="checkbox-<?=$id?>">
     <span class="custom-checkbox"></span>
     <span class="text">

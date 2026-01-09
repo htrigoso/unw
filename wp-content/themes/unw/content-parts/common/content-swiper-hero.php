@@ -5,6 +5,7 @@ $base_breadcrumbs = $args['base_breadcrumbs'] ?? [];
 $extra_class = $args['extra_class'] ?? '';
 $variant = $args['variant'] ?? 'standard';
 $title_sec = $args['title_sec'] ?? '';
+$new_careers = $args['new_careers'] ?? '';
 if (!empty($slides)) :
 
 ?>
@@ -40,7 +41,8 @@ if (!empty($slides)) :
               'breadcrumbs' => $slide_breadcrumbs,
               'type'        => $type,
               'variant'     => $variant,
-              'index'       => $index
+              'index'       => $index,
+              'new_careers' => $new_careers,
             ]);
         ?>
       </div>
