@@ -1,6 +1,7 @@
 import { EXCLUDE_URL_PARAMS, getBaseDomain, getRfc3986SearchFromUrl } from '../utils/url-parse'
 import '../set-public-path'
 import { onDOMReady } from '../utils/dom-ready'
+import { ModalManager } from '../components/Modal'
 
 export default class CriticalPage {
   constructor() {
@@ -12,6 +13,8 @@ export default class CriticalPage {
       this.propagateUrlParamsToInternalLinks()
     }
     this.handleOnSubmitForm()
+
+    new ModalManager()
   }
 
   handleOnSubmitForm() {

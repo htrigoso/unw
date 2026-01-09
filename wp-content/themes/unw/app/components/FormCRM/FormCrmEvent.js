@@ -143,7 +143,7 @@ export default class FormCrmEvent {
             select.setAttribute('name', 'SingleLine3')
 
             updateHiddenInputs([
-              { name: 'SingleLine11', value: 'UNW_a_distancia' }
+              { name: 'SingleLine11', value: 'UNW_Pregrado_Distancia' }
             ], this.element)
             if (value === FORMS.VIRTUAL) {
               if (departaments.length > 0) {
