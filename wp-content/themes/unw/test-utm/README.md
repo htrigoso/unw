@@ -167,3 +167,5 @@ rm -f test/ab_test_*.log
 echo "SELECT COUNT(*) FROM wpunw_utm_unique_temp;" | \
   mysql -u root --socket="/path/to/mysql.sock" local
 ```
+
+test
