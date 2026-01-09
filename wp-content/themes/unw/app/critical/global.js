@@ -14,7 +14,15 @@ export default class CriticalPage {
     }
     this.handleOnSubmitForm()
 
-    new ModalManager()
+    // Solo ejecutar ModalManager en la página de inicio
+    if (this.isHomePage()) {
+      new ModalManager()
+    }
+  }
+
+  isHomePage() {
+    // Verificar si estamos en el home
+    return document.body.classList.contains('home')
   }
 
   handleOnSubmitForm() {
