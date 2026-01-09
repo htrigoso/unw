@@ -121,7 +121,7 @@
 
   <!-- Incubeta Control -->
   <script>
-  window.INCUBETA_ENABLED = 'false';
+  window.INCUBETA_ENABLED = 'true';
   </script>
   <?php get_template_part('content-parts/content', 'fonts'); ?>
   <?php get_template_part('content-parts/content', 'gtm'); ?>
