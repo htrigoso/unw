@@ -8,3 +8,8 @@ body.post-type-page.page-slug-carreras-a-distancia
   .acf-field[data-name="is_mixto"] {
   display: none !important;
 }
+
+/* Ocultar campo is_mixto en detalle de eventos */
+body.post-type-eventos .acf-field[data-name="is_mixto"] {
+  display: none !important;
+}
