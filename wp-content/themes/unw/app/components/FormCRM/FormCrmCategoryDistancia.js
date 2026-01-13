@@ -1,5 +1,15 @@
 import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, updateHiddenFieldCampus, updateHiddenInputs, validateInputs, validatePhone, updateOptionsCareersByFacultad } from './utils'
-
+import {
+  disableSubmitButton,
+  restoreSubmitButton,
+  pushTrackingEvent,
+  validateFormConfiguration,
+  validateFormData,
+  submitFormWithDelay,
+  preventDuplicateSubmit,
+  showFormError
+} from '../../utils/form-submit-handler'
+import { getFormData, handleFormSubmitTracking } from '../../utils/incubeta'
 // ==========================
 // Constantes de formularios
 // ==========================
@@ -25,6 +35,58 @@ export default class FormCrmCategoryDistancia {
     this.handleCarrersChange()
     this.handleDepartamentChange()
     this.handleCampusChange()
+    this.handleFormSubmit()
+  }
+
+  handleFormSubmit() {
+    if (!this.element) return
+
+    this.element.addEventListener('submit', async (event) => {
+      event.preventDefault()
+      event.stopImmediatePropagation()
+
+      // Validar configuración del formulario
+      if (!validateFormConfiguration(this.element)) {
+        return
+      }
+
+      // Prevenir doble envío
+      if (preventDuplicateSubmit(this)) {
+        return
+      }
+
+      // Gestionar estado del botón
+      const { button, originalText } = disableSubmitButton(this.element)
+
+      try {
+        // Obtener y validar datos del formulario
+        const formData = getFormData(this.element)
+
+        if (!validateFormData(formData)) {
+          throw new Error('Datos de formulario inválidos')
+        }
+
+        // Tracking GTM
+        pushTrackingEvent(this.element)
+
+        // Tracking Incubeta
+        await handleFormSubmitTracking(this.element, formData, (dataLayerEvent) => {
+          console.log('✅ DataLayer validado (Incubeta):', dataLayerEvent)
+        })
+
+        // Enviar formulario con delay para GTM
+        await submitFormWithDelay(this.element)
+      } catch (error) {
+        // Restaurar estado del botón
+        restoreSubmitButton(button, originalText)
+
+        // Permitir reintentar
+        this.isSubmitting = false
+
+        // Feedback al usuario
+        showFormError('Ocurrió un error al enviar el formulario. Por favor, intenta nuevamente.', error)
+      }
+    })
   }
 
   removeCustomHiddenDepartament() {

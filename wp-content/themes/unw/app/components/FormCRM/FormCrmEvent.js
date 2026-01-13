@@ -1,7 +1,16 @@
 
 import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenInputs, updateOptionsCareers, validateInputs, showCampusSelect, validatePhone, updateHiddenFieldCampusEvent } from './utils'
 import { handleFormSubmitTracking, getFormData } from '../../utils/incubeta'
-
+import {
+  disableSubmitButton,
+  restoreSubmitButton,
+  pushTrackingEvent,
+  validateFormConfiguration,
+  validateFormData,
+  submitFormWithDelay,
+  preventDuplicateSubmit,
+  showFormError
+} from '../../utils/form-submit-handler'
 // ==========================
 // Constantes de formularios
 // ==========================
@@ -36,28 +45,50 @@ export default class FormCrmEvent {
     if (!this.element) return
 
     this.element.addEventListener('submit', async (event) => {
-      // Prevenir el envío automático y eventos duplicados
       event.preventDefault()
       event.stopImmediatePropagation()
 
-      // Prevenir doble envío
-      if (this.isSubmitting) {
+      // Validar configuración del formulario
+      if (!validateFormConfiguration(this.element)) {
         return
       }
-      this.isSubmitting = true
 
-      const formData = getFormData(this.element)
+      // Prevenir doble envío
+      if (preventDuplicateSubmit(this)) {
+        return
+      }
 
-      // Usar función de Incubeta para tracking
-      await handleFormSubmitTracking(this.element, formData, (dataLayerEvent) => {
-        console.log('✅ DataLayer validado (submit):', dataLayerEvent)
-      })
+      // Gestionar estado del botón
+      const { button, originalText } = disableSubmitButton(this.element)
 
-      // Dar tiempo para que GTM procese el evento (300ms)
-      setTimeout(() => {
-        // Enviar el formulario manualmente
-        this.element.submit()
-      }, 300)
+      try {
+        // Obtener y validar datos del formulario
+        const formData = getFormData(this.element)
+
+        if (!validateFormData(formData)) {
+          throw new Error('Datos de formulario inválidos')
+        }
+
+        // Tracking GTM
+        pushTrackingEvent(this.element)
+
+        // Tracking Incubeta
+        await handleFormSubmitTracking(this.element, formData, (dataLayerEvent) => {
+          console.log('✅ DataLayer validado (Incubeta):', dataLayerEvent)
+        })
+
+        // Enviar formulario con delay para GTM
+        await submitFormWithDelay(this.element)
+      } catch (error) {
+        // Restaurar estado del botón
+        restoreSubmitButton(button, originalText)
+
+        // Permitir reintentar
+        this.isSubmitting = false
+
+        // Feedback al usuario
+        showFormError('Ocurrió un error al enviar el formulario. Por favor, intenta nuevamente.', error)
+      }
     })
   }
 
