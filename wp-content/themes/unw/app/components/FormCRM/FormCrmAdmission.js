@@ -40,14 +40,6 @@ export default class FormCrmAdmission {
     if (!this.element) return
 
     this.element.addEventListener('submit', async (event) => {
-      // Prevenir doble envío
-      if (this.isSubmitting) {
-        event.preventDefault()
-        return
-      }
-
-      this.isSubmitting = true
-
       // Obtener datos del formulario de manera estandarizada
       const formData = getFormData(this.element)
 

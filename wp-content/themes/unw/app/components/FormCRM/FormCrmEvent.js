@@ -15,7 +15,6 @@ export default class FormCrmEvent {
   constructor({ element, container }) {
     this.element = element
     this.formContainer = container
-    this.isSubmitting = false
     this.createListeners()
   }
 
@@ -37,12 +36,14 @@ export default class FormCrmEvent {
     if (!this.element) return
 
     this.element.addEventListener('submit', async (event) => {
+      // Prevenir el envío automático y eventos duplicados
+      event.preventDefault()
+      event.stopImmediatePropagation()
+
       // Prevenir doble envío
       if (this.isSubmitting) {
-        event.preventDefault()
         return
       }
-
       this.isSubmitting = true
 
       const formData = getFormData(this.element)
@@ -51,6 +52,12 @@ export default class FormCrmEvent {
       await handleFormSubmitTracking(this.element, formData, (dataLayerEvent) => {
         console.log('✅ DataLayer validado (submit):', dataLayerEvent)
       })
+
+      // Dar tiempo para que GTM procese el evento (300ms)
+      setTimeout(() => {
+        // Enviar el formulario manualmente
+        this.element.submit()
+      }, 300)
     })
   }
 
