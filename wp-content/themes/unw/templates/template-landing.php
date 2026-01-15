@@ -13,8 +13,11 @@ get_template_part(GENERAL_CONTENT_PATH, 'navbar');
 
 <main>
   <?php if (have_rows('sections')): ?>
-  <?php while (have_rows('sections')): the_row(); ?>
-  <?php
+    <?php
+    get_template_part(LANDING_CONTENT_PATH, 'form');
+    ?>
+    <?php while (have_rows('sections')): the_row(); ?>
+      <?php
       // Detecta el layout actual
       $layout = get_row_layout();
       $data = get_row(true); // Obtener toda la data del repeater actual
@@ -32,6 +35,7 @@ get_template_part(GENERAL_CONTENT_PATH, 'navbar');
         'section-grid-card-v2' => 'grid-card-v2',
         'section-grid-card-v3' => 'grid-card-v3',
         'section-acordeon' => 'acordeon',
+        'section-form' => 'form'
       ];
 
       if (isset($template_map[$layout])) {
@@ -43,7 +47,7 @@ get_template_part(GENERAL_CONTENT_PATH, 'navbar');
         }
       }
       ?>
-  <?php endwhile; ?>
+    <?php endwhile; ?>
   <?php endif; ?>
 </main>
 <?php
