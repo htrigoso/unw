@@ -1,0 +1,22 @@
+.landing-hero {
+  position: relative;
+}
+
+.landing-hero__form__wrapper {
+  position: absolute;
+  display: none;
+  inset: 0;
+  pointer-events: none;
+
+  @include media(">=desktop-s") {
+    display: block;
+  }
+}
+
+.landing-hero__form {
+  width: rem(500);
+  position: absolute;
+  pointer-events: all;
+  right: rem(108);
+  bottom: 0;
+}
