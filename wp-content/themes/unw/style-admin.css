@@ -13,3 +13,14 @@ body.post-type-page.page-slug-carreras-a-distancia
 body.post-type-eventos .acf-field[data-name="is_mixto"] {
   display: none !important;
 }
+
+/* UTMS: ancho fijo para la columna Codigo */
+body.toplevel_page_utms-url-hashes-pauta .wp-list-table .column-code,
+body.toplevel_page_utms-url-hashes-organico .wp-list-table .column-code {
+  width: 120px;
+}
+
+body.toplevel_page_utms-url-hashes-pauta .wp-list-table .column-created_at,
+body.toplevel_page_utms-url-hashes-organico .wp-list-table .column-created_at {
+  width: 155px;
+}

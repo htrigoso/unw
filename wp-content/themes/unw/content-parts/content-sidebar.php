@@ -8,7 +8,7 @@
           $logo_url = wp_get_attachment_image_url($custom_logo_id, 'full');
           echo '<img width="101" height="40" src="' . get_placeholder() . '" data-src="' . esc_url($logo_url) . '" class="lazyload" alt="' . get_bloginfo('name') . '" loading="lazy">';
         } else {
-          echo '<img width="101" height="40" src="' . get_placeholder() . '" data-src="' . get_template_directory_uri() . '/upload/logo-unw.svg" class="lazyload" alt="Logo UNW" loading="lazy">';
+          echo '<img width="101" height="40" src="' . get_placeholder() . '" data-src="' . get_template_directory_uri() . '/upload/unw-logo.svg" class="lazyload" alt="Logo UNW" loading="lazy">';
         }
         ?>
       </a>

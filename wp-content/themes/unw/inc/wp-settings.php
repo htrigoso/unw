@@ -172,7 +172,13 @@ function theme_setting() {
     add_theme_support('title-tag');
 
     // Soporte para logo personalizado sin recorte
-    add_theme_support('custom-logo');
+    add_theme_support('custom-logo', array(
+        'height'               => 40,
+        'width'                => 101,
+        'flex-height'          => true,
+        'flex-width'           => true,
+        'unlink-homepage-logo' => false,
+    ));
 
     register_nav_menus( array(
         'navbar_menu' => __( 'Navbar Menu', 'navbar_menu' ),

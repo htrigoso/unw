@@ -12,7 +12,6 @@ export default class CriticalPage {
     if (window.appConfigUnw?.preserveUrlParams) {
       this.propagateUrlParamsToInternalLinks()
     }
-    this.handleOnSubmitForm()
 
     // Solo ejecutar ModalManager en la página de inicio
     if (this.isHomePage()) {
@@ -23,45 +22,6 @@ export default class CriticalPage {
   isHomePage() {
     // Verificar si estamos en el home
     return document.body.classList.contains('home')
-  }
-
-  handleOnSubmitForm() {
-    document.addEventListener('DOMContentLoaded', () => {
-      const forms = document.querySelectorAll('[data-form="zoho"]')
-      if (!forms.length) return
-
-      forms.forEach((form) => {
-        form.addEventListener('submit', (e) => {
-          // Evitar doble envío
-          console.log('heree', new Date().toISOString())
-
-          if (form.dataset.submitted === 'true') {
-            e.preventDefault()
-            return
-          }
-          form.dataset.submitted = 'true'
-
-          // Botón de envío
-          const button = form.querySelector('#button-send')
-          if (button) {
-            button.disabled = true
-            button.dataset.originalText = button.innerText
-            button.innerText = 'Enviando...'
-          }
-
-          // Push a dataLayer
-          if (window.dataLayer && Array.isArray(window.dataLayer)) {
-            window.dataLayer.push({
-              event: 'gtm.formSubmit',
-              formId: form?.id || null,
-              formType: form?.dataset?.formType || null
-            })
-          } else {
-            console.warn('⚠️ dataLayer no está definido')
-          }
-        })
-      })
-    })
   }
 
   propagateUrlParamsToInternalLinks() {
