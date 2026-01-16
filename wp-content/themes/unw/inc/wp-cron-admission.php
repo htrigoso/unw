@@ -9,10 +9,6 @@ add_action( 'wp', function() {
         return;
     }
 
-    // Solo ejecutar en single de carreras o carreras a distancia
-    if ( ! is_singular( [ 'carreras', 'carreras-a-distancia' ] ) ) {
-        return;
-    }
 
     admission_update_date();
 } );
