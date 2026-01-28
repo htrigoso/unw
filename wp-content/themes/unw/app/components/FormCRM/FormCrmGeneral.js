@@ -48,7 +48,6 @@ export default class FormCrmGeneral {
   handleFormSubmit() {
     if (!this.element) return
 
-    console.log('here=>', this.element)
     this.element.addEventListener('submit', async (event) => {
       event.preventDefault()
       event.stopImmediatePropagation()
