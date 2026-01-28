@@ -48,6 +48,7 @@ export default class FormCrmGeneral {
   handleFormSubmit() {
     if (!this.element) return
 
+    console.log('here=>', this.element)
     this.element.addEventListener('submit', async (event) => {
       event.preventDefault()
       event.stopImmediatePropagation()
@@ -93,7 +94,7 @@ export default class FormCrmGeneral {
         // Feedback al usuario
         showFormError('Ocurrió un error al enviar el formulario. Por favor, intenta nuevamente.', error)
       }
-    })
+    }, { passive: false })
   }
 
   removeCustomHiddenDepartament() {
