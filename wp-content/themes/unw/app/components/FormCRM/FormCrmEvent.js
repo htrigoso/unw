@@ -302,17 +302,24 @@ export default class FormCrmEvent {
     const htmlDegree = this.element.querySelector('[data-html-name="degree"]')
     if (!htmlDegree) return
     const selectDegree = htmlDegree.querySelector('select')
+    const inputText = htmlDegree.querySelector('input[type="number"]')
     if (!selectDegree) return
 
     if (type === 'pregrado') {
       // Hacer el campo requerido y agregar el name
       selectDegree.setAttribute('required', 'required')
       selectDegree.setAttribute('name', 'Dropdown2')
+
+      inputText.setAttribute('required', 'required')
+      inputText.setAttribute('name', 'Number')
+
       htmlDegree.style.display = ''
     } else if (type === 'virtual' || type === 'work') {
       // Quitar el campo requerido y el name, ocultar el campo
       selectDegree.removeAttribute('required')
       selectDegree.removeAttribute('name')
+      inputText.removeAttribute('required')
+      inputText.removeAttribute('name')
       htmlDegree.style.display = 'none'
     }
   }

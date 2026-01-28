@@ -45,10 +45,7 @@ $admission_items = $admission_info['process'] ?? [];
         <div class="admission__header-ad__title">
           <span>Admisión</span>
         </div>
-        <div class="admission__header-ad__date">
-          <span class="admission__header-ad__date--day"><?php echo esc_html($day); ?></span>
-          <span class="admission__header-ad__date--month"><?php echo esc_html($month_label); ?></span>
-        </div>
+        <?php echo do_shortcode('[fecha_admision]');?>
       </div>
       <?php endif; ?>
     </header>

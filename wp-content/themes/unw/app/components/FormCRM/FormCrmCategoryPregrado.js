@@ -19,6 +19,9 @@ const FORM_GENERAL_PRESENCIAL =
 const FORM_GENERAL_VIRTUAL =
   'https://forms.zohopublic.com/adminzoho11/form/WebFacultadesVirtual/formperma/XZxvtW2GuLFc2zHw6RV9IKsDHhw5fMTH_275g92vXQM/htmlRecords/submit'
 
+const FORM_GENERAL_VIRTUAL_BASE =
+  'https://forms.zohopublic.com/adminzoho11/form/WebBaseVirtual/formperma/r6dyucr2_RC_mCaLCNhmhvEHn820MmGvdkHztewDq58/htmlRecords/submit'
+
 export default class FormCrmCategoryPregrado {
   constructor({ element, container }) {
     this.element = element
@@ -110,6 +113,7 @@ export default class FormCrmCategoryPregrado {
     const departaments = window.appConfigUnw.departaments || []
     const careers = window.appConfigUnw.careers || []
     const facultadName = this.element.dataset.facultadName || ''
+    const isCarrerasUwiener = this.element.dataset.isCarrerasUwiener || false
 
     radios.forEach(radio => {
       radio.addEventListener('change', () => {
@@ -147,7 +151,9 @@ export default class FormCrmCategoryPregrado {
 
           case FORMS.WORK:
           case FORMS.VIRTUAL:
-            this.element.action = FORM_GENERAL_VIRTUAL
+            console.log('isCarrerasUwiener=>', isCarrerasUwiener)
+
+            this.element.action = isCarrerasUwiener ? FORM_GENERAL_VIRTUAL_BASE : FORM_GENERAL_VIRTUAL
 
             if (value === FORMS.WORK) {
               removeNameAttributeCampus({ element: this.element })
@@ -156,7 +162,7 @@ export default class FormCrmCategoryPregrado {
 
             resetCustomHidden({ element: this.element })
             hideCampusSelect({ value, element: this.element })
-            this.element.action = FORM_GENERAL_VIRTUAL
+
             setClaseName('f-50', this.element)
             select.setAttribute('name', 'SingleLine5')
 

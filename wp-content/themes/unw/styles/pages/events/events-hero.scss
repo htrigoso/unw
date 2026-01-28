@@ -13,14 +13,9 @@
   width: 100%;
   object-fit: cover;
   object-position: center;
-  aspect-ratio: 10/9;
-  max-height: rem(500);
 
   @include media(">=tablet") {
     min-height: var(--full-hero-min-height);
-    height: var(--full-hero-height);
-    max-height: var(--full-hero-max-height);
-    aspect-ratio: var(--full-hero-aspect-ratio);
   }
 }
 

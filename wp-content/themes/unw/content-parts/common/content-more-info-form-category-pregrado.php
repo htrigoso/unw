@@ -34,13 +34,15 @@ $vertical_modality = $args['vertical_modality'] ?? false;
 $position_form = $args['position_form'] ?? '';
 $facultad_name = $args['facultad_name'] ?? '';
 $is_form_mixto = $args['is_form_mixto'] ?? false;
+$is_carreras_uwiener = $args['is_carreras_uwiener'] ?? false;
 ?>
 
 <form id="<?= esc_attr($form_id) ?>" data-form="zoho" name="<?= esc_attr($form_id) ?>"
   data-mixto="<?=esc_attr(trim($is_form_mixto))?>"
   class="more-form newformfloat<?= $shadow_box ? ' more-form__shadow-box' : '' ?><?= $responsive ? ' more-form__responsive' : '' ?>"
   method="POST" accept-charset="UTF-8" enctype="multipart/form-data" action="<?= esc_attr($form_action) ?>"
-  data-position-form="<?= esc_attr($position_form) ?>" data-facultad-name="<?= esc_attr($facultad_name) ?>">
+  data-position-form="<?= esc_attr($position_form) ?>" data-facultad-name="<?= esc_attr($facultad_name) ?>"
+  data-is-carreras-uwiener="<?= esc_attr($is_carreras_uwiener)  ?>">
 
   <div class="form-header more-form__header">
     <i>

@@ -4,7 +4,7 @@
       <h1 class="header--title"><?php the_title(); ?></h1>
       <div class="header__meta">
         <span
-          class="header__meta--date"><?php echo get_the_date('j') . ' de ' . ucfirst(get_the_date('F')) . ' de ' . get_the_date('Y'); ?></span>
+          class="header__meta--date"><?php echo get_the_date('j') . ' de ' . get_the_date('F') . ' de ' . get_the_date('Y'); ?></span>
         <div class="header__meta--breadcrumbs">
           <?php
           get_template_part(COMMON_CONTENT_PATH, 'breadcrumb', [

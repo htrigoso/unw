@@ -18,7 +18,8 @@ $current_post_type = get_post_type();
        if(is_page('carreras-uwiener') || $current_post_type == 'carreras') {
            get_template_part(ALL_CAREERS_FORMS_PATH, 'category-form-pregrado', [
             'vertical_modality' => true,
-            'position_form' => 'desktop'
+            'position_form' => 'desktop',
+            'is_carreras_uwiener' => is_page('carreras-uwiener') ? true : false,
           ]);
        }
 

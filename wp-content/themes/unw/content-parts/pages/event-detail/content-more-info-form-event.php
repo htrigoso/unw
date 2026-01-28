@@ -157,8 +157,8 @@ $event_id = $args['event_id'] ?? '';
           ]); ?>
         </div>
       </div>
-      <div class="flex" data-html-name="degree">
-        <div class="f-100">
+      <div class="flex justify-between" data-html-name="degree">
+        <div class="f-50">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'select', [
             'name' => 'Dropdown2',
             'label' => 'Grado de estudios (*)',
@@ -168,6 +168,13 @@ $event_id = $args['event_id'] ?? '';
               'Ya terminé el colegio',
             ],
           ]); ?>
+        </div>
+        <div class="f-50">
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
+              'name' => 'Number',
+              'label' => 'Año de egreso (*)',
+              'type' => 'number',
+            ]); ?>
         </div>
       </div>
     </div>
