@@ -47,14 +47,15 @@
         </div>
       </article>
 
-      <?php 
+      <?php
       $hide_event_form = get_field('events_hide_form', 'options');
-      if (!$hide_event_form) : 
+      if (!$hide_event_form) :
       ?>
       <article class="event-detail__form">
         <?php
         $utms_default = get_field('list_utms', 'option');
         $form_crm_categories = get_field('componente_form_category');
+        $is_form_mixto = $form_crm_categories['is_mixto'];
         $utm_admission = $form_crm_categories['list_utms'] ?? [];
         $utms_final = merge_utms($utms_default, $utm_admission);
 
@@ -86,6 +87,7 @@
           'vertical_modality' => $vertical_modality,
           'position_form'=> 'event-detail',
           'event_id'=> $event_info['event_id'] ?? '',
+          'is_form_mixto' => $is_form_mixto,
         ]);
       ?>
       </article>

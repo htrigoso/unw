@@ -168,7 +168,7 @@ export default class FormCrmCategoryPregrado {
 
             updateHiddenInputs([
               { name: 'SingleLine1', value: 'UNW_Pregrado_Distancia' },
-              { name: 'SingleLine2', value: 'Web Facultades – Virtual' }
+              { name: 'SingleLine2', value: 'Web Base - Virtual' }
             ], this.element)
             if (value === FORMS.VIRTUAL) {
               if (departaments.length > 0) {

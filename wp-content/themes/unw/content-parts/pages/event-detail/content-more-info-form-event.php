@@ -33,9 +33,11 @@ $responsive = $args['responsive'] ?? false;
 $vertical_modality = $args['vertical_modality'] ?? false;
 $position_form = $args['position_form'] ?? '';
 $event_id = $args['event_id'] ?? '';
+$is_form_mixto = $args['is_form_mixto'] ?? false;
 ?>
 
 <form id="<?= esc_attr($form_id) ?>" data-form="zoho" name="<?= esc_attr($form_id) ?>"
+  data-mixto="<?=esc_attr(trim($is_form_mixto))?>"
   class="more-form newformfloat<?= $shadow_box ? ' more-form__shadow-box' : '' ?><?= $responsive ? ' more-form__responsive' : '' ?>"
   method="POST" accept-charset="UTF-8" enctype="multipart/form-data" action="<?= esc_attr($form_action) ?>"
   data-position-form="<?= esc_attr($position_form) ?>">
@@ -71,10 +73,12 @@ $event_id = $args['event_id'] ?? '';
 
   <div class="form-body more-form-body">
     <div class="form-body__fields">
+
       <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'radio', [
         'direction'    =>  'flex-col',
         'location'     => $location,
         'form_type'   => $position_form,
+        'deactivate'=> !$is_form_mixto
       ]); ?>
 
 
@@ -85,7 +89,7 @@ $event_id = $args['event_id'] ?? '';
             'label' => 'Nombres (*)',
             'type' => 'text',
             'max_length' => 30,
-            'skip_auto_validation' => true
+
           ]); ?>
         </div>
         <div class="f-50">
@@ -93,7 +97,9 @@ $event_id = $args['event_id'] ?? '';
             'name' => 'SingleLine1',
             'label' => 'Apellidos (*)',
             'type' => 'text',
-            'max_length' => 60
+            'max_length' => 60,
+
+
           ]); ?>
         </div>
       </div>
@@ -169,11 +175,12 @@ $event_id = $args['event_id'] ?? '';
             ],
           ]); ?>
         </div>
-        <div class="f-50">
+        <div class="f-50" id="more-form-body__row-grado-egreso" style="display: none;">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'input', [
               'name' => 'Number',
               'label' => 'Año de egreso (*)',
               'type' => 'number',
+              'required' => false,
             ]); ?>
         </div>
       </div>
