@@ -133,6 +133,7 @@ export default class FormCrmCareer {
             buildOptionsCampusCareers({ campus, element: this.element })
 
             this.setCodeTypeCareer(codePre)
+            this.swapHiddenFields(FORMS.PREGRADO) // Invertir campos para presencial
             break
 
           case FORMS.VIRTUAL:
@@ -148,6 +149,7 @@ export default class FormCrmCareer {
               removeSelectCampus(this.element)
             }
             this.setCodeTypeCareer(codeVir)
+            this.swapHiddenFields(FORMS.VIRTUAL) // Mantener orden normal para virtual
             break
           case FORMS.WORK:
             this.element.action = FORM_CARRIERS_VIRTUAL
@@ -155,6 +157,7 @@ export default class FormCrmCareer {
             setClaseName('f-100', this.element)
             removeSelectDepartament(this.element)
             this.setCodeTypeCareer(codeVir)
+            this.swapHiddenFields(FORMS.WORK) // Mantener orden normal para work
             break
 
           default:
@@ -163,6 +166,34 @@ export default class FormCrmCareer {
         }
       })
     })
+  }
+
+  swapHiddenFields(type) {
+    const form = this.element
+    console.log('here')
+
+    if (!form) return
+
+    const hiddenContainerVirtual = form.querySelector('.custom-hidden-virtual')
+
+    if (!hiddenContainerVirtual) {
+      return
+    }
+    const term = form.dataset.term || ''
+    const pageTitle = form.dataset.pageTitle || ''
+
+    if (type === FORMS.PREGRADO) {
+      hiddenContainerVirtual.innerHTML = `
+        <input type="hidden" id="field-page-title" name="SingleLine5" value="${pageTitle}">
+        <input type="hidden" id="field-term" name="SingleLine3" value="${term}">
+      `
+    }
+    if (type === FORMS.VIRTUAL || type === FORMS.WORK) {
+      hiddenContainerVirtual.innerHTML = `
+        <input type="hidden" id="field-page-title" name="SingleLine5" value="${term}">
+        <input type="hidden" id="field-term" name="SingleLine3" value="${pageTitle}">
+      `
+    }
   }
 
   setCodeTypeCareer(value) {
