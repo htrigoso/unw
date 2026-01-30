@@ -73,9 +73,10 @@
   <input type="hidden" name="Dropdown2" value=""> <!-- Grado -->
   <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
 
-  <input type="hidden" name="SingleLine3" value="<?=esc_attr($term)?>"><!-- Facultad -->
+  <input type="hidden" name="SingleLine3" value="<?=esc_attr($page_title)?>">
+  <input type="hidden" name="SingleLine5" value="<?=esc_attr($term)?>">
+
   <input type="hidden" name="SingleLine4" value="<?=esc_attr($code_carrier_pre)?>"> <!-- Codigo por carrera acf -->
-  <input type="hidden" name="SingleLine5" value="<?=esc_attr($page_title)?>">
   <input type="hidden" name="Website" value="<?=get_current_page_url()?>"> <!-- Url de Trakeo -->
   <!-- ////Campos vacios -->
 
