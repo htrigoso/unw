@@ -1,0 +1,33 @@
+.cookies-banner {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.cookies-banner__wrapper {
+  padding-top: rem(16);
+  padding-bottom: rem(16);
+
+  @include media(">=phone") {
+    padding-top: rem(24);
+    padding-bottom: rem(24);
+    text-align: center;
+  }
+
+  @include media(">=tablet") {
+    padding-top: rem(32);
+    padding-bottom: rem(32);
+  }
+}
+
+.cookies-banner__title {
+  @include title-18;
+  margin-bottom: rem(16);
+}
+
+.cookies-banner__btn {
+  margin-top: rem(16);
+  min-width: rem(120);
+}
