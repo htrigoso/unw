@@ -232,10 +232,12 @@ export function sanitizeForInput(str) {
 }
 
 export function createSelectCampus(element, name = 'SingleLine7') {
-  const campus = window.appConfigUnw.campus || []
+  // const campus = window.appConfigUnw.campus || []
+  const campus = JSON.parse(element.dataset.campus || '[]')
   if (campus.length === 0) return
 
   const containerHtml = element.querySelector('[data-html-name="campus"]')
+
   if (!containerHtml) return
 
   const wrapperDiv = buildSelectWrapper({
@@ -245,8 +247,8 @@ export function createSelectCampus(element, name = 'SingleLine7') {
     options: campus
   })
 
-  // Si existe reemplaza, sino agrega
   const existing = containerHtml.querySelector('.f-50')
+
   existing ? existing.replaceWith(wrapperDiv) : containerHtml.appendChild(wrapperDiv)
 }
 

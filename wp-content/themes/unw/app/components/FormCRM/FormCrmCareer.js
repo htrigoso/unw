@@ -108,7 +108,7 @@ export default class FormCrmCareer {
 
   handleFormMixtoChange() {
     const radios = this.element.querySelectorAll('input[name="form_mixto"]')
-    const campus = window.appConfigUnw.campus || []
+    const campus = JSON.parse(this.element.dataset.campus || '[]')
     const isMixto = JSON.parse(this.element.dataset.mixto || 0)
     const codePre = this.element.dataset.codePre || ''
     const codeVir = this.element.dataset.codeVir || ''
@@ -134,6 +134,7 @@ export default class FormCrmCareer {
 
             this.setCodeTypeCareer(codePre)
             this.swapHiddenFields(FORMS.PREGRADO) // Invertir campos para presencial
+            this.removeCustomHiddenCampus()
             break
 
           case FORMS.VIRTUAL:
@@ -145,11 +146,11 @@ export default class FormCrmCareer {
               element: this.element
             })
 
-            if (isMixto && campus.length > 0) {
-              removeSelectCampus(this.element)
-            }
+            removeSelectCampus(this.element)
+
             this.setCodeTypeCareer(codeVir)
             this.swapHiddenFields(FORMS.VIRTUAL) // Mantener orden normal para virtual
+            this.removeCustomHiddenCampus()
             break
           case FORMS.WORK:
             this.element.action = FORM_CARRIERS_VIRTUAL
@@ -158,6 +159,7 @@ export default class FormCrmCareer {
             removeSelectDepartament(this.element)
             this.setCodeTypeCareer(codeVir)
             this.swapHiddenFields(FORMS.WORK) // Mantener orden normal para work
+            this.removeCustomHiddenCampus()
             break
 
           default:
@@ -170,7 +172,6 @@ export default class FormCrmCareer {
 
   swapHiddenFields(type) {
     const form = this.element
-    console.log('here')
 
     if (!form) return
 
@@ -245,5 +246,12 @@ export default class FormCrmCareer {
             <input type="hidden" name="SingleLine7" value="${text}">`
       }
     })
+  }
+
+  removeCustomHiddenCampus() {
+    const hiddenCampus = this.element.querySelector('.custom-hidden-campus')
+    if (hiddenCampus) {
+      hiddenCampus.innerHTML = ''
+    }
   }
 }
