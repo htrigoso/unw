@@ -2,6 +2,9 @@ import { EXCLUDE_URL_PARAMS, getBaseDomain, getRfc3986SearchFromUrl } from '../u
 import '../set-public-path'
 import { onDOMReady } from '../utils/dom-ready'
 import { ModalManager } from '../components/Modal'
+import { initCookieBanner } from './cookies-manager'
+
+import { UserActivityDetector } from '../utils/detect-user-activity'
 
 export default class CriticalPage {
   constructor() {
@@ -17,6 +20,15 @@ export default class CriticalPage {
     if (this.isHomePage()) {
       new ModalManager()
     }
+
+    initCookieBanner()
+
+    new UserActivityDetector(() => {
+      const modal = document.getElementById('cookieModal')
+      if (modal) {
+        modal.classList.add('is-active')
+      }
+    })
   }
 
   isHomePage() {

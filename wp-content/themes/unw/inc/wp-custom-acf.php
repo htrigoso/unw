@@ -1,4 +1,78 @@
-<?php
+  <?php
+  // Banner de Cookies
+  acf_add_local_field_group([
+    'key' => 'group_unw_cookies_banner',
+    'title' => 'Banner de Cookies',
+    'fields' => [
+      [
+        'key' => 'field_unw_cookies_banner_group',
+        'label' => 'Configuración Banner de Cookies',
+        'name' => 'cookies_banner',
+        'type' => 'group',
+        'layout' => 'block',
+        'sub_fields' => [
+          [
+            'key' => 'field_unw_cookies_banner_accordion',
+            'label' => 'Configuración Banner de Cookies',
+            'name' => 'accordion',
+            'type' => 'accordion',
+            'open' => 1,
+            'multi_expand' => 0,
+            'endpoint' => 0,
+          ],
+          [
+            'key' => 'field_unw_cookies_banner_show',
+            'label' => 'Mostrar banner de cookies',
+            'name' => 'show',
+            'type' => 'true_false',
+            'ui' => 1,
+            'default_value' => 1,
+            'instructions' => 'Activa para mostrar el banner de cookies en el sitio.',
+          ],
+          [
+            'key' => 'field_unw_cookies_banner_title',
+            'label' => 'Título',
+            'name' => 'title',
+            'type' => 'text',
+            'default_value' => 'Uso de cookies',
+          ],
+          [
+            'key' => 'field_unw_cookies_banner_description',
+            'label' => 'Descripción',
+            'name' => 'description',
+            'type' => 'wysiwyg',
+            'default_value' => 'Esta Web utiliza cookies propias y de terceros para su funcionamiento, para analizar tus hábitos de navegación y para servir publicidad personalizada. Asimismo, algunas <a href="#">cookies</a> guardan relación con funcionalidades ofrecidas en la Web.',
+            'tabs' => 'all',
+            'toolbar' => 'basic',
+            'media_upload' => 0,
+          ],
+          [
+            'key' => 'field_unw_cookies_banner_btn_text',
+            'label' => 'Texto del botón',
+            'name' => 'button_text',
+            'type' => 'text',
+            'default_value' => 'Aceptar',
+          ],
+        ],
+      ],
+    ],
+    'location' => [
+      [
+        [
+          'param' => 'options_page',
+          'operator' => '==',
+          'value' => 'unw-general-settings',
+        ],
+      ],
+    ],
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'active' => true,
+    'description' => 'Configura el contenido del banner de cookies.',
+  ]);
+
 add_action('acf/init', function() {
   if( function_exists('acf_register_block_type') ) {
 
@@ -106,7 +180,7 @@ add_action('acf/input/admin_head', function() {
 
     if (isset($post) && $post->post_type === 'novedades') {
         ?>
-<style>
+  <style>
 /* Oculta el acordeón con name="contenido" */
 [data-name="contenido"] {
   display: none !important;
@@ -116,8 +190,8 @@ add_action('acf/input/admin_head', function() {
 [data-name="content"] {
   display: none !important;
 }
-</style>
-<?php
+  </style>
+  <?php
     }
 });
 
