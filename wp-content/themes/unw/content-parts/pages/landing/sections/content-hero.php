@@ -52,6 +52,8 @@ $component_args = [
       get_template_part(COMMON_CONTENT_PATH, 'more-info-form', [
         'shadow_box' => true,
         'vertical_modality' => true,
+        'form_id'=>'form-general-desktop',
+        'form_type'=> 'form-general-desktop',
       ]);
       ?>
     </div>

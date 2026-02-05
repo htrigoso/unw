@@ -23,6 +23,7 @@ const FORM_GENERAL_VIRTUAL =
 export default class FormCrmGeneral {
   constructor({ element, container }) {
     this.element = element
+
     this.formContainer = container
     this.isSubmitting = false
     this.createListeners()
@@ -214,7 +215,7 @@ export default class FormCrmGeneral {
   }
 
   updateHiddenFields({ select, hiddenContainer }) {
-    const checked = document.querySelector('input[name="form_mixto"]:checked')
+    const checked = this.element.querySelector('input[name="form_mixto"]:checked')
     const selectedOption = select.options[select.selectedIndex]
     const parentOptgroup = selectedOption.parentElement
 
@@ -230,16 +231,14 @@ export default class FormCrmGeneral {
   }
 
   handleCarrersChange() {
-    const form = document.querySelector(`${this.formContainer} `)
-    if (!form) return
-    const select = document.getElementById('careerSelect')
-
+    const select = this.element.querySelector('#careerSelect')
+    if (!select) return
     const campus = window.appConfigUnw.campus || []
 
-    const hiddenContainer = form.querySelector('.custom-hidden')
+    const hiddenContainer = this.element.querySelector('.custom-hidden')
 
     const boundUpdate = () => {
-      const checked = document.querySelector('input[name="form_mixto"]:checked')
+      const checked = this.element.querySelector('input[name="form_mixto"]:checked')
       const selectedOption = select.options[select.selectedIndex]
 
       if (!selectedOption) return
@@ -257,7 +256,7 @@ export default class FormCrmGeneral {
     }
 
     select.addEventListener('change', boundUpdate)
-    document
+    this.element
       .querySelectorAll('input[name="form_mixto"]')
       .forEach(radio => radio.addEventListener('change', boundUpdate))
 

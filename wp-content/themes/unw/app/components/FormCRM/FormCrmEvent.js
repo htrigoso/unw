@@ -224,24 +224,25 @@ export default class FormCrmEvent {
   }
 
   updateHiddenFields({ select, hiddenContainer }) {
-    const checked = document.querySelector('input[name="form_mixto"]:checked')
     const selectedOption = select.options[select.selectedIndex]
     const parentOptgroup = selectedOption.parentElement
-
+    //    <input type="hidden"  id="radio-type"  name="Radio" value="Presencial">
+    const type = document.querySelector('#radio-type')?.value || ''
     if (parentOptgroup.tagName !== 'OPTGROUP') return
 
     const html = this.buildHiddenInputs({
       facultyName: parentOptgroup.label,
       careerName: selectedOption.textContent.trim(),
-      type: checked.value
+      type: type === 'Presencial' ? FORMS.PREGRADO : FORMS.VIRTUAL
     })
 
     hiddenContainer.innerHTML = html
   }
 
   handleCarrersChange() {
-    const form = document.querySelector(`${this.formContainer} `)
+    const form = document.querySelector(`${this.formContainer}`)
     if (!form) return
+
     const select = document.getElementById('careerSelect')
 
     const campus = window.appConfigUnw.campus || []
@@ -249,7 +250,6 @@ export default class FormCrmEvent {
     const hiddenContainer = form.querySelector('.custom-hidden')
 
     const boundUpdate = () => {
-      const checked = document.querySelector('input[name="form_mixto"]:checked')
       const selectedOption = select.options[select.selectedIndex]
 
       if (!selectedOption) return
@@ -257,13 +257,11 @@ export default class FormCrmEvent {
       const parentOptgroup = selectedOption.parentElement
       if (!parentOptgroup || parentOptgroup.tagName !== 'OPTGROUP') return
 
-      if (checked) {
-        this.updateHiddenFields({ select, hiddenContainer })
-        const slugCareers = selectedOption.dataset.key
-        const modalidad = selectedOption.dataset.mode
+      this.updateHiddenFields({ select, hiddenContainer })
+      const slugCareers = selectedOption.dataset.key
+      const modalidad = selectedOption.dataset.mode
 
-        buildOptionsCampus({ campus, slugCareers, modalidad, element: this.element })
-      }
+      buildOptionsCampus({ campus, slugCareers, modalidad, element: this.element })
     }
 
     select.addEventListener('change', boundUpdate)
@@ -301,7 +299,8 @@ export default class FormCrmEvent {
         const customDepartament = this.element.querySelector('.custom-hidden-departament')
 
         if (customDepartament) {
-          customDepartament.innerHTML = `<input type="hidden" name="SingleLine8" value="${text}">`
+          console.log('mela', text)
+          customDepartament.innerHTML = `<input type="hidden" name="SingleLine9" value="${text}">`
         }
       }
     })

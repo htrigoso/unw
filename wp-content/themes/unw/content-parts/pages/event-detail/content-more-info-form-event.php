@@ -34,6 +34,8 @@ $vertical_modality = $args['vertical_modality'] ?? false;
 $position_form = $args['position_form'] ?? '';
 $event_id = $args['event_id'] ?? '';
 $is_form_mixto = $args['is_form_mixto'] ?? false;
+$type_event = $args['type_event'] ?? '';
+
 ?>
 
 <form id="<?= esc_attr($form_id) ?>" data-form="zoho" name="<?= esc_attr($form_id) ?>"
@@ -61,25 +63,22 @@ $is_form_mixto = $args['is_form_mixto'] ?? false;
   <input type="hidden" name="Dropdown4" value="Perú (+51)">
   <input type="hidden" name="Dropdown3" value="DNI">
 
-  <input type="hidden" name="SingleLine11" value="UNW_Pregrado"> <!-- Unidad de negocio -->
-
+  <?php if($type_event === 'Presencial'): ?>
+  <input type="hidden" name="SingleLine11" value="UNW_Pregrado">
+  <input type="hidden" id="radio-type" name="Radio" value="Presencial">
+  <?php else: ?>
+  <input type="hidden" name="SingleLine11" value="UNW_Pregrado_Distancia">
+  <input type="hidden" id="radio-type" name="Radio" value="Carreras gente que trabaja">
+  <?php endif; ?>
 
   <input type="hidden" name="Dropdown6" value="Activo"> <!-- Estado de período -->
   <input type="hidden" name="Website" value="<?= get_current_page_url() ?>">
   <input type="hidden" name="Dropdown7" value="Evento"> <!-- Comentarios -->
   <input type="hidden" name="SingleLine10" value="<?= esc_attr($event_id) ?>"> <!-- Comentarios -->
-  <input type="hidden" name="Radio" id="hidden-radio-modalidad" value=""> <!-- Modalidad dinámica -->
 
 
   <div class="form-body more-form-body">
     <div class="form-body__fields">
-
-      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'radio', [
-        'direction'    =>  'flex-col',
-        'location'     => $location,
-        'form_type'   => $position_form,
-        'deactivate'=> !$is_form_mixto
-      ]); ?>
 
 
       <div class="flex justify-between m-b-24 more-form-body__row">
@@ -89,7 +88,7 @@ $is_form_mixto = $args['is_form_mixto'] ?? false;
             'label' => 'Nombres (*)',
             'type' => 'text',
             'max_length' => 30,
-
+            'only_text' => true,
           ]); ?>
         </div>
         <div class="f-50">
@@ -98,8 +97,6 @@ $is_form_mixto = $args['is_form_mixto'] ?? false;
             'label' => 'Apellidos (*)',
             'type' => 'text',
             'max_length' => 60,
-
-
           ]); ?>
         </div>
       </div>
@@ -149,12 +146,15 @@ $is_form_mixto = $args['is_form_mixto'] ?? false;
 
       <div class="flex justify-between more-form-body__row m-b-24" data-html-name="departament">
         <div class="f-50">
-          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'careers', [
+          <?php
+            $type = $type_event === 'Presencial' ? 'pregrado' : 'virtual';
+            get_template_part(GENERAL_FORM_CONTACT_PATH, 'careers', [
             'name' => 'SingleLine3',
             'label' => 'Elige tu carrera (*)',
-            'careers' => $careers['pregrado'] ?? [],
+            'careers' => $careers[$type] ?? [],
           ]); ?>
         </div>
+        <?php if($type_event === 'Presencial'): ?>
         <div class="f-50" data-html-name="campus">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'campus', [
             'name' => 'SingleLine7',
@@ -162,7 +162,18 @@ $is_form_mixto = $args['is_form_mixto'] ?? false;
             'careers' => [],
           ]); ?>
         </div>
+        <?php else: ?>
+        <div class="f-50">
+          <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'departaments', [
+            'name' => 'SingleLine8',
+            'id' => 'departament',
+            'label' => 'Departamento de procedencia (*)',
+            'options' => $list_departaments,
+          ]); ?>
+        </div>
+        <?php endif; ?>
       </div>
+      <?php if($type_event === 'Presencial'): ?>
       <div class="flex justify-between" data-html-name="degree">
         <div class="f-50">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'select', [
@@ -184,6 +195,7 @@ $is_form_mixto = $args['is_form_mixto'] ?? false;
             ]); ?>
         </div>
       </div>
+      <?php endif; ?>
     </div>
 
     <p class="form-body__hint">

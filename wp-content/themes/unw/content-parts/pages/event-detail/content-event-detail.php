@@ -1,6 +1,16 @@
 <?php
   $event = get_field('event_content');
   $event_info = get_field('event_info');
+  $conf_event = $event_info['conf_event'] ?? '';
+  $type_event = $conf_event['type'] ?? '';
+  $code_event= '';
+
+  if($type_event === 'Presencial'){
+     $code_event = $conf_event['code_event_presencial'];
+  }else {
+    $code_event = $conf_event['code_event_virtual'];
+  }
+
 ?>
 <?php if(!empty($event)): ?>
 <div class="event-detail">
@@ -86,8 +96,9 @@
           'shadow_box' => true,
           'vertical_modality' => $vertical_modality,
           'position_form'=> 'event-detail',
-          'event_id'=> $event_info['event_id'] ?? '',
+          'event_id'=> $code_event ?? '',
           'is_form_mixto' => $is_form_mixto,
+          'type_event'=> $type_event,
         ]);
       ?>
       </article>

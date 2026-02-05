@@ -9,6 +9,7 @@ $label  = $input['label'] ?? '';
 $length = $input['max_length'] ?? '';
 // Por defecto requerido
 $req = array_key_exists('required', $input) ? (bool) $input['required'] : true;
+$only_text = $input['only_text'] ?? false;
 
 $extra_attrs = '';
 $maxlength   = '';
@@ -19,7 +20,9 @@ $maxlength   = '';
 
 // Validaciones especiales
 if (($input['name'] === 'SingleLine') ) {
-    $extra_attrs .= ' inputmode="numeric" pattern="\d{8}" maxlength="8"';
+  if(!$only_text){
+      $extra_attrs .= ' inputmode="numeric" pattern="\d{8}" maxlength="8"';
+  }
 }
 if ($input['name'] === 'PhoneNumber_countrycode' || $input['name'] === 'PhoneNumber') {
     $extra_attrs .= ' inputmode="numeric" pattern="\d{9}" maxlength="9"';
@@ -28,8 +31,6 @@ if ($input['name'] === 'Email') {
     // Forzamos type email y un regex estricto
     $type = 'email';
     $extra_attrs .= ' pattern="^[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\.[a-zA-Z]{2,}$"';
-
-
 }
 
 // Si pasas un length dinámico en $args
