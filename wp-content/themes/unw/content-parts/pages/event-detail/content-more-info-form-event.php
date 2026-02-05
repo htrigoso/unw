@@ -111,7 +111,8 @@ $type_event = $args['type_event'] ?? '';
               'name' => 'SingleLine2',
               'label'    => $title,
               'type' => 'tel',
-              'required' => $validation_dni['required'] ?? false
+              'required' => $validation_dni['required'] ?? false,
+              'is_dni' => true,
             ]); ?>
         </div>
         <?php } else { ?>

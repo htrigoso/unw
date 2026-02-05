@@ -11,6 +11,8 @@ $length = $input['max_length'] ?? '';
 $req = array_key_exists('required', $input) ? (bool) $input['required'] : true;
 $only_text = $input['only_text'] ?? false;
 
+$is_dni = $input['is_dni'] ?? false;
+
 $extra_attrs = '';
 $maxlength   = '';
 
@@ -24,6 +26,8 @@ if (($input['name'] === 'SingleLine') ) {
       $extra_attrs .= ' inputmode="numeric" pattern="\d{8}" maxlength="8"';
   }
 }
+
+
 if ($input['name'] === 'PhoneNumber_countrycode' || $input['name'] === 'PhoneNumber') {
     $extra_attrs .= ' inputmode="numeric" pattern="\d{9}" maxlength="9"';
 }
@@ -36,6 +40,9 @@ if ($input['name'] === 'Email') {
 // Si pasas un length dinámico en $args
 if ($length) {
     $maxlength = ' maxlength="' . intval($length) . '"';
+}
+if($is_dni){
+  $extra_attrs .= ' inputmode="numeric" pattern="\d{8}" maxlength="8"';
 }
 ?>
 <div class="form-field">
