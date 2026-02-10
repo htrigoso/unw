@@ -35,7 +35,7 @@ $note = get_field('note');
     get_template_part('content-parts/components/info-cover');
     ?>
 
-    <div class="main_page">
+    <div class="main_page">sa
       <div class="page_interna">
         <div class="section_container nopaddingbotttom">
           <div class="container auto">
