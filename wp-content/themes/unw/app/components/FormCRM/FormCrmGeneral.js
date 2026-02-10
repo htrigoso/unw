@@ -1,5 +1,15 @@
 import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenFieldCampus, updateHiddenInputs, updateOptionsCareers, validateInputs, showCampusSelect, validatePhone } from './utils'
 import { handleFormSubmitTracking, getFormData } from '../../utils/incubeta'
+import {
+  disableSubmitButton,
+  restoreSubmitButton,
+  pushTrackingEvent,
+  validateFormConfiguration,
+  validateFormData,
+  submitFormWithDelay,
+  preventDuplicateSubmit,
+  showFormError
+} from '../../utils/form-submit-handler'
 
 // ==========================
 // Constantes de formularios
@@ -13,6 +23,7 @@ const FORM_GENERAL_VIRTUAL =
 export default class FormCrmGeneral {
   constructor({ element, container }) {
     this.element = element
+
     this.formContainer = container
     this.isSubmitting = false
     this.createListeners()
@@ -31,25 +42,59 @@ export default class FormCrmGeneral {
     this.handleFormSubmit()
   }
 
+  // ==========================
+  // Handler principal
+  // ==========================
+
   handleFormSubmit() {
     if (!this.element) return
 
     this.element.addEventListener('submit', async (event) => {
-      // Prevenir doble envío
-      if (this.isSubmitting) {
-        event.preventDefault()
+      event.preventDefault()
+      event.stopImmediatePropagation()
+
+      // Validar configuración del formulario
+      if (!validateFormConfiguration(this.element)) {
         return
       }
 
-      this.isSubmitting = true
+      // Prevenir doble envío
+      if (preventDuplicateSubmit(this)) {
+        return
+      }
 
-      const formData = getFormData(this.element)
+      // Gestionar estado del botón
+      const { button, originalText } = disableSubmitButton(this.element)
 
-      // Usar función de Incubeta para tracking
-      await handleFormSubmitTracking(this.element, formData, (dataLayerEvent) => {
-        console.log('✅ DataLayer validado (submit):', dataLayerEvent)
-      })
-    })
+      try {
+        // Obtener y validar datos del formulario
+        const formData = getFormData(this.element)
+
+        if (!validateFormData(formData)) {
+          throw new Error('Datos de formulario inválidos')
+        }
+
+        // Tracking GTM
+        pushTrackingEvent(this.element)
+
+        // Tracking Incubeta
+        await handleFormSubmitTracking(this.element, formData, (dataLayerEvent) => {
+          console.log('✅ DataLayer validado (Incubeta):', dataLayerEvent)
+        })
+
+        // Enviar formulario con delay para GTM
+        await submitFormWithDelay(this.element)
+      } catch (error) {
+        // Restaurar estado del botón
+        restoreSubmitButton(button, originalText)
+
+        // Permitir reintentar
+        this.isSubmitting = false
+
+        // Feedback al usuario
+        showFormError('Ocurrió un error al enviar el formulario. Por favor, intenta nuevamente.', error)
+      }
+    }, { passive: false })
   }
 
   removeCustomHiddenDepartament() {
@@ -170,7 +215,7 @@ export default class FormCrmGeneral {
   }
 
   updateHiddenFields({ select, hiddenContainer }) {
-    const checked = document.querySelector('input[name="form_mixto"]:checked')
+    const checked = this.element.querySelector('input[name="form_mixto"]:checked')
     const selectedOption = select.options[select.selectedIndex]
     const parentOptgroup = selectedOption.parentElement
 
@@ -186,16 +231,14 @@ export default class FormCrmGeneral {
   }
 
   handleCarrersChange() {
-    const form = document.querySelector(`${this.formContainer} `)
-    if (!form) return
-    const select = document.getElementById('careerSelect')
-
+    const select = this.element.querySelector('#careerSelect')
+    if (!select) return
     const campus = window.appConfigUnw.campus || []
 
-    const hiddenContainer = form.querySelector('.custom-hidden')
+    const hiddenContainer = this.element.querySelector('.custom-hidden')
 
     const boundUpdate = () => {
-      const checked = document.querySelector('input[name="form_mixto"]:checked')
+      const checked = this.element.querySelector('input[name="form_mixto"]:checked')
       const selectedOption = select.options[select.selectedIndex]
 
       if (!selectedOption) return
@@ -213,7 +256,7 @@ export default class FormCrmGeneral {
     }
 
     select.addEventListener('change', boundUpdate)
-    document
+    this.element
       .querySelectorAll('input[name="form_mixto"]')
       .forEach(radio => radio.addEventListener('change', boundUpdate))
 

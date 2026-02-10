@@ -81,7 +81,7 @@ function render_html_all_careers($args = [])
   if ($current_faculty_id == 0) {
     $hero_data = get_field('hero');
     if (!empty($hero_data)) {
-      $hero_title       = $title_global;
+      $hero_title       = $hero_data['title'] ?? '';
       $hero_img_desktop = $hero_data['images']['desktop']['url'] ?? '';
       $hero_img_mobile  = $hero_data['images']['mobile']['url'] ?? '';
     }

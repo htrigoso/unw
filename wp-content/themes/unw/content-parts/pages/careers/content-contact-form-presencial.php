@@ -50,7 +50,8 @@
 <form id="<?=$data_form_type;?>" name="<?=$data_form_type;?>" data-form="zoho" data-form-type="<?=$data_form_type;?>"
   data-mixto="<?=esc_attr(trim($is_form_mixto))?>" data-code-pre="<?=esc_attr($code_carrier_pre)?>"
   data-code-vir="<?=esc_attr($code_carrier_vir)?>" class="contact-form formCarrera" method="POST" accept-charset="UTF-8"
-  enctype="multipart/form-data" action="<?=$formUrl?>">
+  enctype="multipart/form-data" action="<?=$formUrl?>" data-term="<?=esc_attr($term)?>"
+  data-campus="<?= esc_attr(wp_json_encode( $campus_json)) ?>" data-page-title="<?=esc_attr($page_title)?>">
   <div class="form-header">
     <i>
       <svg width="52" height="52">
@@ -73,9 +74,12 @@
   <input type="hidden" name="Dropdown2" value=""> <!-- Grado -->
   <input type="hidden" name="Number" value=""> <!-- Año de egreso -->
 
-  <input type="hidden" name="SingleLine3" value="<?=esc_attr($term)?>"><!-- Facultad -->
+  <div class="custom-hidden-virtual">
+    <input type="hidden" id="field-page-title" name="SingleLine5" value="<?=esc_attr($page_title)?>">
+    <input type="hidden" id="field-term" name="SingleLine3" value="<?=esc_attr($term)?>">
+  </div>
+
   <input type="hidden" name="SingleLine4" value="<?=esc_attr($code_carrier_pre)?>"> <!-- Codigo por carrera acf -->
-  <input type="hidden" name="SingleLine5" value="<?=esc_attr($page_title)?>">
   <input type="hidden" name="Website" value="<?=get_current_page_url()?>"> <!-- Url de Trakeo -->
   <!-- ////Campos vacios -->
 

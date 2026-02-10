@@ -31,9 +31,10 @@ $location = $args['location'] ?? 'is-home';
 $shadow_box = $args['shadow_box'] ?? false;
 $responsive = $args['responsive'] ?? false;
 $vertical_modality = $args['vertical_modality'] ?? false;
+$form_type = $args['form_type'] ?? '';
 ?>
 
-<form id="<?= esc_attr($form_id) ?>" name="<?= esc_attr($form_id) ?>" data-form="zoho"
+<form id="<?= esc_attr($form_id) ?>" name="<?= esc_attr($form_id) ?>" data-form="zoho" data-form-type="<?=$form_id;?>"
   class="more-form newformfloat<?= $shadow_box ? ' more-form__shadow-box' : '' ?><?= $responsive ? ' more-form__responsive' : '' ?>"
   method="POST" accept-charset="UTF-8" enctype="multipart/form-data" action="<?= esc_attr($form_action) ?>">
 
@@ -76,6 +77,7 @@ $vertical_modality = $args['vertical_modality'] ?? false;
     <div class="form-body__fields">
       <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'radio', [
         'direction'    => $vertical_modality ? 'flex-col' : 'justify-between',
+         'form_type'=> $form_type,
         'location'      => $location,
       ]); ?>
 
@@ -164,7 +166,9 @@ $vertical_modality = $args['vertical_modality'] ?? false;
     </p>
 
     <div class="form-body__terms">
-      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox'); ?>
+      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox', [
+         'form_type'=>$form_type
+      ]);?>
     </div>
 
     <div class="form-body__actions more-form-body__actions">

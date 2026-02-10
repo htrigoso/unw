@@ -1,6 +1,15 @@
 import { getFormData, handleFormSubmitTracking } from '../../utils/incubeta'
 import { buildOptionsCampusCareers, createSelectCampus, createSelectDepartament, FORMS, removeSelectCampus, removeSelectDepartament, sanitizeForInput, setClaseName, validateInputs, validatePhone } from './utils'
-
+import {
+  disableSubmitButton,
+  restoreSubmitButton,
+  pushTrackingEvent,
+  validateFormConfiguration,
+  validateFormData,
+  submitFormWithDelay,
+  preventDuplicateSubmit,
+  showFormError
+} from '../../utils/form-submit-handler'
 // ==========================
 // Constantes de formularios
 // ==========================
@@ -38,19 +47,50 @@ export default class FormCrmCareer {
     if (!this.element) return
 
     this.element.addEventListener('submit', async (event) => {
-      // Prevenir doble envío
-      if (this.isSubmitting) {
-        event.preventDefault()
+      event.preventDefault()
+      event.stopImmediatePropagation()
+
+      // Validar configuración del formulario
+      if (!validateFormConfiguration(this.element)) {
         return
       }
 
-      this.isSubmitting = true
-      const formData = getFormData(this.element)
+      // Prevenir doble envío
+      if (preventDuplicateSubmit(this)) {
+        return
+      }
 
-      // Usar función de Incubeta para tracking
-      await handleFormSubmitTracking(this.element, formData, (dataLayerEvent) => {
-        console.log('✅ DataLayer validado (submit):', dataLayerEvent)
-      })
+      // Gestionar estado del botón
+      const { button, originalText } = disableSubmitButton(this.element)
+
+      try {
+        // Obtener y validar datos del formulario
+        const formData = getFormData(this.element)
+
+        if (!validateFormData(formData)) {
+          throw new Error('Datos de formulario inválidos')
+        }
+
+        // Tracking GTM
+        pushTrackingEvent(this.element)
+
+        // Tracking Incubeta
+        await handleFormSubmitTracking(this.element, formData, (dataLayerEvent) => {
+          console.log('✅ DataLayer validado (Incubeta):', dataLayerEvent)
+        })
+
+        // Enviar formulario con delay para GTM
+        await submitFormWithDelay(this.element)
+      } catch (error) {
+        // Restaurar estado del botón
+        restoreSubmitButton(button, originalText)
+
+        // Permitir reintentar
+        this.isSubmitting = false
+
+        // Feedback al usuario
+        showFormError('Ocurrió un error al enviar el formulario. Por favor, intenta nuevamente.', error)
+      }
     })
   }
 
@@ -68,7 +108,7 @@ export default class FormCrmCareer {
 
   handleFormMixtoChange() {
     const radios = this.element.querySelectorAll('input[name="form_mixto"]')
-    const campus = window.appConfigUnw.campus || []
+    const campus = JSON.parse(this.element.dataset.campus || '[]')
     const isMixto = JSON.parse(this.element.dataset.mixto || 0)
     const codePre = this.element.dataset.codePre || ''
     const codeVir = this.element.dataset.codeVir || ''
@@ -93,6 +133,8 @@ export default class FormCrmCareer {
             buildOptionsCampusCareers({ campus, element: this.element })
 
             this.setCodeTypeCareer(codePre)
+            this.swapHiddenFields(FORMS.PREGRADO) // Invertir campos para presencial
+            this.removeCustomHiddenCampus()
             break
 
           case FORMS.VIRTUAL:
@@ -104,10 +146,11 @@ export default class FormCrmCareer {
               element: this.element
             })
 
-            if (isMixto && campus.length > 0) {
-              removeSelectCampus(this.element)
-            }
+            removeSelectCampus(this.element)
+
             this.setCodeTypeCareer(codeVir)
+            this.swapHiddenFields(FORMS.VIRTUAL) // Mantener orden normal para virtual
+            this.removeCustomHiddenCampus()
             break
           case FORMS.WORK:
             this.element.action = FORM_CARRIERS_VIRTUAL
@@ -115,6 +158,8 @@ export default class FormCrmCareer {
             setClaseName('f-100', this.element)
             removeSelectDepartament(this.element)
             this.setCodeTypeCareer(codeVir)
+            this.swapHiddenFields(FORMS.WORK) // Mantener orden normal para work
+            this.removeCustomHiddenCampus()
             break
 
           default:
@@ -123,6 +168,33 @@ export default class FormCrmCareer {
         }
       })
     })
+  }
+
+  swapHiddenFields(type) {
+    const form = this.element
+
+    if (!form) return
+
+    const hiddenContainerVirtual = form.querySelector('.custom-hidden-virtual')
+
+    if (!hiddenContainerVirtual) {
+      return
+    }
+    const term = form.dataset.term || ''
+    const pageTitle = form.dataset.pageTitle || ''
+
+    if (type === FORMS.PREGRADO) {
+      hiddenContainerVirtual.innerHTML = `
+        <input type="hidden" id="field-page-title" name="SingleLine5" value="${pageTitle}">
+        <input type="hidden" id="field-term" name="SingleLine3" value="${term}">
+      `
+    }
+    if (type === FORMS.VIRTUAL || type === FORMS.WORK) {
+      hiddenContainerVirtual.innerHTML = `
+        <input type="hidden" id="field-page-title" name="SingleLine5" value="${term}">
+        <input type="hidden" id="field-term" name="SingleLine3" value="${pageTitle}">
+      `
+    }
   }
 
   setCodeTypeCareer(value) {
@@ -174,5 +246,12 @@ export default class FormCrmCareer {
             <input type="hidden" name="SingleLine7" value="${text}">`
       }
     })
+  }
+
+  removeCustomHiddenCampus() {
+    const hiddenCampus = this.element.querySelector('.custom-hidden-campus')
+    if (hiddenCampus) {
+      hiddenCampus.innerHTML = ''
+    }
   }
 }

@@ -20,7 +20,11 @@ get_template_part(GENERAL_CONTENT_PATH, 'navbar');
       $data = get_row(true); // Obtener toda la data del repeater actual
 
       // Pasar data a todos los templates mediante query_var
-      set_query_var('section_data', $data);
+        // Si el layout es 'section-form', agregar 'form_id' al data
+        if ($layout === 'section-form') {
+          $data['form_id'] = 'form-general-mobile';
+        }
+        set_query_var('section_data', $data);
 
       // Map de layouts a sus templates
       $template_map = [
@@ -32,15 +36,11 @@ get_template_part(GENERAL_CONTENT_PATH, 'navbar');
         'section-grid-card-v2' => 'grid-card-v2',
         'section-grid-card-v3' => 'grid-card-v3',
         'section-acordeon' => 'acordeon',
+        'section-form' => 'form'
       ];
 
       if (isset($template_map[$layout])) {
         get_template_part(LANDING_CONTENT_PATH, $template_map[$layout]);
-      } else {
-        // Debug mode (remover en producción)
-        if (defined('WP_DEBUG') && WP_DEBUG) {
-          echo "<!-- Layout no reconocido: " . esc_html($layout) . " -->";
-        }
       }
       ?>
   <?php endwhile; ?>

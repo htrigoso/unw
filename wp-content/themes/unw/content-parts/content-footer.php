@@ -179,10 +179,22 @@ $libro_reclamaciones_html = ob_get_clean();
 if (apply_filters('show_book_link', false)) :
 ?>
 <?php get_template_part(COMMON_CONTENT_PATH, 'more-info-modal'); ?>
-<a class="book-link" href="javascript:void(0);" data-modal-target="modal-more-info"
-  data-contact-platform="modal" data-contact-type="dudas">
+<a class="book-link" href="javascript:void(0);" data-modal-target="modal-more-info" data-contact-platform="modal"
+  data-contact-type="dudas">
   <span class="sr-only">Solicita informes</span>
   <img src="<?= placeholder() ?>" class="book-link__icon lazyload"
     data-src="<?php echo UPLOAD_MIGRATION_PATH . '/solicitar.png'; ?>" alt="Formulario General">
 </a>
 <?php endif; ?>
+
+<?php
+
+$cookies_banner = get_field('cookies_banner', 'options');
+if (!empty($cookies_banner['show'])) {
+  get_template_part(COMMON_CONTENT_PATH, 'cookies-banner', [
+    'title'   => $cookies_banner['title'] ?? 'Uso de cookies',
+    'message' => $cookies_banner['description'] ?? '',
+    'btnText' => $cookies_banner['button_text'] ?? 'Aceptar',
+  ]);
+}
+?>

@@ -1,4 +1,78 @@
-<?php
+  <?php
+  // Banner de Cookies
+  acf_add_local_field_group([
+    'key' => 'group_unw_cookies_banner',
+    'title' => 'Banner de Cookies',
+    'fields' => [
+      [
+        'key' => 'field_unw_cookies_banner_group',
+        'label' => 'Configuración Banner de Cookies',
+        'name' => 'cookies_banner',
+        'type' => 'group',
+        'layout' => 'block',
+        'sub_fields' => [
+          [
+            'key' => 'field_unw_cookies_banner_accordion',
+            'label' => 'Configuración Banner de Cookies',
+            'name' => 'accordion',
+            'type' => 'accordion',
+            'open' => 1,
+            'multi_expand' => 0,
+            'endpoint' => 0,
+          ],
+          [
+            'key' => 'field_unw_cookies_banner_show',
+            'label' => 'Mostrar banner de cookies',
+            'name' => 'show',
+            'type' => 'true_false',
+            'ui' => 1,
+            'default_value' => 1,
+            'instructions' => 'Activa para mostrar el banner de cookies en el sitio.',
+          ],
+          [
+            'key' => 'field_unw_cookies_banner_title',
+            'label' => 'Título',
+            'name' => 'title',
+            'type' => 'text',
+            'default_value' => 'Uso de cookies',
+          ],
+          [
+            'key' => 'field_unw_cookies_banner_description',
+            'label' => 'Descripción',
+            'name' => 'description',
+            'type' => 'wysiwyg',
+            'default_value' => 'Esta Web utiliza cookies propias y de terceros para su funcionamiento, para analizar tus hábitos de navegación y para servir publicidad personalizada. Asimismo, algunas <a href="#">cookies</a> guardan relación con funcionalidades ofrecidas en la Web.',
+            'tabs' => 'all',
+            'toolbar' => 'basic',
+            'media_upload' => 0,
+          ],
+          [
+            'key' => 'field_unw_cookies_banner_btn_text',
+            'label' => 'Texto del botón',
+            'name' => 'button_text',
+            'type' => 'text',
+            'default_value' => 'Aceptar',
+          ],
+        ],
+      ],
+    ],
+    'location' => [
+      [
+        [
+          'param' => 'options_page',
+          'operator' => '==',
+          'value' => 'unw-general-settings',
+        ],
+      ],
+    ],
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'active' => true,
+    'description' => 'Configura el contenido del banner de cookies.',
+  ]);
+
 add_action('acf/init', function() {
   if( function_exists('acf_register_block_type') ) {
 
@@ -74,6 +148,7 @@ add_filter('acf/fields/flexible_content/layout_title/name=sections', function($t
         'section-grid-card-v2'      => get_template_directory_uri() . '/assets/images/sections/section-6.png',
         'section-grid-card-v3'      => get_template_directory_uri() . '/assets/images/sections/section-7.png',
         'section-acordeon'      => get_template_directory_uri() . '/assets/images/sections/section-8.png',
+        'section-form'      => get_template_directory_uri() . '/assets/images/sections/section-9.png',
     ];
 
      if (isset($preview_images[$layout['name']])) {
@@ -106,7 +181,7 @@ add_action('acf/input/admin_head', function() {
 
     if (isset($post) && $post->post_type === 'novedades') {
         ?>
-<style>
+  <style>
 /* Oculta el acordeón con name="contenido" */
 [data-name="contenido"] {
   display: none !important;
@@ -116,8 +191,8 @@ add_action('acf/input/admin_head', function() {
 [data-name="content"] {
   display: none !important;
 }
-</style>
-<?php
+  </style>
+  <?php
     }
 });
 
@@ -243,7 +318,7 @@ add_action('acf/init', function() {
     'fields' => [
       [
         'key' => 'field_unw_admission_accordion',
-        'label' => 'Configuracion Admision',
+        'label' => 'Configuración de admisión',
         'name' => 'admission_general_accordion',
         'type' => 'accordion',
         'open' => 1,
@@ -252,7 +327,7 @@ add_action('acf/init', function() {
       ],
       [
         'key' => 'field_unw_admission_date',
-        'label' => 'Fecha de admisión',
+        'label' => 'Fecha base de admisión',
         'name' => 'admission_date',
         'type' => 'date_picker',
         'display_format' => 'd/m/Y',
@@ -261,7 +336,7 @@ add_action('acf/init', function() {
       ],
       [
         'key' => 'field_unw_admission_increment_days',
-        'label' => 'Incremento (días)',
+        'label' => 'Incremento en días',
         'name' => 'admission_increment_days',
         'type' => 'select',
         'choices' => $increment_choices,
@@ -270,7 +345,7 @@ add_action('acf/init', function() {
       ],
       [
         'key' => 'field_unw_admission_update_lead_days',
-        'label' => 'Actualizar (días antes)',
+        'label' => 'Actualizar X días antes',
         'name' => 'admission_update_lead_days',
         'type' => 'select',
         'choices' => $lead_choices,
@@ -278,11 +353,34 @@ add_action('acf/init', function() {
         'return_format' => 'value',
       ],
       [
+        'key' => 'field_unw_admission_today_override',
+        'label' => 'Fecha de hoy (pruebas)',
+        'name' => 'admission_today_override',
+        'type' => 'date_picker',
+        'display_format' => 'd/m/Y',
+        'return_format' => 'Y-m-d',
+        'first_day' => 1,
+        'allow_null' => 1,
+        'instructions' => 'Si se define, simula la fecha de hoy para el calculo de admision.',
+      ],
+      [
         'key' => 'field_unw_admission_auto_update_enabled',
-        'label' => 'Auto-actualizar fecha',
+        'label' => 'Auto-actualizar fecha visible',
         'name' => 'admission_auto_update_enabled',
         'type' => 'true_false',
         'default_value' => 1,
+        'ui' => 1,
+        'ui_on_text' => 'Sí',
+        'ui_off_text' => 'No',
+        'instructions' => 'Activa para calcular automaticamente la fecha visible segun los parametros.',
+      ],
+      [
+        'key' => 'field_unw_admission_next_date_display',
+        'label' => 'Próxima fecha de admisión (calculada)',
+        'name' => 'admission_next_date_display',
+        'type' => 'message',
+        'message' => '',
+        'esc_html' => 1,
       ],
     ],
     'location' => [
@@ -346,7 +444,7 @@ add_action('acf/init', function() {
     'fields' => [
       [
         'key' => 'field_unw_careers_accordion',
-        'label' => 'Configuración de Carreras',
+        'label' => 'Configuración Categoría de carreras',
         'name' => 'careers_general_accordion',
         'type' => 'accordion',
         'open' => 1,

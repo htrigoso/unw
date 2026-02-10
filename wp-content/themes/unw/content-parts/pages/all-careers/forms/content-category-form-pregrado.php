@@ -28,14 +28,14 @@
 
   $vertical_modality = $args['vertical_modality'] ?? '';
   $position_form = $args['position_form'] ?? '';
+  $is_carreras_uwiener = $args['is_carreras_uwiener'] ?? false;
 
   $list_departaments = $form_crm_option['list_departaments'];
   $list_campus = get_carreras_campus_modalidad();
 
-
   get_template_part(COMMON_CONTENT_PATH, 'more-info-form-category-pregrado', [
     'form_id' => 'form-category-pregrado-'.$position_form,
-    'form_action' => $is_form_mixto ? $FORM_GENERAL_PRESENCIAL : $FORM_GENERAL_VIRTUAL,
+    'form_action' => $formUrl,
     'utms' => $utms_final,
     'careers' => $careers,
     'list_departaments' => $list_departaments,
@@ -46,6 +46,7 @@
     'vertical_modality' => $vertical_modality,
     'position_form'=> $position_form,
     'facultad_name' => $facultad_name,
-    'is_form_mixto' => $is_form_mixto
+    'is_form_mixto' => $is_form_mixto,
+    'is_carreras_uwiener' => $is_carreras_uwiener
   ]);
 ?>

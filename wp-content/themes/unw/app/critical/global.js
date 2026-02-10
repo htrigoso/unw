@@ -2,6 +2,9 @@ import { EXCLUDE_URL_PARAMS, getBaseDomain, getRfc3986SearchFromUrl } from '../u
 import '../set-public-path'
 import { onDOMReady } from '../utils/dom-ready'
 import { ModalManager } from '../components/Modal'
+import { initCookieBanner } from './cookies-manager'
+
+import { UserActivityDetector } from '../utils/detect-user-activity'
 
 export default class CriticalPage {
   constructor() {
@@ -12,56 +15,25 @@ export default class CriticalPage {
     if (window.appConfigUnw?.preserveUrlParams) {
       this.propagateUrlParamsToInternalLinks()
     }
-    this.handleOnSubmitForm()
 
     // Solo ejecutar ModalManager en la página de inicio
     if (this.isHomePage()) {
       new ModalManager()
     }
+
+    initCookieBanner()
+
+    new UserActivityDetector(() => {
+      const modal = document.getElementById('cookieModal')
+      if (modal) {
+        modal.classList.add('is-active')
+      }
+    })
   }
 
   isHomePage() {
     // Verificar si estamos en el home
     return document.body.classList.contains('home')
-  }
-
-  handleOnSubmitForm() {
-    document.addEventListener('DOMContentLoaded', () => {
-      const forms = document.querySelectorAll('[data-form="zoho"]')
-      if (!forms.length) return
-
-      forms.forEach((form) => {
-        form.addEventListener('submit', (e) => {
-          // Evitar doble envío
-          console.log('heree', new Date().toISOString())
-
-          if (form.dataset.submitted === 'true') {
-            e.preventDefault()
-            return
-          }
-          form.dataset.submitted = 'true'
-
-          // Botón de envío
-          const button = form.querySelector('#button-send')
-          if (button) {
-            button.disabled = true
-            button.dataset.originalText = button.innerText
-            button.innerText = 'Enviando...'
-          }
-
-          // Push a dataLayer
-          if (window.dataLayer && Array.isArray(window.dataLayer)) {
-            window.dataLayer.push({
-              event: 'gtm.formSubmit',
-              formId: form?.id || null,
-              formType: form?.dataset?.formType || null
-            })
-          } else {
-            console.warn('⚠️ dataLayer no está definido')
-          }
-        })
-      })
-    })
   }
 
   propagateUrlParamsToInternalLinks() {

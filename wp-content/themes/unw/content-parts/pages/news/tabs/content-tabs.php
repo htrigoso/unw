@@ -20,7 +20,7 @@ $archive_url = get_post_type_archive_link('novedades');
 if ($archive_url) {
   $tabs[] = [
     'id' => 'all',
-    'label'  => 'Todas las noticias',
+    'label'  => 'Todas',
     'url'    => $archive_url,
     'status' => true,
     'target' => '',

@@ -40,5 +40,22 @@ $component_args = [
   'variant' => 'standard',
   'title_sec' => ''
 ];
+?>
 
-get_template_part(COMMON_CONTENT_PATH, 'swiper-hero', $component_args);
+<section class="landing-hero">
+  <?php
+  get_template_part(COMMON_CONTENT_PATH, 'swiper-hero', $component_args);
+  ?>
+  <div class="x-container landing-hero__form__wrapper">
+    <div class="landing-hero__form">
+      <?php
+      get_template_part(COMMON_CONTENT_PATH, 'more-info-form', [
+        'shadow_box' => true,
+        'vertical_modality' => true,
+        'form_id'=>'form-general-desktop',
+        'form_type'=> 'form-general-desktop',
+      ]);
+      ?>
+    </div>
+  </div>
+</section>

@@ -1,5 +1,15 @@
 import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenFieldCampus, updateHiddenInputs, validateInputs, showCampusSelect, validatePhone, updateOptionsCareersByFacultad } from './utils'
-
+import {
+  disableSubmitButton,
+  restoreSubmitButton,
+  pushTrackingEvent,
+  validateFormConfiguration,
+  validateFormData,
+  submitFormWithDelay,
+  preventDuplicateSubmit,
+  showFormError
+} from '../../utils/form-submit-handler'
+import { getFormData, handleFormSubmitTracking } from '../../utils/incubeta'
 // ==========================
 // Constantes de formularios
 // ==========================
@@ -8,6 +18,9 @@ const FORM_GENERAL_PRESENCIAL =
 
 const FORM_GENERAL_VIRTUAL =
   'https://forms.zohopublic.com/adminzoho11/form/WebFacultadesVirtual/formperma/XZxvtW2GuLFc2zHw6RV9IKsDHhw5fMTH_275g92vXQM/htmlRecords/submit'
+
+const FORM_GENERAL_VIRTUAL_BASE =
+  'https://forms.zohopublic.com/adminzoho11/form/WebBaseVirtual/formperma/r6dyucr2_RC_mCaLCNhmhvEHn820MmGvdkHztewDq58/htmlRecords/submit'
 
 export default class FormCrmCategoryPregrado {
   constructor({ element, container }) {
@@ -27,6 +40,58 @@ export default class FormCrmCategoryPregrado {
     this.handleCarrersChange()
     this.handleDepartamentChange()
     this.handleCampusChange()
+    this.handleFormSubmit()
+  }
+
+  handleFormSubmit() {
+    if (!this.element) return
+
+    this.element.addEventListener('submit', async (event) => {
+      event.preventDefault()
+      event.stopImmediatePropagation()
+
+      // Validar configuración del formulario
+      if (!validateFormConfiguration(this.element)) {
+        return
+      }
+
+      // Prevenir doble envío
+      if (preventDuplicateSubmit(this)) {
+        return
+      }
+
+      // Gestionar estado del botón
+      const { button, originalText } = disableSubmitButton(this.element)
+
+      try {
+        // Obtener y validar datos del formulario
+        const formData = getFormData(this.element)
+
+        if (!validateFormData(formData)) {
+          throw new Error('Datos de formulario inválidos')
+        }
+
+        // Tracking GTM
+        pushTrackingEvent(this.element)
+
+        // Tracking Incubeta
+        await handleFormSubmitTracking(this.element, formData, (dataLayerEvent) => {
+          console.log('✅ DataLayer validado (Incubeta):', dataLayerEvent)
+        })
+
+        // Enviar formulario con delay para GTM
+        await submitFormWithDelay(this.element)
+      } catch (error) {
+        // Restaurar estado del botón
+        restoreSubmitButton(button, originalText)
+
+        // Permitir reintentar
+        this.isSubmitting = false
+
+        // Feedback al usuario
+        showFormError('Ocurrió un error al enviar el formulario. Por favor, intenta nuevamente.', error)
+      }
+    })
   }
 
   removeCustomHiddenDepartament() {
@@ -48,6 +113,7 @@ export default class FormCrmCategoryPregrado {
     const departaments = window.appConfigUnw.departaments || []
     const careers = window.appConfigUnw.careers || []
     const facultadName = this.element.dataset.facultadName || ''
+    const isCarrerasUwiener = this.element.dataset.isCarrerasUwiener || false
 
     radios.forEach(radio => {
       radio.addEventListener('change', () => {
@@ -85,7 +151,9 @@ export default class FormCrmCategoryPregrado {
 
           case FORMS.WORK:
           case FORMS.VIRTUAL:
-            this.element.action = FORM_GENERAL_VIRTUAL
+            console.log('isCarrerasUwiener=>', isCarrerasUwiener)
+
+            this.element.action = isCarrerasUwiener ? FORM_GENERAL_VIRTUAL_BASE : FORM_GENERAL_VIRTUAL
 
             if (value === FORMS.WORK) {
               removeNameAttributeCampus({ element: this.element })
@@ -94,13 +162,13 @@ export default class FormCrmCategoryPregrado {
 
             resetCustomHidden({ element: this.element })
             hideCampusSelect({ value, element: this.element })
-            this.element.action = FORM_GENERAL_VIRTUAL
+
             setClaseName('f-50', this.element)
             select.setAttribute('name', 'SingleLine5')
 
             updateHiddenInputs([
               { name: 'SingleLine1', value: 'UNW_Pregrado_Distancia' },
-              { name: 'SingleLine2', value: 'Web Facultades – Virtual' }
+              { name: 'SingleLine2', value: 'Web Base - Virtual' }
             ], this.element)
             if (value === FORMS.VIRTUAL) {
               if (departaments.length > 0) {

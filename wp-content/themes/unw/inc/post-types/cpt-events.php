@@ -117,6 +117,7 @@ function unw_sort_events_by_date() {
 /**
  * Aplica ordenamiento a un array de eventos existente
  * Ordena por fecha - próximos primero, finalizados al final
+ * (finalizados más recientes primero)
  *
  * @param array $events Array de posts de eventos
  * @return array Array ordenado
@@ -130,8 +131,15 @@ function unw_apply_event_sorting($events) {
         $post_id_a = is_object($a) ? $a->ID : $a;
         $post_id_b = is_object($b) ? $b->ID : $b;
 
-        $info_a = get_field('event_info', $post_id_a);
-        $info_b = get_field('event_info', $post_id_b);
+        $info_a = (is_object($a) && isset($a->event_info) && is_array($a->event_info)) ? $a->event_info : null;
+        if (!$info_a) {
+            $info_a = get_field('event_info', $post_id_a);
+        }
+
+        $info_b = (is_object($b) && isset($b->event_info) && is_array($b->event_info)) ? $b->event_info : null;
+        if (!$info_b) {
+            $info_b = get_field('event_info', $post_id_b);
+        }
 
         $status_a = $info_a['status'] ?? false;
         $status_b = $info_b['status'] ?? false;
@@ -159,9 +167,13 @@ function unw_apply_event_sorting($events) {
 
         if (!$datetime_a || !$datetime_b) return 0;
 
-        // Eventos más próximos primero (orden ascendente)
+        // Activos: más próximos primero. Finalizados: más recientes primero.
+        if ($status_a && $status_b) {
+            return $datetime_b <=> $datetime_a;
+        }
+
         return $datetime_a <=> $datetime_b;
     });
 
     return $events;
-  }
+}

@@ -1,7 +1,16 @@
 
 import { buildOptionsCampus, createHiddenInputs, createSelectDepartament, FORMS, hideCampusSelect, resetCustomHidden, removeNameAttributeCampus, removeSelectDepartament, setClaseName, setNameAttributeCampus, updateHiddenInputs, updateOptionsCareers, validateInputs, showCampusSelect, validatePhone, updateHiddenFieldCampusEvent } from './utils'
 import { handleFormSubmitTracking, getFormData } from '../../utils/incubeta'
-
+import {
+  disableSubmitButton,
+  restoreSubmitButton,
+  pushTrackingEvent,
+  validateFormConfiguration,
+  validateFormData,
+  submitFormWithDelay,
+  preventDuplicateSubmit,
+  showFormError
+} from '../../utils/form-submit-handler'
 // ==========================
 // Constantes de formularios
 // ==========================
@@ -10,12 +19,11 @@ const FORM_GENERAL_PRESENCIAL =
 
 const FORM_GENERAL_VIRTUAL =
   'https://forms.zohopublic.com/adminzoho11/form/EventosHbridov2/formperma/2j3H_F_LzgaCnNmjSksgBTd3Z0M_D03NvmeOIsRMhwM/htmlRecords/submit'
-
+export const GRADE_OF_STUDIES = 'Ya terminé el colegio'
 export default class FormCrmEvent {
   constructor({ element, container }) {
     this.element = element
     this.formContainer = container
-    this.isSubmitting = false
     this.createListeners()
   }
 
@@ -23,7 +31,12 @@ export default class FormCrmEvent {
   // Inicializadores
   // ==========================
   createListeners() {
-    validateInputs()
+    validateInputs([
+      { name: 'SingleLine', type: 'letters' },
+      { name: 'SingleLine1', type: 'letters' },
+      { name: 'PhoneNumber_countrycode', type: 'numbers' },
+      { name: 'SingleLine2', type: 'numbers' }
+    ])
     validatePhone()
     this.updateRadioModalidad() // Inicializar valor
     this.handleFormMixtoChange()
@@ -31,26 +44,58 @@ export default class FormCrmEvent {
     this.handleDepartamentChange()
     this.handleCampusChange()
     this.handleFormSubmit()
+    this.handleGradoEstudiosChange()
+    this.activarValidacionYear()
   }
 
   handleFormSubmit() {
     if (!this.element) return
 
     this.element.addEventListener('submit', async (event) => {
-      // Prevenir doble envío
-      if (this.isSubmitting) {
-        event.preventDefault()
+      event.preventDefault()
+      event.stopImmediatePropagation()
+
+      // Validar configuración del formulario
+      if (!validateFormConfiguration(this.element)) {
         return
       }
 
-      this.isSubmitting = true
+      // Prevenir doble envío
+      if (preventDuplicateSubmit(this)) {
+        return
+      }
 
-      const formData = getFormData(this.element)
+      // Gestionar estado del botón
+      const { button, originalText } = disableSubmitButton(this.element)
 
-      // Usar función de Incubeta para tracking
-      await handleFormSubmitTracking(this.element, formData, (dataLayerEvent) => {
-        console.log('✅ DataLayer validado (submit):', dataLayerEvent)
-      })
+      try {
+        // Obtener y validar datos del formulario
+        const formData = getFormData(this.element)
+
+        if (!validateFormData(formData)) {
+          throw new Error('Datos de formulario inválidos')
+        }
+
+        // Tracking GTM
+        pushTrackingEvent(this.element)
+
+        // Tracking Incubeta
+        await handleFormSubmitTracking(this.element, formData, (dataLayerEvent) => {
+          console.log('✅ DataLayer validado (Incubeta):', dataLayerEvent)
+        })
+
+        // Enviar formulario con delay para GTM
+        await submitFormWithDelay(this.element)
+      } catch (error) {
+        // Restaurar estado del botón
+        restoreSubmitButton(button, originalText)
+
+        // Permitir reintentar
+        this.isSubmitting = false
+
+        // Feedback al usuario
+        showFormError('Ocurrió un error al enviar el formulario. Por favor, intenta nuevamente.', error)
+      }
     })
   }
 
@@ -103,6 +148,7 @@ export default class FormCrmEvent {
 
         switch (value) {
           case FORMS.PREGRADO:
+
             this.element.action = FORM_GENERAL_PRESENCIAL
             resetCustomHidden({ element: this.element })
             setClaseName('f-100', this.element)
@@ -147,7 +193,7 @@ export default class FormCrmEvent {
             ], this.element)
             if (value === FORMS.VIRTUAL) {
               if (departaments.length > 0) {
-                createSelectDepartament({ element: this.element, name: 'SingleLine8' })
+                createSelectDepartament({ element: this.element, name: 'SingleLine9' })
               }
             }
 
@@ -178,24 +224,25 @@ export default class FormCrmEvent {
   }
 
   updateHiddenFields({ select, hiddenContainer }) {
-    const checked = document.querySelector('input[name="form_mixto"]:checked')
     const selectedOption = select.options[select.selectedIndex]
     const parentOptgroup = selectedOption.parentElement
-
+    //    <input type="hidden"  id="radio-type"  name="Radio" value="Presencial">
+    const type = document.querySelector('#radio-type')?.value || ''
     if (parentOptgroup.tagName !== 'OPTGROUP') return
 
     const html = this.buildHiddenInputs({
       facultyName: parentOptgroup.label,
       careerName: selectedOption.textContent.trim(),
-      type: checked.value
+      type: type === 'Presencial' ? FORMS.PREGRADO : FORMS.VIRTUAL
     })
 
     hiddenContainer.innerHTML = html
   }
 
   handleCarrersChange() {
-    const form = document.querySelector(`${this.formContainer} `)
+    const form = document.querySelector(`${this.formContainer}`)
     if (!form) return
+
     const select = document.getElementById('careerSelect')
 
     const campus = window.appConfigUnw.campus || []
@@ -203,7 +250,6 @@ export default class FormCrmEvent {
     const hiddenContainer = form.querySelector('.custom-hidden')
 
     const boundUpdate = () => {
-      const checked = document.querySelector('input[name="form_mixto"]:checked')
       const selectedOption = select.options[select.selectedIndex]
 
       if (!selectedOption) return
@@ -211,13 +257,11 @@ export default class FormCrmEvent {
       const parentOptgroup = selectedOption.parentElement
       if (!parentOptgroup || parentOptgroup.tagName !== 'OPTGROUP') return
 
-      if (checked) {
-        this.updateHiddenFields({ select, hiddenContainer })
-        const slugCareers = selectedOption.dataset.key
-        const modalidad = selectedOption.dataset.mode
+      this.updateHiddenFields({ select, hiddenContainer })
+      const slugCareers = selectedOption.dataset.key
+      const modalidad = selectedOption.dataset.mode
 
-        buildOptionsCampus({ campus, slugCareers, modalidad, element: this.element })
-      }
+      buildOptionsCampus({ campus, slugCareers, modalidad, element: this.element })
     }
 
     select.addEventListener('change', boundUpdate)
@@ -253,7 +297,9 @@ export default class FormCrmEvent {
         const selectedOption = target.options[target.selectedIndex]
         const text = selectedOption?.textContent.trim() || ''
         const customDepartament = this.element.querySelector('.custom-hidden-departament')
+
         if (customDepartament) {
+          console.log('mela', text)
           customDepartament.innerHTML = `<input type="hidden" name="SingleLine9" value="${text}">`
         }
       }
@@ -264,18 +310,100 @@ export default class FormCrmEvent {
     const htmlDegree = this.element.querySelector('[data-html-name="degree"]')
     if (!htmlDegree) return
     const selectDegree = htmlDegree.querySelector('select')
+
     if (!selectDegree) return
 
     if (type === 'pregrado') {
       // Hacer el campo requerido y agregar el name
       selectDegree.setAttribute('required', 'required')
       selectDegree.setAttribute('name', 'Dropdown2')
+
       htmlDegree.style.display = ''
     } else if (type === 'virtual' || type === 'work') {
       // Quitar el campo requerido y el name, ocultar el campo
       selectDegree.removeAttribute('required')
       selectDegree.removeAttribute('name')
+
       htmlDegree.style.display = 'none'
     }
+  }
+
+  handleGradoEstudiosChange() {
+    document.addEventListener('change', (event) => {
+      const target = event.target
+
+      if (target && target.matches('#Dropdown2')) {
+        const rowGradoEgreso = this.element.querySelector('#more-form-body__row-grado-egreso')
+        const inputText = rowGradoEgreso.querySelector('input[type="number"]')
+        if (GRADE_OF_STUDIES === target.value) {
+          rowGradoEgreso.style.display = 'block'
+          inputText.setAttribute('required', 'required')
+          inputText.setAttribute('name', 'Number')
+        } else {
+          rowGradoEgreso.style.display = 'none'
+          inputText.removeAttribute('required')
+          inputText.removeAttribute('name')
+        }
+      }
+    })
+  }
+
+  activarValidacionYear() {
+    const MIN = 1960
+    const MAX = 2031
+
+    const clamp = (n) => Math.min(Math.max(n, MIN), MAX)
+
+    // Mientras escribe: permite tipear normal (2022), solo limpia caracteres
+    document.addEventListener('input', function (e) {
+      const el = e.target
+      if (!el.matches('input[type="number"]')) return
+
+      // Limpia todo lo que no sea dígito (por si el navegador deja e, +, -)
+      const cleaned = String(el.value).replace(/\D/g, '')
+      if (el.value !== cleaned) el.value = cleaned
+
+      // Solo valida rango cuando ya tiene 4 dígitos
+      if (cleaned.length === 4) {
+        el.value = String(clamp(parseInt(cleaned, 10)))
+      }
+    })
+
+    // Al salir del campo: si tiene algo, fuerza rango
+    document.addEventListener(
+      'blur',
+      function (e) {
+        const el = e.target
+        if (!el.matches('input[type="number"]')) return
+
+        const cleaned = String(el.value).replace(/\D/g, '')
+        if (cleaned === '') return // si está vacío, no obligues
+
+        // Si puso menos de 4 dígitos igual lo clamp-eamos (o puedes vaciarlo si prefieres)
+        el.value = String(clamp(parseInt(cleaned, 10)))
+      },
+      true
+    )
+
+    // Bloquear teclas raras (e, +, -, .) en algunos navegadores
+    document.addEventListener('keydown', function (e) {
+      const el = e.target
+      if (!el.matches('input[type="number"]')) return
+
+      const allowed = [
+        'Backspace',
+        'Tab',
+        'ArrowLeft',
+        'ArrowRight',
+        'Delete',
+        'Home',
+        'End'
+      ]
+
+      if (allowed.includes(e.key)) return
+      if (/^[0-9]$/.test(e.key)) return
+
+      e.preventDefault()
+    })
   }
 }
