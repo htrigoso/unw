@@ -51,7 +51,7 @@ export function pushTrackingEvent(form, customData = {}) {
       ...customData
     }
 
-    window.dataLayer.push(eventData)
+    // window.dataLayer.push(eventData)
 
     console.log('📊 Evento GTM enviado:', eventData)
   } else {

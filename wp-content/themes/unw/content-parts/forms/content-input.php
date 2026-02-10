@@ -9,20 +9,25 @@ $label  = $input['label'] ?? '';
 $length = $input['max_length'] ?? '';
 // Por defecto requerido
 $req = array_key_exists('required', $input) ? (bool) $input['required'] : true;
+$only_text = $input['only_text'] ?? false;
+
+$is_dni = $input['is_dni'] ?? false;
 
 $extra_attrs = '';
 $maxlength   = '';
-$skip_validation = $input['skip_auto_validation'] ?? false;
 
-// Agregar atributo data si se quiere saltar validación JS
-if ($skip_validation) {
-    $extra_attrs .= ' data-skip-validation="true"';
-}
+
+
+
 
 // Validaciones especiales
-if (($input['name'] === 'SingleLine' || $input['name'] === 'SingleLine2') && !$skip_validation) {
-    $extra_attrs .= ' inputmode="numeric" pattern="\d{8}" maxlength="8"';
+if (($input['name'] === 'SingleLine') ) {
+  if(!$only_text){
+      $extra_attrs .= ' inputmode="numeric" pattern="\d{8}" maxlength="8"';
+  }
 }
+
+
 if ($input['name'] === 'PhoneNumber_countrycode' || $input['name'] === 'PhoneNumber') {
     $extra_attrs .= ' inputmode="numeric" pattern="\d{9}" maxlength="9"';
 }
@@ -30,13 +35,14 @@ if ($input['name'] === 'Email') {
     // Forzamos type email y un regex estricto
     $type = 'email';
     $extra_attrs .= ' pattern="^[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\.[a-zA-Z]{2,}$"';
-
-
 }
 
 // Si pasas un length dinámico en $args
 if ($length) {
     $maxlength = ' maxlength="' . intval($length) . '"';
+}
+if($is_dni){
+  $extra_attrs .= ' inputmode="numeric" pattern="\d{8}" maxlength="8"';
 }
 ?>
 <div class="form-field">

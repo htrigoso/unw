@@ -60,6 +60,8 @@ $hide_cat = get_field('hide_cat');
       <div class="blog__tabs">
         <?php
 
+
+
           $tabs = is_tag() ? get_tag_tabs() : get_category_tabs();
           $blog_page_id = get_option('page_for_posts');
           $blog_url = $blog_page_id ? get_permalink($blog_page_id) : home_url('/blog/');
@@ -70,19 +72,20 @@ $hide_cat = get_field('hide_cat');
 
           array_unshift($tabs, [
             'id'     => 'all',
-            'label'  => 'Todos los blogs',
+            'label'  => 'Todos',
             'status' => true,
             'url'    => $blog_url,
             'target' => 'all',
           ]);
-
-          get_template_part(COMMON_CONTENT_PATH, 'nav-tabs', [
-            'nav_tabs'         => $tabs,
-            'is_url'           => true,
-            'active_id'        => $active_tab_id,
-            'show_icon_remove' => $taxonomy_type !== null,
-            'show_controls'=>true
-          ]);
+          if(!is_tag()){
+            get_template_part(COMMON_CONTENT_PATH, 'nav-tabs', [
+              'nav_tabs'         => $tabs,
+              'is_url'           => true,
+              'active_id'        => $active_tab_id,
+              'show_icon_remove' => $taxonomy_type !== null,
+              'show_controls'=>true
+            ]);
+          }
           ?>
       </div>
       <?php endif; ?>
@@ -101,7 +104,7 @@ $hide_cat = get_field('hide_cat');
               get_template_part(COMMON_CONTENT_PATH, 'entry-card', [
                 'image'   => get_the_post_thumbnail_url(get_the_ID(), 'medium_large') ?: UPLOAD_PATH . '/default-image.jpg',
                 'title'   => get_the_title(),
-                'date'    => get_the_date('j') . ' de ' . get_the_date('F') . ' del ' . get_the_date('Y'),
+                'date'    => get_the_date('j') . ' de ' . get_the_date('F') . ' de ' . get_the_date('Y'),
                 'content' => get_the_excerpt(),
                 'href'    => get_permalink(),
                 'tags'    => $categories,

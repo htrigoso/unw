@@ -61,8 +61,7 @@ if ($all_events_query->have_posts()) {
     ];
   }
   wp_reset_postdata();
-  // Ordenar todos los eventos
-  $all_events['events'] = unw_apply_event_sorting($all_events['events']);
+   $all_events['events'] = unw_apply_event_sorting($all_events['events']);
 }
 ?>
 

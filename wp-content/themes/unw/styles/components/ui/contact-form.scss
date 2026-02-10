@@ -16,7 +16,6 @@
 .form-header__title {
   @include title-20;
   color: var(--color-turquoise-three);
-  max-width: rem(222);
 }
 
 .form-body {

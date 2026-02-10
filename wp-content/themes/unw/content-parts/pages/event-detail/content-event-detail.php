@@ -1,6 +1,16 @@
 <?php
   $event = get_field('event_content');
   $event_info = get_field('event_info');
+  $conf_event = $event_info['conf_event'] ?? '';
+  $type_event = $conf_event['type'] ?? '';
+  $code_event= '';
+
+  if($type_event === 'Presencial'){
+     $code_event = $conf_event['code_event_presencial'];
+  }else {
+    $code_event = $conf_event['code_event_virtual'];
+  }
+
 ?>
 <?php if(!empty($event)): ?>
 <div class="event-detail">
@@ -47,14 +57,15 @@
         </div>
       </article>
 
-      <?php 
+      <?php
       $hide_event_form = get_field('events_hide_form', 'options');
-      if (!$hide_event_form) : 
+      if (!$hide_event_form) :
       ?>
       <article class="event-detail__form">
         <?php
         $utms_default = get_field('list_utms', 'option');
         $form_crm_categories = get_field('componente_form_category');
+        $is_form_mixto = $form_crm_categories['is_mixto'];
         $utm_admission = $form_crm_categories['list_utms'] ?? [];
         $utms_final = merge_utms($utms_default, $utm_admission);
 
@@ -85,7 +96,9 @@
           'shadow_box' => true,
           'vertical_modality' => $vertical_modality,
           'position_form'=> 'event-detail',
-          'event_id'=> $event_info['event_id'] ?? '',
+          'event_id'=> $code_event ?? '',
+          'is_form_mixto' => $is_form_mixto,
+          'type_event'=> $type_event,
         ]);
       ?>
       </article>

@@ -28,21 +28,18 @@ export async function hashValue(value) {
   }
 }
 
-export function validateInputs() {
+export function validateInputs(config = [
+  { name: 'Name_First', type: 'letters' },
+  { name: 'Name_Last', type: 'letters' },
+  { name: 'PhoneNumber_countrycode', type: 'numbers' },
+  { name: 'PhoneNumber', type: 'numbers' },
+  { name: 'SingleLine', type: 'numbers' },
+  { name: 'SingleLine2', type: 'numbers' }
+]) {
   const rules = {
     letters: /[^A-Za-zÁÉÍÓÚáéíóúÑñ\s]/g, // solo letras y espacios
     numbers: /[^0-9]/g // solo dígitos
   }
-
-  // Campos por defecto
-  const config = [
-    { id: 'Name_First', type: 'letters' },
-    { id: 'Name_Last', type: 'letters' },
-    { id: 'PhoneNumber_countrycode', type: 'numbers' },
-    { id: 'PhoneNumber', type: 'numbers' },
-    { id: 'SingleLine', type: 'numbers' },
-    { id: 'SingleLine2', type: 'numbers' }
-  ]
 
   const sanitizeValue = (input, regex) => {
     const before = input.value
@@ -66,42 +63,41 @@ export function validateInputs() {
     input.setRangeText(filtered, start, end, 'end')
   }
 
-  config.forEach(({ id, type }) => {
-    const input = document.getElementById(id)
-    if (!input) return
-
-    // Saltar si tiene el atributo data-skip-validation
-    if (input.dataset.skipValidation === 'true') return
+  config.forEach(({ name, type }) => {
+    const inputs = document.querySelectorAll(`[name="${name}"]`)
+    if (!inputs.length) return
 
     const regex = rules[type]
 
-    // 1) Al escribir: limpia caracteres inválidos
-    input.addEventListener('input', () => sanitizeValue(input, regex))
+    inputs.forEach(input => {
+      // 1) Al escribir: limpia caracteres inválidos
+      input.addEventListener('input', () => sanitizeValue(input, regex))
 
-    // 2) Al pegar: filtra antes de que entre al input y preserva el caret
-    input.addEventListener('paste', (e) => {
-      const txt = (e.clipboardData || window.clipboardData)?.getData('text') ?? ''
-      if (!txt) return // deja pasar si no hay texto
-      const filtered = txt.replace(regex, '')
-      // Si al pegar no cambia, no hacemos nada
-      if (filtered === txt) return
-      e.preventDefault()
-      insertFiltered(input, txt, regex)
+      // 2) Al pegar: filtra antes de que entre al input y preserva el caret
+      input.addEventListener('paste', (e) => {
+        const txt = (e.clipboardData || window.clipboardData)?.getData('text') ?? ''
+        if (!txt) return // deja pasar si no hay texto
+        const filtered = txt.replace(regex, '')
+        // Si al pegar no cambia, no hacemos nada
+        if (filtered === txt) return
+        e.preventDefault()
+        insertFiltered(input, txt, regex)
+      })
+
+      // 3) (Opcional) Arrastrar y soltar texto
+      input.addEventListener('drop', (e) => {
+        const txt = e.dataTransfer?.getData('text') ?? ''
+        if (!txt) return
+        const filtered = txt.replace(regex, '')
+        if (filtered === txt) return // válido, deja pasar
+        e.preventDefault()
+        input.focus()
+        insertFiltered(input, txt, regex)
+      })
+
+      // 4) (Opcional) Sugerir teclado adecuado en móviles
+      if (type === 'numbers') input.setAttribute('inputmode', 'numeric')
     })
-
-    // 3) (Opcional) Arrastrar y soltar texto
-    input.addEventListener('drop', (e) => {
-      const txt = e.dataTransfer?.getData('text') ?? ''
-      if (!txt) return
-      const filtered = txt.replace(regex, '')
-      if (filtered === txt) return // válido, deja pasar
-      e.preventDefault()
-      input.focus()
-      insertFiltered(input, txt, regex)
-    })
-
-    // 4) (Opcional) Sugerir teclado adecuado en móviles
-    if (type === 'numbers') input.setAttribute('inputmode', 'numeric')
   })
 }
 
@@ -236,10 +232,12 @@ export function sanitizeForInput(str) {
 }
 
 export function createSelectCampus(element, name = 'SingleLine7') {
-  const campus = window.appConfigUnw.campus || []
+  // const campus = window.appConfigUnw.campus || []
+  const campus = JSON.parse(element.dataset.campus || '[]')
   if (campus.length === 0) return
 
   const containerHtml = element.querySelector('[data-html-name="campus"]')
+
   if (!containerHtml) return
 
   const wrapperDiv = buildSelectWrapper({
@@ -249,8 +247,8 @@ export function createSelectCampus(element, name = 'SingleLine7') {
     options: campus
   })
 
-  // Si existe reemplaza, sino agrega
   const existing = containerHtml.querySelector('.f-50')
+
   existing ? existing.replaceWith(wrapperDiv) : containerHtml.appendChild(wrapperDiv)
 }
 

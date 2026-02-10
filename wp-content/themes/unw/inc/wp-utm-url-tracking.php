@@ -189,11 +189,52 @@ function utms_maybe_create_url_table() {
 add_action( 'after_setup_theme', 'utms_maybe_create_url_table' );
 
 function utms_get_current_url_raw() {
-	$scheme = is_ssl() ? 'https' : 'http';
-	$host   = isset( $_SERVER['HTTP_HOST'] ) ? $_SERVER['HTTP_HOST'] : wp_parse_url( home_url(), PHP_URL_HOST );
-	$uri    = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '/';
+	$protocol    = ( ! empty( $_SERVER['HTTPS'] ) && 'off' !== $_SERVER['HTTPS'] ) ? 'https' : 'http';
+	$raw_host    = isset( $_SERVER['HTTP_HOST'] ) ? $_SERVER['HTTP_HOST'] : '';
+	$host        = '' !== $raw_host ? $raw_host : wp_parse_url( home_url(), PHP_URL_HOST );
+	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '/';
+	$full_url    = $protocol . '://' . $host . $request_uri;
 
-	return esc_url_raw( $scheme . '://' . $host . $uri );
+	$parsed_url = parse_url( $full_url );
+	if ( false === $parsed_url ) {
+		return esc_url_raw( $protocol . '://' . $host . $request_uri );
+	}
+
+	$scheme = isset( $parsed_url['scheme'] ) ? $parsed_url['scheme'] : $protocol;
+	$parsed_host = isset( $parsed_url['host'] ) ? $parsed_url['host'] : $host;
+	$port   = isset( $parsed_url['port'] ) ? ':' . (int) $parsed_url['port'] : '';
+	$path   = isset( $parsed_url['path'] ) && '' !== $parsed_url['path'] ? $parsed_url['path'] : '/';
+	$query_string = isset( $parsed_url['query'] ) ? $parsed_url['query'] : '';
+
+	parse_str( $query_string, $query_params );
+
+	// Exclude parameters that shouldn't affect the tracking URL.
+	$exclude_params = array( 's', 'tab' );
+	foreach ( $exclude_params as $param ) {
+		unset( $query_params[ $param ] );
+	}
+
+	// Keep only UTM parameters for the tracking URL.
+	$utm_params = array(
+		'utm_source',
+		'utm_medium',
+		'utm_campaign',
+		'utm_term',
+		'utm_content',
+	);
+	$utm_only = array();
+	foreach ( $utm_params as $param ) {
+		if ( isset( $query_params[ $param ] ) && '' !== $query_params[ $param ] ) {
+			$utm_only[ $param ] = $query_params[ $param ];
+		}
+	}
+
+	$uri = $path;
+	if ( ! empty( $utm_only ) ) {
+		$uri .= '?' . http_build_query( $utm_only, '', '&', PHP_QUERY_RFC3986 );
+	}
+
+	return esc_url_raw( $scheme . '://' . $parsed_host . $port . $uri );
 }
 
 function utms_normalize_url( $url ) {
