@@ -10,6 +10,7 @@ require_once dirname(__FILE__) . '/functions/include-rocket.php';
 // require functions
 require_once dirname(__FILE__) . '/functions/register-option-page.php';
 require_once dirname(__FILE__) . '/functions/tpl-functions.php';
+require_once dirname(__FILE__) . '/functions/event-careers-helper.php';
 
 // require custom post types
 require_once dirname(__FILE__) . '/post-types/cpt-careers.php';
@@ -25,6 +26,9 @@ require_once dirname(__FILE__) . '/post-types/cpt-courses.php';
 require_once dirname(__FILE__) . '/post-types/cpt-infrastructure.php';
 require_once dirname(__FILE__) . '/post-types/cpt-admission-process.php';
 require_once dirname(__FILE__) . '/post-types/ctp-colores.php';
+
+// require ACF field groups
+require_once dirname(__FILE__) . '/acf/acf-eventos.php';
 
 
 // require custom taxonomies

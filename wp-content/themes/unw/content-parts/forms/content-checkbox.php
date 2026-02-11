@@ -2,11 +2,20 @@
 $input = $args ?? [];
 $id = $input['form_type'] ?? 'none';
 $name = $input['name'] ?? 'DecisionBox1';
+$is_term = get_field('form_crm_status_term', 'option');
+
 ?>
 <div class="form-field-checkbox">
+  <?php if(!$is_term): ?>
   <input type="checkbox" name="<?php echo esc_attr($name); ?>" id="checkbox-<?=$id?>" checked required>
-  <label for="checkbox-<?=$id?>">
+  <?php else: ?>
+  <input type="hidden" name="<?php echo esc_attr($name); ?>" value="on">
+  <?php endif; ?>
+
+  <label for="checkbox-<?=$id?>" <?php if($is_term): ?>class="no-cursor" <?php endif; ?>>
+    <?php if(!$is_term): ?>
     <span class="custom-checkbox"></span>
+    <?php endif; ?>
     <span class="text">
       Declaro expresamente haber leído y aceptado las <button type="button" data-modal-target="politics-modal">Políticas
         de privacidad</button>
