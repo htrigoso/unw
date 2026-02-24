@@ -1,16 +1,16 @@
 <?php
   $event = get_field('event_content');
   $event_info = get_field('event_info');
-  $conf_event = $event_info['conf_event'] ?? '';
-  $type_event = $conf_event['type'] ?? '';
-  $code_event= '';
+  $conf_event = get_field('conf_event') ?: [];
+
+  $type_event = $conf_event['type'] ?? 'Presencial';
+  $code_event = '';
 
   if($type_event === 'Presencial'){
-     $code_event = $conf_event['code_event_presencial'];
+     $code_event = $conf_event['code_event_presencial'] ?? '';
   }else {
-    $code_event = $conf_event['code_event_virtual'];
+    $code_event = $conf_event['code_event_virtual'] ?? '';
   }
-
 ?>
 <?php if(!empty($event)): ?>
 <div class="event-detail">
@@ -65,7 +65,8 @@
         <?php
         $utms_default = get_field('list_utms', 'option');
         $form_crm_categories = get_field('componente_form_category');
-        $is_form_mixto = $form_crm_categories['is_mixto'];
+
+
         $utm_admission = $form_crm_categories['list_utms'] ?? [];
         $utms_final = merge_utms($utms_default, $utm_admission);
 
@@ -79,7 +80,9 @@
 
         $vertical_modality = $args['vertical_modality'] ?? '';
 
-        $careers = get_carreras();
+        // Obtener carreras según la configuración del evento
+        $careers = get_event_filtered_careers(get_the_ID(), $type_event);
+
         $list_departaments = $form_crm_option['list_departaments'];
         $list_campus = get_carreras_campus_modalidad();
 
@@ -97,7 +100,6 @@
           'vertical_modality' => $vertical_modality,
           'position_form'=> 'event-detail',
           'event_id'=> $code_event ?? '',
-          'is_form_mixto' => $is_form_mixto,
           'type_event'=> $type_event,
         ]);
       ?>

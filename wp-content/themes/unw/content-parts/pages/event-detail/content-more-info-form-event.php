@@ -148,13 +148,14 @@ $type_event = $args['type_event'] ?? '';
       <div class="flex justify-between more-form-body__row m-b-24" data-html-name="departament">
         <div class="f-50">
           <?php
-            $type = $type_event === 'Presencial' ? 'pregrado' : 'virtual';
+          $type = $type_event === 'Presencial' ? 'pregrado' : 'virtual';
             get_template_part(GENERAL_FORM_CONTACT_PATH, 'careers', [
             'name' => 'SingleLine3',
             'label' => 'Elige tu carrera (*)',
-            'careers' => $careers[$type] ?? [],
+            'careers' => $careers[$type],
           ]); ?>
         </div>
+
         <?php if($type_event === 'Presencial'): ?>
         <div class="f-50" data-html-name="campus">
           <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'campus', [

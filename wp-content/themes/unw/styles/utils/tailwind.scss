@@ -576,3 +576,12 @@
   display: none;
   pointer-events: none;
 }
+
+.custom-table-border {
+  border-collapse: collapse;
+  width: 100%;
+}
+.custom-table-border td {
+  border: 1px solid #000;
+  padding: 8px;
+}
