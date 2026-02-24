@@ -207,6 +207,9 @@
     align-items: center;
     gap: rem(8);
     cursor: pointer;
+    &.no-cursor {
+      cursor: default;
+    }
   }
 
   .custom-checkbox {

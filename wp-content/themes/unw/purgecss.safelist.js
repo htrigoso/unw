@@ -34,7 +34,7 @@ module.exports = {
     'menu-grid-col-3',
     'menu-grid-col-2',
     'sub-menu-parent',
-
+    'custom-table-border',
     'accordion-item',
     'accordion-header',
     'accordion-label',
@@ -60,6 +60,7 @@ module.exports = {
     /^main-submenu-wrapper__main(?:--[a-z0-9_-]+)?$/,
     /^swiper-slide-(active|next|prev)$/,
     /^swiper-pagination-bullet(-active)?$/,
-    /^swiper-(primary-)?button-(next|prev)$/],
+    /^swiper-(primary-)?button-(next|prev)$/,
+    /custom-table-border/],
   deep: [/^is-/, /^has-/, /active$/, /show$/]
 }

@@ -226,7 +226,6 @@ export default class FormCrmEvent {
   updateHiddenFields({ select, hiddenContainer }) {
     const selectedOption = select.options[select.selectedIndex]
     const parentOptgroup = selectedOption.parentElement
-    //    <input type="hidden"  id="radio-type"  name="Radio" value="Presencial">
     const type = document.querySelector('#radio-type')?.value || ''
     if (parentOptgroup.tagName !== 'OPTGROUP') return
 
@@ -244,6 +243,7 @@ export default class FormCrmEvent {
     if (!form) return
 
     const select = document.getElementById('careerSelect')
+    if (!select) return
 
     const campus = window.appConfigUnw.campus || []
 
@@ -262,6 +262,15 @@ export default class FormCrmEvent {
       const modalidad = selectedOption.dataset.mode
 
       buildOptionsCampus({ campus, slugCareers, modalidad, element: this.element })
+    }
+
+    // Contar opciones reales (dentro de optgroups, excluyendo placeholder)
+    const optgroupOptions = select.querySelectorAll('optgroup option')
+
+    // Si solo hay una opción, seleccionarla automáticamente
+    if (optgroupOptions.length === 1) {
+      select.selectedIndex = Array.from(select.options).indexOf(optgroupOptions[0])
+      boundUpdate()
     }
 
     select.addEventListener('change', boundUpdate)
