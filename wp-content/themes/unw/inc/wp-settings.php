@@ -52,6 +52,16 @@ set_query_var( 'FOOTER_COLOR', false );
 
 define('LANDING_CONTENT_PATH', 'content-parts/pages/landing/sections/content');
 
+/**
+ * Limpiar buffer de salida en peticiones AJAX para evitar errores en la respuesta JSON
+ */
+add_action('admin_init', 'clean_ajax_response_buffer');
+function clean_ajax_response_buffer() {
+    if (defined('DOING_AJAX') && DOING_AJAX) {
+        ob_start();
+    }
+}
+
 
 /**
  * globals
@@ -211,6 +221,11 @@ function allow_svg_upload($mimes) {
  */
 add_filter('wp_get_attachment_metadata', 'skip_crop_for_svg', 10, 2);
 function skip_crop_for_svg($data, $attachment_id) {
+    // Evitar errores durante la eliminación de attachments
+    if (!$attachment_id || get_post_status($attachment_id) === false) {
+        return $data;
+    }
+
     $mime = get_post_mime_type($attachment_id);
     if ($mime === 'image/svg+xml') {
         // Simular metadatos para que WordPress no intente recortar
@@ -233,6 +248,18 @@ function fix_svg_mime_type($data, $file, $filename, $mimes) {
         $data['type'] = 'image/svg+xml';
     }
     return $data;
+}
+
+/**
+ * Limpiar output buffer antes de enviar respuestas AJAX de eliminación
+ */
+add_action('wp_ajax_delete-post', 'clean_buffer_before_ajax_delete', 1);
+function clean_buffer_before_ajax_delete() {
+    // Limpiar cualquier output previo que pueda contaminar la respuesta JSON
+    while (ob_get_level() > 0) {
+        ob_end_clean();
+    }
+    ob_start();
 }
 
 /**
