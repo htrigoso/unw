@@ -163,7 +163,9 @@ $facultad_name = $args['facultad_name'] ?? '';
     </p>
 
     <div class="form-body__terms">
-      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox'); ?>
+      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox', [
+          'form_type'=>$form_id
+      ]); ?>
     </div>
 
     <div class="form-body__actions more-form-body__actions">

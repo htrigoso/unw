@@ -176,7 +176,9 @@ $is_carreras_uwiener = $args['is_carreras_uwiener'] ?? false;
     </p>
 
     <div class="form-body__terms">
-      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox'); ?>
+      <?php get_template_part(GENERAL_FORM_CONTACT_PATH, 'checkbox', [
+        'form_type'=>$form_id
+      ]); ?>
     </div>
 
     <div class="form-body__actions more-form-body__actions">
