@@ -21095,11 +21095,15 @@ table {
     overflow: visible;
   }
 }
-.custom-table-border{
-    border-collapse: collapse;
-    width: 100%;
+
+.custom-table-border,
+table {
+  border-collapse: collapse;
+  width: 100%;
 }
-.custom-table-border td {
+.custom-table-border td,
+table td,
+table th {
   border: 1px solid #000;
-  padding: 8px;
+  padding: rem(8);
 }

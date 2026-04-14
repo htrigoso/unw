@@ -123,9 +123,9 @@ foreach ($acf_careers as $key => $value) {
               get_template_part(CAREERS_CONTENT_TAB_PATH . '3-curriculum-map/content-program-curriculum', null, [
                 'malla_curricular' => $malla_curricular
               ]);
-              $comite = get_field('comite', get_the_ID());
+              $comite = get_field('comite_group', get_the_ID());
               get_template_part(CAREERS_CONTENT_TAB_PATH . '3-curriculum-map/content-program-committee', null, [
-                'comite' =>  $malla_curricular['comite']
+                'comite' =>  $malla_curricular['comite_group']
               ]);
               $curriculum_legend = get_field('curriculum_legend', get_the_ID());
               get_template_part(CAREERS_CONTENT_TAB_PATH . '3-curriculum-map/content-curriculum-legend', null, [

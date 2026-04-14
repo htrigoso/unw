@@ -16,6 +16,7 @@ export default class HomePage {
     initSelectProgramTypeTracking()
     initViewEventListTracking()
     initSelectEventTracking()
+    console.log('HomePage created')
   }
 
   initFormGeneral() {

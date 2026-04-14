@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: rem(52);
+  gap: rem(10);
 
   @include media(">=desktop-s") {
     flex-direction: row;
@@ -114,10 +114,7 @@
 }
 
 .blog-detail__aside-popular {
-  display: none;
-
   @include media(">=desktop-s") {
-    display: block;
     margin-top: rem(64);
   }
 }

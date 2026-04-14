@@ -352,36 +352,9 @@ add_action('acf/init', function() {
         'default_value' => 1,
         'return_format' => 'value',
       ],
-      [
-        'key' => 'field_unw_admission_today_override',
-        'label' => 'Fecha de hoy (pruebas)',
-        'name' => 'admission_today_override',
-        'type' => 'date_picker',
-        'display_format' => 'd/m/Y',
-        'return_format' => 'Y-m-d',
-        'first_day' => 1,
-        'allow_null' => 1,
-        'instructions' => 'Si se define, simula la fecha de hoy para el calculo de admision.',
-      ],
-      [
-        'key' => 'field_unw_admission_auto_update_enabled',
-        'label' => 'Auto-actualizar fecha visible',
-        'name' => 'admission_auto_update_enabled',
-        'type' => 'true_false',
-        'default_value' => 1,
-        'ui' => 1,
-        'ui_on_text' => 'Sí',
-        'ui_off_text' => 'No',
-        'instructions' => 'Activa para calcular automaticamente la fecha visible segun los parametros.',
-      ],
-      [
-        'key' => 'field_unw_admission_next_date_display',
-        'label' => 'Próxima fecha de admisión (calculada)',
-        'name' => 'admission_next_date_display',
-        'type' => 'message',
-        'message' => '',
-        'esc_html' => 1,
-      ],
+
+
+
     ],
     'location' => [
       [

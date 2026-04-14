@@ -1,6 +1,5 @@
 .testimonial__wrapper {
   padding: rem(32) 0 rem(32) 0;
-
   @include media(">=tablet") {
     padding-top: rem(60);
     padding-bottom: rem(60);

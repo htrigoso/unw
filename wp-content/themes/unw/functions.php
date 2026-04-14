@@ -44,6 +44,5 @@ require_once dirname(__FILE__) . '/inc/functions/tpl-noticias.php';
 
 require_once dirname(__FILE__) . '/inc/functions/preserve-url-params.php';
 
-
 // Utms
 require_once dirname(__FILE__) . '/inc/wp-utm-url-tracking.php';

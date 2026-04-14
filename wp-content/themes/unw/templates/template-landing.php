@@ -47,6 +47,6 @@ get_template_part(GENERAL_CONTENT_PATH, 'navbar');
   <?php endif; ?>
 </main>
 <?php
-add_filter('show_book_link', '__return_true');
+add_filter('show_book_link', '__return_false');
 get_footer();
 ?>
