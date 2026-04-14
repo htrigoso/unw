@@ -35,6 +35,7 @@ module.exports = {
     'menu-grid-col-2',
     'sub-menu-parent',
     'custom-table-border',
+    'table',
     'accordion-item',
     'accordion-header',
     'accordion-label',
@@ -61,6 +62,7 @@ module.exports = {
     /^swiper-slide-(active|next|prev)$/,
     /^swiper-pagination-bullet(-active)?$/,
     /^swiper-(primary-)?button-(next|prev)$/,
-    /custom-table-border/],
+    /custom-table-border/,
+    /^table/],
   deep: [/^is-/, /^has-/, /active$/, /show$/]
 }
