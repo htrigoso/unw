@@ -5,12 +5,12 @@ const AssetsPlugin = require('assets-webpack-plugin')
 const compass = require('compass-importer')
 const chalk = require('chalk')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const WebpackNotifierPlugin = require('webpack-notifier')
 const entrypoints = require('./entrypoints.json')
 const bundle = require('./bundle.json')
-const PurgeCSSPlugin = require('purgecss-webpack-plugin') // v3.1.3
+const { PurgeCSSPlugin } = require('purgecss-webpack-plugin') // v3.1.3
 const safelist = require('./purgecss.safelist.js')
 
 // 🔧 RUTAS para PurgeCSS (faltaban)
@@ -60,25 +60,23 @@ module.exports = (env, options) => {
     },
     resolve: { modules: [dirApp, dirStyles, dirNode] },
     devtool: 'inline-source-map',
+    ignoreWarnings: [/legacy JS API/, /Sass @import rules are deprecated/, /legacy-js-api/],
     devServer: {
       historyApiFallback: true,
-      proxy: { '*': { target: settings.proxy } },
-      contentBase: path.resolve(__dirname, 'public'),
+      proxy: [{ context: ['**'], target: settings.proxy }],
+      static: { directory: path.resolve(__dirname, 'public') },
       compress: false,
-      publicPath: `http://localhost:${settings.port}`,
-      disableHostCheck: true,
+      devMiddleware: { publicPath: `http://localhost:${settings.port}` },
+      allowedHosts: 'all',
       headers: {
         'Access-Control-Allow-Origin': '*',
         'X-Content-Type-Options': 'nosniff',
         'X-Frame-Options': 'DENY'
       },
       port: settings.port,
-      progress: true,
-      inline: true,
       open: settings.open,
-      overlay: { warnings: true, errors: true },
+      client: { overlay: { warnings: false, errors: true } },
       hot: true,
-      stats: 'errors-warnings'
     },
     module: {
       rules: [
@@ -97,11 +95,17 @@ module.exports = (env, options) => {
             {
               loader: 'sass-loader',
               options: {
-                data: '@import "compass"; @import "./styles/includes.scss";',
-                outputStyle: 'expanded',
+                api: 'legacy',
+                implementation: require('sass'),
                 sourceMap: true,
-                importer: compass,
-                includePaths: [path.resolve('./node_modules')]
+                additionalData: `@import "compass"; @import "./styles/includes.scss";`,
+                sassOptions: {
+                  outputStyle: 'expanded',
+                  includePaths: [path.resolve('./node_modules')],
+                  importer: compass,
+                  silenceDeprecations: ['legacy-js-api', 'import'],
+                  quietDeps: true
+                }
               }
             }
           ]
@@ -114,12 +118,12 @@ module.exports = (env, options) => {
             { loader: 'postcss-loader', options: { sourceMap: true } }
           ]
         },
-        { test: /\.svg$/, loader: `url-loader?name=${settings.wordpressThemePath}/[path][name].[ext]&limit=12` },
-        { test: /\.woff$/, loader: `url-loader?name=${settings.wordpressThemePath}/[path][name].[ext]&limit=12` },
-        { test: /\.woff2$/, loader: `url-loader?name=${settings.wordpressThemePath}/[path][name].[ext]&limit=12` },
-        { test: /\.[ot]tf$/, loader: `url-loader?name=${settings.wordpressThemePath}/[path][name].[ext]&limit=12` },
-        { test: /\.eot$/, loader: `url-loader?name=${settings.wordpressThemePath}/[path][name].[ext]&limit=12` },
-        { test: /\.(gif|GIF|jpg|png|jpeg)$/, loader: `url-loader?name=${settings.wordpressThemePath}/[path][name].[ext]&limit=12` }
+        { test: /\.svg$/, loader: 'url-loader', options: { name: `${settings.wordpressThemePath}/[path][name].[ext]`, limit: 12 } },
+        { test: /\.woff$/, loader: 'url-loader', options: { name: `${settings.wordpressThemePath}/[path][name].[ext]`, limit: 12 } },
+        { test: /\.woff2$/, loader: 'url-loader', options: { name: `${settings.wordpressThemePath}/[path][name].[ext]`, limit: 12 } },
+        { test: /\.[ot]tf$/, loader: 'url-loader', options: { name: `${settings.wordpressThemePath}/[path][name].[ext]`, limit: 12 } },
+        { test: /\.eot$/, loader: 'url-loader', options: { name: `${settings.wordpressThemePath}/[path][name].[ext]`, limit: 12 } },
+        { test: /\.(gif|GIF|jpg|png|jpeg)$/, loader: 'url-loader', options: { name: `${settings.wordpressThemePath}/[path][name].[ext]`, limit: 12 } }
       ]
     },
     plugins: [
@@ -171,11 +175,17 @@ module.exports = (env, options) => {
             {
               loader: 'sass-loader',
               options: {
-                data: '@import "compass"; @import "./styles/includes.scss";',
-                outputStyle: 'compressed',
+                api: 'legacy',
+                implementation: require('sass'),
                 sourceMap: true,
-                importer: compass,
-                includePaths: [path.resolve('./node_modules')]
+                sassOptions: {
+                  outputStyle: 'compressed',
+                  includePaths: [path.resolve('./node_modules')],
+                  importer: compass,
+                  silenceDeprecations: ['legacy-js-api', 'import'],
+                  quietDeps: true
+                },
+                additionalData: `@import "compass"; @import "./styles/includes.scss";`
               }
             }
           ]
@@ -188,30 +198,30 @@ module.exports = (env, options) => {
             { loader: 'postcss-loader', options: { sourceMap: true } }
           ]
         },
-        { test: /\.svg$/, loader: `url-loader?name=${settings.wordpressThemePath}/[path][name].[ext]&limit=12` },
-        { test: /\.woff$/, loader: `url-loader?name=${settings.wordpressThemePath}/[path][name].[ext]&limit=12` },
-        { test: /\.woff2$/, loader: `url-loader?name=${settings.wordpressThemePath}/[path][name].[ext]&limit=12` },
-        { test: /\.[ot]tf$/, loader: `url-loader?name=${settings.wordpressThemePath}/[path][name].[ext]&limit=12` },
-        { test: /\.eot$/, loader: `url-loader?name=${settings.wordpressThemePath}/[path][name].[ext]&limit=12` },
-        { test: /\.(gif|GIF|jpg|png|jpeg)$/, loader: `url-loader?name=${settings.wordpressThemePath}/[path][name].[ext]&limit=12` }
+        { test: /\.svg$/, loader: 'url-loader', options: { name: `${settings.wordpressThemePath}/[path][name].[ext]`, limit: 12 } },
+        { test: /\.woff$/, loader: 'url-loader', options: { name: `${settings.wordpressThemePath}/[path][name].[ext]`, limit: 12 } },
+        { test: /\.woff2$/, loader: 'url-loader', options: { name: `${settings.wordpressThemePath}/[path][name].[ext]`, limit: 12 } },
+        { test: /\.[ot]tf$/, loader: 'url-loader', options: { name: `${settings.wordpressThemePath}/[path][name].[ext]`, limit: 12 } },
+        { test: /\.eot$/, loader: 'url-loader', options: { name: `${settings.wordpressThemePath}/[path][name].[ext]`, limit: 12 } },
+        { test: /\.(gif|GIF|jpg|png|jpeg)$/, loader: 'url-loader', options: { name: `${settings.wordpressThemePath}/[path][name].[ext]`, limit: 12 } }
       ]
     },
     performance: { hints: false },
+    ignoreWarnings: [/legacy JS API/, /Sass @import rules are deprecated/, /legacy-js-api/, /import/],
     optimization: {
       splitChunks: { chunks: 'async' },
       minimize: true,
       minimizer: [
-        new UglifyJsPlugin({
-          cache: true,
+        new TerserPlugin({
           parallel: true,
-          sourceMap: process.env.SOURCE_MAP === 'true',
-          uglifyOptions: {
+          extractComments: false,
+          terserOptions: {
             compress: { drop_console: false },
             mangle: false,
-            output: { beautify: false }
+            format: { beautify: false }
           }
         }),
-        new OptimizeCSSAssetsPlugin()
+        new CssMinimizerPlugin()
       ]
     },
     plugins: [
