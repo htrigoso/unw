@@ -1,7 +1,15 @@
-import Swiper from 'swiper'
+import Swiper from 'swiper/bundle'
 
 const TabSwiper = (sectionEl = '.tabs-swiper') => {
-  return new Swiper(`${sectionEl} .swiper-container`, {
+  const container = document.querySelector(`${sectionEl} .swiper`) ||
+    document.querySelector(`${sectionEl} .swiper-container`)
+
+  if (!container) return null
+  if (!container.classList.contains('swiper')) {
+    container.classList.add('swiper')
+  }
+
+  return new Swiper(container, {
     loop: false,
     slidesPerView: 'auto',
     spaceBetween: 0,

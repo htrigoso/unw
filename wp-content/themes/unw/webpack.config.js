@@ -209,7 +209,52 @@ module.exports = (env, options) => {
     performance: { hints: false },
     ignoreWarnings: [/legacy JS API/, /Sass @import rules are deprecated/, /legacy-js-api/, /import/],
     optimization: {
-      splitChunks: { chunks: 'async' },
+      splitChunks: {
+        chunks: 'async',
+        cacheGroups: {
+          // Swiper vendor chunk - generado por pagina cuando sea necesario
+          swiperVendor: {
+            test: /[\\/]node_modules[\\/]swiper[\\/]/,
+            name (module, chunks) {
+              const chunkNames = chunks
+                .map((chunk) => chunk.name)
+                .filter(Boolean)
+
+              if (chunkNames.length === 0) return 'swiper-vendor'
+              return `${chunkNames.join('~')}-swiper`
+            },
+            chunks: 'async',
+            priority: 20,
+            reuseExistingChunk: true,
+            enforce: true
+          },
+          // Otros vendors - generados por pagina cuando minChunks >= 2
+          asyncVendors: {
+            test: /[\\/]node_modules[\\/]/,
+            name (module, chunks) {
+              const chunkNames = chunks
+                .map((chunk) => chunk.name)
+                .filter(Boolean)
+
+              if (chunkNames.length === 0) return 'shared-vendors'
+              return `${chunkNames.join('~')}-vendors`
+            },
+            chunks: 'async',
+            priority: 10,
+            minChunks: 2,
+            reuseExistingChunk: true
+          },
+          // Vendors de un solo chunk (fallback)
+          singleVendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'lazy-vendor',
+            chunks: 'async',
+            priority: 5,
+            minChunks: 1,
+            reuseExistingChunk: true
+          }
+        }
+      },
       minimize: true,
       minimizer: [
         new TerserPlugin({
