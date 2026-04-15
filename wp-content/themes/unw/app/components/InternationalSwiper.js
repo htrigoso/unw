@@ -1,9 +1,15 @@
-import Swiper, { Navigation } from 'swiper'
+import Swiper from 'swiper/bundle'
 
 const InternationalSwiper = (sectionEl = '.international-agreements') => {
-  Swiper.use([Navigation])
+  const container = document.querySelector(`${sectionEl} .swiper`) ||
+    document.querySelector(`${sectionEl} .swiper-container`)
 
-  return new Swiper(`${sectionEl} .swiper-container`, {
+  if (!container) return null
+  if (!container.classList.contains('swiper')) {
+    container.classList.add('swiper')
+  }
+
+  return new Swiper(container, {
     slidesPerView: 'auto',
     spaceBetween: 12,
     grabCursor: true,

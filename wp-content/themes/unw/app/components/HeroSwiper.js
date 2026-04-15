@@ -1,9 +1,37 @@
-import Swiper, { Lazy } from 'swiper'
 import { createSwiper } from './createSwiper'
 import { UserActivityDetector } from '../utils/detect-user-activity'
 
-// Configurar Lazy solo para HeroSwiper
-Swiper.use([Lazy])
+function hydrateLegacyHeroLazy(root) {
+  if (!root) return
+
+  root.querySelectorAll('source[data-srcset]').forEach((source) => {
+    const srcset = source.getAttribute('data-srcset')
+    if (srcset) {
+      source.setAttribute('srcset', srcset)
+      source.removeAttribute('data-srcset')
+    }
+  })
+
+  root.querySelectorAll('img.swiper-lazy[data-src]').forEach((img) => {
+    const src = img.getAttribute('data-src')
+    if (src && !img.getAttribute('src')) {
+      img.setAttribute('src', src)
+    }
+    img.removeAttribute('data-src')
+    img.classList.remove('swiper-lazy')
+
+    const preloader = img.parentElement?.querySelector('.swiper-lazy-preloader')
+    if (!preloader) return
+
+    if (img.complete) {
+      preloader.remove()
+      return
+    }
+
+    img.addEventListener('load', () => preloader.remove(), { once: true })
+    img.addEventListener('error', () => preloader.remove(), { once: true })
+  })
+}
 
 const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
   const defaultConfig = {
@@ -34,9 +62,13 @@ const HeroSwiper = (sectionEl = '.hero-swiper', config = {}) => {
       : sectionEl
 
     if (swiperElement) {
+      hydrateLegacyHeroLazy(swiperElement)
+
       // Activar loop cuando el usuario llegue al penúltimo slide
       let loopActivated = false
       swiper.on('slideChange', () => {
+        hydrateLegacyHeroLazy(swiperElement)
+
         const totalSlides = swiper.slides.length
         const currentIndex = swiper.realIndex
 
