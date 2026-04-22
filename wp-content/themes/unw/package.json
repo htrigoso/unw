@@ -12,8 +12,8 @@
     "build": "npm run clear && cross-env webpack --progress --mode production",
     "build:map": "npm run clear && cross-env SOURCE_MAP=true webpack --progress --mode production",
     "lint": "npx standard --fix",
-    "clear": "rm -rf ./build ./dist ./public",
-    "rm:packs": "rm -rf ./node_modules"
+    "clear": "if exist build rmdir /s /q build && if exist dist rmdir /s /q dist && if exist public rmdir /s /q public",
+    "rm:packs": "if exist node_modules rmdir /s /q node_modules"
   },
   "browserslist": [
     "supports es6-module",

@@ -118,12 +118,16 @@
 
 .career-intro__detail-content {
   @include media(">=phone") {
-    columns: 2;
+    columns: 1;
   }
 
   @include media(">=tablet") {
     gap: rem(24);
     max-width: rem(808);
+  }
+
+  @include media(">=desktop") {
+    max-width: rem(1100);
   }
 
   p {
@@ -132,5 +136,11 @@
     &:last-child {
       margin-bottom: 0;
     }
+  }
+  iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: none;
   }
 }

