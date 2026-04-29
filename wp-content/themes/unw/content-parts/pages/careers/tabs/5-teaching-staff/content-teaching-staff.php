@@ -8,7 +8,7 @@ $teaching_staff = $args['teaching_staff'] ?? null;
 
     <!-- Header -->
     <header class="teaching-staff__header">
-      <h2 id="teaching-staff-title" class="teaching-staff__title">Plana Docente</h2>
+      <h2 id="teaching-staff-title" class="teaching-staff__title"><?php echo esc_html($teaching_staff['title']); ?></h2>
 
       <?php if (!empty($teaching_staff['description'])): ?>
       <div class="teaching-staff__description">

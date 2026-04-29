@@ -21,11 +21,25 @@ function uw_terms_to_string($terms)
     return '';
   }
 
-  // Extraer solo los nombres
-  $names = wp_list_pluck($terms, 'name');
+  // Extraer solo los nombres válidos
+  $names = array_filter(wp_list_pluck($terms, 'name'));
+  $count = count($names);
 
-  // Unir todos los nombres con comas
-  return implode(', ', $names);
+  if ($count === 0) {
+    return '';
+  }
+
+  if ($count === 1) {
+    return reset($names);
+  }
+
+  if ($count === 2) {
+    return sprintf('%s y %s', $names[0], $names[1]);
+  }
+
+  // Más de dos elementos: separar con comas y usar "y" antes del último elemento.
+  $last = array_pop($names);
+  return sprintf('%s y %s', implode(', ', $names), $last);
 }
 
 /**
